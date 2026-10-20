@@ -1,7 +1,7 @@
 +++
 title = "How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?"
 slug = "how-to-secure-vibe-coded-apps"
-date = 2026-10-21
+date = 2026-10-20
 category = "APPSEC · RESEARCH"
 card_label = "APPSEC · RESEARCH"
 breadcrumb = "Application security"
