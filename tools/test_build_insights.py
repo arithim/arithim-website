@@ -17,6 +17,11 @@ REPO = Path(__file__).resolve().parent.parent
 
 
 class InlineTests(unittest.TestCase):
+    def test_inline_code_is_escaped_and_not_formatted(self):
+        self.assertEqual(b.inline("set `GITHUB_TOKEN` and `**x**`"), "set <code>GITHUB_TOKEN</code> and <code>**x**</code>")
+        self.assertEqual(b.inline("`<b>`"), "<code>&lt;b&gt;</code>")
+        self.assertNotIn("{{", b.inline("`{{x}}`"))
+
     def test_bold_italic(self):
         self.assertEqual(b.inline("a **b** and *c*"), "a <strong>b</strong> and <em>c</em>")
 

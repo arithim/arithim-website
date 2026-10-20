@@ -58,6 +58,7 @@ _ESC_CHARS = "\\*[]()|{}"
 _ESC_MAP = {c: chr(0xE000 + i) for i, c in enumerate(_ESC_CHARS)}
 _UNESC_MAP = {v: k for k, v in _ESC_MAP.items()}
 _LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+_CODE_RE = re.compile(r"`([^`]+)`")
 _BOLD_RE = re.compile(r"\*\*(?=\S)(.+?)(?<=\S)\*\*")
 _ITALIC_RE = re.compile(r"(?<![*\w])\*(?=[^\s*])(.+?)(?<=[^\s*])\*(?![*\w])")
 _SAFE_URL_RE = re.compile(r"^(https?://|mailto:|/|#|\./|\.\./|[A-Za-z0-9_\-][A-Za-z0-9_\-./]*(\?.*)?(#.*)?$)")
@@ -86,8 +87,16 @@ def is_external(url: str) -> bool:
 
 
 def inline(text: str) -> str:
-    """Render inline Markdown (bold, italic, links) to escaped HTML."""
+    """Render inline Markdown (code, bold, italic, links) to escaped HTML."""
     text = _protect(text)
+    codes: list[str] = []
+
+    def stash_code(m: re.Match) -> str:
+        codes.append(m.group(1))
+        return f"\ue100{len(codes) - 1}\ue101"
+
+    text = re.sub(r"[\ue100\ue101]", "", text)
+    text = _CODE_RE.sub(stash_code, text)
     links: list[tuple[str, str]] = []
 
     def stash(m: re.Match) -> str:
@@ -107,6 +116,11 @@ def inline(text: str) -> str:
         return f'<a href="{html.escape(url, quote=True)}"{rel}>{_fmt(label)}</a>'
 
     out = re.sub(r"(\d+)", build_link, out)
+    out = re.sub(
+        "\ue100(\\d+)\ue101",
+        lambda m: "<code>" + html.escape(_restore(codes[int(m.group(1))]), quote=False).replace("{{", "&#123;&#123;") + "</code>",
+        out,
+    )
     return _restore(out)
 
 
