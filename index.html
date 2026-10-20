@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arithim — Applied AI &amp; Operational Intelligence</title>
+<meta name="description" content="Arithim builds practical AI systems, workflow automation, and operational infrastructure that make complex, regulated businesses measurably clearer to run.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Arithim — Applied AI &amp; Operational Intelligence">
+<meta property="og:description" content="Arithim builds practical AI systems, workflow automation, and operational infrastructure that make complex, regulated businesses measurably clearer to run.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<meta property="og:url" content="https://arithim.com/">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #070C16; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  @keyframes ah-pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  @keyframes ah-hint { 0%,100% { transform: translateY(0); opacity:0.7; } 50% { transform: translateY(5px); opacity:1; } }
+  @keyframes ah-spin { to { transform: rotate(360deg); } }
+  @keyframes ah-shimmer { to { background-position: 200% center; } }
+  @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+  @keyframes ah-aurora-b { 0%,100% { transform: translate(0,0) scale(1.1); } 50% { transform: translate(-100px,80px) scale(0.85); } }
+  @keyframes ah-aurora-c { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,-70px) scale(1.2); } }
+  @keyframes ah-flow { 0% { left: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+  @keyframes ah-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes ah-marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @keyframes ah-float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(10px,-16px); } }
+  @keyframes ah-float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-14px,-10px); } }
+  @keyframes ah-float3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(8px,14px); } }
+  @keyframes ah-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
+</style>
+</helmet>
+
+<div style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+
+  <!-- ===== sticky header ===== -->
+  <div style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+    <div style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:inline-flex;align-items:baseline;gap:0;">
+        <span style="position:relative;display:inline-flex;">
+          
+          
+        </span>
+        <span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/applied ai</span></span>
+      </a>
+      <nav data-nav style="position:relative;display:flex;align-items:center;gap:2px;">
+        <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Services</a>
+        <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
+        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Insights</a>
+        <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
+        <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
+      </nav>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">
+        <span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 55%,#E8A13C,transparent 75%);animation:ah-spin 3.5s linear infinite;"></span>
+        <span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;">Let's talk →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== hero ===== -->
+  <div data-hero style="position:relative;overflow:hidden;background:#070C16;">
+    <div style="position:absolute;top:-12%;left:-6%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.30),transparent 60%);filter:blur(70px);animation:ah-aurora-a 17s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;top:20%;right:-8%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(126,155,135,0.28),transparent 60%);filter:blur(70px);animation:ah-aurora-b 21s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-15%;left:30%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.24),transparent 60%);filter:blur(80px);animation:ah-aurora-c 24s ease-in-out infinite;pointer-events:none;"></div>
+    <canvas data-live-canvas style="position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0.85;"></canvas>
+    <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,241,232,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,241,232,0.03) 1px,transparent 1px);background-size:64px 64px;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 130% at 50% 20%, transparent 40%, rgba(7,12,22,0.72));"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:110px 40px 90px;">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#E8A13C;margin-bottom:34px;border:1px solid rgba(232,161,60,0.35);padding:8px 14px;border-radius:999px;background:rgba(232,161,60,0.06);">
+        <span style="width:7px;height:7px;background:#E8A13C;border-radius:50%;box-shadow:0 0 12px #E8A13C;animation:ah-pulse-dot 1.8s ease-in-out infinite;"></span> APPLIED AI · OPERATIONAL INTELLIGENCE
+      </div>
+      <h1 data-hero-h1 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:118px;line-height:0.92;letter-spacing:-0.05em;margin:0;text-shadow:0 0 60px rgba(232,161,60,0.12);">Make your<br>operations <span style="background:linear-gradient(90deg,#E8A13C,#F6CE8C,#E8A13C);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ah-shimmer 3.2s linear infinite;">think.</span></h1>
+      <p style="font-size:22px;line-height:1.5;color:#AEB8C6;max-width:600px;margin:36px 0 0;">Arithim builds practical AI systems, workflow automation, and operational infrastructure that make complex, regulated businesses measurably clearer to run.</p>
+      <div style="display:flex;gap:16px;margin-top:40px;align-items:center;">
+        <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">
+          <span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>
+          <span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Start a conversation →</span>
+        </a>
+        <a href="services.html" style="display:inline-flex;align-items:center;gap:10px;color:#F5F1E8;font-size:16px;font-weight:500;padding:16px 28px;border-radius:999px;border:1px solid rgba(245,241,232,0.18);background:rgba(245,241,232,0.02);transition:border-color 0.2s,background 0.2s;" style-hover="border-color:rgba(232,161,60,0.6);background:rgba(232,161,60,0.06);">Explore services</a>
+      </div>
+    </div>
+    <div style="position:absolute;right:8%;top:32%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#D8C3A0;background:rgba(232,161,60,0.08);border:1px solid rgba(232,161,60,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float1 7s ease-in-out infinite;box-shadow:0 0 24px rgba(232,161,60,0.12);">◆ SAP ECC · synced</div>
+    <div style="position:absolute;right:24%;top:58%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#B9CDBF;background:rgba(126,155,135,0.1);border:1px solid rgba(126,155,135,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float2 9s ease-in-out infinite;box-shadow:0 0 24px rgba(126,155,135,0.12);">● billing_workflow</div>
+  </div>
+
+  <!-- ===== dual marquee ===== -->
+  <div style="background:#0A101C;overflow:hidden;border-top:1px solid rgba(245,241,232,0.06);border-bottom:1px solid rgba(245,241,232,0.06);padding:14px 0;display:flex;flex-direction:column;gap:8px;">
+    <div style="display:flex;width:max-content;animation:ah-marquee 26s linear infinite;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:20px;color:#8794A6;">
+      <div style="display:flex;"><span style="padding:0 26px;">Energy</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">Industrial</span><span style="padding:0 26px;color:#7E9B87;">◆</span><span style="padding:0 26px;">Telecoms</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">Regulated</span><span style="padding:0 26px;color:#7E9B87;">◆</span><span style="padding:0 26px;">SAP-heavy</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">FMCG</span><span style="padding:0 26px;color:#7E9B87;">◆</span></div>
+      <div style="display:flex;" aria-hidden="true"><span style="padding:0 26px;">Energy</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">Industrial</span><span style="padding:0 26px;color:#7E9B87;">◆</span><span style="padding:0 26px;">Telecoms</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">Regulated</span><span style="padding:0 26px;color:#7E9B87;">◆</span><span style="padding:0 26px;">SAP-heavy</span><span style="padding:0 26px;color:#E8A13C;">◆</span><span style="padding:0 26px;">FMCG</span><span style="padding:0 26px;color:#7E9B87;">◆</span></div>
+    </div>
+    <div style="display:flex;width:max-content;animation:ah-marquee-rev 32s linear infinite;font-family:'JetBrains Mono',monospace;font-size:13px;color:#4E5A6C;letter-spacing:0.05em;">
+      <div style="display:flex;"><span style="padding:0 26px;">document_intelligence</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">knowledge_copilots</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">operational_reporting</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">compliance_workflows</span><span style="padding:0 26px;color:#3A4557;">/</span></div>
+      <div style="display:flex;" aria-hidden="true"><span style="padding:0 26px;">document_intelligence</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">knowledge_copilots</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">operational_reporting</span><span style="padding:0 26px;color:#3A4557;">/</span><span style="padding:0 26px;">compliance_workflows</span><span style="padding:0 26px;color:#3A4557;">/</span></div>
+    </div>
+  </div>
+
+  <!-- ===== pipeline ===== -->
+  <div style="max-width:1200px;margin:0 auto;padding:100px 40px;position:relative;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#8FB29B;margin-bottom:16px;">HOW AUTOMATION FLOWS</div>
+    <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;line-height:0.98;letter-spacing:-0.04em;margin:0 0 12px;">One coherent pipeline.</h2>
+    <p style="font-size:17px;line-height:1.6;color:#8794A6;max-width:600px;margin:0 0 56px;">Signals move through a single auditable path, from raw operational data to a decision your team can act on.</p>
+    <div style="display:flex;align-items:center;">
+      <div style="flex:0 0 auto;width:200px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;">
+        <div style="position:relative;width:40px;height:40px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;"><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(232,161,60,0.5);animation:ah-ring 2.8s ease-out infinite;"></span><span style="width:14px;height:14px;border-radius:3px;background:#E8A13C;box-shadow:0 0 14px #E8A13C;"></span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E8A13C;margin-bottom:6px;">01</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;">Ingest</div>
+        <div style="font-size:13px;line-height:1.5;color:#7C8AA0;">Operational data, documents, systems.</div>
+      </div>
+      <div style="flex:1;position:relative;height:2px;margin:0 4px;background:linear-gradient(90deg,rgba(232,161,60,0.18),rgba(126,155,135,0.18));border-radius:2px;"><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#E8A13C;box-shadow:0 0 12px #E8A13C;animation:ah-flow 2.6s linear infinite;"></span><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#8FB29B;box-shadow:0 0 12px #8FB29B;animation:ah-flow 2.6s linear infinite 1.3s;"></span></div>
+      <div style="flex:0 0 auto;width:200px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;">
+        <div style="position:relative;width:40px;height:40px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;"><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(126,155,135,0.5);animation:ah-ring 2.8s ease-out infinite 0.5s;"></span><span style="width:14px;height:14px;border-radius:50%;background:#8FB29B;box-shadow:0 0 14px #8FB29B;"></span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E8A13C;margin-bottom:6px;">02</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;">Extract</div>
+        <div style="font-size:13px;line-height:1.5;color:#7C8AA0;">Structure meaning from the raw signal.</div>
+      </div>
+      <div style="flex:1;position:relative;height:2px;margin:0 4px;background:linear-gradient(90deg,rgba(126,155,135,0.18),rgba(59,111,212,0.18));border-radius:2px;"><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#8FB29B;box-shadow:0 0 12px #8FB29B;animation:ah-flow 2.6s linear infinite 0.4s;"></span><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#E8A13C;box-shadow:0 0 12px #E8A13C;animation:ah-flow 2.6s linear infinite 1.7s;"></span></div>
+      <div style="flex:0 0 auto;width:200px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;">
+        <div style="position:relative;width:40px;height:40px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;"><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(59,111,212,0.5);animation:ah-ring 2.8s ease-out infinite 1s;"></span><span style="width:14px;height:14px;background:#3B6FD4;box-shadow:0 0 14px #3B6FD4;transform:rotate(45deg);"></span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E8A13C;margin-bottom:6px;">03</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;">Reason</div>
+        <div style="font-size:13px;line-height:1.5;color:#7C8AA0;">Apply context, rules, and judgement.</div>
+      </div>
+      <div style="flex:1;position:relative;height:2px;margin:0 4px;background:linear-gradient(90deg,rgba(59,111,212,0.18),rgba(126,155,135,0.18));border-radius:2px;"><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#3B6FD4;box-shadow:0 0 12px #3B6FD4;animation:ah-flow 2.6s linear infinite 0.9s;"></span><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#E8A13C;box-shadow:0 0 12px #E8A13C;animation:ah-flow 2.6s linear infinite 2.1s;"></span></div>
+      <div style="flex:0 0 auto;width:200px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;">
+        <div style="position:relative;width:40px;height:40px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;"><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(126,155,135,0.5);animation:ah-ring 2.8s ease-out infinite 1.5s;"></span><span style="width:14px;height:14px;border-radius:50%;background:#8FB29B;box-shadow:0 0 14px #8FB29B;"></span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E8A13C;margin-bottom:6px;">04</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;">Route</div>
+        <div style="font-size:13px;line-height:1.5;color:#7C8AA0;">Send to the right person or system.</div>
+      </div>
+      <div style="flex:1;position:relative;height:2px;margin:0 4px;background:linear-gradient(90deg,rgba(126,155,135,0.18),rgba(232,161,60,0.35));border-radius:2px;"><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#E8A13C;box-shadow:0 0 12px #E8A13C;animation:ah-flow 2.6s linear infinite 0.6s;"></span><span style="position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;background:#8FB29B;box-shadow:0 0 12px #8FB29B;animation:ah-flow 2.6s linear infinite 1.9s;"></span></div>
+      <div style="flex:0 0 auto;width:200px;background:linear-gradient(160deg,rgba(232,161,60,0.14),rgba(11,18,32,0.9));border:1px solid rgba(232,161,60,0.4);border-radius:16px;padding:24px;position:relative;overflow:hidden;box-shadow:0 0 40px rgba(232,161,60,0.15);">
+        <div style="position:relative;width:40px;height:40px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;"><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(232,161,60,0.7);animation:ah-ring 2.4s ease-out infinite;"></span><span style="width:16px;height:16px;border-radius:4px;background:#E8A13C;box-shadow:0 0 18px #E8A13C;"></span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E8A13C;margin-bottom:6px;">05</div>
+        <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;">Act</div>
+        <div style="font-size:13px;line-height:1.5;color:#C9B896;">A decision your team can trust.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== belief + stats ===== -->
+  <div style="max-width:1200px;margin:0 auto;padding:20px 40px 100px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#8FB29B;margin-bottom:28px;">WHAT WE BELIEVE</div>
+    <p style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:46px;line-height:1.16;letter-spacing:-0.03em;margin:0;color:#EDEBE4;">Practical AI should be <span style="color:#E8A13C;text-shadow:0 0 24px rgba(232,161,60,0.4);">explainable</span>, <span style="color:#8FB29B;text-shadow:0 0 24px rgba(126,155,135,0.4);">auditable</span>, and built into real workflows, not bolted on as theatre. We build systems your operations teams actually trust.</p>
+    <div style="display:flex;gap:56px;margin-top:52px;">
+      <div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;letter-spacing:-0.03em;text-shadow:0 0 30px rgba(232,161,60,0.25);"><span data-countup data-to="90">0</span></div><div style="font-size:14.5px;color:#8794A6;margin-top:4px;">day build model, not slideware</div></div>
+      <div style="width:1px;background:rgba(245,241,232,0.1);"></div>
+      <div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;letter-spacing:-0.03em;text-shadow:0 0 30px rgba(126,155,135,0.25);"><span data-countup data-to="6">0</span></div><div style="font-size:14.5px;color:#8794A6;margin-top:4px;">service lines, end to end</div></div>
+      <div style="width:1px;background:rgba(245,241,232,0.1);"></div>
+      <div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;letter-spacing:-0.03em;text-shadow:0 0 30px rgba(59,111,212,0.3);"><span data-countup data-to="100">0</span>%</div><div style="font-size:14.5px;color:#8794A6;margin-top:4px;">static, auditable, explainable</div></div>
+    </div>
+  </div>
+
+  <!-- ===== services explorer ===== -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px 100px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;">
+      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;line-height:0.96;letter-spacing:-0.04em;margin:0;">What we build</h2>
+      <a href="services.html" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;" style-hover="color:#F6CE8C;">ALL SERVICES →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:32px;align-items:stretch;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+          <div onClick="{{ onSvc }}" data-index="{{ t.i }}" style="cursor:pointer;">
+            <div style="{{ t.tabStyle }}">
+              <span style="{{ t.numStyle }}">{{ t.num }}</span>
+              <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em;">{{ t.title }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-spotlight style="position:relative;border-radius:20px;padding:1.5px;background:linear-gradient(135deg,rgba(232,161,60,0.5),rgba(126,155,135,0.25),rgba(245,241,232,0.05));overflow:hidden;min-height:400px;">
+        <div style="position:relative;height:100%;background:#0B1220;border-radius:19px;padding:40px;overflow:hidden;">
+          <div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div>
+          <sc-if value="{{ is0 }}" hint-placeholder-val="{{ trueVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 01 · CONVERGE</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI Readiness &amp; Strategy</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <g stroke="rgba(245,241,232,0.16)" stroke-width="1.5" fill="none"><path d="M105,52 L430,150"/><path d="M105,118 L430,150"/><path d="M105,184 L430,150"/><path d="M105,250 L430,150"/></g>
+                <g font-family="'JetBrains Mono', monospace" font-size="12.5" fill="#9AA6B6"><circle cx="105" cy="52" r="6" fill="#7E9B87"/><text x="128" y="56">Workflow analysis</text><circle cx="105" cy="118" r="6" fill="#E8A13C"/><text x="128" y="122">Data readiness</text><circle cx="105" cy="184" r="6" fill="#7E9B87"/><text x="128" y="188">Use-case portfolio</text><circle cx="105" cy="250" r="6" fill="#E8A13C"/><text x="128" y="254">Risk &amp; governance</text></g>
+                <circle cx="430" cy="150" r="26" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="24;42" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.6s" repeatCount="indefinite"/></circle>
+                <rect x="412" y="132" width="36" height="36" rx="9" fill="#E8A13C"/><text x="392" y="205" font-family="'JetBrains Mono', monospace" font-size="12.5" fill="#D8C3A0">Target architecture</text>
+                <g><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.6s" repeatCount="indefinite" path="M105,52 L430,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite" path="M105,118 L430,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.6s" begin="1.2s" repeatCount="indefinite" path="M105,184 L430,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.6s" begin="1.8s" repeatCount="indefinite" path="M105,250 L430,150"/></circle></g>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">We map every workflow and score data readiness, then converge it into one ranked, buildable target architecture.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is1 }}" hint-placeholder-val="{{ falseVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 02 · HUB</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI Systems &amp; Automation</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <g stroke="rgba(245,241,232,0.15)" stroke-width="1.5"><line x1="300" y1="150" x2="430" y2="150"/><line x1="300" y1="150" x2="365" y2="48"/><line x1="300" y1="150" x2="235" y2="48"/><line x1="300" y1="150" x2="170" y2="150"/><line x1="300" y1="150" x2="235" y2="252"/><line x1="300" y1="150" x2="365" y2="252"/></g>
+                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="430" cy="150" r="6" fill="#7E9B87"/><text x="444" y="154">Documents</text><circle cx="365" cy="48" r="6" fill="#E8A13C"/><text x="380" y="44">Copilots</text><circle cx="235" cy="48" r="6" fill="#E8A13C"/><text x="150" y="44">Dashboards</text><circle cx="170" cy="150" r="6" fill="#E8A13C"/><text x="70" y="154">Pipelines</text><circle cx="235" cy="252" r="6" fill="#7E9B87"/><text x="140" y="270">Integrations</text><circle cx="365" cy="252" r="6" fill="#7E9B87"/><text x="380" y="270">Monitoring</text></g>
+                <circle cx="300" cy="150" r="24" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="22;40" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite"/></circle>
+                <rect x="282" y="132" width="36" height="36" rx="9" fill="#E8A13C" transform="rotate(45 300 150)"/><text x="270" y="200" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#D8C3A0">Intelligence</text>
+                <g><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" repeatCount="indefinite" path="M430,150 L300,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" begin="0.5s" repeatCount="indefinite" path="M235,252 L300,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="M365,252 L300,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M300,150 L365,48"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.3s" repeatCount="indefinite" path="M300,150 L235,48"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M300,150 L170,150"/></circle></g>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Documents and knowledge flow into a single intelligence hub, then back out as copilots, dashboards, and automations.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is2 }}" hint-placeholder-val="{{ falseVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 03 · STACK</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">SAP ECC Intelligence Layer</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5"><line x1="230" y1="238" x2="230" y2="62"/><line x1="370" y1="238" x2="370" y2="62"/></g>
+                <rect x="140" y="230" width="320" height="52" rx="12" fill="rgba(59,111,212,0.14)" stroke="#3B6FD4" stroke-width="1.2"/><text x="300" y="261" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#AEC2E0">SAP ECC core</text>
+                <rect x="140" y="134" width="320" height="52" rx="12" fill="rgba(232,161,60,0.12)" stroke="#E8A13C" stroke-width="1.2"><animate attributeName="opacity" values="1;0.7;1" dur="2.6s" repeatCount="indefinite"/></rect><text x="300" y="165" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E8C79A">Intelligence layer</text>
+                <rect x="140" y="38" width="320" height="52" rx="12" fill="rgba(126,155,135,0.12)" stroke="#7E9B87" stroke-width="1.2"/><text x="300" y="69" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#B9CDBF">Operational insight</text>
+                <g><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.8s" repeatCount="indefinite" path="M230,238 L230,62"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" path="M230,238 L230,62"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.8s" begin="0.7s" repeatCount="indefinite" path="M370,238 L370,62"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.8s" begin="2.1s" repeatCount="indefinite" path="M370,238 L370,62"/></circle></g>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">We stack an intelligence layer on your existing SAP ECC, so signals rise into insight without ever touching the core.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is3 }}" hint-placeholder-val="{{ falseVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 04 · TREE</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI-Optimized Websites</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5" fill="none"><path d="M80,150 L280,64"/><path d="M80,150 L280,150"/><path d="M80,150 L280,236"/><path d="M280,64 L470,40"/><path d="M280,64 L470,92"/><path d="M280,150 L470,140"/><path d="M280,236 L470,208"/><path d="M280,236 L470,262"/></g>
+                <circle cx="80" cy="150" r="8" fill="#E8A13C"/><text x="42" y="176" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Root</text>
+                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="280" cy="64" r="6" fill="#7E9B87"/><text x="252" y="50">Entities</text><circle cx="280" cy="150" r="6" fill="#7E9B87"/><text x="248" y="138">Metadata</text><circle cx="280" cy="236" r="6" fill="#7E9B87"/><text x="250" y="262">Structure</text></g>
+                <g fill="#3B6FD4"><circle cx="470" cy="40" r="5"/><circle cx="470" cy="92" r="5"/><circle cx="470" cy="140" r="5"/><circle cx="470" cy="208" r="5"/><circle cx="470" cy="262" r="5"/></g>
+                <text x="490" y="152" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#AEC2E0">Readable by AI</text>
+                <g><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" repeatCount="indefinite" path="M80,150 L280,64 L470,40"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M80,150 L280,150 L470,140"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M80,150 L280,236 L470,262"/></circle></g>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">A crawler walks your semantic structure, so people, search engines, and AI systems all read it cleanly.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is4 }}" hint-placeholder-val="{{ falseVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 05 · ASCEND</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">Training &amp; Enablement</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <path d="M70,258 L210,200 L350,132 L490,64" stroke="rgba(245,241,232,0.16)" stroke-width="1.5" fill="none"/>
+                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="70" cy="258" r="7" fill="#7E9B87"/><text x="46" y="284">Workshop</text><circle cx="210" cy="200" r="7" fill="#E8A13C"/><text x="182" y="226">Practice</text><circle cx="350" cy="132" r="7" fill="#E8A13C"/><text x="300" y="158">Operating model</text><circle cx="490" cy="64" r="10" fill="#E8A13C"/><text x="440" y="44">Self-sufficient</text></g>
+                <circle cx="490" cy="64" r="14" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="14;30" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite"/></circle>
+                <circle r="5.5" fill="#F6CE8C"><animateMotion dur="3.4s" repeatCount="indefinite" path="M70,258 L210,200 L350,132 L490,64"/></circle>
+                <circle r="5.5" fill="#7E9B87"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite" path="M70,258 L210,200 L350,132 L490,64"/></circle>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Teams climb a staged path, from the first workshop to a fully self-sufficient operating model.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is5 }}" hint-placeholder-val="{{ falseVal }}">
+            <div style="position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 06 · GATES</div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">Regulatory &amp; Technical Systems</h3>
+              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
+                <line x1="60" y1="150" x2="540" y2="150" stroke="rgba(245,241,232,0.16)" stroke-width="1.5"/>
+                <circle cx="60" cy="150" r="7" fill="#7E9B87"/><text x="40" y="182" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Submit</text>
+                <g fill="rgba(232,161,60,0.14)" stroke="#E8A13C" stroke-width="1.4"><rect x="176" y="132" width="34" height="34" transform="rotate(45 193 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/></rect><rect x="303" y="132" width="34" height="34" transform="rotate(45 320 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></rect><rect x="430" y="132" width="34" height="34" transform="rotate(45 447 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="1.6s" repeatCount="indefinite"/></rect></g>
+                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><text x="168" y="104">Review</text><text x="296" y="104">Approve</text><text x="420" y="104">Audit log</text></g>
+                <g fill="#8FB29B" font-family="'JetBrains Mono', monospace" font-size="12"><text x="176" y="200">✓</text><text x="303" y="200">✓</text><text x="430" y="200">✓</text></g>
+                <circle cx="540" cy="150" r="10" fill="#E8A13C"/><text x="500" y="182" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#D8C3A0">Evidence</text>
+                <circle r="5.5" fill="#E8A13C"><animateMotion dur="4s" repeatCount="indefinite" path="M60,150 L540,150"/></circle>
+              </svg>
+              <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Every action passes through explicit compliance gates, capturing evidence at each checkpoint.</p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== case studies ===== -->
+  <div style="max-width:1200px;margin:0 auto;padding:100px 40px;position:relative;border-top:1px solid rgba(245,241,232,0.06);">
+    <div style="position:absolute;top:0;left:35%;width:520px;height:400px;background:radial-gradient(circle,rgba(232,161,60,0.1),transparent 65%);filter:blur(70px);pointer-events:none;"></div>
+    <div style="position:relative;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#8FB29B;margin-bottom:16px;">SELECTED WORK</div>
+    <h2 style="position:relative;font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;line-height:0.96;letter-spacing:-0.04em;margin:0 0 44px;">Evidence over adjectives.</h2>
+    <div style="position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <a href="case-operational-intelligence-platform.html" data-spotlight style="display:block;position:relative;border-radius:20px;padding:1px;background:linear-gradient(140deg,rgba(232,161,60,0.4),rgba(245,241,232,0.06));overflow:hidden;">
+        <div style="position:relative;background:#0B1220;border-radius:19px;padding:34px;overflow:hidden;height:100%;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><span style="position:relative;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#8FB29B;background:rgba(126,155,135,0.1);padding:6px 11px;border-radius:999px;margin-bottom:24px;">OPERATIONAL MODERNIZATION</span><h3 style="position:relative;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:23px;line-height:1.12;letter-spacing:-0.02em;margin:0 0 14px;">Operational Intelligence Platform</h3><p style="position:relative;font-size:15px;line-height:1.6;color:#8794A6;margin:0 0 24px;">Improved visibility across reporting, coordination, and operational decision points.</p><span style="position:relative;font-size:14px;font-weight:600;color:#E8A13C;">Read case study →</span></div>
+      </a>
+      <a href="case-compliance-vendor-approval.html" data-spotlight style="display:block;position:relative;border-radius:20px;padding:1px;background:linear-gradient(140deg,rgba(232,161,60,0.4),rgba(245,241,232,0.06));overflow:hidden;">
+        <div style="position:relative;background:#0B1220;border-radius:19px;padding:34px;overflow:hidden;height:100%;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><span style="position:relative;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#8FB29B;background:rgba(126,155,135,0.1);padding:6px 11px;border-radius:999px;margin-bottom:24px;">WORKFLOW COORDINATION</span><h3 style="position:relative;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:23px;line-height:1.12;letter-spacing:-0.02em;margin:0 0 14px;">Compliance &amp; Vendor Approval System</h3><p style="position:relative;font-size:15px;line-height:1.6;color:#8794A6;margin:0 0 24px;">Reduced approval ambiguity and improved evidence handling across operational teams.</p><span style="position:relative;font-size:14px;font-weight:600;color:#E8A13C;">Read case study →</span></div>
+      </a>
+      <a href="case-telecommunications-billing.html" data-spotlight style="display:block;position:relative;border-radius:20px;padding:1px;background:linear-gradient(140deg,rgba(232,161,60,0.4),rgba(245,241,232,0.06));overflow:hidden;">
+        <div style="position:relative;background:#0B1220;border-radius:19px;padding:34px;overflow:hidden;height:100%;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><span style="position:relative;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#8FB29B;background:rgba(126,155,135,0.1);padding:6px 11px;border-radius:999px;margin-bottom:24px;">TECHNICAL SYSTEMS</span><h3 style="position:relative;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:23px;line-height:1.12;letter-spacing:-0.02em;margin:0 0 14px;">Telecommunications Billing Infrastructure</h3><p style="position:relative;font-size:15px;line-height:1.6;color:#8794A6;margin:0 0 24px;">More coherent billing workflows supported by structured operational infrastructure.</p><span style="position:relative;font-size:14px;font-weight:600;color:#E8A13C;">Read case study →</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div data-hero style="position:relative;overflow:hidden;padding:130px 40px;border-top:1px solid rgba(245,241,232,0.06);">
+    <div style="position:absolute;top:-30%;left:20%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.22),transparent 60%);filter:blur(90px);animation:ah-aurora-a 19s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-40%;right:15%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-c 23s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:relative;max-width:1000px;margin:0 auto;text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#E8A13C;margin-bottom:26px;">GET STARTED</div>
+      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:70px;line-height:0.96;letter-spacing:-0.04em;margin:0 0 40px;text-shadow:0 0 60px rgba(232,161,60,0.15);">Practical AI starts with operational clarity.</h2>
+      <div style="display:flex;gap:16px;justify-content:center;">
+        <a href="mailto:hello@arithim.com" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">
+          <span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>
+          <span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 32px;border-radius:999px;">hello@arithim.com</span>
+        </a>
+        <a href="mailto:research@arithim.com" style="display:inline-flex;align-items:center;gap:10px;color:#F5F1E8;font-size:16px;font-weight:500;padding:16px 30px;border-radius:999px;border:1px solid rgba(245,241,232,0.18);background:rgba(245,241,232,0.02);transition:border-color 0.2s,background 0.2s;" style-hover="border-color:rgba(232,161,60,0.6);background:rgba(232,161,60,0.06);">research@arithim.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== footer ===== -->
+  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);color:#8794A6;">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 40px 40px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px;">
+        <div style="max-width:320px;">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px;">
+            
+            <span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#667283;">/applied ai</span></span>
+          </div>
+          <p style="font-size:14.5px;line-height:1.6;margin:0;">Applied AI and operational intelligence consultancy. London, UK.</p>
+        </div>
+        <div style="display:flex;gap:64px;">
+          <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#556074;margin-bottom:14px;">SERVICES</div><div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px;"><a href="services.html" style-hover="color:#E8A13C;">AI Readiness</a><a href="services.html" style-hover="color:#E8A13C;">AI Systems</a><a href="services.html" style-hover="color:#E8A13C;">SAP ECC</a><a href="services.html" style-hover="color:#E8A13C;">Websites</a></div></div>
+          <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#556074;margin-bottom:14px;">COMPANY</div><div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px;"><a href="research.html" style-hover="color:#E8A13C;">Research</a><a href="insights.html" style-hover="color:#E8A13C;">Insights</a><a href="case-studies.html" style-hover="color:#E8A13C;">Case Studies</a><a href="about.html" style-hover="color:#E8A13C;">About</a></div></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(245,241,232,0.06);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;">
+        <span>© 2026 ARITHIM LTD</span><span>LONDON, UK · HELLO@ARITHIM.COM</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 0 };
+  componentDidMount() {
+    import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    this.setState({ active: Math.floor(Math.random() * 6) });
+    const h1 = document.querySelector('[data-hero-h1]');
+    if (h1) {
+      const sh = 'background:linear-gradient(90deg,#E8A13C,#F6CE8C,#E8A13C);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ah-shimmer 3.2s linear infinite;';
+      const v = [
+        'Make your<br>operations <span style="' + sh + '">think.</span>',
+        'Run the operation<br>you can <span style="' + sh + '">trust.</span>',
+        'Turn complexity<br>into <span style="' + sh + '">clarity.</span>',
+        'See your whole<br>operation <span style="' + sh + '">think.</span>'
+      ];
+      h1.innerHTML = v[Math.floor(Math.random() * v.length)];
+    }
+  }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() {
+    const data = [
+      { num: '01', title: 'AI Readiness & Strategy' },
+      { num: '02', title: 'AI Systems & Automation' },
+      { num: '03', title: 'SAP ECC Intelligence Layer' },
+      { num: '04', title: 'AI-Optimized Websites' },
+      { num: '05', title: 'Training & Enablement' },
+      { num: '06', title: 'Regulatory & Technical Systems' }
+    ];
+    const active = this.state.active ?? 0;
+    const tabBase = 'display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:14px;cursor:pointer;transition:none;border:1px solid transparent;';
+    const tabs = data.map((s, i) => {
+      const on = i === active;
+      return {
+        i, num: s.num, title: s.title,
+        tabStyle: tabBase + (on ? 'background:rgba(232,161,60,0.10);border-color:rgba(232,161,60,0.4);color:#F5F1E8;box-shadow:0 0 34px rgba(232,161,60,0.14);' : 'background:rgba(245,241,232,0.02);color:#9AA6B6;'),
+        numStyle: "font-family:'JetBrains Mono',monospace;font-size:13px;color:" + (on ? '#E8A13C' : '#7E9B87') + ';'
+      };
+    });
+    return {
+      tabs,
+      is0: active === 0, is1: active === 1, is2: active === 2, is3: active === 3, is4: active === 4, is5: active === 5,
+      trueVal: true, falseVal: false,
+      onSvc: (e) => { const i = parseInt(e.currentTarget.dataset.index, 10); if (!isNaN(i)) this.setState({ active: i }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
