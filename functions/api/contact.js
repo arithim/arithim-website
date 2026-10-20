@@ -1,10 +1,17 @@
 // Cloudflare Pages Function: POST /api/contact
-// Receives the contact form, emails Arithim via Resend.
+// Receives the contact form, verifies Turnstile, emails Arithim via Resend.
 //
 // Required env vars (set via `wrangler pages secret put` or Pages dashboard):
-//   RESEND_API_KEY   - API key from resend.com
-//   TO_EMAIL         - destination inbox, e.g. hello@arithim.com
-//   FROM_EMAIL       - verified sender on arithim.com, e.g. enquiries@arithim.com
+//   RESEND_API_KEY     - API key from resend.com
+//   TO_EMAIL           - destination inbox, e.g. hello@arithim.com
+//   FROM_EMAIL         - verified sender on arithim.com, e.g. enquiries@arithim.com
+//   TURNSTILE_SECRET   - Cloudflare Turnstile widget secret key
+
+const TURNSTILE_ACTION = "contact-form";
+const TURNSTILE_HOSTNAMES = new Set([
+  "arithim.com",
+  "www.arithim.com",
+]);
 
 export async function onRequestPost({ request, env }) {
   const json = (status, body) =>
@@ -28,6 +35,47 @@ export async function onRequestPost({ request, env }) {
 
   // Honeypot: bots fill hidden fields; silently accept so they don't retry.
   if (form.website || form.company_url) return json(200, { ok: true });
+
+  // Turnstile verification.
+  const token = (form["cf-turnstile-response"] || "").toString();
+  if (!token || token.length > 2048) {
+    return json(403, { error: "please complete the challenge" });
+  }
+  const clientIp = request.headers.get("cf-connecting-ip") || "";
+  let ts;
+  try {
+    const r = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        signal: AbortSignal.timeout(10_000),
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET,
+          response: token,
+          remoteip: clientIp,
+        }),
+      }
+    );
+    if (!r.ok) throw new Error(`siteverify ${r.status}`);
+    ts = await r.json();
+  } catch (e) {
+    console.error("turnstile siteverify failed", e);
+    return json(403, { error: "challenge verification failed" });
+  }
+  if (
+    !ts.success ||
+    ts.action !== TURNSTILE_ACTION ||
+    !TURNSTILE_HOSTNAMES.has(ts.hostname)
+  ) {
+    console.error("turnstile rejected", {
+      success: ts.success,
+      action: ts.action,
+      hostname: ts.hostname,
+      errors: ts["error-codes"],
+    });
+    return json(403, { error: "challenge verification failed" });
+  }
 
   const name = (form.name || "").toString().trim();
   const challenge = (form.challenge || "").toString().trim();

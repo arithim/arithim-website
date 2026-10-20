@@ -21,6 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
 <script src="./support.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -91,6 +92,7 @@
             <div style="margin-bottom:20px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">TIMELINE</label><select name="timeline" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;transition:border-color 0.2s;"><option>Exploring</option><option>0 to 3 months</option><option>3 to 6 months</option><option>Research collaboration</option></select></div>
             <div style="margin-bottom:20px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">OPERATIONAL CHALLENGE <span style="color:#E8A13C;">*</span></label><textarea name="challenge" required rows="4" placeholder="What is slow, manual, or hard to trust right now?" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;resize:vertical;transition:border-color 0.2s;"></textarea></div>
             <div style="margin-bottom:28px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">WHAT WOULD SUCCESS LOOK LIKE?</label><textarea name="success" rows="3" placeholder="Optional" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;resize:vertical;transition:border-color 0.2s;"></textarea></div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFddwijZvXOLiEH1" data-action="contact-form" data-theme="dark" style="margin-bottom:20px;"></div>
             <sc-if value="{{ errored }}" hint-placeholder-val="{{ falseVal }}">
               <div style="margin-bottom:16px;color:#E8A13C;font-size:14px;">{{ errorMsg }}</div>
             </sc-if>
@@ -135,8 +137,30 @@ class Component extends DCLogic {
   state = { submitted: false, sending: false, errored: false, errorMsg: '' };
   componentDidMount() {
     import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    this._tsWidgetId = null;
+    const renderTs = () => {
+      if (this._tsCancelled) return;
+      const el = document.querySelector('.cf-turnstile');
+      if (window.turnstile && el && !el.getAttribute('data-rendered')) {
+        try {
+          this._tsWidgetId = window.turnstile.render(el, {
+            sitekey: '0x4AAAAAAFddwijZvXOLiEH1',
+            action: 'contact-form',
+            theme: 'dark',
+          });
+          el.setAttribute('data-rendered', '1');
+          return;
+        } catch (e) { console.error('turnstile render failed', e); }
+      }
+      this._tsTimer = setTimeout(renderTs, 150);
+    };
+    renderTs();
   }
-  componentWillUnmount() { if (this._stop) this._stop(); }
+  componentWillUnmount() {
+    if (this._stop) this._stop();
+    this._tsCancelled = true;
+    if (this._tsTimer) clearTimeout(this._tsTimer);
+  }
   renderVals() {
     return {
       notSubmitted: !this.state.submitted,
@@ -158,11 +182,13 @@ class Component extends DCLogic {
           if (!res.ok) {
             let msg = 'Something went wrong. Please email hello@arithim.com.';
             try { const j = await res.json(); if (j && j.error) msg = j.error; } catch (_) {}
+            if (window.turnstile && this._tsWidgetId != null) { try { window.turnstile.reset(this._tsWidgetId); } catch (_) {} }
             this.setState({ sending: false, errored: true, errorMsg: msg });
             return;
           }
           this.setState({ submitted: true, sending: false });
         } catch (err) {
+          if (window.turnstile && this._tsWidgetId != null) { try { window.turnstile.reset(this._tsWidgetId); } catch (_) {} }
           this.setState({ sending: false, errored: true, errorMsg: 'Network error. Please email hello@arithim.com.' });
         }
       }
