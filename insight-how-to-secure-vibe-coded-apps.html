@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers? — Arithim</title>
+<meta name="description" content="Find them, give each one an owner, scan them like any other code and explain the results in plain language. A practical process for securing AI-built apps, based on Gartner&#x27;s 2026 secure software engineering research.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="How Do I Secure Vibe-Coded Apps Built by People Who Aren&#x27;t Developers? — Arithim">
+<meta property="og:description" content="Find them, give each one an owner, scan them like any other code and explain the results in plain language. A practical process for securing AI-built apps, based on Gartner&#x27;s 2026 secure software engineering research.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-how-to-secure-vibe-coded-apps.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<meta property="og:url" content="https://arithim.com/insight-how-to-secure-vibe-coded-apps.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-10-21">
+<meta property="article:section" content="Application security">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-how-to-secure-vibe-coded-apps.html#article",
+      "headline": "How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?",
+      "description": "Find them, give each one an owner, scan them like any other code and explain the results in plain language. A practical process for securing AI-built apps, based on Gartner's 2026 secure software engineering research.",
+      "datePublished": "2026-10-21",
+      "dateModified": "2026-10-21",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-how-to-secure-vibe-coded-apps.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Application security",
+      "keywords": [
+        "how to secure vibe coded apps",
+        "vibe coding security",
+        "AI-generated code security",
+        "shadow AI apps",
+        "citizen developer security",
+        "AI app builder governance",
+        "agentic coding security",
+        "Gartner Hype Cycle secure software engineering"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Vibe coding"
+        },
+        {
+          "@type": "Thing",
+          "name": "Application security"
+        },
+        {
+          "@type": "Thing",
+          "name": "Shadow IT"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI governance"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Center for Security and Emerging Technology",
+          "url": "https://cset.georgetown.edu/"
+        },
+        {
+          "@type": "Organization",
+          "name": "OX Security",
+          "url": "https://www.ox.security/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Semgrep",
+          "url": "https://semgrep.dev/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Hype Cycle for Secure Software Engineering, 2026",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-06-02",
+        "identifier": "G00847347",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&ct=260610&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is vibe coding?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vibe coding is building software by describing what you want to an AI tool in plain language and accepting the code it produces, often without reading it closely. It lets people with no development background build working apps in an afternoon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are vibe-coded apps less secure than apps written by developers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often, yes, mainly because they skip the checks developer code goes through. Gartner's 2026 research warns that vibe-coded prototypes can reach production without any security review, and a 2024 Georgetown CSET study found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should we ban AI app builders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We don't recommend it. A ban tends to push the work onto personal accounts and credit cards, where you can't see it at all. Approving a small set of tools, behind single sign-on, with templates that already handle login and secrets, gives people a safer route that's also the easier one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which tools check AI-generated code for vulnerabilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your existing SAST, SCA and secrets scanners work on AI-generated code once it's in a repository they cover. Some newer tools check code as an AI agent writes it, such as Semgrep Guardian and OX Security's VibeSec. Gartner recommends keeping traditional SAST and SCA alongside AI code assistants."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who should own a vibe-coded app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The person or team that uses it should be its named business owner, responsible for keeping it patched or retiring it. Security sets the rules and runs the scans; the owner answers for what the app does with company data."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?",
+          "item": "https://arithim.com/insight-how-to-secure-vibe-coded-apps.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #070C16; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  @keyframes ah-spin { to { transform: rotate(360deg); } }
+  @keyframes ah-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
+  @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+  .ai-body a { color: #E8A13C; border-bottom: 1px solid rgba(232,161,60,0.35); }
+  .ai-body a:hover { border-bottom-color: #E8A13C; }
+  .ai-body h2 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.025em; color: #F5F1E8; margin: 56px 0 18px; }
+  .ai-body h3 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.015em; color: #F5F1E8; margin: 32px 0 10px; }
+  .ai-body p { font-size: 18px; line-height: 1.75; color: #C6CEDA; margin: 0 0 24px; }
+  .ai-body ul, .ai-body ol { font-size: 18px; line-height: 1.7; color: #C6CEDA; margin: 0 0 24px; padding-left: 22px; }
+  .ai-body li { margin: 0 0 12px; }
+  .ai-table { width: 100%; overflow-x: auto; margin: 8px 0 30px; }
+  .ai-table table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; color: #C6CEDA; }
+  .ai-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8AA0; font-weight: 500; padding: 10px 12px 10px 0; border-bottom: 1px solid rgba(245,241,232,0.16); }
+  .ai-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(245,241,232,0.08); vertical-align: top; }
+  .ai-table td:first-child { white-space: nowrap; color: #EDEBE4; }
+  .ai-body .ai-note { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; color: #7C8AA0; }
+  @media (max-width: 640px) { .ai-body h2 { font-size: 25px; } .ai-table td:first-child { white-space: normal; } }
+</style>
+</helmet>
+
+<div style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+
+  <div style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+    <div style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:inline-flex;align-items:baseline;gap:0;"><span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/insights</span></span></a>
+      <nav data-nav style="position:relative;display:flex;align-items:center;gap:2px;">
+        <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Services</a>
+        <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
+        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;">Insights</a>
+        <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
+        <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
+      </nav>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 55%,#E8A13C,transparent 75%);animation:ah-spin 3.5s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;">Let's talk →</span></a>
+    </div>
+  </div>
+
+  <div data-hero style="position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30%;left:20%;width:600px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.16),transparent 62%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:26px;"><a href="insights.html" style-hover="color:#E8A13C;">Insights</a> / <span style="color:#E8A13C;">Application security</span></div>
+      <h1 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>21 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body" style="max-width:760px;margin:0 auto;padding:30px 40px 20px;">
+    <p style="font-size:22px;line-height:1.55;color:#EDEBE4;margin:0 0 32px;font-family:'Space Grotesk';font-weight:500;letter-spacing:-0.01em;">Treat them like any other application your company runs. Find them, give each one a named owner, scan them with the same tools you use on the rest of your code, and decide which of them are allowed near customer data. Most of these apps never pass through the systems where a security team would normally catch problems, which is why they need a process of their own.</p>
+    <p>This piece follows our look at <a href="insight-more-than-one-application-security-testing-tool.html">whether you need more than one application security testing tool</a>. It draws on Gartner's <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering, 2026</a> and its 2025 Magic Quadrant for Application Security Testing, plus what the tool vendors offer today.</p>
+    <h2>Why vibe-coded apps are a security problem</h2>
+    <p>A finance analyst who builds an invoice tracker with an AI app builder has done something useful, but none of the usual checks happened along the way. Nobody reviewed the code, nobody scanned the open-source packages the AI chose, the database password is probably sitting in the source, and the app may be on the public internet because that was the default.</p>
+    <p>Gartner's 2026 Hype Cycle for Secure Software Engineering says this directly. Vibe-coded prototypes can reach production without security checks, coding agents can pull in vulnerable or malicious packages, and the MCP servers those agents connect to can have access nobody approved. Gartner's 2025 Magic Quadrant for Application Security Testing cites its own survey finding that 66% of organizations using AI tools in software development saw little or no improvement in code security. An independent study from Georgetown's <a href="https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/" rel="noopener">Center for Security and Emerging Technology</a> found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.</p>
+    <p>A developer who sees a scanner finding can usually judge whether it's serious. Someone who builds apps from a finance or operations role can't, and shouldn't have to.</p>
+    <h2>Where these apps tend to live</h2>
+    <p>Common places to find them include:</p>
+    <ul><li>repositories in personal GitHub or GitLab accounts, often created with a work email address</li><li>apps deployed straight from an AI app builder to its own hosting, on a subdomain the company doesn't control</li><li>internal tools running on a laptop or a spare cloud account outside the landing zone</li><li>low-code apps and automations connected to company SaaS through personal API tokens</li><li>MCP servers and coding-agent configurations on individual machines</li></ul>
+    <p>None of these show up in the tools a security team normally watches, because those tools only see code that someone has put into a governed repository and pipeline.</p>
+    <h2>A practical process</h2>
+    <h3>1. Find them</h3>
+    <p>Start with the signals you already have. Single sign-on and OAuth grant logs show which AI builders people have connected to company accounts. Expense and card data shows who is paying for them. DNS and certificate records show new subdomains. Your source control admin console shows repositories created outside the main organization, and network logs show traffic to AI coding services. Several application security vendors now offer discovery of AI assets as well, which helps with code that is already in a repository.</p>
+    <h3>2. Give each app an owner and a tier</h3>
+    <p>For every app you find, record who uses it, what data it touches and who can reach it. Then place it in a tier, such as prototype, internal tool or business-critical. The tier decides how much scrutiny it gets. A prototype that only its builder uses needs a quick scan and a reminder. An app that holds customer records needs the same review as anything else that holds customer records.</p>
+    <h3>3. Scan it like any other code</h3>
+    <p>Move the code into a repository your scanners cover and run the same static analysis, dependency checks and secrets scanning you run everywhere else. For anything above prototype, also check that login actually works the way the owner thinks it does, and run a dynamic scan against the deployed app. Gartner recommends keeping traditional SAST and SCA tools alongside AI code assistants, and we agree. Some newer tools, such as <a href="https://semgrep.dev/products/semgrep-guardian/" rel="noopener">Semgrep Guardian</a> and OX Security's <a href="https://www.ox.security/vibesec/" rel="noopener">VibeSec</a>, check code while an AI agent is writing it, which helps for builders whose tools support them.</p>
+    <h3>4. Explain the findings in plain language</h3>
+    <p>A finding like "SQL injection in search.py, line 42" means nothing to most app builders. "Anyone who types this into the search box can read every customer record" does. For each finding, explain what an attacker could do, and give the owner a fix they can apply. Often the most useful fix is a prompt they can paste back into the AI tool that wrote the code, followed by a rescan to confirm it worked.</p>
+    <h3>5. Make the safe route the easy one</h3>
+    <p>Gartner's advice for secure development generally is to make security the path of least resistance, and it fits here. Approve a short list of AI builders behind single sign-on. Provide templates with login, secrets handling and logging already done. Give coding agents the minimum permissions they need, which Gartner calls "least agency", and require a human review before anything high-risk goes live.</p>
+    <h2>Why a ban rarely works</h2>
+    <p>Banning AI app builders is the obvious response, and it usually backfires. The people building these apps are solving real problems, and a ban moves their work onto personal accounts and credit cards where you have even less visibility. A short approved list with good templates gets you more control.</p>
+    <h2>Where an agent helps</h2>
+    <p>Most of this process is repetitive coordination. Someone has to watch the discovery signals, open a record for each new app, ask the builder a few questions, run the scans, translate the results and chase the fix. We think an intake agent can do most of that. It would pick up a new app from the logs, message the builder in Slack or Teams to confirm ownership and purpose, run the scans, and write up each finding in plain language with a suggested fix. A person on the security team would still approve any move to the business-critical tier.</p>
+    <p>This is one of the agents we described in our <a href="insight-more-than-one-application-security-testing-tool.html">application security research</a>. As far as we can see, no vendor covers it end to end yet. Several discover AI assets, but finding an app is only the first step.</p>
+    <h2>Common questions</h2>
+    <h3>What is vibe coding?</h3>
+    <p>Vibe coding is building software by describing what you want to an AI tool in plain language and accepting the code it produces, often without reading it closely. It lets people with no development background build working apps in an afternoon.</p>
+    <h3>Are vibe-coded apps less secure than apps written by developers?</h3>
+    <p>Often, yes, mainly because they skip the checks developer code goes through. Gartner's 2026 research warns that vibe-coded prototypes can reach production without any security review, and a 2024 Georgetown CSET study found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.</p>
+    <h3>Should we ban AI app builders?</h3>
+    <p>We don't recommend it. A ban tends to push the work onto personal accounts and credit cards, where you can't see it at all. Approving a small set of tools, behind single sign-on, with templates that already handle login and secrets, gives people a safer route that's also the easier one.</p>
+    <h3>Which tools check AI-generated code for vulnerabilities?</h3>
+    <p>Your existing SAST, SCA and secrets scanners work on AI-generated code once it's in a repository they cover. Some newer tools check code as an AI agent writes it, such as Semgrep Guardian and OX Security's VibeSec. Gartner recommends keeping traditional SAST and SCA alongside AI code assistants.</p>
+    <h3>Who should own a vibe-coded app?</h3>
+    <p>The person or team that uses it should be its named business owner, responsible for keeping it patched or retiring it. Security sets the rules and runs the scans; the owner answers for what the app does with company data.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note" style="font-size:13px;">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering, 2026</a>, Aaron Harrison et al., 2 June 2026, ID G00847347. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, Jason Gross, Mark Horvath et al., 6 October 2025, ID G00795930. Complimentary reprint; the link may expire.</li>
+      <li>Jessica Ji, Jenny Jun, Maggie Wu and Rebecca Gelles, <a href="https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/" rel="noopener">Cybersecurity Risks of AI-Generated Code</a>, Center for Security and Emerging Technology, Georgetown University, November 2024.</li>
+      <li><a href="https://www.ox.security/vibesec/" rel="noopener">OX Security VibeSec</a> and <a href="https://semgrep.dev/products/semgrep-guardian/" rel="noopener">Semgrep Guardian</a> product pages, accessed 21 October 2026; <a href="https://genai.owasp.org/llm-top-10/" rel="noopener">OWASP Top 10 for LLM Applications</a>; <a href="https://www.cisa.gov/securebydesign" rel="noopener">CISA Secure by Design</a>.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+  </article>
+
+  <div style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#556074;margin-bottom:20px;">MORE INSIGHTS</div>
+    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
+    <a href="insight-operational-intelligence-vs-automation.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Operational Intelligence vs Automation</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">OPS INTELLIGENCE · 18 JAN 2026</span></a>
+    <a href="insight-designing-websites-for-ai-discoverability.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Designing Websites for AI Discoverability</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">DISCOVERABILITY · 12 JAN 2026</span></a>
+  </div>
+
+  <div data-hero style="position:relative;overflow:hidden;padding:90px 40px;margin-top:40px;">
+    <div style="position:absolute;top:-30%;left:35%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.18),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:relative;max-width:760px;margin:0 auto;text-align:center;">
+      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 26px;">Not sure how many AI-built apps are running in your company?</h2>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 32px;border-radius:999px;">Start a conversation →</span></a>
+    </div>
+  </div>
+
+  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="insights.html" style-hover="color:#E8A13C;">← ALL INSIGHTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
