@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Designing Websites for AI Discoverability — Arithim</title>
 <meta name="description" content="Modern websites are read by people, search engines and AI systems. That changes the role of structure.">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="Arithim">
 <meta property="og:title" content="Designing Websites for AI Discoverability — Arithim">
 <meta property="og:description" content="Modern websites are read by people, search engines and AI systems. That changes the role of structure.">
@@ -20,6 +20,65 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-01-12">
+<meta property="article:section" content="AI discoverability">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-designing-websites-for-ai-discoverability.html#article",
+      "headline": "Designing Websites for AI Discoverability",
+      "description": "Modern websites are read by people, search engines and AI systems. That changes the role of structure.",
+      "datePublished": "2026-01-12",
+      "dateModified": "2026-01-12",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-designing-websites-for-ai-discoverability.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "AI discoverability",
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Designing Websites for AI Discoverability",
+          "item": "https://arithim.com/insight-designing-websites-for-ai-discoverability.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -36,6 +95,20 @@
   @keyframes ah-spin { to { transform: rotate(360deg); } }
   @keyframes ah-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
   @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+  .ai-body a { color: #E8A13C; border-bottom: 1px solid rgba(232,161,60,0.35); }
+  .ai-body a:hover { border-bottom-color: #E8A13C; }
+  .ai-body h2 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.025em; color: #F5F1E8; margin: 56px 0 18px; }
+  .ai-body h3 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.015em; color: #F5F1E8; margin: 32px 0 10px; }
+  .ai-body p { font-size: 18px; line-height: 1.75; color: #C6CEDA; margin: 0 0 24px; }
+  .ai-body ul, .ai-body ol { font-size: 18px; line-height: 1.7; color: #C6CEDA; margin: 0 0 24px; padding-left: 22px; }
+  .ai-body li { margin: 0 0 12px; }
+  .ai-table { width: 100%; overflow-x: auto; margin: 8px 0 30px; }
+  .ai-table table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; color: #C6CEDA; }
+  .ai-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8AA0; font-weight: 500; padding: 10px 12px 10px 0; border-bottom: 1px solid rgba(245,241,232,0.16); }
+  .ai-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(245,241,232,0.08); vertical-align: top; }
+  .ai-table td:first-child { white-space: nowrap; color: #EDEBE4; }
+  .ai-body .ai-note { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; color: #7C8AA0; }
+  @media (max-width: 640px) { .ai-body h2 { font-size: 25px; } .ai-table td:first-child { white-space: normal; } }
 </style>
 </helmet>
 
@@ -62,20 +135,21 @@
     <div style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:26px;"><a href="insights.html" style-hover="color:#E8A13C;">Insights</a> / <span style="color:#E8A13C;">AI discoverability</span></div>
       <h1 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">Designing Websites for AI Discoverability</h1>
-      <div style="display:flex;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">AI DISCOVERABILITY</span><span style="color:#3A4557;">·</span><span>12 JAN 2026</span><span style="color:#3A4557;">·</span><span>2 MIN READ</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">AI DISCOVERABILITY</span><span style="color:#3A4557;">·</span><span>12 JAN 2026</span><span style="color:#3A4557;">·</span><span>2 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
     </div>
   </div>
 
-  <article style="max-width:760px;margin:0 auto;padding:30px 40px 20px;">
+  <article class="ai-body" style="max-width:760px;margin:0 auto;padding:30px 40px 20px;">
     <p style="font-size:22px;line-height:1.55;color:#EDEBE4;margin:0 0 32px;font-family:'Space Grotesk';font-weight:500;letter-spacing:-0.01em;">Modern websites are read by people, search engines, and AI systems. That changes the role of structure.</p>
-    <p style="font-size:18px;line-height:1.75;color:#C6CEDA;margin:0 0 24px;">Clear headings, semantic HTML, accessible relationships, schema markup, internal links, and explicit entity signals all help machines understand what a company does and why it matters. None of it is exotic; most of it is just doing the fundamentals properly.</p>
+    <p>Clear headings, semantic HTML, accessible relationships, schema markup, internal links, and explicit entity signals all help machines understand what a company does and why it matters. None of it is exotic; most of it is just doing the fundamentals properly.</p>
     <div style="border-left:2px solid #E8A13C;padding:8px 0 8px 24px;margin:36px 0;"><p style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:24px;line-height:1.35;color:#F5F1E8;margin:0;">This is not a trick for ranking. It is an information architecture discipline.</p></div>
-    <p style="font-size:18px;line-height:1.75;color:#C6CEDA;margin:0 0 24px;">A website should make the organization legible: its services, expertise, evidence, operating context, and contact pathways. If a person or a model reads one page, they should come away knowing what you do and who it is for.</p>
-    <p style="font-size:18px;line-height:1.75;color:#C6CEDA;margin:0;">AI discoverability starts with the same fundamentals that make a website better for humans: clarity, hierarchy, and technically sound publishing. Build for people first, and the machines follow.</p>
+    <p>A website should make the organization legible: its services, expertise, evidence, operating context, and contact pathways. If a person or a model reads one page, they should come away knowing what you do and who it is for.</p>
+    <p>AI discoverability starts with the same fundamentals that make a website better for humans: clarity, hierarchy, and technically sound publishing. Build for people first, and the machines follow.</p>
   </article>
 
   <div style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
     <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#556074;margin-bottom:20px;">MORE INSIGHTS</div>
+    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
     <a href="insight-operational-intelligence-vs-automation.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Operational Intelligence vs Automation</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">OPS INTELLIGENCE · 18 JAN 2026</span></a>
     <a href="insight-what-businesses-need-from-ai.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">What Most Businesses Actually Need From AI</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">AI IMPLEMENTATION · 08 JAN 2026</span></a>
   </div>
