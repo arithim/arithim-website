@@ -2,6 +2,8 @@
 
 The repository root is the site. There is no `dist/` folder and no JavaScript build: pages are plain static HTML served through `support.js`. The one generated part is the Insights section, which `tools/build_insights.py` builds from Markdown (stdlib Python 3.11+, no packages to install).
 
+Phone and tablet layout lives in `site.css`. Pages keep their inline styles, and elements that need to change at narrow widths carry an `r-*` class (listed at the top of `site.css`). A new page should link `/site.css` after `support.js` and reuse those classes; the insight template already does.
+
 Production is the Cloudflare Pages project **`arithim`** (account id in the `CLOUDFLARE_ACCOUNT_ID` secret). The contact form is a Pages Function in `functions/api/contact.js`; it deploys with the site.
 
 ## How deploys happen
