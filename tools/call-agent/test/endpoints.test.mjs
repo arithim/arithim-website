@@ -197,3 +197,20 @@ test("summary: bad id 400, unknown 404, concurrent generation gets 202, no-turn 
   const r = await summaryGet({ request: new Request(`https://x/api/call/summary?callId=${ID}`), env });
   assert.match((await r.json()).summary, /no written summary/);
 });
+
+test("start: no CALLS_DB -> mock on preview hosts, 503 on production", async () => {
+  const req = (host) => new Request(`https://${host}/api/call/start`, { method: "POST", headers: { origin: `https://${host}`, "cf-connecting-ip": "203.0.113.9" }, body: JSON.stringify({ mode: "voice" }) });
+  const prev = await start({ request: req("call-us.arithim.pages.dev"), env: {} });
+  assert.equal(prev.status, 200);
+  const j = await prev.json();
+  assert.equal(j.mock, true);
+  assert.ok(j.callId && j.conversationToken);
+  for (const h of ["arithim.com", "www.arithim.com"]) {
+    const r = await start({ request: req(h), env: {} });
+    assert.equal(r.status, 503);
+    assert.equal((await r.json()).fallback, "form");
+  }
+  // a cross-origin caller to a preview host is still refused
+  const bad = new Request("https://call-us.arithim.pages.dev/api/call/start", { method: "POST", headers: { origin: "https://evil.example" }, body: JSON.stringify({ mode: "voice" }) });
+  assert.equal((await start({ request: bad, env: {} })).status, 403);
+});

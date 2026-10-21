@@ -56,3 +56,10 @@ Exit codes: 0 ok, 1 deny-list hits or a bad allowlist, 2 deny-list file missing.
 - Add a page to the pack: add its path to `knowledge/allowlist.txt` on purpose, then rebuild.
 - Add a confidential name or figure to the deny-list as soon as it appears in any internal document, then rebuild.
 - Never write a confidential name or internal price in this folder, including in comments and tests.
+
+## Agent settings, sync and digest
+
+- `agents/<role>.json`: ElevenLabs agent settings as data (voice placeholder, custom LLM URL and headers, transfer rules, limits, retention). The `notes` field lists anything not verified against the API docs. Placeholders: `@<role>` (agent id), `@webhook`, `{secret_name}`.
+- `sync.mjs --env staging|prod [--dry-run]`: creates or patches the four agents, writes `agents.<env>.lock.json`, prints (never runs) the D1 config SQL. Test: `node --test tools/call-agent/test/sync.test.mjs`.
+- `digest.py [--email]`: weekly Markdown digest from D1, no model. Test: `python3 -m unittest discover -s tools/call-agent -p 'test_*.py'`.
+- Go-live steps: `arithim-ops/call-agent/RUNBOOK.md`.

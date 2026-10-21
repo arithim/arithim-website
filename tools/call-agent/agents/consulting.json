@@ -1,0 +1,140 @@
+{
+  "role": "consulting",
+  "notes": {
+    "unverified": [
+      "UNVERIFIED: shape of custom_llm.request_headers values. The create API page says request_headers maps a name to a value object but does not show it. We use a plain string, {secret_name} (sync resolves to {secret_id}) and {variable_name}. Confirm with a GET on a dashboard-made agent.",
+      "UNVERIFIED: built_in_tools.transfer_to_agent shape (name, description, params.system_tool_type, params.transfer_to_agent.transfers[] with agent_id, condition, delay_ms, transfer_message, enable_transferred_agent_first_message). From memory of the agent-transfer docs; the schema page was truncated.",
+      "UNVERIFIED: dynamic_variables.dynamic_variable_placeholders.call_id default (the create page lists dynamic_variables as 'any').",
+      "UNVERIFIED: post-call webhook. The webhook URL is configured at workspace level in ElevenLabs (shared secret CALL_WEBHOOK_SECRET); the agent only references post_call_webhook_id. sync cannot set the URL; create the workspace webhook by hand and put its id in --webhook-id or ELEVENLABS_WEBHOOK_ID.",
+      "UNVERIFIED: conversation_config.agent.prompt.prompt may be required non-empty even with a custom LLM; we send a one-line stub (our endpoint replaces the prompt).",
+      "UNVERIFIED: an empty first_message on specialists makes the agent speak first through the LLM after a transfer; confirm in step 0.",
+      "UNVERIFIED: tts.model_id eleven_flash_v2_5 for an English custom-LLM agent (the create page default is eleven_v4_turbo; pick by latency in step 0).",
+      "UNVERIFIED: voice names in _voice_suggestions come from memory of the Voice Library; ids are not known."
+    ],
+    "verified_against_create_api_page_2026_10_21": [
+      "turn.turn_timeout",
+      "turn.silence_end_call_timeout",
+      "conversation.max_duration_seconds",
+      "agent.first_message",
+      "agent.language",
+      "prompt.llm=custom-llm",
+      "custom_llm.url/api_type",
+      "tts.voice_id/model_id",
+      "platform_settings.auth.enable_auth",
+      "overrides.conversation_config_override.conversation.text_only",
+      "privacy.record_voice/retention_days",
+      "evaluation.criteria",
+      "workspace_overrides.webhooks.post_call_webhook_id"
+    ],
+    "transfer_rule_order": "index = position in transfers[]: 0 front-desk, 1 tsg, 2 customer-desk",
+    "post_call_webhook_url": "https://arithim.com/api/call/webhook",
+    "staging": "sync --env staging swaps the host https://arithim.com for the preview host (--staging-host)."
+  },
+  "agent": {
+    "name": "Arithim Oliver (consulting)",
+    "conversation_config": {
+      "agent": {
+        "first_message": "",
+        "language": "en",
+        "dynamic_variables": {
+          "dynamic_variable_placeholders": {
+            "call_id": "unset"
+          }
+        },
+        "prompt": {
+          "prompt": "Stub. The real instructions are sent by the custom LLM endpoint.",
+          "llm": "custom-llm",
+          "custom_llm": {
+            "url": "https://arithim.com/api/call/llm/consulting",
+            "api_type": "chat_completions",
+            "request_headers": {
+              "X-Call-Secret": {
+                "secret_name": "arithim_call_llm_secret"
+              },
+              "X-Call-Id": {
+                "variable_name": "call_id"
+              },
+              "X-Conversation-Id": {
+                "variable_name": "system__conversation_id"
+              }
+            }
+          },
+          "built_in_tools": {
+            "transfer_to_agent": {
+              "name": "transfer_to_agent",
+              "description": "Hand the call to a colleague when the caller's need clearly belongs to them.",
+              "params": {
+                "system_tool_type": "transfer_to_agent",
+                "transfer_to_agent": {
+                  "transfers": [
+                    {
+                      "agent_id": "@front-desk",
+                      "condition": "Partners, press, job seekers, vendors pitching, research or speaking requests, or anything unclear. Transfer back to Hannah (front desk).",
+                      "delay_ms": 0,
+                      "transfer_message": null,
+                      "enable_transferred_agent_first_message": false
+                    },
+                    {
+                      "agent_id": "@tsg",
+                      "condition": "The caller asks about the Technical Sales Guide: what it does, a demo or pilot, security and data questions. Transfer to Charlotte.",
+                      "delay_ms": 0,
+                      "transfer_message": null,
+                      "enable_transferred_agent_first_message": false
+                    },
+                    {
+                      "agent_id": "@customer-desk",
+                      "condition": "An existing customer has a product problem, or the call is about an invoice in either direction, or a supplier or contract form. Transfer to Daniel.",
+                      "delay_ms": 0,
+                      "transfer_message": null,
+                      "enable_transferred_agent_first_message": false
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "tts": {
+        "_voice_suggestions": "George (warm British male), Harry or another calm British male from the Voice Library. Must sound clearly different from Daniel.",
+        "voice_id": "VOICE_ID_TODO_CONSULTING",
+        "model_id": "eleven_flash_v2_5"
+      },
+      "turn": {
+        "turn_timeout": 7,
+        "silence_end_call_timeout": 30
+      },
+      "conversation": {
+        "max_duration_seconds": 900
+      }
+    },
+    "platform_settings": {
+      "auth": {
+        "enable_auth": true
+      },
+      "overrides": {
+        "conversation_config_override": {
+          "conversation": {
+            "text_only": true
+          }
+        }
+      },
+      "privacy": {
+        "record_voice": false,
+        "retention_days": 30
+      },
+      "evaluation": {
+        "criteria": []
+      },
+      "workspace_overrides": {
+        "webhooks": {
+          "post_call_webhook_id": "@webhook",
+          "events": [
+            "transcript"
+          ],
+          "transcript_format": "json"
+        }
+      }
+    }
+  }
+}

@@ -16,8 +16,15 @@ export function isMock(env) {
   return env.CALL_MOCK === "1" || !env.ELEVENLABS_API_KEY;
 }
 
+const PROD_HOSTS = new Set(["arithim.com", "www.arithim.com"]);
+export function isProductionHost(request) {
+  try { return PROD_HOSTS.has(new URL(request.url).hostname); } catch { return true; }
+}
+
 function originAllowed(request, env) {
   const o = request.headers.get("origin") || "";
+  // Preview deploys without D1: the page's own origin is allowed so the mock flow works.
+  if (!env.CALLS_DB && !isProductionHost(request)) { try { if (o === new URL(request.url).origin) return true; } catch {} }
   if (ORIGINS.has(o)) return true;
   const extra = (env.CALL_ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
   if (extra.includes(o)) return true;
@@ -33,6 +40,16 @@ export async function onRequestPost({ request, env }) {
   const mode = body?.mode === "text" ? "text" : body?.mode === "voice" ? "voice" : null;
   if (!mode) return json(400, { error: "mode must be voice or text" });
 
+  if (!env.CALLS_DB) {
+    // No D1 binding yet. Production must fail closed; previews show the mock flow (nothing is recorded).
+    if (isProductionHost(request)) return json(503, { error: "unavailable", fallback: "form" });
+    return json(200, {
+      mock: true, callId: "mock-" + newCallId().slice(0, 12), conversationToken: "mock-token", mode,
+      agent: { id: "mock-agent", name: ROLES["front-desk"]?.displayName || "Front desk" },
+      agents: { "mock-agent": ROLES["front-desk"]?.displayName || "Front desk" },
+      dynamicVariables: {}, maxSeconds: 900, wrapUpSeconds: 720,
+    });
+  }
   let db;
   try { db = getDb(env); } catch { return json(503, { error: "unavailable", fallback: "form" }); }
   const cfg = await getConfig(db);
