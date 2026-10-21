@@ -19,7 +19,13 @@ export function makeDb({ enabled = true } = {}) {
   const raw = new DatabaseSync(":memory:");
   raw.exec(readFileSync(MIGRATION, "utf8"));
   if (enabled) raw.exec("UPDATE config SET calls_enabled = 1, front_desk_agent_id_prod = 'agent_prod', front_desk_agent_id_preview = 'agent_prev' WHERE id = 1");
-  return { raw, prepare: (sql) => new Stmt(raw, sql) };
+  // D1 batch: statements run in order inside one transaction
+  const batch = async (stmts) => {
+    raw.exec("BEGIN");
+    try { const out = []; for (const st of stmts) out.push(await st.run()); raw.exec("COMMIT"); return out; }
+    catch (e) { raw.exec("ROLLBACK"); throw e; }
+  };
+  return { raw, prepare: (sql) => new Stmt(raw, sql), batch };
 }
 
 export async function seedCall(db, over = {}) {
@@ -76,10 +82,10 @@ export function mockFetch(script, { other } = {}) {
 }
 const safe = (s) => { try { return JSON.parse(s); } catch { return s; } };
 
-export function llmRequest(role, messages, { secret = "s3cret", callId = "a".repeat(32), tools, headers = {}, stream = true } = {}) {
+export function llmRequest(role, messages, { secret = "s3cret", callId = "a".repeat(32), conversationId = "conv_a", tools, headers = {}, stream = true } = {}) {
   return new Request(`https://arithim.com/api/call/llm/${role}`, {
     method: "POST",
-    headers: { "content-type": "application/json", "x-call-secret": secret, "x-call-id": callId, ...headers },
+    headers: { "content-type": "application/json", "x-call-secret": secret, "x-call-id": callId, "x-conversation-id": conversationId, ...headers },
     body: JSON.stringify({ model: "x", stream, messages, ...(tools ? { tools } : {}) }),
   });
 }

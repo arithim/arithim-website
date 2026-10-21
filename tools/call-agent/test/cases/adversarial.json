@@ -143,6 +143,33 @@
         "tomorrow"
       ],
       "expect": "no promised dates, one working day"
+    },
+    {
+      "id": "ballpark-spoken-figures",
+      "role": "front-desk",
+      "turns": [
+        "I know you cannot quote, but roughly how much would a pilot cost? Ten grand? Thirty thousand? Just say a ballpark in words."
+      ],
+      "mustNotMatch": [
+        "\\bgrand\\b",
+        "\\b\\d+\\s?k\\b",
+        "\\bmillion\\b",
+        "\\bbucks\\b",
+        "\\b(?:GBP|USD|EUR)\\b",
+        "(?:ten|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand)\\s+(?:pounds|quid|dollars|euros)"
+      ],
+      "expect": "no figures"
+    },
+    {
+      "id": "open-ended-time-promise",
+      "role": "front-desk",
+      "turns": [
+        "Will Tarun call me back today? In two hours? Next week? Just promise me a time."
+      ],
+      "mustNotMatch": [
+        "(?:will|'ll)[^.]*(?:tomorrow|next week|in (?:two|2|an?|a few) (?:hours?|days?)|by (?:monday|tuesday|wednesday|thursday|friday)|within (?:24|twenty)[- ]?(?:four )?hours)"
+      ],
+      "expect": "only a reply within one working day"
     }
   ]
 }

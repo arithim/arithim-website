@@ -259,3 +259,62 @@ test("duplicate caller message on a retry is not logged twice", async () => {
     assert.equal(n.n, 1);
   } finally { m.restore(); }
 });
+
+// ---- code review fixes ----
+test("M7: the conversation id is required, bound on first use, and a different id is then rejected", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const m = mockFetch([anthropicSse([{ type: "text", text: "Hello there." }]), anthropicSse([{ type: "text", text: "Hello again." }]), anthropicSse([{ type: "text", text: "x" }])]);
+  try {
+    const noConv = new Request("https://arithim.com/api/call/llm/front-desk", { method: "POST", headers: { "x-call-secret": "s3cret", "x-call-id": ID }, body: JSON.stringify({ messages: [user("hi")] }) });
+    assert.equal((await handle({ request: noConv, env, params: { role: "front-desk" } })).status, 400);
+    assert.equal((await call(env, "front-desk", [user("hi")], { conversationId: "conv_one" })).status, 200);
+    assert.equal((await db.prepare("SELECT el_conversation_id AS c FROM calls").first()).c, "conv_one");
+    assert.equal((await call(env, "front-desk", [user("again")], { conversationId: "conv_one" })).status, 200);
+    assert.equal((await call(env, "front-desk", [user("hi")], { conversationId: "conv_two" })).status, 404);
+    assert.equal((await db.prepare("SELECT el_conversation_id AS c FROM calls").first()).c, "conv_one");
+    // a conversation id already bound to another call cannot be claimed by this one
+    await seedCall(db, { call_id: "b".repeat(32), el_conversation_id: "conv_taken" });
+    await db.prepare("UPDATE calls SET el_conversation_id = NULL WHERE call_id = ?").bind(ID).run();
+    assert.equal((await call(env, "front-desk", [user("hi")], { conversationId: "conv_taken" })).status, 404);
+  } finally { m.restore(); }
+});
+
+test("M8: whitespace-only text blocks are not replayed to Anthropic", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_ws", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" } };
+  const m = mockFetch([anthropicSse([{ type: "text", text: "\n\n" }, tm], "tool_use"), anthropicSse([{ type: "text", text: "Done." }])]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("take a message")]));
+    assert.match(out.text, /Done\./);
+    const replayed = m.calls[1].body.messages.find((x) => x.role === "assistant" && Array.isArray(x.content));
+    assert.ok(replayed.content.every((b) => b.type !== "text" || b.text.trim()), JSON.stringify(replayed.content));
+    assert.ok(replayed.content.some((b) => b.type === "tool_use"));
+  } finally { m.restore(); }
+});
+
+test("H2/M3 in the brain: a date promise split across a long-clause comma and an open-ended promise are replaced", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const long = "Tarun will go through everything you have told me about the supplier approvals process and the spreadsheets your team use today and then, reply by Friday. You'll hear back next week. A person will reply within one working day. It is about ten grand.";
+  const m = mockFetch([anthropicSse([{ type: "text", text: long }])]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("hi")]));
+    assert.ok(!/Friday|next week|ten grand/.test(out.text), out.text);
+    assert.match(out.text, /A person will reply within one working day\./);
+    assert.ok(out.text.includes(LINE_FIGURES));
+  } finally { m.restore(); }
+});
+
+test("L14: when the client has gone, nothing is written or logged and no tool runs", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_ab", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" } };
+  const ctl = new AbortController();
+  const m = mockFetch([() => { ctl.abort(); return anthropicSse([{ type: "text", text: "Sure." }, tm], "tool_use"); }]);
+  try {
+    const req = llmRequest("front-desk", [user("take a message")]);
+    const aborted = new Request(req, { signal: ctl.signal });
+    await handle({ request: aborted, env, params: { role: "front-desk" }, waitUntil: (p) => p }).then((r) => r.text());
+    await settle();
+    assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM messages").first()).n, 0);
+    assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM turns WHERE speaker = 'agent'").first()).n, 0);
+  } finally { m.restore(); }
+});

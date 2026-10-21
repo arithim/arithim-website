@@ -19,6 +19,7 @@ def sample():
             {"ref": "ARC-261020-BBBB", "type": "other", "summary": "-2+3 not sure about fees", "created_at": NOW - 40},
         ],
         "helpful": [{"yes": 3, "no": 1}],
+        "unsent": [{"call_id": "ef" * 16, "status": "ended", "created_at": NOW - 3600}],
         "unfinalised": [{"call_id": "cd" * 16, "mode": "voice", "status": "active", "created_at": NOW - 7200}],
     }
 
@@ -43,6 +44,8 @@ class DigestTest(unittest.TestCase):
         self.assertIn("older than 1 hour", md)
         self.assertIn("billing_query", md)
         self.assertIn("ESTIMATED", md)
+        self.assertIn("Emails not sent", md)
+        self.assertIn("efefefef", md)
 
     def test_empty(self):
         d = {k: [] for k in sample()}
@@ -50,11 +53,12 @@ class DigestTest(unittest.TestCase):
         md = digest.render(d, 7, NOW)
         self.assertIn("no ratings yet", md)
         self.assertIn("All calls older than 1 hour have a finalised record", md)
+        self.assertIn("Every finished call has its email sent", md)
 
     def test_gather_uses_query(self):
         seen = []
         digest.gather(lambda sql: seen.append(sql) or [], NOW, 7)
-        self.assertEqual(len(seen), 7)
+        self.assertEqual(len(seen), 8)
         self.assertTrue(all("DELETE" not in s.upper() and "UPDATE" not in s.upper() for s in seen))
 
 

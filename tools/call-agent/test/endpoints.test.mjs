@@ -7,7 +7,9 @@ import { onRequestGet as summaryGet, onRequestPost as summaryPost } from "../../
 import { signElevenLabs } from "../../../functions/_lib/hmac.js";
 
 const ID = "c".repeat(32);
-const startReq = (body, headers = {}) => new Request("https://arithim.com/api/call/start", { method: "POST", headers: { origin: "https://arithim.com", "cf-connecting-ip": "203.0.113.5", ...headers }, body: JSON.stringify(body) });
+const SALT = "0123456789abcdef0123456789abcdef";
+// Mock mode is refused on production hosts, so mock tests use a preview host; the Origin header is still arithim.com.
+const startReq = (body, headers = {}, host = "call-us.arithim.pages.dev") => new Request(`https://${host}/api/call/start`, { method: "POST", headers: { origin: "https://arithim.com", "cf-connecting-ip": "203.0.113.5", ...headers }, body: JSON.stringify(body) });
 
 test("start: mock mode returns the documented contract and creates a row", async () => {
   const db = makeDb(); const env = { CALLS_DB: db, CALL_MOCK: "1" };
@@ -55,12 +57,12 @@ test("start: third call from one IP gets 429; budget refusals release earlier re
 });
 
 test("start: real mode calls the ElevenLabs token endpoint and stores the conversation id", async () => {
-  const db = makeDb(); const env = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x" };
+  const db = makeDb(); const env = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x", CALL_IP_SALT: SALT };
   const m = mockFetch([], { other: async (u) => u.includes("turnstile")
     ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" }))
     : new Response(JSON.stringify({ token: "tok_1", conversation_id: "conv_77" })) });
   try {
-    const j = await (await start({ request: startReq({ mode: "text", turnstileToken: "t" }), env })).json();
+    const j = await (await start({ request: startReq({ mode: "text", turnstileToken: "t" }, {}, "arithim.com"), env })).json();
     assert.equal(j.conversationToken, "tok_1"); assert.equal(j.agent.id, "agent_prod"); assert.ok(!j.mock);
     const el = m.calls.find((c) => c.url.includes("elevenlabs"));
     assert.match(el.url, /agent_id=agent_prod/); assert.equal(el.init.headers["xi-api-key"], "xi");
@@ -69,10 +71,10 @@ test("start: real mode calls the ElevenLabs token endpoint and stores the conver
 });
 
 test("start: ElevenLabs token failure -> 502 and budgets rolled back", async () => {
-  const db = makeDb(); const env = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x" };
+  const db = makeDb(); const env = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x", CALL_IP_SALT: SALT };
   const m = mockFetch([], { other: async (u) => u.includes("turnstile") ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" })) : new Response("no", { status: 500 }) });
   try {
-    assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }), env })).status, 502);
+    assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env })).status, 502);
     assert.equal((await db.prepare("SELECT reserved_minutes AS r FROM budgets").first()).r, 0);
     assert.equal((await db.prepare("SELECT status FROM calls").first()).status, "failed");
   } finally { m.restore(); }
@@ -82,7 +84,10 @@ test("start: ElevenLabs token failure -> 502 and budgets rolled back", async () 
 async function hook(env, payload, { secret = "whsec", t } = {}) {
   const raw = JSON.stringify(payload);
   const sig = await signElevenLabs(raw, secret, t);
-  return webhook({ request: new Request("https://x/api/call/webhook", { method: "POST", headers: { "elevenlabs-signature": sig }, body: raw }), env, waitUntil: (p) => p });
+  const pending = [];
+  const res = await webhook({ request: new Request("https://x/api/call/webhook", { method: "POST", headers: { "elevenlabs-signature": sig }, body: raw }), env, waitUntil: (p) => pending.push(p) });
+  await Promise.all(pending); // background housekeeping and email retries
+  return res;
 }
 const payload = (over = {}) => ({
   type: "post_call_transcription", event_timestamp: 1,
@@ -125,23 +130,80 @@ test("webhook: finalises once, releases budget, one email with fixed subject, ba
   } finally { m.restore(); }
 });
 
-test("webhook: non-billing, unflagged call has no banner and no FLAG; email failure -> 500 then retry sends only the email", async () => {
+test("webhook: email failure still returns 200 with the record stored; the email is retried by the next webhook; banner on every email", async () => {
   const db = makeDb(); await seedCall(db, { call_id: ID, el_conversation_id: "conv_1" });
   const env = { CALLS_DB: db, CALL_WEBHOOK_SECRET: "whsec", RESEND_API_KEY: "re", TO_EMAIL: "t@example.com", CALL_FROM_EMAIL: "c@m.example.com" };
   const clean = payload(); clean.data.transcript = [{ role: "agent", message: "Hello.", time_in_call_secs: 0 }];
   let ok = false;
   const m = mockFetch([], { other: async () => new Response("{}", { status: ok ? 200 : 500 }) });
   try {
-    assert.equal((await hook(env, clean)).status, 500);
-    ok = true;
     assert.equal((await hook(env, clean)).status, 200);
+    let row = await db.prepare("SELECT status, email_sent, final_transcript FROM calls").first();
+    assert.equal(row.status, "ended"); assert.equal(row.email_sent, 0); assert.ok(row.final_transcript);
+    ok = true;
+    assert.equal((await hook(env, clean)).status, 200); // redelivery retries only the email
     const sent = m.calls.filter((c) => c.url.includes("resend"));
     assert.equal(sent.length, 2);
     assert.equal(sent[1].body.subject, "[Call] no-message no-ref");
-    assert.ok(!sent[1].body.text.includes(BANNER));
-    assert.equal((await db.prepare("SELECT used_minutes AS u FROM calls").first()).u, 3.4);
-    const g = await db.prepare("SELECT COUNT(*) AS n FROM budgets").first();
-    assert.ok(g.n >= 0);
+    assert.ok(sent[1].body.text.startsWith(BANNER), "banner on a call with no message");
+    assert.ok(sent[1].body.html.includes(BANNER));
+    assert.equal((await db.prepare("SELECT used_minutes AS u, email_sent AS e FROM calls").first()).u, 3.4);
+    assert.equal((await db.prepare("SELECT email_sent AS e FROM calls").first()).e, 1);
+  } finally { m.restore(); }
+});
+
+test("email: a failed email is retried by another call's webhook and by /start; digest-visible via email_sent=0", async () => {
+  const db = makeDb();
+  const A = "1".repeat(32), B = "2".repeat(32);
+  await seedCall(db, { call_id: A, el_conversation_id: "conv_a" });
+  await seedCall(db, { call_id: B, el_conversation_id: "conv_b" });
+  await db.prepare("UPDATE calls SET status='ended', finalized_at = 1000, final_transcript='[]' WHERE call_id = ?").bind(A).run();
+  const env = { CALLS_DB: db, CALL_WEBHOOK_SECRET: "whsec", RESEND_API_KEY: "re", TO_EMAIL: "t@example.com", CALL_FROM_EMAIL: "c@m.example.com" };
+  const m = mockFetch([], { other: async () => new Response("{}", { status: 200 }) });
+  try {
+    const p = payload(); p.data.conversation_id = "conv_b"; p.data.conversation_initiation_client_data.dynamic_variables.call_id = B;
+    assert.equal((await hook(env, p)).status, 200);
+    assert.equal((await db.prepare("SELECT email_sent AS e FROM calls WHERE call_id = ?").bind(A).first()).e, 1, "A was retried");
+    assert.equal(m.calls.filter((c) => c.url.includes("resend")).length, 2);
+  } finally { m.restore(); }
+});
+
+test("email: concurrent senders claim once", async () => {
+  const db = makeDb(); await seedCall(db, { call_id: ID, el_conversation_id: "conv_1" });
+  await db.prepare("UPDATE calls SET status='ended', finalized_at = 1000, final_transcript='[]'").run();
+  const env = { RESEND_API_KEY: "re", TO_EMAIL: "t@example.com", CALL_FROM_EMAIL: "c@m.example.com" };
+  const m = mockFetch([], { other: async () => new Response("{}", { status: 200 }) });
+  try {
+    const { sendCallEmailOnce } = await import("../../../functions/_lib/call-email.js");
+    await Promise.all([sendCallEmailOnce(env, db, ID), sendCallEmailOnce(env, db, ID)]);
+    assert.equal(m.calls.filter((c) => c.url.includes("resend")).length, 1);
+  } finally { m.restore(); }
+});
+
+test("email: bank wording in the caller's words raises payment-details and a FLAG even when the type is enquiry", async () => {
+  const db = makeDb(); await seedCall(db, { call_id: ID, el_conversation_id: "conv_1" });
+  await db.prepare("INSERT INTO messages VALUES ('ARC-261021-EEEE', ?, 'enquiry', ?, 1)").bind(ID, JSON.stringify({ summary: "please change the bank account" })).run();
+  const env = { CALLS_DB: db, CALL_WEBHOOK_SECRET: "whsec", RESEND_API_KEY: "re", TO_EMAIL: "t@example.com", CALL_FROM_EMAIL: "c@m.example.com" };
+  const m = mockFetch([], { other: async () => new Response("{}", { status: 200 }) });
+  try {
+    await hook(env, payload());
+    const mail = m.calls.find((c) => c.url.includes("resend")).body;
+    assert.match(mail.subject, /\[FLAG\]$/); assert.ok(mail.text.startsWith(BANNER)); assert.match(mail.text, /payment-details/);
+  } finally { m.restore(); }
+});
+
+test("filter applies to agent speech only: a caller's own figures do not raise a flag", async () => {
+  const db = makeDb(); await seedCall(db, { call_id: ID, el_conversation_id: "conv_1" });
+  const env = { CALLS_DB: db, CALL_WEBHOOK_SECRET: "whsec", RESEND_API_KEY: "re", TO_EMAIL: "t@example.com", CALL_FROM_EMAIL: "c@m.example.com" };
+  const p = payload(); p.data.transcript = [
+    { role: "user", message: "We pay about forty pounds, ten grand a year, we have three people on the team", time_in_call_secs: 1 },
+    { role: "agent", message: "Thanks. A person will reply within one working day.", time_in_call_secs: 2 },
+  ];
+  const m = mockFetch([], { other: async () => new Response("{}", { status: 200 }) });
+  try {
+    await hook(env, p);
+    const mail = m.calls.find((c) => c.url.includes("resend")).body;
+    assert.ok(!mail.subject.includes("[FLAG]"), mail.subject);
   } finally { m.restore(); }
 });
 
@@ -213,4 +275,114 @@ test("start: no CALLS_DB -> mock on preview hosts, 503 on production", async () 
   // a cross-origin caller to a preview host is still refused
   const bad = new Request("https://call-us.arithim.pages.dev/api/call/start", { method: "POST", headers: { origin: "https://evil.example" }, body: JSON.stringify({ mode: "voice" }) });
   assert.equal((await start({ request: bad, env: {} })).status, 403);
+});
+
+
+// ---- code review fixes ----
+test("H1: stale reservations are released by /start without any webhook, once", async () => {
+  const db = makeDb(); const now = Math.floor(Date.now() / 1000); const day = new Date().toISOString().slice(0, 10);
+  const A = "3".repeat(32), B = "4".repeat(32), C = "5".repeat(32);
+  await seedCall(db, { call_id: A, created_at: now - 25 * 60, ip_key: "ipA" });            // never connected (no turns), 25 min old
+  await seedCall(db, { call_id: B, created_at: now - 25 * 60, ip_key: "ipB" });            // connected, only 25 min old: still held
+  await db.prepare("INSERT INTO turns VALUES (?,1,'front-desk','caller','hi',1)").bind(B).run();
+  await seedCall(db, { call_id: C, created_at: now - 45 * 60, ip_key: "ipC" });            // connected, no webhook for 45 min
+  await db.prepare("INSERT INTO turns VALUES (?,1,'front-desk','caller','hi',1)").bind(C).run();
+  await db.prepare("INSERT INTO budgets (day, reserved_minutes) VALUES (?, 45)").bind(day).run();
+  for (const k of ["ipA", "ipB", "ipC"]) await db.prepare("INSERT INTO ip_budgets (ip_key, day, calls, minutes) VALUES (?, ?, 1, 15)").bind(k, day).run();
+  const env = { CALLS_DB: db, CALL_MOCK: "1" };
+  assert.equal((await start({ request: startReq({ mode: "voice" }, { "cf-connecting-ip": "203.0.113.77" }), env })).status, 200);
+  const st = async (id) => (await db.prepare("SELECT status, finalized_at FROM calls WHERE call_id = ?").bind(id).first());
+  assert.equal((await st(A)).status, "expired"); assert.equal((await st(C)).status, "expired"); assert.equal((await st(B)).status, "active");
+  const g = await db.prepare("SELECT reserved_minutes AS r FROM budgets WHERE day = ?").bind(day).first();
+  assert.equal(g.r, 15 + 15, "B still held (15) + the new call (15)");
+  assert.equal((await db.prepare("SELECT minutes FROM ip_budgets WHERE ip_key = 'ipA'").first()).minutes, 0);
+  // a second sweep and a late webhook release nothing more
+  await cleanupOld(db);
+  const hookEnv = { CALLS_DB: db, CALL_WEBHOOK_SECRET: "whsec" };
+  const late = payload(); late.data.conversation_id = "conv_late"; late.data.conversation_initiation_client_data.dynamic_variables.call_id = C;
+  assert.equal((await hook(hookEnv, late)).status, 200);
+  assert.equal((await db.prepare("SELECT reserved_minutes AS r FROM budgets WHERE day = ?").bind(day).first()).r, 30);
+  assert.equal((await db.prepare("SELECT status, final_transcript IS NOT NULL AS t FROM calls WHERE call_id = ?").bind(C).first()).t, 1, "late transcript kept");
+});
+
+test("H1: 90-day deletion runs from /start and is bounded", async () => {
+  const db = makeDb(); const now = Math.floor(Date.now() / 1000);
+  for (let i = 0; i < 60; i++) {
+    const id = i.toString(16).padStart(32, "0");
+    await seedCall(db, { call_id: id, created_at: now - 100 * 86400 + i });
+    await db.prepare("UPDATE calls SET status = 'ended', finalized_at = 1 WHERE call_id = ?").bind(id).run();
+  }
+  const env = { CALLS_DB: db, CALL_MOCK: "1" };
+  await start({ request: startReq({ mode: "text" }), env });
+  const n = (await db.prepare("SELECT COUNT(*) AS n FROM calls WHERE created_at < ?").bind(now - 90 * 86400).first()).n;
+  assert.equal(n, 10, "50 deleted per run");
+});
+
+test("H12: finalisation claim and release are one transaction (repeat releases nothing)", async () => {
+  const db = makeDb(); const day = new Date().toISOString().slice(0, 10);
+  const c = await seedCall(db, { call_id: ID, ip_key: "ipZ" });
+  await db.prepare("INSERT INTO budgets (day, reserved_minutes) VALUES (?, 30)").bind(day).run();
+  await db.prepare("INSERT INTO ip_budgets (ip_key, day, calls, minutes) VALUES ('ipZ', ?, 1, 30)").bind(day).run();
+  const { finalizeCall } = await import("../../../functions/_lib/budget.js");
+  const row = await db.prepare("SELECT * FROM calls").first();
+  assert.equal(await finalizeCall(db, row, { status: "ended", usedMinutes: 5, at: 5 }), true);
+  assert.equal(await finalizeCall(db, row, { status: "ended", usedMinutes: 5, at: 6 }), false);
+  assert.equal((await db.prepare("SELECT reserved_minutes AS r FROM budgets").first()).r, 20);
+  assert.equal((await db.prepare("SELECT minutes AS m FROM ip_budgets").first()).m, 20);
+});
+
+test("M5: production hosts never mock and never skip Turnstile; missing config is 503", async () => {
+  for (const host of ["arithim.com", "www.arithim.com"]) {
+    const db = makeDb();
+    // CALL_MOCK=1 copied to production changes nothing: no key -> 503, not a demo
+    let r = await start({ request: startReq({ mode: "voice" }, {}, host), env: { CALLS_DB: db, CALL_MOCK: "1", CALL_IP_SALT: SALT } });
+    assert.equal(r.status, 503);
+    // key present but Turnstile secret missing -> 503, not a skipped challenge
+    r = await start({ request: startReq({ mode: "voice" }, {}, host), env: { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", CALL_MOCK: "1", CALL_IP_SALT: SALT } });
+    assert.equal(r.status, 503);
+    assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM calls").first()).n, 0);
+  }
+  // localhost origins are not accepted on a production host in mock either
+  const db = makeDb();
+  const r = await start({ request: startReq({ mode: "voice" }, { origin: "http://localhost:8000" }, "arithim.com"), env: { CALLS_DB: db, CALL_MOCK: "1", CALL_IP_SALT: SALT } });
+  assert.equal(r.status, 403);
+  // a missing ELEVENLABS_API_KEY on a preview host without CALL_MOCK is also 503
+  const r2 = await start({ request: startReq({ mode: "voice" }), env: { CALLS_DB: makeDb(), CALL_IP_SALT: SALT, TURNSTILE_SECRET: "x" } });
+  assert.equal(r2.status, 503);
+});
+
+test("M6: CALL_IP_SALT is required in production (503) and stored keys are salted", async () => {
+  const db = makeDb(); const base = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x" };
+  assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: base })).status, 503);
+  assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: { ...base, CALL_IP_SALT: "short" } })).status, 503);
+  const m = mockFetch([], { other: async (u) => u.includes("turnstile") ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" })) : new Response(JSON.stringify({ token: "tok", conversation_id: "conv_s" })) });
+  try {
+    assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: { ...base, CALL_IP_SALT: SALT } })).status, 200);
+    const { ipKey } = await import("../../../functions/_lib/d1.js");
+    const row = await db.prepare("SELECT ip_key FROM calls").first();
+    assert.equal(row.ip_key, await ipKey("203.0.113.5", SALT));
+    assert.notEqual(row.ip_key, await ipKey("203.0.113.5", ""));
+  } finally { m.restore(); }
+  // production with no client IP is refused rather than pooled in an "unknown" bucket
+  const noIp = new Request("https://arithim.com/api/call/start", { method: "POST", headers: { origin: "https://arithim.com" }, body: JSON.stringify({ mode: "voice" }) });
+  assert.equal((await start({ request: noIp, env: { ...base, CALL_IP_SALT: SALT } })).status, 400);
+});
+
+test("L11: a D1 error during reservation undoes earlier reservations and returns a clean 500", async () => {
+  const db = makeDb(); const real = db.prepare;
+  const env = { CALLS_DB: db, CALL_MOCK: "1" };
+  db.prepare = (sql) => { if (sql.startsWith("INSERT INTO calls")) throw new Error("d1 down"); return real(sql); };
+  const r = await start({ request: startReq({ mode: "voice" }), env });
+  db.prepare = real;
+  assert.equal(r.status, 500);
+  assert.equal((await db.prepare("SELECT reserved_minutes AS r FROM budgets").first()).r, 0);
+  assert.equal((await db.prepare("SELECT minutes AS m FROM ip_budgets").first()).m, 0);
+});
+
+test("L16: summary waits until the log has been quiet for a few seconds", async () => {
+  const db = makeDb(); await seedCall(db, { call_id: ID });
+  const now = Math.floor(Date.now() / 1000);
+  for (const [i, s] of [[1, "caller"], [2, "agent"]]) await db.prepare("INSERT INTO turns VALUES (?,?,?,?,?,?)").bind(ID, i, "front-desk", s, "text", now).run();
+  const r = await summaryGet({ request: new Request(`https://x/api/call/summary?callId=${ID}`), env: { CALLS_DB: db } });
+  assert.equal(r.status, 202);
 });

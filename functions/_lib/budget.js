@@ -2,7 +2,7 @@
 //   UPDATE ... SET x = x + ? WHERE x + ? <= cap RETURNING ...
 // so two concurrent requests cannot both pass the check. Zero rows returned means refused.
 
-import { first, run, changes, dayKey, monthKey } from "./d1.js";
+import { first, run, batch, changes, dayKey, monthKey } from "./d1.js";
 
 export const FULL_RESERVATION_MINUTES = 15;
 
@@ -107,6 +107,32 @@ export async function releaseCall(db, call, usedMinutes) {
   const unused = Math.max(0, call.reserved_minutes - usedMinutes);
   await releaseGlobal(db, call.day, call.reserved_minutes, usedMinutes);
   await releaseIp(db, call.ip_key, call.day, unused, { callToo: false });
+}
+
+// Claim the call (finalized_at IS NULL -> set) and release its unused budget in ONE batch (one transaction).
+// The release statements are gated on the call still being unfinalized and run BEFORE the claim in the same
+// transaction, so a concurrent or repeated finalisation finds finalized_at set and releases nothing, and a crash
+// cannot leave a claimed call with its reservation still held. Returns true if this call won the claim.
+// `set` = {status, usedMinutes, transcript (optional JSON string), at}
+export async function finalizeCall(db, call, set) {
+  const used = set.usedMinutes || 0;
+  const stmts = [];
+  if (call.mode !== "text") {
+    const unused = Math.max(0, call.reserved_minutes - used);
+    stmts.push(
+      [`UPDATE budgets SET reserved_minutes = MAX(0, reserved_minutes - ?1), used_minutes = used_minutes + ?2
+         WHERE day = ?3 AND EXISTS (SELECT 1 FROM calls WHERE call_id = ?4 AND finalized_at IS NULL)`, unused, used, call.day, call.call_id],
+      [`UPDATE ip_budgets SET minutes = MAX(0, minutes - ?1)
+         WHERE ip_key = ?2 AND day = ?3 AND EXISTS (SELECT 1 FROM calls WHERE call_id = ?4 AND finalized_at IS NULL)`, unused, call.ip_key, call.day, call.call_id]
+    );
+  }
+  stmts.push([
+    `UPDATE calls SET status = ?1, used_minutes = ?2, final_transcript = COALESCE(?3, final_transcript), finalized_at = ?4
+      WHERE call_id = ?5 AND finalized_at IS NULL`,
+    set.status, used, set.transcript ?? null, set.at, call.call_id,
+  ]);
+  const res = await batch(db, stmts);
+  return changes(res[res.length - 1]) > 0;
 }
 
 export { dayKey, monthKey };

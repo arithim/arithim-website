@@ -33,15 +33,26 @@ export async function handle({ request, env, params, waitUntil }) {
 
   const db = getDb(env);
   const ref = extractCallRef(request, body);
+  // The ElevenLabs conversation id is mandatory (X-Conversation-Id): it is what ties this call to ONE voice session.
+  if (!ref.conversationId) return json(400, { error: { message: "conversation id required" } });
   let call = null;
-  if (ref.callId && CALL_ID_RE.test(ref.callId)) {
-    call = await first(db, "SELECT * FROM calls WHERE call_id = ?", ref.callId);
-    // when both ids are present they must agree
-    if (call && ref.conversationId && call.el_conversation_id && call.el_conversation_id !== ref.conversationId) call = null;
-  } else if (ref.conversationId) {
-    call = await first(db, "SELECT * FROM calls WHERE el_conversation_id = ?", ref.conversationId);
-  }
+  if (ref.callId && CALL_ID_RE.test(ref.callId)) call = await first(db, "SELECT * FROM calls WHERE call_id = ?", ref.callId);
+  else call = await first(db, "SELECT * FROM calls WHERE el_conversation_id = ?", ref.conversationId);
   if (!call) return json(404, { error: { message: "unknown call" } });
+  if (call.el_conversation_id) {
+    if (call.el_conversation_id !== ref.conversationId) return json(404, { error: { message: "unknown call" } });
+  } else {
+    // First request for this call: bind the conversation id. Later requests with a different id are rejected.
+    let bound = null;
+    try {
+      bound = await first(db, "UPDATE calls SET el_conversation_id = ?1 WHERE call_id = ?2 AND el_conversation_id IS NULL RETURNING call_id", ref.conversationId, call.call_id);
+    } catch (e) { console.error("bind conversation", e); } // unique index: that conversation id already belongs to another call
+    if (!bound) {
+      const again = await first(db, "SELECT el_conversation_id FROM calls WHERE call_id = ?", call.call_id);
+      if (!again || again.el_conversation_id !== ref.conversationId) return json(404, { error: { message: "unknown call" } });
+    }
+    call.el_conversation_id = ref.conversationId;
+  }
   if (call.status !== "active" || nowSec() - call.created_at > 15 * 60 + GRACE_SEC) return json(410, { error: { message: "call not active" } });
 
   const lastMsg = body.messages[body.messages.length - 1];
@@ -67,6 +78,10 @@ export async function handle({ request, env, params, waitUntil }) {
     capped = (n?.n || 0) > (cfg?.text_turns_cap || 40);
   }
 
+  // Stop work when ElevenLabs drops the request (barge-in) or after 30 s.
+  const timeout = AbortSignal.timeout(30_000);
+  const signal = typeof AbortSignal.any === "function" && request.signal ? AbortSignal.any([request.signal, timeout]) : timeout;
+  let heard = null; // streaming only: the text that was written before any abort
   const events = [];
   let sink = (e) => events.push(e);
   const work = async () => {
@@ -76,9 +91,11 @@ export async function handle({ request, env, params, waitUntil }) {
       if ((body.tools || []).some((t) => t?.function?.name === "end_call")) sink({ type: "tool_call", id: "call_cap", name: "end_call", arguments: JSON.stringify({ reason: "text turn cap reached" }) });
       result = { finish: (body.tools || []).some((t) => t?.function?.name === "end_call") ? "tool_calls" : "stop", spoken: TEXT_CAP_LINE, hits: [] };
     } else {
-      result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist });
+      result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist, signal });
     }
-    if (result.spoken) enqueue(() => logTurn(db, call.call_id, role, "agent", result.spoken));
+    // Log what was actually written to the stream (streaming) rather than everything the model generated.
+    const logged = heard !== null ? heard.trim() : result.spoken;
+    if (logged) enqueue(() => logTurn(db, call.call_id, role, "agent", logged));
     if (result.hits.length) enqueue(() => addFlags(db, call.call_id, result.hits));
     bg(logChain);
     return result;
@@ -97,9 +114,12 @@ export async function handle({ request, env, params, waitUntil }) {
   const { readable, writable } = new TransformStream();
   const w = writable.getWriter();
   const enc = new TextEncoder();
-  const send = (obj) => w.write(enc.encode(`data: ${typeof obj === "string" ? obj : JSON.stringify(obj)}\n\n`));
+  const send = (obj) => w.write(enc.encode(`data: ${typeof obj === "string" ? obj : JSON.stringify(obj)}\n\n`)).catch(() => {}); // the client may have gone
   let started = false;
+  heard = "";
   sink = (e) => {
+    if (request.signal?.aborted) return; // client gone: write and log nothing
+    if (e.type === "text") heard += e.text;
     if (!started) { started = true; send(chunk(id, model, { role: "assistant", content: "" })); }
     if (e.type === "text") send(chunk(id, model, { content: e.text }));
     else if (e.type === "tool_call") {
@@ -117,7 +137,7 @@ export async function handle({ request, env, params, waitUntil }) {
       await send(chunk(id, model, { content: "I'm sorry, I'm having trouble on my side. Please email hello@arithim.com. " }, "stop"));
     } finally {
       await send("[DONE]");
-      await w.close();
+      try { await w.close(); } catch {}
     }
   })();
   bg(done);

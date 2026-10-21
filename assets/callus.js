@@ -45,7 +45,7 @@
   var S = {
     open: false, view: 'intro', mode: 'voice', opener: null,
     token: '', tsReady: false, tsFailed: false, tsId: null,
-    callId: null, conv: null, mock: false, mockTimers: [], agentName: 'Front desk', roster: {},
+    callId: null, conv: null, mock: false, mockTimers: [], agentName: 'Hannah', roster: {},
     muted: false, started: 0, tick: null, wake: null, connectTimer: null, ended: false, confirmClose: false,
     hadCall: false, helpfulSent: false, summaryText: '', waitingReply: false
   };
@@ -184,12 +184,29 @@
     var b = setView('fallback');
     b.appendChild(h('p', { class: 'callus-err', role: 'alert', text: msg }));
     var row = h('div', { class: 'callus-row' });
-    if (opts.text) row.appendChild(h('button', { class: 'callus-btn primary', type: 'button', onclick: function () { showIntro(); } }, 'Chat by text instead'));
+    if (opts.text) row.appendChild(h('button', { class: 'callus-btn primary', type: 'button', onclick: chatByText }, 'Chat by text instead'));
     row.appendChild(h('a', { class: 'callus-btn' + (opts.text ? '' : ' primary'), href: CONTACT_URL }, 'Use the contact form'));
     b.appendChild(row);
     b.appendChild(h('p', { class: 'callus-note' }, 'Or email ', h('a', { href: 'mailto:hello@arithim.com' }, 'hello@arithim.com'), '.'));
     announce(msg);
     var f = focusables(); (f[0] || panel).focus();
+  }
+
+  // "Chat by text instead" from the fallback screen: start the text chat directly. The human check was reset when the
+  // voice attempt ended, so wait (up to 15 s) for the fresh token, showing the check in case it needs a click.
+  function chatByText() {
+    if (S.tsReady || (isLocal && S.tsFailed)) return startFlow('text');
+    S.mode = 'text';
+    showConnecting();
+    bodyEl.appendChild(tsEl);
+    renderTurnstile();
+    var n = 0;
+    (function wait() {
+      if (!S.open || S.view !== 'connecting' || S.mode !== 'text') return;
+      if (S.tsReady || (isLocal && S.tsFailed)) return startFlow('text');
+      if (++n > 75) return showFallback('The human check did not complete. Please use the contact form instead.');
+      setTimeout(wait, 200);
+    })();
   }
 
   function showConnecting() {
@@ -287,7 +304,7 @@
   /* ---------- start flow ---------- */
   function startFlow(mode) {
     S.mode = mode; S.ended = false; S.muted = false; S.helpfulSent = false; S.mock = false;
-    S.agentName = 'Front desk'; S.callId = null; S.hadCall = true;
+    S.agentName = 'Hannah'; S.callId = null; S.hadCall = true;
     var token = S.token;
     showConnecting();
     var micStep = Promise.resolve();
@@ -309,7 +326,8 @@
     }, function (err) {
       var e = new Error('mic'); e.mic = true; e.name = err && err.name; throw e;
     }).then(function (res) {
-      if (res.status === 404 && isLocal) return { mock: true };
+      // Local review only: a static server has no /api/call/start (404), or answers POST with 405 / 501 (python http.server).
+      if ((res.status === 404 || res.status === 405 || res.status === 501) && isLocal) return { mock: true };
       if (res.status === 503) { var e = new Error('off'); e.kind = 'off'; throw e; }
       if (res.status === 429) { var e2 = new Error('budget'); e2.kind = 'budget'; throw e2; }
       if (res.status === 403 || res.status === 400) { var e3 = new Error('verify'); e3.kind = 'verify'; throw e3; }
@@ -549,20 +567,20 @@
   /* ---------- mock mode (previews, local review) ---------- */
   var MOCK_SUMMARY = 'Example summary (preview mode, not a real call)\n\nWhat you told us\n- Supplier approvals take too long and are tracked in spreadsheets.\n- Roughly 40 suppliers a month, three people involved.\n\nWhat we discussed\n- Where AI helps and where plain workflow automation is enough.\n- A short discovery conversation to look at the current process.\n\nAgreed next step\n- Tarun will contact you within one working day to arrange a discovery call.';
   var MOCK_VOICE = [
-    [900, 'agent', 'Front desk', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?'],
+    [900, 'agent', 'Hannah', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?'],
     [3200, 'user', '', 'We want to understand whether AI could speed up our supplier approvals.'],
-    [5400, 'agent', 'Front desk', 'That is a question for our consulting team. Let me put you through.'],
+    [5400, 'agent', 'Hannah', 'That is a question for our consulting team. Let me put you through.'],
     [6800, 'sys', '', 'Transferring you to a colleague…'],
-    [7600, 'who', 'Consulting'],
-    [8200, 'agent', 'Consulting', 'Hello, I am the consulting assistant. How many suppliers do you onboard each month, and who signs them off today?'],
+    [7600, 'who', 'Oliver'],
+    [8200, 'agent', 'Oliver', 'Hello, I am Oliver, the consulting assistant. How many suppliers do you onboard each month, and who signs them off today?'],
     [11500, 'user', '', 'About forty a month, and three people sign off.'],
-    [13800, 'agent', 'Consulting', 'Thank you. Tarun can look at your process in a short discovery call. I will write up what we covered now.'],
+    [13800, 'agent', 'Oliver', 'Thank you. Tarun can look at your process in a short discovery call. I will write up what we covered now.'],
     [16500, 'end']
   ];
   function runMock() {
     showCall();
     setStatus('Listening', 'live');
-    if (S.mode === 'text') { setStatus('Connected', 'live'); S.mockTimers.push(setTimeout(function () { addLine('agent', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?', 'Front desk'); }, 600)); return; }
+    if (S.mode === 'text') { setStatus('Connected', 'live'); S.mockTimers.push(setTimeout(function () { addLine('agent', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?', 'Hannah'); }, 600)); return; }
     MOCK_VOICE.forEach(function (st) {
       S.mockTimers.push(setTimeout(function () {
         if (st[1] === 'agent') { setStatus(st[2] + ' is speaking', 'speaking'); addLine('agent', st[3], st[2]); S.mockTimers.push(setTimeout(function () { setStatus('Listening', 'live'); }, 2200)); }

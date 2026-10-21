@@ -1,7 +1,7 @@
 # "Call us" front end
 
 Files: `assets/callus.js`, `assets/callus.css`, `assets/vendor/elevenlabs-client-1.29.0.js`.
-Every page carries `<link rel=stylesheet href=/assets/callus.css?v=1>`, a plain `<a class="callus-link" href="/contact.html">` and `<script src=/assets/callus.js?v=1 defer>`. Insight pages get them from `tools/templates/insight.html`. Without JavaScript the link goes to the contact form. `/assets/*` is served `immutable` for a year (`_headers`), so bump `?v=` in every page whenever callus.js or callus.css changes (or rename the files).
+Every page carries `<link rel=stylesheet href=/assets/callus.css?v=2>`, a plain `<a class="callus-link" href="/contact.html">` and `<script src=/assets/callus.js?v=2 defer>`. Insight pages get them from `tools/templates/insight.html`. Without JavaScript the link goes to the contact form. `/assets/*` is served `immutable` for a year (`_headers`), so bump `?v=` in every page whenever callus.js or callus.css changes (or rename the files). `tools/stage_site.sh` also rewrites `?v=` to a content hash in the staged copy, so a deploy always busts the cache; the manual number only matters for local runs. Currently `?v=2`.
 
 On index.html and contact.html there is also an inline `<a class="callus-link callus-cta">` as the main call-to-action; the email addresses stay as secondary links.
 
@@ -55,7 +55,7 @@ The existing site pages have no responsive CSS (no media queries, fixed 40 px gu
 
 - `/api/call/start` returns `{callId, conversationToken, agent:{id,name}, agents:{<agent_id>: <displayName>}, mode, mock?, conversationId, dynamicVariables:{call_id}, maxSeconds, wrapUpSeconds}`. `agents` is built from `config.agent_roster` (JSON id to role) with names from `ROLES[role].displayName`; if the roster is empty only the front desk is listed and later transfers fall back to "Colleague".
 - Status codes: 503 `{error:"calls_off"}` when switched off or no agent configured; 429 for IP limit, budget spent, text limit or too many concurrent calls (`error` says which); 403 failed Turnstile or Origin; 400 bad body; 502 ElevenLabs token failure. All error bodies carry `fallback` ("form" or "text").
-- Mock: with `CALL_MOCK=1` or no `ELEVENLABS_API_KEY` the response has `mock: true` and a fake token; the D1 call row is still created so the llm endpoint can be exercised.
+- Mock: with `CALL_MOCK=1` on a NON-production host (never on arithim.com / www.arithim.com) the response has `mock: true` and a fake token; the D1 call row is still created so the llm endpoint can be exercised.
 - Text-only: the token endpoint has NO text-only parameter (query params: agent_id, participant_name, branch_id, version_id, environment). Text-only is a client-side session option (`textOnly: true`, sent as the `conversation.text_only` override), and ElevenLabs rejects overrides that are not enabled in the agent's Security tab. Step 0: enable the "Text only" override on all four agents, and confirm the same token works with `textOnly: true`. `/start` therefore returns the same kind of token for both modes and never a `signedUrl`.
 - The call id reaches the brain via the agent's `custom_llm.request_headers` (`X-Call-Id` = dynamic variable `call_id`), which is why the front end must pass `dynamicVariables:{call_id}` (it does). `customLlmExtraBody` is not needed.
 - Transfer results do not carry `agent_id`; the roster only helps if the front end can learn the id some other way. Treat exact post-transfer names as a step-0 check.

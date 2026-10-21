@@ -78,3 +78,12 @@ test("ip prefix: IPv6 reduced to /64; keys are hashed", async () => {
   assert.equal(await ipKey("2001:db8:1:2::1", "s"), await ipKey("2001:db8:1:2:ffff::9", "s"));
   assert.notEqual(await ipKey("1.2.3.4", "s"), await ipKey("1.2.3.4", "t"));
 });
+
+test("L15: IPv4-mapped IPv6 addresses key as the IPv4 address; ordinary IPv6 stays a /64", async () => {
+  const { ipPrefix } = await import("../../../functions/_lib/d1.js");
+  assert.equal(ipPrefix("::ffff:1.2.3.4"), "1.2.3.4");
+  assert.equal(ipPrefix("::FFFF:5.6.7.8"), "5.6.7.8");
+  assert.equal(ipPrefix("::ffff:0102:0304"), "1.2.3.4");
+  assert.notEqual(ipPrefix("::ffff:1.2.3.4"), ipPrefix("::ffff:5.6.7.8"));
+  assert.equal(ipPrefix("2001:DB8::1"), "2001:db8:0:0");
+});

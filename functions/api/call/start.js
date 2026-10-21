@@ -1,9 +1,11 @@
 // POST /api/call/start   {turnstileToken, mode: "voice"|"text"}  ->  {callId, token, agentId, mode, ...}
 //
-// Env: ELEVENLABS_API_KEY, TURNSTILE_SECRET, CALL_MOCK ("1" forces mock), CALL_ENV, CALL_IP_SALT, CALL_ALLOWED_ORIGINS
+// Env: ELEVENLABS_API_KEY, TURNSTILE_SECRET, CALL_MOCK ("1" = mock, NON-production hosts only), CALL_ENV, CALL_IP_SALT (required),
+//      CALL_ALLOWED_ORIGINS. On arithim.com / www.arithim.com a missing secret is a 503, never a mock and never a skipped challenge.
 // Binding: CALLS_DB
 
 import { getDb, getConfig, ipKey, dayKey, envName, agentIdFor, nowSec, run } from "../../_lib/d1.js";
+import { expireStaleCalls, runMaintenance } from "../../_lib/cleanup.js";
 import { ROLES } from "../../_lib/call-knowledge.generated.js";
 import { newCallId } from "../../_lib/ids.js";
 import { json } from "../../_lib/escape.js";
@@ -12,13 +14,14 @@ import { reserveIp, releaseIp, reserveGlobal, releaseGlobal, reserveText, releas
 
 const ORIGINS = new Set(["https://arithim.com", "https://www.arithim.com"]);
 
-export function isMock(env) {
-  return env.CALL_MOCK === "1" || !env.ELEVENLABS_API_KEY;
-}
-
 const PROD_HOSTS = new Set(["arithim.com", "www.arithim.com"]);
 export function isProductionHost(request) {
   try { return PROD_HOSTS.has(new URL(request.url).hostname); } catch { return true; }
+}
+
+// Mock only when explicitly asked for AND not on a production host. A missing ELEVENLABS_API_KEY is never a mock.
+export function isMock(env, request) {
+  return env.CALL_MOCK === "1" && !isProductionHost(request);
 }
 
 function originAllowed(request, env) {
@@ -28,11 +31,11 @@ function originAllowed(request, env) {
   if (ORIGINS.has(o)) return true;
   const extra = (env.CALL_ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
   if (extra.includes(o)) return true;
-  if (isMock(env) && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(o)) return true;
+  if (isMock(env, request) && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(o)) return true;
   return false;
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   if (!originAllowed(request, env)) return json(403, { error: "forbidden", fallback: "form" });
 
   let body;
@@ -55,9 +58,15 @@ export async function onRequestPost({ request, env }) {
   const cfg = await getConfig(db);
   if (!cfg || !cfg.calls_enabled) return json(503, { error: "calls_off", fallback: "form" });
 
-  const mock = isMock(env);
+  const mock = isMock(env, request);
+  const prod = isProductionHost(request);
+  // Fail closed on missing configuration. Nothing here can turn a live site into a demo or skip the challenge.
+  if (!mock && (!env.ELEVENLABS_API_KEY || !env.TURNSTILE_SECRET)) { console.error("call start: ELEVENLABS_API_KEY / TURNSTILE_SECRET missing"); return json(503, { error: "unavailable", fallback: "form" }); }
+  if ((prod || !mock) && String(env.CALL_IP_SALT || "").length < 16) { console.error("call start: CALL_IP_SALT missing or shorter than 16 characters"); return json(503, { error: "unavailable", fallback: "form" }); }
+  if (prod && !env.TURNSTILE_SECRET) return json(503, { error: "unavailable", fallback: "form" });
   const nameOf = (r) => ROLES[r]?.displayName || r;
   const ip = request.headers.get("cf-connecting-ip") || "";
+  if (prod && !ip) return json(400, { error: "bad request" });
   if (!(mock && !env.TURNSTILE_SECRET)) {
     const ts = await verifyTurnstile({ token: body.turnstileToken, ip, secret: env.TURNSTILE_SECRET });
     if (!ts.ok) return json(403, { error: "challenge verification failed" });
@@ -71,26 +80,41 @@ export async function onRequestPost({ request, env }) {
   const ipK = await ipKey(ip, env.CALL_IP_SALT || "");
   const minutes = mode === "voice" ? cfg.max_call_minutes : 0;
 
-  // ---- reservations (each is one atomic statement) ----
+  // Housekeeping that must not wait for a webhook: free reservations of calls that never connected (bounded), then the
+  // 90-day deletes and email retries in the background.
+  try { await expireStaleCalls(db, now); } catch (e) { console.error("expire", e); }
+  const maint = runMaintenance(env, db, now);
+  if (waitUntil) waitUntil(maint); else await maint;
+
+  // ---- reservations (each is one atomic statement). Any throw undoes what was reserved. ----
   const undo = [];
   const rollback = async () => { for (const f of undo.reverse()) { try { await f(); } catch (e) { console.error("rollback", e); } } };
-  if (mode === "voice") {
-    if (!(await reserveIp(db, ipK, day, minutes, cfg))) return json(429, { error: "ip_limit", fallback: "text" });
-    undo.push(() => releaseIp(db, ipK, day, minutes));
-    if (!(await reserveGlobal(db, day, minutes, cfg))) { await rollback(); return json(429, { error: "budget_spent", fallback: "text" }); }
-    undo.push(() => releaseGlobal(db, day, minutes, 0));
-  } else {
-    if (!(await reserveText(db, ipK, day, cfg))) return json(429, { error: "text_limit", fallback: "form" });
-    undo.push(() => releaseText(db, ipK, day));
-  }
-
   const callId = newCallId();
-  const inserted = await insertCallIfRoom(
-    db,
-    { call_id: callId, created_at: now, day, ip_key: ipK, mode, reserved_minutes: minutes },
-    cfg.concurrent_cap, (cfg.max_call_minutes + 5) * 60, now
-  );
-  if (!inserted) { await rollback(); return json(429, { error: "busy", fallback: "text" }); }
+  let callInserted = false;
+  try {
+    if (mode === "voice") {
+      if (!(await reserveIp(db, ipK, day, minutes, cfg))) return json(429, { error: "ip_limit", fallback: "text" });
+      undo.push(() => releaseIp(db, ipK, day, minutes));
+      if (!(await reserveGlobal(db, day, minutes, cfg))) { await rollback(); return json(429, { error: "budget_spent", fallback: "text" }); }
+      undo.push(() => releaseGlobal(db, day, minutes, 0));
+    } else {
+      if (!(await reserveText(db, ipK, day, cfg))) return json(429, { error: "text_limit", fallback: "form" });
+      undo.push(() => releaseText(db, ipK, day));
+    }
+
+    const inserted = await insertCallIfRoom(
+      db,
+      { call_id: callId, created_at: now, day, ip_key: ipK, mode, reserved_minutes: minutes },
+      cfg.concurrent_cap, (cfg.max_call_minutes + 5) * 60, now
+    );
+    if (!inserted) { await rollback(); return json(429, { error: "busy", fallback: "text" }); }
+    callInserted = true;
+  } catch (e) {
+    console.error("call start reservation", e);
+    await rollback();
+    if (callInserted) { try { await run(db, "UPDATE calls SET status = 'failed' WHERE call_id = ?", callId); } catch {} }
+    return json(500, { error: "unavailable", fallback: "text" });
+  }
 
   // ---- token ----
   let token, conversationId = null;
@@ -113,7 +137,15 @@ export async function onRequestPost({ request, env }) {
       await rollback();
       return json(502, { error: "unavailable", fallback: "text" });
     }
-    if (conversationId) await run(db, "UPDATE calls SET el_conversation_id = ? WHERE call_id = ?", conversationId, callId);
+    if (conversationId) {
+      try { await run(db, "UPDATE calls SET el_conversation_id = ? WHERE call_id = ?", conversationId, callId); }
+      catch (e) {
+        console.error("bind conversation", e);
+        try { await run(db, "UPDATE calls SET status = 'failed' WHERE call_id = ?", callId); } catch {}
+        await rollback();
+        return json(500, { error: "unavailable", fallback: "text" });
+      }
+    }
   }
 
   // Contract: tools/call-agent/docs/frontend.md

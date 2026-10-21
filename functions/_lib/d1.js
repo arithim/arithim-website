@@ -25,6 +25,11 @@ export async function all(db, sql, ...args) {
   const r = await db.prepare(sql).bind(...args).all();
   return r.results || [];
 }
+// Several statements in one transaction. D1 runs a batch serially and atomically, so no other request interleaves.
+// Each item is [sql, ...args]. Returns the per-statement results.
+export async function batch(db, items) {
+  return db.batch(items.map(([sql, ...args]) => db.prepare(sql).bind(...args)));
+}
 export const changes = (r) => (r && r.meta && r.meta.changes) || 0;
 
 export async function getConfig(db) {
@@ -55,11 +60,18 @@ export function ipPrefix(ip) {
   ip = String(ip || "").trim().toLowerCase();
   if (!ip) return "unknown";
   if (!ip.includes(":")) return ip;
+  // IPv4-mapped IPv6 (::ffff:1.2.3.4 or ::ffff:0102:0304) is the IPv4 address, not an IPv6 /64
+  const dotted = /^(?:0{1,4}:){0,5}(?::)?ffff:(\d{1,3}(?:\.\d{1,3}){3})$/.exec(ip) || /^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/.exec(ip);
+  if (dotted) return dotted[1];
   let [head, tail] = ip.split("::");
   const h = head ? head.split(":") : [];
   const t = tail !== undefined && tail ? tail.split(":") : [];
   const fill = tail === undefined ? [] : new Array(Math.max(0, 8 - h.length - t.length)).fill("0");
   const groups = [...h, ...fill, ...t].map((g) => g.replace(/^0+(?=.)/, ""));
+  if (groups.length === 8 && groups.slice(0, 5).every((g) => g === "0") && groups[5] === "ffff") {
+    const hi = parseInt(groups[6], 16), lo = parseInt(groups[7], 16);
+    if (Number.isFinite(hi) && Number.isFinite(lo)) return [hi >> 8, hi & 255, lo >> 8, lo & 255].join(".");
+  }
   return groups.slice(0, 4).join(":");
 }
 

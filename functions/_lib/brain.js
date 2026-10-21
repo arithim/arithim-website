@@ -191,6 +191,9 @@ function talkerParams(env, systemBlocks, messages, tools) {
   const model = env.CALL_TALKER_MODEL || "claude-sonnet-5-5";
   const p = { model, max_tokens: 400, system: systemBlocks, messages, tools, output_config: { effort: "low" } };
   const mode = env.CALL_TALKER_THINKING;
+  // NOT a bug: on claude-sonnet-5-5, thinking: {type: "between_tools"} is how thinking is switched OFF for the talker
+  // (no thinking before the first token; the model may still reason between tool calls). Do not "fix" this to "enabled"
+  // or remove it: the voice path needs the first sentence fast. CALL_TALKER_THINKING=off omits the parameter entirely.
   if (!/haiku/i.test(model) && mode !== "off") p.thinking = { type: "between_tools" };
   return p;
 }
@@ -198,11 +201,13 @@ function talkerParams(env, systemBlocks, messages, tools) {
 // emit({type:'text', text}) | emit({type:'tool_call', id, name, arguments}). Returns {finish, spoken, hits}.
 export async function runBrain({ env, db, call, role, body, emit, denylist = [], signal }) {
   const roleDef = ROLES[role];
+  // The client dropped the request (barge-in). A plain timeout is NOT "gone": that still gets the fallback line.
+  const gone = () => !!signal?.aborted && signal.reason?.name !== "TimeoutError";
   const hits = new Set();
   let spoken = "";
   let lastReplacement = null;
-  const speak = (sentence) => {
-    const f = filterSentence(sentence, denylist);
+  const speak = (sentence, context = "") => {
+    const f = filterSentence(sentence, denylist, context);
     f.hits.forEach((h) => hits.add(h));
     if (f.hits.length && f.text === lastReplacement) return; // do not repeat the same fixed line back to back
     lastReplacement = f.hits.length ? f.text : null;
@@ -229,18 +234,20 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let finish = "stop";
   try {
     for (let step = 0; step < CAPS.steps; step++) {
+      if (gone()) break;
       const res = await anthropicStream({
         env,
         signal: signal || AbortSignal.timeout(30_000),
         params: talkerParams(env, system, messages, tools),
-        onText: (d) => { for (const s of splitter.push(d)) speak(s); },
+        onText: (d) => { const out = splitter.push(d); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
       });
-      for (const s of splitter.flush()) speak(s);
+      { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); }
 
       const uses = res.content.filter((b) => b.type === "tool_use");
       if (res.stopReason !== "tool_use" || uses.length === 0) break;
+      if (gone()) break; // interrupted: do not run tools for a turn nobody will hear
 
-      messages.push({ role: "assistant", content: res.content.map(stripForReplay) });
+      messages.push({ role: "assistant", content: replayContent(res.content) });
       const results = [];
       let pending = null;
       for (const u of uses) {
@@ -278,8 +285,9 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
       messages.push({ role: "user", content: results });
     }
   } catch (e) {
+    if (gone()) return { finish, spoken, hits: [...hits] }; // the caller went away: no fallback line, no error flag
     console.error("brain error", e?.name, e?.status, e?.detail || e?.message);
-    for (const s of splitter.flush()) speak(s);
+    { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); }
     hits.add("brain-error");
     if (!spoken) speak(FALLBACK_LINE);
   }
@@ -288,6 +296,11 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
 
 function toolResult(u, content) {
   return { type: "tool_result", tool_use_id: u.id, content };
+}
+// Assistant content sent back to the API: whitespace-only text blocks are rejected by the Messages API, so drop them.
+export function replayContent(content) {
+  const blocks = content.filter((b) => !(b.type === "text" && !String(b.text || "").trim())).map(stripForReplay);
+  return blocks.length ? blocks : [{ type: "text", text: "." }];
 }
 function stripForReplay(b) {
   if (b.type === "tool_use") return { type: "tool_use", id: b.id, name: b.name, input: b.input || {} };

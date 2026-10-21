@@ -55,6 +55,7 @@ def gather(q, now, days):
         "messages": q(f"SELECT type, COUNT(*) AS n FROM messages WHERE created_at >= {since} GROUP BY 1 ORDER BY n DESC"),
         "unanswered": q(f"SELECT ref, type, json_extract(fields,'$.summary') AS summary, created_at FROM messages WHERE created_at >= {since} AND json_extract(fields,'$.summary') IS NOT NULL AND (lower(json_extract(fields,'$.summary')) LIKE '%don''t know%' OR lower(json_extract(fields,'$.summary')) LIKE '%do not know%' OR lower(json_extract(fields,'$.summary')) LIKE '%not sure%' OR lower(json_extract(fields,'$.summary')) LIKE '%unable to answer%' OR lower(json_extract(fields,'$.summary')) LIKE '%could not answer%') ORDER BY created_at DESC LIMIT 50"),
         "helpful": q(f"SELECT SUM(CASE WHEN helpful=1 THEN 1 ELSE 0 END) AS yes, SUM(CASE WHEN helpful=0 THEN 1 ELSE 0 END) AS no FROM calls WHERE created_at >= {since}"),
+        "unsent": q(f"SELECT call_id, status, created_at FROM calls WHERE email_sent <> 1 AND (status = 'ended' OR (status = 'expired' AND EXISTS (SELECT 1 FROM messages m WHERE m.call_id = calls.call_id))) AND created_at >= {since} ORDER BY created_at LIMIT 100"),
         "unfinalised": q(f"SELECT call_id, mode, status, created_at FROM calls WHERE finalized_at IS NULL AND created_at < {now - 3600} AND created_at >= {since - 30 * 86400} ORDER BY created_at LIMIT 100"),
     }
 
@@ -104,6 +105,13 @@ def render(d, days, now):
         out.append(table(["Call", "Mode", "Status", "Started (UTC)"], [[r["call_id"][:8], r["mode"], r["status"], ts(r["created_at"])] for r in un]))
     else:
         out.append("All calls older than 1 hour have a finalised record.\n")
+    out.append("## Emails not sent\n")
+    unsent = d.get("unsent") or []
+    if unsent:
+        out.append(f"{len(unsent)} call(s) have no sent email to Tarun (Resend failure or missing configuration). The next webhook or call start retries them; check RESEND_API_KEY, TO_EMAIL and CALL_FROM_EMAIL if this persists.\n")
+        out.append(table(["Call", "Status", "Started (UTC)"], [[r["call_id"][:8], r["status"], ts(r["created_at"])] for r in unsent]))
+    else:
+        out.append("Every finished call has its email sent.\n")
     return "\n".join(out)
 
 

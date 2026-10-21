@@ -11,6 +11,7 @@ import { anthropicText } from "../../_lib/anthropic.js";
 import { filterText, parseDenylist } from "../../_lib/filter.js";
 
 const ORIGINS = new Set(["https://arithim.com", "https://www.arithim.com"]);
+const SETTLE_SEC = 3;
 export const NO_SUMMARY = "There is no written summary for this call. If you need anything, email hello@arithim.com and Tarun will reply within one working day.";
 
 function bodyFor(call, msgs, summary) {
@@ -26,8 +27,12 @@ export async function onRequestGet({ request, env }) {
   const msgs = await all(db, "SELECT ref, type FROM messages WHERE call_id = ? ORDER BY created_at", callId);
   if (call.summary) return json(200, bodyFor(call, msgs, call.summary));
 
-  // claim generation once; a stale claim (>60 s) can be retaken
+  // The last exchange is logged in the background after each reply: wait until the log has been quiet for a few seconds.
   const now = nowSec();
+  const lastTurn = await first(db, "SELECT MAX(created_at) AS t FROM turns WHERE call_id = ?", callId);
+  if (lastTurn?.t && now - lastTurn.t < SETTLE_SEC) return json(202, { pending: true });
+
+  // claim generation once; a stale claim (>60 s) can be retaken
   const claimed = await first(
     db,
     "UPDATE calls SET summary_started = ?1 WHERE call_id = ?2 AND summary IS NULL AND (summary_started IS NULL OR summary_started < ?3) RETURNING call_id",
