@@ -46,7 +46,7 @@ OPTIONAL_FIELDS = (
 )
 
 # Pages that get priority 0.8 in the sitemap. index.html is 1.0, everything else 0.6.
-HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "research.html", "services.html"}
+HUB_PAGES = {"about.html", "agents.html", "case-studies.html", "contact.html", "insights.html", "products.html", "research.html", "services.html"}
 SITEMAP_SKIP = {"404.html"}
 
 
