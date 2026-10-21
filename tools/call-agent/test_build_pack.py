@@ -181,5 +181,169 @@ class EndToEndEnvTests(unittest.TestCase):
                     os.environ["CALL_AGENT_DENYLIST"] = old
 
 
+GISTS = """# Answer gists for callers
+
+Intro line about gists.
+
+## Front desk
+
+FD gist text
+
+## Consulting and discovery (includes AP Clerk)
+
+CD gist text
+
+## Technical Sales Guide (TSG) specialist
+
+TS gist text
+
+## Customer desk (existing customers, billing and suppliers)
+
+CS gist text
+
+## Not answered yet (take a message)
+
+GAP list text
+"""
+
+
+def make_tree(root: Path, prompts: bool = True) -> Path:
+    tool = root / "tools" / "call-agent"
+    (tool / "knowledge").mkdir(parents=True)
+    pages = ["about.html", "index.html", "services.html", "services-sap.html", "contact.html",
+             "privacy.html", "case-studies.html", "case-find-me-a-job.html",
+             "insight-one.html", "insights.html", "research.html"]
+    for p in pages:
+        (root / p).write_text(f"<html><title>{p}</title><body><p>PAGE_{p}</p></body></html>")
+    (tool / "knowledge" / "answer-gists.md").write_text(GISTS)
+    (tool / "knowledge" / "claims.md").write_text("# Claims register\n\nCLAIM_LINE\n")
+    gists = "tools/call-agent/knowledge/answer-gists.md"
+    (tool / "knowledge" / "allowlist.txt").write_text("\n".join(pages + [gists]) + "\n")
+    if prompts:
+        (tool / "agents").mkdir()
+        for role in bp.ROLE_NAMES:
+            (tool / "agents" / f"{role}.md").write_text(f"PROMPT_{role}\n")
+    return tool
+
+
+class GeneratedModuleTests(unittest.TestCase):
+    def build(self, root, prompts=True):
+        tool = make_tree(root, prompts)
+        bp.build_pack(tool / "knowledge" / "allowlist.txt", root, tool / "build" / "pack")
+        return tool
+
+    def test_roles_sliced_by_role(self):
+        with tempfile.TemporaryDirectory() as d:
+            tool = self.build(Path(d))
+            data = bp.build_roles(tool)
+            roles = data["ROLES"]
+            self.assertEqual(list(roles), ["front-desk", "consulting", "tsg", "customer-desk"])
+            self.assertEqual(roles["front-desk"]["displayName"], "Hannah")
+            fd = roles["front-desk"]["system"]
+            self.assertTrue(fd.startswith("PROMPT_front-desk"))
+            self.assertIn("\n\n# Claims register\n", fd)
+            self.assertIn("CLAIM_LINE", fd)
+            self.assertIn("\n\n# Knowledge for this role\n", fd)
+            self.assertIn("FD gist text", fd)
+            self.assertNotIn("CD gist text", fd)
+            self.assertIn("GAP list text", fd)
+            self.assertIn("PAGE_about.html", fd)
+            self.assertNotIn("PAGE_services-sap.html", fd)
+            self.assertNotIn("PAGE_insight-one.html", fd)
+            co = roles["consulting"]["system"]
+            for needed in ("CD gist text", "PAGE_services-sap.html", "PAGE_case-find-me-a-job.html",
+                           "PAGE_insight-one.html", "PAGE_insights.html"):
+                self.assertIn(needed, co)
+            self.assertNotIn("FD gist text", co)
+            tsg = roles["tsg"]["system"]
+            self.assertIn("TS gist text", tsg)
+            self.assertNotIn("PAGE_", tsg)
+            self.assertNotIn("Public site pages", tsg)
+            cd = roles["customer-desk"]["system"]
+            self.assertIn("CS gist text", cd)
+            self.assertIn("PAGE_privacy.html", cd)
+            self.assertIn("PAGE_contact.html", cd)
+            self.assertNotIn("PAGE_about.html", cd)
+
+    def test_full_pack_has_everything_once(self):
+        with tempfile.TemporaryDirectory() as d:
+            tool = self.build(Path(d))
+            full = bp.build_roles(tool)["FULL_PACK"]
+            for needed in ("CLAIM_LINE", "FD gist text", "CD gist text", "TS gist text",
+                           "CS gist text", "GAP list text", "PAGE_about.html", "PAGE_research.html"):
+                self.assertIn(needed, full)
+            self.assertEqual(full.count("FD gist text"), 1)
+
+    def test_missing_prompt_is_an_error(self):
+        with tempfile.TemporaryDirectory() as d:
+            tool = self.build(Path(d))
+            (tool / "agents" / "tsg.md").unlink()
+            with self.assertRaises(FileNotFoundError):
+                bp.build_roles(tool)
+
+    def test_deterministic_and_version_changes_with_content(self):
+        with tempfile.TemporaryDirectory() as d:
+            tool = self.build(Path(d))
+            first = bp.render_module(bp.build_roles(tool))
+            self.assertEqual(first, bp.render_module(bp.build_roles(tool)))
+            self.assertNotRegex(first, r"20\d\d-\d\d-\d\dT")  # no timestamps
+            (tool / "agents" / "tsg.md").write_text("PROMPT_tsg changed\n")
+            self.assertNotEqual(first, bp.render_module(bp.build_roles(tool)))
+
+    def test_module_text_is_js_with_three_exports_and_escaped(self):
+        with tempfile.TemporaryDirectory() as d:
+            tool = self.build(Path(d))
+            (tool / "agents" / "tsg.md").write_text("Caf\u00e9 \u2028 line\n")
+            text = bp.render_module(bp.build_roles(tool))
+            for name in ("VERSION", "ROLES", "FULL_PACK"):
+                self.assertIn(f"export const {name} = ", text)
+            self.assertNotIn("\u2028", text)
+            self.assertTrue(text.isascii())
+
+    def test_main_writes_module_and_denylist_hits_in_prompts_remove_it(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            tool = make_tree(root)
+            deny = root / "deny.txt"
+            deny.write_text("someone else\n")
+            old = os.environ.get("CALL_AGENT_DENYLIST")
+            os.environ["CALL_AGENT_DENYLIST"] = str(deny)
+            try:
+                quiet = contextlib.redirect_stdout(io.StringIO())
+                with quiet, contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(bp.main(["--root", str(root)]), 0)
+                    out = root / bp.GENERATED_REL
+                    self.assertTrue(out.is_file())
+                    # a term that only appears after JSON decoding across a newline escape
+                    (tool / "agents" / "tsg.md").write_text("line one\nZebra Industries here\n")
+                    deny.write_text("zebra industries\n")
+                    self.assertEqual(bp.main(["--root", str(root)]), 1)
+                    self.assertFalse(out.exists())
+            finally:
+                if old is None:
+                    del os.environ["CALL_AGENT_DENYLIST"]
+                else:
+                    os.environ["CALL_AGENT_DENYLIST"] = old
+
+    def test_extra_texts_are_scanned_with_decoded_newlines(self):
+        with tempfile.TemporaryDirectory() as d:
+            deny = Path(d) / "deny.txt"
+            deny.write_text("Zebra Industries\n")
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
+                code = bp.run_denylist_check(deny, [], Path(d), False,
+                                             {"ROLES.tsg.system": "a\nZebra Industries\n"})
+            self.assertEqual(code, 1)
+            self.assertIn("ROLES.tsg.system:2", err.getvalue())
+
+    def test_main_without_agents_folder_skips_module(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            make_tree(root, prompts=False)
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(bp.main(["--root", str(root), "--no-check"]), 0)
+            self.assertFalse((root / bp.GENERATED_REL).exists())
+
+
 if __name__ == "__main__":
     unittest.main()

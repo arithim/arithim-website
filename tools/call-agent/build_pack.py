@@ -9,7 +9,10 @@ Steps:
   2. Extract readable text from each file (HTML: nav, footer, header, scripts, styles
      and the sticky site header are stripped; Markdown: front matter dropped).
   3. Write build/pack/<slug>.md (first line "Source: <path>") and build/pack/index.json.
-  4. Deny-list check over build/pack, knowledge/ and agents/ (if present).
+  4. If agents/<role>.md prompts exist, write functions/_lib/call-knowledge.generated.js
+     (ROLES, FULL_PACK, VERSION), deterministic and timestamp-free.
+  5. Deny-list check over build/pack, knowledge/, agents/ and the generated file
+     (including the decoded text of every string in it).
 
 The deny-list lives outside the repo (env CALL_AGENT_DENYLIST, default
 ~/.config/arithim/call-agent-denylist.txt). One term per line, '#' comments allowed.
@@ -20,11 +23,13 @@ Exit codes: 0 ok, 1 deny-list hits or bad allowlist, 2 deny-list file missing.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import os
 import re
 import sys
+from fnmatch import fnmatchcase
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -215,6 +220,125 @@ def build_pack(allowlist_file: Path, repo_root: Path, out_dir: Path) -> list[dic
     return index
 
 
+# ---------------------------------------------------------------- generated module
+
+GENERATED_REL = "functions/_lib/call-knowledge.generated.js"
+
+# role id -> display name (first name only), the order roles are emitted in
+ROLE_NAMES = {
+    "front-desk": "Hannah",
+    "consulting": "Oliver",
+    "tsg": "Charlotte",
+    "customer-desk": "Daniel",
+}
+
+# Which answer-gist sections each role gets (matched on the start of the '## ' heading).
+ROLE_GIST_SECTIONS = {
+    "front-desk": ["Front desk"],
+    "consulting": ["Consulting and discovery"],
+    "tsg": ["Technical Sales Guide"],
+    "customer-desk": ["Customer desk"],
+}
+GIST_COMMON_SECTIONS = ["Not answered yet"]
+
+# Which pack pages each role gets. Entries are exact allowlist paths, or a prefix ending
+# in '*'. The answer-gists file itself is handled separately (sections above).
+GISTS_SOURCE = "tools/call-agent/knowledge/answer-gists.md"
+ROLE_PAGES = {
+    "front-desk": ["about.html", "index.html", "services.html", "contact.html",
+                   "privacy.html", "case-studies.html"],
+    "consulting": ["services*.html", "case-*.html", "research.html", "insights.html",
+                   "insight-*.html"],
+    "tsg": [],  # no public pages cover the Technical Sales Guide
+    "customer-desk": ["privacy.html", "contact.html"],
+}
+
+
+def split_gists(text: str) -> tuple[str, dict[str, str]]:
+    """Return (preamble, {heading: body}) for a gists file; '## ' starts a section."""
+    preamble: list[str] = []
+    sections: dict[str, list[str]] = {}
+    current = None
+    for line in text.splitlines():
+        if line.startswith("## "):
+            current = line[3:].strip()
+            sections[current] = []
+        elif current is None:
+            if not line.startswith("# "):
+                preamble.append(line)
+        else:
+            sections[current].append(line)
+    return ("\n".join(preamble).strip(),
+            {h: "\n".join(b).strip() for h, b in sections.items()})
+
+
+def _matches(source: str, patterns: list[str]) -> bool:
+    return any(fnmatchcase(source, p) for p in patterns)
+
+
+def gists_for(sections: dict[str, str], prefixes: list[str]) -> list[tuple[str, str]]:
+    out = []
+    for heading, body in sections.items():
+        if any(heading.startswith(p) for p in prefixes):
+            out.append((heading, body))
+    return out
+
+
+def build_roles(tool: Path) -> dict:
+    """Compose ROLES, FULL_PACK and VERSION from agents/, knowledge/ and build/pack."""
+    pack_dir = tool / "build" / "pack"
+    index = json.loads((pack_dir / "index.json").read_text(encoding="utf-8"))
+    claims = (tool / "knowledge" / "claims.md").read_text(encoding="utf-8").strip()
+    gist_text = (tool / "knowledge" / "answer-gists.md").read_text(encoding="utf-8")
+    preamble, sections = split_gists(gist_text)
+    docs = {e["source"]: (pack_dir / f"{e['slug']}.md").read_text(encoding="utf-8").strip()
+            for e in index if e["source"] != GISTS_SOURCE}
+    order = [e["source"] for e in index if e["source"] != GISTS_SOURCE]
+
+    roles: dict[str, dict] = {}
+    for role, name in ROLE_NAMES.items():
+        prompt_file = tool / "agents" / f"{role}.md"
+        if not prompt_file.is_file():
+            raise FileNotFoundError(f"role prompt not found: agents/{role}.md")
+        prompt = prompt_file.read_text(encoding="utf-8").strip()
+        gists = gists_for(sections, ROLE_GIST_SECTIONS[role] + GIST_COMMON_SECTIONS)
+        gist_block = (preamble + "\n\n" if preamble else "") + "\n\n".join(
+            f"## {h}\n\n{b}" for h, b in gists)
+        pages = [docs[src] for src in order if _matches(src, ROLE_PAGES[role])]
+        knowledge = gist_block
+        if pages:
+            knowledge += "\n\n# Public site pages\n\n" + "\n\n---\n\n".join(pages)
+        system = (prompt + "\n\n# Claims register\n" + claims
+                  + "\n\n# Knowledge for this role\n" + knowledge + "\n")
+        roles[role] = {"displayName": name, "system": system}
+
+    all_gists = "\n\n".join(f"## {h}\n\n{b}" for h, b in sections.items())
+    full_pack = ("# Claims register\n" + claims + "\n\n# Answer gists\n\n"
+                 + (preamble + "\n\n" if preamble else "") + all_gists
+                 + "\n\n# Public site pages\n\n"
+                 + "\n\n---\n\n".join(docs[src] for src in order) + "\n")
+    digest = hashlib.sha256(json.dumps([roles, full_pack], sort_keys=True,
+                                       ensure_ascii=True).encode("utf-8")).hexdigest()[:16]
+    return {"ROLES": roles, "FULL_PACK": full_pack, "VERSION": digest}
+
+
+def render_module(data: dict) -> str:
+    """Deterministic ES module text. ensure_ascii keeps U+2028/2029 and odd bytes out."""
+    dump = lambda v: json.dumps(v, ensure_ascii=True, indent=2)  # noqa: E731
+    return ("// Generated by tools/call-agent/build_pack.py. Do not edit by hand.\n"
+            "// Inputs: tools/call-agent/agents, knowledge and build/pack.\n"
+            f"export const VERSION = {dump(data['VERSION'])};\n"
+            f"export const ROLES = {dump(data['ROLES'])};\n"
+            f"export const FULL_PACK = {dump(data['FULL_PACK'])};\n")
+
+
+def generated_texts(data: dict) -> dict[str, str]:
+    """Decoded strings, for the deny-list scan (the file itself holds JSON escapes)."""
+    texts = {f"ROLES.{r}.system": v["system"] for r, v in data["ROLES"].items()}
+    texts["FULL_PACK"] = data["FULL_PACK"]
+    return texts
+
+
 # ---------------------------------------------------------------- deny-list
 
 def load_denylist(path: Path) -> list[str]:
@@ -263,7 +387,8 @@ def scan_paths(roots: list[Path], terms: list[str], base: Path) -> list[tuple[st
 
 
 def run_denylist_check(denylist_path: Path, roots: list[Path], base: Path,
-                       allow_missing: bool) -> int:
+                       allow_missing: bool,
+                       extra_texts: dict[str, str] | None = None) -> int:
     if not denylist_path.is_file():
         print(f"WARNING: deny-list file not found: {denylist_path}", file=sys.stderr)
         if allow_missing:
@@ -275,6 +400,9 @@ def run_denylist_check(denylist_path: Path, roots: list[Path], base: Path,
         return 2
     terms = load_denylist(denylist_path)
     hits = scan_paths(roots, terms, base)
+    compiled = compile_terms(terms)
+    for label, text in sorted((extra_texts or {}).items()):
+        hits.extend((label, lineno, term) for lineno, term in scan_text(text, compiled))
     if hits:
         print(f"DENY-LIST HITS: {len(hits)}", file=sys.stderr)
         for shown, lineno, term in hits:
@@ -302,11 +430,29 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
     print(f"Wrote {len(index)} pack documents to {out_dir.relative_to(root)}")
+    generated = root / GENERATED_REL
+    extra: dict[str, str] = {}
+    if (tool / "agents").is_dir():
+        try:
+            data = build_roles(tool)
+        except (FileNotFoundError, KeyError) as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
+        generated.parent.mkdir(parents=True, exist_ok=True)
+        generated.write_text(render_module(data), encoding="utf-8")
+        extra = generated_texts(data)
+        print(f"Wrote {GENERATED_REL} (version {data['VERSION']})")
+    else:
+        print("No agents/ folder: skipping the generated knowledge module.")
     if args.no_check:
         return 0
     deny = Path(os.path.expanduser(os.environ.get("CALL_AGENT_DENYLIST", DEFAULT_DENYLIST)))
-    return run_denylist_check(deny, [out_dir, tool / "knowledge", tool / "agents"], root,
-                              args.allow_missing_denylist)
+    code = run_denylist_check(deny, [out_dir, tool / "knowledge", tool / "agents", generated],
+                              root, args.allow_missing_denylist, extra)
+    if code == 1 and generated.exists():
+        generated.unlink()  # never leave a module with deny-listed content to be synced
+        print(f"Removed {GENERATED_REL} because of the hits above.", file=sys.stderr)
+    return code
 
 
 if __name__ == "__main__":

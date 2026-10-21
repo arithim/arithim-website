@@ -6,7 +6,7 @@ Configuration for the phone agents behind the "Call us" button (plan: arithim-op
 
 1. **Core facts, in each agent's prompt (cached).** `knowledge/claims.md`, the claims register. It is the single source for anything the agents state as fact about Arithim: who we are, services, products, case studies as the site states them, TSG security statements quoted verbatim with the security pack's Built / Partly built / Planned labels, the reply promise, contact details, and a "we do not say" list. Every claim has an id and a source tag. The prompt generator (a later step) copies this file in.
 2. **Long-tail knowledge, retrieved (RAG).** `knowledge/allowlist.txt` is an explicit list of repo-relative files: the public site pages, the insights, and `knowledge/answer-gists.md` (question and answer-gist pairs grouped by agent, with the questions we cannot answer yet listed at the end). `build_pack.py` turns that list into `build/pack/<slug>.md` files, each starting with a `Source:` line, plus `build/pack/index.json`.
-3. **Skills in each agent's own prompt.** The discovery playbook (consulting), "how a pilot runs" (TSG), invoice triage and complaint handling (customer desk). These live with the prompts under `agents/` when they are written; they are not part of the pack.
+3. **Skills in each agent's own prompt.** The discovery playbook (consulting), "how a pilot runs" (TSG), invoice triage and complaint handling (customer desk). These live in the role prompts under `agents/` (`front-desk.md`, `consulting.md`, `tsg.md`, `customer-desk.md`); they are not part of the pack. The four assistants are Hannah (front desk), Oliver (consulting and discovery), Charlotte (Technical Sales Guide) and Daniel (customer desk). Each prompt is standalone: the shared rules (voice style, guardrails, refusal lines, tools, end of call) are repeated in each file, so a change to a shared rule is made in all four.
 
 Rules that keep the tiers safe:
 
@@ -27,7 +27,18 @@ Python 3.11, standard library only. The build:
 1. reads `knowledge/allowlist.txt`;
 2. extracts readable text from each HTML page (navigation, footer, sticky header, scripts and styles are dropped; copy that the pages keep in component properties is included; template placeholders are dropped);
 3. writes `build/pack/*.md` and `build/pack/index.json` (`build/` is gitignored);
-4. runs the deny-list check over `build/pack`, `knowledge/` and `agents/` (if it exists).
+4. if `agents/` exists, writes `functions/_lib/call-knowledge.generated.js` (see below);
+5. runs the deny-list check over `build/pack`, `knowledge/`, `agents/` and the generated module. The module is also checked as decoded text, because its JSON escapes would otherwise hide a term that spans a line break. On a hit the generated module is deleted.
+
+### The generated module
+
+`functions/_lib/call-knowledge.generated.js` is committed output; never edit it by hand. It exports:
+
+- `ROLES`: `front-desk`, `consulting`, `tsg`, `customer-desk`, each `{displayName, system}`. `system` is the role prompt, then `# Claims register` (all of claims.md), then `# Knowledge for this role`: the answer-gist intro, that role's gist section and the shared "Not answered yet" section, then the role's public pages. Front desk gets about, index, services, contact, privacy and case studies. Consulting gets all services pages, case studies, research and insights. TSG gets no pages (none exist). Customer desk gets privacy and contact.
+- `FULL_PACK`: claims, all gists and every public page, for the `think` tool.
+- `VERSION`: a hash of the content. No timestamps, stable ordering, so prompt caching holds until content changes.
+
+Changing a prompt, a claim, a gist or an allowlisted page changes `VERSION`; rebuild and commit the module with the change.
 
 ### Deny-list
 
