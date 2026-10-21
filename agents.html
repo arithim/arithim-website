@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agents — Arithim</title>
+<meta name="description" content="What an Arithim agent is, where it runs (in your environment or on Arithim hosting), how you pay for it, and how we run our own back office on 63 scheduled agents.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Agents — Arithim">
+<meta property="og:description" content="What an Arithim agent is, where it runs (in your environment or on Arithim hosting), how you pay for it, and how we run our own back office on 63 scheduled agents.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/agents.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<meta property="og:url" content="https://arithim.com/agents.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #070C16; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  @keyframes ah-spin { to { transform: rotate(360deg); } }
+  @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+</style>
+</helmet>
+
+<div style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+
+  <div style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+    <div style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:inline-flex;align-items:baseline;gap:0;"><span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/agents</span></span></a>
+      <nav data-nav style="position:relative;display:flex;align-items:center;gap:2px;">
+        <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="products.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Products</a>
+        <a href="agents.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;">Agents</a>
+        <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Advisory</a>
+        <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
+        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Insights</a>
+        <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
+      </nav>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 55%,#E8A13C,transparent 75%);animation:ah-spin 3.5s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;">Let's talk →</span></a>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div data-hero style="position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(126,155,135,0.22),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:relative;max-width:1000px;margin:0 auto;padding:88px 40px 40px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#E8A13C;margin-bottom:22px;">AGENTS</div>
+      <h1 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:68px;line-height:0.96;letter-spacing:-0.045em;margin:0;">An agent does one job, every time it is asked.</h1>
+      <p style="font-size:20px;line-height:1.55;color:#AEB8C6;max-width:680px;margin:26px 0 0;">We build AI agents, run them, and charge for the work they do. This page explains what that means in practice, and how we use the same approach to run Arithim.</p>
+    </div>
+  </div>
+
+  <div style="max-width:1000px;margin:0 auto;padding:20px 40px 20px;">
+
+    <!-- what an agent is -->
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:40px 0;border-top:1px solid rgba(245,241,232,0.08);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;">WHAT AN AGENT IS</div>
+      <div>
+        <p style="font-size:17.5px;line-height:1.7;color:#C6CEDA;margin:0 0 18px;">An agent is software with one job. It has the access it needs for that job, an AI model to work through each case, and clear rules about when to stop and ask a person. It starts on a schedule, or when something arrives, such as an invoice or an email.</p>
+        <p style="font-size:17.5px;line-height:1.7;color:#C6CEDA;margin:0;">Take accounts payable. An agent could read supplier invoices as they arrive, check each one against the purchase order, queue the ones that match for approval, and send anything that does not match to the right person with a note on why.</p>
+      </div>
+    </div>
+
+    <!-- where it runs -->
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:40px 0;border-top:1px solid rgba(245,241,232,0.08);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;">WHERE IT RUNS</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:24px;"><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:8px;">In your environment</div><div style="font-size:15px;line-height:1.6;color:#8794A6;">The agent runs inside your own cloud account or servers, next to your data. Useful when data cannot leave your estate.</div></div>
+        <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:24px;"><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:8px;">On Arithim hosting</div><div style="font-size:15px;line-height:1.6;color:#8794A6;">We host and run the agent for you. You give it access to the systems it needs, and we look after the rest.</div></div>
+      </div>
+    </div>
+
+    <!-- how you pay -->
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:40px 0;border-top:1px solid rgba(245,241,232,0.08);border-bottom:1px solid rgba(245,241,232,0.08);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;">HOW YOU PAY</div>
+      <div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:22px;">
+          <div style="display:flex;gap:16px;align-items:baseline;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#E8A13C;">01</span><span style="font-size:17px;line-height:1.6;color:#C6CEDA;"><strong style="color:#F5F1E8;font-weight:600;">Onboarding fee.</strong> A one-off fee to set the agent up and connect it to your systems.</span></div>
+          <div style="display:flex;gap:16px;align-items:baseline;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#E8A13C;">02</span><span style="font-size:17px;line-height:1.6;color:#C6CEDA;"><strong style="color:#F5F1E8;font-weight:600;">Monthly minimum.</strong> [[TARUN: what the monthly minimum means and what it covers]]</span></div>
+          <div style="display:flex;gap:16px;align-items:baseline;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#E8A13C;">03</span><span style="font-size:17px;line-height:1.6;color:#C6CEDA;"><strong style="color:#F5F1E8;font-weight:600;">Per-run charge.</strong> A charge each time the agent runs, so the bill follows the work it does.</span></div>
+        </div>
+        <a href="products.html#pricing" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#E8A13C;" style-hover="color:#F6CE8C;">PRICING ON THE PRODUCTS PAGE →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- our own -->
+  <div id="our-own" style="max-width:1000px;margin:0 auto;padding:70px 40px 30px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#8FB29B;margin-bottom:16px;">OUR OWN AGENTS</div>
+    <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:48px;line-height:1.0;letter-spacing:-0.035em;margin:0 0 18px;">We run Arithim this way.</h2>
+    <p style="font-size:18px;line-height:1.65;color:#AEB8C6;max-width:700px;margin:0 0 40px;">Our own back office runs on 63 scheduled agents. We manage them through HQ, an operations control plane we built ourselves, and we are still extending it. The agents we build for clients follow the same pattern.</p>
+    <div style="display:flex;gap:56px;margin-bottom:44px;">
+      <div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;letter-spacing:-0.03em;text-shadow:0 0 30px rgba(232,161,60,0.25);">63</div><div style="font-size:14.5px;color:#8794A6;margin-top:4px;">scheduled agents</div></div>
+      <div style="width:1px;background:rgba(245,241,232,0.1);"></div>
+      <div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:56px;letter-spacing:-0.03em;text-shadow:0 0 30px rgba(126,155,135,0.25);">1</div><div style="font-size:14.5px;color:#8794A6;margin-top:4px;">control plane, HQ</div></div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#556074;margin-bottom:16px;">THREE OF THEM</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:24px;font-size:15px;line-height:1.6;color:#8794A6;">[[TARUN: internal agent example 1]]</div>
+      <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:24px;font-size:15px;line-height:1.6;color:#8794A6;">[[TARUN: internal agent example 2]]</div>
+      <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:24px;font-size:15px;line-height:1.6;color:#8794A6;">[[TARUN: internal agent example 3]]</div>
+    </div>
+  </div>
+
+  <div data-hero style="position:relative;overflow:hidden;padding:100px 40px;">
+    <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div style="position:relative;max-width:900px;margin:0 auto;text-align:center;">
+      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:0.98;letter-spacing:-0.04em;margin:0 0 30px;">Have a job you want an agent to do?</h2>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 32px;border-radius:999px;">Tell us about it →</span></a>
+    </div>
+  </div>
+
+  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="index.html" style-hover="color:#E8A13C;">← BACK TO HOME</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
