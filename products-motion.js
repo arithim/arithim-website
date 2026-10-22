@@ -1,6 +1,6 @@
 // Products page explainers: one short looping scene per product, on the same timeline engine as tsg-motion.js.
 // Mount points are <div data-pm-scene="tsg|sf|fmaj|unrj">. All names and figures on screen are samples.
-import { SCENES as TSG, mountScenes } from './tsg-motion.js';
+import { SCENES as TSG, mountScenes } from './tsg-motion.js?v=2';
 
 const mk = (s) => s.replace(/\n\s*/g, '');
 const row = (t, n, nm, pr, w, kv) => `<div class="m-res" data-in="${t}"><div class="m-res-h"><span class="m-rk">${n}</span><span class="m-nm">${nm}</span><span class="m-pr">${pr}</span></div><div class="m-fit"><i data-grow="${t + 0.2},1" style="--w:${w}%"></i></div><div class="m-kv">${kv.map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join('')}</div></div>`;

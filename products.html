@@ -153,7 +153,7 @@
 class Component extends DCLogic {
   componentDidMount() {
     import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
-    import('./products-motion.js').then((m) => { this._stopMotion = m.initProductsMotion(document); }).catch((e) => console.error('motion load failed', e));
+    import('./products-motion.js?v=2').then((m) => { this._stopMotion = m.initProductsMotion(document); }).catch((e) => console.error('motion load failed', e));
   }
   componentWillUnmount() { ['_stop','_stopMotion'].forEach((k) => { if (this[k]) this[k](); }); }
   renderVals() { return {}; }
