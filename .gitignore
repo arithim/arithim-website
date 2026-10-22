@@ -2,3 +2,6 @@
 .wrangler/
 __pycache__/
 tools/call-agent/build/
+
+# ElevenLabs CLI key (never commit)
+.env.local

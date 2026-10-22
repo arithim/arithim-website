@@ -2,14 +2,10 @@
   "role": "customer-desk",
   "notes": {
     "unverified": [
-      "UNVERIFIED: shape of custom_llm.request_headers values. The create API page says request_headers maps a name to a value object but does not show it. We use a plain string, {secret_name} (sync resolves to {secret_id}) and {variable_name}. Confirm with a GET on a dashboard-made agent.",
-      "UNVERIFIED: built_in_tools.transfer_to_agent shape (name, description, params.system_tool_type, params.transfer_to_agent.transfers[] with agent_id, condition, delay_ms, transfer_message, enable_transferred_agent_first_message). From memory of the agent-transfer docs; the schema page was truncated.",
-      "UNVERIFIED: dynamic_variables.dynamic_variable_placeholders.call_id default (the create page lists dynamic_variables as 'any').",
-      "UNVERIFIED: post-call webhook. The webhook URL is configured at workspace level in ElevenLabs (shared secret CALL_WEBHOOK_SECRET); the agent only references post_call_webhook_id. sync cannot set the URL; create the workspace webhook by hand and put its id in --webhook-id or ELEVENLABS_WEBHOOK_ID.",
-      "UNVERIFIED: conversation_config.agent.prompt.prompt may be required non-empty even with a custom LLM; we send a one-line stub (our endpoint replaces the prompt).",
-      "UNVERIFIED: an empty first_message on specialists makes the agent speak first through the LLM after a transfer; confirm in step 0.",
-      "UNVERIFIED: tts.model_id eleven_flash_v2_5 for an English custom-LLM agent (the create page default is eleven_v4_turbo; pick by latency in step 0).",
-      "UNVERIFIED: voice names in _voice_suggestions come from memory of the Voice Library; ids are not known."
+      "Field shapes were checked against the ElevenLabs OpenAPI schema (api.elevenlabs.io/openapi.json) on 2026-10-22; see step0-results.md for what the live API kept after a GET.",
+      "built_in_tools.transfer_to_agent is a SystemToolConfig: params.system_tool_type and params.transfers[] sit directly in params (the earlier params.transfer_to_agent.transfers nesting was wrong).",
+      "custom_llm.request_headers values: plain string, {secret_id}, {variable_name} or {env_var_label} (sync turns {secret_name} into {secret_id}). Whether {{call_id}} survives a transfer is a live step-0 check.",
+      "The post-call webhook is created by sync through POST /v1/workspace/webhooks (HMAC); the agent references it by post_call_webhook_id."
     ],
     "verified_against_create_api_page_2026_10_21": [
       "turn.turn_timeout",
@@ -65,39 +61,38 @@
               "description": "Hand the call to a colleague when the caller's need clearly belongs to them.",
               "params": {
                 "system_tool_type": "transfer_to_agent",
-                "transfer_to_agent": {
-                  "transfers": [
-                    {
-                      "agent_id": "@front-desk",
-                      "condition": "Partners, press, job seekers, vendors pitching, research or speaking requests, or anything unclear. Transfer back to Hannah (front desk).",
-                      "delay_ms": 0,
-                      "transfer_message": null,
-                      "enable_transferred_agent_first_message": false
-                    },
-                    {
-                      "agent_id": "@consulting",
-                      "condition": "The caller has a business problem, wants to buy a service, is unsure what they need, or is interested in AP Clerk. Transfer to Oliver (consulting and discovery).",
-                      "delay_ms": 0,
-                      "transfer_message": null,
-                      "enable_transferred_agent_first_message": false
-                    },
-                    {
-                      "agent_id": "@tsg",
-                      "condition": "The caller asks about the Technical Sales Guide: what it does, a demo or pilot, security and data questions. Transfer to Charlotte.",
-                      "delay_ms": 0,
-                      "transfer_message": null,
-                      "enable_transferred_agent_first_message": false
-                    }
-                  ]
-                }
-              }
+                "transfers": [
+                  {
+                    "agent_id": "@front-desk",
+                    "condition": "Partners, press, job seekers, vendors pitching, research or speaking requests, or anything unclear. Transfer back to Hannah (front desk).",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  },
+                  {
+                    "agent_id": "@consulting",
+                    "condition": "The caller has a business problem, wants to buy a service, is unsure what they need, or is interested in AP Clerk. Transfer to Oliver (consulting and discovery).",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  },
+                  {
+                    "agent_id": "@tsg",
+                    "condition": "The caller asks about the Technical Sales Guide: what it does, a demo or pilot, security and data questions. Transfer to Charlotte.",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  }
+                ]
+              },
+              "type": "system"
             }
           }
         }
       },
       "tts": {
-        "_voice_suggestions": "Daniel (steady British male), Brian-style calm male if a British one is found. Must differ from Oliver.",
-        "voice_id": "VOICE_ID_TODO_CUSTOMER_DESK",
+        "_voice_suggestions": "Provisional staging pick: Daniel (premade, steady British male). See arithim-ops/call-agent/voices.md for the shortlist.",
+        "voice_id": "onwK4e9ZLuTAKqWW03F9",
         "model_id": "eleven_flash_v2_5"
       },
       "turn": {

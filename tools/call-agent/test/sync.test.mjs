@@ -43,13 +43,13 @@ test("create order, transfers filled, lock and SQL", async () => {
   assert.deepEqual(creates.map((n) => /front/.test(n)), [false, false, false, true]);
   assert.ok(calls.every((c) => c.key === "xi-KEY-123"));
   const fd = calls.find((c) => /front/.test(c.body?.name || ""));
-  const tr = fd.body.conversation_config.agent.prompt.built_in_tools.transfer_to_agent.params.transfer_to_agent.transfers;
+  const tr = fd.body.conversation_config.agent.prompt.built_in_tools.transfer_to_agent.params.transfers;
   assert.deepEqual(tr.map((t) => t.agent_id), ["agent_1", "agent_2", "agent_3"]); // consulting, tsg, customer-desk
   const firstSpec = calls.find((c) => c.path.endsWith("/create"));
   assert.equal(firstSpec.body.conversation_config.agent.prompt.built_in_tools, undefined);
   const patches = calls.filter((c) => c.method === "PATCH");
   assert.equal(patches.length, 3);
-  assert.equal(patches[0].body.conversation_config.agent.prompt.built_in_tools.transfer_to_agent.params.transfer_to_agent.transfers[0].agent_id, "agent_4");
+  assert.equal(patches[0].body.conversation_config.agent.prompt.built_in_tools.transfer_to_agent.params.transfers[0].agent_id, "agent_4");
   assert.equal(fd.body.conversation_config.agent.prompt.custom_llm.request_headers["X-Call-Secret"].secret_id, "sec_1");
   const lock = JSON.parse(readFileSync(join(dir, "lock.json"), "utf8"));
   assert.equal(lock.agents["front-desk"].agent_id, "agent_4");
@@ -78,7 +78,7 @@ async function loadDefs(setVoices = true) {
   const d = {};
   for (const r of ["consulting", "tsg", "customer-desk", "front-desk"]) {
     const j = JSON.parse(readFileSync(new URL(`../agents/${r}.json`, import.meta.url), "utf8"));
-    if (setVoices) j.agent.conversation_config.tts.voice_id = "voice_" + r;
+    j.agent.conversation_config.tts.voice_id = setVoices ? "voice_" + r : "VOICE_ID_TODO_" + r;
     d[r] = j;
   }
   return d;

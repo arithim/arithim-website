@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Create or update the four ElevenLabs agents from agents/<role>.json.
 //   node tools/call-agent/sync.mjs --env staging|prod [--dry-run] [--staging-host HOST] [--webhook-id ID]
-// Keys: ELEVENLABS_API_KEY in ~/.config/arithim/elevenlabs.env, CALL_LLM_SECRET in ~/.config/arithim/call-agent-secrets.env.
+// Keys: ELEVENLABS_API_KEY from the environment first (node --env-file=tools/call-agent/.env.local ...), else ~/.config/arithim/elevenlabs.env.
+// CALL_LLM_SECRET from the environment, else ~/.config/arithim/call-agent-secrets.env.
+// The post-call webhook is created through the API (POST /v1/workspace/webhooks, HMAC) unless --webhook-id / ELEVENLABS_WEBHOOK_ID is given or the
+// lock file already holds one. Its signing secret is returned once; it is saved as CALL_WEBHOOK_SECRET_STAGING / _PROD in call-agent-secrets.env, never printed.
 // Writes ids to agents.<env>.lock.json and PRINTS the SQL for the D1 config row. It never runs SQL.
 // The knowledge base is not touched: our own endpoint holds the knowledge.
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -85,14 +88,16 @@ export async function sync(opts) {
 
   let apiKey = "", llmSecret = "";
   const read = (p) => (p && existsSync(p) ? parseEnvFile(readFileSync(p, "utf8")) : {});
-  apiKey = opts.apiKey ?? read(keyFile).ELEVENLABS_API_KEY ?? "";
-  llmSecret = opts.llmSecret ?? read(secretsFile).CALL_LLM_SECRET ?? "";
-  const webhookId = opts.webhookId || read(keyFile).ELEVENLABS_WEBHOOK_ID || (dryRun ? "<webhook_id>" : null);
+  const penv = opts.processEnv ?? process.env;
+  apiKey = opts.apiKey ?? (penv.ELEVENLABS_API_KEY || read(keyFile).ELEVENLABS_API_KEY) ?? "";
+  llmSecret = opts.llmSecret ?? (penv.CALL_LLM_SECRET || read(secretsFile).CALL_LLM_SECRET) ?? "";
   const lock = lockPath && existsSync(lockPath) ? JSON.parse(readFileSync(lockPath, "utf8")) : { env, agents: {} };
   lock.env = env;
+  let webhookId = opts.webhookId || penv.ELEVENLABS_WEBHOOK_ID || read(keyFile).ELEVENLABS_WEBHOOK_ID || lock.webhook_id || (dryRun ? "<webhook_id>" : null);
+  const webhookUrl = (env === "staging" ? `https://${stagingHost}` : "https://arithim.com") + "/api/call/webhook";
 
   if (!dryRun) {
-    if (!apiKey) throw new Error("ELEVENLABS_API_KEY missing (" + keyFile + ")");
+    if (!apiKey) throw new Error("ELEVENLABS_API_KEY missing (environment or " + keyFile + ")");
     if (!llmSecret) throw new Error("CALL_LLM_SECRET missing (" + secretsFile + ")");
     for (const r of ROLES) if (/^VOICE_ID_/.test(defsByRole[r].agent.conversation_config.tts.voice_id)) throw new Error(`agents/${r}.json still has a placeholder voice_id`);
   }
@@ -117,6 +122,28 @@ export async function sync(opts) {
     if (!res.ok) throw new Error(`${method} ${path} -> ${res.status}: ${text.slice(0, 300).split(apiKey).join("[REDACTED]")}`);
     return text ? JSON.parse(text) : {};
   };
+
+  // post-call webhook (HMAC). Reused by name when it exists; the signing secret is only returned on creation.
+  if (!webhookId) {
+    const whName = `arithim-call-${env}`;
+    const existing = ((await call("GET", "/v1/workspace/webhooks")).webhooks || []).find((w) => w.name === whName && !w.is_disabled);
+    if (existing) {
+      webhookId = existing.webhook_id;
+      log(`workspace webhook ${whName} exists (${webhookId}); its secret cannot be read back, so CALL_WEBHOOK_SECRET must already be set from the creation run`);
+    } else {
+      const made = await call("POST", "/v1/workspace/webhooks", { settings: { auth_type: "hmac", name: whName, webhook_url: webhookUrl } });
+      webhookId = made.webhook_id;
+      secrets.push(made.webhook_secret);
+      if (made.webhook_secret && secretsFile) {
+        const key = `CALL_WEBHOOK_SECRET_${env === "prod" ? "PROD" : "STAGING"}`;
+        const old = existsSync(secretsFile) ? readFileSync(secretsFile, "utf8") : "";
+        const lines = old.split(/\r?\n/).filter((l) => l && !l.startsWith(key + "="));
+        writeFileSync(secretsFile, lines.concat(`${key}=${made.webhook_secret}`).join("\n") + "\n", { mode: 0o600 });
+      }
+      log(`created workspace webhook ${whName} ${webhookId} -> ${webhookUrl} (signing secret saved to call-agent-secrets.env, not shown)`);
+    }
+  }
+  lock.webhook_id = webhookId;
 
   // workspace secret that holds CALL_LLM_SECRET
   let secretId;

@@ -6,6 +6,7 @@ import { dirname, join } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const MIGRATION = join(here, "../../../migrations/0001_calls.sql");
+export const MIGRATION2 = join(here, "../../../migrations/0002_step0_log.sql");
 
 class Stmt {
   constructor(db, sql) { this.stmt = db.prepare(sql); this.args = []; }
@@ -18,6 +19,7 @@ class Stmt {
 export function makeDb({ enabled = true } = {}) {
   const raw = new DatabaseSync(":memory:");
   raw.exec(readFileSync(MIGRATION, "utf8"));
+  raw.exec(readFileSync(MIGRATION2, "utf8"));
   if (enabled) raw.exec("UPDATE config SET calls_enabled = 1, front_desk_agent_id_prod = 'agent_prod', front_desk_agent_id_preview = 'agent_prev' WHERE id = 1");
   // D1 batch: statements run in order inside one transaction
   const batch = async (stmts) => {

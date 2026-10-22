@@ -11,12 +11,13 @@ import { CALL_ID_RE } from "../../../_lib/ids.js";
 import { parseDenylist } from "../../../_lib/filter.js";
 import { chunk } from "../../../_lib/convert.js";
 import { json } from "../../../_lib/escape.js";
-import { runBrain, bearerOrSecret, extractCallRef, logTurn, addFlags, TEXT_CAP_LINE } from "../../../_lib/brain.js";
+import { step0Enabled, step0Log, step0Brain } from "../../../_lib/step0.js";
+import { runBrain, bearerOrSecret, extractCallRef, logTurn, addFlags, TEXT_CAP_LINE, CAPS } from "../../../_lib/brain.js";
 
 const MAX_BODY = 400_000;
 const GRACE_SEC = 10 * 60; // beyond the 15 minute cap
 
-export async function handle({ request, env, params, waitUntil }) {
+async function inner({ request, env, params, waitUntil }) {
   if (request.method !== "POST") return new Response("method not allowed", { status: 405, headers: { allow: "POST" } });
 
   if (!env.CALL_LLM_SECRET || !safeEqual(bearerOrSecret(request), env.CALL_LLM_SECRET)) {
@@ -91,7 +92,17 @@ export async function handle({ request, env, params, waitUntil }) {
       if ((body.tools || []).some((t) => t?.function?.name === "end_call")) sink({ type: "tool_call", id: "call_cap", name: "end_call", arguments: JSON.stringify({ reason: "text turn cap reached" }) });
       result = { finish: (body.tools || []).some((t) => t?.function?.name === "end_call") ? "tool_calls" : "stop", spoken: TEXT_CAP_LINE, hits: [] };
     } else {
-      result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist, signal });
+      if (step0Enabled(env, request)) {
+        // Preview-only scripted brain: no Anthropic. Transfers still count against the real per-call limit.
+        const r = await step0Brain({
+          role, body, emit: (e) => sink(e),
+          transferGate: async () => !!(await first(db, "UPDATE calls SET transfers = transfers + 1 WHERE call_id = ?1 AND transfers < ?2 RETURNING transfers", call.call_id, CAPS.transfers)),
+        });
+        await step0Log(db, request, { role, body, authOk: true, ref, action: r.action });
+        result = { finish: r.finish, spoken: r.spoken, hits: [] };
+      } else {
+        result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist, signal });
+      }
     }
     // Log what was actually written to the stream (streaming) rather than everything the model generated.
     const logged = heard !== null ? heard.trim() : result.spoken;
@@ -144,6 +155,22 @@ export async function handle({ request, env, params, waitUntil }) {
   return new Response(readable, {
     headers: { "content-type": "text/event-stream; charset=utf-8", "cache-control": "no-store", "x-accel-buffering": "no" },
   });
+}
+
+// Step-0 wrapper: in scripted preview mode, log every request that was rejected before the brain ran (wrong secret, unknown call...).
+export async function handle(ctx) {
+  const { request, env, params } = ctx;
+  if (!step0Enabled(env, request) || request.method !== "POST") return inner(ctx);
+  const copy = request.clone();
+  const res = await inner(ctx);
+  if (res.status !== 200) {
+    try {
+      let body = null;
+      try { body = JSON.parse(await copy.text()); } catch {}
+      await step0Log(getDb(env), request, { role: String(params?.role || ""), body, authOk: res.status !== 401, ref: extractCallRef(request, body), action: "http_" + res.status });
+    } catch (e) { console.error("step0 wrapper", e); }
+  }
+  return res;
 }
 
 export const onRequestPost = handle;
