@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,11 +41,11 @@
       <a href="index.html" aria-label="Arithim home" style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/contact</span></a>
       <nav data-nav aria-label="Main" style="position:relative;display:flex;align-items:center;gap:2px;">
         <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="products.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Products</a>
         <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Services</a>
-        <a href="technical-sales-guide.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Sales Guide</a>
+        <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
         <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
         <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Insights</a>
-        <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
         <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
       </nav>
       <a href="contact.html" style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#E8A13C;color:#0A1526;font-size:14px;font-weight:600;padding:12px 20px;border-radius:999px;">Contact</a>
@@ -82,8 +82,9 @@
               <div><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">EMAIL <span style="color:#E8A13C;">*</span></label><input type="email" name="email" required placeholder="you@company.com" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;transition:border-color 0.2s;"/></div>
               <div><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">INDUSTRY</label><input type="text" name="industry" placeholder="e.g. Energy, Telecoms" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;transition:border-color 0.2s;"/></div>
             </div>
+            <div style="margin-bottom:20px;"><label for="cf-topic" style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">TOPIC</label><select id="cf-topic" name="topic" data-topic style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;transition:border-color 0.2s;"><option value="Consulting or a build">Consulting or a build</option><option value="Technical Sales Guide demo">Technical Sales Guide demo</option><option value="Site Finder demo">Site Finder demo</option><option value="Find Me A Job or Unrejectable">Find Me A Job or Unrejectable</option><option value="Research collaboration">Research collaboration</option></select></div>
             <div style="margin-bottom:20px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">TIMELINE</label><select name="timeline" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;transition:border-color 0.2s;"><option>Exploring</option><option>0 to 3 months</option><option>3 to 6 months</option><option>Research collaboration</option></select></div>
-            <div style="margin-bottom:20px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">OPERATIONAL CHALLENGE <span style="color:#E8A13C;">*</span></label><textarea name="challenge" required rows="4" placeholder="What is slow, manual, or hard to trust right now?" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;resize:vertical;transition:border-color 0.2s;"></textarea></div>
+            <div style="margin-bottom:20px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">WHAT CAN WE HELP WITH? <span style="color:#E8A13C;">*</span></label><textarea name="challenge" required rows="4" placeholder="The product you want to see, or what is slow, manual or hard to trust right now" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;resize:vertical;transition:border-color 0.2s;"></textarea></div>
             <div style="margin-bottom:28px;"><label style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8794A6;margin-bottom:8px;">WHAT WOULD SUCCESS LOOK LIKE?</label><textarea name="success" rows="3" placeholder="Optional" style="width:100%;background:rgba(245,241,232,0.03);border:1px solid rgba(245,241,232,0.12);border-radius:12px;padding:13px 15px;color:#F5F1E8;font-size:15px;resize:vertical;transition:border-color 0.2s;"></textarea></div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAFddwijZvXOLiEH1" data-action="contact-form" data-theme="dark" style="margin-bottom:20px;"></div>
             <sc-if value="{{ errored }}" hint-placeholder-val="{{ falseVal }}">
@@ -105,20 +106,20 @@
     <!-- side -->
     <div style="display:flex;flex-direction:column;gap:18px;">
       <a href="mailto:hello@arithim.com" data-spotlight style="display:block;position:relative;border-radius:18px;padding:1px;background:linear-gradient(140deg,rgba(232,161,60,0.4),rgba(245,241,232,0.06));overflow:hidden;">
-        <div style="position:relative;background:#0B1220;border-radius:17px;padding:26px;overflow:hidden;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E8A13C;margin-bottom:12px;">CONSULTING &amp; BUILD</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;color:#F5F1E8;">hello@arithim.com</div></div>
+        <div style="position:relative;background:#0B1220;border-radius:17px;padding:26px;overflow:hidden;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E8A13C;margin-bottom:12px;">DEMOS, CONSULTING AND BUILD</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;color:#F5F1E8;">hello@arithim.com</div></div>
       </a>
       <a href="mailto:research@arithim.com" data-spotlight style="display:block;position:relative;border-radius:18px;padding:1px;background:linear-gradient(140deg,rgba(126,155,135,0.4),rgba(245,241,232,0.06));overflow:hidden;">
         <div style="position:relative;background:#0B1220;border-radius:17px;padding:26px;overflow:hidden;"><div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8FB29B;margin-bottom:12px;">RESEARCH COLLABORATION</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;color:#F5F1E8;">research@arithim.com</div></div>
       </a>
       <div style="background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:18px;padding:26px;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#556074;margin-bottom:12px;">BASED IN</div>
-        <div style="font-size:16px;color:#C6CEDA;line-height:1.6;">London, United Kingdom<br><span style="color:#8794A6;">Working with clients across the UK and Europe.</span></div>
+        <div style="font-size:16px;color:#C6CEDA;line-height:1.6;">London, United Kingdom<br><span style="color:#8794A6;">Working with clients in the UK, Europe and the Gulf.</span></div>
       </div>
     </div>
   </div>
 
 <!-- partial:footer {"back_href": "index.html", "back_text": "← BACK TO HOME"} -->
-  <footer style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="index.html" style-hover="color:#E8A13C;">← BACK TO HOME</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
+  <footer style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD · <a href="privacy.html" style-hover="color:#E8A13C;">PRIVACY</a></span><a href="index.html" style-hover="color:#E8A13C;">← BACK TO HOME</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
@@ -146,6 +147,9 @@ class Component extends DCLogic {
       this._tsTimer = setTimeout(renderTs, 150);
     };
     renderTs();
+    const topic = { 'technical-sales-guide': 'Technical Sales Guide demo', 'site-finder': 'Site Finder demo', 'find-me-a-job': 'Find Me A Job or Unrejectable', 'unrejectable': 'Find Me A Job or Unrejectable' }[new URLSearchParams(location.search).get('product')];
+    const setTopic = (n) => { const s = document.querySelector('[data-topic]'); if (s) s.value = topic; else if (n > 0) setTimeout(() => setTopic(n - 1), 100); };
+    if (topic) setTopic(20);
   }
   componentWillUnmount() {
     if (this._stop) this._stop();
