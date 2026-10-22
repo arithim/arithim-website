@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Sales Guide for Chemical Distributors | Arithim</title>
+<meta name="description" content="Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Technical Sales Guide for Chemical Distributors | Arithim">
+<meta property="og:description" content="Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/technical-sales-guide.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<meta property="og:url" content="https://arithim.com/technical-sales-guide.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Technical Sales Guide", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://arithim.com/technical-sales-guide.html", "description": "Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface. The interface is available in ten languages; product content is in English.", "publisher": {"@type": "Organization", "name": "Arithim Ltd", "url": "https://arithim.com/"}, "inLanguage": "en", "audience": {"@type": "BusinessAudience", "name": "Chemical and ingredient distributors and producers"}, "featureList": ["Cross-supplier catalogue of 466 products from 147 suppliers", "Find and Match ranking by application and condition with cost in use and landed cost", "Competitor equivalents and substitutes", "Feed savings and mycotoxin risk tools", "Regulatory tracking with registration expiry reminders", "Principal review packs and principal portal", "Library of principal documents with cited answers", "Website concierge with lead routing", "Document Studio for branded and co-branded documents", "Product passport and data quality", "REST API and signed webhooks"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a technical sales guide for chemical and ingredient distributors?", "acceptedAnswer": {"@type": "Answer", "text": "It is a system that lets a salesperson answer a technical question from a customer without calling a specialist. The Technical Sales Guide holds a catalogue of 466 products from 147 suppliers across 8 industries. It ranks products for an application and condition, shows dose, cost in use and landed cost, lists competitor equivalents and substitutes, and tracks the regulations and registrations that apply."}}, {"@type": "Question", "name": "How is the Technical Sales Guide different from Copilot or ChatGPT over our SharePoint?", "acceptedAnswer": {"@type": "Answer", "text": "A chat assistant over a document folder can quote a data sheet. The Guide adds structured data that a folder does not have: a catalogue that spans suppliers and their competitors, ranking by performance for an application, cost in use and landed cost, registrations per product and country, and a daily review of flagged answers. Every answer shows its sources."}}, {"@type": "Question", "name": "Does it work with Copilot?", "acceptedAnswer": {"@type": "Answer", "text": "You can keep Copilot for chat over your own files. The Guide adds ranked, cross-supplier answers with cost and registrations, and other tools can request its rankings through the REST API. There is no Copilot connector yet."}}, {"@type": "Question", "name": "Does the Technical Sales Guide work in Arabic?", "acceptedAnswer": {"@type": "Answer", "text": "The interface is available in ten languages, including Arabic, which displays right to left. The website concierge takes questions in Arabic. Product and catalogue content is in English today."}}, {"@type": "Question", "name": "Where is our data hosted?", "acceptedAnswer": {"@type": "Answer", "text": "The application runs in Vercel's Frankfurt region (fra1) and the database is Supabase in Frankfurt (eu-central-1), as of 22 October 2026. Each customer's data is separated inside the database by row-level security."}}, {"@type": "Question", "name": "Is our data sent to an AI provider?", "acceptedAnswer": {"@type": "Answer", "text": "AI features are optional and off until a customer turns them on. Arithim does not currently send customer data to an AI provider. Before it does, the provider is added to the published sub-processor list with 30 days' notice."}}, {"@type": "Question", "name": "Can principals see our data in the principal portal?", "acceptedAnswer": {"@type": "Answer", "text": "A principal sees a live, permissioned view of its own products only: where they were proposed, won and lost, and the reasons recorded. It does not see other principals or the rest of your pipeline. You decide who gets access."}}, {"@type": "Question", "name": "Does it connect to Dynamics 365 or Salesforce?", "acceptedAnswer": {"@type": "Answer", "text": "You can import accounts and opportunities from Dynamics 365 and Salesforce using ready-made import settings. A REST API with scoped keys and signed webhooks lets you keep accounts and opportunities in step with a CRM or ERP, read the catalogue and request rankings."}}, {"@type": "Question", "name": "How do you keep the product data accurate?", "acceptedAnswer": {"@type": "Answer", "text": "Answers show their sources. Each rating shows its basis, such as a supplier source, an expert draft or a confirmed review. Anyone can flag an answer, and flagged answers are reviewed each working day and corrected. Regulatory dates and registration expiries raise alerts for the person who owns them."}}, {"@type": "Question", "name": "Is Arithim certified to ISO 27001?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Arithim is preparing the Technical Sales Guide for ISO/IEC 27001 certification and is not yet certified. The security section lists the controls in place today and what is still to come."}}, {"@type": "Question", "name": "How do we get started, and what does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Request a demo. Arithim provisions each customer directly, so there is no self-service sign-up. A pilot runs for eight weeks on one division in one country, using your principals' products and your team's real questions. Pricing depends on the modules and the number of users, and we give you a figure in the demo conversation."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Arithim", "item": "https://arithim.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://arithim.com/services.html"}, {"@type": "ListItem", "position": 3, "name": "Technical Sales Guide", "item": "https://arithim.com/technical-sales-guide.html"}]}</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #070C16; scroll-behavior: smooth; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  @keyframes ah-spin { to { transform: rotate(360deg); } }
+  @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+  .tsg a:focus-visible, .tsg button:focus-visible, .tsg summary:focus-visible, .tsg input:focus-visible, .tsg select:focus-visible, .tsg textarea:focus-visible { outline: 2px solid #E8A13C; outline-offset: 3px; border-radius: 6px; }
+  .tsg-light a:focus-visible, .tsg-light summary:focus-visible { outline-color: #9A5B00; }
+  .tsg h1,.tsg h2,.tsg h3,.tsg h4 { font-family: 'Schibsted Grotesk',sans-serif; margin: 0; }
+  .tsg p { margin: 0; }
+  .tsg-skip { position:absolute; left:-999px; top:8px; background:#E8A13C; color:#0A1526; padding:10px 16px; border-radius:8px; z-index:100; font-weight:600; }
+  .tsg-skip:focus { left:12px; }
+  .tsg-wrap { max-width:1100px; margin:0 auto; padding:0 40px; }
+  .tsg-sec { padding:76px 0 0; }
+  .tsg-band { padding:76px 0; margin-top:76px; }
+  .tsg-light { background:#F5F1E8; color:#0A1526; }
+  .tsg-eyebrow { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#E8A13C; margin-bottom:16px; }
+  .tsg-light .tsg-eyebrow { color:#8A5200; }
+  .tsg-h2 { font-weight:700; font-size:38px; line-height:1.06; letter-spacing:-0.03em; color:#F5F1E8; max-width:820px; }
+  .tsg-light .tsg-h2 { color:#0A1526; }
+  .tsg-lead { font-size:18px; line-height:1.6; color:#AEB8C6; max-width:720px; margin-top:14px; }
+  .tsg-light .tsg-lead { color:#3B465A; }
+  .tsg-hdr { max-width:1200px; margin:0 auto; padding:16px 40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .tsg-nav { position:relative; display:flex; align-items:center; gap:2px; }
+  .tsg-nav a { position:relative; padding:9px 15px; font-size:15px; color:#9AA6B6; white-space:nowrap; transition:color .2s; }
+  .tsg-nav a:hover { color:#F5F1E8; }
+  .tsg-hero-grid { display:grid; grid-template-columns:1.02fr 0.98fr; gap:44px; align-items:center; }
+  .tsg-proof { display:flex; flex-wrap:wrap; gap:6px 26px; margin-top:34px; padding-top:20px; border-top:1px solid rgba(245,241,232,0.1); font:400 13px 'JetBrains Mono',monospace; letter-spacing:0.04em; color:#9AA6B6; }
+  .tsg-proof b { color:#F5F1E8; font-weight:500; }
+  .tsg-steps { display:flex; flex-wrap:wrap; gap:10px 14px; margin-top:22px; padding:0; list-style:none; counter-reset:s; }
+  .tsg-steps li { counter-increment:s; font-size:15px; color:#C6CEDA; display:flex; align-items:center; gap:8px; }
+  .tsg-steps li::before { content:counter(s); width:22px; height:22px; border-radius:50%; background:rgba(232,161,60,0.15); border:1px solid rgba(232,161,60,0.5); color:#F6CE8C; font:500 12px 'JetBrains Mono',monospace; display:inline-flex; align-items:center; justify-content:center; }
+  .tsg-steps li:not(:last-child)::after { content:'→'; color:#556074; margin-left:6px; }
+  .tsg-grid { display:grid; gap:16px; margin-top:30px; }
+  .tsg-g2 { grid-template-columns:1fr 1fr; } .tsg-g3 { grid-template-columns:repeat(3,1fr); }
+  .tsg-card { background:#0B1220; border:1px solid rgba(245,241,232,0.08); border-radius:16px; padding:24px; }
+  .tsg-card h3 { font-weight:600; font-size:19px; letter-spacing:-0.015em; color:#F5F1E8; margin-bottom:10px; line-height:1.25; }
+  .tsg-card p, .tsg-card li { font-size:15.5px; line-height:1.6; color:#AEB8C6; }
+  .tsg-light .tsg-card { background:#FFFFFF; border-color:rgba(10,21,38,0.12); }
+  .tsg-light .tsg-card h3 { color:#0A1526; } .tsg-light .tsg-card p, .tsg-light .tsg-card li { color:#3B465A; }
+  .tsg-card ul { margin:10px 0 0; padding:0; list-style:none; }
+  .tsg-card li { position:relative; padding:4px 0 4px 18px; }
+  .tsg-card li::before { content:''; position:absolute; left:0; top:15px; width:8px; height:2px; background:#E8A13C; }
+  .tsg-light .tsg-card li::before { background:#9A5B00; }
+  .tsg-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+  .tsg-tab { background:transparent; color:#C6CEDA; border:1px solid rgba(245,241,232,0.2); border-radius:999px; padding:10px 18px; font:500 15px 'Hanken Grotesk',sans-serif; cursor:pointer; min-height:44px; }
+  .tsg-tab:hover { border-color:#E8A13C; }
+  .tsg-tab[aria-selected="true"] { background:#E8A13C; border-color:#E8A13C; color:#0A1526; }
+  .tsg-panel { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; padding:36px 0 0; }
+  .tsg-panel[hidden] { display:none; }
+  .tsg-panel h3 { font-weight:700; font-size:28px; line-height:1.12; letter-spacing:-0.025em; color:#F5F1E8; margin-bottom:12px; }
+  .tsg-panel p { font-size:17px; line-height:1.65; color:#AEB8C6; }
+  .tsg-panel ul { margin:14px 0 0; padding:0; list-style:none; }
+  .tsg-panel li { position:relative; padding:6px 0 6px 22px; font-size:16px; line-height:1.55; color:#C6CEDA; }
+  .tsg-panel li::before { content:''; position:absolute; left:2px; top:16px; width:8px; height:2px; background:#E8A13C; }
+  .tsg-panel p.tsg-story { margin-top:16px; font-size:15.5px; font-style:italic; color:#9AA6B6; }
+  .tsg-desc { margin:12px auto 0; max-width:520px; }
+  .tsg-desc summary { cursor:pointer; font-size:14px; color:#E8A13C; padding:6px 0; }
+  .tsg-desc p { font-size:14.5px !important; line-height:1.6 !important; color:#9AA6B6 !important; margin-top:6px; }
+  .tsg-fig { position:relative; width:100%; aspect-ratio:520/450; max-width:520px; margin:0 auto; border-radius:18px; overflow:hidden; background:#0B1220; border:1px solid rgba(245,241,232,0.1); }
+  .tsg-fig::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 80% 0%,rgba(59,111,212,0.18),transparent 55%); pointer-events:none; }
+  .tsg-ctl { display:flex; align-items:center; gap:12px; max-width:520px; margin:12px auto 0; }
+  .tsg-btn { display:inline-flex; align-items:center; gap:8px; background:transparent; color:#F5F1E8; border:1px solid rgba(245,241,232,0.25); border-radius:999px; padding:9px 16px; font:500 14px 'Hanken Grotesk',sans-serif; cursor:pointer; min-height:44px; }
+  .tsg-btn:hover { border-color:#E8A13C; }
+  .tsg-prog { flex:1; height:3px; background:rgba(245,241,232,0.1); border-radius:3px; overflow:hidden; min-width:20px; }
+  .tsg-prog i { display:block; height:100%; background:#E8A13C; transform-origin:left; transform:scaleX(0); }
+  .tsg-ill { font:400 12.5px 'JetBrains Mono',monospace; letter-spacing:0.04em; color:#9AA6B6; white-space:nowrap; }
+  .tsg-stage { position:absolute; left:0; top:0; transform-origin:0 0; font-family:'Hanken Grotesk',system-ui,sans-serif; color:#F5F1E8; }
+  .tsg-stage [data-in] { opacity:0; transform:translateY(6px); transition:opacity .35s ease, transform .35s ease; }
+  .tsg-stage [data-in].on { opacity:1; transform:none; }
+  .tsg-stage.still [data-in], .tsg-stage.still * { transition:none !important; }
+  .m-win { position:absolute; inset:0; display:flex; flex-direction:column; }
+  .m-barx { height:34px; flex:none; display:flex; align-items:center; gap:6px; padding:0 14px; border-bottom:1px solid rgba(245,241,232,0.08); background:rgba(245,241,232,0.03); }
+  .m-barx i { width:8px; height:8px; border-radius:50%; background:rgba(245,241,232,0.18); }
+  .m-t { margin-left:8px; font:500 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; }
+  .m-body { flex:1; padding:12px 16px; display:flex; flex-direction:column; gap:7px; min-height:0; position:relative; }
+  .m-body > * { flex:none; }
+  .m-q { background:#131D30; border:1px solid rgba(245,241,232,0.1); border-radius:10px; padding:8px 12px; font-size:15px; line-height:1.4; min-height:38px; color:#F5F1E8; }
+  .m-caret { width:1.5px; height:16px; background:#E8A13C; vertical-align:-3px; margin-left:1px; animation:m-blink 1s steps(1) infinite; }
+  @keyframes m-blink { 50% { opacity:0; } }
+  .m-chips, .m-tags, .m-opts { display:flex; flex-wrap:wrap; gap:6px; }
+  .m-chip { font-size:13.5px; padding:3px 10px; border-radius:999px; border:1px solid rgba(245,241,232,0.18); color:#C6CEDA; line-height:1.4; }
+  .m-chip.a { border-color:rgba(232,161,60,0.5); background:rgba(232,161,60,0.1); color:#F6CE8C; }
+  .m-chip.g { border-color:rgba(143,178,155,0.5); background:rgba(143,178,155,0.1); color:#A9C8B3; }
+  .m-lbl { font:500 13px 'JetBrains Mono',monospace; letter-spacing:0.06em; color:#9AA6B6; }
+  .m-res { background:#0F1828; border:1px solid rgba(245,241,232,0.09); border-radius:10px; padding:6px 11px 7px; }
+  .m-res-h { display:flex; align-items:baseline; gap:8px; }
+  .m-rk { font:500 13.5px 'JetBrains Mono',monospace; color:#E8A13C; }
+  .m-nm { font-weight:600; font-size:15px; flex:1; letter-spacing:-0.01em; }
+  .m-pr { font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; }
+  .m-fit { height:4px; background:rgba(245,241,232,0.08); border-radius:4px; margin:5px 0 5px; overflow:hidden; }
+  .m-fit i { display:block; height:100%; width:var(--w); background:linear-gradient(90deg,#3B6FD4,#E8A13C); border-radius:4px; transform-origin:left; transform:scaleX(0); }
+  .m-kv { display:flex; flex-wrap:wrap; gap:0 14px; font-size:13.5px; color:#9AA6B6; }
+  .m-kv b { color:#F5F1E8; font-weight:600; margin-left:3px; }
+  .m-swap { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:14px; background:rgba(143,178,155,0.1); border:1px solid rgba(143,178,155,0.45); border-radius:10px; padding:8px 12px; }
+  .m-swap span { color:#A9C8B3; font:500 13.5px 'JetBrains Mono',monospace; } .m-swap i { color:#E8A13C; font-style:normal; } .m-swap em { margin-left:auto; color:#A9C8B3; font-style:normal; font-weight:600; }
+  .m-src { display:flex; align-items:center; gap:6px; font:400 13.5px 'JetBrains Mono',monospace; color:#8FB29B; }
+  .m-upl { display:flex; align-items:center; gap:10px; font:400 13.5px 'JetBrains Mono',monospace; color:#C6CEDA; background:#131D30; border:1px dashed rgba(232,161,60,0.5); border-radius:10px; padding:7px 12px; }
+  .m-file { background:#E8A13C; color:#0A1526; font-weight:600; font-size:13.5px; padding:1px 6px; border-radius:4px; }
+  .m-ok { margin-left:auto; color:#8FB29B; }
+  .m-doc { height:104px; display:flex; justify-content:center; }
+  .m-page { position:relative; width:250px; height:100%; background:#F5F1E8; border-radius:6px 6px 0 0; padding:12px 18px; display:flex; flex-direction:column; gap:7px; overflow:hidden; }
+  .m-ln { display:block; height:7px; border-radius:3px; background:#C9C3B4; }
+  .m-ln.w9 { width:90%; } .m-ln.w8 { width:80%; } .m-ln.w7 { width:70%; } .m-ln.w6 { width:60%; } .m-ln.w5 { width:50%; }
+  .m-ln.hl { transition:background .4s; } .m-ln.hl.on { background:#E8A13C; }
+  .m-pn { position:absolute; right:10px; top:4px; font:500 13.5px 'JetBrains Mono',monospace; color:#556074; display:inline-flex; }
+  .m-sw { display:inline-grid; text-decoration:none; } .m-sw b { grid-area:1/1; font-weight:500; }
+  .m-pgtag { position:absolute; left:18px; bottom:6px; font:500 13.5px 'JetBrains Mono',monospace; color:#0A1526; background:#F6CE8C; padding:0 6px; border-radius:4px; }
+  .m-ans { background:#0F1828; border:1px solid rgba(143,178,155,0.35); border-radius:10px; padding:8px 12px; font-size:15px; line-height:1.45; min-height:62px; }
+  .m-cite { display:inline-block; margin-top:5px; font:500 13.5px 'JetBrains Mono',monospace; color:#0A1526; background:#8FB29B; padding:1px 8px; border-radius:4px; }
+  .m-ans .m-cite, .m-b .m-cite { display:block; width:max-content; }
+  .m-note { display:flex; align-items:center; gap:9px; font-size:14px; background:rgba(245,241,232,0.04); border:1px solid rgba(245,241,232,0.1); border-radius:10px; padding:7px 12px; line-height:1.3; }
+  .m-note em { margin-left:auto; font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; font-style:normal; text-align:right; }
+  .m-dot { width:8px; height:8px; border-radius:50%; flex:none; display:inline-block; }
+  .m-dot.amber { background:#E8A13C; } .m-dot.sage { background:#8FB29B; }
+  .m-perm { display:flex; align-items:center; gap:8px; font:400 13.5px 'JetBrains Mono',monospace; color:#A9C8B3; }
+  .m-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .m-tiles div { background:#0F1828; border:1px solid rgba(245,241,232,0.09); border-radius:10px; padding:6px 12px; }
+  .m-tiles small { display:block; font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; }
+  .m-tiles b { font:700 26px 'Schibsted Grotesk',sans-serif; letter-spacing:-0.02em; } .m-tiles b.g { color:#A9C8B3; } .m-tiles b.r { color:#F2A07B; }
+  .m-bars { display:flex; flex-direction:column; gap:5px; }
+  .m-brow { display:grid; grid-template-columns:165px 1fr; align-items:center; gap:8px; font-size:13.5px; color:#C6CEDA; }
+  .m-brow > div { display:flex; align-items:center; gap:4px; height:12px; }
+  .m-brow i { display:block; height:8px; border-radius:3px; width:var(--w); max-width:60%; transform-origin:left; transform:scaleX(0); }
+  .m-brow i.w { background:#8FB29B; } .m-brow i.l, .m-brow i.r { background:#D9825B; }
+  .m-brow b { font:500 13.5px 'JetBrains Mono',monospace; color:#F5F1E8; }
+  .m-tbl { border:1px solid rgba(245,241,232,0.09); border-radius:10px; overflow:hidden; font-size:14.5px; flex:none; }
+  .m-tr { position:relative; display:grid; grid-template-columns:1.2fr 1.1fr 1fr; gap:6px; padding:8px 12px; border-top:1px solid rgba(245,241,232,0.07); color:#C6CEDA; transition:background .4s; }
+  .m-tr.h { border-top:0; font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; background:rgba(245,241,232,0.03); }
+  .m-tr .ok { color:#A9C8B3; } .m-tr.warn { background:rgba(232,161,60,0.14); } .m-tr.warn .w1 { color:#F6CE8C; font-weight:600; }
+  .m-tr .w1 { white-space:nowrap; }
+  .m-tr .w2 { display:inline-block; margin-left:4px; font:500 13.5px 'JetBrains Mono',monospace; font-style:normal; color:#0A1526; background:#E8A13C; padding:0 6px; border-radius:4px; }
+  .m-toast { display:flex; gap:10px; align-items:flex-start; background:#1A2336; border:1px solid rgba(232,161,60,0.5); border-radius:10px; padding:8px 12px; }
+  .m-toast b { display:block; font-size:15px; } .m-toast small { font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; } .m-toast .m-dot { margin-top:6px; }
+  .m-task { background:#0F1828; border:1px solid rgba(245,241,232,0.1); border-radius:10px; padding:8px 12px; display:flex; flex-direction:column; gap:5px; }
+  .m-task-h { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-weight:600; font-size:15px; } .m-task-h em { font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; font-style:normal; align-self:center; }
+  .m-ck { display:flex; align-items:center; gap:8px; font-size:14px; color:#C6CEDA; }
+  .m-ck i { width:14px; height:14px; border-radius:4px; flex:none; display:inline-block; }
+  .m-ck i.y { background:#8FB29B; } .m-ck i.n { border:1.5px solid #E8A13C; }
+  .m-chat { display:flex; flex-direction:column; gap:6px; }
+  .m-b { max-width:90%; padding:8px 12px; border-radius:12px; font-size:15.5px; line-height:1.55; font-family:'Hanken Grotesk','Geeza Pro','Segoe UI','Noto Sans Arabic',system-ui,sans-serif; }
+  .m-b.v { align-self:flex-end; background:#E8A13C; color:#0A1526; } .m-b.a { align-self:flex-start; background:#131D30; border:1px solid rgba(245,241,232,0.1); }
+  .m-gl { font:400 13.5px 'JetBrains Mono',monospace; color:#9AA6B6; padding:0 4px; margin-top:-2px; }
+  .m-lead { background:#0F1828; border:1px solid rgba(143,178,155,0.4); border-radius:10px; padding:8px 12px; }
+  .m-lead-h { display:flex; align-items:center; gap:8px; font-weight:600; font-size:15px; margin-bottom:5px; } .m-lead-h em { margin-left:auto; font:400 13.5px 'JetBrains Mono',monospace; color:#A9C8B3; font-style:normal; }
+  .m-kv2 { display:flex; flex-wrap:wrap; gap:2px 14px; font-size:13.5px; color:#9AA6B6; } .m-kv2 b { color:#F5F1E8; font-weight:600; margin-left:3px; }
+  .m-paper { background:#F5F1E8; color:#0A1526; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:6px; }
+  .m-ph { display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #0A1526; padding-bottom:6px; min-height:34px; }
+  .m-logo { font:700 14px 'Schibsted Grotesk',sans-serif; border:1.5px solid #0A1526; padding:2px 8px; border-radius:4px; } .m-logo.me { background:#0A1526; color:#F5F1E8; } .m-x { font-size:14px; color:#556074; }
+  .m-pt { font:700 17px 'Schibsted Grotesk',sans-serif; letter-spacing:-0.01em; }
+  .m-sp { display:flex; justify-content:space-between; gap:8px; font-size:14px; border-bottom:1px solid #D9D3C4; padding-bottom:3px; color:#3B465A; } .m-sp b { color:#0A1526; font-weight:600; text-align:right; }
+  .m-pf { margin-top:2px; font:400 13.5px 'JetBrains Mono',monospace; color:#3F5C49; }
+  .m-act { display:flex; align-items:center; gap:12px; }
+  .m-btn { background:#E8A13C; color:#0A1526; font-weight:600; font-size:14.5px; padding:6px 14px; border-radius:999px; }
+  .m-st { display:flex; align-items:center; gap:7px; font-size:14px; color:#C6CEDA; }
+  .tsg-mini { display:grid; grid-template-columns:1fr 1fr; gap:0 40px; margin-top:26px; }
+  .tsg-mini div { padding:16px 0; border-top:1px solid rgba(245,241,232,0.1); }
+  .tsg-mini b { display:block; font:600 17px 'Schibsted Grotesk',sans-serif; color:#F5F1E8; margin-bottom:4px; }
+  .tsg-mini span { font-size:15.5px; line-height:1.55; color:#AEB8C6; }
+  .tsg-cta-strip { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 30px; margin-top:44px; padding:26px 30px; border:1px solid rgba(232,161,60,0.35); border-radius:18px; background:rgba(232,161,60,0.05); }
+  .tsg-cta-strip p { font:600 21px 'Schibsted Grotesk',sans-serif; letter-spacing:-0.02em; color:#F5F1E8; max-width:560px; }
+  .tsg-acc { margin-top:24px; border-top:1px solid rgba(10,21,38,0.15); }
+  .tsg-acc details { border-bottom:1px solid rgba(10,21,38,0.15); }
+  .tsg-acc summary, .tsg-faq summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px 0; font:600 19px 'Schibsted Grotesk',sans-serif; letter-spacing:-0.015em; }
+  .tsg-acc summary::-webkit-details-marker, .tsg-faq summary::-webkit-details-marker { display:none; }
+  .tsg-acc summary::after, .tsg-faq summary::after { content:'+'; font:400 24px 'JetBrains Mono',monospace; flex:none; color:#8A5200; }
+  .tsg-faq summary::after { color:#E8A13C; }
+  .tsg-acc details[open] summary::after, .tsg-faq details[open] summary::after { content:'−'; }
+  .tsg-acc .ans, .tsg-faq .ans { padding:0 0 22px; max-width:780px; }
+  .tsg-acc .ans p, .tsg-acc .ans li { font-size:16px; line-height:1.65; color:#3B465A; margin:0 0 10px; }
+  .tsg-acc .ans ul { margin:0; padding:0 0 0 20px; }
+  .tsg-faq { margin-top:26px; border-top:1px solid rgba(245,241,232,0.1); }
+  .tsg-faq details { border-bottom:1px solid rgba(245,241,232,0.1); }
+  .tsg-faq summary { color:#F5F1E8; }
+  .tsg-faq .ans p { font-size:16.5px; line-height:1.7; color:#AEB8C6; }
+  .tsg-link { color:#E8A13C; border-bottom:1px solid rgba(232,161,60,0.4); }
+  .tsg-light .tsg-link, .tsg-light a.tsg-link { color:#7A4700; border-bottom-color:rgba(122,71,0,0.4); }
+  .tsg-table { width:100%; border-collapse:collapse; margin:14px 0 6px; font-size:14.5px; color:#3B465A; }
+  .tsg-table th { text-align:left; font:500 12px 'JetBrains Mono',monospace; letter-spacing:0.06em; text-transform:uppercase; color:#556074; padding:8px 12px 8px 0; border-bottom:1px solid rgba(10,21,38,0.2); }
+  .tsg-table td { padding:10px 12px 10px 0; border-bottom:1px solid rgba(10,21,38,0.1); vertical-align:top; line-height:1.5; }
+  .tsg-table td:first-child { color:#0A1526; font-weight:600; }
+  .tsg-scroll { overflow-x:auto; }
+  .tsg-founder { display:grid; grid-template-columns:96px 1fr; gap:18px; align-items:start; }
+  .tsg-founder img { width:96px; height:96px; border-radius:14px; object-fit:cover; display:block; }
+  .tsg-demo { position:relative; border-radius:24px; padding:1.5px; background:linear-gradient(140deg,rgba(232,161,60,0.5),rgba(59,111,212,0.3),rgba(245,241,232,0.06)); }
+  .tsg-demo-in { background:#0B1220; border-radius:23px; padding:44px; display:grid; grid-template-columns:0.9fr 1.1fr; gap:44px; align-items:start; }
+  .tsg-form { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .tsg-form .full { grid-column:1 / -1; }
+  .tsg-form label { display:block; font:500 12px 'JetBrains Mono',monospace; letter-spacing:0.08em; color:#9AA6B6; margin-bottom:7px; }
+  .tsg-form input, .tsg-form textarea, .tsg-form select { width:100%; background:rgba(245,241,232,0.04); border:1px solid rgba(245,241,232,0.2); border-radius:12px; padding:13px 14px; font:400 16px 'Hanken Grotesk',sans-serif; color:#F5F1E8; min-height:46px; }
+  .tsg-form select option { color:#0A1526; }
+  .tsg-form textarea { resize:vertical; }
+  .tsg-submit { border:0; background:#E8A13C; color:#0A1526; font:600 16px 'Hanken Grotesk',sans-serif; padding:15px 28px; border-radius:999px; cursor:pointer; min-height:48px; }
+  .tsg-submit:disabled { opacity:.6; cursor:default; }
+  .tsg-err { color:#F6CE8C; font-size:15px; min-height:20px; }
+  .tsg-note { font:400 13px/1.7 'JetBrains Mono',monospace; color:#9AA6B6; }
+  @media (max-width: 900px) {
+    .tsg-wrap, .tsg-hdr { padding-left:20px; padding-right:20px; }
+    .tsg-sec { padding-top:56px; } .tsg-band { padding:56px 0; margin-top:56px; }
+    .tsg-h2 { font-size:29px; }
+    .tsg-hero-grid, .tsg-panel, .tsg-demo-in { grid-template-columns:1fr; gap:26px; }
+    .tsg-demo-in { padding:26px 20px; }
+    .tsg-g2, .tsg-g3, .tsg-mini { grid-template-columns:1fr; }
+    .tsg-panel h3 { font-size:24px; }
+    .tsg-hero-h { font-size:38px !important; }
+    .tsg-form { grid-template-columns:1fr; }
+  }
+  @media (max-width: 600px) { .tsg-fig { aspect-ratio:360/565; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tsg [style*="animation"] { animation:none !important; }
+    .tsg-stage [data-in], .tsg-stage * { transition:none !important; }
+    .m-caret { animation:none; }
+  }
+
+  .m-slot { position:relative; height:38px; } .m-slot > * { position:absolute; left:0; right:0; top:0; }
+  .tsg [id] { scroll-margin-top:76px; }
+</style>
+</helmet>
+
+<div class="tsg" style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+    <div class="tsg-hdr">
+      <a href="index.html" aria-label="Arithim home" style="display:inline-flex;align-items:baseline;"><span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/ai</span></span></a>
+      <nav class="tsg-nav" data-nav aria-label="Main">
+        <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="services.html" style="color:#F5F1E8;">Services</a>
+        <a href="research.html">Research</a>
+        <a href="insights.html">Insights</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About</a>
+      </nav>
+      <a href="#demo" style="display:inline-flex;align-items:center;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 18px;border-radius:999px;border:1px solid rgba(232,161,60,0.55);">Request a demo</a>
+    </div>
+  </header>
+
+<main id="main">
+  <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="tsg-h1">
+    <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div class="tsg-wrap" style="position:relative;padding-top:56px;padding-bottom:10px;">
+      <div class="tsg-hero-grid">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">TECHNICAL SALES GUIDE · FOR CHEMICAL AND INGREDIENT DISTRIBUTORS</div>
+          <h1 id="tsg-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;">Every salesperson answers like your best technical manager.</h1>
+          <p style="font-size:19px;line-height:1.55;color:#AEB8C6;max-width:560px;margin-top:20px;">Ask for a product by application and condition. Get a ranked answer with cost per tonne, landed cost and registrations by country, with its source. The interface and website concierge work in Arabic.</p>
+          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;"><a href="#demo" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Request a demo →</span></a><a href="#jobs" class="tsg-link" style="font-size:16px;">See six jobs it does</a></div>
+        </div>
+        <div><div data-tsg-scene="a" data-title="Heat-stress ranking at a broiler mill"></div></div>
+      </div>
+      <div class="tsg-proof"><span><b>466</b> products</span><span><b>147</b> suppliers</span><span><b>8</b> industries</span><span><b>10</b> interface languages, Arabic included</span></div>
+      <ol class="tsg-steps" aria-label="How it works"><li>Start from the catalogue</li><li>Add your principals’ documents</li><li>Ask at the mill</li><li>Flag a wrong answer, it is reviewed</li></ol>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="jobs" aria-labelledby="jobs-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">WHAT IT DOES</div>
+      <h2 class="tsg-h2" id="jobs-h">What can the Technical Sales Guide do for a distributor?</h2>
+      <p class="tsg-lead">Technical answers sit with a few managers and in folders of PDFs. Six jobs, each shown with sample figures. Press pause on any of them.</p>
+      <div class="tsg-tabs" role="tablist" aria-label="Six jobs"><button type="button" role="tab" class="tsg-tab" id="tab-find" aria-controls="panel-find" aria-selected="false" data-tsg-tab>Find and Match</button><button type="button" role="tab" class="tsg-tab" id="tab-library" aria-controls="panel-library" aria-selected="false" data-tsg-tab data-default>Library</button><button type="button" role="tab" class="tsg-tab" id="tab-regulatory" aria-controls="panel-regulatory" aria-selected="false" data-tsg-tab>Registrations</button><button type="button" role="tab" class="tsg-tab" id="tab-portal" aria-controls="panel-portal" aria-selected="false" data-tsg-tab>Principal portal</button><button type="button" role="tab" class="tsg-tab" id="tab-concierge" aria-controls="panel-concierge" aria-selected="false" data-tsg-tab>Concierge</button><button type="button" role="tab" class="tsg-tab" id="tab-studio" aria-controls="panel-studio" aria-selected="false" data-tsg-tab>Document Studio</button></div>
+      <div class="tsg-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find">
+  <div><h3>How do I find the right product for an application and condition?</h3><p>Pick an application and a condition, such as heat stress in broilers. The Guide ranks products from every supplier in the catalogue for that condition, performance first, with the commercial numbers beside them.</p><ul><li>Dose, cost in use and landed cost sit next to each product.</li><li>Competitor equivalents and Replace, for when a supply line fails or a customer asks for another brand.</li><li>Feed savings from enzyme matrix values, and a mycotoxin risk advisor.</li></ul><p class="tsg-story">A rep at a Saudi broiler mill asks for a heat-stress solution and gets products from three principals, ranked.</p></div>
+  <div><div data-tsg-scene="a" data-title="Heat-stress ranking at a broiler mill"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A rep types an application and condition. Three products from three principals appear in ranked order with dose, cost in use per tonne of feed and landed cost, and the sources are listed underneath. A competitor equivalent is found and Replace swaps Principal A for Principal C, saving $0.40 per tonne of feed. All figures are samples.</p></details></div>
+</div><div class="tsg-panel" role="tabpanel" id="panel-library" aria-labelledby="tab-library">
+  <div><h3>Can I see which page of a data sheet an answer came from?</h3><p>Upload the data sheets, safety data sheets and certificates your principals send. Answers cite the document and the page.</p><ul><li>The page is highlighted, so a technical manager can check the answer against the sheet.</li><li>Certificates and documents carry expiry dates, and the owner gets an alert before they lapse.</li><li>Attributes such as moisture or shelf life are extracted into a review queue. Nothing reaches a product page until a person approves it.</li></ul><p class="tsg-story">A technical manager uploads a principal’s data sheet and asks for the maximum inclusion rate in layer feed. The answer points to page 3.</p></div>
+  <div><div data-tsg-scene="b" data-title="Uploading a data sheet and getting a cited answer"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A PDF data sheet is added and opens at page 1. A question about layer inclusion rates is typed. The answer appears with a citation to page 3 and the matching lines are highlighted. An expiry alert and an extraction waiting for review follow. All figures are samples.</p></details></div>
+</div><div class="tsg-panel" role="tabpanel" id="panel-regulatory" aria-labelledby="tab-regulatory">
+  <div><h3>How do I track product registrations and expiry dates by country?</h3><p>Regulations, key dates and registrations sit against each product and country, with the holder and the document checklist. A reminder reaches the owner before an expiry.</p><ul><li>Rules and key dates per country, with the products and customers each rule reaches.</li><li>A registration record per product and country: holder, number, expiry and documents.</li><li>An expiry reminder that creates a renewal task.</li></ul><p class="tsg-story">A registration in Saudi Arabia is 60 days from expiry. The regulatory team gets an alert and a renewal task, and sales sees which customers buy the product.</p></div>
+  <div><div data-tsg-scene="d" data-title="A registration expiry alert and renewal task"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A table of registrations by product and country. One row for Saudi Arabia turns amber at 60 days. An alert appears, a renewal task is created with a checklist in which one document is missing, and three customers who buy the product are listed. All figures are samples.</p></details></div>
+</div><div class="tsg-panel" role="tabpanel" id="panel-portal" aria-labelledby="tab-portal">
+  <div><h3>How do I show a principal where its products win and lose?</h3><p>Principals log in to a live, permissioned view of their own products: what you proposed, won and lost, and why. The review packs you can already produce for each principal by country become a screen the principal opens at any time.</p><ul><li>Wins, losses and recorded loss reasons by country and product.</li><li>Each principal sees its own products and nothing else.</li><li>The competitor is named where the rep recorded it.</li></ul><p class="tsg-story">A principal’s regional manager opens the portal and sees wins, losses and loss reasons without asking for a report.</p></div>
+  <div><div data-tsg-scene="c" data-title="A principal’s regional manager in the portal"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A principal portal limited to one principal’s products. Counts of proposals, wins and losses rise. Bars show results by country and reasons for lost deals. A note says a competitor was named on five of nine losses. All figures are samples.</p></details></div>
+</div><div class="tsg-panel" role="tabpanel" id="panel-concierge" aria-labelledby="tab-concierge">
+  <div><h3>How do I turn website questions into routed leads?</h3><p>A product advisor on your website answers visitors from your catalogue and your principals’ documents, with sources. When a visitor wants a person, it captures the details and sends the lead to the right team.</p><ul><li>Visitors ask in their own language, including Arabic.</li><li>Leads arrive with the product, application and place already filled in.</li><li>You see what visitors ask for most, and the gaps in your range.</li></ul><p class="tsg-story">A visitor asks in Arabic about heat stress in broilers, agrees to be contacted, and becomes a lead routed to the Eastern Province team.</p></div>
+  <div><div data-tsg-scene="e" data-title="A website visitor asks in Arabic and becomes a routed lead"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A chat on a website. The visitor writes in Arabic about heat stress in broilers, with an English gloss under each line. The advisor answers with a source and offers a contact from the Eastern Province team. The visitor agrees, and a lead card shows the interest, language and place. All figures are samples.</p></details></div>
+</div><div class="tsg-panel" role="tabpanel" id="panel-studio" aria-labelledby="tab-studio">
+  <div><h3>How do I make co-branded data sheets and application guides from approved sources?</h3><p>Choose a document type and the Guide drafts it from the catalogue and your library, in your branding or with the principal’s.</p><ul><li>Branded and co-branded data sheets, application guides and comparison sheets.</li><li>Regulatory statements that quote the registration record.</li><li>Content drafts for your website, written from sourced facts.</li><li>Every draft goes to a person for review before it is used.</li></ul><p class="tsg-story">A marketing lead produces a data sheet with the principal’s logo beside the distributor’s, with dose, shelf life and registration filled in from the record.</p></div>
+  <div><div data-tsg-scene="f" data-title="Document Studio producing a co-branded data sheet"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A data sheet template is chosen with co-branding and an English option. A page builds up with two logos, a title, specification rows, a registration line and a sources footer. An export button and a draft-for-review status follow. All figures are samples.</p></details></div>
+</div>
+      <div class="tsg-cta-strip"><p>See these six jobs run on your own principals and markets.</p><a href="#demo" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Request a demo →</span></a></div>
+    </div>
+  </section>
+
+  <section class="tsg-sec" aria-labelledby="more">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">ALSO IN THE PRODUCT</div>
+      <h2 class="tsg-h2" id="more">What else is in the Technical Sales Guide?</h2>
+      <div class="tsg-mini"><div><b>Light CRM</b><span>Accounts, opportunities and territories, with import from Dynamics 365 and Salesforce. Lost deals carry a reason.</span></div><div><b>Learning paths and quizzes</b><span>New reps learn the range and the rules in short paths with quizzes.</span></div><div><b>Flag this answer</b><span>One click sends a doubtful answer for review. Fixes go in with the daily review.</span></div><div><b>Offline account briefs</b><span>Save a brief for a plant visit with no signal. Saved briefs are removed when the person signs out.</span></div><div><b>Product passport and data quality</b><span>One page per product with a completeness score, gaps and duplicates called out, and a feed to your website, CRM and ERP.</span></div><div><b>Formulation tools</b><span>Feed savings from enzyme matrix values, and a mycotoxin risk advisor.</span></div></div>
+    </div>
+  </section>
+
+  <section class="tsg-sec" aria-labelledby="gulf">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">GULF AND INTEGRATIONS</div>
+      <h2 class="tsg-h2" id="gulf">Does it work in Arabic and across the GCC, and does it connect to our CRM?</h2>
+      <p class="tsg-lead">The interface and the website concierge work in Arabic. Product content is in English today.</p>
+      <div class="tsg-grid tsg-g2">
+        <div class="tsg-card"><h3>Arabic and the Gulf</h3><ul>
+          <li lang="mul">Interface in ten languages: English · Nederlands · Français · Deutsch · Español · Italiano · Português · العربية · हिन्दी · ગુજરાતી. Arabic displays right to left.</li>
+          <li>Registrations tracked per product and country, with expiry reminders.</li>
+          <li>Landed cost reflects freight lanes into the region.</li>
+          <li>Principal review packs split by country.</li></ul></div>
+        <div class="tsg-card"><h3>Connects to what you run</h3><ul>
+          <li>Import accounts and opportunities from Dynamics 365 or Salesforce. The Guide stays a light CRM for technical selling.</li>
+          <li>REST API with an OpenAPI 3.1 description and signed webhooks: catalogue, rankings, accounts, opportunities, places and shipments. An ERP reference travels with each order.</li>
+          <li>CSV export, and a company export on request.</li>
+          <li>Product passport feeds to your website, CRM and ERP.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tsg-band tsg-light" aria-labelledby="proof">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">WHO IS BEHIND IT</div>
+      <h2 class="tsg-h2" id="proof">Who builds it, and how do you know an answer is right?</h2>
+      <div class="tsg-grid tsg-g3">
+        <div class="tsg-card"><div class="tsg-founder"><img src="assets/founder.jpg" alt="Tarun Bulchandani, founder of Arithim" width="96" height="96" loading="lazy"><div><h3>Tarun Bulchandani</h3><p style="font-size:14px;">Founder, Arithim, London</p></div></div><p style="margin-top:14px;">Tarun founded Arithim in London. He has worked on enterprise systems, SAP ECC environments and regulated industry workflows. <a class="tsg-link" href="about.html">About Arithim</a></p></div>
+        <div class="tsg-card"><h3>Each rating shows its basis</h3><p>Each rating shows its basis, such as a supplier source, an expert draft or a confirmed review. Anyone can flag an answer, and flagged answers are reviewed each working day and corrected.</p></div>
+        <div class="tsg-card"><h3>Start with a scoped pilot</h3><p>Eight weeks, one division, one country. We load your principals’ products, your team asks its real questions, and we agree what success looks like at the start.</p><p style="margin-top:14px;"><a class="tsg-link" href="#demo">Ask about a pilot</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tsg-light" id="security" aria-labelledby="sec" style="padding:0 0 76px;">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">SECURITY AND TRUST</div>
+      <h2 class="tsg-h2" id="sec">Is the Technical Sales Guide secure enough for our principals’ data?</h2>
+      <p class="tsg-lead">What is in place on 22 October 2026, and what is not yet. Your security team can ask for the questionnaire answers and the data processing agreement.</p>
+      <div class="tsg-acc"><details open><summary>Is my data separate from other customers?</summary><div class="ans"><p>Each customer's data is separated inside the database by row-level security. It is enabled and enforced on every table that holds customer data. Arithim audited all 106 tables on 19 October 2026.</p><p>People are limited by role, and sales roles are limited by territory. There are six roles.</p></div></details><details><summary>How do people sign in?</summary><div class="ans"><p>There are no passwords in the product. People sign in with an emailed link or a one-time code. Two-step sign-in with an authenticator app is available, and a company can require it for its administrators or for everyone. The default is optional.</p><p>Each company can set an idle timeout and a maximum session length. People can sign out of every device, and administrators can end a person’s sessions.</p></div></details><details><summary>Can I see who did what?</summary><div class="ans"><p>Administrators can see an activity log of changes, imports, exports, sign-in events and security changes for their company, and export it. The application cannot edit or delete the log, and each entry is chained to the one before it, so tampering is detectable.</p></div></details><details><summary>How do the API and webhooks protect data?</summary><div class="ans"><p>Administrators create API keys with scopes and an expiry. Keys are stored only as hashes, and a key stops working when its creator leaves, is demoted or is deactivated. Webhook calls are signed with HMAC-SHA256, sent only to https addresses, and blocked from reaching private network addresses.</p></div></details><details><summary>How is the application itself secured?</summary><div class="ans"><p>Database queries use bound parameters, and user text is rendered as text. CSV exports neutralise spreadsheet formula injection. The only file uploads are CSV or text files for import, which are read and not stored.</p><p>Arithim reviewed the whole codebase for security on 19 October 2026 and fixed the findings in code. That was an internal review, not an independent penetration test. The codebase has an automated test suite of more than 200 test files, including tests for tenant isolation and access rules.</p></div></details><details><summary>Where is my data hosted, and who processes it?</summary><div class="ans"><p>The application runs in Vercel's Frankfurt region (fra1) and the database is Supabase in Frankfurt (eu-central-1), as of 22 October 2026. Arithim acts as a processor for customer personal data, offers a data processing agreement, and gives 30 days’ notice of changes to this list.</p><div class="tsg-scroll"><table class="tsg-table"><thead><tr><th scope="col">Sub-processor</th><th scope="col">Purpose</th><th scope="col">Data it receives</th></tr></thead><tbody><tr><td>Supabase</td><td>Database, sign-in and sessions</td><td>All customer data</td></tr><tr><td>Vercel</td><td>Hosting and server functions</td><td>Requests and responses, application logs</td></tr><tr><td>OpenStreetMap Nominatim</td><td>Address search when a place is added</td><td>Address text only</td></tr><tr><td>Google Maps Platform</td><td>Optional address search, off by default</td><td>Address text only</td></tr></tbody></table></div></div></details><details><summary>Is my data sent to an AI provider?</summary><div class="ans"><p>AI features are optional and off until a customer turns them on. Arithim does not currently send customer data to an AI provider. Before it does, the provider is added to the published sub-processor list with 30 days' notice. When AI drafting is used, its output is a proposal that a person approves before anything is saved.</p></div></details><details><summary>What happens to my data over time?</summary><div class="ans"><p>Companies can set retention periods, and the system deletes data past them each day. Administrators can export and erase a person’s data. On request, Arithim exports a company’s data.</p></div></details><details><summary>What policies and incident plan do you have?</summary><div class="ans"><p>Arithim has written security, access control, data protection, incident response, continuity, secure development and supplier policies, available to customers under NDA. The incident response plan has a target of telling affected customers within 24 hours of confirming an incident. The plan has not yet been rehearsed.</p></div></details><details><summary>Are you ISO 27001 certified?</summary><div class="ans"><p>Not yet. Arithim is preparing the Technical Sales Guide for ISO/IEC 27001 certification and is not yet certified.</p><p>Not yet available: single sign-on for enterprise identity providers, and an independent penetration test.</p></div></details><details><summary>Where do I report a vulnerability or ask for the data processing agreement?</summary><div class="ans"><p>Email <a class="tsg-link" href="mailto:security@arithim.com">security@arithim.com</a>. Ask there for the DPA, the sub-processor list and the policy pack.</p></div></details></div>
+      <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;"><a href="#demo" style="display:inline-flex;background:#0A1526;color:#F5F1E8;font-weight:600;font-size:16px;padding:15px 28px;border-radius:999px;">Request a demo and the security pack</a><span style="font-size:15px;color:#3B465A;">Or write to <a class="tsg-link" href="mailto:security@arithim.com">security@arithim.com</a></span></div>
+    </div>
+  </section>
+
+  <section class="tsg-sec" aria-labelledby="faq">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">FREQUENTLY ASKED</div>
+      <h2 class="tsg-h2" id="faq">Questions about the Technical Sales Guide</h2>
+      <div class="tsg-faq"><details><summary>What is a technical sales guide for chemical and ingredient distributors?</summary><div class="ans"><p>It is a system that lets a salesperson answer a technical question from a customer without calling a specialist. The Technical Sales Guide holds a catalogue of 466 products from 147 suppliers across 8 industries. It ranks products for an application and condition, shows dose, cost in use and landed cost, lists competitor equivalents and substitutes, and tracks the regulations and registrations that apply.</p></div></details><details><summary>How is the Technical Sales Guide different from Copilot or ChatGPT over our SharePoint?</summary><div class="ans"><p>A chat assistant over a document folder can quote a data sheet. The Guide adds structured data that a folder does not have: a catalogue that spans suppliers and their competitors, ranking by performance for an application, cost in use and landed cost, registrations per product and country, and a daily review of flagged answers. Every answer shows its sources.</p></div></details><details><summary>Does it work with Copilot?</summary><div class="ans"><p>You can keep Copilot for chat over your own files. The Guide adds ranked, cross-supplier answers with cost and registrations, and other tools can request its rankings through the REST API. There is no Copilot connector yet.</p></div></details><details><summary>Does the Technical Sales Guide work in Arabic?</summary><div class="ans"><p>The interface is available in ten languages, including Arabic, which displays right to left. The website concierge takes questions in Arabic. Product and catalogue content is in English today.</p></div></details><details><summary>Where is our data hosted?</summary><div class="ans"><p>The application runs in Vercel&#x27;s Frankfurt region (fra1) and the database is Supabase in Frankfurt (eu-central-1), as of 22 October 2026. Each customer&#x27;s data is separated inside the database by row-level security.</p></div></details><details><summary>Is our data sent to an AI provider?</summary><div class="ans"><p>AI features are optional and off until a customer turns them on. Arithim does not currently send customer data to an AI provider. Before it does, the provider is added to the published sub-processor list with 30 days&#x27; notice.</p></div></details><details><summary>Can principals see our data in the principal portal?</summary><div class="ans"><p>A principal sees a live, permissioned view of its own products only: where they were proposed, won and lost, and the reasons recorded. It does not see other principals or the rest of your pipeline. You decide who gets access.</p></div></details><details><summary>Does it connect to Dynamics 365 or Salesforce?</summary><div class="ans"><p>You can import accounts and opportunities from Dynamics 365 and Salesforce using ready-made import settings. A REST API with scoped keys and signed webhooks lets you keep accounts and opportunities in step with a CRM or ERP, read the catalogue and request rankings.</p></div></details><details><summary>How do you keep the product data accurate?</summary><div class="ans"><p>Answers show their sources. Each rating shows its basis, such as a supplier source, an expert draft or a confirmed review. Anyone can flag an answer, and flagged answers are reviewed each working day and corrected. Regulatory dates and registration expiries raise alerts for the person who owns them.</p></div></details><details><summary>Is Arithim certified to ISO 27001?</summary><div class="ans"><p>Not yet. Arithim is preparing the Technical Sales Guide for ISO/IEC 27001 certification and is not yet certified. The security section lists the controls in place today and what is still to come.</p></div></details><details><summary>How do we get started, and what does it cost?</summary><div class="ans"><p>Request a demo. Arithim provisions each customer directly, so there is no self-service sign-up. A pilot runs for eight weeks on one division in one country, using your principals&#x27; products and your team&#x27;s real questions. Pricing depends on the modules and the number of users, and we give you a figure in the demo conversation.</p></div></details></div>
+    </div>
+  </section>
+
+  <section id="demo" data-hero style="position:relative;overflow:hidden;padding:84px 0 90px;margin-top:70px;border-top:1px solid rgba(245,241,232,0.06);" aria-labelledby="cta">
+    <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+    <div class="tsg-wrap" style="position:relative;">
+      <div class="tsg-demo"><div class="tsg-demo-in">
+        <div>
+          <div class="tsg-eyebrow">REQUEST A DEMO</div>
+          <h2 id="cta" class="tsg-hero-h" style="font-weight:700;font-size:38px;line-height:1.02;letter-spacing:-0.035em;">See it with your own principals.</h2>
+          <p style="font-size:17px;line-height:1.6;color:#AEB8C6;margin-top:16px;">Tell us your range and your markets. We will set up a demo with your products and your questions, and we can scope an eight-week pilot on one division in one country.</p>
+          <p class="tsg-note" style="margin-top:18px;">We reply within one working day. Prefer email? hello@arithim.com</p>
+        </div>
+        <div>
+          <form class="tsg-form" data-demo-form>
+            <input type="hidden" name="type" value="demo">
+            <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <div><label for="d-name">NAME</label><input id="d-name" name="name" type="text" required autocomplete="name"></div>
+            <div><label for="d-email">WORK EMAIL</label><input id="d-email" name="email" type="email" required autocomplete="email"></div>
+            <div><label for="d-co">COMPANY</label><input id="d-co" name="company" type="text" required autocomplete="organization"></div>
+            <div><label for="d-country">COUNTRY</label><input id="d-country" name="country" type="text" required autocomplete="country-name"></div>
+            <div class="full"><label for="d-role">ROLE</label><input id="d-role" name="role" type="text" required autocomplete="organization-title" placeholder="For example, technical manager"></div>
+            <div class="full"><label for="d-note">NOTE (OPTIONAL)</label><textarea id="d-note" name="note" rows="3" placeholder="Principals, markets or questions you want to see"></textarea></div>
+            <div class="full tsg-ts"></div>
+            <div class="full tsg-err" data-demo-err role="alert"></div>
+            <div class="full"><button type="submit" class="tsg-submit" disabled>Request a demo →</button><p class="tsg-note" style="margin-top:12px;" data-demo-hint>The button unlocks when the human check has loaded.</p><p class="tsg-note" style="margin-top:10px;">We use your details only to reply to this request. The form uses Cloudflare Turnstile to block bots and Resend to deliver your message to our inbox. See the <a class="tsg-link" href="privacy.html">privacy notice</a>.</p></div>
+          </form>
+          <div data-demo-done tabindex="-1" role="status" style="display:none;padding:30px 4px;"><h3 style="font-weight:600;font-size:28px;letter-spacing:-0.02em;margin-bottom:10px;">Thank you.</h3><p style="font-size:16px;line-height:1.6;color:#AEB8C6;">Your request is in. We usually reply within one working day.</p></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+</main>
+
+  <footer style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div style="max-width:1200px;margin:0 auto;padding:40px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;color:#8794A6;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="services.html">← ALL SERVICES</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./site-nav.js').then((m) => { this._stopNav = m.initSiteNav(document); }).catch((e) => console.error('nav load failed', e));
+    import('./tsg-motion.js').then((m) => { this._stopMotion = m.initTsgMotion(document); }).catch((e) => console.error('motion load failed', e));
+    import('./tsg-page.js').then((m) => { this._stopPage = m.initTsgPage(document); }).catch((e) => console.error('page load failed', e));
+  }
+  componentWillUnmount() { ['_stop','_stopNav','_stopMotion','_stopPage'].forEach((k) => { if (this[k]) this[k](); }); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
