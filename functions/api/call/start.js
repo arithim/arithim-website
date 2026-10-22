@@ -1,4 +1,4 @@
-// POST /api/call/start   {turnstileToken, mode: "voice"|"text"}  ->  {callId, token, agentId, mode, ...}
+// POST /api/call/start   {turnstileToken, mode: "voice"|"text"}  ->  {callId, signedUrl, agent, mode, ...}
 //
 // Env: ELEVENLABS_API_KEY, TURNSTILE_SECRET, CALL_MOCK ("1" = mock, NON-production hosts only), CALL_ENV, CALL_IP_SALT (required),
 //      CALL_ALLOWED_ORIGINS. On arithim.com / www.arithim.com a missing secret is a 503, never a mock and never a skipped challenge.
@@ -47,7 +47,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
     // No D1 binding yet. Production must fail closed; previews show the mock flow (nothing is recorded).
     if (isProductionHost(request)) return json(503, { error: "unavailable", fallback: "form" });
     return json(200, {
-      mock: true, callId: "mock-" + newCallId().slice(0, 12), conversationToken: "mock-token", mode,
+      mock: true, callId: "mock-" + newCallId().slice(0, 12), signedUrl: "wss://mock.invalid/mock", mode,
       agent: { id: "mock-agent", name: ROLES["front-desk"]?.displayName || "Front desk" },
       agents: { "mock-agent": ROLES["front-desk"]?.displayName || "Front desk" },
       dynamicVariables: {}, maxSeconds: 900, wrapUpSeconds: 720,
@@ -116,35 +116,29 @@ export async function onRequestPost({ request, env, waitUntil }) {
     return json(500, { error: "unavailable", fallback: "text" });
   }
 
-  // ---- token ----
-  let token, conversationId = null;
+  // ---- signed URL (WebSocket) ----
+  // WebRTC sessions failed on Safari, so both modes use the WebSocket transport with a signed URL. The conversation id is not
+  // known yet: the LLM endpoint binds it to the call row on the first request (functions/api/call/llm/[role].js), so
+  // el_conversation_id stays NULL until then. expireStaleCalls / the webhook already cope with a NULL id.
+  let signedUrl;
+  const conversationId = null;
   if (mock) {
-    token = "mock-" + callId.slice(0, 16);
+    signedUrl = "wss://mock.invalid/" + callId.slice(0, 16);
   } else {
     try {
       const r = await fetch(
-        "https://api.elevenlabs.io/v1/convai/conversation/token?agent_id=" + encodeURIComponent(agentId) + "&environment=" + (envName(env, request) === "preview" ? "staging" : "production"),
+        "https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=" + encodeURIComponent(agentId) + "&environment=" + (envName(env, request) === "preview" ? "staging" : "production"),
         { headers: { "xi-api-key": env.ELEVENLABS_API_KEY }, signal: AbortSignal.timeout(8000) }
       );
-      if (!r.ok) throw new Error("token " + r.status);
+      if (!r.ok) throw new Error("signed url " + r.status);
       const j = await r.json();
-      token = j.token;
-      conversationId = j.conversation_id || null;
-      if (!token) throw new Error("no token");
+      signedUrl = j.signed_url;
+      if (!signedUrl) throw new Error("no signed url");
     } catch (e) {
-      console.error("elevenlabs token failed", e);
+      console.error("elevenlabs signed url failed", e);
       await run(db, "UPDATE calls SET status = 'failed' WHERE call_id = ?", callId);
       await rollback();
       return json(502, { error: "unavailable", fallback: "text" });
-    }
-    if (conversationId) {
-      try { await run(db, "UPDATE calls SET el_conversation_id = ? WHERE call_id = ?", conversationId, callId); }
-      catch (e) {
-        console.error("bind conversation", e);
-        try { await run(db, "UPDATE calls SET status = 'failed' WHERE call_id = ?", callId); } catch {}
-        await rollback();
-        return json(500, { error: "unavailable", fallback: "text" });
-      }
     }
   }
 
@@ -156,7 +150,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   agents[agentId] = nameOf("front-desk");
   return json(200, {
     callId,
-    conversationToken: token,
+    signedUrl,
     agent: { id: agentId, name: nameOf("front-desk") },
     agents,
     mode,

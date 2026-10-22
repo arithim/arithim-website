@@ -18,7 +18,7 @@ test("start: mock mode returns the documented contract and creates a row", async
   const j = await res.json();
   assert.equal(j.mock, true);
   assert.match(j.callId, /^[0-9a-f]{32}$/);
-  assert.ok(j.conversationToken);
+  assert.ok(j.signedUrl); assert.ok(!("conversationToken" in j));
   assert.equal(j.agent.name, "Hannah");
   assert.equal(j.agents[j.agent.id], "Hannah");
   assert.deepEqual(j.dynamicVariables, { call_id: j.callId });
@@ -67,17 +67,17 @@ test("start: third call from one IP gets 429; budget refusals release earlier re
   assert.equal(g.r, 30);
 });
 
-test("start: real mode calls the ElevenLabs token endpoint and stores the conversation id", async () => {
+test("start: real mode requests an ElevenLabs signed URL and leaves the conversation id for the LLM endpoint to bind", async () => {
   const db = makeDb(); const env = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x", CALL_IP_SALT: SALT };
   const m = mockFetch([], { other: async (u) => u.includes("turnstile")
     ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" }))
-    : new Response(JSON.stringify({ token: "tok_1", conversation_id: "conv_77" })) });
+    : new Response(JSON.stringify({ signed_url: "wss://api.elevenlabs.io/v1/convai/conversation?agent_id=agent_prod&conversation_signature=sig_1" })) });
   try {
     const j = await (await start({ request: startReq({ mode: "text", turnstileToken: "t" }, {}, "arithim.com"), env })).json();
-    assert.equal(j.conversationToken, "tok_1"); assert.equal(j.agent.id, "agent_prod"); assert.ok(!j.mock);
+    assert.match(j.signedUrl, /^wss:\/\/api\.elevenlabs\.io\/.*sig_1/); assert.ok(!("conversationToken" in j)); assert.equal(j.conversationId, null); assert.equal(j.agent.id, "agent_prod"); assert.ok(!j.mock);
     const el = m.calls.find((c) => c.url.includes("elevenlabs"));
-    assert.match(el.url, /agent_id=agent_prod/); assert.equal(el.init.headers["xi-api-key"], "xi");
-    assert.equal((await db.prepare("SELECT el_conversation_id AS c FROM calls").first()).c, "conv_77");
+    assert.match(el.url, /get-signed-url\?agent_id=agent_prod/); assert.equal(el.init.headers["xi-api-key"], "xi");
+    assert.equal((await db.prepare("SELECT el_conversation_id AS c FROM calls").first()).c, null);
   } finally { m.restore(); }
 });
 
@@ -277,7 +277,7 @@ test("start: no CALLS_DB -> mock on preview hosts, 503 on production", async () 
   assert.equal(prev.status, 200);
   const j = await prev.json();
   assert.equal(j.mock, true);
-  assert.ok(j.callId && j.conversationToken);
+  assert.ok(j.callId && j.signedUrl);
   for (const h of ["arithim.com", "www.arithim.com"]) {
     const r = await start({ request: req(h), env: {} });
     assert.equal(r.status, 503);
@@ -366,7 +366,7 @@ test("M6: CALL_IP_SALT is required in production (503) and stored keys are salte
   const db = makeDb(); const base = { CALLS_DB: db, ELEVENLABS_API_KEY: "xi", TURNSTILE_SECRET: "x" };
   assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: base })).status, 503);
   assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: { ...base, CALL_IP_SALT: "short" } })).status, 503);
-  const m = mockFetch([], { other: async (u) => u.includes("turnstile") ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" })) : new Response(JSON.stringify({ token: "tok", conversation_id: "conv_s" })) });
+  const m = mockFetch([], { other: async (u) => u.includes("turnstile") ? new Response(JSON.stringify({ success: true, action: "call-start", hostname: "arithim.com" })) : new Response(JSON.stringify({ signed_url: "wss://x.invalid/s" })) });
   try {
     assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }, {}, "arithim.com"), env: { ...base, CALL_IP_SALT: SALT } })).status, 200);
     const { ipKey } = await import("../../../functions/_lib/d1.js");

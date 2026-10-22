@@ -7,6 +7,7 @@
   window.__callus = true;
 
   var SDK_FILE = 'vendor/elevenlabs-client-1.29.0.js';
+  var LIBSAMPLERATE_FILE = 'vendor/libsamplerate.worklet-2.1.2.js';
   var TURNSTILE_SITEKEY = '0x4AAAAAAFddwijZvXOLiEH1';
   var TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
   var CONNECT_TIMEOUT_MS = 8000;
@@ -44,7 +45,7 @@
   /* ---------- state ---------- */
   var S = {
     open: false, view: 'intro', mode: 'voice', opener: null,
-    token: '', tsReady: false, tsFailed: false, tsId: null,
+    token: '', tsReady: false, tsFailed: false, tsId: null, tsPending: false, unlockCtx: null, micProbe: null,
     callId: null, conv: null, mock: false, mockTimers: [], agentName: 'Hannah', roster: {},
     muted: false, started: 0, tick: null, wake: null, connectTimer: null, ended: false, confirmClose: false,
     hadCall: false, helpfulSent: false, summaryText: '', waitingReply: false
@@ -183,19 +184,46 @@
       }, 100);
     });
   }
+  // A Turnstile token is single use. Every consumer takes it through obtainToken(), which clears it; the next attempt resets the widget (on screen) and waits up to 20 s for a new one, so no attempt (retry, switch to text, try again) ever posts a token that was already spent.
   function renderTurnstile() {
-    if (S.tsId != null) { try { window.turnstile.reset(S.tsId); } catch (e) {} return; }
+    if (S.tsId != null) { S.tsPending = true; try { window.turnstile.reset(S.tsId); } catch (e) {} return; }
+    S.tsPending = true;
     loadTurnstile().then(function () {
       if (S.tsId != null) return;
       S.tsId = window.turnstile.render(tsEl, {
         sitekey: TURNSTILE_SITEKEY, action: 'call-start', theme: 'dark',
-        callback: function (t) { S.token = t; S.tsReady = true; S.tsFailed = false; updateStart(); },
-        'expired-callback': function () { S.token = ''; S.tsReady = false; updateStart(); },
-        'error-callback': function () { S.token = ''; S.tsReady = false; S.tsFailed = true; updateStart(); return true; }
+        callback: function (t) { S.token = t; S.tsReady = true; S.tsFailed = false; S.tsPending = false; updateStart(); },
+        'expired-callback': function () { S.token = ''; S.tsReady = false; S.tsPending = false; updateStart(); },
+        'error-callback': function () { S.token = ''; S.tsReady = false; S.tsFailed = true; S.tsPending = false; updateStart(); return true; }
       });
-    }).catch(function () { S.tsFailed = true; updateStart(); });
+    }).catch(function () { S.tsFailed = true; S.tsPending = false; updateStart(); });
   }
-  function resetTurnstile() { S.token = ''; S.tsReady = false; try { if (S.tsId != null) window.turnstile.reset(S.tsId); } catch (e) {} }
+  // Resolves with a fresh token (or '' on a local preview where the check cannot run). The widget is moved into the connecting
+  // view while we wait, because a Turnstile widget that is detached from the page never finishes a new challenge.
+  function obtainToken() {
+    return new Promise(function (res, rej) {
+      function take() { var t = S.token; S.token = ''; S.tsReady = false; S.tsPending = false; updateStart(); res(t); }
+      if (S.tsReady && S.token) return take();
+      if (isLocal && S.tsFailed) return res('');
+      var shown = false, n = 0;
+      (function wait() {
+        if (!S.open || S.view !== 'connecting') { var ea = new Error('abort'); ea.kind = 'abort'; return rej(ea); }
+        if (S.tsReady && S.token) return take();
+        if (isLocal && (S.tsFailed || n * 200 > 2500)) return res('');
+        if (!shown) {
+          shown = true;
+          bodyEl.appendChild(h('p', { class: 'callus-note', role: 'status', text: 'Checking you are human…' }));
+          bodyEl.appendChild(tsEl);
+          if (S.tsId == null) renderTurnstile();
+          else if (!S.tsPending) { S.tsReady = false; renderTurnstile(); }
+        }
+        // Still nothing after 8 s: ask for a new challenge once more now that the widget is on screen.
+        if (n === 40) { S.tsReady = false; renderTurnstile(); }
+        if (++n > 100) { var et = new Error('tscheck'); et.kind = 'tscheck'; return rej(et); }
+        setTimeout(wait, 200);
+      })();
+    });
+  }
 
   var startBtn, textBtn, tsHint;
   function updateStart() {
@@ -234,7 +262,8 @@
     var b = setView('fallback');
     b.appendChild(h('p', { class: 'callus-err', role: 'alert', text: msg }));
     var row = h('div', { class: 'callus-row' });
-    if (opts.text) row.appendChild(h('button', { class: 'callus-btn primary', type: 'button', onclick: chatByText }, 'Chat by text instead'));
+    if (opts.retry) row.appendChild(h('button', { class: 'callus-btn primary', type: 'button', onclick: function () { startFlow(S.mode); } }, 'Try again'));
+    if (opts.text) row.appendChild(h('button', { class: 'callus-btn' + (opts.retry ? '' : ' primary'), type: 'button', onclick: chatByText }, 'Chat by text instead'));
     row.appendChild(h('a', { class: 'callus-btn' + (opts.text ? '' : ' primary'), href: CONTACT_URL }, 'Use the contact form'));
     b.appendChild(row);
     b.appendChild(h('p', { class: 'callus-note' }, 'Or email ', h('a', { href: 'mailto:hello@arithim.com' }, 'hello@arithim.com'), '.'));
@@ -242,22 +271,8 @@
     var f = focusables(); (f[0] || panel).focus();
   }
 
-  // "Chat by text instead" from the fallback screen: start the text chat directly. The human check was reset when the
-  // voice attempt ended, so wait (up to 15 s) for the fresh token, showing the check in case it needs a click.
-  function chatByText() {
-    if (S.tsReady || (isLocal && S.tsFailed)) return startFlow('text');
-    S.mode = 'text';
-    showConnecting();
-    bodyEl.appendChild(tsEl);
-    renderTurnstile();
-    var n = 0;
-    (function wait() {
-      if (!S.open || S.view !== 'connecting' || S.mode !== 'text') return;
-      if (S.tsReady || (isLocal && S.tsFailed)) return startFlow('text');
-      if (++n > 75) return showFallback('The human check did not complete. Please use the contact form instead.');
-      setTimeout(wait, 200);
-    })();
-  }
+  // "Chat by text instead" from the fallback screen: startFlow fetches a fresh human-check token itself (waits up to 20 s).
+  function chatByText() { startFlow('text'); }
 
   function showConnecting() {
     titleEl.textContent = S.mode === 'voice' ? 'Connecting…' : 'Opening chat…';
@@ -356,30 +371,36 @@
     S.mode = mode; S.ended = false; S.muted = false; S.helpfulSent = false; S.mock = false;
     S.agentName = 'Hannah'; S.callId = null; S.hadCall = true;
     trReset();
-    var token = S.token;
     showConnecting();
     var micStep = Promise.resolve();
     var forceMock = isLocal && /callus-mock/.test(location.hash); // local review only: skips mic and API
-    if (forceMock) { S.mock = true; S.callId = 'mock-' + Date.now().toString(36); resetTurnstile(); return setTimeout(function () { if (S.view === 'connecting') runMock(); }, 600); }
+    if (forceMock) { S.mock = true; S.callId = 'mock-' + Date.now().toString(36); return setTimeout(function () { if (S.view === 'connecting') runMock(); }, 600); }
     if (mode === 'voice') {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.RTCPeerConnection) {
         return showFallback('Your browser cannot take voice calls here. You can chat by text, or use the contact form.', { text: true });
       }
       tr('mic_request');
+      // Safari only lets audio start inside a user gesture, and the SDK builds its AudioContext after the network round trip.
+      // Unlock one here, synchronously in the click, and keep the mic probe stream open until the session is up.
+      unlockAudio();
       micStep = navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
         tr('mic_granted');
-        stream.getTracks().forEach(function (t) { t.stop(); });
+        stopMicProbe(); S.micProbe = stream;
         probeAudioContext();
       });
     }
+    var tokenStep = obtainToken();
+    tokenStep.catch(function () {});
     micStep.then(function () {
+      return tokenStep;
+    }, function (err) {
+      tr('mic_denied', String(err && err.name || 'unknown'));
+      var e = new Error('mic'); e.mic = true; e.name = err && err.name; throw e;
+    }).then(function (token) {
       return fetch('/api/call/start', {
         method: 'POST', headers: { 'content-type': 'application/json' }, credentials: 'same-origin',
         body: JSON.stringify({ turnstileToken: token, mode: mode })
       });
-    }, function (err) {
-      tr('mic_denied', String(err && err.name || 'unknown'));
-      var e = new Error('mic'); e.mic = true; e.name = err && err.name; throw e;
     }).then(function (res) {
       tr('start_post', res.status);
       // Local review only: a static server has no /api/call/start (404), or answers POST with 405 / 501 (python http.server).
@@ -395,17 +416,15 @@
       if (!res.ok) { var e4 = new Error('http ' + res.status); e4.kind = 'http'; throw e4; }
       return res.json();
     }).then(function (data) {
-      resetTurnstile();
       if (S.view !== 'connecting') return;
       if (data.agents) S.roster = data.agents;
       if (data.agent && data.agent.name) S.agentName = data.agent.name;
       if (data.mock) { S.mock = true; S.callId = data.callId || 'mock-' + Date.now().toString(36); return runMock(); }
-      if (!data.callId || !(data.conversationToken || data.signedUrl)) { var e = new Error('bad'); e.kind = 'http'; throw e; }
+      if (!data.callId || !data.signedUrl) { var e = new Error('bad'); e.kind = 'http'; throw e; }
       S.callId = data.callId;
       tr('call_id');
       return runSdk(data);
     }).catch(function (err) {
-      resetTurnstile();
       handleStartError(err);
     });
   }
@@ -424,6 +443,8 @@
       case 'off': return showFallback('Calls are switched off at the moment. Please use the contact form and we will reply within one working day.');
       case 'budget': return showFallback('We have reached our call limit for now. Please use the contact form and we will reply within one working day.');
       case 'verify': return showIntro('The human check did not pass. Please try again.');
+      case 'tscheck': return showFallback('The human check did not complete.' + (voice ? ' You can try again, chat by text, or use the contact form.' : ' Please try again or use the contact form.'), { text: voice, retry: true });
+      case 'abort': return;
       case 'timeout': return showFallback('The call did not connect in time.' + (voice ? ' You can chat by text instead.' : ''), { text: voice });
       default: return showFallback('Something went wrong connecting.' + (voice ? ' You can chat by text instead.' : ''), { text: voice });
     }
@@ -459,8 +480,10 @@
         onAgentToolRequest: function (t) { if (/transfer/i.test(t.tool_name)) { setStatus('Transferring you', 'live'); addLine('sys', 'Transferring you to a colleague…'); } },
         onAgentToolResponse: onToolResponse
       };
-      if (data.signedUrl) { opts.signedUrl = data.signedUrl; opts.connectionType = 'websocket'; }
-      else { opts.conversationToken = data.conversationToken; opts.connectionType = 'webrtc'; }
+      opts.signedUrl = data.signedUrl; opts.connectionType = 'websocket';
+      // The WebSocket audio path may load a libsamplerate worklet (when the browser cannot make a 16 kHz AudioContext, e.g. Safari).
+      // The SDK would fetch it from jsdelivr; serve our vendored copy instead.
+      opts.libsampleratePath = new URL(LIBSAMPLERATE_FILE, scriptSrc).href;
       T.sdkAt = Date.now();
       tr('start_session');
       return m.Conversation.startSession(opts);
@@ -476,6 +499,7 @@
       if (S.view !== 'connecting') { try { if (c) c.endSession(); } catch (e) {} return; }
       if (T.dropped) { try { if (c) c.endSession(); } catch (e) {} return couldntConnect('dropped_while_connecting'); }
       S.conv = c; S.ended = false;
+      stopMicProbe();
       showCall();
       if (S.mode === 'voice') { acquireWake(); setStatus('Listening', 'live'); }
       else setStatus('Connected. Say hello', 'live');
@@ -538,7 +562,23 @@
     finishCall('');
   }
 
+  function unlockAudio() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      var c = S.unlockCtx && S.unlockCtx.state !== 'closed' ? S.unlockCtx : (S.unlockCtx = new AC());
+      var p = c.resume && c.resume(); if (p && p.catch) p.catch(function () {});
+      var src = c.createBufferSource(); src.buffer = c.createBuffer(1, 1, 22050); src.connect(c.destination); src.start(0);
+    } catch (e) {}
+  }
+  function stopMicProbe() {
+    try { if (S.micProbe) S.micProbe.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+    S.micProbe = null;
+  }
+  function closeUnlock() { try { if (S.unlockCtx && S.unlockCtx.close) S.unlockCtx.close().catch(function () {}); } catch (e) {} S.unlockCtx = null; }
+
   function cleanupCall() {
+    stopMicProbe(); closeUnlock();
     clearTimeout(S.connectTimer);
     clearInterval(S.tick);
     S.mockTimers.forEach(clearTimeout); S.mockTimers = [];
