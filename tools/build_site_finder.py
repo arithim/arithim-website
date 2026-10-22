@@ -19,130 +19,78 @@ A = "/assets/site-finder/"
 TITLE = "Where to build a solar farm in Great Britain | Arithim"
 DESC = ("Site Finder ranks candidate land for utility-scale solar across Great Britain and shows "
         "the evidence behind every site. Book a demo with Arithim.")
-H1 = "Where in Great Britain should we build our next utility-scale solar farm?"
+H1 = "Find the land worth a site visit, with the evidence for every site."
 
 e = html.escape
 
 SCENES = {
     "j1": ("Ask the question and read the answer",
-           "Load the app, read the verdict and scan the ranked list, then explore the map of scored sites.",
+           "Load the app, read the verdict and scan the ranked list, then look across the map of scored sites.",
            "A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Hulcott in Buckinghamshire needs £57.1 against a CfD price of £65.23, Stone Street in East Suffolk needs £60.5, and Belchamp St Paul in Braintree needs £59.7. Numbered markers place the sites on the map."),
     "j2": ("Open the evidence for a site",
-           "Open the evidence for the top site: the score waterfall, substations, planning record and economics, then the one-page print pack.",
+           "Open the top site: its score breakdown, substations, planning record and economics, then the one-page print pack.",
            "The top row, Hulcott in Buckinghamshire, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Aylesbury East Grid 33kV at 0.5 km with capacity ok, the planning record, and the economics: the site needs £57.1 against a CfD price of £65.23."),
     "j3": ("Push back and see what changed",
-           "Mark a substation as full and rescore. Read the What changed card, then assume a Gate 2 offer and see how the answer moves.",
+           "Mark a substation as full and rescore, read the What changed card, then assume a Gate 2 offer and watch the answer move.",
            "Four ranked sites sit above a card for the substation Aylesbury East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Hulcott falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause."),
-    "f1": ("Gate 2 and headroom allocation",
-           "Higher-ranked sites take shared Gate 2 zone and substation capacity first. Assume a Gate 2 offer and watch the ranking move.",
+    "f1": ("Gate 2 and grid headroom",
+           "See which sites can connect in the current window, then assume a Gate 2 offer and watch the ranking move.",
            "A bar shows 134.6 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 40 MWac each take their share in rank order, and the figure falls to 94.6, 54.6 and then 14.6 MW. The fourth site, Weedon, also needs 40 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year."),
     "f2": ("Planning record by local authority",
-           "Search the planning record by local authority to see decisions, approval rates and recent schemes.",
+           "Search the planning record by local authority for decisions, approval rates and recent schemes.",
            "A table lists local authorities, with a bar for the share of solar schemes approved. Wiltshire is selected. Its panel says it approved 11 of 12 solar schemes since 2019, with a median decision time of 9 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme."),
-    "f3": ("Red flags for refused schemes nearby",
-           "A refused solar scheme nearby lowers a site's score. The waterfall and the planning tab name the scheme.",
+    "f3": ("Refused schemes nearby",
+           "A refused solar scheme near a site lowers its score, and the site's evidence names the scheme.",
            "A score waterfall for a site at Smeeth in Ashford starts at 0.83 before flags. Three multipliers follow: 0.90 for a refused scheme 1.4 km away, 0.94 for a National Park or AONB setting, and 0.93 for a listed building. The score ends at 0.65. A small map then shows the site, a dashed 1.4 km line and the refused scheme, East Stour Solar Farm, 49.9 MW."),
-    "f4": ("Economics and sizing cliffs",
-           "Move project size across 100 MWac and watch the consent route, TNUoS charges and NPV change.",
+    "f4": ("Economics and project size",
+           "Take the project size past 100 MWac and watch the consent route, transmission charges and NPV change.",
            "A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£8.5m to −£0.1m. A note names the size threshold and both values."),
 }
 
-STEPS = [
-    ("Exclude", "Statutory designations, flood and peat rules, built-up areas, aerodromes and military land are removed from the buildable area. The default exclusion set is a starting position, and every rule can be relaxed."),
-    ("Score", "Each candidate area is scored on grid, planning, solar resource and terrain, economics, deliverability and environment, using weights and value curves you can edit."),
-    ("Allocate grid", "A site counts as connectable only if a suitable substation is within reach. NESO's zonal Gate 2 capacity and each substation's published headroom are spent in rank order, so ten sites cannot all claim the same spare megawatts."),
-    ("Price", "Capex, operating cost, connection cost, TNUoS rules and the revenue route give the price needed to reach your hurdle rate, plus NPV and IRR."),
-    ("Rank", "Sites are ordered by what is deliverable at your assumptions first, then by suitability score. You can switch the ranking basis."),
-    ("Prove", "Each site carries a score waterfall, every raw input with its source, the constraint checklist, the nearest substations, nearby schemes and the weight-stability result."),
+SHOWS = [
+    ("Grid connection", "The nearest substations, whether the network operator publishes headroom for them, and an estimated energisation year."),
+    ("Planning record", "Solar schemes built, consented and refused nearby, and how the local authority has decided solar applications."),
+    ("Economics", "An indicative connection cost, the price per MWh the site needs to reach your hurdle rate, and NPV and IRR."),
+    ("Evidence pack", "Every input with its source and a constraint checklist, printable as one page or exported as CSV and GeoJSON."),
 ]
 
 PUSHBACK = [
-    ("Change the assumptions", "Change weights, value curves, exclusion modes and buffers, project size, revenue route, capex and hurdle rate. Draw include and exclude areas on the map. Override a single substation (\"this one is full\") or a single land grade, with a note saying why."),
-    ("See what changed", "After each edit, a card lists the sites that entered or left the top list, the rank moves and the assumption that drove each one."),
-    ("Save and share scenarios", "Save a set of assumptions under a name, compare two side by side and share one as a link."),
-    ("Take the evidence away", "Print a one-page evidence pack for any site, or export the ranked list as CSV and the site outlines as GeoJSON."),
-    ("Test weight stability", "For each site, the tool reruns the ranking with the weights perturbed and reports how often the site stays in the list."),
-    ("Check the rankings against planning outcomes", "The tool checks its own rankings against how real schemes fared at planning, and shows that check to you. The check is a diagnostic, not proof, and the app labels it that way."),
-]
-
-DNO = "Licence area"
-SOURCES = [
-    ("NESO", "Transmission Entry Capacity register, embedded register, TNUoS generation tariffs and zones, ETYS boundaries (B6, B4), GSP regions, DNO areas, 24-month constraint limits, Gate 2 and Clean Power 2030 zonal results for solar", "Great Britain"),
-    ("National Grid Electricity Distribution", "Capacity heat map, Embedded Capacity Register", DNO),
-    ("Northern Powergrid", "Capacity heat map data, Embedded Capacity Register", DNO),
-    ("SSEN Distribution", "Headroom dashboard data, Embedded Capacity Register", DNO),
-    ("UK Power Networks", "Capacity heat map, Embedded Capacity Register", DNO),
-    ("Electricity North West", "Heat map and Embedded Capacity Register", DNO),
-    ("SP Energy Networks", "Distribution heat maps and Embedded Capacity Register", DNO),
-    ("DESNZ", "Renewable Energy Planning Database (REPD), quarterly extract", "Great Britain"),
-    ("Natural England", "Designations (national parks, AONB, SSSI, SAC, SPA, Ramsar, NNR), ancient woodland, peat, open access land, agricultural land classification surveys", "England"),
-    ("JNCC", "SAC, SPA and Ramsar boundaries", "Great Britain"),
-    ("Natural Resources Wales", "Designations, ancient woodland, flood zones, common land and open access", "Wales"),
-    ("NatureScot", "Protected areas, ancient woodland inventory, Wild Land Areas, Carbon and Peatland map", "Scotland"),
-    ("Scottish Government and James Hutton Institute", "National Scenic Areas, National Parks, prime agricultural land (one combined flag, not separate grades)", "Scotland"),
-    ("Environment Agency", "Flood Map for Planning, Flood Zones 2 and 3", "England"),
-    ("SEPA", "Flood maps", "Scotland"),
-    ("Defra and Welsh Government", "Predictive agricultural land classification", "England, Wales"),
-    ("Historic England, Cadw, Historic Environment Scotland", "Heritage lists: scheduled monuments, listed buildings, registered parks and gardens, battlefields, World Heritage Sites", "England, Wales, Scotland"),
-    ("MHCLG", "Green belt and local planning authority boundaries (planning.data.gov.uk)", "England"),
-    ("Ordnance Survey", "Terrain 50, Open Roads, Open Rivers, Open UPRN, Boundary-Line", "Great Britain"),
-    ("Office for National Statistics", "Built-up areas, country and local planning authority boundaries", "Great Britain"),
-    ("ESA", "WorldCover 10 m land cover (2021)", "Great Britain"),
-    ("World Bank and Solargis", "Global Solar Atlas solar resource", "Great Britain"),
-    ("OpenStreetMap contributors via Geofabrik", "Power infrastructure, aerodromes, military land, place names", "Great Britain"),
+    ("Change the assumptions", "Change the weights, exclusion rules, project size, revenue route, capex and hurdle rate. Draw areas on the map to include or exclude, or override a single substation (\"this one is full\") with a note saying why."),
+    ("See what changed", "After each edit, a card lists the sites that entered or left the top of the list, how far each moved and which assumption moved it."),
+    ("Save and share scenarios", "Save a set of assumptions under a name, compare two side by side and send one to a colleague as a link."),
 ]
 
 LIMITS = [
-    "Connection costs are indicative. They come from a cost table with a route factor, not from a network operator quote.",
-    "Network headroom is only as complete as what each operator publishes. Where there is no published figure, the site is marked \"unknown\" and carries a lower data-confidence tier. This includes SSEN Hydro areas, where no item carries a headroom number, and parts of the ENWL and SP Energy Networks coverage.",
-    "There is no aerodrome or Ministry of Defence safeguarding data, because none is openly published. Aerodromes from OpenStreetMap are excluded with a 500 m buffer, which is a proxy.",
-    "There are no land ownership boundaries. Sites are areas of land, not parcels with owners.",
-    "Solar yield comes from the Global Solar Atlas. A per-site PVGIS calculation and a P50 and P90 range are not in this version.",
-    "Agricultural land grade is available in England and Wales. Scotland has one combined prime-land flag.",
-    "Refused schemes in the planning database are under-recorded, so the red-flag check will miss some.",
-    "There is no glint and glare check, no aerial imagery check and no land price model beyond a flat rent assumption.",
-    "Coverage is Great Britain only. Northern Ireland is not included.",
-    "Council political context is left out, because the source data has no clear licence.",
-]
-
-QUESTIONS = [
-    ("Grid and connection", [
-        "Which land is free of hard constraints and within reach of a substation with published headroom?",
-        "What is the likely energisation year for this site, given the Gate 2 allocation in its zone?",
-        "Which zones have Phase 1 solar capacity left under Clean Power 2030?"]),
-    ("Planning", [
-        "What has this local planning authority done with solar schemes since 2019, how long did decisions take, and what happened at appeal?",
-        "How much solar is already built or consented within 5 km, and have schemes nearby been refused?",
-        "What heritage assets sit near the site that could slow consent?"]),
-    ("Land", [
-        "How much of the site is Grade 1, 2 or 3a agricultural land?"]),
-    ("Money", [
-        "What does connection cost at 33 kV against 132 kV for this size of project?",
-        "Which site has the lowest price needed across a region?",
-        "What price per MWh does this site need to hit our hurdle rate?"]),
+    "Connection costs are indicative estimates for comparing sites. A network operator quote will differ.",
+    "Headroom is only as complete as what each network operator publishes. Where nothing is published, the app marks the site as unknown.",
+    "Aerodrome and Ministry of Defence safeguarding zones are not openly published, so the tool does not assess them.",
+    "Sites are areas of land, not parcels with owners. Ownership is not in this version.",
+    "Coverage is Great Britain. Northern Ireland is not included.",
 ]
 
 FAQ = [
-    ("Does Site Finder tell me where to build?",
-     "It ranks candidate land and shows the evidence for each rank. The decision stays with your team. A ranked list is somewhere to start a conversation with a land agent and the network operator, and planning advice and site visits still come first."),
+    ("Does Site Finder tell us where to build?",
+     "It ranks candidate land and shows the evidence for each rank, and your team makes the decision. Use the list to start a conversation with a land agent and the network operator. Planning advice and site visits still come first."),
     ("Where does the data come from?",
-     "It comes from open datasets published by UK government bodies, the system operator and the distribution network operators, plus ESA WorldCover, the Global Solar Atlas and OpenStreetMap. The Data sources page in the app lists the publisher, version, retrieval date and licence of each one."),
+     "From open datasets published by UK government bodies, NESO and the distribution network operators, plus open land cover, solar resource and mapping data. The app lists every dataset with its version, retrieval date and licence."),
     ("How reliable are the connection costs?",
-     "They are indicative. The tool estimates connection cost from a cost table for each voltage, a route factor and the distance to the substation, so a network operator quote will differ. The estimate lets you compare sites with each other and shows when a change in project size moves the connection voltage."),
-    ("Does it know if a substation has spare capacity?",
-     "Where the operator publishes a headroom figure, the tool uses it and marks the site as high confidence. Where it does not, the site is marked unknown, and the app shows a banner when most of a shortlist has no published headroom. You can override the figure for any substation and record why."),
-    ("How does it use Gate 2 and Clean Power 2030?",
-     "Each NESO zone has a limited amount of solar capacity. As the tool ranks sites, it spends that capacity in rank order, and spends each substation's published headroom the same way. A site that no longer fits is shown as needing the next window, with a later energisation year. You can also assume a Gate 2 offer is secured and see how the answer changes."),
-    ("Can I change the assumptions?",
-     "Yes. Weights, value curves, exclusion rules, project size, revenue route, capex, hurdle rate and per-object overrides are all editable. After each change the tool re-ranks and shows which sites moved and why. There is no chatbot, so every result comes from a rule you can open and read."),
-    ("Does Site Finder test itself against planning outcomes?",
-     "Yes. It runs three diagnostics against the government's planning database. One counts built schemes that sit on land the rules exclude. One looks at whether consented schemes cluster in the top-scoring land. One checks how well the score separates approved from refused applications. The app shows all three and labels them as diagnostics, not proof."),
-    ("Does it cover Northern Ireland or show who owns the land?",
-     "Coverage is Great Britain only for now, and ownership is not in version 1. An ownership chain that links planning applicants, capacity holders, Companies House parents and company-owned land from HM Land Registry is on the roadmap."),
+     "They are indicative. They are good for comparing one site with another and for spotting when a larger project would need a higher connection voltage, and a network operator quote will differ."),
+    ("Does it know whether a substation has spare capacity?",
+     "Where the network operator publishes a headroom figure, the tool uses it and marks the site as high confidence. Where it does not, the site is marked unknown, and the app warns you when most of a shortlist has no published headroom. You can override the figure for any substation and note why."),
+    ("Does it account for Gate 2 and Clean Power 2030?",
+     "Yes. A site that is unlikely to get capacity in the current window is shown with a later energisation year. You can assume a Gate 2 offer is secured and see how the ranking changes."),
+    ("Can we change the assumptions?",
+     "Yes. Weights, exclusion rules, project size, revenue route, capex, hurdle rate and single-substation overrides are all editable. After each change the tool re-ranks and shows which sites moved and why. Every result comes from a rule you can open and read."),
+    ("Can it show how a local authority has handled solar applications?",
+     "Yes. Search the planning record by local authority for decisions, approval rates and recent schemes. A refused scheme near a site lowers its score, and the evidence names it."),
+    ("Does Site Finder check its rankings against real planning outcomes?",
+     "Yes. The app compares its rankings with how solar schemes have fared at planning and shows you the result. It labels the check as a diagnostic."),
     ("Does it check airfields and military safeguarding?",
-     "It excludes aerodromes and military land that appear in OpenStreetMap, with a 500 m buffer for aerodromes. Official safeguarding zones are not published as open data, so the tool does not assess them. Check them with the aerodrome or the Ministry of Defence before you commit to a site."),
-    ("How do I get access?",
-     "Book a demo. We set up an account for each customer and walk through the tool on a brief of your choosing."),
+     "It excludes mapped aerodromes and military land. Official safeguarding zones are not published as open data, so check them with the aerodrome or the Ministry of Defence before you commit to a site."),
+    ("Does it cover Northern Ireland or show who owns the land?",
+     "Not yet. Coverage is Great Britain, and land ownership is on the roadmap."),
+    ("How do we get access?",
+     "Book a demo. We set up an account for each customer and walk through the tool on a brief you choose."),
 ]
 
 
@@ -169,19 +117,12 @@ def roadmap() -> str:
             st = it["status"]
             lis.append(
                 f'<li class="sf-item"><span class="sf-st {st}">{e(st)}</span>'
-                f'<h4>{e(it["title"])}</h4><p>{e(it["description"])}</p>'
-                f'<p><span>Why it matters:</span> {e(it["why"])}</p></li>')
+                f'<h4>{e(it["title"])}</h4><p>{e(it["why"])}</p></li>')
         qid = q.lower().replace(" ", "-")
         cols.append(f'<li class="sf-q"><h3 id="sf-q-{qid}">{e(q.upper())}</h3>'
                     f'<ul aria-labelledby="sf-q-{qid}">{"".join(lis)}</ul></li>')
     return f'<ol class="sf-tl" aria-label="Roadmap by quarter">{"".join(cols)}</ol>'
 
-
-def table() -> str:
-    rows = "".join(f"<tr><td>{e(p)}</td><td>{e(d)}</td><td>{e(c)}</td></tr>" for p, d, c in SOURCES)
-    return ('<div class="sf-table"><table><caption>Open datasets used by Site Finder</caption>'
-            '<thead><tr><th scope="col">Publisher</th><th scope="col">Dataset</th><th scope="col">Coverage</th></tr></thead>'
-            f'<tbody>{rows}</tbody></table></div>')
 
 
 def ld() -> str:
@@ -189,12 +130,13 @@ def ld() -> str:
            "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": URL,
            "description": DESC,
            "audience": {"@type": "Audience", "audienceType": "Origination teams at UK renewable independent power producers"},
-           "publisher": {"@type": "Organization", "name": "Arithim", "url": "https://arithim.com/"}}
+           "publisher": {"@type": "Organization", "name": "Arithim Ltd", "url": "https://arithim.com/"}}
     faq = {"@context": "https://schema.org", "@type": "FAQPage",
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
     bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Arithim", "item": "https://arithim.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Site Finder", "item": URL}]}
+        {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://arithim.com/products.html"},
+        {"@type": "ListItem", "position": 3, "name": "Site Finder", "item": URL}]}
     return "\n".join(f'<script type="application/ld+json">{json.dumps(o, ensure_ascii=False)}</script>' for o in (app, faq, bc))
 
 
@@ -204,12 +146,13 @@ def build() -> str:
         '<div class="tsg-card"><h3>Origination analysts</h3><p>An analyst gets a long list of land to take to a land agent or a network operator, with the reasoning attached.</p></div>'
         '<div class="tsg-card"><h3>Investment committees</h3><p>A committee member can ask why this site and not that one, see the answer in the data, then change an assumption and watch the ranking respond.</p></div>'
         '</div>')
-    steps = "".join(f'<li><div class="tsg-card"><div class="sf-eb">{e(n.upper())}</div><p>{e(t)}</p></div></li>' for n, t in STEPS)
-    qgroups = "".join(
-        f'<div class="tsg-card"><h3>{e(g)}</h3><ul>{"".join(f"<li>{e(q)}</li>" for q in qs)}</ul></div>' for g, qs in QUESTIONS)
+    shows = "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in SHOWS)
     push = "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in PUSHBACK)
-    faq = "".join(f'<details><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in FAQ)
+    faq = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in FAQ)
     limits = "".join(f"<li>{e(x)}</li>" for x in LIMITS)
+    btn = ('<a href="contact.html?product=site-finder" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
+           '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
+           '<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Book a demo →</span></a>')
     return f'''<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -231,7 +174,7 @@ def build() -> str:
 {ld()}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=4">
+<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=5">
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
 <body>
@@ -240,54 +183,52 @@ def build() -> str:
 <div class="tsg sf" style="background:#070C16;color:#F5F1E8;min-height:100vh;">
 <a class="tsg-skip" href="#main">Skip to content</a>
 
-<!-- partial:header {{"label": "/site-finder", "active": "", "cta": "contact"}} -->
+<!-- partial:header {{"label": "/site-finder", "active": "products.html", "cta": "contact"}} -->
 <!-- /partial:header -->
 
 <main id="main">
   <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="sf-h1">
     <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
-    <div class="tsg-wrap r-gut sf-hero" style="position:relative;">
+    <div class="tsg-wrap" style="position:relative;padding-top:56px;padding-bottom:10px;">
       <div class="tsg-hero-grid">
         <div>
-          <div class="sf-chip-row"><span class="sf-badge">ARITHIM PRODUCT</span><span class="sf-badge" style="color:#9AA6B6;background:rgba(245,241,232,0.06);">SITE FINDER</span></div>
-          <h1 class="sf-h1" id="sf-h1">{e(H1)}</h1>
-          <p class="sf-lead">Site Finder is a map-based tool for renewable origination teams. Describe the project you have in mind and it ranks candidate land across England, Scotland and Wales. Each site opens into the evidence behind its rank: the data, the grid connection, the planning record and the economics.</p>
-          <div class="sf-btns">
-            <a class="sf-btn" href="contact.html"><i></i><span>Book a demo →</span></a>
-            <a class="sf-link" href="#questions">See the questions your team can ask</a>
-          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">SITE FINDER · FOR SOLAR TEAMS IN GREAT BRITAIN</div>
+          <h1 id="sf-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;">{e(H1)}</h1>
+          <p style="font-size:19px;line-height:1.55;color:#AEB8C6;max-width:560px;margin-top:20px;">Describe the solar farm you want to build. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection, the planning record nearby and the economics.</p>
+          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{btn}<a href="#videos" class="tsg-link" style="font-size:16px;">Watch it in use</a></div>
         </div>
         {scene("j1", hero=True)}
       </div>
+      <ol class="tsg-steps" aria-label="How a session runs"><li>Describe the project</li><li>Read the ranked list</li><li>Open a site&#x27;s evidence</li><li>Push back and re-rank</li></ol>
     </div>
   </section>
 
   <section class="tsg-sec" id="who" aria-labelledby="who-h">
-    <div class="tsg-wrap r-gut">
+    <div class="tsg-wrap">
       <div class="tsg-eyebrow">WHO IT IS FOR</div>
-      <h2 class="tsg-h2 r-f4" id="who-h">Who is Site Finder for?</h2>
-      <p class="tsg-lead">Site Finder is built for origination analysts and investment committees at UK renewable independent power producers (IPPs).</p>
+      <h2 class="tsg-h2" id="who-h">Who is Site Finder for?</h2>
+      <p class="tsg-lead">Origination analysts and investment committees at UK independent power producers (IPPs).</p>
       {cards_audience}
-      <p class="sf-note">Site Finder is a screening tool. It narrows where to look, and the people who develop the site still visit the land, talk to the network operator and take the planning advice.</p>
+      <p class="sf-note">Site Finder is a screening tool. It narrows where to look, and your team still visits the land, talks to the network operator and takes planning advice.</p>
     </div>
   </section>
 
-  <section class="tsg-sec" id="how" aria-labelledby="how-h">
-    <div class="tsg-wrap r-gut">
-      <div class="tsg-eyebrow">HOW IT WORKS</div>
-      <h2 class="tsg-h2 r-f4" id="how-h">How does Site Finder reach an answer?</h2>
-      <p class="tsg-lead">The route from raw data to a ranked list has six steps, and the app shows each one.</p>
-      <ol class="sf-steps">{steps}</ol>
+  <section class="tsg-sec" id="shows" aria-labelledby="shows-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">FOR EVERY SITE</div>
+      <h2 class="tsg-h2" id="shows-h">What does Site Finder show for each site?</h2>
+      <p class="tsg-lead">Each site in the list opens into four views, and each view names its sources.</p>
+      <div class="tsg-grid tsg-g2">{shows}</div>
     </div>
   </section>
 
   <section class="tsg-sec" id="videos" aria-labelledby="videos-h">
-    <div class="tsg-wrap r-gut">
+    <div class="tsg-wrap">
       <div class="tsg-eyebrow">SEE IT IN USE</div>
-      <h2 class="tsg-h2 r-f4" id="videos-h">What does Site Finder look like in use?</h2>
-      <p class="tsg-lead">These are animated scenes of the interface. The names and figures come from the launch data and illustrate how the tool works. They are not results for any project.</p>
-      <h3 class="sf-sub">Walkthroughs of a working session</h3>
+      <h2 class="tsg-h2" id="videos-h">What does Site Finder look like in use?</h2>
+      <p class="tsg-lead">Animated scenes of the interface. The names and figures come from the launch data and show how the tool works. They are not results for any project.</p>
+      <h3 class="sf-sub">A working session</h3>
       <div class="sf-vgrid sf-v3">{"".join(scene(k) for k in ("j1", "j2", "j3"))}</div>
       <h3 class="sf-sub">Features up close</h3>
       <div class="sf-vgrid sf-v4">{"".join(scene(k) for k in ("f1", "f2", "f3", "f4"))}</div>
@@ -295,77 +236,57 @@ def build() -> str:
   </section>
 
   <section class="tsg-sec" id="evidence" aria-labelledby="evidence-h">
-    <div class="tsg-wrap r-gut">
-      <div class="tsg-eyebrow">EVIDENCE AND PUSHBACK</div>
-      <h2 class="tsg-h2 r-f4" id="evidence-h">How can my team check and challenge the answer?</h2>
-      <p class="tsg-lead">An analyst's first instinct is to push back, and the tool is built for that. It has no chat box. Every challenge is a control, and each control re-ranks the map.</p>
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">PUSH BACK</div>
+      <h2 class="tsg-h2" id="evidence-h">How can my team challenge the answer?</h2>
+      <p class="tsg-lead">Analysts push back, so every challenge is a control on screen, and each one re-ranks the map.</p>
       <div class="tsg-grid tsg-g3">{push}</div>
     </div>
   </section>
 
-  <section class="tsg-sec" id="data" aria-labelledby="data-h">
-    <div class="tsg-wrap r-gut">
-      <div class="tsg-eyebrow">DATA SOURCES</div>
-      <h2 class="tsg-h2 r-f4" id="data-h">Which data does Site Finder use?</h2>
-      <p class="tsg-lead">Site Finder is built from open data: UK government and agency datasets, the system operator's and network operators' published registers and heat maps, and three open international or community datasets (ESA WorldCover, Global Solar Atlas and OpenStreetMap). The app's Data sources page lists every dataset with its version, retrieval date and licence.</p>
-      {table()}
-    </div>
-  </section>
-
   <section class="tsg-sec" id="limits" aria-labelledby="limits-h">
-    <div class="tsg-wrap r-gut">
+    <div class="tsg-wrap">
       <div class="tsg-eyebrow">LIMITS</div>
-      <h2 class="tsg-h2 r-f4" id="limits-h">What does Site Finder not do yet?</h2>
-      <p class="tsg-lead">The app states these limits on screen as well.</p>
+      <h2 class="tsg-h2" id="limits-h">What does Site Finder not do yet?</h2>
+      <p class="tsg-lead">The app shows these on screen too.</p>
       <ul class="sf-list">{limits}</ul>
-      <p class="sf-note">Items on this list are candidates for later versions. The roadmap below shows what is planned, and none of it is a commitment.</p>
-    </div>
-  </section>
-
-  <section class="tsg-sec" id="questions" aria-labelledby="questions-h">
-    <div class="tsg-wrap r-gut">
-      <div class="tsg-eyebrow">QUESTIONS</div>
-      <h2 class="tsg-h2 r-f4" id="questions-h">What questions can my team ask?</h2>
-      <p class="tsg-lead">These come from the questions UK renewable IPP teams ask of siting data. Each one can be put to Site Finder today, within the limits above.</p>
-      <div class="sf-qgrid">{qgroups}</div>
     </div>
   </section>
 
   <section class="tsg-sec" id="roadmap" aria-labelledby="roadmap-h">
-    <div class="tsg-wrap r-gut" style="max-width:1240px;">
+    <div class="tsg-wrap" style="max-width:1240px;">
       <div class="tsg-eyebrow">ROADMAP</div>
-      <h2 class="tsg-h2 r-f4" id="roadmap-h">What is on the Site Finder roadmap?</h2>
-      <p class="tsg-lead">Version 1 is available in demonstrations. The next versions add an ownership chain, client accounts and sign-in, per-site yield with P50 and P90, and more. Items are grouped by quarter.</p>
+      <h2 class="tsg-h2" id="roadmap-h">What is on the Site Finder roadmap?</h2>
+      <p class="tsg-lead">Version 1 is available in demos. Planned items are grouped by quarter, and their timing can change.</p>
       <ul class="sf-legend" aria-label="Status legend">
         <li><span class="sf-st shipped">shipped</span> Available in version 1</li>
         <li><span class="sf-st planned">planned</span> Scoped for a quarter</li>
         <li><span class="sf-st exploring">exploring</span> Under consideration, no date</li>
       </ul>
-      <p class="sf-warn">Planned items are not commitments, and timing can change.</p>
       {roadmap()}
     </div>
   </section>
 
   <section class="tsg-sec" id="faq" aria-labelledby="faq-h">
-    <div class="tsg-wrap r-gut">
-      <div class="tsg-eyebrow">FAQ</div>
-      <h2 class="tsg-h2 r-f4" id="faq-h">Frequently asked questions about Site Finder</h2>
-      <div class="sf-faq">{faq}</div>
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">FREQUENTLY ASKED</div>
+      <h2 class="tsg-h2" id="faq-h">Questions about Site Finder</h2>
+      <div class="tsg-faq">{faq}</div>
     </div>
   </section>
 
   <section class="sf-cta" id="demo" data-hero aria-labelledby="demo-h">
-    <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-b 20s ease-in-out infinite;pointer-events:none;"></div>
-    <div class="tsg-wrap r-gut" style="position:relative;">
-      <h2 id="demo-h" class="r-f4">Want to see Site Finder run on your own brief?</h2>
-      <p>Tell us the project size, the connection preference and the regions you care about, and we will show you the ranked list and the evidence behind it.</p>
-      <a class="sf-btn" href="contact.html"><i></i><span>Book a demo →</span></a>
-      <p class="sf-note" style="margin:22px auto 0;">Prefer email? Write to <a class="sf-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
+    <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div class="tsg-wrap" style="position:relative;">
+      <h2 id="demo-h">Want to see Site Finder run on your own brief?</h2>
+      <p>Tell us the project size, how you want to connect and the regions you care about, and we will show you the ranked list and the evidence behind it.</p>
+      {btn}
+      <p class="sf-note" style="margin:22px auto 0;">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
     </div>
   </section>
 </main>
 
-<!-- partial:footer {{"back_href": "services.html", "back_text": "← ALL SERVICES"}} -->
+<!-- partial:footer {{"back_href": "products.html", "back_text": "← ALL PRODUCTS"}} -->
 <!-- /partial:footer -->
 
 </div>
