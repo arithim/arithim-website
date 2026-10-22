@@ -1,0 +1,22 @@
+{
+  "env": "staging",
+  "agents": {
+    "consulting": {
+      "agent_id": "agent_9101m5hxazq5fa5vwnssw0jmhgmw",
+      "name": "Arithim Oliver (consulting)"
+    },
+    "tsg": {
+      "agent_id": "agent_0401m5hxb1xeefnbbsmjcytqkrcy",
+      "name": "Arithim Charlotte (Technical Sales Guide)"
+    },
+    "customer-desk": {
+      "agent_id": "agent_2501m5hxb3ecfkxag20yk4x78e72",
+      "name": "Arithim Daniel (customer desk)"
+    },
+    "front-desk": {
+      "agent_id": "agent_8901m5hxb4zjfvxt97m29dyqb8cd",
+      "name": "Arithim Hannah (front desk)"
+    }
+  },
+  "updated_at": "2026-10-22T17:18:02.573Z"
+}

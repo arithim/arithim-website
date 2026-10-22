@@ -131,7 +131,10 @@ export async function sync(opts) {
       webhookId = existing.webhook_id;
       log(`workspace webhook ${whName} exists (${webhookId}); its secret cannot be read back, so CALL_WEBHOOK_SECRET must already be set from the creation run`);
     } else {
-      const made = await call("POST", "/v1/workspace/webhooks", { settings: { auth_type: "hmac", name: whName, webhook_url: webhookUrl } });
+      let made = null;
+      try { made = await call("POST", "/v1/workspace/webhooks", { settings: { auth_type: "hmac", name: whName, webhook_url: webhookUrl } }); }
+      catch (e) { log(`WARNING: could not create the workspace webhook (${e.message.slice(0, 160)}). Agents are synced WITHOUT a post-call webhook; create it in ElevenLabs (Settings, Webhooks) for ${webhookUrl} or give the API key the webhooks_write permission, then re-run.`); }
+      if (made) {
       webhookId = made.webhook_id;
       secrets.push(made.webhook_secret);
       if (made.webhook_secret && secretsFile) {
@@ -141,9 +144,10 @@ export async function sync(opts) {
         writeFileSync(secretsFile, lines.concat(`${key}=${made.webhook_secret}`).join("\n") + "\n", { mode: 0o600 });
       }
       log(`created workspace webhook ${whName} ${webhookId} -> ${webhookUrl} (signing secret saved to call-agent-secrets.env, not shown)`);
+      }
     }
   }
-  lock.webhook_id = webhookId;
+  if (webhookId) lock.webhook_id = webhookId;
 
   // workspace secret that holds CALL_LLM_SECRET
   let secretId;

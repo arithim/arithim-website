@@ -86,6 +86,14 @@
                 ]
               },
               "type": "system"
+            },
+            "end_call": {
+              "type": "system",
+              "name": "end_call",
+              "description": "End the call once the caller has said goodbye, asked to hang up, or the conversation is finished.",
+              "params": {
+                "system_tool_type": "end_call"
+              }
             }
           }
         }
@@ -93,7 +101,7 @@
       "tts": {
         "_voice_suggestions": "Provisional staging pick: Alice (premade, clear British female). See arithim-ops/call-agent/voices.md for the shortlist.",
         "voice_id": "Xb7hH8MSUJpSbSDYk0k2",
-        "model_id": "eleven_flash_v2_5"
+        "model_id": "eleven_flash_v2"
       },
       "turn": {
         "turn_timeout": 7,
