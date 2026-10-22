@@ -1,18 +1,19 @@
 // Technical Sales Guide explainers: short looping stories drawn in HTML and CSS, driven by one timeline.
 // Mount points are <div data-tsg-scene="a|b|c|d|e|f">. All figures on screen are sample figures.
-const DESK = { w: 520, h: 440 }, MOB = { w: 360, h: 500 };
+const DESK = { w: 520, h: 450 }, MOB = { w: 360, h: 565 };
 const mk = (s) => s.replace(/\n\s*/g, '');
 const src = (t, txt) => `<div class="m-src" data-in="${t}"><svg viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M2 1h5l3 3v7H2z" fill="none" stroke="currentColor" stroke-width="1"/></svg>${txt}</div>`;
-const res = (t, k, n, nm, pr, w, dose, cost, land) => `<div class="m-res" data-in="${t}"><div class="m-res-h"><span class="m-rk">${n}</span><span class="m-nm">${nm}</span><span class="m-pr">${pr}</span></div><div class="m-fit"><i data-grow="${t + 0.2},1" style="--w:${w}%"></i></div><div class="m-kv"><span>Dose <b>${dose}</b></span><span>Cost <b>${cost}</b></span><span>Landed <b>${land}</b></span></div></div>`;
+const res = (t, k, n, nm, pr, w, dose, cost, land) => `<div class="m-res" data-in="${t}"><div class="m-res-h"><span class="m-rk">${n}</span><span class="m-nm">${nm}</span><span class="m-pr">${pr}</span></div><div class="m-fit"><i data-grow="${t + 0.2},1" style="--w:${w}%"></i></div><div class="m-kv"><span>Dose <b>${dose}</b></span><span>Cost in use <b>${cost}</b></span><span>Landed per kg <b>${land}</b></span></div></div>`;
 
 const SCENES = {
   a: { dur: 9.5, key: 7.6, label: 'Find · Animal nutrition', html: mk(`
     <div class="m-q"><span data-type="0.2,40" data-text="Heat stress in broilers, Saudi Arabia, 38°C house"></span><b class="m-caret"></b></div>
     <div class="m-chips" data-in="1.4"><span class="m-chip a">Broiler</span><span class="m-chip a">Heat stress</span><span class="m-chip a">Saudi Arabia</span></div>
-    ${res(1.9, 0, 1, 'Betaine-based additive', 'Principal A', 92, '1,000 g/t', '$2.10/t', '$2.10/kg')}
-    ${res(2.6, 0, 2, 'Osmolyte and vitamin blend', 'Principal B', 86, '500 g/t', '$1.80/t', '$3.60/kg')}
-    ${res(3.3, 0, 3, 'Betaine HCl, standard grade', 'Principal C', 74, '2,000 g/t', '$1.70/t', '$0.85/kg')}
-    ${src(4, 'Sources: trial summary p.4 · supplier TDS')}
+    ${res(1.9, 0, 1, 'Betaine-based additive', 'Principal A', 92, '1,000 g/t', '$2.10/t feed', '$2.10')}
+    ${res(2.6, 0, 2, 'Osmolyte and vitamin blend', 'Principal B', 86, '500 g/t', '$1.80/t feed', '$3.60')}
+    ${res(3.3, 0, 3, 'Betaine HCl, standard grade', 'Principal C', 74, '2,000 g/t', '$1.70/t feed', '$0.85')}
+    ${src(4, 'Sources: trial p.4 · supplier TDS')}
+    <div class="m-src" data-in="4.4"><span class="m-dot sage"></span>Saudi registration valid to Mar 2028</div>
     <div class="m-slot"><div class="m-tags" data-in="4.8,6.2"><span class="m-chip g">Competitor equivalent of 1</span><span class="m-chip a">Replace</span></div>
     <div class="m-swap" data-in="6.2"><span>Replace</span><b>Principal A</b><i>→</i><b>Principal C</b><em>−$0.40/t feed</em></div></div>`) },
 
@@ -74,7 +75,7 @@ const SCENES = {
       <div class="m-kv2"><span>Interest <b>Heat stress, broilers</b></span><span>Language <b>Arabic</b></span><span>Place <b>Dammam</b></span></div></div>`) },
 
   f: { dur: 11, key: 9.5, label: 'Document Studio', html: mk(`
-    <div class="m-opts"><span class="m-chip a">Data sheet</span><span class="m-chip">Co-branded</span><span class="m-chip">EN</span><span class="m-chip">AR</span></div>
+    <div class="m-opts"><span class="m-chip a">Data sheet</span><span class="m-chip">Co-branded</span><span class="m-chip">EN</span></div>
     <div class="m-paper">
       <div class="m-ph"><span class="m-logo" data-in="0.3">Principal A</span><span class="m-x" data-in="0.5">×</span><span class="m-logo me" data-in="0.7">Your brand</span></div>
       <div class="m-pt" data-in="1">Heat stress solution for broilers</div>
