@@ -318,3 +318,14 @@ test("L14: when the client has gone, nothing is written or logged and no tool ru
     assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM turns WHERE speaker = 'agent'").first()).n, 0);
   } finally { m.restore(); }
 });
+
+test("filter in the brain: the caller's own amount is read back, a new amount is replaced, stray CJK is stripped", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const m = mockFetch([anthropicSse([{ type: "text", text: "I have an invoice for four thousand eight hundred pounds. It is also £900 extra. The reference is A R C, two six one,零 two two." }])]);
+  try {
+    const out = await readSse(await call(env, "customer-desk", [user("My invoice is for £4,800")]));
+    assert.ok(out.text.includes("four thousand eight hundred pounds"), out.text);
+    assert.ok(!out.text.includes("£900")); assert.ok(out.text.includes(LINE_FIGURES));
+    assert.ok(!out.text.includes("零")); assert.ok(out.text.includes("two six one, two two"), out.text);
+  } finally { m.restore(); }
+});
