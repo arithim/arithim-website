@@ -80,14 +80,18 @@ export async function onRequestPost({ request, env }) {
   // "demo" requests come from the Technical Sales Guide page. Same Turnstile and
   // honeypot checks as above; the required fields differ (email and company, no challenge text).
   const isDemo = (form.type || "").toString() === "demo";
-  const name = (form.name || "").toString().trim();
+  // Strip control characters (newlines, tabs and so on) from single-line fields.
+  const clean = (v) => (v || "").toString().replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim();
+  const name = isDemo ? clean(form.name) : (form.name || "").toString().trim();
   const demoNote = (form.note || "").toString().trim();
   const challenge = isDemo ? demoNote : (form.challenge || "").toString().trim();
   if (isDemo) {
     const em = (form.email || "").toString().trim();
     const co = (form.company || "").toString().trim();
-    if (!name || !co || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
-      return json(400, { error: "name, work email and company are required" });
+    const ctry = (form.country || "").toString().trim();
+    const rl = (form.role || "").toString().trim();
+    if (!name || !co || !ctry || !rl || em.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+      return json(400, { error: "name, work email, company, country and role are required" });
     }
   } else if (!name || !challenge) {
     return json(400, { error: "name and challenge are required" });
@@ -96,13 +100,13 @@ export async function onRequestPost({ request, env }) {
     return json(400, { error: "field too long" });
   }
 
-  const company = (form.company || "").toString().trim().slice(0, 200);
+  const company = isDemo ? clean(form.company).slice(0, 200) : (form.company || "").toString().trim().slice(0, 200);
   const industry = (form.industry || "").toString().trim().slice(0, 200);
   const timeline = (form.timeline || "").toString().trim().slice(0, 100);
   const success = (form.success || "").toString().trim().slice(0, 5000);
   const email = (form.email || "").toString().trim().slice(0, 200);
-  const country = isDemo ? (form.country || "").toString().trim().slice(0, 100) : "";
-  const role = isDemo ? (form.role || "").toString().trim().slice(0, 100) : "";
+  const country = isDemo ? clean(form.country).slice(0, 100) : "";
+  const role = isDemo ? clean(form.role).slice(0, 100) : "";
 
   const esc = (s) =>
     s.replace(/[&<>"']/g, (c) => ({
@@ -164,7 +168,7 @@ export async function onRequestPost({ request, env }) {
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
     console.error("resend failed", res.status, detail);
-    return json(502, { error: "could not send" });
+    return json(502, { error: "We could not send your request just now. Please email hello@arithim.com." });
   }
 
   return json(200, { ok: true });
