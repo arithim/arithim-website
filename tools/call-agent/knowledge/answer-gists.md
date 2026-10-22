@@ -54,7 +54,7 @@ Take name, outlet, topic and deadline. Say it goes to Tarun. No comment, no quot
 Polite and brief. Arithim does not buy on a cold call. Take name, company and one line, say it will go to Tarun if relevant, and end the call. Never confirm what tools Arithim uses or who decides purchases. Claims: NS-02, NS-09.
 
 **FD-19. Who are your customers? Can you give me a reference?**
-"I don't have information about our customers to share; Tarun can go through that with you." Describe the three published case studies without names and point to the website. Do not name or hint at any customer. Claims: CASE-01, CASE-02, CASE-03, NS-02.
+"I don't have information about our customers to share; I can pass the question to Tarun in your message." Describe the three published case studies without names and point to the website. Do not name or hint at any customer. Claims: CASE-01, CASE-02, CASE-03, NS-02.
 
 **FD-20. Can I speak to the chemicals expert or to one of your customers by name?**
 Do not confirm or discuss individuals or customers. Say questions for the Technical Sales Guide team go through Tarun, and take the question. Claims: NS-02, NS-09.
@@ -125,7 +125,7 @@ Six: AI Readiness and Strategy, AI Systems and Automation, SAP ECC Intelligence 
 Offer a short conversation now. Explain that a readiness piece maps workflows, scores data readiness and ends in a ranked plan with a target architecture and governance. "Start with clarity, not a chatbot." No fee. Claims: SV-01, SV-07, NS-01.
 
 **CD-03. How long does a readiness engagement take and what do we get?**
-Most run a few weeks. They end in a ranked use-case portfolio, a target architecture and a prioritised plan with governance. Specifics depend on scope, which Tarun would confirm. Claims: SV-01.
+Most run a few weeks. They end in a ranked use-case portfolio, a target architecture and a prioritised plan with governance. Specifics depend on scope, which depends on a conversation with Tarun. Claims: SV-01.
 
 **CD-04. Do we need clean data first?**
 No. Assessing data readiness is part of the work, and the team says honestly what is usable now. Ask what data they hold and where. Claims: SV-01.
@@ -176,7 +176,7 @@ Be honest: published outcomes are qualitative. Figures for a specific project wo
 Sectors only, as published: energy, industrial, telecoms, regulated, SAP-heavy, FMCG. Ask what industry they are in and point to the closest case study. Claims: ID-02, ID-04, NS-02.
 
 **CD-21. Do you work with companies outside the UK?**
-Clients are across the UK and Europe. For anywhere else, Tarun would need to look at it; offer to take the details. Claims: ID-03.
+Clients are across the UK and Europe. For anywhere else, it is not covered here; offer to take the details. Claims: ID-03.
 
 **CD-26. Do you do AI-optimised websites? What does that mean?**
 Making a website readable to people, search engines and AI answer systems: semantic structure, entity clarity, structured metadata, technical SEO, accessibility and performance. Often improves the existing site without a rebuild. It shares fundamentals with SEO but the goal is legibility. No promise of citations. Claims: SV-04.
@@ -256,7 +256,7 @@ No independent penetration test yet; an annual one is planned (Planned). Automat
 "Pricing depends on the package and is agreed after a conversation with Tarun." Offer that conversation. Never give figures or ranges. Claims: NS-01.
 
 **TS-22. Is there a free trial or can I sign up myself?**
-No self-serve sign-up. Arithim sets up each customer after a meeting. People usually see it first through a guided demo with fictional data, and a pilot is possible. Take details for Tarun. Claims: PR-01, PR-06.
+No self-serve sign-up. Arithim sets up each customer after a meeting. People can see it first through a guided demo with fictional data, and a pilot is possible. Take details for Tarun. Claims: PR-01, PR-06.
 
 **TS-23. What does a pilot look like?**
 A few weeks, with success criteria agreed up front. Tarun arranges it. Give no price. Claims: PR-06, NS-01.
@@ -271,7 +271,7 @@ It shows regional restrictions with the legal reference. It supports the user's 
 Yes. A company administrator imports the customer list, with undo. A company's data is isolated from other customers by row level security, and data can be exported as CSV. Claims: PR-13, SEC-07, SEC-22.
 
 **TS-28. Who else uses it? What does a named company think of it?**
-Do not confirm or deny any customer or pilot. "I don't have information about our customers to share; Tarun can go through references with you at the right time." Claims: NS-02.
+Do not confirm or deny any customer or pilot. "I don't have information about our customers to share; I can pass the request to Tarun in your message." Claims: NS-02.
 
 **TS-29. How are you different from competing products?**
 Do not disparage anyone and do not claim superiority on data volume. Differences from the register: advice built around the salesperson's customer visit, neutral ranking with the basis shown on each answer, and the customer's own data. Claims: PR-02, PR-04, PR-10.

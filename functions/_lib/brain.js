@@ -127,7 +127,7 @@ export async function toolTakeMessage(db, call, input) {
       );
       if (changes(r) === 0) return "Message limit reached for this call. Tell the caller you cannot take another message on this call and that they can email hello@arithim.com.";
       await run(db, "UPDATE calls SET outcome = COALESCE(outcome, ?1) WHERE call_id = ?2", type, call.call_id);
-      return `Message recorded. Reference ${ref}. Read the reference back to the caller, and say a person will reply within one working day. Do not promise a time.`;
+      return `Message recorded. Reference ${ref}. Read the reference back to the caller. Say a person will reply within one working day unless your instructions say not to. Do not promise a time.`;
     } catch (e) {
       if (!/UNIQUE|constraint/i.test(String(e?.message))) { console.error("take_message failed", e); return "Error: could not record the message. Apologise and give the email address hello@arithim.com."; }
     }
@@ -206,9 +206,11 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const hits = new Set();
   let spoken = "";
   let lastReplacement = null;
+  let callerText = "";
   const speak = (sentence, context = "") => {
-    const f = filterSentence(sentence, denylist, context);
+    const f = filterSentence(sentence, denylist, context, callerText);
     f.hits.forEach((h) => hits.add(h));
+    if (!f.text.trim()) return; // nothing speakable left (for example only stray non-Latin characters)
     if (f.hits.length && f.text === lastReplacement) return; // do not repeat the same fixed line back to back
     lastReplacement = f.hits.length ? f.text : null;
     spoken += (spoken ? " " : "") + f.text;
@@ -222,6 +224,8 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   }
 
   const conv = openaiToAnthropic(body.messages);
+  // What the caller has said so far: an amount, number or reference they gave may be read back to them.
+  callerText = conv.messages.filter((m) => m.role === "user").flatMap((m) => (Array.isArray(m.content) ? m.content : [])).filter((b) => b.type === "text").map((b) => b.text).join("\n");
   const system = [{ type: "text", text: roleDef.system, cache_control: { type: "ephemeral" } }];
   const elSystem = conv.system.join("\n\n").slice(0, 4000);
   if (elSystem) system.push({ type: "text", text: `Platform notes (from the voice platform, not the caller):\n${elSystem}` });

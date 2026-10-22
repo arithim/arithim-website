@@ -95,3 +95,44 @@ test("the filter only ever sees agent speech: a caller's own figures are not fla
   const lines = [{ agent: false, text: "We pay about forty pounds a month, ten grand a year" }, { agent: true, text: "Thanks, I will take a message." }];
   assert.deepEqual(scanAgentLines(lines.filter((l) => l.agent).map((l) => l.text)), []);
 });
+
+// ---- prompt-eval round 2: refusals, read-backs, stray scripts ----
+test("negated promise, guarantee and commit refusals are not filtered", () => {
+  for (const s of [
+    "I can't promise that.", "I can't guarantee any figure or outcome.", "I won't promise a time.", "I'm not able to commit to a time on a call.",
+    "I cannot say Tarun will call by Friday morning.", "I don't give guarantees or figures on savings.", "I can't confirm that anyone will call tomorrow.",
+    "Unfortunately I can't commit to anything by end of day.", "The only thing I can promise is a reply within one working day.",
+  ]) assert.deepEqual(detect(s), [], s);
+});
+test("a negated clause does not hide a promise in the next clause", () => {
+  assert.ok(detect("I can't promise that, but Tarun will call tomorrow.").includes("date"));
+  assert.ok(detect("I won't guarantee anything and we guarantee delivery by Friday.").includes("guarantee"));
+  assert.ok(detect("I can't give figures, but it is about £500.").includes("price"));
+  assert.ok(detect("We guarantee results.").includes("guarantee"));
+});
+test("an amount the caller said earlier may be read back; any other amount may not", () => {
+  const said = "It's invoice 4471, for £4,800, dated the third of September.";
+  assert.deepEqual(detect("I have four thousand eight hundred pounds, dated the third.", [], said), []);
+  assert.deepEqual(detect("Four thousand eight hundred pounds. Is that right?", [], "four thousand eight hundred pounds"), []);
+  assert.deepEqual(detect("That is £4,800, is that right?", [], "forty-eight hundred... no, 4800 pounds"), []);
+  assert.ok(detect("I have five thousand pounds.", [], said).includes("price"));
+  assert.ok(detect("I have four thousand eight hundred pounds."). includes("price"), "no caller text, so not allowed");
+  assert.ok(detect("That is £4,800, plus £500 for the call-out.", [], said).includes("price"));
+});
+test("our own ARC reference read-back is never a price or a time", () => {
+  for (const s of ["Your reference is ARC-261022-4K2B.", "The reference is A R C, two six one, zero two two, then five K two two.", "Reference A R C, two six one, zero two two, then two J two two."]) assert.deepEqual(detect(s), [], s);
+});
+test("non-Latin characters are stripped from agent speech", () => {
+  const r = filterSentence("I've logged that, the reference is A R C, two six one,零 two two.");
+  assert.equal(r.text, "I've logged that, the reference is A R C, two six one, two two.");
+  assert.equal(filterSentence("零").text, "");
+  assert.equal(filterSentence("Café, naïve £ symbols are fine — and 99 too.").text, "Café, naïve £ symbols are fine — and 99 too.");
+});
+test("replacement lines make no promise", () => {
+  for (const l of [LINE_FIGURES, LINE_AVOID]) { assert.ok(!/\bTarun\b|\bwill\b|promise/i.test(l.replace(/commitments/, "")), l); assert.deepEqual(detect(l), [], l); }
+  assert.equal(LINE_FIGURES, "I can't give figures or commitments on a call.");
+});
+test("filterText takes the caller's text for read-backs", () => {
+  const r = filterText("Invoice for £4,800. Also £900 extra.", [], "I was billed £4,800");
+  assert.equal(r.text, `Invoice for £4,800. ${LINE_FIGURES}`);
+});

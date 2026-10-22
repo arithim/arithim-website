@@ -67,7 +67,7 @@ export async function sendCallEmail(env, db, call, transcript, secs) {
 
   const denylist = parseDenylist(env.CALL_DENYLIST);
   // The filter applies to what the agent said. The caller's own words are never filtered, only scanned for bank wording.
-  const scanHits = scanAgentLines(lines.filter((l) => l.agent).map((l) => l.text), denylist);
+  const scanHits = scanAgentLines(lines.filter((l) => l.agent).map((l) => l.text), denylist, lines.filter((l) => !l.agent).map((l) => l.text).join("\n"));
   const paymentWording = lines.some((l) => !l.agent && PAYMENT_RE.test(l.text || "")) || msgs.some((m) => PAYMENT_RE.test(flatten(m.fields)));
   const flagSet = new Set([...(call.flags || "").split(",").filter(Boolean), ...scanHits, ...(paymentWording ? ["payment-details"] : [])]);
   // blocked transfers and brain errors are informational, not content flags
