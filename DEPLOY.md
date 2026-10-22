@@ -2,7 +2,9 @@
 
 The repository root is the site. There is no `dist/` folder and no JavaScript build: pages are plain static HTML served through `support.js`. The one generated part is the Insights section, which `tools/build_insights.py` builds from Markdown (stdlib Python 3.11+, no packages to install).
 
-Phone and tablet layout lives in `site.css`. Pages keep their inline styles, and elements that need to change at narrow widths carry an `r-*` class (listed at the top of `site.css`). A new page should link `/site.css` after `support.js` and reuse those classes; the insight template already does.
+`site.css` is the site's one stylesheet: base reset, shared animations, article and contact-form styles, the mobile menu, the phone and tablet layout for the inline-styled pages, and the Technical Sales Guide page. Pages keep their inline styles, and elements that need to change at narrow widths carry an `r-*` class (listed at the top of `site.css`).
+
+The head links (favicons, fonts, `support.js`, `site.css`), the header with its nav, and the page footer are partials in `tools/partials/`. `build_insights.py` stamps them into every page between `<!-- partial:name {params} -->` and `<!-- /partial:name -->` markers, and CI's `--check` fails if a page has drifted. To change the nav, edit `NAV_LINKS` in `build_insights.py`; to change the header or footer, edit the partial. Then run the build and commit the pages it rewrites. Do not edit inside the markers by hand. A new page copies the markers from an existing page and sets its own params (see `tools/partials/README.md`).
 
 Production is the Cloudflare Pages project **`arithim`** (account id in the `CLOUDFLARE_ACCOUNT_ID` secret). The contact form is a Pages Function in `functions/api/contact.js`; it deploys with the site.
 
@@ -32,7 +34,7 @@ What gets published: everything in the repo root except `content/`, `tools/`, `.
 6. Open the preview URL the workflow comments on the PR. Check the new page, `insights.html`, and (for research pieces) `research.html`.
 7. Merge. The production job deploys to arithim.com.
 
-Do not edit `insight-*.html` by hand. Edit the Markdown and rebuild. Do not edit between the `<!-- insights:start -->` and `<!-- research:start -->` markers either.
+Do not edit `insight-*.html` by hand. Edit the Markdown and rebuild. Do not edit between the `<!-- insights:start -->` and `<!-- research:start -->` markers, or inside any `<!-- partial:... -->` block, either.
 
 ## First-time setup (already done for arithim)
 

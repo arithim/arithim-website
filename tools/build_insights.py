@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Insights section of arithim.com from content/insights/*.md.
+"""Build the generated parts of arithim.com: the Insights section and the shared page partials.
 
 Usage:
     python3 tools/build_insights.py            # regenerate everything
@@ -9,6 +9,8 @@ Generated outputs:
     insight-<slug>.html   one page per article (template: tools/templates/insight.html)
     insights.html         article list between <!-- insights:start --> / <!-- insights:end -->
     research.html         "Latest research" between <!-- research:start --> / <!-- research:end -->
+    every *.html page     head, header and footer between <!-- partial:name --> / <!-- /partial:name -->
+                          (sources in tools/partials/, see its README)
     sitemap.xml           every *.html page in the repo root
 
 Standard library only (Python 3.11+ for tomllib).
@@ -48,6 +50,17 @@ OPTIONAL_FIELDS = (
 # Pages that get priority 0.8 in the sitemap. index.html is 1.0, everything else 0.6.
 HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "research.html", "services.html", "technical-sales-guide.html"}
 SITEMAP_SKIP = {"404.html"}
+
+# Header nav, in order. The header partial renders these; the page's "active" param highlights one.
+NAV_LINKS = (
+    ("services.html", "Services"),
+    ("technical-sales-guide.html", "Sales Guide"),
+    ("research.html", "Research"),
+    ("insights.html", "Insights"),
+    ("case-studies.html", "Case Studies"),
+    ("about.html", "About"),
+)
+HEADER_CTAS = ("talk", "contact", "demo")
 
 
 # ---------------------------------------------------------------------------
@@ -533,6 +546,47 @@ def replace_between(text: str, name: str, content: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Shared partials (head, header, footer)
+# ---------------------------------------------------------------------------
+
+_PARTIAL_RE = re.compile(r"(<!-- partial:([a-z]+)(?: (\{.*?\}))? -->)(.*?)(<!-- /partial:\2 -->)", re.S)
+_NAV_LINK = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">{label}</a>'
+_NAV_LINK_ACTIVE = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">{label}</a>'
+
+
+def render_partial(name: str, params: dict, partials_dir: Path) -> str:
+    def read(n: str) -> str:
+        return (partials_dir / f"{n}.html").read_text(encoding="utf-8").rstrip("\n")
+
+    if name == "head":
+        return read("head")
+    if name == "header":
+        active = params.get("active", "")
+        if active and active not in {href for href, _ in NAV_LINKS}:
+            raise ValueError(f"header active link {active!r} is not in NAV_LINKS")
+        cta = params.get("cta", "talk")
+        if cta not in HEADER_CTAS:
+            raise ValueError(f"header cta {cta!r} must be one of {', '.join(HEADER_CTAS)}")
+        links = "\n".join((_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label) for href, label in NAV_LINKS)
+        return fill(read("header"), {"label": esc(params["label"]), "links": links, "cta": read(f"cta-{cta}")})
+    if name == "footer":
+        return fill(read("footer"), {
+            "back_href": attr(params["back_href"]),
+            "back_text": esc(params["back_text"]),
+            "email": esc(params.get("email", "hello@arithim.com").upper()),
+        })
+    raise ValueError(f"unknown partial {name!r}")
+
+
+def stamp_partials(text: str, partials_dir: Path) -> str:
+    """Re-render every <!-- partial:name {params} --> ... <!-- /partial:name --> block in a page."""
+    def sub(m: re.Match) -> str:
+        params = json.loads(m.group(3)) if m.group(3) else {}
+        return m.group(1) + "\n" + render_partial(m.group(2), params, partials_dir) + "\n" + m.group(5)
+    return _PARTIAL_RE.sub(sub, text)
+
+
+# ---------------------------------------------------------------------------
 # Sitemap
 # ---------------------------------------------------------------------------
 
@@ -604,6 +658,11 @@ def generate(root: Path = ROOT, articles: list[dict] | None = None) -> dict[Path
     outputs[insights_path] = replace_between(insights_path.read_text(encoding="utf-8"), "insights", render_insights_list(articles))
     research_path = root / "research.html"
     outputs[research_path] = replace_between(research_path.read_text(encoding="utf-8"), "research", render_research_section(articles))
+    partials_dir = root / "tools" / "partials"
+    template_path = root / "tools" / "templates" / "insight.html"
+    for page in [*sorted(root.glob("*.html")), template_path, *outputs]:
+        current = outputs[page] if page in outputs else page.read_text(encoding="utf-8")
+        outputs[page] = stamp_partials(current, partials_dir)
     # The sitemap is built last because it lists the pages above (including new ones).
     return outputs
 

@@ -213,6 +213,56 @@ class OrderingTests(unittest.TestCase):
             b.replace_between("nothing", "m", "z")
 
 
+class PartialTests(unittest.TestCase):
+    PARTIALS = REPO / "tools" / "partials"
+
+    def stamp(self, name, params=None):
+        marker = f"<!-- partial:{name}" + (f" {json.dumps(params)}" if params else "") + " -->"
+        return b.stamp_partials(f"before\n{marker}\nstale\n<!-- /partial:{name} -->\nafter", self.PARTIALS)
+
+    def test_header_marks_exactly_one_active_link(self):
+        out = self.stamp("header", {"label": "/about", "active": "about.html"})
+        self.assertEqual(out.count('aria-current="page"'), 1)
+        self.assertIn('<a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">About</a>', out)
+        self.assertEqual(len(re.findall(r'<a href="[^"]+" style="position:relative;padding:9px 15px', out)), len(b.NAV_LINKS))
+        self.assertNotIn("stale", out)
+        self.assertTrue(out.startswith("before\n") and out.endswith("\nafter"))
+
+    def test_header_label_is_escaped_and_cta_selectable(self):
+        out = self.stamp("header", {"label": "/<x>", "active": "", "cta": "demo"})
+        self.assertIn("/&lt;x&gt;", out)
+        self.assertIn("Request a demo", out)
+        self.assertNotIn('aria-current', out)
+
+    def test_bad_header_params_rejected(self):
+        with self.assertRaises(ValueError):
+            self.stamp("header", {"label": "/x", "active": "nowhere.html"})
+        with self.assertRaises(ValueError):
+            self.stamp("header", {"label": "/x", "active": "", "cta": "shout"})
+        with self.assertRaises(ValueError):
+            self.stamp("sidebar")
+
+    def test_footer_email_defaults_and_is_uppercased(self):
+        out = self.stamp("footer", {"back_href": "index.html", "back_text": "← BACK TO HOME"})
+        self.assertIn("HELLO@ARITHIM.COM", out)
+        out = self.stamp("footer", {"back_href": "index.html", "back_text": "← BACK", "email": "research@arithim.com"})
+        self.assertIn("RESEARCH@ARITHIM.COM", out)
+
+    def test_stamping_is_idempotent_and_leaves_unmarked_pages_alone(self):
+        once = self.stamp("head")
+        self.assertEqual(b.stamp_partials(once, self.PARTIALS), once)
+        self.assertEqual(b.stamp_partials("<html></html>", self.PARTIALS), "<html></html>")
+
+    def test_every_page_uses_the_shared_partials(self):
+        for page in [*REPO.glob("*.html"), REPO / "tools" / "templates" / "insight.html"]:
+            text = page.read_text(encoding="utf-8")
+            for name in ("head", "header", "footer"):
+                if name == "footer" and page.name == "index.html":
+                    continue  # the home page has its own larger footer
+                self.assertEqual(text.count(f"<!-- partial:{name} "), 1, f"{page.name}: {name}")
+            self.assertNotIn("<helmet>", text, page.name)
+
+
 class RepoBuildTests(unittest.TestCase):
     """Run the real build against a scratch copy of the repo."""
 
@@ -263,6 +313,12 @@ class RepoBuildTests(unittest.TestCase):
         page = outputs[self.tmp / "insights.html"]
         order = [page.index(f'href="{a["file"]}"') for a in articles]
         self.assertEqual(order, sorted(order))
+
+    def test_hand_edited_partial_is_restamped(self):
+        _, outputs = self._write_all()
+        about = self.tmp / "about.html"
+        about.write_text(about.read_text(encoding="utf-8").replace(">Research</a>", ">Labs</a>", 1), encoding="utf-8")
+        self.assertIn(">Research</a>", b.generate(self.tmp)[about])
 
     def test_check_detects_staleness(self):
         articles, outputs = self._write_all()

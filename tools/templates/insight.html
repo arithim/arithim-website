@@ -11,10 +11,6 @@
 <meta property="og:description" content="@@description_attr@@">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="@@url@@">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#070C16">
 <meta property="og:url" content="@@url@@">
 <meta property="og:image" content="https://arithim.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -23,57 +19,40 @@
 <meta property="article:published_time" content="@@published@@">
 @@extra_meta@@
 @@jsonld@@
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="./support.js"></script>
 <link rel="stylesheet" href="/site.css">
+<!-- /partial:head -->
 </head>
 <body>
 <x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: #070C16; }
-  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  a { text-decoration: none; color: inherit; }
-  @keyframes ah-spin { to { transform: rotate(360deg); } }
-  @keyframes ah-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
-  @keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
-  .ai-body a { color: #E8A13C; border-bottom: 1px solid rgba(232,161,60,0.35); }
-  .ai-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: rgba(245,241,232,0.08); border-radius: 4px; padding: 1px 6px; color: #EDEBE4; }
-  .ai-body a:hover { border-bottom-color: #E8A13C; }
-  .ai-body h2 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.025em; color: #F5F1E8; margin: 56px 0 18px; }
-  .ai-body h3 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.015em; color: #F5F1E8; margin: 32px 0 10px; }
-  .ai-body p { font-size: 18px; line-height: 1.75; color: #C6CEDA; margin: 0 0 24px; }
-  .ai-body ul, .ai-body ol { font-size: 18px; line-height: 1.7; color: #C6CEDA; margin: 0 0 24px; padding-left: 22px; }
-  .ai-body li { margin: 0 0 12px; }
-  .ai-table { width: 100%; overflow-x: auto; margin: 8px 0 30px; }
-  .ai-table table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; color: #C6CEDA; }
-  .ai-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8AA0; font-weight: 500; padding: 10px 12px 10px 0; border-bottom: 1px solid rgba(245,241,232,0.16); }
-  .ai-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(245,241,232,0.08); vertical-align: top; }
-  .ai-table td:first-child { white-space: nowrap; color: #EDEBE4; }
-  .ai-body .ai-note { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; color: #7C8AA0; }
-  @media (max-width: 640px) { .ai-body h2 { font-size: 25px; } .ai-table td:first-child { white-space: normal; } }
-</style>
-</helmet>
 
 <div style="background:#070C16;color:#F5F1E8;min-height:100vh;">
 
-  <div style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
     <div class="r-gut" style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
-      <a href="index.html" style="display:inline-flex;align-items:baseline;gap:0;"><span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/insights</span></span></a>
-      <nav data-nav style="position:relative;display:flex;align-items:center;gap:2px;">
+      <a href="index.html" aria-label="Arithim home" style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/insights</span></a>
+      <nav data-nav aria-label="Main" style="position:relative;display:flex;align-items:center;gap:2px;">
         <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
         <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Services</a>
+        <a href="technical-sales-guide.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Sales Guide</a>
         <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
-        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;">Insights</a>
+        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">Insights</a>
         <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
         <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
       </nav>
       <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 55%,#E8A13C,transparent 75%);animation:ah-spin 3.5s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;">Let's talk →</span></a>
     </div>
-  </div>
+  </header>
+<!-- /partial:header -->
 
   <div data-hero style="position:relative;overflow:hidden;">
     <div style="position:absolute;top:-30%;left:20%;width:600px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.16),transparent 62%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
@@ -104,7 +83,9 @@
     </div>
   </div>
 
-  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="insights.html" style-hover="color:#E8A13C;">← ALL INSIGHTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></div>
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="insights.html" style-hover="color:#E8A13C;">← ALL INSIGHTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
 
 </div>
 </x-dc>
