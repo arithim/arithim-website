@@ -441,7 +441,7 @@
     }
     switch (err && err.kind) {
       case 'off': return showFallback('Calls are switched off at the moment. Please use the contact form and we will reply within one working day.');
-      case 'budget': return showFallback('We have reached our call limit for now. Please use the contact form and we will reply within one working day.');
+      case 'budget': return showFallback(voice ? 'We have reached our voice call limit for now. You can chat by text instead, or use the contact form and we will reply within one working day.' : 'We have reached our chat limit for now. Please use the contact form and we will reply within one working day.', { text: voice });
       case 'verify': return showIntro('The human check did not pass. Please try again.');
       case 'tscheck': return showFallback('The human check did not complete.' + (voice ? ' You can try again, chat by text, or use the contact form.' : ' Please try again or use the contact form.'), { text: voice, retry: true });
       case 'abort': return;

@@ -127,7 +127,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   } else {
     try {
       const r = await fetch(
-        "https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=" + encodeURIComponent(agentId) + "&environment=" + (envName(env, request) === "preview" ? "staging" : "production"),
+        "https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=" + encodeURIComponent(agentId),
         { headers: { "xi-api-key": env.ELEVENLABS_API_KEY }, signal: AbortSignal.timeout(8000) }
       );
       if (!r.ok) throw new Error("signed url " + r.status);
