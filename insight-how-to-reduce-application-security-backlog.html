@@ -196,6 +196,7 @@
 }
 </script>
 <script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
 <x-dc>
@@ -232,7 +233,7 @@
 <div style="background:#070C16;color:#F5F1E8;min-height:100vh;">
 
   <div style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
-    <div style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div class="r-gut" style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
       <a href="index.html" style="display:inline-flex;align-items:baseline;gap:0;"><span style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/insights</span></span></a>
       <nav data-nav style="position:relative;display:flex;align-items:center;gap:2px;">
         <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
@@ -249,14 +250,14 @@
   <div data-hero style="position:relative;overflow:hidden;">
     <div style="position:absolute;top:-30%;left:20%;width:600px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.16),transparent 62%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
-    <div style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
+    <div class="r-gut" style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:26px;"><a href="insights.html" style-hover="color:#E8A13C;">Insights</a> / <span style="color:#E8A13C;">Application security</span></div>
-      <h1 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">How Do We Reduce Our Application Security Backlog?</h1>
+      <h1 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">How Do We Reduce Our Application Security Backlog?</h1>
       <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>20 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
     </div>
   </div>
 
-  <article class="ai-body" style="max-width:760px;margin:0 auto;padding:30px 40px 20px;">
+  <article class="ai-body r-gut" style="max-width:760px;margin:0 auto;padding:30px 40px 20px;">
     <p style="font-size:22px;line-height:1.55;color:#EDEBE4;margin:0 0 32px;font-family:'Space Grotesk';font-weight:500;letter-spacing:-0.01em;">Most application security backlogs shrink fastest when you cut the noise before anyone writes a fix, send every remaining finding to a named owner, and fix vulnerable dependencies in bulk. Generating patches is now the easy part, since most scanners can suggest one. What keeps backlogs large is the coordination around each fix, and that is where automation pays off.</p>
     <p>This is the third piece in our application security series, after <a href="insight-more-than-one-application-security-testing-tool.html">whether you need more than one AST tool</a> and <a href="insight-how-to-secure-vibe-coded-apps.html">how to secure vibe-coded apps</a>. It draws on Gartner's 2025 <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a> and its 2026 <a href="https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&amp;ct=260617&amp;st=sb" rel="noopener">Magic Quadrant for Software Supply Chain Security</a>.</p>
     <h2>Why backlogs keep growing</h2>
@@ -300,23 +301,23 @@
     <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
   </article>
 
-  <div style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
+  <div class="r-gut" style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
     <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#556074;margin-bottom:20px;">MORE INSIGHTS</div>
     <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
     <a href="insight-how-to-secure-vibe-coded-apps.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
     <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
   </div>
 
-  <div data-hero style="position:relative;overflow:hidden;padding:90px 40px;margin-top:40px;">
+  <div data-hero class="r-gut" style="position:relative;overflow:hidden;padding:90px 40px;margin-top:40px;">
     <div style="position:absolute;top:-30%;left:35%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.18),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div style="position:relative;max-width:760px;margin:0 auto;text-align:center;">
-      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 26px;">Want to see how much of your backlog is noise?</h2>
+      <h2 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 26px;">Want to see how much of your backlog is noise?</h2>
       <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 32px;border-radius:999px;">Start a conversation →</span></a>
     </div>
   </div>
 
-  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="insights.html" style-hover="color:#E8A13C;">← ALL INSIGHTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></div>
+  <div style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD</span><a href="insights.html" style-hover="color:#E8A13C;">← ALL INSIGHTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></div>
 
 </div>
 </x-dc>

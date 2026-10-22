@@ -494,8 +494,8 @@ def render_insights_list(articles: list[dict]) -> str:
         if i == len(articles) - 1:
             border += "border-bottom:1px solid rgba(245,241,232,0.1);"
         rows.append(
-            f'    <a href="{attr(a["file"])}" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:34px 0;{border}" style-hover="opacity:0.7;">\n'
-            f'      <div><h2 style="font-family:\'Schibsted Grotesk\',sans-serif;font-weight:600;font-size:30px;letter-spacing:-0.025em;margin:0 0 10px;color:#F5F1E8;">{esc(a["title"])}</h2>'
+            f'    <a href="{attr(a["file"])}" class="r-ga" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:34px 0;{border}" style-hover="opacity:0.7;">\n'
+            f'      <div><h2 class="r-f5" style="font-family:\'Schibsted Grotesk\',sans-serif;font-weight:600;font-size:30px;letter-spacing:-0.025em;margin:0 0 10px;color:#F5F1E8;">{esc(a["title"])}</h2>'
             f'<p style="font-size:16px;line-height:1.6;color:#8794A6;margin:0;max-width:640px;">{esc(card_summary(a))}</p></div>\n'
             f'      <span style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#7C8AA0;white-space:nowrap;text-align:right;">{esc(card_label(a))}<br>{fmt_date(a["date"])}</span>\n'
             f'    </a>'
@@ -517,7 +517,7 @@ def render_research_section(articles: list[dict]) -> str:
             f'<span style="font-size:14px;font-weight:600;color:#E8A13C;">Read the research →</span></a>'
         )
     return (
-        '  <div style="max-width:1000px;margin:0 auto;padding:40px 40px 0;">\n'
+        '  <div class="r-gut" style="max-width:1000px;margin:0 auto;padding:40px 40px 0;">\n'
         '    <div style="font-family:\'JetBrains Mono\',monospace;font-size:12px;letter-spacing:0.14em;color:#E8A13C;margin-bottom:26px;">LATEST RESEARCH</div>\n'
         '    <div style="display:grid;gap:18px;">\n' + "\n".join(cards) + "\n    </div>\n  </div>"
     )

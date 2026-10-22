@@ -1,0 +1,64 @@
+/* Responsive overrides for the inline-styled pages.
+   Layout lives in style="" attributes, so every rule here needs !important.
+   Nothing applies above 1100px, so the desktop layout is unchanged.
+
+   Classes added in the HTML:
+     r-gut        40px side gutters on a section container
+     r-pad        40px padding all round (cards, footers)
+     r-g2, r-g3   two- and three-column grids
+     r-gl, r-ga   label + content and content + aside grids
+     r-f1..r-f5   display type, largest first (118px down to 30px)
+     r-stack      a two-column grid that should stack from tablet width
+   One-off blocks: r-flow and r-stats (home pipeline and stats), r-glow and r-chip
+   (home decoration), r-btns (button rows), r-wrap (footer link columns), r-foot (page footer), r-strip (case-study flow). */
+
+@media (max-width: 1100px) {
+  /* Home pipeline (five 200px cards in a row): cards stack, connectors turn into short vertical rules. */
+  .r-flow { flex-direction: column; align-items: stretch !important; }
+  .r-flow > div:not(:has(> span)) { width: auto !important; }
+  .r-flow > div:has(> span) { flex: 0 0 28px !important; width: 2px; height: auto !important; margin: 4px auto !important; }
+  .r-flow > div > span { display: none; }
+}
+
+@media (max-width: 900px) {
+  img, svg, video { max-width: 100%; }
+  .r-gut { padding-left: 28px !important; padding-right: 28px !important; }
+  .r-g3 { grid-template-columns: 1fr 1fr !important; }
+  .r-f1 { font-size: 84px !important; }
+  .r-f2 { font-size: 58px !important; }
+  .r-f3 { font-size: 46px !important; }
+
+  /* Header: logo and CTA on the first row, nav links scroll sideways on the second. */
+  .r-gut:has(> [data-nav]) { flex-wrap: wrap; row-gap: 10px; }
+  [data-nav] { order: 3; width: calc(100% + 30px); margin: 0 -15px; overflow-x: auto; scrollbar-width: none; }
+  [data-nav]::-webkit-scrollbar { display: none; }
+  [data-nav] > a { flex: 0 0 auto; }
+  [data-nav-pill] { display: none; }
+  .r-glow { left: 0 !important; width: 100% !important; }
+  .r-chip { display: none; }
+  .r-stack { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+@media (max-width: 640px) {
+  .r-gut { padding-left: 20px !important; padding-right: 20px !important; }
+  .r-pad { padding: 24px !important; }
+  .r-g2, .r-g3, .r-gl, .r-ga { grid-template-columns: minmax(0, 1fr) !important; }
+  .r-ga > :last-child { text-align: left !important; }
+  .r-f1 { font-size: 56px !important; }
+  .r-f2 { font-size: 44px !important; }
+  .r-f3 { font-size: 36px !important; }
+  .r-f4 { font-size: 28px !important; }
+  .r-f5 { font-size: 25px !important; }
+
+  .r-foot { flex-direction: column; gap: 10px; }
+  .r-btns, .r-wrap { flex-wrap: wrap; }
+  .r-wrap { row-gap: 28px !important; }
+  .r-btns > a, .r-btns > a > span { white-space: nowrap; }
+
+  .r-stats { flex-wrap: wrap; gap: 28px 40px !important; }
+  .r-stats > div:empty { display: none; }
+
+  /* Case-study flow strips: let the step labels size to their text. */
+  .r-strip { padding: 20px 12px !important; }
+  .r-strip > :nth-child(odd) { width: auto !important; }
+}
