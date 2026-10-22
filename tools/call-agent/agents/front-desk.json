@@ -1,0 +1,143 @@
+{
+  "role": "front-desk",
+  "notes": {
+    "unverified": [
+      "Field shapes were checked against the ElevenLabs OpenAPI schema (api.elevenlabs.io/openapi.json) on 2026-10-22; see step0-results.md for what the live API kept after a GET.",
+      "built_in_tools.transfer_to_agent is a SystemToolConfig: params.system_tool_type and params.transfers[] sit directly in params (the earlier params.transfer_to_agent.transfers nesting was wrong).",
+      "custom_llm.request_headers values: plain string, {secret_id}, {variable_name} or {env_var_label} (sync turns {secret_name} into {secret_id}). Whether {{call_id}} survives a transfer is a live step-0 check.",
+      "The post-call webhook is created by sync through POST /v1/workspace/webhooks (HMAC); the agent references it by post_call_webhook_id."
+    ],
+    "verified_against_create_api_page_2026_10_21": [
+      "turn.turn_timeout",
+      "turn.silence_end_call_timeout",
+      "conversation.max_duration_seconds",
+      "agent.first_message",
+      "agent.language",
+      "prompt.llm=custom-llm",
+      "custom_llm.url/api_type",
+      "tts.voice_id/model_id",
+      "platform_settings.auth.enable_auth",
+      "overrides.conversation_config_override.conversation.text_only",
+      "privacy.record_voice/retention_days",
+      "evaluation.criteria",
+      "workspace_overrides.webhooks.post_call_webhook_id"
+    ],
+    "transfer_rule_order": "index = position in transfers[]: 0 consulting, 1 tsg, 2 customer-desk",
+    "post_call_webhook_url": "https://arithim.com/api/call/webhook",
+    "staging": "sync --env staging swaps the host https://arithim.com for the preview host (--staging-host)."
+  },
+  "agent": {
+    "name": "Arithim Hannah (front desk)",
+    "conversation_config": {
+      "agent": {
+        "first_message": "Hello, you've reached Arithim. I'm Hannah, Arithim's AI assistant, and this call is transcribed. How can I help?",
+        "language": "en",
+        "dynamic_variables": {
+          "dynamic_variable_placeholders": {
+            "call_id": "unset"
+          }
+        },
+        "prompt": {
+          "prompt": "Stub. The real instructions are sent by the custom LLM endpoint.",
+          "llm": "custom-llm",
+          "custom_llm": {
+            "url": "https://arithim.com/api/call/llm/front-desk",
+            "api_type": "chat_completions",
+            "request_headers": {
+              "X-Call-Secret": {
+                "secret_name": "arithim_call_llm_secret"
+              },
+              "X-Call-Id": {
+                "variable_name": "call_id"
+              },
+              "X-Conversation-Id": {
+                "variable_name": "system__conversation_id"
+              }
+            }
+          },
+          "built_in_tools": {
+            "transfer_to_agent": {
+              "name": "transfer_to_agent",
+              "description": "Hand the call to a colleague when the caller's need clearly belongs to them.",
+              "params": {
+                "system_tool_type": "transfer_to_agent",
+                "transfers": [
+                  {
+                    "agent_id": "@consulting",
+                    "condition": "The caller has a business problem, wants to buy a service, is unsure what they need, or is interested in AP Clerk. Transfer to Oliver (consulting and discovery).",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  },
+                  {
+                    "agent_id": "@tsg",
+                    "condition": "The caller asks about the Technical Sales Guide: what it does, a demo or pilot, security and data questions. Transfer to Charlotte.",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  },
+                  {
+                    "agent_id": "@customer-desk",
+                    "condition": "An existing customer has a product problem, or the call is about an invoice in either direction, or a supplier or contract form. Transfer to Daniel.",
+                    "delay_ms": 0,
+                    "transfer_message": null,
+                    "enable_transferred_agent_first_message": false
+                  }
+                ]
+              },
+              "type": "system"
+            },
+            "end_call": {
+              "type": "system",
+              "name": "end_call",
+              "description": "End the call once the caller has said goodbye, asked to hang up, or the conversation is finished.",
+              "params": {
+                "system_tool_type": "end_call"
+              }
+            }
+          }
+        }
+      },
+      "tts": {
+        "_voice_suggestions": "Provisional staging pick: Lily (premade, warm British female). See arithim-ops/call-agent/voices.md for the shortlist.",
+        "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+        "model_id": "eleven_flash_v2"
+      },
+      "turn": {
+        "turn_timeout": 7,
+        "silence_end_call_timeout": 30
+      },
+      "conversation": {
+        "max_duration_seconds": 900
+      }
+    },
+    "platform_settings": {
+      "auth": {
+        "enable_auth": true
+      },
+      "overrides": {
+        "conversation_config_override": {
+          "conversation": {
+            "text_only": true
+          }
+        }
+      },
+      "privacy": {
+        "record_voice": false,
+        "retention_days": 30
+      },
+      "evaluation": {
+        "criteria": []
+      },
+      "workspace_overrides": {
+        "webhooks": {
+          "post_call_webhook_id": "@webhook",
+          "events": [
+            "transcript"
+          ],
+          "transcript_format": "json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+# Files that feed the RAG pack (tier 2). Repo-relative, one path per line.
+# Only public site pages, the insights, and the generated answer-gist file belong here.
+# Never add operating-model, prospect, pricing or internal TSG documents.
+# Add a file here deliberately; the build refuses paths that do not exist.
+
+# --- Public site pages
+index.html
+about.html
+contact.html
+privacy.html
+services.html
+services-ai-readiness.html
+services-automation.html
+services-sap.html
+services-websites.html
+services-training.html
+services-regulatory.html
+case-studies.html
+case-operational-intelligence-platform.html
+case-compliance-vendor-approval.html
+case-telecommunications-billing.html
+case-find-me-a-job.html
+case-unrejectable.html
+research.html
+insights.html
+
+# --- Insights (the rendered public articles)
+insight-more-than-one-application-security-testing-tool.html
+insight-how-to-secure-vibe-coded-apps.html
+insight-how-to-secure-ci-cd-pipelines-github-actions.html
+insight-how-to-reduce-application-security-backlog.html
+insight-how-to-choose-an-enterprise-architecture-tool.html
+insight-operational-intelligence-vs-automation.html
+insight-designing-websites-for-ai-discoverability.html
+insight-what-businesses-need-from-ai.html
+
+# --- Generated question-to-answer gists (reviewed, no confidential content)
+tools/call-agent/knowledge/answer-gists.md
