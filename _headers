@@ -5,3 +5,5 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+/assets/site-finder/videos/*
+  X-Robots-Tag: noindex
