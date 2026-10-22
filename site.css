@@ -1,5 +1,6 @@
-/* The site's one stylesheet, linked from every page after support.js.
+/* The site's one stylesheet, linked from every page by the head partial (tools/partials/head.html).
 
+   0. Base reset, shared keyframes, article body and contact form.
    1. Mobile menu button (.sn-btn) that site-nav.js adds to the header.
    2. Responsive overrides for the inline-styled pages. Layout lives in style="" attributes,
       so these rules need !important. None of them apply above 1100px.
@@ -14,6 +15,53 @@
       (home decoration), r-btns (button rows), r-wrap (footer link columns), r-foot (page footer),
       r-strip (case-study flow).
    3. The Technical Sales Guide page, which is built from classes (.tsg-*, .m-*). */
+
+/* ---- Base: every page ---- */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #070C16; }
+body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+
+@keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
+@keyframes ah-aurora-b { 0%,100% { transform: translate(0,0) scale(1.1); } 50% { transform: translate(-100px,80px) scale(0.85); } }
+@keyframes ah-aurora-c { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,-70px) scale(1.2); } }
+@keyframes ah-float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(10px,-16px); } }
+@keyframes ah-float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-14px,-10px); } }
+@keyframes ah-float3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(8px,14px); } }
+@keyframes ah-flow { 0% { left: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+@keyframes ah-hint { 0%,100% { transform: translateY(0); opacity:0.7; } 50% { transform: translateY(5px); opacity:1; } }
+@keyframes ah-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ah-marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes ah-pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes ah-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
+@keyframes ah-shimmer { to { background-position: 200% center; } }
+@keyframes ah-spin { to { transform: rotate(360deg); } }
+
+/* ---- Article body: insight pages (tools/templates/insight.html) and 404.html ---- */
+
+.ai-body a { color: #E8A13C; border-bottom: 1px solid rgba(232,161,60,0.35); }
+.ai-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: rgba(245,241,232,0.08); border-radius: 4px; padding: 1px 6px; color: #EDEBE4; }
+.ai-body a:hover { border-bottom-color: #E8A13C; }
+.ai-body h2 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.025em; color: #F5F1E8; margin: 56px 0 18px; }
+.ai-body h3 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.015em; color: #F5F1E8; margin: 32px 0 10px; }
+.ai-body p { font-size: 18px; line-height: 1.75; color: #C6CEDA; margin: 0 0 24px; }
+.ai-body ul, .ai-body ol { font-size: 18px; line-height: 1.7; color: #C6CEDA; margin: 0 0 24px; padding-left: 22px; }
+.ai-body li { margin: 0 0 12px; }
+.ai-table { width: 100%; overflow-x: auto; margin: 8px 0 30px; }
+.ai-table table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; color: #C6CEDA; }
+.ai-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8AA0; font-weight: 500; padding: 10px 12px 10px 0; border-bottom: 1px solid rgba(245,241,232,0.16); }
+.ai-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(245,241,232,0.08); vertical-align: top; }
+.ai-table td:first-child { white-space: nowrap; color: #EDEBE4; }
+.ai-body .ai-note { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; color: #7C8AA0; }
+@media (max-width: 640px) { .ai-body h2 { font-size: 25px; } .ai-table td:first-child { white-space: normal; } }
+
+/* ---- Contact form (contact.html) ---- */
+
+.contact-form input, .contact-form select, .contact-form textarea { font-family: inherit; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: #55607040; color: rgba(154,166,182,0.4); }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: rgba(232,161,60,0.6) !important; }
+.contact-form select option { background: #0B1220; color: #F5F1E8; }
 
 .sn-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: auto; background: transparent; color: #F5F1E8; border: 1px solid rgba(245,241,232,.22); border-radius: 999px; cursor: pointer; padding: 0; }
 .sn-btn:focus-visible { outline: 2px solid #E8A13C; outline-offset: 3px; }
@@ -77,8 +125,6 @@
    .m-* for the looping product explainers that tsg-motion.js drives. */
 
 html:has(.tsg) { scroll-behavior: smooth; }
-@keyframes ah-spin { to { transform: rotate(360deg); } }
-@keyframes ah-aurora-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,60px) scale(1.25); } }
 .tsg a:focus-visible, .tsg button:focus-visible, .tsg summary:focus-visible, .tsg input:focus-visible, .tsg select:focus-visible, .tsg textarea:focus-visible { outline: 2px solid #E8A13C; outline-offset: 3px; border-radius: 6px; }
 .tsg-light a:focus-visible, .tsg-light summary:focus-visible { outline-color: #9A5B00; }
 .tsg h1,.tsg h2,.tsg h3,.tsg h4 { font-family: 'Schibsted Grotesk',sans-serif; margin: 0; }
@@ -95,10 +141,6 @@ html:has(.tsg) { scroll-behavior: smooth; }
 .tsg-light .tsg-h2 { color:#0A1526; }
 .tsg-lead { font-size:18px; line-height:1.6; color:#AEB8C6; max-width:720px; margin-top:14px; }
 .tsg-light .tsg-lead { color:#3B465A; }
-.tsg-hdr { max-width:1200px; margin:0 auto; padding:16px 40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.tsg-nav { position:relative; display:flex; align-items:center; gap:2px; }
-.tsg-nav a { position:relative; padding:9px 15px; font-size:15px; color:#9AA6B6; white-space:nowrap; transition:color .2s; }
-.tsg-nav a:hover { color:#F5F1E8; }
 .tsg-hero-grid { display:grid; grid-template-columns:1.02fr 0.98fr; gap:44px; align-items:center; }
 .tsg-proof { display:flex; flex-wrap:wrap; gap:6px 26px; margin-top:34px; padding-top:20px; border-top:1px solid rgba(245,241,232,0.1); font:400 13px 'JetBrains Mono',monospace; letter-spacing:0.04em; color:#9AA6B6; }
 .tsg-proof b { color:#F5F1E8; font-weight:500; }
@@ -270,7 +312,7 @@ html:has(.tsg) { scroll-behavior: smooth; }
 .tsg-err { color:#F6CE8C; font-size:15px; min-height:20px; }
 .tsg-note { font:400 13px/1.7 'JetBrains Mono',monospace; color:#9AA6B6; }
 @media (max-width: 900px) {
-  .tsg-wrap, .tsg-hdr { padding-left:20px; padding-right:20px; }
+  .tsg-wrap { padding-left:20px; padding-right:20px; }
   .tsg-sec { padding-top:56px; } .tsg-band { padding:56px 0; margin-top:56px; }
   .tsg-h2 { font-size:29px; }
   .tsg-hero-grid, .tsg-panel, .tsg-demo-in { grid-template-columns:1fr; gap:26px; }
@@ -288,4 +330,4 @@ html:has(.tsg) { scroll-behavior: smooth; }
 }
 
 .m-slot { position:relative; height:38px; } .m-slot > * { position:absolute; left:0; right:0; top:0; }
-.tsg [id] { scroll-margin-top:76px; }
+.tsg [id] { scroll-margin-top:84px; }
