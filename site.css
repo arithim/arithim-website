@@ -97,6 +97,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 640px) {
+  /* Header on phones: logo, menu button and "Let's talk" share one row, so the button is narrower. */
+  .r-gut:has(> [data-nav]) > a[data-magnetic] > span:last-child { padding: 10px 14px !important; }
   .r-gut { padding-left: 20px !important; padding-right: 20px !important; }
   .r-pad { padding: 24px !important; }
   .r-g2, .r-g3, .r-gl, .r-ga { grid-template-columns: minmax(0, 1fr) !important; }
