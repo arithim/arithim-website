@@ -77,49 +77,71 @@ export async function onRequestPost({ request, env }) {
     return json(403, { error: "challenge verification failed" });
   }
 
-  const name = (form.name || "").toString().trim();
-  const challenge = (form.challenge || "").toString().trim();
-  if (!name || !challenge) {
+  // "demo" requests come from the Technical Sales Guide page. Same Turnstile and
+  // honeypot checks as above; the required fields differ (email and company, no challenge text).
+  const isDemo = (form.type || "").toString() === "demo";
+  // Strip control characters (newlines, tabs and so on) from single-line fields.
+  const clean = (v) => (v || "").toString().replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim();
+  const name = isDemo ? clean(form.name) : (form.name || "").toString().trim();
+  const demoNote = (form.note || "").toString().trim();
+  const challenge = isDemo ? demoNote : (form.challenge || "").toString().trim();
+  if (isDemo) {
+    const em = (form.email || "").toString().trim();
+    const co = (form.company || "").toString().trim();
+    const ctry = (form.country || "").toString().trim();
+    const rl = (form.role || "").toString().trim();
+    if (!name || !co || !ctry || !rl || em.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+      return json(400, { error: "name, work email, company, country and role are required" });
+    }
+  } else if (!name || !challenge) {
     return json(400, { error: "name and challenge are required" });
   }
   if (name.length > 200 || challenge.length > 5000) {
     return json(400, { error: "field too long" });
   }
 
-  const company = (form.company || "").toString().trim().slice(0, 200);
+  const company = isDemo ? clean(form.company).slice(0, 200) : (form.company || "").toString().trim().slice(0, 200);
   const industry = (form.industry || "").toString().trim().slice(0, 200);
   const timeline = (form.timeline || "").toString().trim().slice(0, 100);
   const success = (form.success || "").toString().trim().slice(0, 5000);
   const email = (form.email || "").toString().trim().slice(0, 200);
+  const country = isDemo ? clean(form.country).slice(0, 100) : "";
+  const role = isDemo ? clean(form.role).slice(0, 100) : "";
 
   const esc = (s) =>
     s.replace(/[&<>"']/g, (c) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
     }[c]));
 
-  const subject = `New enquiry — ${name}${company ? " (" + company + ")" : ""}`;
+  const subject = `${isDemo ? "Demo request (Technical Sales Guide)" : "New enquiry"} — ${name}${company ? " (" + company + ")" : ""}`;
 
   const text =
-    `New enquiry from arithim.com\n\n` +
+    `${isDemo ? "Demo request for the Technical Sales Guide" : "New enquiry from arithim.com"}\n\n` +
     `Name:      ${name}\n` +
     (email ? `Email:     ${email}\n` : "") +
     (company ? `Company:   ${company}\n` : "") +
+    (country ? `Country:   ${country}\n` : "") +
+    (role ? `Role:      ${role}\n` : "") +
     (industry ? `Industry:  ${industry}\n` : "") +
     (timeline ? `Timeline:  ${timeline}\n` : "") +
-    `\nChallenge:\n${challenge}\n` +
+    (challenge ? `\n${isDemo ? "Note" : "Challenge"}:\n${challenge}\n` : "") +
     (success ? `\nSuccess looks like:\n${success}\n` : "");
 
   const html =
-    `<h2 style="font-family:system-ui,sans-serif;">New enquiry from arithim.com</h2>` +
+    `<h2 style="font-family:system-ui,sans-serif;">${isDemo ? "Demo request for the Technical Sales Guide" : "New enquiry from arithim.com"}</h2>` +
     `<table style="font-family:system-ui,sans-serif;font-size:14px;border-collapse:collapse;">` +
     `<tr><td style="padding:4px 12px 4px 0;color:#555;">Name</td><td>${esc(name)}</td></tr>` +
     (email ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>` : "") +
     (company ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Company</td><td>${esc(company)}</td></tr>` : "") +
+    (country ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Country</td><td>${esc(country)}</td></tr>` : "") +
+    (role ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Role</td><td>${esc(role)}</td></tr>` : "") +
     (industry ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Industry</td><td>${esc(industry)}</td></tr>` : "") +
     (timeline ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Timeline</td><td>${esc(timeline)}</td></tr>` : "") +
     `</table>` +
-    `<p style="font-family:system-ui,sans-serif;font-size:14px;margin-top:20px;"><strong>Challenge</strong></p>` +
-    `<p style="font-family:system-ui,sans-serif;font-size:14px;white-space:pre-wrap;">${esc(challenge)}</p>` +
+    (challenge
+      ? `<p style="font-family:system-ui,sans-serif;font-size:14px;margin-top:20px;"><strong>${isDemo ? "Note" : "Challenge"}</strong></p>` +
+        `<p style="font-family:system-ui,sans-serif;font-size:14px;white-space:pre-wrap;">${esc(challenge)}</p>`
+      : "") +
     (success
       ? `<p style="font-family:system-ui,sans-serif;font-size:14px;margin-top:20px;"><strong>Success looks like</strong></p>` +
         `<p style="font-family:system-ui,sans-serif;font-size:14px;white-space:pre-wrap;">${esc(success)}</p>`
@@ -146,7 +168,7 @@ export async function onRequestPost({ request, env }) {
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
     console.error("resend failed", res.status, detail);
-    return json(502, { error: "could not send" });
+    return json(502, { error: "We could not send your request just now. Please email hello@arithim.com." });
   }
 
   return json(200, { ok: true });
