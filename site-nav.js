@@ -1,25 +1,10 @@
-// Shared mobile menu for the Arithim header. Any page with <nav data-nav> inside its header can call
-// initSiteNav(document). Under 900px the nav links collapse behind a menu button; above it nothing changes.
+// Shared mobile menu for the Arithim header. initFx in arithim-fx.js calls initSiteNav for every page.
+// Under 900px the nav links collapse behind a menu button; above it nothing changes. Styles are in site.css.
 export function initSiteNav(root) {
   root = root || document;
   const nav = root.querySelector('[data-nav]');
   if (!nav || nav.__sn) return () => {};
   nav.__sn = true;
-  if (!document.getElementById('sn-style')) {
-    const st = document.createElement('style');
-    st.id = 'sn-style';
-    st.textContent = `
-.sn-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;margin-left:auto;background:transparent;color:#F5F1E8;border:1px solid rgba(245,241,232,.22);border-radius:999px;cursor:pointer;padding:0}
-.sn-btn:focus-visible{outline:2px solid #E8A13C;outline-offset:3px}
-@media (max-width:900px){
-  .sn-btn{display:inline-flex}
-  [data-nav]{display:none !important}
-  [data-nav].sn-open{display:flex !important;flex-direction:column;align-items:stretch;gap:0 !important;position:fixed;left:0;right:0;top:var(--sn-top,72px);background:#0B1220;border-bottom:1px solid rgba(245,241,232,.12);padding:6px 20px 14px;z-index:60}
-  [data-nav].sn-open a{padding:14px 2px !important;font-size:17px !important;border-bottom:1px solid rgba(245,241,232,.07)}
-  [data-nav] [data-nav-pill]{display:none !important}
-}`;
-    document.head.appendChild(st);
-  }
   const btn = document.createElement('button');
   btn.type = 'button'; btn.className = 'sn-btn';
   nav.id = nav.id || 'sn-nav';

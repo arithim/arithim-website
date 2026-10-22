@@ -1,8 +1,10 @@
 // Arithim shared interaction effects. Call initFx(document) from a DC componentDidMount.
 // Returns a cleanup function.
+import { initSiteNav } from './site-nav.js';
+
 export function initFx(root) {
   root = root || document;
-  const stops = [];
+  const stops = [initSiteNav(root)];
 
   // ---- live cursor-reactive node canvas ----
   root.querySelectorAll('canvas[data-live-canvas]').forEach((canvas) => {
