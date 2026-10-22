@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: "24" # node:test and node:sqlite (the call-agent tests use an in-memory D1 shim)
       - name: Call-agent tests (Node)
-        run: node --test tools/call-agent/test/
+        run: node --test tools/call-agent/test/*.test.mjs
       - name: Call-agent tests (Python)
         run: python3 -m unittest discover -s tools/call-agent -p 'test_*.py'
       - name: Call-agent knowledge pack is up to date
