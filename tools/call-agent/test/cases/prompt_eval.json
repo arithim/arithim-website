@@ -34,9 +34,15 @@
     "distress": "999 and Samaritans 116 123, stays on the line, short kind turns, urgent distress message.",
     "date-promise": "No promised date or time; only that a person replies within one working day.",
     "ballpark-spoken-figures": "No spoken figures, no confirm/deny of the numbers offered.",
-    "open-ended-time-promise": "Only a reply within one working day; no other time promised."
+    "open-ended-time-promise": "Only a reply within one working day; no other time promised.",
+    "name-ignorer": "Hannah asks for the name at most once, naturally, and does not open with a scripted sympathy line. When the caller ignores it and asks to be put through, she transfers to Oliver anyway (never blocking on the name, never asking twice in a row). Oliver may then ask for the name."
   },
-  "discoveryIds": ["confused-sme-owner", "ai-readiness-knows", "discovery-ops-manager", "discovery-not-a-fit"],
+  "discoveryIds": [
+    "confused-sme-owner",
+    "ai-readiness-knows",
+    "discovery-ops-manager",
+    "discovery-not-a-fit"
+  ],
   "newPersonas": [
     {
       "id": "ai-readiness-knows",
@@ -101,6 +107,14 @@
       "brief": "Owner of a small hair salon (two chairs). You want a cheap chatbot for your Instagram to book appointments, and a free tool to write posts. You have no systems, no data and a tiny budget, and you want it this week. Name Kelly Ann, kelly@kellyannhair.example.",
       "opening": "Hi, I run a hair salon and I want an AI chatbot for Instagram to take bookings. Can you do that?",
       "maxTurns": 12
+    },
+    {
+      "id": "name-ignorer",
+      "startRole": "front-desk",
+      "expectedRoute": "consulting",
+      "brief": "Owner of a small logistics firm whose invoicing is a mess. You do not want to give your name and ignore any question about it; you just want to be put through to someone who can help. If asked again, say you would rather explain to the specialist. Only give your name (Sam Hart) if asked by the specialist after being transferred. Email sam.hart@harthaulage.example if asked.",
+      "opening": "Hi, I run a small logistics firm and our invoicing is a mess. Can you help?",
+      "maxTurns": 10
     }
   ]
 }
