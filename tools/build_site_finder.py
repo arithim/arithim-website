@@ -23,21 +23,28 @@ H1 = "Where in Great Britain should we build our next utility-scale solar farm?"
 
 e = html.escape
 
-VIDEOS = {
-    "j1": ("Ask the question and read the answer", "0:40", "j1-ask-the-question",
-           "Load the app, read the verdict and scan the ranked list, then explore the map of scored sites."),
-    "j2": ("Open the evidence for a site", "0:40", "j2-open-the-evidence",
-           "Open the evidence for the top site: the score waterfall, substations, planning record and economics, then the one-page print pack."),
-    "j3": ("Push back and see what changed", "0:43", "j3-push-back",
-           "Mark a substation as full and rescore. Read the What changed card, then assume a Gate 2 offer and see how the answer moves."),
-    "f1": ("Gate 2 and headroom allocation", "0:18", "f1-gate2-and-headroom",
-           "Higher-ranked sites take shared Gate 2 zone and substation capacity first. Assume a Gate 2 offer and watch the ranking move."),
-    "f2": ("Planning record by local authority", "0:20", "f2-planning-record",
-           "Search the planning record by local authority to see decisions, approval rates and recent schemes."),
-    "f3": ("Red flags for refused schemes nearby", "0:25", "f3-red-flags",
-           "A refused solar scheme nearby lowers a site's score. The waterfall and the planning tab name the scheme."),
-    "f4": ("Economics and sizing cliffs", "0:23", "f4-economics-and-sizing",
-           "Move project size across 100 MWac and watch the consent route, TNUoS charges and NPV change."),
+SCENES = {
+    "j1": ("Ask the question and read the answer",
+           "Load the app, read the verdict and scan the ranked list, then explore the map of scored sites.",
+           "A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Hulcott in Buckinghamshire needs £57.1 against a CfD price of £65.23, Stone Street in East Suffolk needs £60.5, and Belchamp St Paul in Braintree needs £59.7. Numbered markers place the sites on the map."),
+    "j2": ("Open the evidence for a site",
+           "Open the evidence for the top site: the score waterfall, substations, planning record and economics, then the one-page print pack.",
+           "The top row, Hulcott in Buckinghamshire, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Aylesbury East Grid 33kV at 0.5 km with capacity ok, the planning record, and the economics: the site needs £57.1 against a CfD price of £65.23."),
+    "j3": ("Push back and see what changed",
+           "Mark a substation as full and rescore. Read the What changed card, then assume a Gate 2 offer and see how the answer moves.",
+           "Four ranked sites sit above a card for the substation Aylesbury East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Hulcott falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause."),
+    "f1": ("Gate 2 and headroom allocation",
+           "Higher-ranked sites take shared Gate 2 zone and substation capacity first. Assume a Gate 2 offer and watch the ranking move.",
+           "A bar shows 134.6 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 40 MWac each take their share in rank order, and the figure falls to 94.6, 54.6 and then 14.6 MW. The fourth site, Weedon, also needs 40 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year."),
+    "f2": ("Planning record by local authority",
+           "Search the planning record by local authority to see decisions, approval rates and recent schemes.",
+           "A table lists local authorities, with a bar for the share of solar schemes approved. Wiltshire is selected. Its panel says it approved 11 of 12 solar schemes since 2019, with a median decision time of 9 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme."),
+    "f3": ("Red flags for refused schemes nearby",
+           "A refused solar scheme nearby lowers a site's score. The waterfall and the planning tab name the scheme.",
+           "A score waterfall for a site at Smeeth in Ashford starts at 0.83 before flags. Three multipliers follow: 0.90 for a refused scheme 1.4 km away, 0.94 for a National Park or AONB setting, and 0.93 for a listed building. The score ends at 0.65. A small map then shows the site, a dashed 1.4 km line and the refused scheme, East Stour Solar Farm, 49.9 MW."),
+    "f4": ("Economics and sizing cliffs",
+           "Move project size across 100 MWac and watch the consent route, TNUoS charges and NPV change.",
+           "A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£8.5m to −£0.1m. A note names the size threshold and both values."),
 }
 
 STEPS = [
@@ -139,20 +146,14 @@ FAQ = [
 ]
 
 
-def video(key: str, *, hero: bool = False) -> str:
-    title, dur, stem, cap = VIDEOS[key]
-    vid = f"sf-v-{key}{'-hero' if hero else ''}"
-    h4 = "" if hero else f'<h4 id="{vid}-t">{e(title)}</h4>'
-    label = f"Screen recording: {title}, {dur}"
-    capid = f"{vid}-c"
-    cap_html = (f'<p class="sf-cap" id="{capid}">{e(cap)} <span class="sf-meta">{dur}</span></p>' if not hero else
-                f'<p class="sf-cap" id="{capid}">Screen recording, {dur}: {e(title.lower()[0] + title[1:])}. The recording shows the interface on the launch data.</p>')
-    return (f'<figure class="sf-fig">'
-            f'<video class="sf-vid" controls muted playsinline preload="none" poster="{A}{stem}-poster.jpg" '
-            f'width="1920" height="1080" aria-label="{e(label)}" aria-describedby="{capid}">'
-            f'<source src="{A}{stem}.mp4" type="video/mp4">'
-            f'Your browser cannot play this video. <a href="{A}{stem}.mp4">Download the recording</a>.</video>'
-            f'{h4}{cap_html}</figure>')
+def scene(key: str, *, hero: bool = False) -> str:
+    title, cap, desc = SCENES[key]
+    desc_html = f'<details class="tsg-desc"><summary>Describe this animation</summary><p>{e(desc)} All names and figures illustrate the interface on the launch data.</p></details>'
+    mount = f'<div data-sf-scene="{key}" data-title="{e(title)}"></div>'
+    if hero:
+        return f'<figure class="sf-fig">{mount}{desc_html}</figure>'
+    return (f'<figure class="sf-fig"><div class="sf-sc-v">{mount}</div>'
+            f'<div class="sf-sc-t"><h4>{e(title)}</h4><p class="sf-cap">{e(cap)}</p>{desc_html}</div></figure>')
 
 
 def roadmap() -> str:
@@ -230,7 +231,7 @@ def build() -> str:
 {ld()}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=3">
+<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=4">
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
 <body>
@@ -257,7 +258,7 @@ def build() -> str:
             <a class="sf-link" href="#questions">See the questions your team can ask</a>
           </div>
         </div>
-        {video("j1", hero=True)}
+        {scene("j1", hero=True)}
       </div>
     </div>
   </section>
@@ -285,11 +286,11 @@ def build() -> str:
     <div class="tsg-wrap r-gut">
       <div class="tsg-eyebrow">SEE IT IN USE</div>
       <h2 class="tsg-h2 r-f4" id="videos-h">What does Site Finder look like in use?</h2>
-      <p class="tsg-lead">These are screen recordings of the interface on the launch data. They illustrate how the tool works and are not results for any project.</p>
+      <p class="tsg-lead">These are animated scenes of the interface. The names and figures come from the launch data and illustrate how the tool works. They are not results for any project.</p>
       <h3 class="sf-sub">Walkthroughs of a working session</h3>
-      <div class="sf-vgrid sf-v3">{"".join(video(k) for k in ("j1", "j2", "j3"))}</div>
+      <div class="sf-vgrid sf-v3">{"".join(scene(k) for k in ("j1", "j2", "j3"))}</div>
       <h3 class="sf-sub">Features up close</h3>
-      <div class="sf-vgrid sf-v4">{"".join(video(k) for k in ("f1", "f2", "f3", "f4"))}</div>
+      <div class="sf-vgrid sf-v4">{"".join(scene(k) for k in ("f1", "f2", "f3", "f4"))}</div>
     </div>
   </section>
 
@@ -371,8 +372,11 @@ def build() -> str:
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {{
-  componentDidMount() {{ import('./arithim-fx.js').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e)); }}
-  componentWillUnmount() {{ if (this._stop) this._stop(); }}
+  componentDidMount() {{
+    import('./arithim-fx.js').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
+    import('./site-finder-motion.js').then((m) => {{ this._stopMotion = m.initSfMotion(document); }}).catch((e) => console.error('motion load failed', e));
+  }}
+  componentWillUnmount() {{ ['_stop','_stopMotion'].forEach((k) => {{ if (this[k]) this[k](); }}); }}
   renderVals() {{ return {{}}; }}
 }}
 </script>
