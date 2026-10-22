@@ -3,6 +3,13 @@
 export const TURNSTILE_ACTION = "call-start";
 export const TURNSTILE_HOSTNAMES = new Set(["arithim.com", "www.arithim.com"]);
 
+// Production hostnames plus any extra ones from env CALL_TURNSTILE_HOSTNAMES (comma-separated, e.g. a Pages preview host).
+export function turnstileHostnames(extra) {
+  const out = new Set(TURNSTILE_HOSTNAMES);
+  for (const h of String(extra || "").split(",")) { const v = h.trim().toLowerCase(); if (v) out.add(v); }
+  return out;
+}
+
 export async function verifyTurnstile({ token, ip, secret, action = TURNSTILE_ACTION, hostnames = TURNSTILE_HOSTNAMES, fetchImpl }) {
   token = (token || "").toString();
   if (!token || token.length > 2048) return { ok: false, reason: "missing" };

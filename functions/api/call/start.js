@@ -9,7 +9,7 @@ import { expireStaleCalls, runMaintenance } from "../../_lib/cleanup.js";
 import { ROLES } from "../../_lib/call-knowledge.generated.js";
 import { newCallId } from "../../_lib/ids.js";
 import { json } from "../../_lib/escape.js";
-import { verifyTurnstile } from "../../_lib/turnstile.js";
+import { verifyTurnstile, turnstileHostnames } from "../../_lib/turnstile.js";
 import { reserveIp, releaseIp, reserveGlobal, releaseGlobal, reserveText, releaseText, insertCallIfRoom } from "../../_lib/budget.js";
 
 const ORIGINS = new Set(["https://arithim.com", "https://www.arithim.com"]);
@@ -68,7 +68,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const ip = request.headers.get("cf-connecting-ip") || "";
   if (prod && !ip) return json(400, { error: "bad request" });
   if (!(mock && !env.TURNSTILE_SECRET)) {
-    const ts = await verifyTurnstile({ token: body.turnstileToken, ip, secret: env.TURNSTILE_SECRET });
+    const ts = await verifyTurnstile({ token: body.turnstileToken, ip, secret: env.TURNSTILE_SECRET, hostnames: turnstileHostnames(env.CALL_TURNSTILE_HOSTNAMES) });
     if (!ts.ok) return json(403, { error: "challenge verification failed" });
   }
 

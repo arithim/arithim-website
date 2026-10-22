@@ -44,6 +44,17 @@ test("start: Turnstile must be action call-start on arithim.com", async () => {
   try { assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }), env })).status, 200); } finally { m.restore(); }
 });
 
+test("start: CALL_TURNSTILE_HOSTNAMES adds hosts; unset keeps production-only", async () => {
+  const ok = (hostname) => ({ other: async () => new Response(JSON.stringify({ success: true, action: "call-start", hostname })) });
+  const base = () => ({ CALLS_DB: makeDb(), CALL_MOCK: "1", TURNSTILE_SECRET: "x" });
+  let m = mockFetch([], ok("call-us.arithim.pages.dev"));
+  try { assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }), env: base() })).status, 403); } finally { m.restore(); }
+  m = mockFetch([], ok("call-us.arithim.pages.dev"));
+  try { assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }), env: { ...base(), CALL_TURNSTILE_HOSTNAMES: "other.example, call-us.arithim.pages.dev" } })).status, 200); } finally { m.restore(); }
+  m = mockFetch([], ok("arithim.com"));
+  try { assert.equal((await start({ request: startReq({ mode: "voice", turnstileToken: "t" }), env: { ...base(), CALL_TURNSTILE_HOSTNAMES: "x.example" } })).status, 200); } finally { m.restore(); }
+});
+
 test("start: third call from one IP gets 429; budget refusals release earlier reservations", async () => {
   const db = makeDb(); const env = { CALLS_DB: db, CALL_MOCK: "1" };
   assert.equal((await start({ request: startReq({ mode: "voice" }), env })).status, 200);

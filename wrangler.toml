@@ -18,6 +18,7 @@ migrations_dir = "migrations"
 
 [env.preview.vars]
 CALL_ENV = "preview"
+CALL_TURNSTILE_HOSTNAMES = "call-us.arithim.pages.dev"
 CALL_TALKER_MODEL = "claude-sonnet-5-5"
 CALL_THINKER_MODEL = "claude-opus-5-5"
 
