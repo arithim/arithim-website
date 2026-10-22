@@ -24,7 +24,7 @@ export function isMock(env, request) {
   return env.CALL_MOCK === "1" && !isProductionHost(request);
 }
 
-function originAllowed(request, env) {
+export function originAllowed(request, env) {
   const o = request.headers.get("origin") || "";
   // Preview deploys without D1: the page's own origin is allowed so the mock flow works.
   if (!env.CALLS_DB && !isProductionHost(request)) { try { if (o === new URL(request.url).origin) return true; } catch {} }

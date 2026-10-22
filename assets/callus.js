@@ -50,6 +50,54 @@
     hadCall: false, helpfulSent: false, summaryText: '', waitingReply: false
   };
 
+  /* ---------- diagnostics trail (no transcript text, no personal data beyond the user agent) ---------- */
+  var DIAG_MAX_BYTES = 3800, DIAG_MAX_SENDS = 3, DIAG_QUICK_MS = 5000;
+  var T = { t0: 0, ev: [], dbg: {}, sends: 0, env: null, sdkAt: 0, agentMsgs: 0, dropped: false };
+  function tr(code, d) {
+    if (T.ev.length >= 80) return;
+    var e = [Date.now() - T.t0, code];
+    if (d != null && d !== '') e.push(typeof d === 'string' ? d.slice(0, 200) : d);
+    T.ev.push(e);
+  }
+  function trReset() {
+    T.t0 = Date.now(); T.ev = []; T.dbg = {}; T.sends = 0; T.sdkAt = 0; T.agentMsgs = 0; T.dropped = false;
+    T.env = {
+      ua: String(navigator.userAgent || '').slice(0, 220),
+      rtc: !!window.RTCPeerConnection,
+      worklet: typeof window.AudioWorkletNode !== 'undefined',
+      ac: typeof (window.AudioContext || window.webkitAudioContext) !== 'undefined' ? 'unprobed' : 'none'
+    };
+    tr('open', S.mode);
+  }
+  function probeAudioContext() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      var c = new AC();
+      T.env.ac = c.state;
+      var p = c.close && c.close(); if (p && p.catch) p.catch(function () {});
+    } catch (e) { T.env.ac = 'error:' + (e && e.name); }
+  }
+  function errInfo(e) { return e ? String(e.name || 'Error') + ': ' + String(e.message || '').slice(0, 120) : ''; }
+  function diagBody(reason) {
+    var obj = { v: 1, reason: reason, env: T.env, ev: T.ev.slice(), dbg: T.dbg };
+    var str = JSON.stringify(obj);
+    while (str.length > DIAG_MAX_BYTES && obj.ev.length > 8) { obj.ev.splice(4, 1); obj.trimmed = true; str = JSON.stringify(obj); }
+    if (str.length > DIAG_MAX_BYTES) { obj.dbg = {}; obj.env.ua = obj.env.ua.slice(0, 80); str = JSON.stringify(obj); }
+    return obj;
+  }
+  function sendDiag(reason) {
+    try {
+      if (S.mock || !S.callId || /^mock-/.test(S.callId) || T.sends >= DIAG_MAX_SENDS) return;
+      T.sends++;
+      tr('send', reason);
+      var payload = JSON.stringify({ callId: S.callId, trail: diagBody(reason) });
+      var ok = false;
+      if (navigator.sendBeacon) { try { ok = navigator.sendBeacon('/api/call/diag', new Blob([payload], { type: 'text/plain' })); } catch (e) {} }
+      if (!ok) fetch('/api/call/diag', { method: 'POST', headers: { 'content-type': 'text/plain' }, body: payload, keepalive: true, credentials: 'same-origin' }).catch(function () {});
+    } catch (e) {}
+  }
+
   var panel, titleEl, bodyEl, liveEl, tsEl, statusEl, whoEl, capEl, timeEl, chatBox, muteBtn;
 
   /* ---------- build panel (once) ---------- */
@@ -96,6 +144,8 @@
     if (S.open) { panel.focus(); return; }
     S.open = true;
     panel.hidden = false;
+    if (!T.t0) trReset();
+    tr('panel_open');
     document.querySelectorAll('.callus-link').forEach(function (l) { l.setAttribute('aria-expanded', 'true'); });
     var fl = document.querySelector('.callus-link:not(.callus-cta)'); if (fl) fl.hidden = true;
     if (S.view === 'intro' || !S.hadCall) showIntro();
@@ -305,6 +355,7 @@
   function startFlow(mode) {
     S.mode = mode; S.ended = false; S.muted = false; S.helpfulSent = false; S.mock = false;
     S.agentName = 'Hannah'; S.callId = null; S.hadCall = true;
+    trReset();
     var token = S.token;
     showConnecting();
     var micStep = Promise.resolve();
@@ -314,8 +365,11 @@
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.RTCPeerConnection) {
         return showFallback('Your browser cannot take voice calls here. You can chat by text, or use the contact form.', { text: true });
       }
+      tr('mic_request');
       micStep = navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+        tr('mic_granted');
         stream.getTracks().forEach(function (t) { t.stop(); });
+        probeAudioContext();
       });
     }
     micStep.then(function () {
@@ -324,13 +378,20 @@
         body: JSON.stringify({ turnstileToken: token, mode: mode })
       });
     }, function (err) {
+      tr('mic_denied', String(err && err.name || 'unknown'));
       var e = new Error('mic'); e.mic = true; e.name = err && err.name; throw e;
     }).then(function (res) {
+      tr('start_post', res.status);
       // Local review only: a static server has no /api/call/start (404), or answers POST with 405 / 501 (python http.server).
       if ((res.status === 404 || res.status === 405 || res.status === 501) && isLocal) return { mock: true };
       if (res.status === 503) { var e = new Error('off'); e.kind = 'off'; throw e; }
       if (res.status === 429) { var e2 = new Error('budget'); e2.kind = 'budget'; throw e2; }
-      if (res.status === 403 || res.status === 400) { var e3 = new Error('verify'); e3.kind = 'verify'; throw e3; }
+      if (res.status === 403) {
+        // Only a failed Turnstile check is the human check. A refused origin ("forbidden") is not.
+        return res.json().then(function (j) { return j; }, function () { return {}; }).then(function (j) {
+          var e3 = new Error('http 403'); e3.kind = j && j.error === 'challenge verification failed' ? 'verify' : 'http'; throw e3;
+        });
+      }
       if (!res.ok) { var e4 = new Error('http ' + res.status); e4.kind = 'http'; throw e4; }
       return res.json();
     }).then(function (data) {
@@ -341,6 +402,7 @@
       if (data.mock) { S.mock = true; S.callId = data.callId || 'mock-' + Date.now().toString(36); return runMock(); }
       if (!data.callId || !(data.conversationToken || data.signedUrl)) { var e = new Error('bad'); e.kind = 'http'; throw e; }
       S.callId = data.callId;
+      tr('call_id');
       return runSdk(data);
     }).catch(function (err) {
       resetTurnstile();
@@ -349,6 +411,8 @@
   }
 
   function handleStartError(err) {
+    tr('start_error', err && err.kind ? err.kind + (err.message ? ':' + err.message : '') : errInfo(err));
+    if (S.callId) sendDiag('start_error');
     if (S.ended || S.view !== 'connecting') return;
     var voice = S.mode === 'voice';
     if (err && err.mic) {
@@ -371,14 +435,22 @@
     var timeout = new Promise(function (_, rej) {
       S.connectTimer = setTimeout(function () { timedOut = true; var e = new Error('timeout'); e.kind = 'timeout'; rej(e); }, CONNECT_TIMEOUT_MS);
     });
+    tr('sdk_import');
     var go = import(new URL(SDK_FILE, scriptSrc).href).then(function (m) {
+      tr('sdk_import_ok');
       var opts = {
         dynamicVariables: { call_id: S.callId },
         textOnly: S.mode === 'text',
         useWakeLock: false,
-        onConnect: function () { if (!timedOut) { clearTimeout(S.connectTimer); } },
-        onDisconnect: function (d) { if (S.conv || conv) onSessionEnd(d); },
-        onError: function (msg) { if (S.view === 'call') addLine('sys', 'Connection problem.'); },
+        onConnect: function () { tr('on_connect'); if (!timedOut) { clearTimeout(S.connectTimer); } },
+        onStatusChange: function (st) { tr('status', st && (st.status || st)); },
+        onDebug: function (d) { var k = d && typeof d.type === 'string' ? d.type.slice(0, 40) : 'other'; if (T.dbg[k] || Object.keys(T.dbg).length < 20) T.dbg[k] = (T.dbg[k] || 0) + 1; },
+        onDisconnect: function (d) { noteDisconnect(d); if (S.conv || conv || S.view === 'connecting') onSessionEnd(d); },
+        onError: function (msg, ctx) {
+          var c = ''; try { c = ctx == null ? '' : (typeof ctx === 'string' ? ctx : JSON.stringify(ctx)); } catch (e) {}
+          tr('on_error', String(msg && msg.message || msg || '').slice(0, 160) + (c ? ' | ' + c.slice(0, 160) : ''));
+          if (S.view === 'call') addLine('sys', 'Connection problem.');
+        },
         onMessage: onSdkMessage,
         onModeChange: function (m2) {
           if (S.mode !== 'voice') return;
@@ -389,28 +461,33 @@
       };
       if (data.signedUrl) { opts.signedUrl = data.signedUrl; opts.connectionType = 'websocket'; }
       else { opts.conversationToken = data.conversationToken; opts.connectionType = 'webrtc'; }
+      T.sdkAt = Date.now();
+      tr('start_session');
       return m.Conversation.startSession(opts);
     }).then(function (c) {
+      tr('session_started');
       conv = c;
       if (timedOut) { try { c.endSession(); } catch (e) {} return null; }
       return c;
     });
-    go.catch(function () {});
+    go.catch(function (e) { tr('sdk_error', errInfo(e)); });
     return Promise.race([go, timeout]).then(function (c) {
       clearTimeout(S.connectTimer);
       if (S.view !== 'connecting') { try { if (c) c.endSession(); } catch (e) {} return; }
+      if (T.dropped) { try { if (c) c.endSession(); } catch (e) {} return couldntConnect('dropped_while_connecting'); }
       S.conv = c; S.ended = false;
       showCall();
       if (S.mode === 'voice') { acquireWake(); setStatus('Listening', 'live'); }
       else setStatus('Connected. Say hello', 'live');
     }).catch(function (e) {
       clearTimeout(S.connectTimer);
-      if (e && e.kind === 'timeout') { e.kind = 'timeout'; throw e; }
+      if (e && e.kind === 'timeout') { tr('timeout'); throw e; }
       var e2 = new Error('sdk'); e2.kind = 'http'; throw e2;
     });
   }
 
   function onSdkMessage(m) {
+    if (m && (m.role === 'agent' || m.source === 'ai')) T.agentMsgs++;
     var role = m.role || (m.source === 'user' ? 'user' : 'agent');
     if (role === 'user') { if (S.mode === 'text') return; addLine('user', m.message); return; }
     S.waitingReply = false;
@@ -431,10 +508,27 @@
     setStatus('Listening', 'live');
   }
 
+  function noteDisconnect(d) {
+    var o = {};
+    if (d && typeof d === 'object') {
+      ['reason', 'closeCode', 'closeReason', 'message'].forEach(function (k) { if (d[k] != null) o[k] = String(d[k]).slice(0, 120); });
+    }
+    tr('disconnect', o);
+  }
+  function couldntConnect(why) {
+    sendDiag(why);
+    S.ended = true;
+    var c = S.conv; S.conv = null;
+    try { if (c && c.isOpen && c.isOpen()) c.endSession(); } catch (e) {}
+    showFallback('The call couldn’t connect. You can chat by text instead.', { text: S.mode === 'voice' });
+  }
   function onSessionEnd(d) {
     if (S.ended) return;
     var reason = d && d.reason;
-    if (S.view === 'connecting') return; // handled by the connect path
+    if (S.view === 'connecting') { T.dropped = true; return; } // handled by the connect path
+    var quick = T.sdkAt && Date.now() - T.sdkAt < DIAG_QUICK_MS && !T.agentMsgs;
+    if (quick) { tr('quick_disconnect'); return couldntConnect('quick_disconnect'); }
+    sendDiag('disconnect');
     finishCall(reason === 'error' ? 'The connection dropped.' : '');
   }
 
@@ -456,8 +550,10 @@
     if (S.ended) return;
     S.ended = true;
     var c = S.conv; S.conv = null;
+    tr('finish', note ? 'note' : '');
     try { if (c && c.isOpen && c.isOpen()) c.endSession(); } catch (e) {}
     cleanupCall();
+    sendDiag('end');
     showSummary(note);
   }
 
@@ -484,6 +580,10 @@
     var id = S.callId;
     fetchSummary(id).then(function (txt) {
       if (S.view !== 'summary') return;
+      // The server's stock reply for a call with no recorded turns: offer another route instead of an empty summary.
+      if (/^There is no written summary for this call/.test(txt) && S.mode === 'voice') {
+        return showFallback('No conversation was recorded for this call. You can chat by text instead.', { text: true });
+      }
       S.summaryText = txt;
       renderSummary(holder, txt);
     }).catch(function () {

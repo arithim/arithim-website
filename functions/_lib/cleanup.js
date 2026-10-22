@@ -42,14 +42,21 @@ export async function deleteOld(db, now = nowSec(), limit = DELETE_LIMIT) {
   ]);
 }
 
+// Client diagnostics (migration 0003) live 30 days. Separate and tolerant so a missing table never blocks the 90-day deletes.
+export async function deleteOldDiag(db, now = nowSec()) {
+  try { await run(db, "DELETE FROM call_diag WHERE rowid IN (SELECT rowid FROM call_diag WHERE created_at < ? LIMIT 200)", now - 30 * 86400); } catch {}
+}
+
 // Release stale reservations and delete expired rows. No email, so it is safe to await.
 export async function cleanupOld(db, now = nowSec()) {
   await expireStaleCalls(db, now);
   await deleteOld(db, now);
+  await deleteOldDiag(db, now);
 }
 
 // Everything, including bounded email retries (network). Never throws.
 export async function runMaintenance(env, db, now = nowSec()) {
   try { await deleteOld(db, now); } catch (e) { console.error("deleteOld", e); }
+  await deleteOldDiag(db, now);
   try { await retryUnsentEmails(env, db, { now }); } catch (e) { console.error("email retry", e); }
 }
