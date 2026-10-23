@@ -378,3 +378,35 @@ html { scroll-padding-top: 96px; }
 .tsg-sec-faq .tsg-table td:first-child { color:#F5F1E8; }
 .tsg-job .tsg-panel h3 { font-size:26px; }
 @media (max-width: 900px) { .tsg-faq-2 { grid-template-columns:1fr; } html { scroll-padding-top: 76px; } }
+
+/* Homepage service explorer (index.html). Desktop: buttons in the left column, the open panel fills the
+   right column. Phones: one column, so the open panel sits directly under the button that opened it. */
+.svc-x { display:grid; grid-template-columns:0.8fr 1.2fr; column-gap:32px; row-gap:8px; align-items:start; }
+.svc-tab { grid-column:1; display:flex; align-items:center; gap:16px; width:100%; padding:20px 22px; border-radius:14px; border:1px solid transparent; background:rgba(245,241,232,0.02); color:#9AA6B6; text-align:left; cursor:pointer; font:inherit; }
+.svc-tab:hover { color:#F5F1E8; }
+.svc-tab.on { background:rgba(232,161,60,0.10); border-color:rgba(232,161,60,0.4); color:#F5F1E8; box-shadow:0 0 34px rgba(232,161,60,0.14); }
+.svc-tab:focus-visible { outline:2px solid #E8A13C; outline-offset:3px; }
+.svc-n { font:400 13px 'JetBrains Mono',monospace; color:#7E9B87; }
+.svc-tab.on .svc-n { color:#E8A13C; }
+.svc-t { font:600 19px 'Schibsted Grotesk',sans-serif; letter-spacing:-0.01em; }
+.svc-panel { grid-column:2; grid-row:1 / span 6; display:none; }
+.svc-panel.on { display:block; }
+.svc-panel .tsg-fig { max-width:none; }
+.svc-more { display:inline-block; margin-top:14px; color:#E8A13C; font-size:15px; border-bottom:1px solid rgba(232,161,60,0.4); }
+.tsg-fig.bare { cursor:default; }
+.tsg-fig.bare:focus-visible { outline:2px solid #E8A13C; outline-offset:3px; }
+@media (max-width: 900px) {
+  .svc-x { display:block; }
+  .svc-tab { margin-top:8px; }
+  .svc-panel { padding:12px 0 8px; }
+}
+
+/* Homepage "Where we help": problem cards that lead to a service or product */
+.hk-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:36px; }
+.hk-card { display:flex; flex-direction:column; justify-content:space-between; gap:14px; padding:22px 24px; border-radius:16px; background:#0B1220; border:1px solid rgba(245,241,232,0.08); transition:border-color .2s; }
+.hk-card:hover, .hk-card:focus-visible { border-color:rgba(232,161,60,0.5); }
+.hk-p { font:600 19px/1.3 'Schibsted Grotesk',sans-serif; letter-spacing:-0.015em; color:#F5F1E8; }
+.hk-s { font:500 13px 'JetBrains Mono',monospace; letter-spacing:0.04em; color:#E8A13C; }
+.hk-cta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 30px; margin-top:28px; padding:24px 28px; border:1px solid rgba(232,161,60,0.35); border-radius:18px; background:rgba(232,161,60,0.05); }
+.hk-cta p { font:600 19px/1.4 'Schibsted Grotesk',sans-serif; color:#F5F1E8; margin:0; max-width:640px; }
+@media (max-width: 700px) { .hk-grid { grid-template-columns:1fr; } }
