@@ -5,7 +5,7 @@ const mk = (s) => s.replace(/\n\s*/g, '');
 const src = (t, txt) => `<div class="m-src" data-in="${t}"><svg viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M2 1h5l3 3v7H2z" fill="none" stroke="currentColor" stroke-width="1"/></svg>${txt}</div>`;
 const res = (t, k, n, nm, pr, w, dose, cost, land) => `<div class="m-res" data-in="${t}"><div class="m-res-h"><span class="m-rk">${n}</span><span class="m-nm">${nm}</span><span class="m-pr">${pr}</span></div><div class="m-fit"><i data-grow="${t + 0.2},1" style="--w:${w}%"></i></div><div class="m-kv"><span>Dose <b>${dose}</b></span><span>Cost in use <b>${cost}</b></span><span>Landed per kg <b>${land}</b></span></div></div>`;
 
-const SCENES = {
+export const SCENES = {
   a: { dur: 9.5, key: 7.6, label: 'Find · Animal nutrition', html: mk(`
     <div class="m-q"><span data-type="0.2,40" data-text="Heat stress in broilers, Saudi Arabia, 38°C house"></span><b class="m-caret"></b></div>
     <div class="m-chips" data-in="1.4"><span class="m-chip a">Broiler</span><span class="m-chip a">Heat stress</span><span class="m-chip a">Saudi Arabia</span></div>
@@ -93,13 +93,18 @@ const ICON_PAUSE = '<svg viewBox="0 0 14 14" width="12" height="12" aria-hidden=
 const ICON_PLAY = '<svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><path d="M3 1.5l9 5.5-9 5.5z" fill="currentColor"/></svg>';
 
 export function initTsgMotion(root) {
+  return mountScenes(root, SCENES, 'data-tsg-scene');
+}
+
+// Mounts every [attr] element in root as a looping scene from scenes. Shared with products-motion.js.
+export function mountScenes(root, scenes, attr) {
   root = root || document;
   const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   const mob = window.matchMedia ? window.matchMedia('(max-width: 600px)') : { matches: false };
   const cleanups = [];
 
-  root.querySelectorAll('[data-tsg-scene]').forEach((mount) => {
-    const def = SCENES[mount.getAttribute('data-tsg-scene')];
+  root.querySelectorAll('[' + attr + ']').forEach((mount) => {
+    const def = scenes[mount.getAttribute(attr)];
     if (!def || mount.__tsg) return;
     mount.__tsg = true;
     const title = mount.getAttribute('data-title') || 'Animated example';

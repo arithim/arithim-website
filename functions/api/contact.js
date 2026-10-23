@@ -103,6 +103,7 @@ export async function onRequestPost({ request, env }) {
   const company = isDemo ? clean(form.company).slice(0, 200) : (form.company || "").toString().trim().slice(0, 200);
   const industry = (form.industry || "").toString().trim().slice(0, 200);
   const timeline = (form.timeline || "").toString().trim().slice(0, 100);
+  const topic = clean(form.topic).slice(0, 100);
   const success = (form.success || "").toString().trim().slice(0, 5000);
   const email = (form.email || "").toString().trim().slice(0, 200);
   const country = isDemo ? clean(form.country).slice(0, 100) : "";
@@ -113,7 +114,7 @@ export async function onRequestPost({ request, env }) {
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
     }[c]));
 
-  const subject = `${isDemo ? "Demo request (Technical Sales Guide)" : "New enquiry"} — ${name}${company ? " (" + company + ")" : ""}`;
+  const subject = `${isDemo ? "Demo request (Technical Sales Guide)" : topic ? "Enquiry: " + topic : "New enquiry"} — ${name}${company ? " (" + company + ")" : ""}`;
 
   const text =
     `${isDemo ? "Demo request for the Technical Sales Guide" : "New enquiry from arithim.com"}\n\n` +
@@ -122,6 +123,7 @@ export async function onRequestPost({ request, env }) {
     (company ? `Company:   ${company}\n` : "") +
     (country ? `Country:   ${country}\n` : "") +
     (role ? `Role:      ${role}\n` : "") +
+    (topic ? `Topic:     ${topic}\n` : "") +
     (industry ? `Industry:  ${industry}\n` : "") +
     (timeline ? `Timeline:  ${timeline}\n` : "") +
     (challenge ? `\n${isDemo ? "Note" : "Challenge"}:\n${challenge}\n` : "") +
@@ -135,6 +137,7 @@ export async function onRequestPost({ request, env }) {
     (company ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Company</td><td>${esc(company)}</td></tr>` : "") +
     (country ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Country</td><td>${esc(country)}</td></tr>` : "") +
     (role ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Role</td><td>${esc(role)}</td></tr>` : "") +
+    (topic ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Topic</td><td>${esc(topic)}</td></tr>` : "") +
     (industry ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Industry</td><td>${esc(industry)}</td></tr>` : "") +
     (timeline ? `<tr><td style="padding:4px 12px 4px 0;color:#555;">Timeline</td><td>${esc(timeline)}</td></tr>` : "") +
     `</table>` +
