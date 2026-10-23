@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is the Technical Sales Guide secure? Security answers | Arithim</title>
+<meta name="description" content="How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Is the Technical Sales Guide secure? Security answers | Arithim">
+<meta property="og:description" content="How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/technical-sales-guide-security.html">
+<meta property="og:url" content="https://arithim.com/technical-sales-guide-security.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where is our data hosted?", "acceptedAnswer": {"@type": "Answer", "text": "The application runs in Vercel's Frankfurt region (fra1) and the database is Supabase in Frankfurt (eu-central-1), as of 22 October 2026. Each customer's data is separated inside the database by row-level security."}}, {"@type": "Question", "name": "Is our data sent to an AI provider?", "acceptedAnswer": {"@type": "Answer", "text": "AI features are optional and off until a customer turns them on. Arithim does not currently send customer data to an AI provider. Before it does, the provider is added to the published sub-processor list with 30 days' notice."}}, {"@type": "Question", "name": "Is Arithim certified to ISO 27001?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Arithim is preparing the Technical Sales Guide for ISO/IEC 27001 certification and is not yet certified. This page lists the controls in place today and what is still to come."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Arithim", "item": "https://arithim.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://arithim.com/products.html"}, {"@type": "ListItem", "position": 3, "name": "Technical Sales Guide", "item": "https://arithim.com/technical-sales-guide.html"}, {"@type": "ListItem", "position": 4, "name": "Security", "item": "https://arithim.com/technical-sales-guide-security.html"}]}</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=2">
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="tsg" style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/guide", "active": "products.html", "cta": "talk"} -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(7,12,22,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,241,232,0.06);">
+    <div class="r-gut" style="max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" aria-label="Arithim home" style="display:inline-flex;align-items:baseline;gap:3px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#F5F1E8;">arithim</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9AA6B6;">/guide</span></a>
+      <nav data-nav aria-label="Main" style="position:relative;display:flex;align-items:center;gap:2px;">
+        <span data-nav-pill style="position:absolute;left:0;top:50%;height:36px;margin-top:-18px;width:0;background:rgba(232,161,60,0.12);border:1px solid rgba(232,161,60,0.4);border-radius:999px;opacity:0;transition:transform 0.35s cubic-bezier(.4,0,.2,1),width 0.35s cubic-bezier(.4,0,.2,1),opacity 0.2s;pointer-events:none;"></span>
+        <a href="products.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">Products</a>
+        <a href="services.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Services</a>
+        <a href="case-studies.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Case Studies</a>
+        <a href="research.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Research</a>
+        <a href="insights.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">Insights</a>
+        <a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">About</a>
+      </nav>
+      <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 55%,#E8A13C,transparent 75%);animation:ah-spin 3.5s linear infinite;"></span><span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;">Let's talk →</span></a>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+  <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="sec-h1">
+    <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div class="tsg-wrap" style="position:relative;padding-top:64px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;"><a href="technical-sales-guide.html" style="color:#E8A13C;">TECHNICAL SALES GUIDE</a> · SECURITY AND TRUST</div>
+      <h1 id="sec-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;max-width:860px;">Is the Technical Sales Guide secure enough for our principals&#x27; data?</h1>
+      <p class="tsg-lead" style="font-size:19px;margin-top:20px;">These answers describe what was in place on 22 October 2026, and what was still to come. Your security team can ask for the questionnaire answers and the data processing agreement at <a class="tsg-link" href="mailto:security@arithim.com">security@arithim.com</a>.</p>
+    </div>
+  </section>
+
+  <section class="tsg-sec" aria-labelledby="sec-q">
+    <div class="tsg-wrap">
+      <h2 class="tsg-h2" id="sec-q">Security questions and answers</h2>
+      <div class="tsg-faq tsg-sec-faq"><details><summary>Is my data separate from other customers?</summary><div class="ans"><p>Each customer's data is separated inside the database by row-level security. It is enabled and enforced on every table that holds customer data. Arithim audited all 106 tables on 19 October 2026.</p><p>People are limited by role, and sales roles are limited by territory. There are six roles.</p></div></details><details><summary>How do people sign in?</summary><div class="ans"><p>There are no passwords in the product. People sign in with an emailed link or a one-time code. Two-step sign-in with an authenticator app is available, and a company can require it for its administrators or for everyone. The default is optional.</p><p>Each company can set an idle timeout and a maximum session length. People can sign out of every device, and administrators can end a person's sessions.</p></div></details><details><summary>Can I see who did what?</summary><div class="ans"><p>Administrators can see an activity log of changes, imports, exports, sign-in events and security changes for their company, and export it. The application cannot edit or delete the log, and each entry is chained to the one before it, so tampering is detectable.</p></div></details><details><summary>How do the API and webhooks protect data?</summary><div class="ans"><p>Administrators create API keys with scopes and an expiry. Keys are stored only as hashes, and a key stops working when its creator leaves, is demoted or is deactivated. Webhook calls are signed with HMAC-SHA256, sent only to https addresses, and blocked from reaching private network addresses.</p></div></details><details><summary>How is the application itself secured?</summary><div class="ans"><p>Database queries use bound parameters, and user text is rendered as text. CSV exports neutralise spreadsheet formula injection. The only file uploads are CSV or text files for import, which are read and not stored.</p><p>Arithim reviewed the whole codebase for security on 19 October 2026 and fixed the findings in code. That was an internal review, not an independent penetration test. The codebase has an automated test suite of more than 200 test files, including tests for tenant isolation and access rules.</p></div></details><details><summary>Where is my data hosted, and who processes it?</summary><div class="ans"><p>The application runs in Vercel's Frankfurt region (fra1) and the database is Supabase in Frankfurt (eu-central-1), as of 22 October 2026. Arithim acts as a processor for customer personal data, offers a data processing agreement, and gives 30 days' notice of changes to this list.</p><div class="tsg-scroll"><table class="tsg-table"><thead><tr><th scope="col">Sub-processor</th><th scope="col">Purpose</th><th scope="col">Data it receives</th></tr></thead><tbody><tr><td>Supabase</td><td>Database, sign-in and sessions</td><td>All customer data</td></tr><tr><td>Vercel</td><td>Hosting and server functions</td><td>Requests and responses, application logs</td></tr><tr><td>OpenStreetMap Nominatim</td><td>Address search when a place is added</td><td>Address text only</td></tr><tr><td>Google Maps Platform</td><td>Optional address search, off by default</td><td>Address text only</td></tr></tbody></table></div></div></details><details><summary>Is my data sent to an AI provider?</summary><div class="ans"><p>AI features are optional and off until a customer turns them on. Arithim does not currently send customer data to an AI provider. Before it does, the provider is added to the published sub-processor list with 30 days' notice. When AI drafting is used, its output is a proposal that a person approves before anything is saved.</p></div></details><details><summary>What happens to my data over time?</summary><div class="ans"><p>Companies can set retention periods, and the system deletes data past them each day. Administrators can export and erase a person's data. On request, Arithim exports a company's data.</p></div></details><details><summary>What policies and incident plan do you have?</summary><div class="ans"><p>Arithim has written security, access control, data protection, incident response, continuity, secure development and supplier policies, available to customers under NDA. The incident response plan has a target of telling affected customers within 24 hours of confirming an incident. The plan has not yet been rehearsed.</p></div></details><details><summary>Are you ISO 27001 certified?</summary><div class="ans"><p>Not yet. Arithim is preparing the Technical Sales Guide for ISO/IEC 27001 certification and is not yet certified.</p><p>Not yet available: single sign-on for enterprise identity providers, and an independent penetration test.</p></div></details><details><summary>Where do I report a vulnerability or ask for the data processing agreement?</summary><div class="ans"><p>Email <a class="tsg-link" href="mailto:security@arithim.com">security@arithim.com</a>. Ask there for the DPA, the sub-processor list and the policy pack.</p></div></details></div>
+      <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;"><a class="pp-btn" href="technical-sales-guide.html#demo">Request a demo and the security pack →</a><a class="tsg-link" href="technical-sales-guide.html">Back to the Technical Sales Guide</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- partial:footer {"back_href": "technical-sales-guide.html", "back_text": "← TECHNICAL SALES GUIDE"} -->
+  <footer style="background:#060A12;border-top:1px solid rgba(245,241,232,0.06);"><div class="r-pad r-foot" style="max-width:1200px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#556074;letter-spacing:0.06em;"><span>© 2026 ARITHIM LTD · <a href="privacy.html" style-hover="color:#E8A13C;">PRIVACY</a></span><a href="technical-sales-guide.html" style-hover="color:#E8A13C;">← TECHNICAL SALES GUIDE</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

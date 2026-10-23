@@ -2,7 +2,6 @@
    All rules here are scoped to .sf so nothing leaks to other pages. */
 
 html:has(.sf) { scroll-behavior: smooth; }
-.sf [id] { scroll-margin-top: 84px; }
 .sf a:focus-visible, .sf summary:focus-visible { outline: 2px solid #E8A13C; outline-offset: 3px; border-radius: 6px; }
 .sf-hero { padding: 72px 0 24px; }
 .sf-chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
