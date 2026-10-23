@@ -168,93 +168,42 @@
       <div data-spotlight style="position:relative;border-radius:20px;padding:1.5px;background:linear-gradient(135deg,rgba(232,161,60,0.5),rgba(126,155,135,0.25),rgba(245,241,232,0.05));overflow:hidden;min-height:400px;">
         <div class="r-pad" style="position:relative;height:100%;background:#0B1220;border-radius:19px;padding:40px;overflow:hidden;">
           <div data-spot-layer style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div>
-          <sc-if value="{{ is0 }}" hint-placeholder-val="{{ trueVal }}">
-            <div style="position:relative;">
+            <div style="{{ show0 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 01 · CONVERGE</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI Readiness &amp; Strategy</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <g stroke="rgba(245,241,232,0.16)" stroke-width="1.5" fill="none"><path d="M105,52 L430,150"/><path d="M105,118 L430,150"/><path d="M105,184 L430,150"/><path d="M105,250 L430,150"/></g>
-                <g font-family="'JetBrains Mono', monospace" font-size="12.5" fill="#9AA6B6"><circle cx="105" cy="52" r="6" fill="#7E9B87"/><text x="128" y="56">Workflow analysis</text><circle cx="105" cy="118" r="6" fill="#E8A13C"/><text x="128" y="122">Data readiness</text><circle cx="105" cy="184" r="6" fill="#7E9B87"/><text x="128" y="188">Use-case portfolio</text><circle cx="105" cy="250" r="6" fill="#E8A13C"/><text x="128" y="254">Risk &amp; governance</text></g>
-                <circle cx="430" cy="150" r="26" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="24;42" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.6s" repeatCount="indefinite"/></circle>
-                <rect x="412" y="132" width="36" height="36" rx="9" fill="#E8A13C"/><text x="392" y="205" font-family="'JetBrains Mono', monospace" font-size="12.5" fill="#D8C3A0">Target architecture</text>
-                <g><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.6s" repeatCount="indefinite" path="M105,52 L430,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite" path="M105,118 L430,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.6s" begin="1.2s" repeatCount="indefinite" path="M105,184 L430,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.6s" begin="1.8s" repeatCount="indefinite" path="M105,250 L430,150"/></circle></g>
-              </svg>
+              <div data-home-scene="ready" data-title="Workflows scored for data readiness and ranked into a use-case shortlist"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>Four workflows are scored for data readiness: invoice matching 82, customer enquiries 71, contract review 55 and demand planning 34. A ranked shortlist follows, with invoice matching to build first and customer enquiries next, each with data readiness, effort and risk. A note flags that demand planning has incomplete history and needs its data fixed first. All names and figures are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">We map every workflow and score data readiness, then converge it into one ranked, buildable target architecture.</p>
             </div>
-          </sc-if>
-          <sc-if value="{{ is1 }}" hint-placeholder-val="{{ falseVal }}">
-            <div style="position:relative;">
+            <div style="{{ show1 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 02 · HUB</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI Systems &amp; Automation</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <g stroke="rgba(245,241,232,0.15)" stroke-width="1.5"><line x1="300" y1="150" x2="430" y2="150"/><line x1="300" y1="150" x2="365" y2="48"/><line x1="300" y1="150" x2="235" y2="48"/><line x1="300" y1="150" x2="170" y2="150"/><line x1="300" y1="150" x2="235" y2="252"/><line x1="300" y1="150" x2="365" y2="252"/></g>
-                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="430" cy="150" r="6" fill="#7E9B87"/><text x="444" y="154">Documents</text><circle cx="365" cy="48" r="6" fill="#E8A13C"/><text x="380" y="44">Copilots</text><circle cx="235" cy="48" r="6" fill="#E8A13C"/><text x="150" y="44">Dashboards</text><circle cx="170" cy="150" r="6" fill="#E8A13C"/><text x="70" y="154">Pipelines</text><circle cx="235" cy="252" r="6" fill="#7E9B87"/><text x="140" y="270">Integrations</text><circle cx="365" cy="252" r="6" fill="#7E9B87"/><text x="380" y="270">Monitoring</text></g>
-                <circle cx="300" cy="150" r="24" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="22;40" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite"/></circle>
-                <rect x="282" y="132" width="36" height="36" rx="9" fill="#E8A13C" transform="rotate(45 300 150)"/><text x="270" y="200" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#D8C3A0">Intelligence</text>
-                <g><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" repeatCount="indefinite" path="M430,150 L300,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" begin="0.5s" repeatCount="indefinite" path="M235,252 L300,150"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="M365,252 L300,150"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M300,150 L365,48"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.3s" repeatCount="indefinite" path="M300,150 L235,48"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M300,150 L170,150"/></circle></g>
-              </svg>
+              <div data-home-scene="auto" data-title="An invoice read, checked against its purchase order and routed for approval"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>An invoice PDF arrives. Four fields are extracted: supplier, purchase order number, amount of £12,480 and payment terms. Three checks run: the purchase order is found, the supplier bank details match, and the amount is £480 over the order. Because of that difference the invoice is sent to the buyer for approval with the evidence attached. All names and figures are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Documents and knowledge flow into a single intelligence hub, then back out as copilots, dashboards, and automations.</p>
             </div>
-          </sc-if>
-          <sc-if value="{{ is2 }}" hint-placeholder-val="{{ falseVal }}">
-            <div style="position:relative;">
+            <div style="{{ show2 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 03 · STACK</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">SAP ECC Intelligence Layer</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5"><line x1="230" y1="238" x2="230" y2="62"/><line x1="370" y1="238" x2="370" y2="62"/></g>
-                <rect x="140" y="230" width="320" height="52" rx="12" fill="rgba(59,111,212,0.14)" stroke="#3B6FD4" stroke-width="1.2"/><text x="300" y="261" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#AEC2E0">SAP ECC core</text>
-                <rect x="140" y="134" width="320" height="52" rx="12" fill="rgba(232,161,60,0.12)" stroke="#E8A13C" stroke-width="1.2"><animate attributeName="opacity" values="1;0.7;1" dur="2.6s" repeatCount="indefinite"/></rect><text x="300" y="165" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E8C79A">Intelligence layer</text>
-                <rect x="140" y="38" width="320" height="52" rx="12" fill="rgba(126,155,135,0.12)" stroke="#7E9B87" stroke-width="1.2"/><text x="300" y="69" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#B9CDBF">Operational insight</text>
-                <g><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.8s" repeatCount="indefinite" path="M230,238 L230,62"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" path="M230,238 L230,62"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.8s" begin="0.7s" repeatCount="indefinite" path="M370,238 L370,62"/></circle><circle r="4.5" fill="#7E9B87"><animateMotion dur="2.8s" begin="2.1s" repeatCount="indefinite" path="M370,238 L370,62"/></circle></g>
-              </svg>
+              <div data-home-scene="sap" data-title="A past-due purchase order report pulled from SAP ECC without touching the core"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A read-only extract from SAP ECC, with the core unchanged. A user asks for open purchase orders past due, by plant. Tiles show 846 open orders, 57 past due across 4 plants, and bars split the 57 by plant. An exception is flagged: goods received with no invoice, 41 days old, at Plant 1000. All figures are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">We stack an intelligence layer on your existing SAP ECC, so signals rise into insight without ever touching the core.</p>
             </div>
-          </sc-if>
-          <sc-if value="{{ is3 }}" hint-placeholder-val="{{ falseVal }}">
-            <div style="position:relative;">
+            <div style="{{ show3 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 04 · TREE</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">AI-Optimised Websites</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5" fill="none"><path d="M80,150 L280,64"/><path d="M80,150 L280,150"/><path d="M80,150 L280,236"/><path d="M280,64 L470,40"/><path d="M280,64 L470,92"/><path d="M280,150 L470,140"/><path d="M280,236 L470,208"/><path d="M280,236 L470,262"/></g>
-                <circle cx="80" cy="150" r="8" fill="#E8A13C"/><text x="42" y="176" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Root</text>
-                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="280" cy="64" r="6" fill="#7E9B87"/><text x="252" y="50">Entities</text><circle cx="280" cy="150" r="6" fill="#7E9B87"/><text x="248" y="138">Metadata</text><circle cx="280" cy="236" r="6" fill="#7E9B87"/><text x="250" y="262">Structure</text></g>
-                <g fill="#3B6FD4"><circle cx="470" cy="40" r="5"/><circle cx="470" cy="92" r="5"/><circle cx="470" cy="140" r="5"/><circle cx="470" cy="208" r="5"/><circle cx="470" cy="262" r="5"/></g>
-                <text x="490" y="152" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#AEC2E0">Readable by AI</text>
-                <g><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" repeatCount="indefinite" path="M80,150 L280,64 L470,40"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M80,150 L280,150 L470,140"/></circle><circle r="4.5" fill="#E8A13C"><animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M80,150 L280,236 L470,262"/></circle></g>
-              </svg>
+              <div data-home-scene="web" data-title="A page checked for entities and structured data, then cited in an AI answer"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A service page is checked. Organisation, service and location entities are found, and an FAQ with no markup. A table of structured data shows Organization and Service valid and FAQPage missing, which then changes to added. Someone asks an AI assistant who builds compliance workflows in London, and the answer cites the page. All names and content are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">A crawler walks your semantic structure, so people, search engines, and AI systems all read it cleanly.</p>
             </div>
-          </sc-if>
-          <sc-if value="{{ is4 }}" hint-placeholder-val="{{ falseVal }}">
-            <div style="position:relative;">
+            <div style="{{ show4 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 05 · ASCEND</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">Training &amp; Enablement</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <path d="M70,258 L210,200 L350,132 L490,64" stroke="rgba(245,241,232,0.16)" stroke-width="1.5" fill="none"/>
-                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="70" cy="258" r="7" fill="#7E9B87"/><text x="46" y="284">Workshop</text><circle cx="210" cy="200" r="7" fill="#E8A13C"/><text x="182" y="226">Practice</text><circle cx="350" cy="132" r="7" fill="#E8A13C"/><text x="300" y="158">Operating model</text><circle cx="490" cy="64" r="10" fill="#E8A13C"/><text x="440" y="44">Self-sufficient</text></g>
-                <circle cx="490" cy="64" r="14" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="14;30" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite"/></circle>
-                <circle r="5.5" fill="#F6CE8C"><animateMotion dur="3.4s" repeatCount="indefinite" path="M70,258 L210,200 L350,132 L490,64"/></circle>
-                <circle r="5.5" fill="#7E9B87"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite" path="M70,258 L210,200 L350,132 L490,64"/></circle>
-              </svg>
+              <div data-home-scene="train" data-title="A team learning path with progress by module"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>An operations team of 12 follows a five-module learning path on its own documents, with 9 people practising. Three modules are complete and two are still to do. Bars show how many people finished each module, from 12 of 12 down to 2 of 12, and a note says the next session is a hands-on one on running the system day to day. All figures are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Teams climb a staged path, from the first workshop to a fully self-sufficient operating model.</p>
             </div>
-          </sc-if>
-          <sc-if value="{{ is5 }}" hint-placeholder-val="{{ falseVal }}">
-            <div style="position:relative;">
+            <div style="{{ show5 }}">
               <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:6px;">SERVICE 06 · GATES</div>
               <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.025em;margin:0 0 14px;">Regulatory &amp; Technical Systems</h3>
-              <svg viewBox="0 0 600 300" style="width:100%;height:auto;display:block;overflow:visible;">
-                <line x1="60" y1="150" x2="540" y2="150" stroke="rgba(245,241,232,0.16)" stroke-width="1.5"/>
-                <circle cx="60" cy="150" r="7" fill="#7E9B87"/><text x="40" y="182" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Submit</text>
-                <g fill="rgba(232,161,60,0.14)" stroke="#E8A13C" stroke-width="1.4"><rect x="176" y="132" width="34" height="34" transform="rotate(45 193 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/></rect><rect x="303" y="132" width="34" height="34" transform="rotate(45 320 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></rect><rect x="430" y="132" width="34" height="34" transform="rotate(45 447 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="1.6s" repeatCount="indefinite"/></rect></g>
-                <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><text x="168" y="104">Review</text><text x="296" y="104">Approve</text><text x="420" y="104">Audit log</text></g>
-                <g fill="#8FB29B" font-family="'JetBrains Mono', monospace" font-size="12"><text x="176" y="200">✓</text><text x="303" y="200">✓</text><text x="430" y="200">✓</text></g>
-                <circle cx="540" cy="150" r="10" fill="#E8A13C"/><text x="500" y="182" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#D8C3A0">Evidence</text>
-                <circle r="5.5" fill="#E8A13C"><animateMotion dur="4s" repeatCount="indefinite" path="M60,150 L540,150"/></circle>
-              </svg>
+              <div data-home-scene="reg" data-title="A change request passing three review gates with an audit log"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A change request is submitted and passes three review gates in turn: a completeness check by the system, a technical review by engineering and a compliance sign-off by the QA lead. Each step is written to an audit log with its time. The request is then released with an evidence pack of three records. All names and figures are samples.</p></details>
               <p style="font-size:15.5px;line-height:1.6;color:#AEB8C6;margin:16px 0 0;max-width:540px;">Every action passes through explicit compliance gates, capturing evidence at each checkpoint.</p>
             </div>
-          </sc-if>
         </div>
       </div>
     </div>
@@ -334,6 +283,7 @@ class Component extends DCLogic {
   state = { active: 0 };
   componentDidMount() {
     import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./home-motion.js?v=1').then((m) => { this._stopMotion = m.initHomeMotion(document); }).catch((e) => console.error('motion load failed', e));
     this.setState({ active: Math.floor(Math.random() * 6) });
     const h1 = document.querySelector('[data-hero-h1]');
     if (h1) {
@@ -342,12 +292,22 @@ class Component extends DCLogic {
         'Make your<br>operations <span style="' + sh + '">think.</span>',
         'Run the operation<br>you can <span style="' + sh + '">trust.</span>',
         'Turn complexity<br>into <span style="' + sh + '">clarity.</span>',
-        'See your whole<br>operation <span style="' + sh + '">think.</span>'
+        'See your whole<br>operation <span style="' + sh + '">think.</span>',
+        'Know where AI<br>is <span style="' + sh + '">worth it.</span>',
+        'From documents<br>to <span style="' + sh + '">decisions.</span>',
+        'More from<br>your <span style="' + sh + '">SAP ECC.</span>',
+        'Be the page<br>AI answers <span style="' + sh + '">cite.</span>',
+        'Evidence at<br>every <span style="' + sh + '">gate.</span>',
+        'Your team,<br>fluent in <span style="' + sh + '">AI.</span>',
+        'Sell on<br>cost <span style="' + sh + '">in use.</span>',
+        'Find the land<br>worth <span style="' + sh + '">building on.</span>',
+        'Only the jobs<br>worth <span style="' + sh + '">applying for.</span>',
+        'Fix your CV<br>before it is <span style="' + sh + '">read.</span>'
       ];
       h1.innerHTML = v[Math.floor(Math.random() * v.length)];
     }
   }
-  componentWillUnmount() { if (this._stop) this._stop(); }
+  componentWillUnmount() { ['_stop', '_stopMotion'].forEach((k) => { if (this[k]) this[k](); }); }
   renderVals() {
     const data = [
       { num: '01', title: 'AI Readiness & Strategy' },
@@ -369,8 +329,13 @@ class Component extends DCLogic {
     });
     return {
       tabs,
-      is0: active === 0, is1: active === 1, is2: active === 2, is3: active === 3, is4: active === 4, is5: active === 5,
-      trueVal: true, falseVal: false,
+      // All six scenes stay mounted; only the active one is shown, so each keeps its animation state.
+      show0: active === 0 ? 'position:relative;' : 'display:none;',
+      show1: active === 1 ? 'position:relative;' : 'display:none;',
+      show2: active === 2 ? 'position:relative;' : 'display:none;',
+      show3: active === 3 ? 'position:relative;' : 'display:none;',
+      show4: active === 4 ? 'position:relative;' : 'display:none;',
+      show5: active === 5 ? 'position:relative;' : 'display:none;',
       onSvc: (e) => { const i = parseInt(e.currentTarget.dataset.index, 10); if (!isNaN(i)) this.setState({ active: i }); }
     };
   }
