@@ -86,7 +86,113 @@ export const SCENES = {
       <div class="m-pf" data-in="3.8">Sources: TDS v4 p.3 · registration record</div>
     </div>
     <div class="m-act" data-in="5"><span class="m-btn">Export PDF</span><span class="m-st"><span class="m-dot sage"></span>Draft for review</span></div>`) },
+
+  coat: { dur: 9.5, key: 7.6, label: 'Find · Coatings', html: mk(`
+    <div class="m-q"><span data-type="0.2,40" data-text="Dispersant for water-based wall paint, UAE, high TiO2"></span><b class="m-caret"></b></div>
+    <div class="m-chips" data-in="1.4"><span class="m-chip a">Architectural paint</span><span class="m-chip a">Pigment dispersion</span><span class="m-chip a">UAE</span></div>
+    ${res(1.9, 0, 1, 'Polyacrylate dispersant', 'Principal B', 90, '0.4% on pigment', '$0.05/kg paint', '$3.20')}
+    ${res(2.6, 0, 2, 'Hydrophobic copolymer', 'Principal A', 84, '0.6% on pigment', '$0.07/kg paint', '$4.10')}
+    ${res(3.3, 0, 3, 'Phosphate ester blend', 'Principal C', 71, '0.8% on pigment', '$0.06/kg paint', '$2.40')}
+    ${src(4, 'Sources: supplier TDS · formulation guide p.2')}
+    <div class="m-src" data-in="4.4"><span class="m-dot sage"></span>Low-VOC claim supported by supplier data</div>
+    <div class="m-slot"><div class="m-tags" data-in="4.8,6.2"><span class="m-chip g">Competitor equivalent of 1</span><span class="m-chip a">Replace</span></div>
+    <div class="m-swap" data-in="6.2"><span>Replace</span><b>Principal B</b><i>→</i><b>Principal C</b><em>−$0.01/kg paint</em></div></div>`) },
+
+  cons: { dur: 9.5, key: 7.6, label: 'Find · Construction chemicals', html: mk(`
+    <div class="m-q"><span data-type="0.2,40" data-text="Superplasticiser for ready-mix, Riyadh, 45°C summer pour"></span><b class="m-caret"></b></div>
+    <div class="m-chips" data-in="1.4"><span class="m-chip a">Ready-mix concrete</span><span class="m-chip a">Slump retention</span><span class="m-chip a">Saudi Arabia</span></div>
+    ${res(1.9, 0, 1, 'PCE, retarded grade', 'Principal A', 91, '0.8% by cement', '$1.90/m³', '$1.45')}
+    ${res(2.6, 0, 2, 'PCE with slump keeper', 'Principal C', 87, '0.7% by cement', '$2.10/m³', '$1.80')}
+    ${res(3.3, 0, 3, 'SNF plasticiser', 'Principal B', 68, '1.2% by cement', '$1.60/m³', '$0.80')}
+    ${src(4, 'Sources: supplier TDS · trial mix report p.6')}
+    <div class="m-src" data-in="4.4"><span class="m-dot sage"></span>Meets the customer's 90-minute slump target</div>
+    <div class="m-slot"><div class="m-tags" data-in="4.8,6.2"><span class="m-chip g">Competitor equivalent of 2</span><span class="m-chip a">Replace</span></div>
+    <div class="m-swap" data-in="6.2"><span>Replace</span><b>Principal C</b><i>→</i><b>Principal A</b><em>−$0.20/m³</em></div></div>`) },
+
+  g: { dur: 10, key: 8.6, label: 'Light CRM · Dynamics 365 import', html: mk(`
+    <div class="m-upl"><span class="m-file">CSV</span><span>dynamics-accounts.csv</span><span class="m-ok">Ready-made settings</span></div>
+    <div class="m-tiles" data-in="0.6">
+      <div><small>Accounts</small><b data-count="0.7,1.2,128">128</b></div>
+      <div><small>Opportunities</small><b class="g" data-count="1,1.2,46">46</b></div>
+      <div><small>Territories</small><b data-count="1.3,1.2,4">4</b></div>
+    </div>
+    <div class="m-lbl" data-in="2.4">OPPORTUNITY · FEED MILL, JEDDAH</div>
+    <div class="m-tbl" data-in="2.6">
+      <div class="m-tr h"><span>Product</span><span>Stage</span><span>Value</span></div>
+      <div class="m-tr x" data-warn="3.6"><span>Betaine HCl</span><span class="w1">Lost</span><span>$18,400</span></div>
+    </div>
+    <div class="m-task" data-in="4"><div class="m-task-h"><span>Why was it lost?</span><em>Required</em></div>
+      <div class="m-ck" data-in="4.6"><i class="y"></i>Price vs competitor</div>
+      <div class="m-ck" data-in="5"><i class="n"></i>Competitor named: Principal D</div></div>
+    ${src(6.2, 'Loss reason goes into the principal review pack')}`) },
+
+  h: { dur: 10, key: 8.8, label: 'Learning path · new reps', html: mk(`
+    <div class="m-lbl">FEED ADDITIVES FOR NEW REPS · 5 MODULES</div>
+    <div class="m-bars" data-in="0.2">
+      <div class="m-brow"><span>1 · Why additives</span><div><i class="w" data-grow="0.3,0.8" style="--w:60%"></i><b>Done</b></div></div>
+      <div class="m-brow"><span>2 · Heat stress</span><div><i class="w" data-grow="0.6,0.8" style="--w:60%"></i><b>Done</b></div></div>
+      <div class="m-brow"><span>3 · Enzymes</span><div><i class="w" data-grow="0.9,0.8" style="--w:36%"></i><b>In progress</b></div></div>
+      <div class="m-brow"><span>4 · Mycotoxins</span><div><i class="l" data-grow="1.2,0.8" style="--w:4%"></i></div></div>
+      <div class="m-brow"><span>5 · Registrations</span><div><i class="l" data-grow="1.4,0.8" style="--w:4%"></i></div></div>
+    </div>
+    <div class="m-q" data-in="2.4"><span data-type="2.5,40" data-text="Quiz: what does phytase release from feed?"></span></div>
+    <div class="m-task" data-in="3.8">
+      <div class="m-ck" data-in="4"><i class="n"></i>Amino acids</div>
+      <div class="m-ck" data-in="4.3"><i class="y"></i>Phosphorus bound in phytate</div>
+      <div class="m-ck" data-in="4.6"><i class="n"></i>Vitamin E</div></div>
+    <div class="m-note" data-in="5.8"><span class="m-dot sage"></span>Correct · 4 of 5 so far<em>Module 3</em></div>`) },
+
+  i: { dur: 10.5, key: 9, label: 'Flag this answer', html: mk(`
+    <div class="m-ans"><span>Layer feed: up to 4,000 g/t of complete feed.</span><span class="m-cite">TDS v3 · page 3</span></div>
+    <div class="m-act" data-in="1"><span class="m-btn">Flag this answer</span></div>
+    <div class="m-q" data-in="1.6"><span data-type="1.7,36" data-text="Looks high. The new data sheet says 2,000 g/t."></span></div>
+    <div class="m-note" data-in="3.4"><span class="m-dot amber"></span>Sent to today's review<em>Technical team</em></div>
+    <div class="m-lbl" data-in="4.6">AFTER REVIEW</div>
+    <div class="m-ans" data-in="4.8"><span>Layer feed: up to 2,000 g/t of complete feed.</span><span class="m-cite">TDS v4 · page 3</span></div>
+    <div class="m-note" data-in="6"><span class="m-dot sage"></span>Corrected in today's review<em>Daily review</em></div>`) },
+
+  j: { dur: 9.5, key: 8.2, label: 'Account brief · plant visit', html: mk(`
+    <div class="m-perm"><span class="m-dot sage"></span>Saved for offline use</div>
+    <div class="m-paper" data-in="0.4">
+      <div class="m-pt">Broiler integrator, Dammam plant</div>
+      <div class="m-sp" data-in="0.9"><span>Buys from us</span><b>Betaine HCl, xylanase blend</b></div>
+      <div class="m-sp" data-in="1.4"><span>Open opportunity</span><b>Toxin binder, $22,000</b></div>
+      <div class="m-sp" data-in="1.9"><span>Last visit</span><b>14 Sep · heat stress trial</b></div>
+      <div class="m-sp" data-in="2.4"><span>Registrations</span><b>All valid in Saudi Arabia</b></div>
+    </div>
+    <div class="m-toast" data-in="3.6"><span class="m-dot amber"></span><div><b>No signal at the plant</b><small>The brief still opens</small></div></div>
+    <div class="m-note" data-in="5"><span class="m-dot sage"></span>Removed from the device at sign-out<em>Policy</em></div>`) },
+
+  k: { dur: 10, key: 8.6, label: 'Product passport · data quality', html: mk(`
+    <div class="m-res"><div class="m-res-h"><span class="m-nm">Xylanase blend, Principal B</span><span class="m-pr">Passport</span></div>
+      <div class="m-fit"><i data-grow="0.3,1.4" style="--w:78%"></i></div><div class="m-kv"><span>Completeness <b data-count="0.3,1.4,78">78</b><b>%</b></span></div></div>
+    <div class="m-lbl" data-in="1.9">GAPS</div>
+    <div class="m-task" data-in="2.1">
+      <div class="m-ck" data-in="2.3"><i class="n"></i>Shelf life missing</div>
+      <div class="m-ck" data-in="2.7"><i class="n"></i>Arabic product name missing</div>
+      <div class="m-ck" data-in="3.1"><i class="y"></i>Dose, form and registration complete</div></div>
+    <div class="m-note" data-in="4"><span class="m-dot amber"></span>Possible duplicate: "Xylanase 2X"<em>Merge?</em></div>
+    <div class="m-chips" data-in="5.2"><span class="m-chip g">Feeds website</span><span class="m-chip g">Feeds CRM</span><span class="m-chip g">Feeds ERP</span></div>`) },
+
+  l: { dur: 10.5, key: 9, label: 'Formulation · feed savings', html: mk(`
+    <div class="m-q"><span data-type="0.2,40" data-text="Broiler grower feed, add phytase at 500 FTU/kg"></span><b class="m-caret"></b></div>
+    <div class="m-lbl" data-in="1.5">MATRIX VALUES APPLIED</div>
+    <div class="m-tbl" data-in="1.7">
+      <div class="m-tr h"><span>Ingredient</span><span>Before</span><span>After</span></div>
+      <div class="m-tr"><span>Dicalcium phosphate</span><span>12 kg/t</span><span class="ok">6 kg/t</span></div>
+      <div class="m-tr"><span>Limestone</span><span>9 kg/t</span><span class="ok">7 kg/t</span></div>
+    </div>
+    <div class="m-swap" data-in="3.4"><span>Saving</span><b>$3.10/t feed</b><i>·</i><b>after enzyme cost</b><em>$1.95/t net</em></div>
+    <div class="m-lbl" data-in="5">MYCOTOXIN RISK · MAIZE FROM THIS ORIGIN</div>
+    <div class="m-bars" data-in="5.2">
+      <div class="m-brow"><span>Aflatoxin</span><div><i class="r" data-grow="5.3,1" style="--w:70%"></i><b>High</b></div></div>
+      <div class="m-brow"><span>Fumonisin</span><div><i class="w" data-grow="5.6,1" style="--w:30%"></i><b>Low</b></div></div>
+    </div>
+    ${src(7, 'Matrix values from the supplier data')}`) },
 };
+
+// The hero cycles through three industries.
+SCENES.hero = { variants: [SCENES.a, SCENES.coat, SCENES.cons] };
 
 const el = (html) => { const d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; };
 const ICON_PAUSE = '<svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"/></svg>';
@@ -104,25 +210,33 @@ export function mountScenes(root, scenes, attr) {
   const cleanups = [];
 
   root.querySelectorAll('[' + attr + ']').forEach((mount) => {
-    const def = scenes[mount.getAttribute(attr)];
-    if (!def || mount.__tsg) return;
+    const top = scenes[mount.getAttribute(attr)];
+    if (!top || mount.__tsg) return;
     mount.__tsg = true;
+    // A scene may hold several examples in `variants`; each loop shows the next one.
+    const list = top.variants || [top];
+    let vi = 0, def = list[0];
     const title = mount.getAttribute('data-title') || 'Animated example';
     mount.innerHTML = '';
-    const fig = el(`<div class="tsg-fig" role="img" aria-label="${title}. Animation with sample figures; a text description follows."><div class="tsg-stage" aria-hidden="true"><div class="m-win"><div class="m-barx"><i></i><i></i><i></i><span class="m-t">${def.label}</span></div><div class="m-body">${def.html}</div></div></div></div>`);
-    const ctl = el(`<div class="tsg-ctl"><button type="button" class="tsg-btn" aria-pressed="false"></button><div class="tsg-prog" aria-hidden="true"><i></i></div><span class="tsg-ill">Sample figures</span></div>`);
+    const fig = el(`<div class="tsg-fig" role="img" aria-label="${title}. Animation with sample figures; a text description follows."><div class="tsg-stage" aria-hidden="true"><div class="m-win"><div class="m-barx"><i></i><i></i><i></i><span class="m-t"></span></div><div class="m-body"></div></div></div></div>`);
+    const ctl = el(`<div class="tsg-ctl"><button type="button" class="tsg-btn" aria-pressed="false"></button><div class="tsg-prog" aria-hidden="true"><i></i></div><span class="tsg-ill">${list.length > 1 ? list.length + ' examples · ' : ''}Sample figures</span></div>`);
     mount.appendChild(fig); mount.appendChild(ctl);
-    const stage = fig.firstElementChild;
+    const stage = fig.firstElementChild, labelEl = stage.querySelector('.m-t'), body = stage.querySelector('.m-body');
     const btn = ctl.querySelector('button'), bar = ctl.querySelector('.tsg-prog i');
 
-    const items = [];
-    stage.querySelectorAll('[data-in]').forEach((e) => { const [a, b] = e.getAttribute('data-in').split(',').map(Number); items.push({ e, a, b: isNaN(b) ? 1e9 : b, on: null }); });
-    const typers = [...stage.querySelectorAll('[data-type]')].map((e) => { const [a, cps] = e.getAttribute('data-type').split(',').map(Number); return { e, a, cps, text: e.getAttribute('data-text'), n: -1 }; });
-    const counters = [...stage.querySelectorAll('[data-count]')].map((e) => { const [a, d, to] = e.getAttribute('data-count').split(',').map(Number); return { e, a, d, to, v: -1 }; });
-    const grows = [...stage.querySelectorAll('[data-grow]')].map((e) => { const [a, d] = e.getAttribute('data-grow').split(',').map(Number); return { e, a, d, v: -1 }; });
-    const hls = [...stage.querySelectorAll('[data-hl]')].map((e) => ({ e, a: Number(e.getAttribute('data-hl')), on: null }));
-    const warns = [...stage.querySelectorAll('[data-warn]')].map((e) => ({ e, a: Number(e.getAttribute('data-warn')), on: null }));
-    const caret = stage.querySelector('.m-caret');
+    let items, typers, counters, grows, hls, warns, caret;
+    const load = (v) => {
+      def = list[v]; labelEl.textContent = def.label; body.innerHTML = def.html;
+      items = [];
+      stage.querySelectorAll('[data-in]').forEach((e) => { const [a, b] = e.getAttribute('data-in').split(',').map(Number); items.push({ e, a, b: isNaN(b) ? 1e9 : b, on: null }); });
+      typers = [...stage.querySelectorAll('[data-type]')].map((e) => { const [a, cps] = e.getAttribute('data-type').split(',').map(Number); return { e, a, cps, text: e.getAttribute('data-text'), n: -1 }; });
+      counters = [...stage.querySelectorAll('[data-count]')].map((e) => { const [a, d, to] = e.getAttribute('data-count').split(',').map(Number); return { e, a, d, to, v: -1 }; });
+      grows = [...stage.querySelectorAll('[data-grow]')].map((e) => { const [a, d] = e.getAttribute('data-grow').split(',').map(Number); return { e, a, d, v: -1 }; });
+      hls = [...stage.querySelectorAll('[data-hl]')].map((e) => ({ e, a: Number(e.getAttribute('data-hl')), on: null }));
+      warns = [...stage.querySelectorAll('[data-warn]')].map((e) => ({ e, a: Number(e.getAttribute('data-warn')), on: null }));
+      caret = stage.querySelector('.m-caret');
+    };
+    load(0);
 
     const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
     const render = (t) => {
@@ -157,7 +271,7 @@ export function mountScenes(root, scenes, attr) {
       p.raf = 0;
       if (!playing()) return;
       const dt = Math.min(0.1, (now - p.last) / 1000); p.last = now;
-      if (p.t >= def.dur) { p.hold += dt; if (p.hold > 1.2) { p.t = 0; p.hold = 0; } }
+      if (p.t >= def.dur) { p.hold += dt; if (p.hold > 1.2) { p.t = 0; p.hold = 0; if (list.length > 1) { vi = (vi + 1) % list.length; load(vi); } } }
       else p.t += dt;
       render(Math.min(p.t, def.dur));
       p.raf = requestAnimationFrame(tick);

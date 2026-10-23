@@ -332,7 +332,6 @@ html:has(.tsg) { scroll-behavior: smooth; }
 }
 
 .m-slot { position:relative; height:38px; } .m-slot > * { position:absolute; left:0; right:0; top:0; }
-.tsg [id] { scroll-margin-top:84px; }
 
 /* ---- Products page (products.html): one panel per product, scenes from products-motion.js ---- */
 .pp-jump { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; padding-top:22px; border-top:1px solid rgba(245,241,232,0.1); }
@@ -363,3 +362,19 @@ html:has(.tsg) { scroll-behavior: smooth; }
   .pp-prod .tsg-h2 { font-size:29px; }
   .pp-flip > div:first-child { order:0; }
 }
+
+/* Space bar and Page Down scroll a screen minus this much, so the sticky header never hides the
+   first lines of the next screen. It also offsets in-page anchor jumps. */
+html { scroll-padding-top: 96px; }
+
+/* Technical Sales Guide: two-column FAQ, and dark tables on the security page */
+.tsg-faq-2 { display:grid; grid-template-columns:1fr 1fr; column-gap:44px; border-top:0; }
+.tsg-faq-2 details { border-top:1px solid rgba(245,241,232,0.1); border-bottom:0; align-self:start; }
+.tsg-faq-2 summary { font-size:17.5px; }
+.tsg-sec-faq .ans li { font-size:16.5px; line-height:1.7; color:#AEB8C6; }
+.tsg-sec-faq .tsg-table { color:#C6CEDA; }
+.tsg-sec-faq .tsg-table th { color:#9AA6B6; border-bottom-color:rgba(245,241,232,0.2); }
+.tsg-sec-faq .tsg-table td { border-bottom-color:rgba(245,241,232,0.1); }
+.tsg-sec-faq .tsg-table td:first-child { color:#F5F1E8; }
+.tsg-job .tsg-panel h3 { font-size:26px; }
+@media (max-width: 900px) { .tsg-faq-2 { grid-template-columns:1fr; } html { scroll-padding-top: 76px; } }
