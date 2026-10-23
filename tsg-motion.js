@@ -217,12 +217,16 @@ export function mountScenes(root, scenes, attr) {
     const list = top.variants || [top];
     let vi = 0, def = list[0];
     const title = mount.getAttribute('data-title') || 'Animated example';
+    // data-bare: no controls, labels or footer. The description from data-desc goes into the label,
+    // and hovering or focusing the animation pauses it.
+    const bare = mount.hasAttribute('data-bare');
+    const label = bare ? `${title}. ${mount.getAttribute('data-desc') || ''} Sample figures. Hover or focus to pause.` : `${title}. Animation with sample figures; a text description follows.`;
     mount.innerHTML = '';
-    const fig = el(`<div class="tsg-fig" role="img" aria-label="${title}. Animation with sample figures; a text description follows."><div class="tsg-stage" aria-hidden="true"><div class="m-win"><div class="m-barx"><i></i><i></i><i></i><span class="m-t"></span></div><div class="m-body"></div></div></div></div>`);
-    const ctl = el(`<div class="tsg-ctl"><button type="button" class="tsg-btn" aria-pressed="false"></button><div class="tsg-prog" aria-hidden="true"><i></i></div><span class="tsg-ill">${list.length > 1 ? list.length + ' examples · ' : ''}Sample figures</span></div>`);
-    mount.appendChild(fig); mount.appendChild(ctl);
+    const fig = el(`<div class="tsg-fig${bare ? ' bare' : ''}" role="img"${bare ? ' tabindex="0"' : ''} aria-label="${label.replace(/"/g, '&quot;')}"><div class="tsg-stage" aria-hidden="true"><div class="m-win"><div class="m-barx"><i></i><i></i><i></i><span class="m-t"></span></div><div class="m-body"></div></div></div></div>`);
+    const ctl = bare ? null : el(`<div class="tsg-ctl"><button type="button" class="tsg-btn" aria-pressed="false"></button><div class="tsg-prog" aria-hidden="true"><i></i></div><span class="tsg-ill">${list.length > 1 ? list.length + ' examples · ' : ''}Sample figures</span></div>`);
+    mount.appendChild(fig); if (ctl) mount.appendChild(ctl);
     const stage = fig.firstElementChild, labelEl = stage.querySelector('.m-t'), body = stage.querySelector('.m-body');
-    const btn = ctl.querySelector('button'), bar = ctl.querySelector('.tsg-prog i');
+    const btn = ctl && ctl.querySelector('button'), bar = ctl && ctl.querySelector('.tsg-prog i');
 
     let items, typers, counters, grows, hls, warns, caret;
     const load = (v) => {
@@ -247,7 +251,7 @@ export function mountScenes(root, scenes, attr) {
       for (const h of hls) { const on = t >= h.a; if (on !== h.on) { h.on = on; h.e.classList.toggle('on', on); } }
       for (const w of warns) { const on = t >= w.a; if (on !== w.on) { w.on = on; w.e.classList.toggle('warn', on); } }
       if (caret) caret.style.display = t < 1.6 ? 'inline-block' : 'none';
-      bar.style.transform = 'scaleX(' + Math.min(1, t / def.dur).toFixed(3) + ')';
+      if (bar) bar.style.transform = 'scaleX(' + Math.min(1, t / def.dur).toFixed(3) + ')';
     };
 
     const fit = () => {
@@ -259,9 +263,10 @@ export function mountScenes(root, scenes, attr) {
     fit();
     let ro; if (window.ResizeObserver) { ro = new ResizeObserver(fit); ro.observe(fig); } else window.addEventListener('resize', fit);
 
-    const p = { t: def.key, inView: false, userPaused: false, started: !mq.matches, raf: 0, last: 0, hold: 0 };
-    const playing = () => p.started && !p.userPaused && p.inView && !document.hidden;
+    const p = { t: def.key, inView: false, userPaused: false, hover: false, started: !mq.matches, raf: 0, last: 0, hold: 0 };
+    const playing = () => p.started && !p.userPaused && !p.hover && p.inView && !document.hidden;
     const setBtn = () => {
+      if (!btn) return;
       const running = p.started && !p.userPaused;
       btn.innerHTML = (running ? ICON_PAUSE : ICON_PLAY) + '<span>' + (running ? 'Pause' : (p.started ? 'Play' : 'Play animation')) + '</span>';
       btn.setAttribute('aria-pressed', String(!running));
@@ -281,11 +286,16 @@ export function mountScenes(root, scenes, attr) {
     if (mq.matches) stage.classList.add('still');
     render(def.key);
     setBtn();
-    btn.addEventListener('click', () => {
+    if (btn) btn.addEventListener('click', () => {
       if (!p.started) { p.started = true; p.userPaused = false; stage.classList.remove('still'); p.t = 0; p.hold = 0; render(0); }
       else p.userPaused = !p.userPaused;
       setBtn(); kick();
     });
+    if (bare) {
+      const hold = (on) => () => { p.hover = on; kick(); };
+      fig.addEventListener('pointerenter', hold(true)); fig.addEventListener('pointerleave', hold(false));
+      fig.addEventListener('focusin', hold(true)); fig.addEventListener('focusout', hold(false));
+    }
     const io = new IntersectionObserver((es) => { p.inView = es[0].isIntersecting; kick(); }, { threshold: 0.35 });
     io.observe(fig);
     const vis = () => kick();

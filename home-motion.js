@@ -1,6 +1,6 @@
 // Homepage "What we build" explainers: one short looping scene per service, on the same timeline engine as tsg-motion.js.
 // Mount points are <div data-home-scene="ready|auto|sap|web|train|reg">. All names and figures on screen are samples.
-import { mountScenes } from './tsg-motion.js?v=3';
+import { mountScenes } from './tsg-motion.js?v=4';
 
 const mk = (s) => s.replace(/\n\s*/g, '');
 const src = (t, txt) => `<div class="m-src" data-in="${t}"><svg viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M2 1h5l3 3v7H2z" fill="none" stroke="currentColor" stroke-width="1"/></svg>${txt}</div>`;

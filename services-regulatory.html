@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Regulatory &amp; Technical Systems — Arithim</title>
-<meta name="description" content="Regulatory and technical systems for compliance-heavy environments, where evidence, traceability and human judgment all have to hold.">
+<title>How do you build compliance workflows with an audit trail? | Arithim</title>
+<meta name="description" content="Structured compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, an audit trail, and people signing off where judgment matters.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arithim">
-<meta property="og:title" content="Regulatory &amp; Technical Systems — Arithim">
-<meta property="og:description" content="Regulatory and technical systems for compliance-heavy environments, where evidence, traceability and human judgment all have to hold.">
+<meta property="og:title" content="How do you build compliance workflows with an audit trail? | Arithim">
+<meta property="og:description" content="Structured compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, an audit trail, and people signing off where judgment matters.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://arithim.com/services-regulatory.html">
 <meta property="og:url" content="https://arithim.com/services-regulatory.html">
@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="/site.css?v=2">
+<link rel="stylesheet" href="/site.css?v=3">
 <!-- /partial:head -->
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
@@ -57,8 +57,8 @@
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div class="r-gut" style="position:relative;max-width:1000px;margin:0 auto;padding:78px 40px 40px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:22px;"><a href="services.html" style-hover="color:#E8A13C;">Services</a> / <span style="{{ eyebrowInline }}">Regulatory &amp; Technical Systems</span></div>
-      <h1 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 18px;color:#C6CEDA;">Regulatory &amp; Technical Systems</h1>
-      <div style="{{ eyebrowStyle }}">SERVICE 06 · GATES · <span style="{{ badgeInline }}">{{ waysLabel }}</span></div>
+      <h1 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 18px;color:#C6CEDA;">How do you build compliance workflows with an audit trail?</h1>
+      <div style="{{ eyebrowStyle }}">SERVICE 06 · REGULATORY SYSTEMS</div>
       <h2 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:54px;line-height:0.98;letter-spacing:-0.04em;margin:14px 0 0;color:#F5F1E8;">{{ headline }}</h2>
       <p style="font-size:20px;line-height:1.55;color:#AEB8C6;max-width:660px;margin:24px 0 0;">{{ intro }}</p>
       <div style="margin-top:34px;"><a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Discuss requirements →</span></a></div>
@@ -81,8 +81,22 @@
     </div>
   </div>
 
+  <!-- steps -->
   <div class="r-gut" style="max-width:1000px;margin:0 auto;padding:40px 40px 20px;">
-    <h2 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.03em;margin:0 0 30px;">The <span style="{{ badgeInline2 }}">{{ waysLabel }}</span> we deliver</h2>
+    <h2 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.03em;margin:0 0 30px;">How does it work?</h2>
+    <div style="display:grid;gap:12px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+        <div style="display:flex;align-items:baseline;gap:16px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:20px 24px;">
+          <span style="{{ numStyle }}">{{ s.n }}</span>
+          <span style="font-size:17px;line-height:1.6;color:#C6CEDA;">{{ s.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ways -->
+  <div class="r-gut" style="max-width:1000px;margin:0 auto;padding:40px 40px 20px;">
+    <h2 class="r-f4" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.03em;margin:0 0 30px;">What do you get at the end?</h2>
     <div class="r-g2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
       <sc-for list="{{ ways }}" as="w" hint-placeholder-count="3">
         <div style="display:flex;align-items:baseline;gap:16px;background:#0B1220;border:1px solid rgba(245,241,232,0.08);border-radius:14px;padding:22px 24px;">
@@ -107,7 +121,8 @@
     <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div style="position:relative;max-width:900px;margin:0 auto;text-align:center;">
-      <h2 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:0.98;letter-spacing:-0.04em;margin:0 0 30px;">Systems your auditors will trust.</h2>
+      <h2 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:0.98;letter-spacing:-0.04em;margin:0 0 30px;">Need a compliance process with a clearer audit trail?</h2>
+      <p style="font-size:18px;line-height:1.6;color:#AEB8C6;max-width:620px;margin:-12px auto 30px;">Tell us about the process and the rules it has to meet.</p>
       <a href="contact.html" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Start a conversation →</span></a>
     </div>
   </div>
@@ -118,7 +133,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7E9B87&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Compliance-grade systems, with the evidence built in.\nAutomation that carries its own audit trail.\nBuilt for environments where mistakes are expensive.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Structured workflows and technical coordination for compliance-heavy, operationally complex environments, where evidence, auditability, and stakeholder alignment matter most.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Structured workflows\nCompliance coordination\nEvidence handling&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Is this audit-ready? :: Yes. Evidence capture and auditability are designed in from the start, not bolted on.\nCan it handle our regulatory constraints? :: We build around real constraints: legacy systems, controls, and the workflows your regulators expect.\nHow is human judgment preserved? :: Decision gates keep people in control where judgment matters, while the system handles coordination and evidence.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7E9B87&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Compliance workflows with the evidence built in.\nAutomation that keeps its own audit trail.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We build structured workflows for regulated, compliance-heavy operations. The system coordinates the work between teams and records the evidence as each item moves through review and approval, while people still make the decisions that need judgment. We build around your legacy systems, your controls and the workflows your regulators expect.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We start from your real constraints: legacy systems, existing controls and the workflows your regulators expect.\nWe turn the process into a structured workflow with clear steps, such as submit, review and approve.\nWe add decision points where a person signs off, so judgment stays with your people.\nThe system captures evidence at each step and keeps an audit log, designed in from the start.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Structured workflows for regulated processes\nCoordination of compliance work across teams\nEvidence capture and an audit log&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Is it ready for audit? :: Yes. Evidence capture and an audit trail are part of the design from the start.\nCan it handle our regulatory constraints? :: Yes. We build around your real constraints, including legacy systems, existing controls and the workflows your regulators expect.\nHow do people stay in control of decisions? :: People make every decision that needs judgment. Decision points require a person to sign off, and the system handles the coordination and evidence.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
   componentDidMount() { import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
@@ -127,11 +142,12 @@ class Component extends DCLogic {
     const hl = (this.props.headlinesText || 'Applied intelligence for operational systems.').split('\n').map((s) => s.trim()).filter(Boolean);
     const headline = hl[Math.floor(Math.random() * hl.length)];
     const ways = (this.props.waysText || '').split('\n').map((s) => s.trim()).filter(Boolean).map((w, i) => ({ n: ('0' + (i + 1)).slice(-2), text: w }));
+    const steps = (this.props.stepsText || '').split('\n').map((s) => s.trim()).filter(Boolean).map((s, i) => ({ n: ('0' + (i + 1)).slice(-2), text: s }));
     const faqs = (this.props.faqsText || '').split('\n').map((l) => { const i = l.indexOf('::'); return i < 0 ? null : { q: l.slice(0, i).trim(), a: l.slice(i + 2).trim() }; }).filter(Boolean);
     return {
       headline,
       intro: this.props.intro || '',
-      ways, faqs,
+      ways, faqs, steps,
       waysLabel: ways.length + (ways.length === 1 ? ' way' : ' ways'),
       eyebrowStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:" + accent + ";",
       eyebrowInline: "color:" + accent + ";",
