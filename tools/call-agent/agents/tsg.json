@@ -111,12 +111,12 @@
         "turn_timeout": 7,
         "silence_end_call_timeout": 30,
         "soft_timeout_config": {
-          "timeout_seconds": 1.5,
-          "message": "Mm, one sec.",
+          "timeout_seconds": 4.0,
+          "message": "Bear with me a moment.",
           "additional_soft_timeout_messages": [
-            "Right, bear with me."
+            "Let me just check that."
           ],
-          "max_soft_timeouts_per_generation": 2,
+          "max_soft_timeouts_per_generation": 1,
           "disable_until_first_user_message": true
         }
       },
