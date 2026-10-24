@@ -15,6 +15,6 @@ Clear headings, semantic HTML, accessible relationships, schema markup, internal
 
 > This is not a trick for ranking. It is an information architecture discipline.
 
-A website should make the organization legible: its services, expertise, evidence, operating context, and contact pathways. If a person or a model reads one page, they should come away knowing what you do and who it is for.
+A website should make the organisation legible: its services, expertise, evidence, operating context, and contact pathways. If a person or a model reads one page, they should come away knowing what you do and who it is for.
 
 AI discoverability starts with the same fundamentals that make a website better for humans: clarity, hierarchy, and technically sound publishing. Build for people first, and the machines follow.

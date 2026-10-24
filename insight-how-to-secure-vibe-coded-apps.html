@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<meta property="article:published_time" content="2026-10-20">
+<meta property="article:published_time" content="2026-10-21">
 <meta property="article:section" content="Application security">
 <script type="application/ld+json">
 {
@@ -27,8 +27,8 @@
       "@id": "https://arithim.com/insight-how-to-secure-vibe-coded-apps.html#article",
       "headline": "How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?",
       "description": "Find them, give each one an owner, scan them like any other code and explain the results in plain language. A practical process for securing AI-built apps, based on Gartner's 2026 secure software engineering research.",
-      "datePublished": "2026-10-20",
-      "dateModified": "2026-10-20",
+      "datePublished": "2026-10-21",
+      "dateModified": "2026-10-21",
       "inLanguage": "en",
       "mainEntityOfPage": "https://arithim.com/insight-how-to-secure-vibe-coded-apps.html",
       "image": "https://arithim.com/assets/og-image.png",
@@ -223,7 +223,7 @@
     <div class="r-gut" style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:26px;"><a href="insights.html" style-hover="color:#E8A13C;">Insights</a> / <span style="color:#E8A13C;">Application security</span></div>
       <h1 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h1>
-      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>20 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>21 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
     </div>
   </div>
 
@@ -232,7 +232,7 @@
     <p>This piece follows our look at <a href="insight-more-than-one-application-security-testing-tool.html">whether you need more than one application security testing tool</a>. It draws on Gartner's <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering, 2026</a> and its 2025 Magic Quadrant for Application Security Testing, plus what the tool vendors offer today.</p>
     <h2>Why vibe-coded apps are a security problem</h2>
     <p>A finance analyst who builds an invoice tracker with an AI app builder has done something useful, but none of the usual checks happened along the way. Nobody reviewed the code, nobody scanned the open-source packages the AI chose, the database password is probably sitting in the source, and the app may be on the public internet because that was the default.</p>
-    <p>Gartner's 2026 Hype Cycle for Secure Software Engineering says this directly. Vibe-coded prototypes can reach production without security checks, coding agents can pull in vulnerable or malicious packages, and the MCP servers those agents connect to can have access nobody approved. Gartner's 2025 Magic Quadrant for Application Security Testing cites its own survey finding that 66% of organizations using AI tools in software development saw little or no improvement in code security. An independent study from Georgetown's <a href="https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/" rel="noopener">Center for Security and Emerging Technology</a> found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.</p>
+    <p>Gartner's 2026 Hype Cycle for Secure Software Engineering says this directly. Vibe-coded prototypes can reach production without security checks, coding agents can pull in vulnerable or malicious packages, and the MCP servers those agents connect to can have access nobody approved. Gartner's 2025 Magic Quadrant for Application Security Testing cites its own survey finding that 66% of organisations using AI tools in software development saw little or no improvement in code security. An independent study from Georgetown's <a href="https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/" rel="noopener">Center for Security and Emerging Technology</a> found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.</p>
     <p>A developer who sees a scanner finding can usually judge whether it's serious. Someone who builds apps from a finance or operations role can't, and shouldn't have to.</p>
     <h2>Where these apps tend to live</h2>
     <p>Common places to find them include:</p>
@@ -240,7 +240,7 @@
     <p>None of these show up in the tools a security team normally watches, because those tools only see code that someone has put into a governed repository and pipeline.</p>
     <h2>A practical process</h2>
     <h3>1. Find them</h3>
-    <p>Start with the signals you already have. Single sign-on and OAuth grant logs show which AI builders people have connected to company accounts. Expense and card data shows who is paying for them. DNS and certificate records show new subdomains. Your source control admin console shows repositories created outside the main organization, and network logs show traffic to AI coding services. Several application security vendors now offer discovery of AI assets as well, which helps with code that is already in a repository.</p>
+    <p>Start with the signals you already have. Single sign-on and OAuth grant logs show which AI builders people have connected to company accounts. Expense and card data shows who is paying for them. DNS and certificate records show new subdomains. Your source control admin console shows repositories created outside the main organisation, and network logs show traffic to AI coding services. Several application security vendors now offer discovery of AI assets as well, which helps with code that is already in a repository.</p>
     <h3>2. Give each app an owner and a tier</h3>
     <p>For every app you find, record who uses it, what data it touches and who can reach it. Then place it in a tier, such as prototype, internal tool or business-critical. The tier decides how much scrutiny it gets. A prototype that only its builder uses needs a quick scan and a reminder. An app that holds customer records needs the same review as anything else that holds customer records.</p>
     <h3>3. Scan it like any other code</h3>
@@ -272,14 +272,14 @@
       <li>Jessica Ji, Jenny Jun, Maggie Wu and Rebecca Gelles, <a href="https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/" rel="noopener">Cybersecurity Risks of AI-Generated Code</a>, Center for Security and Emerging Technology, Georgetown University, November 2024.</li>
       <li><a href="https://www.ox.security/vibesec/" rel="noopener">OX Security VibeSec</a> and <a href="https://semgrep.dev/products/semgrep-guardian/" rel="noopener">Semgrep Guardian</a> product pages, accessed 21 October 2026; <a href="https://genai.owasp.org/llm-top-10/" rel="noopener">OWASP Top 10 for LLM Applications</a>; <a href="https://www.cisa.gov/securebydesign" rel="noopener">CISA Secure by Design</a>.</li>
     </ul>
-    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
   </article>
 
   <div class="r-gut" style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
     <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#556074;margin-bottom:20px;">MORE INSIGHTS</div>
-    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
-    <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
-    <a href="insight-how-to-reduce-application-security-backlog.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do We Reduce Our Application Security Backlog?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
+    <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a href="insight-how-to-reduce-application-security-backlog.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do We Reduce Our Application Security Backlog?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 22 OCT 2026</span></a>
+    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
   </div>
 
   <div data-hero class="r-gut" style="position:relative;overflow:hidden;padding:90px 40px;margin-top:40px;">

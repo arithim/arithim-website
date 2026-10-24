@@ -1,13 +1,13 @@
 +++
 title = "How Do We Choose an Enterprise Architecture Tool in 2026?"
 slug = "how-to-choose-an-enterprise-architecture-tool"
-date = 2026-10-20
+date = 2026-10-23
 category = "EA · RESEARCH"
 card_label = "EA · RESEARCH"
 breadcrumb = "Enterprise architecture"
-description = "Modeling features are mature across the market. Choose an EA tool on how its repository stays current, how it prices AI and applications, whether your AI assistants can query it, and where it hosts your data. Based on Gartner's October 2026 Magic Quadrant."
+description = "Modelling features are mature across the market. Choose an EA tool on how its repository stays current, how it prices AI and applications, whether your AI assistants can query it, and where it hosts your data. Based on Gartner's October 2026 Magic Quadrant."
 summary = "What changed in the EA tools market in 2026, the 15 vendors Gartner evaluated, five questions to ask before you buy, and where AI agents fit."
-lede = "Most enterprise architecture tools can now model capabilities, applications and roadmaps well, so modeling features rarely decide a purchase. The questions that separate them in 2026 are how the repository stays current without constant manual effort, how AI and applications are priced, whether your AI assistants and agents can query it, and where your data is hosted."
+lede = "Most enterprise architecture tools can now model capabilities, applications and roadmaps well, so modelling features rarely decide a purchase. The questions that separate them in 2026 are how the repository stays current without constant manual effort, how AI and applications are priced, whether your AI assistants and agents can query it, and where your data is hosted."
 author = "Tarun Bulchandani"
 research = true
 cta = "Is your architecture repository out of date the week after it's updated?"
@@ -22,7 +22,7 @@ keywords = [
   "architecture repository automation",
 ]
 about = ["Enterprise architecture", "Enterprise architecture tools", "AI agents"]
-footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates."
+footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates."
 
 [citation]
 name = "Magic Quadrant for Enterprise Architecture Tools"
@@ -97,7 +97,7 @@ url = "https://www.unicomsi.com/products/system-architect/"
 
 [[faq]]
 q = "What is an enterprise architecture tool?"
-a = "An EA tool is a central repository and modeling environment that records how an organization's capabilities, processes, applications, information and technology relate to each other. Architects use it to analyze change, build roadmaps and test scenarios, and it connects to systems such as the CMDB, project portfolio and finance tools."
+a = "An EA tool is a central repository and modelling environment that records how an organisation's capabilities, processes, applications, information and technology relate to each other. Architects use it to analyse change, build roadmaps and test scenarios, and it connects to systems such as the CMDB, project portfolio and finance tools."
 
 [[faq]]
 q = "Which enterprise architecture tools are Leaders in Gartner's 2026 Magic Quadrant?"
@@ -109,7 +109,7 @@ a = "Mostly per application or per user. Ardoq, SAP LeanIX and ServiceNow price 
 
 [[faq]]
 q = "Is ServiceNow enough as an enterprise architecture tool?"
-a = "It depends on what you need from EA. Gartner credits ServiceNow with a native, real-time repository built on its CMDB and with orchestration of AI agents across its products, but says its EA breadth trails the specialist vendors and its full value depends on other ServiceNow products. Organizations that are deep into ServiceNow and mainly need application portfolio management may find it enough."
+a = "It depends on what you need from EA. Gartner credits ServiceNow with a native, real-time repository built on its CMDB and with orchestration of AI agents across its products, but says its EA breadth trails the specialist vendors and its full value depends on other ServiceNow products. Organisations that are deep into ServiceNow and mainly need application portfolio management may find it enough."
 
 [[faq]]
 q = "Can AI keep our architecture repository up to date?"
@@ -129,7 +129,7 @@ Gartner describes a market that shifted sharply over the past year. Vendors pour
 
 Two of Gartner's observations matter most for buyers. The first is that more people now get architecture answers by asking a company-wide AI assistant than by opening the EA tool, which is pushing vendors from per-seat pricing toward consumption- and outcome-based pricing. Gartner warns that EA tools risk becoming back-end repositories as a result. The second is that some EA teams are building their own AI tools on coding platforms to replicate EA features, which Gartner flags as a source of unmanaged AI risk. We wrote about that pattern more broadly in [how to secure vibe-coded apps](insight-how-to-secure-vibe-coded-apps.html).
 
-Gartner also names constant manual maintenance as the core problem for EA teams, and says the ideal is a live view of the organization's current state.
+Gartner also names constant manual maintenance as the core problem for EA teams, and says the ideal is a live view of the organisation's current state.
 
 ## The 15 vendors at a glance
 
@@ -142,7 +142,7 @@ Gartner also names constant manual maintenance as the core problem for EA teams,
 | [BOC Group](https://www.boc-group.com/en/adoit/) | Leader | Per user | SaaS (hosted in continental Europe) or on-premises |
 | [Orbus Software](https://www.orbussoftware.com/landing-pages/orbusinfinity-enterprise-architecture) | Leader | Per user plus platform fee | SaaS; FedRAMP government edition |
 | [SAP LeanIX](https://www.leanix.net/en/) | Leader | Per application | SaaS |
-| [GBTEC](https://www.gbtec.com/software/gbtec-enterprise-architecture/) | Challenger | Per role or enterprise license | SaaS or on-premises |
+| [GBTEC](https://www.gbtec.com/software/gbtec-enterprise-architecture/) | Challenger | Per role or enterprise licence | SaaS or on-premises |
 | [ServiceNow](https://www.servicenow.com/products/enterprise-architecture.html) | Challenger | Per application or unrestricted users | SaaS or on-premises |
 | [Avolution](https://www.avolutionsoftware.com/abacus/) | Visionary | Per user | SaaS or on-premises |
 | [BlueDolphin](https://bluedolphin.io/products/architecture-management/) | Visionary | Per user | SaaS |
@@ -171,7 +171,7 @@ If people increasingly ask an enterprise AI assistant instead of opening the EA 
 
 ### 4. Does the pricing unit fit your scope?
 
-Per-application pricing is easy to budget for application portfolio management, and Gartner cautions that it can discourage modeling the wider business. Per-user pricing can limit who gets access. Unlimited-user models (Bee360, Enterprise Architecture Solutions, and UNICOM's read-only users) suit organizations that want architecture content widely read.
+Per-application pricing is easy to budget for application portfolio management, and Gartner cautions that it can discourage modelling the wider business. Per-user pricing can limit who gets access. Unlimited-user models (Bee360, Enterprise Architecture Solutions, and UNICOM's read-only users) suit organisations that want architecture content widely read.
 
 ### 5. Where will your data live?
 
@@ -179,9 +179,9 @@ For UK and EU buyers this often decides the shortlist. Many vendors in this mark
 
 ## Our view: the repository matters more than the diagrams
 
-Gartner's warning that EA tools could become back-end repositories reads to us like a description of where the value is heading. When agents start making changes across a business, they need an accurate map of which applications exist, what each one does, who owns it and what depends on it. The EA repository is the obvious place for that map. A tool that keeps its repository accurate and exposes it cleanly to AI will matter more in three years than one with the best modeling canvas.
+Gartner's warning that EA tools could become back-end repositories reads to us like a description of where the value is heading. When agents start making changes across a business, they need an accurate map of which applications exist, what each one does, who owns it and what depends on it. The EA repository is the obvious place for that map. A tool that keeps its repository accurate and exposes it cleanly to AI will matter more in three years than one with the best modelling canvas.
 
-That makes data freshness and open access the selection criteria we would weight most heavily, ahead of notation support or visualization.
+That makes data freshness and open access the selection criteria we would weight most heavily, ahead of notation support or visualisation.
 
 ## Where agents help
 

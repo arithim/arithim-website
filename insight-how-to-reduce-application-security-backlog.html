@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<meta property="article:published_time" content="2026-10-20">
+<meta property="article:published_time" content="2026-10-22">
 <meta property="article:section" content="Application security">
 <script type="application/ld+json">
 {
@@ -27,8 +27,8 @@
       "@id": "https://arithim.com/insight-how-to-reduce-application-security-backlog.html#article",
       "headline": "How Do We Reduce Our Application Security Backlog?",
       "description": "Cut the noise first, route every finding to an owner, fix dependencies in bulk and automate the loop around each fix. A practical plan for shrinking an AppSec backlog, based on Gartner's 2025 and 2026 research.",
-      "datePublished": "2026-10-20",
-      "dateModified": "2026-10-20",
+      "datePublished": "2026-10-22",
+      "dateModified": "2026-10-22",
       "inLanguage": "en",
       "mainEntityOfPage": "https://arithim.com/insight-how-to-reduce-application-security-backlog.html",
       "image": "https://arithim.com/assets/og-image.png",
@@ -39,7 +39,7 @@
         "security findings backlog",
         "mean time to remediate vulnerabilities",
         "AppSec remediation",
-        "vulnerability prioritization reachability",
+        "vulnerability prioritisation reachability",
         "AI autofix vulnerabilities",
         "Gartner Magic Quadrant application security testing"
       ],
@@ -160,7 +160,7 @@
           "name": "What is a reasonable fix deadline for a critical vulnerability?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organizations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver."
+            "text": "It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organisations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver."
           }
         }
       ]
@@ -233,7 +233,7 @@
     <div class="r-gut" style="position:relative;max-width:760px;margin:0 auto;padding:78px 40px 20px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7C8AA0;margin-bottom:26px;"><a href="insights.html" style-hover="color:#E8A13C;">Insights</a> / <span style="color:#E8A13C;">Application security</span></div>
       <h1 class="r-f3" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-0.035em;margin:0;">How Do We Reduce Our Application Security Backlog?</h1>
-      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>20 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7C8AA0;letter-spacing:0.04em;"><span style="color:#8FB29B;">APPSEC · RESEARCH</span><span style="color:#3A4557;">·</span><span>22 OCT 2026</span><span style="color:#3A4557;">·</span><span>6 MIN READ</span><span style="color:#3A4557;">·</span><span>BY TARUN BULCHANDANI</span></div>
     </div>
   </div>
 
@@ -241,7 +241,7 @@
     <p style="font-size:22px;line-height:1.55;color:#EDEBE4;margin:0 0 32px;font-family:'Space Grotesk';font-weight:500;letter-spacing:-0.01em;">Most application security backlogs shrink fastest when you cut the noise before anyone writes a fix, send every remaining finding to a named owner, and fix vulnerable dependencies in bulk. Generating patches is now the easy part, since most scanners can suggest one. What keeps backlogs large is the coordination around each fix, and that is where automation pays off.</p>
     <p>This is the third piece in our application security series, after <a href="insight-more-than-one-application-security-testing-tool.html">whether you need more than one AST tool</a> and <a href="insight-how-to-secure-vibe-coded-apps.html">how to secure vibe-coded apps</a>. It draws on Gartner's 2025 <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a> and its 2026 <a href="https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&amp;ct=260617&amp;st=sb" rel="noopener">Magic Quadrant for Software Supply Chain Security</a>.</p>
     <h2>Why backlogs keep growing</h2>
-    <p>Gartner's 2025 assessment of the AST market says that moving testing earlier in development, the long-running "shift left" effort, has largely been achieved, and that what now separates products is how they handle alert volume and remediation. Gartner also notes that AI coding assistants produce vulnerable code faster than developers can fix it, and it cites its own survey finding that 66% of organizations using AI in software development saw little or no improvement in code security.</p>
+    <p>Gartner's 2025 assessment of the AST market says that moving testing earlier in development, the long-running "shift left" effort, has largely been achieved, and that what now separates products is how they handle alert volume and remediation. Gartner also notes that AI coding assistants produce vulnerable code faster than developers can fix it, and it cites its own survey finding that 66% of organisations using AI in software development saw little or no improvement in code security.</p>
     <p>The vendor profiles in Gartner's 2026 supply chain security report show the same pressure from the other side. Customers of several vendors reported large alert volumes and scan results that needed a lot of manual effort to work through, and some products need careful, ongoing policy tuning before their output is usable.</p>
     <p>So the backlog is rarely caused by a lack of scanning. It grows because findings arrive from several tools, overlap, sit with no clear owner, and wait for someone to coordinate a fix.</p>
     <h2>1. Measure what matters</h2>
@@ -250,7 +250,7 @@
     <h2>2. Cut the noise before anyone writes a fix</h2>
     <p>Deduplicate findings that two or three tools report under different names. Set aside findings in code that never runs, in test fixtures, or in dependencies that are present but never called, and record the reason and a review date for each. Tune the rules that produce the most false positives. We would expect this step alone to remove a large share of most queues without any code changing.</p>
     <h2>3. Give every finding an owner</h2>
-    <p>Findings without an owner tend to sit untouched. Map each repository and service to a team using code ownership files and a service catalog such as <a href="https://backstage.io/" rel="noopener">Backstage</a> or your CMDB, and route findings to that team's normal work queue. Findings that can't be matched to an owner go to a short weekly review, where someone assigns them or decides the code should be retired.</p>
+    <p>Findings without an owner tend to sit untouched. Map each repository and service to a team using code ownership files and a service catalogue such as <a href="https://backstage.io/" rel="noopener">Backstage</a> or your CMDB, and route findings to that team's normal work queue. Findings that can't be matched to an owner go to a short weekly review, where someone assigns them or decides the code should be retired.</p>
     <h2>4. Fix dependencies in bulk</h2>
     <p>In many backlogs, a large share of findings come from open-source dependencies, and one upgrade can close dozens of them. Tools like <a href="https://docs.renovatebot.com/" rel="noopener">Renovate</a> and GitHub's <a href="https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain" rel="noopener">Dependabot</a> raise upgrade pull requests automatically. Some vendors go further; Gartner's 2026 report notes Mend.io's prediction of which version bumps will break a build and Sonatype's AI-assisted dependency upgrades. Grouping upgrades by application and merging them in regular batches gets through this part of the backlog much faster than handling findings one at a time.</p>
     <h2>5. Use autofix for code findings, with review</h2>
@@ -259,8 +259,8 @@
     <p>Set fix deadlines by risk tier, shortest for exploited vulnerabilities in internet-facing systems. Allow exceptions, but give each one a named approver and an expiry date. Then make sure new code doesn't add to the pile. A pipeline check that blocks new critical findings, while leaving existing ones to the backlog process, keeps the queue from growing back while you work it down.</p>
     <h2>Where agents help</h2>
     <p>Steps three to six are mostly coordination. Someone has to find the owner, open the ticket, nudge the reviewer, re-run the scan, close the ticket and report progress, for every finding, across every tool. That work suits an agent well.</p>
-    <p>Gartner's 2026 supply chain report says GitHub has not yet shipped fully autonomous agentic workflows for security backlogs and pull requests, while some competitors already offer them. Those vendor agents work inside each vendor's own product. Most organizations run several scanners, so the coordination across them, together with the ticketing system and the people involved, is still left to someone on the security team.</p>
-    <p>The agent we would build for this picks up prioritized findings from every scanner, routes each to its owner, drafts or requests the fix, opens the pull request, follows up with reviewers, confirms the rescan and closes the ticket. A person approves every merge, and every decision the agent makes is logged with its reasoning. We describe it alongside the other agents in our <a href="insight-more-than-one-application-security-testing-tool.html">application security research</a>.</p>
+    <p>Gartner's 2026 supply chain report says GitHub has not yet shipped fully autonomous agentic workflows for security backlogs and pull requests, while some competitors already offer them. Those vendor agents work inside each vendor's own product. Most organisations run several scanners, so the coordination across them, together with the ticketing system and the people involved, is still left to someone on the security team.</p>
+    <p>The agent we would build for this picks up prioritised findings from every scanner, routes each to its owner, drafts or requests the fix, opens the pull request, follows up with reviewers, confirms the rescan and closes the ticket. A person approves every merge, and every decision the agent makes is logged with its reasoning. We describe it alongside the other agents in our <a href="insight-more-than-one-application-security-testing-tool.html">application security research</a>.</p>
     <h2>Common questions</h2>
     <h3>Why does our security backlog keep growing even though we scan everything?</h3>
     <p>Scanning finds problems faster than most teams can fix them, and AI coding tools have widened that gap by producing more code. Gartner's 2025 Magic Quadrant for Application Security Testing says the hard part of the market has moved from finding issues to managing alert volume and remediation. If findings aren't deduplicated, routed to an owner and tracked to a merged fix, the backlog grows by default.</p>
@@ -271,21 +271,21 @@
     <h3>What should we measure to know the backlog is improving?</h3>
     <p>Track open findings that are both reachable and likely to be exploited, their age, and the median time from detection to merged fix for each team. Total finding count is a poor measure, because it rises every time you add a scanner.</p>
     <h3>What is a reasonable fix deadline for a critical vulnerability?</h3>
-    <p>It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organizations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver.</p>
+    <p>It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organisations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver.</p>
     <h2>Sources</h2>
     <ul class="ai-note" style="font-size:13px;">
       <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, Jason Gross, Mark Horvath et al., 6 October 2025, ID G00795930. Complimentary reprint; the link may expire.</li>
       <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&amp;ct=260617&amp;st=sb" rel="noopener">Magic Quadrant for Software Supply Chain Security</a>, Aaron Lord, Johnny Walters et al., 17 June 2026, ID G00843814. Complimentary reprint; the link may expire.</li>
       <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noopener">CISA Known Exploited Vulnerabilities catalog</a>; <a href="https://www.first.org/epss/" rel="noopener">FIRST Exploit Prediction Scoring System (EPSS)</a>; <a href="https://docs.renovatebot.com/" rel="noopener">Renovate</a>; <a href="https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain" rel="noopener">GitHub supply chain security and Dependabot</a>; <a href="https://www.veracode.com/products/fix/" rel="noopener">Veracode Fix</a>; <a href="https://backstage.io/" rel="noopener">Backstage</a>. Accessed 20 October 2026.</li>
     </ul>
-    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
   </article>
 
   <div class="r-gut" style="max-width:760px;margin:0 auto;padding:50px 40px 20px;">
     <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#556074;margin-bottom:20px;">MORE INSIGHTS</div>
-    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
-    <a href="insight-how-to-secure-vibe-coded-apps.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
-    <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
+    <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a href="insight-how-to-secure-vibe-coded-apps.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 21 OCT 2026</span></a>
+    <a href="insight-more-than-one-application-security-testing-tool.html" style="display:block;padding:22px 0;border-top:1px solid rgba(245,241,232,0.1);border-bottom:1px solid rgba(245,241,232,0.1);" style-hover="opacity:0.7;"><h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;margin:0 0 6px;color:#F5F1E8;">Do You Need More Than One Application Security Testing Tool?</h3><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C8AA0;">APPSEC · RESEARCH · 20 OCT 2026</span></a>
   </div>
 
   <div data-hero class="r-gut" style="position:relative;overflow:hidden;padding:90px 40px;margin-top:40px;">

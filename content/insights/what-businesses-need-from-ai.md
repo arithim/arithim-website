@@ -4,9 +4,9 @@ slug = "what-businesses-need-from-ai"
 date = 2026-01-08
 category = "AI IMPLEMENTATION"
 breadcrumb = "AI implementation"
-description = "Most organizations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction and support better decisions."
+description = "Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction and support better decisions."
 summary = "A practical view of where AI creates durable operational value."
-lede = "Most organizations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction, improve coordination, and support better decisions."
+lede = "Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction, improve coordination, and support better decisions."
 read_minutes = 2
 cta = "Ready to find the version that actually helps?"
 +++

@@ -1,7 +1,7 @@
 +++
 title = "How Do We Reduce Our Application Security Backlog?"
 slug = "how-to-reduce-application-security-backlog"
-date = 2026-10-20
+date = 2026-10-22
 category = "APPSEC · RESEARCH"
 card_label = "APPSEC · RESEARCH"
 breadcrumb = "Application security"
@@ -17,12 +17,12 @@ keywords = [
   "security findings backlog",
   "mean time to remediate vulnerabilities",
   "AppSec remediation",
-  "vulnerability prioritization reachability",
+  "vulnerability prioritisation reachability",
   "AI autofix vulnerabilities",
   "Gartner Magic Quadrant application security testing",
 ]
 about = ["Application security", "Vulnerability management", "Remediation", "AI agents"]
-footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates."
+footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates."
 
 [citation]
 name = "Magic Quadrant for Application Security Testing"
@@ -73,7 +73,7 @@ a = "Track open findings that are both reachable and likely to be exploited, the
 
 [[faq]]
 q = "What is a reasonable fix deadline for a critical vulnerability?"
-a = "It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organizations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver."
+a = "It depends on whether the vulnerability is known to be exploited and whether the affected code is exposed. Many organisations use days for critical issues that appear in CISA's Known Exploited Vulnerabilities catalog on internet-facing systems, and weeks or months for issues with no known exploit in internal code. Set the deadlines by risk tier and allow time-limited exceptions with a named approver."
 
 [[sources]]
 text = "Gartner, [Magic Quadrant for Application Security Testing](https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&ct=251014&st=sb), Jason Gross, Mark Horvath et al., 6 October 2025, ID G00795930. Complimentary reprint; the link may expire."
@@ -88,7 +88,7 @@ This is the third piece in our application security series, after [whether you n
 
 ## Why backlogs keep growing
 
-Gartner's 2025 assessment of the AST market says that moving testing earlier in development, the long-running "shift left" effort, has largely been achieved, and that what now separates products is how they handle alert volume and remediation. Gartner also notes that AI coding assistants produce vulnerable code faster than developers can fix it, and it cites its own survey finding that 66% of organizations using AI in software development saw little or no improvement in code security.
+Gartner's 2025 assessment of the AST market says that moving testing earlier in development, the long-running "shift left" effort, has largely been achieved, and that what now separates products is how they handle alert volume and remediation. Gartner also notes that AI coding assistants produce vulnerable code faster than developers can fix it, and it cites its own survey finding that 66% of organisations using AI in software development saw little or no improvement in code security.
 
 The vendor profiles in Gartner's 2026 supply chain security report show the same pressure from the other side. Customers of several vendors reported large alert volumes and scan results that needed a lot of manual effort to work through, and some products need careful, ongoing policy tuning before their output is usable.
 
@@ -106,7 +106,7 @@ Deduplicate findings that two or three tools report under different names. Set a
 
 ## 3. Give every finding an owner
 
-Findings without an owner tend to sit untouched. Map each repository and service to a team using code ownership files and a service catalog such as [Backstage](https://backstage.io/) or your CMDB, and route findings to that team's normal work queue. Findings that can't be matched to an owner go to a short weekly review, where someone assigns them or decides the code should be retired.
+Findings without an owner tend to sit untouched. Map each repository and service to a team using code ownership files and a service catalogue such as [Backstage](https://backstage.io/) or your CMDB, and route findings to that team's normal work queue. Findings that can't be matched to an owner go to a short weekly review, where someone assigns them or decides the code should be retired.
 
 ## 4. Fix dependencies in bulk
 
@@ -124,6 +124,6 @@ Set fix deadlines by risk tier, shortest for exploited vulnerabilities in intern
 
 Steps three to six are mostly coordination. Someone has to find the owner, open the ticket, nudge the reviewer, re-run the scan, close the ticket and report progress, for every finding, across every tool. That work suits an agent well.
 
-Gartner's 2026 supply chain report says GitHub has not yet shipped fully autonomous agentic workflows for security backlogs and pull requests, while some competitors already offer them. Those vendor agents work inside each vendor's own product. Most organizations run several scanners, so the coordination across them, together with the ticketing system and the people involved, is still left to someone on the security team.
+Gartner's 2026 supply chain report says GitHub has not yet shipped fully autonomous agentic workflows for security backlogs and pull requests, while some competitors already offer them. Those vendor agents work inside each vendor's own product. Most organisations run several scanners, so the coordination across them, together with the ticketing system and the people involved, is still left to someone on the security team.
 
-The agent we would build for this picks up prioritized findings from every scanner, routes each to its owner, drafts or requests the fix, opens the pull request, follows up with reviewers, confirms the rescan and closes the ticket. A person approves every merge, and every decision the agent makes is logged with its reasoning. We describe it alongside the other agents in our [application security research](insight-more-than-one-application-security-testing-tool.html).
+The agent we would build for this picks up prioritised findings from every scanner, routes each to its owner, drafts or requests the fix, opens the pull request, follows up with reviewers, confirms the rescan and closes the ticket. A person approves every merge, and every decision the agent makes is logged with its reasoning. We describe it alongside the other agents in our [application security research](insight-more-than-one-application-security-testing-tool.html).
