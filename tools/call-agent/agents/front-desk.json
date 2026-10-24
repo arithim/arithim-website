@@ -100,7 +100,7 @@
       },
       "tts": {
         "_voice_suggestions": "Provisional staging pick: Lily (premade, warm British female). See arithim-ops/call-agent/voices.md for the shortlist.",
-        "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+        "voice_id": "bGnz83yTAb7caZSC7BBz",
         "model_id": "eleven_v4_turbo",
         "stability": 0.4,
         "similarity_boost": 0.75,
