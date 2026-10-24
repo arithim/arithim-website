@@ -410,3 +410,6 @@ html { scroll-padding-top: 96px; }
 .hk-cta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 30px; margin-top:28px; padding:24px 28px; border:1px solid rgba(232,161,60,0.35); border-radius:18px; background:rgba(232,161,60,0.05); }
 .hk-cta p { font:600 19px/1.4 'Schibsted Grotesk',sans-serif; color:#F5F1E8; margin:0; max-width:640px; }
 @media (max-width: 700px) { .hk-grid { grid-template-columns:1fr; } }
+
+/* Ribbon hero: on phones the scrim covers the full width so the headline stays readable. */
+@media (max-width: 640px) { .r-scrim { background: linear-gradient(90deg, rgba(7,12,22,0.8), rgba(7,12,22,0.4)), linear-gradient(0deg, #070C16 0%, transparent 18%) !important; } }
