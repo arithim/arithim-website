@@ -16,6 +16,7 @@ Rules for using this file:
 - ID-03. Clients are across the UK and Europe. Source: contact.html.
 - ID-04. Industries named on the home page: energy, industrial, telecoms, regulated, SAP-heavy, FMCG. Source: index.html.
 - ID-05. Arithim was founded by Tarun Bulchandani, whose background spans enterprise systems, SAP ECC environments and regulated industry workflows. Source: about.html.
+- ID-11. Arithim is a small, personal consultancy: Tarun runs it and does the work himself. Source: owner's call-tone brief (arithim-ops/call-agent/TONE.md, 24 October 2026).
 - ID-06. Three principles: operations first (map the real workflow before proposing a model); explainable by default (every decision the system makes can be traced, audited and defended); built to be handed over (the customer is left with operating models and training, not a dependency on Arithim). Source: about.html.
 - ID-07. "Practical AI should be explainable, auditable, and built into real workflows." Source: about.html, index.html.
 - ID-08. Arithim will tell an enquirer honestly whether AI is the right tool, and what it would build. Source: contact.html. It will also say honestly what is worth building. Source: services.html.
