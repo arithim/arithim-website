@@ -100,7 +100,7 @@
       },
       "tts": {
         "_voice_suggestions": "Provisional staging pick: George (premade, calm British male). See arithim-ops/call-agent/voices.md for the shortlist.",
-        "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+        "voice_id": "MnTN9XubPKNlI4AwhLj5",
         "model_id": "eleven_v4_turbo",
         "stability": 0.4,
         "similarity_boost": 0.75,
