@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="/site.css?v=3">
+<link rel="stylesheet" href="/site.css?v=5">
 <!-- /partial:head -->
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
@@ -54,13 +54,9 @@
 
   <!-- ===== hero ===== -->
   <div data-hero style="position:relative;overflow:hidden;background:#070C16;">
-    <div style="position:absolute;top:-12%;left:-6%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(232,161,60,0.30),transparent 60%);filter:blur(70px);animation:ah-aurora-a 17s ease-in-out infinite;pointer-events:none;"></div>
-    <div style="position:absolute;top:20%;right:-8%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(126,155,135,0.28),transparent 60%);filter:blur(70px);animation:ah-aurora-b 21s ease-in-out infinite;pointer-events:none;"></div>
-    <div style="position:absolute;bottom:-15%;left:30%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.24),transparent 60%);filter:blur(80px);animation:ah-aurora-c 24s ease-in-out infinite;pointer-events:none;"></div>
-    <canvas data-live-canvas style="position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0.85;"></canvas>
-    <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,241,232,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,241,232,0.03) 1px,transparent 1px);background-size:64px 64px;"></div>
+    <canvas data-ribbons aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 130% at 50% 20%, transparent 40%, rgba(7,12,22,0.72));"></div>
+    <div class="r-scrim" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(7,12,22,0.88) 0%,rgba(7,12,22,0.55) 45%,rgba(7,12,22,0) 80%),linear-gradient(0deg,#070C16 0%,transparent 18%);"></div>
     <div class="r-gut" style="position:relative;max-width:1200px;margin:0 auto;padding:110px 40px 90px;">
       <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#E8A13C;margin-bottom:34px;border:1px solid rgba(232,161,60,0.35);padding:8px 14px;border-radius:999px;background:rgba(232,161,60,0.06);">
         <span style="width:7px;height:7px;background:#E8A13C;border-radius:50%;box-shadow:0 0 12px #E8A13C;animation:ah-pulse-dot 1.8s ease-in-out infinite;"></span> APPLIED AI · OPERATIONAL INTELLIGENCE
@@ -75,8 +71,6 @@
         <a href="services.html" style="display:inline-flex;align-items:center;gap:10px;color:#F5F1E8;font-size:16px;font-weight:500;padding:16px 28px;border-radius:999px;border:1px solid rgba(245,241,232,0.18);background:rgba(245,241,232,0.02);transition:border-color 0.2s,background 0.2s;" style-hover="border-color:rgba(232,161,60,0.6);background:rgba(232,161,60,0.06);">Explore services</a>
       </div>
     </div>
-    <div class="r-chip" style="position:absolute;right:8%;top:32%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#D8C3A0;background:rgba(232,161,60,0.08);border:1px solid rgba(232,161,60,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float1 7s ease-in-out infinite;box-shadow:0 0 24px rgba(232,161,60,0.12);">◆ SAP ECC · synced</div>
-    <div class="r-chip" style="position:absolute;right:24%;top:58%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#B9CDBF;background:rgba(126,155,135,0.1);border:1px solid rgba(126,155,135,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float2 9s ease-in-out infinite;box-shadow:0 0 24px rgba(126,155,135,0.12);">● billing_workflow</div>
   </div>
 
   <!-- ===== dual marquee ===== -->

@@ -174,7 +174,7 @@ def build() -> str:
 {ld()}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=6">
+<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=7">
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
 <body>
@@ -188,6 +188,7 @@ def build() -> str:
 
 <main id="main">
   <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="sf-h1">
+    <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
     <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div class="tsg-wrap" style="position:relative;padding-top:56px;padding-bottom:10px;">
@@ -276,6 +277,7 @@ def build() -> str:
   </section>
 
   <section class="sf-cta" id="demo" data-hero aria-labelledby="demo-h">
+    <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div style="position:absolute;top:-30%;left:30%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(90px);animation:ah-aurora-a 20s ease-in-out infinite;pointer-events:none;"></div>
     <div class="tsg-wrap" style="position:relative;">
       <h2 id="demo-h">Want to see Site Finder run on your own brief?</h2>

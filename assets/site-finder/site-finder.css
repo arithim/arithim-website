@@ -218,3 +218,9 @@ html:has(.sf) { scroll-behavior: smooth; }
 .s-thr { padding: 10px 12px; background: rgba(232,161,60,.08); border: 1px solid rgba(232,161,60,.5); border-radius: 10px; }
 .s-thr b { font-size: 15px; color: #F6CE8C; } .tsg-stage .s-thr p { margin: 5px 0 0; font-size: 14.5px; line-height: 1.5; color: #E9DCC2; }
 @media (max-width: 900px) { .sf-v3 .sf-fig { grid-template-columns: minmax(0, 1fr); gap: 14px; } .sf-v3 .sf-fig h4 { font-size: 18px; } }
+
+/* Alternate the working-session scenes left and right, as on the Technical Sales Guide page. */
+@media (min-width: 901px) {
+  .sf-v3 .sf-fig:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); }
+  .sf-v3 .sf-fig:nth-child(even) .sf-sc-v { order: 2; }
+}

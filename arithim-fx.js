@@ -100,6 +100,11 @@ export function initFx(root) {
     stops.push(() => nav.removeEventListener('pointerleave', leave));
   });
 
+  // ---- ribbon backgrounds (canvas[data-ribbons]) ----
+  if (root.querySelector('canvas[data-ribbons]')) {
+    import('./ribbons.js?v=3').then((m) => { stops.push(m.initRibbons(root)); }).catch((e) => console.error('ribbons load failed', e));
+  }
+
   // ---- count ups ----
   setTimeout(() => {
     root.querySelectorAll('[data-countup]').forEach((el) => {
