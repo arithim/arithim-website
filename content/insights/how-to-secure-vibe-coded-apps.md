@@ -1,7 +1,7 @@
 +++
 title = "How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?"
 slug = "how-to-secure-vibe-coded-apps"
-date = 2026-10-20
+date = 2026-10-21
 category = "APPSEC · RESEARCH"
 card_label = "APPSEC · RESEARCH"
 breadcrumb = "Application security"
@@ -22,7 +22,7 @@ keywords = [
   "Gartner Hype Cycle secure software engineering",
 ]
 about = ["Vibe coding", "Application security", "Shadow IT", "AI governance"]
-footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates."
+footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates."
 
 [citation]
 name = "Hype Cycle for Secure Software Engineering, 2026"
@@ -85,7 +85,7 @@ This piece follows our look at [whether you need more than one application secur
 
 A finance analyst who builds an invoice tracker with an AI app builder has done something useful, but none of the usual checks happened along the way. Nobody reviewed the code, nobody scanned the open-source packages the AI chose, the database password is probably sitting in the source, and the app may be on the public internet because that was the default.
 
-Gartner's 2026 Hype Cycle for Secure Software Engineering says this directly. Vibe-coded prototypes can reach production without security checks, coding agents can pull in vulnerable or malicious packages, and the MCP servers those agents connect to can have access nobody approved. Gartner's 2025 Magic Quadrant for Application Security Testing cites its own survey finding that 66% of organizations using AI tools in software development saw little or no improvement in code security. An independent study from Georgetown's [Center for Security and Emerging Technology](https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/) found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.
+Gartner's 2026 Hype Cycle for Secure Software Engineering says this directly. Vibe-coded prototypes can reach production without security checks, coding agents can pull in vulnerable or malicious packages, and the MCP servers those agents connect to can have access nobody approved. Gartner's 2025 Magic Quadrant for Application Security Testing cites its own survey finding that 66% of organisations using AI tools in software development saw little or no improvement in code security. An independent study from Georgetown's [Center for Security and Emerging Technology](https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/) found that almost half of the code samples produced by five AI models contained bugs, many of them exploitable.
 
 A developer who sees a scanner finding can usually judge whether it's serious. Someone who builds apps from a finance or operations role can't, and shouldn't have to.
 
@@ -105,7 +105,7 @@ None of these show up in the tools a security team normally watches, because tho
 
 ### 1. Find them
 
-Start with the signals you already have. Single sign-on and OAuth grant logs show which AI builders people have connected to company accounts. Expense and card data shows who is paying for them. DNS and certificate records show new subdomains. Your source control admin console shows repositories created outside the main organization, and network logs show traffic to AI coding services. Several application security vendors now offer discovery of AI assets as well, which helps with code that is already in a repository.
+Start with the signals you already have. Single sign-on and OAuth grant logs show which AI builders people have connected to company accounts. Expense and card data shows who is paying for them. DNS and certificate records show new subdomains. Your source control admin console shows repositories created outside the main organisation, and network logs show traffic to AI coding services. Several application security vendors now offer discovery of AI assets as well, which helps with code that is already in a repository.
 
 ### 2. Give each app an owner and a tier
 
