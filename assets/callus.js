@@ -104,7 +104,7 @@
   /* ---------- build panel (once) ---------- */
   function buildPanel() {
     liveEl = h('div', { class: 'callus-sr', role: 'status', 'aria-live': 'polite' });
-    titleEl = h('h2', { class: 'callus-title', id: 'callus-title', text: 'Call Arithim' });
+    titleEl = h('h2', { class: 'callus-title', id: 'callus-title', text: 'Talk to us' });
     var close = h('button', { class: 'callus-x', type: 'button', 'aria-label': 'Close', onclick: requestClose, text: '×' });
     bodyEl = h('div', { class: 'callus-body' });
     panel = h('div', { class: 'callus-panel', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'callus-title', hidden: true, tabindex: '-1' },
@@ -235,13 +235,13 @@
 
   /* ---------- views ---------- */
   function showIntro(errMsg) {
-    titleEl.textContent = 'Call Arithim';
+    titleEl.textContent = 'Talk to us';
     var b = setView('intro');
     if (errMsg) b.appendChild(h('p', { class: 'callus-err', role: 'alert', text: errMsg }));
-    b.appendChild(h('p', null, 'Talk to Arithim’s AI assistants about what you are trying to run better. They can answer questions about our work and pass your enquiry to Tarun.'));
+    b.appendChild(h('p', null, 'Tell us what you’re working on, and we’ll make sure Tarun gets it.'));
     b.appendChild(h('p', { class: 'callus-disclosure' },
-      'You will speak to AI assistants, not people. The conversation is transcribed. This is for over-18s and business enquiries. See our ',
-      h('a', { href: '/privacy.html', target: '_blank', rel: 'noopener' }, 'privacy notice'), '.'));
+      'You’ll be speaking with our AI assistant. Calls are transcribed. ',
+      h('a', { href: '/privacy.html', target: '_blank', rel: 'noopener' }, 'Privacy notice'), '.'));
     b.appendChild(tsEl);
     tsHint = h('p', { class: 'callus-note', role: 'status', 'aria-live': 'polite' });
     b.appendChild(tsHint);
@@ -707,20 +707,20 @@
   /* ---------- mock mode (previews, local review) ---------- */
   var MOCK_SUMMARY = 'Example summary (preview mode, not a real call)\n\nWhat you told us\n- Supplier approvals take too long and are tracked in spreadsheets.\n- Roughly 40 suppliers a month, three people involved.\n\nWhat we discussed\n- Where AI helps and where plain workflow automation is enough.\n- A short discovery conversation to look at the current process.\n\nAgreed next step\n- Tarun will contact you within one working day to arrange a discovery call.';
   var MOCK_VOICE = [
-    [900, 'agent', 'Hannah', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?'],
+    [900, 'agent', 'Hannah', 'Hi, you’re through to Arithim, this is Hannah. What can I do for you?'],
     [3200, 'user', '', 'We want to understand whether AI could speed up our supplier approvals.'],
-    [5400, 'agent', 'Hannah', 'That is a question for our consulting team. Let me put you through.'],
+    [5400, 'agent', 'Hannah', 'Right, that’s one for Oliver. Let me bring him in.'],
     [6800, 'sys', '', 'Transferring you to a colleague…'],
     [7600, 'who', 'Oliver'],
-    [8200, 'agent', 'Oliver', 'Hello, I am Oliver, the consulting assistant. How many suppliers do you onboard each month, and who signs them off today?'],
+    [8200, 'agent', 'Oliver', 'Hi, Oliver here. Hannah says supplier approvals are slow. How many suppliers come on each month, and who signs them off today?'],
     [11500, 'user', '', 'About forty a month, and three people sign off.'],
-    [13800, 'agent', 'Oliver', 'Thank you. Tarun can look at your process in a short discovery call. I will write up what we covered now.'],
+    [13800, 'agent', 'Oliver', 'Got it. I’ll pass all of that to Tarun, and he’ll pick it up himself.'],
     [16500, 'end']
   ];
   function runMock() {
     showCall();
     setStatus('Listening', 'live');
-    if (S.mode === 'text') { setStatus('Connected', 'live'); S.mockTimers.push(setTimeout(function () { addLine('agent', 'Hello, you have reached Arithim. I am an AI assistant. How can I help?', 'Hannah'); }, 600)); return; }
+    if (S.mode === 'text') { setStatus('Connected', 'live'); S.mockTimers.push(setTimeout(function () { addLine('agent', 'Hi, you’re through to Arithim, this is Hannah. What can I do for you?', 'Hannah'); }, 600)); return; }
     MOCK_VOICE.forEach(function (st) {
       S.mockTimers.push(setTimeout(function () {
         if (st[1] === 'agent') { setStatus(st[2] + ' is speaking', 'speaking'); addLine('agent', st[3], st[2]); S.mockTimers.push(setTimeout(function () { setStatus('Listening', 'live'); }, 2200)); }

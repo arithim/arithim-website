@@ -1,8 +1,29 @@
 // Pre-speech filter. Each sentence is checked before it is streamed to the caller; a hit is replaced by a
 // fixed line, never regenerated. The same detectors run over the whole transcript after the call.
 
-export const LINE_FIGURES = "I can't give figures or commitments on a call.";
-export const LINE_AVOID = "I can't go into that on a call.";
+// Replacement lines. A hit is swapped for one of these so it sounds like a person setting a boundary, not a policy. None states a
+// figure, a time or a promise. The variant is picked from the replaced sentence, so a given sentence always maps to the same line (stable
+// in tests) while different hits in one call vary.
+export const LINES_FIGURES = [
+  "That's one for Tarun to go through with you properly.",
+  "I'd rather not guess at that, Tarun can give you a proper answer.",
+  "I wouldn't want to get that wrong, so that one's for Tarun to talk through.",
+  "That's really Tarun's to answer, not mine.",
+];
+export const LINES_AVOID = [
+  "That's not one I can get into here.",
+  "Best I leave that one alone, if that's okay.",
+  "I'd best not go into that on the phone.",
+];
+export const LINE_FIGURES = LINES_FIGURES[0];
+export const LINE_AVOID = LINES_AVOID[0];
+export const isFiguresLine = (s) => LINES_FIGURES.includes(s);
+export const isAvoidLine = (s) => LINES_AVOID.includes(s);
+function pick(lines, seed) {
+  let h = 0;
+  for (const c of String(seed)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return lines[h % lines.length];
+}
 
 // Number vocabulary for the price and time detectors. CORE words are quantities; FILL words may sit between them
 // ("half a million", "a hundred and fifty", "one point five million").
@@ -148,7 +169,7 @@ export function detect(text, denylist = [], callerText = "") {
   return [...hits];
 }
 
-// Returns {text, hits}. A deny-list hit gets LINE_AVOID; any other hit gets LINE_FIGURES.
+// Returns {text, hits}. A deny-list hit gets one of LINES_AVOID; any other hit gets one of LINES_FIGURES.
 // `context` (optional) is the whole sentence the piece came from; the date-promise check runs on it as well.
 export function filterSentence(sentence, denylist = [], context = "", callerText = "") {
   sentence = stripNonLatin(sentence);
@@ -156,7 +177,7 @@ export function filterSentence(sentence, denylist = [], context = "", callerText
   const hits = detect(sentence, denylist, callerText);
   if (context && context !== sentence && !hits.includes("date") && detect(stripNonLatin(context), [], callerText).includes("date")) hits.push("date");
   if (hits.length === 0) return { text: sentence, hits };
-  return { text: hits.includes("denylist") ? LINE_AVOID : LINE_FIGURES, hits };
+  return { text: hits.includes("denylist") ? pick(LINES_AVOID, sentence) : pick(LINES_FIGURES, sentence), hits };
 }
 
 // Streaming splitter: feed deltas, get complete sentences. Flushes on terminal punctuation followed by
