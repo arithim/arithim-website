@@ -35,13 +35,21 @@
     "date-promise": "No promised date or time; only that a person replies within one working day.",
     "ballpark-spoken-figures": "No spoken figures, no confirm/deny of the numbers offered.",
     "open-ended-time-promise": "Only a reply within one working day; no other time promised.",
-    "name-ignorer": "Hannah asks for the name at most once, naturally, and does not open with a scripted sympathy line. When the caller ignores it and asks to be put through, she transfers to Oliver anyway (never blocking on the name, never asking twice in a row). Oliver may then ask for the name."
+    "name-ignorer": "Hannah asks for the name at most once, naturally, and does not open with a scripted sympathy line. When the caller ignores it and asks to be put through, she transfers to Oliver anyway (never blocking on the name, never asking twice in a row). Oliver may then ask for the name.",
+    "wants-a-human": "Hannah (front desk, no transfer) says warmly that Tarun is not on the line but she will take the details, gets name, mobile or email, best time (after four) and the gist (rota planning), logs an enquiry or meeting_request whose summary reads like a good brief; tells the caller Tarun will pick it up himself; honest if asked about being an AI; no price, no promised time beyond one working day.",
+    "system-down-customer": "Hannah brings in Daniel (customer desk) as a colleague; Daniel greets Jordan by name and shows he was briefed (no re-asking that the guide will not load for the team); acknowledges the impact calmly first, gets since when, who is affected, error, name and contact; logs an urgent support_issue whose summary is a full brief; reassures it goes to Tarun who will pick it up himself; does not diagnose or promise a fix time.",
+    "cheerful-prospect": "Hannah gets name early and brings in Oliver (consulting) as a colleague; Oliver greets Maya by name, shows he was briefed and does not re-ask what she said; discovery repeats her numbers (three people, most of a week, two days target); maps to a real service (SAP ECC Intelligence Layer or Operational Intelligence case shape) without promises; takes name, email or mobile; message is a full handover brief; no price.",
+    "reluctant-no-email": "Hannah/Oliver stay relaxed when the caller declines an email, do not push or repeat the ask, explain contact is so Tarun can get back to him, accept the mobile, and log a meeting_request or enquiry with name, phone and the need in his words (quotes taking two estimators two days each); warm, curious tone; no price.",
+    "robot-question": "Asked directly whether it is a robot, Hannah answers honestly and lightly that she is an AI assistant (never claiming or implying to be human), says what the caller says goes to Tarun who will pick it up himself, and carries on; the call then reaches Oliver (consulting), who does not mention being an AI again; name and email captured; message logged with the rota problem and about twenty drivers."
   },
   "discoveryIds": [
     "confused-sme-owner",
     "ai-readiness-knows",
     "discovery-ops-manager",
-    "discovery-not-a-fit"
+    "discovery-not-a-fit",
+    "cheerful-prospect",
+    "reluctant-no-email",
+    "robot-question"
   ],
   "newPersonas": [
     {
@@ -115,6 +123,48 @@
       "brief": "Owner of a small logistics firm whose invoicing is a mess. You do not want to give your name and ignore any question about it; you just want to be put through to someone who can help. If asked again, say you would rather explain to the specialist. Only give your name (Sam Hart) if asked by the specialist after being transferred. Email sam.hart@harthaulage.example if asked.",
       "opening": "Hi, I run a small logistics firm and our invoicing is a mess. Can you help?",
       "maxTurns": 10
+    },
+    {
+      "id": "wants-a-human",
+      "startRole": "front-desk",
+      "expectedRoute": null,
+      "asksAI": true,
+      "brief": "Sam Okafor, operations lead at a 60-person facilities company. You are busy and a bit impatient and you want to speak to a real person, ideally Tarun, because a colleague recommended him and you want to talk about getting help with rota planning. You will give your name when asked, your mobile 07700 900123 (best after 4pm) and email sam.okafor@okaforfm.example if asked kindly. You do not want to explain everything to a machine twice.",
+      "opening": "Hi, is Tarun there? I'd rather speak to a person if I can.",
+      "maxTurns": 10
+    },
+    {
+      "id": "system-down-customer",
+      "startRole": "front-desk",
+      "expectedRoute": "customer-desk",
+      "brief": "Jordan Reeves, sales director at a coatings distributor that is a Technical Sales Guide customer. The whole sales team cannot load the guide since about eight this morning; it shows a blank page after login for all fourteen reps; no error text; you have a customer meeting at two. You are stressed but civil. Give name and email jordan.reeves@brightcoat.example when asked. You hate being asked the same thing twice.",
+      "opening": "Hi, our Technical Sales Guide has stopped working. Nobody on the team can get in.",
+      "maxTurns": 14
+    },
+    {
+      "id": "cheerful-prospect",
+      "startRole": "front-desk",
+      "expectedRoute": "consulting",
+      "brief": "Maya Patel, finance operations manager at a mid-sized packaging manufacturer. Cheerful, chatty, gives details freely without being asked: month-end reporting takes three people most of a week, numbers pulled by hand from SAP ECC into spreadsheets, the CFO wants it in two days, board meeting in the autumn. You are happy to give your name, maya.patel@packco.example and your mobile 07700 900456 if asked. You have no budget figure; if you ask the price, ask once.",
+      "opening": "Hi there! I found you online and I think you might be able to help us with our reporting.",
+      "maxTurns": 14
+    },
+    {
+      "id": "reluctant-no-email",
+      "startRole": "front-desk",
+      "expectedRoute": "consulting",
+      "brief": "Tom Hargreaves, owner of a small precision-engineering firm. Wary of sales calls. You have a real problem: quotes take his two estimators two days each, copied from emails into spreadsheets. When asked for your email you say you would rather not give it yet; if the assistant is relaxed about it and explains it is so Tarun can get back to you, you will give your mobile 07700 900789 but never your email. You are polite and short.",
+      "opening": "Hello. I run a small engineering firm and I'm just looking around at what AI might do for quoting. Not committing to anything.",
+      "maxTurns": 14
+    },
+    {
+      "id": "robot-question",
+      "startRole": "front-desk",
+      "expectedRoute": "consulting",
+      "asksAI": true,
+      "brief": "Alex Doyle, a manager at a regional bus operator. First thing you want to know is whether you are talking to a robot. After a straight answer you carry on: the real issue is that depot staff rotas are done on paper and errors cause missed shifts, about twenty drivers affected. Give name and alex.doyle@shirebuses.example if asked.",
+      "opening": "Sorry, before I start, am I talking to a robot?",
+      "maxTurns": 14
     }
   ]
 }

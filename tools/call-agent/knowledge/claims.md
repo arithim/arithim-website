@@ -16,10 +16,11 @@ Rules for using this file:
 - ID-03. Clients are across the UK and Europe. Source: contact.html.
 - ID-04. Industries named on the home page: energy, industrial, telecoms, regulated, SAP-heavy, FMCG. Source: index.html.
 - ID-05. Arithim was founded by Tarun Bulchandani, whose background spans enterprise systems, SAP ECC environments and regulated industry workflows. Source: about.html.
+- ID-11. Arithim is a small, personal consultancy: Tarun runs it and does the work himself. Source: owner's call-tone brief (arithim-ops/call-agent/TONE.md, 24 October 2026).
 - ID-06. Three principles: operations first (map the real workflow before proposing a model); explainable by default (every decision the system makes can be traced, audited and defended); built to be handed over (the customer is left with operating models and training, not a dependency on Arithim). Source: about.html.
 - ID-07. "Practical AI should be explainable, auditable, and built into real workflows." Source: about.html, index.html.
 - ID-08. Arithim will tell an enquirer honestly whether AI is the right tool, and what it would build. Source: contact.html. It will also say honestly what is worth building. Source: services.html.
-- ID-09. The caller is speaking to Arithim's AI assistant, not to a person. The assistant never claims to be Tarun or any named person. Source: tools/call-agent/README.md (design rule).
+- ID-09. The caller is speaking to Arithim's AI assistant, not to a person. The assistant never claims to be Tarun or any named person, does not bring up being an AI unprompted (the web panel says so once before the call), and says so plainly and lightly if asked. Source: tools/call-agent/README.md (design rule).
 - ID-10. Calls are transcribed, and the caller is told so before the call starts. The assistant does not say how long transcripts are kept or whether audio is stored. Source: arithim-ops/call-agent/PLAN.md sections 1 and 8; privacy.html.
 
 ## 2. Services (six service lines)
@@ -109,7 +110,7 @@ Version 1.0 of the TSG security and privacy pack. Status meaning: Built = in pla
 ## 7. Reply promise and contact
 
 - RP-01. Enquiries usually get a reply within one working day, from a real person in London. Source: contact.html.
-- RP-02. The assistant can take calls at any hour. It does not promise a call-back at a specific time and does not promise that Tarun will pick up. The only commitment the assistant makes is the words "a person will reply within one working day". It does not say "every enquiry" or "every message", does not say Tarun will cover, confirm, call or reach out, and does not say what the urgent tag does: urgent is only a tag on the message. Source: arithim-ops/call-agent/PLAN.md section 3 (design rule); contact.html.
+- RP-02. The assistant can take calls at any hour. Messages it logs go to Tarun, who runs Arithim and picks them up himself; the assistant may say so ("it goes straight to Tarun and he'll pick it up himself, by email or phone"). The only time it gives is "within one working day". It does not promise a call-back at a specific time or that anyone will answer the phone at a given moment, does not say "every enquiry" or "every message", and does not say what the urgent tag does: urgent is only a tag on the message. Source: arithim-ops/call-agent/PLAN.md section 3 (design rule); contact.html.
 - RP-03. After the call, a written summary of what was discussed and the agreed next step appears on the caller's screen. It is not emailed. Source: arithim-ops/call-agent/PLAN.md section 1.
 - RP-04. A discovery conversation with the assistant takes about ten minutes. Source: arithim-ops/call-agent/PLAN.md section 3 (discovery skill).
 - RP-05. The phone service is English only for now; anyone who needs another language is offered email. Source: arithim-ops/call-agent/REVIEWS.md (accepted review items).

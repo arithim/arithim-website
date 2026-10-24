@@ -127,7 +127,7 @@ export async function toolTakeMessage(db, call, input) {
       );
       if (changes(r) === 0) return "Message limit reached for this call. Tell the caller you cannot take another message on this call and that they can email hello@arithim.com.";
       await run(db, "UPDATE calls SET outcome = COALESCE(outcome, ?1) WHERE call_id = ?2", type, call.call_id);
-      return `Message recorded. Reference ${ref}. Read the reference back to the caller. Say a person will reply within one working day unless your instructions say not to. Do not promise a time.`;
+      return `Message recorded. Reference ${ref}. Read the reference back to the caller. Say Tarun will pick it up himself and get back to them within one working day, unless your instructions say not to. Give no other time.`;
     } catch (e) {
       if (!/UNIQUE|constraint/i.test(String(e?.message))) { console.error("take_message failed", e); return "Error: could not record the message. Apologise and give the email address hello@arithim.com."; }
     }

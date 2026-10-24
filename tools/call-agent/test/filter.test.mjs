@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { detect, filterSentence, SentenceSplitter, filterText, parseDenylist, LINE_FIGURES, LINE_AVOID, scanAgentLines } from "../../../functions/_lib/filter.js";
+import { detect, filterSentence, SentenceSplitter, filterText, parseDenylist, LINES_FIGURES, LINES_AVOID, isFiguresLine, isAvoidLine, scanAgentLines } from "../../../functions/_lib/filter.js";
 
 test("currency and number-word prices are caught", () => {
   for (const s of ["It costs £5,000 a month.", "About $20k.", "That is 300 euros.", "Roughly two thousand pounds.", "It's 50 quid.", "Around 1.5m dollars."]) {
@@ -21,9 +21,9 @@ test("allowed lines pass", () => {
 test("denylist matches whole words, case-insensitively, and is replaced with a fixed line", () => {
   const dl = parseDenylist("# comment\nAcme Holdings\nzx\nSecretco\n");
   assert.deepEqual(dl, ["Acme Holdings", "Secretco"]);
-  assert.equal(filterSentence("We worked with acme   holdings last year.", dl).text, LINE_AVOID);
+  assert.ok(isAvoidLine(filterSentence("We worked with acme   holdings last year.", dl).text));
   assert.equal(filterSentence("Secretcos is different.", dl).text, "Secretcos is different.");
-  assert.equal(filterSentence("It is £10.", dl).text, LINE_FIGURES);
+  assert.ok(isFiguresLine(filterSentence("It is £10.", dl).text));
 });
 test("denylist hit never exposes the term", () => {
   const r = filterSentence("Secretco is a client", ["Secretco"]);
@@ -48,7 +48,7 @@ test("splitter breaks a very long clause at a comma", () => {
 });
 test("filterText replaces only offending sentences", () => {
   const r = filterText("We talked about automation. It would cost £500. Next step is a reply.");
-  assert.equal(r.text, `We talked about automation. ${LINE_FIGURES} Next step is a reply.`);
+  assert.ok(LINES_FIGURES.some((l) => r.text === `We talked about automation. ${l} Next step is a reply.`), r.text);
   assert.deepEqual(r.hits, ["price"]);
 });
 test("scanAgentLines", () => {
@@ -86,7 +86,7 @@ test("a date promise cut at a long-clause comma is still caught on the whole sen
   sp.flush().forEach((x, i) => { pieces.push(x); ctx.push(sp.contexts[i]); });
   assert.ok(pieces.length >= 2);
   const out = pieces.map((p, i) => filterSentence(p, [], ctx[i]));
-  assert.ok(out.some((r) => r.text === LINE_FIGURES), "second piece is replaced");
+  assert.ok(out.some((r) => isFiguresLine(r.text)), "second piece is replaced");
   assert.ok(!out.map((r) => r.text).join(" ").includes("Friday"));
 });
 test("the filter only ever sees agent speech: a caller's own figures are not flagged", () => {
@@ -128,11 +128,17 @@ test("non-Latin characters are stripped from agent speech", () => {
   assert.equal(filterSentence("零").text, "");
   assert.equal(filterSentence("Café, naïve £ symbols are fine — and 99 too.").text, "Café, naïve £ symbols are fine — and 99 too.");
 });
-test("replacement lines make no promise", () => {
-  for (const l of [LINE_FIGURES, LINE_AVOID]) { assert.ok(!/\bTarun\b|\bwill\b|promise/i.test(l.replace(/commitments/, "")), l); assert.deepEqual(detect(l), [], l); }
-  assert.equal(LINE_FIGURES, "I can't give figures or commitments on a call.");
+test("replacement lines sound human and make no promise, figure or time", () => {
+  assert.ok(LINES_FIGURES.length >= 3 && LINES_AVOID.length >= 2);
+  for (const l of [...LINES_FIGURES, ...LINES_AVOID]) {
+    assert.ok(!/\bwill\b|'ll\b|promise|guarantee|\d|\b(?:today|tomorrow|week|hour|day|monday|friday)\b|\bcan't (?:give|go into)\b|as an AI|unable/i.test(l), l);
+    assert.deepEqual(detect(l), [], l);
+  }
+  // deterministic per sentence, varied across sentences
+  assert.equal(filterSentence("It costs £5,000.").text, filterSentence("It costs £5,000.").text);
+  assert.ok(new Set(["It costs £1,000.", "It costs £2,000 a month.", "We guarantee it.", "About $20k.", "Roughly 300 euros.", "Tarun will call you tomorrow."].map((s) => filterSentence(s).text)).size >= 2);
 });
 test("filterText takes the caller's text for read-backs", () => {
   const r = filterText("Invoice for £4,800. Also £900 extra.", [], "I was billed £4,800");
-  assert.equal(r.text, `Invoice for £4,800. ${LINE_FIGURES}`);
+  assert.ok(LINES_FIGURES.some((l) => r.text === `Invoice for £4,800. ${l}`), r.text);
 });

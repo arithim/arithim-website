@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { makeDb, seedCall, anthropicSse, mockFetch, llmRequest, readSse, EL_TOOLS } from "./helpers.mjs";
 import { handle } from "../../../functions/api/call/llm/[role].js";
-import { LINE_FIGURES } from "../../../functions/_lib/filter.js";
+import { LINES_FIGURES } from "../../../functions/_lib/filter.js";
 import { FALLBACK_LINE } from "../../../functions/_lib/brain.js";
 
 const ID = "a".repeat(32);
@@ -72,7 +72,7 @@ test("pre-speech filter replaces a price sentence and denylisted name, flags the
   try {
     const out = await readSse(await call(env, "front-desk", [user("price?")]));
     assert.ok(!out.text.includes("£")); assert.ok(!out.text.includes("Secretco"));
-    assert.ok(out.text.includes(LINE_FIGURES));
+    assert.ok(LINES_FIGURES.some((l) => out.text.includes(l)));
     assert.ok(out.text.startsWith("We help with automation."));
     await settle();
     const row = await db.prepare("SELECT flags FROM calls").first();
@@ -300,7 +300,7 @@ test("H2/M3 in the brain: a date promise split across a long-clause comma and an
     const out = await readSse(await call(env, "front-desk", [user("hi")]));
     assert.ok(!/Friday|next week|ten grand/.test(out.text), out.text);
     assert.match(out.text, /A person will reply within one working day\./);
-    assert.ok(out.text.includes(LINE_FIGURES));
+    assert.ok(LINES_FIGURES.some((l) => out.text.includes(l)));
   } finally { m.restore(); }
 });
 
@@ -325,7 +325,7 @@ test("filter in the brain: the caller's own amount is read back, a new amount is
   try {
     const out = await readSse(await call(env, "customer-desk", [user("My invoice is for £4,800")]));
     assert.ok(out.text.includes("four thousand eight hundred pounds"), out.text);
-    assert.ok(!out.text.includes("£900")); assert.ok(out.text.includes(LINE_FIGURES));
+    assert.ok(!out.text.includes("£900")); assert.ok(LINES_FIGURES.some((l) => out.text.includes(l)));
     assert.ok(!out.text.includes("零")); assert.ok(out.text.includes("two six one, two two"), out.text);
   } finally { m.restore(); }
 });
