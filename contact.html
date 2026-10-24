@@ -129,7 +129,7 @@
 class Component extends DCLogic {
   state = { submitted: false, sending: false, errored: false, errorMsg: '' };
   componentDidMount() {
-    import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     this._tsWidgetId = null;
     const renderTs = () => {
       if (this._tsCancelled) return;

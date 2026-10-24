@@ -202,7 +202,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./home-motion.js?v=2').then((m) => { this._stopMotion = m.initHomeMotion(document); }).catch((e) => console.error('motion load failed', e));
     // Service explorer: on desktop the open panel fills the right column; on phones it opens under its button.
     const x = document.querySelector('[data-svc-x]');

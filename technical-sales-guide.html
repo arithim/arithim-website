@@ -259,7 +259,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./tsg-motion.js?v=3').then((m) => { this._stopMotion = m.initTsgMotion(document); }).catch((e) => console.error('motion load failed', e));
     import('./tsg-page.js?v=2').then((m) => { this._stopPage = m.initTsgPage(document); }).catch((e) => console.error('page load failed', e));
   }
