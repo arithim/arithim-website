@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="/site.css?v=3">
+<link rel="stylesheet" href="/site.css?v=5">
 <!-- /partial:head -->
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
@@ -71,8 +71,6 @@
         <a href="services.html" style="display:inline-flex;align-items:center;gap:10px;color:#F5F1E8;font-size:16px;font-weight:500;padding:16px 28px;border-radius:999px;border:1px solid rgba(245,241,232,0.18);background:rgba(245,241,232,0.02);transition:border-color 0.2s,background 0.2s;" style-hover="border-color:rgba(232,161,60,0.6);background:rgba(232,161,60,0.06);">Explore services</a>
       </div>
     </div>
-    <div class="r-chip" style="position:absolute;right:8%;top:32%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#D8C3A0;background:rgba(232,161,60,0.08);border:1px solid rgba(232,161,60,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float1 7s ease-in-out infinite;box-shadow:0 0 24px rgba(232,161,60,0.12);">◆ SAP ECC · synced</div>
-    <div class="r-chip" style="position:absolute;right:24%;top:58%;font-family:'JetBrains Mono',monospace;font-size:12px;color:#B9CDBF;background:rgba(126,155,135,0.1);border:1px solid rgba(126,155,135,0.3);padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px);animation:ah-float2 9s ease-in-out infinite;box-shadow:0 0 24px rgba(126,155,135,0.12);">● billing_workflow</div>
   </div>
 
   <!-- ===== dual marquee ===== -->
@@ -204,7 +202,6 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./ribbons.js?v=1').then((m) => { this._stopRibbons = m.initRibbons(document); }).catch((e) => console.error('ribbons load failed', e));
     import('./arithim-fx.js').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./home-motion.js?v=2').then((m) => { this._stopMotion = m.initHomeMotion(document); }).catch((e) => console.error('motion load failed', e));
     // Service explorer: on desktop the open panel fills the right column; on phones it opens under its button.

@@ -12,6 +12,10 @@ export function initRibbons(root) {
   root = root || document;
   const stops = [];
   root.querySelectorAll('canvas[data-ribbons]').forEach((cv) => {
+    if (cv.__rb) return;
+    cv.__rb = true;
+    // data-ribbons="soft" is for sub-page heroes and call-to-action bands: slimmer, quieter ribbons.
+    const soft = cv.dataset.ribbons === 'soft';
     const ctx = cv.getContext('2d');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -24,7 +28,7 @@ export function initRibbons(root) {
       if (reduce) draw(6);
     };
     // Narrow screens get slimmer ribbons so the headline stays readable.
-    const scale = () => (W < 640 ? 0.6 : 1);
+    const scale = () => (W < 640 ? 0.6 : 1) * (soft ? 0.55 : 1);
     const centre = (r, x, t) => {
       const u = (x / W) * Math.PI * 2 * r.f;
       return H * r.y + H * r.amp * (Math.sin(u + t * r.s + r.ph) * 0.6 + Math.sin(u * 0.53 - t * r.s * 1.3 + r.ph * 2) * 0.4);
@@ -36,9 +40,11 @@ export function initRibbons(root) {
     function draw(t) {
       ctx.globalCompositeOperation = 'source-over';
       ctx.clearRect(0, 0, W, H);
-      const bg = ctx.createLinearGradient(0, 0, W, H);
-      bg.addColorStop(0, '#070C16'); bg.addColorStop(1, '#0A1424');
-      ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      if (!soft) {
+        const bg = ctx.createLinearGradient(0, 0, W, H);
+        bg.addColorStop(0, '#070C16'); bg.addColorStop(1, '#0A1424');
+        ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      }
       const step = W < 640 ? 12 : 8;
       for (const r of RIBBONS) {
         const top = [], bot = [];
@@ -59,10 +65,10 @@ export function initRibbons(root) {
         top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
         for (let i = bot.length - 1; i >= 0; i--) ctx.lineTo(bot[i][0], bot[i][1]);
         ctx.closePath();
-        ctx.fillStyle = g; ctx.globalAlpha = 0.55; ctx.fill();
-        ctx.globalAlpha = 0.9; ctx.lineWidth = 1.5; ctx.strokeStyle = `rgba(${hr},${hg},${hb},0.75)`;
+        ctx.fillStyle = g; ctx.globalAlpha = soft ? 0.4 : 0.55; ctx.fill();
+        ctx.globalAlpha = soft ? 0.6 : 0.9; ctx.lineWidth = 1.5; ctx.strokeStyle = `rgba(${hr},${hg},${hb},0.75)`;
         ctx.beginPath(); top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();
-        ctx.globalAlpha = 0.35; ctx.lineWidth = 1;
+        ctx.globalAlpha = soft ? 0.25 : 0.35; ctx.lineWidth = 1;
         ctx.beginPath(); bot.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();
         ctx.globalAlpha = 1;
       }
