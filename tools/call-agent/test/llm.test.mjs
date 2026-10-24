@@ -164,6 +164,47 @@ test("end_call passes through", async () => {
   } finally { m.restore(); }
 });
 
+test("end_call after take_message with no closing text: reference and goodbye are streamed before the tool call", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_c1", input: { type: "enquiry", name: "Sam Jones", contact: "sam@example.com", summary: "Needs help" } };
+  const m = mockFetch([
+    anthropicSse([{ type: "text", text: "Right, got it." }, tm], "tool_use"),
+    anthropicSse([{ type: "tool_use", name: "end_call", id: "toolu_c2", input: { reason: "done" } }], "tool_use"),
+  ]);
+  try {
+    const out = await readSse(await call(env, "customer-desk", [user("Thanks, that's everything, I have to dash.")], { tools: EL_TOOLS }));
+    assert.match(out.text, /^Right, got it\. Thanks, Sam\. Your reference is A R C, [a-z ]+, [a-z ]+, then [A-Za-z ]+\. Tarun will pick it up himself and get back to you at sam@example\.com within one working day\. Bye for now\.$/);
+    assert.equal(out.toolCalls[0].name, "end_call"); assert.equal(out.finish, "tool_calls");
+    await settle();
+    const agent = (await db.prepare("SELECT text FROM turns WHERE speaker='agent'").all()).results.map((t) => t.text).join(" ");
+    assert.match(agent, /Bye for now/);
+  } finally { m.restore(); }
+});
+
+test("end_call after take_message with a closing line already spoken is unchanged", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_c3", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" } };
+  const m = mockFetch([
+    anthropicSse([tm], "tool_use"),
+    anthropicSse([{ type: "text", text: "Your reference is on its way by email. Goodbye." }, { type: "tool_use", name: "end_call", id: "toolu_c4", input: {} }], "tool_use"),
+  ]);
+  try {
+    const out = await readSse(await call(env, "customer-desk", [user("bye")], { tools: EL_TOOLS }));
+    assert.equal(out.text, "Your reference is on its way by email. Goodbye.");
+    assert.equal(out.toolCalls[0].name, "end_call");
+  } finally { m.restore(); }
+});
+
+test("end_call alone, nothing spoken and no message taken: generic goodbye first", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const m = mockFetch([anthropicSse([{ type: "tool_use", name: "end_call", id: "toolu_c5", input: {} }], "tool_use")]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("bye")], { tools: EL_TOOLS }));
+    assert.equal(out.text, "Thanks for calling Arithim. Bye for now.");
+    assert.equal(out.toolCalls[0].name, "end_call");
+  } finally { m.restore(); }
+});
+
 test("think runs the thinker with the pack, adds a holding line, and is capped at 3", async () => {
   const db = makeDb(); await seedCall(db); const env = baseEnv(db);
   const th = (n) => anthropicSse([{ type: "tool_use", name: "think", id: "toolu_k" + n, input: { question: "Which service fits?" } }], "tool_use");
