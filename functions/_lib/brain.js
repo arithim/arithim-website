@@ -46,6 +46,22 @@ export const THINK_TOOL = {
     required: ["question"],
   },
 };
+const DIGIT_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+// "ARC-261024-J3ZE" -> "A R C, two six one, zero two four, then J three Z E" (the form the sentence filter already recognises).
+export function spokenRef(ref) {
+  const m = /^ARC-(\d{6})-([A-Z0-9]{4})$/i.exec(String(ref || "").trim());
+  if (!m) return String(ref || "").split("").join(" ");
+  const digits = (d) => d.split("").map((c) => DIGIT_WORDS[+c]).join(" ");
+  const tail = m[2].toUpperCase().split("").map((c) => (/\d/.test(c) ? DIGIT_WORDS[+c] : c)).join(" ");
+  return `A R C, ${digits(m[1].slice(0, 3))}, ${digits(m[1].slice(3))}, then ${tail}`;
+}
+// The closing line spoken before end_call when the model ended the call without saying it.
+export function closingLine(msg) {
+  if (!msg || !msg.ref) return "Thanks for calling Arithim. Bye for now.";
+  const first = String(msg.name || "").trim().split(/\s+/)[0];
+  const contact = String(msg.contact || "").trim();
+  return `Thanks${first ? ", " + first : ""}. Your reference is ${spokenRef(msg.ref)}. Tarun will pick it up himself and get back to you${contact.includes("@") ? " at " + contact : ""} within one working day. Bye for now.`;
+}
 const OWN_TOOLS = new Set(["take_message", "think"]);
 
 // ---- request plumbing ----
@@ -236,6 +252,8 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const messages = conv.messages;
   const splitter = new SentenceSplitter();
   let finish = "stop";
+  let lastMsg = null; // the most recent take_message that worked in this request
+  let spokenAtMsg = 0; // spoken.length when it did
   try {
     for (let step = 0; step < CAPS.steps; step++) {
       if (gone()) break;
@@ -256,7 +274,13 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
       let pending = null;
       for (const u of uses) {
         if (u.name === "take_message") {
-          results.push(toolResult(u, await toolTakeMessage(db, call, u.input)));
+          const r = await toolTakeMessage(db, call, u.input);
+          results.push(toolResult(u, r));
+          const rm = /Message recorded\. Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r);
+          if (rm) {
+            lastMsg = { ref: rm[1], name: clean(typeof u.input?.name === "string" ? u.input.name : "", 200), contact: clean(typeof u.input?.contact === "string" ? u.input.contact : "", 200) };
+            spokenAtMsg = spoken.length;
+          }
         } else if (u.name === "think") {
           if (!spoken) speak(THINK_FILLER.trim() + " ");
           results.push(toolResult(u, await toolThink(env, db, call, u.input, messages)));
@@ -282,6 +306,18 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
         }
       }
       if (pending) {
+        if (pending.name === "end_call") {
+          // The model ended the call without saying goodbye (or the reference): say it for it.
+          let msg = lastMsg;
+          let silent = lastMsg ? spoken.length === spokenAtMsg : !spoken;
+          if (!msg && silent) {
+            try {
+              const row = await first(db, "SELECT ref, fields FROM messages WHERE call_id = ? ORDER BY created_at DESC, rowid DESC LIMIT 1", call.call_id);
+              if (row) { const f = JSON.parse(row.fields || "{}"); msg = { ref: row.ref, name: f.name, contact: f.contact }; }
+            } catch (e) { console.error("closing lookup", e); }
+          }
+          if (silent && !gone()) speak(closingLine(msg));
+        }
         emit({ type: "tool_call", id: pending.id.startsWith("toolu_") ? "call_" + pending.id.slice(6) : pending.id, name: pending.name, arguments: JSON.stringify(pending.input || {}) });
         finish = "tool_calls";
         break;
