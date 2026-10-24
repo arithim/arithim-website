@@ -1,13 +1,13 @@
 +++
 title = "How Do I Secure Our CI/CD Pipelines and GitHub Actions?"
 slug = "how-to-secure-ci-cd-pipelines-github-actions"
-date = 2026-10-20
+date = 2026-10-24
 category = "APPSEC · RESEARCH"
 card_label = "APPSEC · RESEARCH"
 breadcrumb = "Application security"
-description = "Pipeline security is the weakest area of most application security programs. A practical checklist for GitHub Actions and other CI/CD systems, the 2025 attacks that showed why it matters, and where Gartner says the tools still fall short."
+description = "Pipeline security is the weakest area of most application security programmes. A practical checklist for GitHub Actions and other CI/CD systems, the 2025 attacks that showed why it matters, and where Gartner says the tools still fall short."
 summary = "Why pipelines are now a favourite target, a practical hardening checklist for GitHub Actions and other CI/CD systems, and where the tools still leave gaps."
-lede = "Start by taking an inventory: every pipeline, every runner, every secret it can reach and every third-party action or plugin it pulls in. Then pin third-party actions to exact commits, cut each workflow's token permissions to the minimum, replace stored cloud keys with short-lived credentials, and sign what you build. Most organizations have never done the inventory, which is why pipelines have become an easy way in."
+lede = "Start by taking an inventory: every pipeline, every runner, every secret it can reach and every third-party action or plugin it pulls in. Then pin third-party actions to exact commits, cut each workflow's token permissions to the minimum, replace stored cloud keys with short-lived credentials, and sign what you build. Most organisations have never done the inventory, which is why pipelines have become an easy way in."
 author = "Tarun Bulchandani"
 research = true
 cta = "Do you know every secret your pipelines can reach?"
@@ -22,7 +22,7 @@ keywords = [
   "SLSA provenance",
 ]
 about = ["CI/CD security", "GitHub Actions", "Software supply chain security"]
-footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organization and should not be construed as statements of fact. GARTNER, MAGIC QUADRANT and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates."
+footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER, MAGIC QUADRANT and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates."
 
 [citation]
 name = "Magic Quadrant for Software Supply Chain Security"
@@ -69,7 +69,7 @@ a = "Mostly not yet. In Gartner's 2025 Critical Capabilities for Application Sec
 
 [[faq]]
 q = "What is SLSA, and do we need it?"
-a = "SLSA (Supply-chain Levels for Software Artifacts) is an open framework that defines levels of build integrity, such as recording signed provenance for every artifact. It is a useful target for any organization that ships software to customers, and regulations such as the EU Cyber Resilience Act are pushing in the same direction."
+a = "SLSA (Supply-chain Levels for Software Artifacts) is an open framework that defines levels of build integrity, such as recording signed provenance for every artifact. It is a useful target for any organisation that ships software to customers, and regulations such as the EU Cyber Resilience Act are pushing in the same direction."
 
 [[sources]]
 text = "Gartner, [Magic Quadrant for Software Supply Chain Security](https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&ct=260617&st=sb), Aaron Lord, Johnny Walters et al., 17 June 2026, ID G00843814; Gartner, [Hype Cycle for Secure Software Engineering, 2026](https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&ct=260610&st=sb), ID G00847347; Gartner, [Critical Capabilities for Application Security Testing](https://www.gartner.com/doc/reprints?id=1-2M5Q4EI5&ct=251024&st=sb), ID G00795985. Complimentary reprints; links may expire."
@@ -92,7 +92,7 @@ Both attacks worked because build systems hold powerful credentials and run thir
 
 Pipeline security is the weakest area in most application security tooling. In Gartner's 2025 Critical Capabilities for Application Security Testing, it had the lowest median score of the 15 capabilities rated across 16 vendors. Gartner's 2026 Magic Quadrant for Software Supply Chain Security lists several vendors with no pipeline posture checks at all. A few focus on the problem: Gartner credits [OX Security](https://www.ox.security/) with pipeline posture management through its Pipeline Bill of Materials, and notes that [Cycode](https://cycode.com/) released runtime pipeline protection after the Shai-Hulud attack. GitHub is credited with attestations and branch protections in Actions.
 
-Gartner's 2026 Hype Cycle for Secure Software Engineering adds two practical observations. Many organizations collect software bills of materials without having decided how to evaluate, store or use them, and signing and verifying artifacts in CI/CD is still awkward for developers.
+Gartner's 2026 Hype Cycle for Secure Software Engineering adds two practical observations. Many organisations collect software bills of materials without having decided how to evaluate, store or use them, and signing and verifying artifacts in CI/CD is still awkward for developers.
 
 ## A hardening checklist
 
@@ -108,7 +108,7 @@ A version tag like `v4` can be moved to different code, which is how the tj-acti
 
 ### Cut token permissions to the minimum
 
-Set the default `GITHUB_TOKEN` permission to read-only at the organization level, and grant write access only in the workflows and jobs that need it. Be careful with triggers that run untrusted code with elevated permissions, such as `pull_request_target` on public repositories.
+Set the default `GITHUB_TOKEN` permission to read-only at the organisation level, and grant write access only in the workflows and jobs that need it. Be careful with triggers that run untrusted code with elevated permissions, such as `pull_request_target` on public repositories.
 
 ### Replace stored cloud keys with short-lived credentials
 

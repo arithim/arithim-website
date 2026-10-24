@@ -5,9 +5,9 @@ date = 2026-01-18
 category = "OPERATIONAL INTELLIGENCE"
 card_label = "OPS INTELLIGENCE"
 breadcrumb = "Operational intelligence"
-description = "Automation moves a task to structured execution. Operational intelligence improves how information, judgment and action move through a business."
+description = "Automation moves a task to structured execution. Operational intelligence improves how information, judgement and action move through a business."
 summary = "A concise distinction between task automation and intelligence that improves operational decisions."
-lede = "Automation moves a task from manual execution to structured execution. Operational intelligence improves how information, judgment, and action move through a business."
+lede = "Automation moves a task from manual execution to structured execution. Operational intelligence improves how information, judgement, and action move through a business."
 read_minutes = 2
 cta = "Want help telling them apart for your operation?"
 +++
