@@ -1,107 +1,52 @@
 [
-  {
-    "quarter": "Q4 2026",
-    "title": "Site Finder v1",
-    "description": "GB map, ranked answer, evidence for every site, pushback controls with a what-changed view, planning record by authority, and Gate 2 and headroom allocation.",
-    "status": "shipped",
-    "why": "Gives an origination team one place to ask where to build and see why, with the data behind every rank."
-  },
-  {
-    "quarter": "Q4 2026",
-    "title": "Ownership chain (v1.1)",
-    "description": "Links the REPD applicant, the TEC and ECR capacity holder, the Ofgem generator, the LCCC CfD holder, the Companies House parent and HMLR company-owned land.",
-    "status": "planned",
-    "why": "Shows who already holds consents, connections and land near a site, so a team can see competitors and likely sellers. Timing depends on a go-ahead."
-  },
-  {
-    "quarter": "Q1 2027",
-    "title": "Client accounts and single sign-on",
-    "description": "Named accounts per customer and sign-in through the customer's own identity provider.",
-    "status": "planned",
-    "why": "Lets a customer's whole team use the tool under their own security policy."
-  },
-  {
-    "quarter": "Q1 2027",
-    "title": "Scheduled data refresh",
-    "description": "Rebuilds the data on a set schedule when publishers release new versions, and shows the build date on every screen.",
-    "status": "planned",
-    "why": "Registers, headroom figures and the planning database change every quarter, and a stale shortlist misleads."
-  },
-  {
-    "quarter": "Q1 2027",
-    "title": "Per-site yield with P50 and P90",
-    "description": "Replaces the regional yield layer with a per-site PVGIS calculation and a P50 and P90 range.",
-    "status": "planned",
-    "why": "Yield feeds the price needed to hit the hurdle, and lenders and committees ask for P90."
-  },
-  {
-    "quarter": "Q1 2027",
-    "title": "CfD AR8 and AR9 eligibility screen",
-    "description": "Flags whether a site's consent status and Gate 2 position fit the next allocation rounds.",
-    "status": "planned",
-    "why": "Revenue route decides whether a site clears the hurdle, and the screen shows which sites could enter a round."
-  },
-  {
-    "quarter": "Q2 2027",
-    "title": "Battery storage siting",
-    "description": "Ranks land for standalone and co-located batteries using headroom, planning precedent and flood risk.",
-    "status": "planned",
-    "why": "Many teams now develop solar and storage together, and the same grid and planning data applies."
-  },
-  {
-    "quarter": "Q2 2027",
-    "title": "Planning applicant, agent and refusal reasons",
-    "description": "Adds the applicant, the agent and the stated reasons for refusal from planning portals to each scheme in the planning record.",
-    "status": "planned",
-    "why": "Refusal reasons show what an authority objects to, and the applicant shows who is active nearby."
-  },
-  {
-    "quarter": "Q2 2027",
-    "title": "Aerial imagery checks",
-    "description": "Shows current aerial imagery beside each site and flags land use the open data cannot see.",
-    "status": "planned",
-    "why": "Catches quarries, new housing and other features that the datasets lag behind."
-  },
-  {
-    "quarter": "Q3 2027",
-    "title": "Co-located solar at existing wind connections",
-    "description": "Finds wind farms whose connection could take solar, using capacity, age and land around the site.",
-    "status": "planned",
-    "why": "Reusing a connection can avoid a queue, which is often the longest part of a project."
-  },
-  {
-    "quarter": "Q3 2027",
-    "title": "Repowering candidates",
-    "description": "Lists operating solar farms by age, connection capacity and land, as candidates for repowering or life extension.",
-    "status": "planned",
-    "why": "Existing sites already have a connection and a consent."
-  },
-  {
-    "quarter": "Q3 2027",
-    "title": "Network-operator budget estimates and cable routing",
-    "description": "Adds route-based cable costs and budget estimates from network operator charging statements in place of the cost table.",
-    "status": "planned",
-    "why": "Connection cost is the largest uncertainty in the early numbers."
-  },
-  {
-    "quarter": "Later",
-    "title": "Onshore wind siting",
-    "description": "Adds wind speed, noise buffers, radar and Scottish planning policy to the same ranked-site approach.",
-    "status": "exploring",
-    "why": "Teams with wind pipelines would use one tool across technologies."
-  },
-  {
-    "quarter": "Later",
-    "title": "Council political context",
-    "description": "Adds council control and policy stance to the planning record where the data licence allows it.",
-    "status": "exploring",
-    "why": "Politics affects consent as much as policy does, but the data licence is unclear today."
-  },
-  {
-    "quarter": "Later",
-    "title": "Northern Ireland",
-    "description": "Extends coverage to Northern Ireland using its own planning, grid and land datasets.",
-    "status": "exploring",
-    "why": "Some IPPs develop across the whole UK."
-  }
+  {"quarter": "Shipped", "status": "shipped", "title": "Solar, battery and hybrid siting",
+   "why": "Ranks land across Great Britain for solar, standalone battery storage and solar with battery on a shared connection."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Onshore wind siting",
+   "why": "Adds onshore wind to the same ranked map, with noise buffers, peat and designations, and links out for radar and military safeguarding."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Evidence for every number",
+   "why": "Each figure shows its source, version, date and licence."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Pushback with what changed",
+   "why": "Change an assumption and a card lists the sites that moved and the reason."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Site upload and screening",
+   "why": "Upload a boundary, KML or shapefile and screen it against the same rules as the map."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Pipeline board",
+   "why": "Tracks each site on the connection evidence ladder, with Gate 2 and land-rights clocks."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Documents",
+   "why": "Feasibility report, grid pack, investment committee pack and Excel model for any site."},
+  {"quarter": "Shipped", "status": "shipped", "title": "GB rules cards",
+   "why": "Dated cards on consent routes, Gate 2 milestones and battery fire-safety guidance, each with a review date."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Company holdings",
+   "why": "Group, substation and league views, Gate 2 positions with no planning application, and idle connections."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Change feed and weekly digest",
+   "why": "New connection applications, Gate changes and holder changes, in the app and by email, filtered by watchlists."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Diligence",
+   "why": "Checks a seller's site list against the public record and exports a data-room PDF and workbook."},
+  {"quarter": "Shipped", "status": "shipped", "title": "\"Can I build here?\" journeys",
+   "why": "Three guided checks for a landowner, a developer and an investor, each ending in a one-page summary."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Weekly data refresh",
+   "why": "The registers and published datasets are rebuilt every week, and the snapshots keep their history."},
+  {"quarter": "Shipped", "status": "shipped", "title": "Data API and MCP server",
+   "why": "Read-only access for your own tools and AI assistants, with per-organisation keys."},
+
+  {"quarter": "Early access", "status": "early-access", "title": "Screening call",
+   "why": "Send a boundary or a list of sites and get the verdict and reasons back as data. Available to API customers on request."},
+  {"quarter": "Early access", "status": "early-access", "title": "Report call",
+   "why": "Request a landowner check, feasibility report or portfolio screen and receive the PDF and its data when it is ready. Available to API customers on request."},
+  {"quarter": "Early access", "status": "early-access", "title": "Change webhooks",
+   "why": "Signed pushes for new connection applications, Gate changes, holder changes and planning moves on a watchlist. Available to API customers on request."},
+
+  {"quarter": "Q1 2027", "status": "planned", "title": "Per-site yield with P50 and P90",
+   "why": "Yield feeds the price needed to hit the hurdle, and lenders and committees ask for P90."},
+  {"quarter": "Q1 2027", "status": "planned", "title": "CfD AR8 and AR9 eligibility screen",
+   "why": "Flags whether a site's consent status and Gate 2 position fit the next allocation rounds."},
+  {"quarter": "Q2 2027", "status": "planned", "title": "Aerial imagery checks",
+   "why": "Shows current aerial imagery beside each site, to catch quarries, new housing and other land use the datasets lag behind."},
+  {"quarter": "Q3 2027", "status": "planned", "title": "Network-operator budget estimates and cable routing",
+   "why": "Route-based cable costs and budget estimates from charging statements, because connection cost is the largest uncertainty in the early numbers."},
+  {"quarter": "Later", "status": "planned", "title": "Online checkout",
+   "why": "Pay for a one-off report online. Until then, orders come by email and we invoice."},
+  {"quarter": "Later", "status": "exploring", "title": "Council political context",
+   "why": "Council control and policy stance beside the planning record, where the data licence allows it."},
+  {"quarter": "Later", "status": "exploring", "title": "Northern Ireland",
+   "why": "Coverage of Northern Ireland using its own planning, grid and land datasets."}
 ]
