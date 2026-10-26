@@ -241,3 +241,18 @@ html:has(.sf) { scroll-behavior: smooth; }
   .sf-prices { grid-template-columns: minmax(0, 1fr); }
   .sf-order { align-self: stretch; }
 }
+
+/* Hero prices, buyer links, proof beside the prices, live-feature list (v9) */
+.sf-hero-pr { margin-top: 18px; font-size: 15px; line-height: 1.7; color: #9AA6B6; max-width: 560px; }
+.sf-hero-pr a { color: #F6CE8C; text-decoration: none; white-space: nowrap; }
+.sf-hero-pr a:hover { text-decoration: underline; }
+.sf-aud-pr { margin-top: 12px; font-weight: 600; }
+.sf-proof { margin-top: 22px; padding: 18px 22px; border: 1px solid rgba(232,161,60,0.35); border-radius: 14px; background: rgba(232,161,60,0.06); max-width: 900px; }
+.sf-proof h3 { margin: 0; font-family: 'Schibsted Grotesk', sans-serif; font-weight: 600; font-size: 18px; color: #F5F1E8; }
+.sf-proof .sf-list { margin-top: 8px; }
+.sf-proof .sf-list li { font-size: 15.5px; padding: 5px 0 5px 24px; }
+.sf-proof .sf-list li::before { top: 17px; }
+.sf-pr .sf-pr-p { font-size: 18px; font-weight: 600; }
+.sf-pr[id] { scroll-margin-top: 90px; }
+.sf-chips { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.sf-chips li { font-size: 14px; color: #C6CEDA; padding: 6px 12px; border: 1px solid rgba(169,200,179,0.4); border-radius: 999px; background: rgba(169,200,179,0.08); }

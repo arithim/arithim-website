@@ -19,8 +19,8 @@ A = "/assets/site-finder/"
 ORDER_EMAIL = "tarun@arithim.com"
 
 TITLE = "Where to build solar, battery or wind in Great Britain | Arithim"
-DESC = ("Site Finder ranks land for solar, battery and onshore wind across Great Britain and shows "
-        "the evidence behind every site. Reports from £195 ex VAT.")
+DESC = ("Site Finder ranks land in Great Britain for solar, battery and onshore wind, with the grid, planning "
+        "and economics evidence for every site. Reports from £195 ex VAT, ordered by email.")
 H1 = "Find the land worth a site visit, with the evidence for every site."
 
 e = html.escape
@@ -74,6 +74,7 @@ PUSHBACK = [
 ]
 
 YOUR_DETAILS = ["Name:", "Company:", "Invoice address:", "Purchase order number (if any):"]
+SUB_NEEDS_END = ["Preferred start date:", "Demo first (yes or no):"]
 
 # (name, price, what you get, what we need from you, delivery or None)
 REPORTS = [
@@ -83,11 +84,11 @@ REPORTS = [
      "3 working days"),
     ("Site feasibility report", "£1,950 a site (solar, battery or wind)",
      "A verdict with reasons, constraints with a map, grid, planning, economics, contacts, and sources and licences. PDF, with Word and Excel on request.",
-     ["Location (a point, a drawn boundary, or a KML or shapefile attached):", "Technology (solar, battery or wind):", "Project size:"],
+     ["Location (a point, a drawn boundary, or a KML or shapefile attached):", "Technology (solar, battery or wind):", "Project size (MW):"],
      "3 working days"),
     ("Solar and battery hybrid add-on", "£500 on top of a feasibility report",
      "Hybrid economics on a shared connection, with clipping and dispatch, compared with solar alone.",
-     ["Location (a point, a drawn boundary, or a KML or shapefile attached):", "Solar size:", "Battery size:"],
+     ["The feasibility report this goes with (order both together, or give the reference of an earlier order):", "Solar size (MW):", "Battery size (MW and MWh):"],
      "With the report"),
     ("Portfolio screen", "£7,500 for up to 50 sites; £120 for each extra site",
      "Every claim in a seller's list checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with both values and the source for each contradiction, a portfolio roll-up, and a data-room PDF and Excel workbook with a sources and licence appendix.",
@@ -98,25 +99,41 @@ REPORTS = [
 SUBS = [
     ("Site Finder platform", "From £30,000 a year for 5 seats",
      "The origination desk: the ranked map for solar, battery, hybrid and onshore wind, pushback with what changed, evidence for every number, site upload, the pipeline board, documents, GB rules cards and alerts. Your own team can make unlimited landowner checks and feasibility reports.",
-     ["Number of seats:", "Preferred start date:"]),
+     ["Number of seats (the price includes 5):"] + SUB_NEEDS_END),
     ("Market Watch", "From £15,000 a year",
      "Company holdings by group, substation and league table, exposed Gate 2 positions, idle connections, the change feed with a weekly email digest, and watchlists.",
-     ["Number of seats:", "Preferred start date:"]),
+     ["Number of users:"] + SUB_NEEDS_END),
     ("Data API and MCP", "From £18,000 a year",
      "A read-only API and an MCP server for your own tools and AI assistants: projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence. Per-organisation keys and usage limits.",
-     ["Tools or assistants you plan to connect:", "Preferred start date:"]),
+     ["Tools or assistants you plan to connect:"] + SUB_NEEDS_END),
 ]
 
 ENTERPRISE = ("Enterprise terms", "On quote",
               "More seats, internal redistribution and named support.",
-              ["What you need (seats, redistribution, support):"])
+              ["Seats, internal redistribution or named support:"])
+
+# (who, what they get, product to order, price as shown on its card)
+AUDIENCE = [
+    ("Origination teams at developers and IPPs",
+     "A ranked map for solar, battery, hybrid and onshore wind, a pipeline board that tracks each site's connection evidence and deadlines, and packs for the investment committee. Your team makes unlimited landowner checks and feasibility reports.",
+     "Site Finder platform", "from £30,000 a year"),
+    ("Fund and acquisition analysts",
+     "Each claim in a seller's pipeline is checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.",
+     "Portfolio screen", "£7,500 for up to 50 sites"),
+    ("Landowners and land agents",
+     "One page on the land after a developer's letter: the nearest grid point and how crowded it is, who the developer is, what else they hold nearby and any pressure terms in the letter.",
+     "Landowner check", "£195"),
+    ("First-time developers and consultants",
+     "A feasibility report on one site with a verdict, the reasons, the grid and planning position, the economics and the source of every number.",
+     "Site feasibility report", "£1,950"),
+]
 
 WHY_PRICE = [
-    "One answer per site that joins grid, planning, ownership and economics.",
+    "Grid, planning, capacity holders and economics joined in one answer for each site.",
     "The source, version, date and licence of every number, so a committee or lender can check it.",
     "Who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database, joined to company groups.",
-    "History from weekly snapshots of the registers, so new queue entries, Gate moves and sales of project companies show up.",
-    "Pushback: change any assumption and see what moved and why.",
+    "Weekly snapshots of the registers, so new queue entries, Gate moves and sales of project companies show up.",
+    "Any assumption can be changed, and the app shows which sites moved and why.",
 ]
 
 LIMITS_HTML = [
@@ -131,17 +148,19 @@ FAQ = [
     ("Does Site Finder tell us where to build?",
      "It ranks candidate land and shows the evidence for each rank, and your team makes the decision. Use the list to start a conversation with a land agent and the network operator. Planning advice and site visits still come first."),
     ("Which technologies does Site Finder cover?",
-     "Solar, battery storage, solar with battery on a shared connection, and onshore wind, across England, Scotland and Wales."),
+     "Solar, battery storage, solar with battery on a shared connection, and onshore wind, across England, Scotland and Wales. For wind, each site shows the modelled mean wind speed at 100 m from the Global Wind Atlas beside noise buffers, peat and designations."),
     ("How much does Site Finder cost?",
      "Prices exclude VAT. A landowner check is £195 a report. A site feasibility report is £1,950 a site, and the solar and battery hybrid add-on is £500 on top. A portfolio screen is £7,500 for up to 50 sites and £120 for each extra site. The Site Finder platform is from £30,000 a year for 5 seats, Market Watch from £15,000 a year, and the data API and MCP from £18,000 a year. Enterprise terms are on quote."),
-    ("How do I order a report?",
-     "Press Order next to the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and a list of what we need. We confirm every order by email and send an invoice on confirmation."),
+    ("Why does Site Finder cost more than a land tool?",
+     "Each site gets one answer that joins grid, planning, capacity holders and economics, and every number carries its source, version, date and licence, so a committee or lender can check it. Site Finder shows who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database joined to company groups. Weekly snapshots of the registers show new queue entries, Gate moves and sales of project companies, and you can change any assumption and see which sites moved."),
+    ("How do I order a report or a subscription?",
+     "Press Order on the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and the details we need listed in the body. We confirm the order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice."),
     ("How long does a report take?",
      "A landowner check and a site feasibility report each take 3 working days. A hybrid add-on comes with its feasibility report. A portfolio screen takes 5 working days."),
     ("Can our AI assistant use Site Finder data?",
      "Yes. The data API and MCP server let your own tools and AI assistants read projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence, and each organisation has its own keys and usage limits. A screening call, a report call and change webhooks are in early access, available to API customers on request."),
     ("Where does the data come from?",
-     "From open datasets published by UK government bodies, NESO and the distribution network operators, plus Companies House and open land cover, resource and mapping data. The data refreshes every week, and the app lists every dataset with its version, retrieval date and licence."),
+     "From open datasets published by UK government bodies, NESO and the distribution network operators, plus Companies House, the Global Wind Atlas, and open land cover, solar resource and mapping data. Every source is licensed for commercial use. The data refreshes every week, and the app lists every dataset with its version, retrieval date and licence."),
     ("How reliable are the connection costs?",
      "They are indicative. They are good for comparing one site with another and for spotting when a larger project would need a higher connection voltage, and a network operator quote will differ."),
     ("Does it know whether a substation has spare capacity?",
@@ -158,29 +177,38 @@ FAQ = [
      "It excludes mapped aerodromes and military land. Official aerodrome and Ministry of Defence safeguarding zones are not published as open data, so check them with the aerodrome or the MoD before you commit to a site. For wind, also check the NATS self-assessment maps."),
     ("Does it cover Northern Ireland or show who owns the land?",
      "Coverage is Great Britain, and Northern Ireland is on the roadmap. Site Finder shows which company groups hold projects and grid connections, by substation and planning authority. It does not include land titles, so it does not show who owns a particular field."),
-    ("How do we get access?",
-     "Order a one-off report from the pricing section, or book a demo for the platform, Market Watch or the data API. We set up an organisation for each customer."),
+    ("Can we see a demo before we subscribe?",
+     "Yes. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about. You can also order a subscription straight away from the pricing section."),
 ]
 
 
 def mailto(product: str, needs: list[str]) -> str:
-    lines = [f"I would like to order: {product}", "", "What you need from me:"]
+    quote_only = product == ENTERPRISE[0]
+    first = f"I would like a quote for Site Finder {product.lower()}" if quote_only else f"I would like to order: {product}"
+    details = YOUR_DETAILS[:2] if quote_only else YOUR_DETAILS
+    subject = f"Site Finder quote: {product.lower()}" if quote_only else f"Site Finder order: {product}"
+    lines = [first, "", "Order details:" if not quote_only else "What we need:"]
     lines += [f"- {n}" for n in needs]
-    lines += ["", "My details:"] + [f"- {d}" for d in YOUR_DETAILS]
+    lines += ["", "My details:"] + [f"- {d}" for d in details]
     body = "\r\n".join(lines) + "\r\n"
-    return (f"mailto:{ORDER_EMAIL}?subject={quote('Site Finder order: ' + product, safe='')}"
-            f"&body={quote(body, safe='')}")
+    return f"mailto:{ORDER_EMAIL}?subject={quote(subject, safe='')}&body={quote(body, safe='')}"
+
+
+def slug(name: str) -> str:
+    return "order-" + "".join(c if c.isalnum() else "-" for c in name.lower()).strip("-").replace("--", "-")
 
 
 def order_btn(product: str, needs: list[str]) -> str:
+    label = "Ask for a quote" if product == ENTERPRISE[0] else "Order"
     return (f'<a class="sf-order" href="{e(mailto(product, needs))}" '
-            f'aria-label="Order: {e(product)}">Order</a>')
+            f'aria-label="{label}: {e(product)}">{label}</a>')
 
 
 def price_card(name: str, price: str, what: str, needs: list[str], delivery: str | None) -> str:
-    dl = f'<p class="sf-pr-dl">Delivered: {e(delivery)}</p>' if delivery else ""
-    return (f'<li class="tsg-card sf-pr"><h4>{e(name)}</h4><p class="sf-pr-p">{e(price)}</p>'
-            f'<p>{e(what)}</p>{dl}{order_btn(name, needs)}</li>')
+    dl = f'<p class="sf-pr-dl">Delivered in {e(delivery.lower())}</p>' if delivery and delivery[0].isdigit() else (
+        f'<p class="sf-pr-dl">Delivered {e(delivery.lower())}</p>' if delivery else "")
+    return (f'<li class="tsg-card sf-pr" id="{slug(name)}"><h4>{e(name)}</h4><p class="sf-pr-p">{e(price)}</p>'
+            f'{dl}<p>{e(what)}</p>{order_btn(name, needs)}</li>')
 
 
 def scene(key: str, *, hero: bool = False) -> str:
@@ -216,8 +244,9 @@ def roadmap() -> str:
         qid = q.lower().replace(" ", "-")
         cols.append(f'<li class="sf-q"><h3 id="sf-q-{qid}">{e(q.upper())}</h3>'
                     f'<ul aria-labelledby="sf-q-{qid}">{lis}</ul></li>')
-    return (f'<h3 class="sf-sub" id="sf-shipped">Shipped and live in the app</h3>'
-            f'<ul class="sf-shipped" aria-labelledby="sf-shipped">{"".join(_item(i) for i in shipped)}</ul>'
+    chips = "".join(f'<li>{e(i["title"])}</li>' for i in shipped)
+    return (f'<h3 class="sf-sub" id="sf-shipped">Live in the app today</h3>'
+            f'<ul class="sf-chips" aria-labelledby="sf-shipped">{chips}</ul>'
             f'<h3 class="sf-sub">Early access and what comes next</h3>'
             f'<ol class="sf-tl" aria-label="Early access and planned work">{"".join(cols)}</ol>')
 
@@ -229,9 +258,11 @@ def ld() -> str:
            "audience": {"@type": "Audience", "audienceType": "Renewable developers, investors, landowners and land agents in Great Britain"},
            "offers": [{"@type": "Offer", "name": n, "price": v, "priceCurrency": "GBP",
                        "priceSpecification": {"@type": "PriceSpecification", "price": v, "priceCurrency": "GBP", "valueAddedTaxIncluded": False},
-                       "url": URL + "#pricing"}
-                      for n, v in (("Landowner check", "195"), ("Site feasibility report", "1950"),
-                                   ("Solar and battery hybrid add-on", "500"), ("Portfolio screen, up to 50 sites", "7500"))],
+                       "url": URL + "#" + slug(k)}
+                      for k, n, v in (("Landowner check", "Landowner check", "195"),
+                                      ("Site feasibility report", "Site feasibility report", "1950"),
+                                      ("Solar and battery hybrid add-on", "Solar and battery hybrid add-on", "500"),
+                                      ("Portfolio screen", "Portfolio screen, up to 50 sites", "7500"))],
            "publisher": {"@type": "Organization", "name": "Arithim Ltd", "url": "https://arithim.com/"}}
     faq = {"@context": "https://schema.org", "@type": "FAQPage",
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
@@ -243,13 +274,13 @@ def ld() -> str:
 
 
 def build() -> str:
-    cards_audience = (
-        '<div class="tsg-grid tsg-g2">'
-        "<div class=\"tsg-card\"><h3>Origination teams</h3><p>A developer's origination desk gets a ranked map for solar, battery, hybrid and onshore wind, a pipeline board that tracks each site's connection evidence and deadlines, and packs for the investment committee.</p></div>"
-        "<div class=\"tsg-card\"><h3>Investors and buyers</h3><p>A fund or buyer checking a seller's pipeline sees each claim marked confirmed, contradicted, not verifiable or seller-supplied, and gets a data-room export.</p></div>"
-        "<div class=\"tsg-card\"><h3>Landowners and land agents</h3><p>A landowner with a letter from a developer gets one page on the land, the nearest grid point, who the developer is and what else they hold nearby.</p></div>"
-        "<div class=\"tsg-card\"><h3>Developers with one site</h3><p>A first-time developer or a consultant gets a feasibility report with a verdict, the reasons and the source of every number.</p></div>"
-        '</div>')
+    cards_audience = '<div class="tsg-grid tsg-g2">' + "".join(
+        f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p>'
+        f'<p class="sf-aud-pr"><a class="tsg-link" href="#{slug(prod)}">{e(prod)}, {e(price)} →</a></p></div>'
+        for t, b, prod, price in AUDIENCE) + '</div>'
+    hero_prices = " · ".join(f'<a href="#{slug(n)}">{e(label)}</a>' for n, label in (
+        ("Landowner check", "Landowner check £195"), ("Site feasibility report", "Feasibility report £1,950"),
+        ("Portfolio screen", "Portfolio screen £7,500"), ("Site Finder platform", "Platform from £30,000 a year")))
     shows = "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in SHOWS)
     more = "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in MORE)
     push = "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in PUSHBACK)
@@ -283,7 +314,7 @@ def build() -> str:
 {ld()}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=8">
+<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=9">
 <link rel="stylesheet" href="/assets/callus.css?v=3">
 </head>
 <body>
@@ -306,7 +337,8 @@ def build() -> str:
           <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN</div>
           <h1 id="sf-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;">{e(H1)}</h1>
           <p style="font-size:19px;line-height:1.55;color:#AEB8C6;max-width:560px;margin-top:20px;">Describe the project you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection and who holds capacity there, the planning record nearby and the economics.</p>
-          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{btn}<a href="#pricing" class="tsg-link" style="font-size:16px;">See prices</a><a href="#videos" class="tsg-link" style="font-size:16px;">Watch it in use</a></div>
+          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{btn}<a href="#pricing" class="tsg-link" style="font-size:16px;">See prices and order</a><a href="#videos" class="tsg-link" style="font-size:16px;">Watch it in use</a></div>
+          <p class="sf-hero-pr">{hero_prices}<br>Prices ex VAT. Order by email and pay by invoice.</p>
         </div>
         {scene("j1", hero=True)}
       </div>
@@ -367,21 +399,13 @@ def build() -> str:
     <div class="tsg-wrap">
       <div class="tsg-eyebrow">PRICES</div>
       <h2 class="tsg-h2" id="pricing-h">How much does Site Finder cost?</h2>
-      <p class="tsg-lead">Prices exclude VAT. One-off reports have fixed prices, subscriptions start at the price shown, and enterprise terms are on quote.</p>
+      <p class="tsg-lead">Prices exclude VAT. Reports have fixed prices and subscriptions start at the price shown. Press Order and your email app opens a message with the details we need.</p>
+      <div class="sf-proof" id="why-price"><h3 id="why-price-h">Why it costs more than a land tool</h3><ul class="sf-list" aria-labelledby="why-price-h">{why}</ul></div>
       <h3 class="sf-sub" id="pr-reports">One-off reports</h3>
       <ul class="sf-prices" aria-labelledby="pr-reports">{reports}</ul>
       <h3 class="sf-sub" id="pr-subs">Subscriptions</h3>
       <ul class="sf-prices" aria-labelledby="pr-subs">{subs}{ent}</ul>
-      <p class="sf-note sf-pr-terms">We confirm every order by email and send an invoice on confirmation. A landowner check or a site feasibility report is delivered in 3 working days, a hybrid add-on comes with its report, and a portfolio screen takes 5 working days.</p>
-    </div>
-  </section>
-
-  <section class="tsg-sec" id="why-price" aria-labelledby="why-price-h">
-    <div class="tsg-wrap">
-      <div class="tsg-eyebrow">WHY THE PRICE</div>
-      <h2 class="tsg-h2" id="why-price-h">Why does Site Finder cost more than land intelligence tools?</h2>
-      <p class="tsg-lead">Land intelligence tools each cover part of the question for a site. Site Finder is priced above them for what it joins up and keeps.</p>
-      <ul class="sf-list">{why}</ul>
+      <p class="sf-note sf-pr-terms">We confirm every order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.</p>
     </div>
   </section>
 
@@ -398,9 +422,8 @@ def build() -> str:
     <div class="tsg-wrap" style="max-width:1240px;">
       <div class="tsg-eyebrow">ROADMAP</div>
       <h2 class="tsg-h2" id="roadmap-h">What is on the Site Finder roadmap?</h2>
-      <p class="tsg-lead">Everything under shipped is in the app today. Early-access items are offered to API customers on request and are not part of the live product yet. Planned items are grouped by quarter, and their timing can change.</p>
+      <p class="tsg-lead">Everything described above this section is in the app today. Early-access items are available to API customers on request and are not yet part of the live product. Planned items are grouped by quarter, and their timing can change.</p>
       <ul class="sf-legend" aria-label="Status legend">
-        <li><span class="sf-st shipped">shipped</span> Live in the app</li>
         <li><span class="sf-st early-access">early access</span> Available to API customers on request</li>
         <li><span class="sf-st planned">planned</span> Scoped, timing can change</li>
         <li><span class="sf-st exploring">exploring</span> Under consideration, no date</li>
