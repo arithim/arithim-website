@@ -400,9 +400,9 @@ def build() -> str:
       <div class="tsg-eyebrow">PRICES</div>
       <h2 class="tsg-h2" id="pricing-h">How much does Site Finder cost?</h2>
       <p class="tsg-lead">Prices exclude VAT. Reports have fixed prices and subscriptions start at the price shown. Press Order and your email app opens a message with the details we need.</p>
-      <div class="sf-proof" id="why-price"><h3 id="why-price-h">Why it costs more than a land tool</h3><ul class="sf-list" aria-labelledby="why-price-h">{why}</ul></div>
       <h3 class="sf-sub" id="pr-reports">One-off reports</h3>
       <ul class="sf-prices" aria-labelledby="pr-reports">{reports}</ul>
+      <div class="sf-proof" id="why-price"><h3 id="why-price-h">Why it costs more than a land tool</h3><ul class="sf-list" aria-labelledby="why-price-h">{why}</ul></div>
       <h3 class="sf-sub" id="pr-subs">Subscriptions</h3>
       <ul class="sf-prices" aria-labelledby="pr-subs">{subs}{ent}</ul>
       <p class="sf-note sf-pr-terms">We confirm every order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.</p>
