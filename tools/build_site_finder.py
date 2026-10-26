@@ -28,25 +28,25 @@ e = html.escape
 SCENES = {
     "j1": ("Ask the question and read the answer",
            "Load the app, read the verdict and scan the ranked list, then look across the map of scored sites.",
-           "A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Hulcott in Buckinghamshire needs £57.1 against a CfD price of £65.23, Stone Street in East Suffolk needs £60.5, and Belchamp St Paul in Braintree needs £59.7. Numbered markers place the sites on the map."),
+           "A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map."),
     "j2": ("Open the evidence for a site",
            "Open the top site: its score breakdown, substations, planning record and economics, then the one-page print pack.",
-           "The top row, Hulcott in Buckinghamshire, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Aylesbury East Grid 33kV at 0.5 km with capacity ok, the planning record, and the economics: the site needs £57.1 against a CfD price of £65.23."),
+           "The top row, Ellerstoke in Wendmoor, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Carrowby East Grid 33kV at 0.7 km with capacity ok, the planning record, and the economics: the site needs £56.4 against a CfD price of £65.23."),
     "j3": ("Push back and see what changed",
            "Mark a substation as full and rescore, read the What changed card, then assume a Gate 2 offer and watch the answer move.",
-           "Four ranked sites sit above a card for the substation Aylesbury East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Hulcott falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause."),
+           "Four ranked sites sit above a card for the substation Carrowby East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Ellerstoke falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause."),
     "f1": ("Gate 2 and grid headroom",
            "See which sites can connect in the current window, then assume a Gate 2 offer and watch the ranking move.",
-           "A bar shows 134.6 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 40 MWac each take their share in rank order, and the figure falls to 94.6, 54.6 and then 14.6 MW. The fourth site, Weedon, also needs 40 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year."),
+           "A bar shows 127.3 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 38 MWac each take their share in rank order, and the figure falls to 89.3, 51.3 and then 13.3 MW. The fourth site, Daverby Magna, needs 36 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year."),
     "f2": ("Planning record by local authority",
            "Search the planning record by local authority for decisions, approval rates and recent schemes.",
-           "A table lists local authorities, with a bar for the share of solar schemes approved. Wiltshire is selected. Its panel says it approved 11 of 12 solar schemes since 2019, with a median decision time of 9 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme."),
+           "A table lists local authorities, with a bar for the share of solar schemes approved. Saltmere is selected. Its panel says it approved 10 of 11 solar schemes since 2019, with a median decision time of 8 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme."),
     "f3": ("Refused schemes nearby",
            "A refused solar scheme near a site lowers its score, and the site's evidence names the scheme.",
-           "A score waterfall for a site at Smeeth in Ashford starts at 0.83 before flags. Three multipliers follow: 0.90 for a refused scheme 1.4 km away, 0.94 for a National Park or AONB setting, and 0.93 for a listed building. The score ends at 0.65. A small map then shows the site, a dashed 1.4 km line and the refused scheme, East Stour Solar Farm, 49.9 MW."),
+           "A score waterfall for a site at Fennick Green in Callowfield starts at 0.84 before flags. Three multipliers follow: 0.91 for a refused scheme 1.7 km away, 0.94 for a National Park or AONB setting, and 0.92 for a listed building. The score ends at 0.66. A small map then shows the site, a dashed 1.7 km line and the refused scheme, Fallowmere Solar Farm, 34.5 MW."),
     "f4": ("Economics and project size",
            "Take the project size past 100 MWac and watch the consent route, transmission charges and NPV change.",
-           "A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£8.5m to −£0.1m. A note names the size threshold and both values."),
+           "A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£7.6m to −£0.4m. A note names the size threshold and both values."),
 }
 
 SHOWS = [
@@ -213,7 +213,7 @@ def price_card(name: str, price: str, what: str, needs: list[str], delivery: str
 
 def scene(key: str, *, hero: bool = False) -> str:
     title, cap, desc = SCENES[key]
-    desc_html = f'<details class="tsg-desc"><summary>Describe this animation</summary><p>{e(desc)} All names and figures illustrate the interface on the launch data.</p></details>'
+    desc_html = f'<details class="tsg-desc"><summary>Describe this animation</summary><p>{e(desc)} Names and figures are made up to show the interface.</p></details>'
     mount = f'<div data-sf-scene="{key}" data-title="{e(title)}"></div>'
     if hero:
         return f'<figure class="sf-fig">{mount}{desc_html}</figure>'
@@ -378,7 +378,7 @@ def build() -> str:
     <div class="tsg-wrap">
       <div class="tsg-eyebrow">SEE IT IN USE</div>
       <h2 class="tsg-h2" id="videos-h">What does Site Finder look like in use?</h2>
-      <p class="tsg-lead">Animated scenes of the interface. The names and figures come from the launch data and show how the tool works. They are not results for any project.</p>
+      <p class="tsg-lead">Animated scenes of the interface. The names and figures are made up to show how the tool works. They are not results for any project.</p>
       <h3 class="sf-sub">A working session</h3>
       <div class="sf-vgrid sf-v3">{"".join(scene(k) for k in ("j1", "j2", "j3"))}</div>
       <h3 class="sf-sub">Features up close</h3>
