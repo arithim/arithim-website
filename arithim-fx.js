@@ -113,7 +113,7 @@ export function initFx(root) {
   // ---- animated nav pill ----
   root.querySelectorAll('[data-nav]').forEach((nav) => {
     const pill = nav.querySelector('[data-nav-pill]'); if (!pill) return;
-    [...nav.querySelectorAll('a')].forEach((a) => {
+    [...nav.querySelectorAll(':scope > a, :scope > .ah-nav-item > a')].forEach((a) => {
       const enter = () => { const nr = nav.getBoundingClientRect(); const r = a.getBoundingClientRect(); pill.style.width = r.width + 'px'; pill.style.transform = 'translateX(' + (r.left - nr.left) + 'px)'; pill.style.opacity = '1'; };
       a.addEventListener('pointerenter', enter);
       stops.push(() => a.removeEventListener('pointerenter', enter));

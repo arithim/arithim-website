@@ -566,6 +566,20 @@ _NAV_LINK = '        <a href="{href}" class="ah-nav-link">{label}</a>'
 _NAV_LINK_ACTIVE = '        <a href="{href}" class="ah-nav-link-on" aria-current="page">{label}</a>'
 
 
+def _product_menu() -> str:
+    """The Products dropdown, from content/catalogue.json (the same source as the products page)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import catalogue
+    out = ['        <div class="ah-menu" role="group" aria-label="Products">']
+    for g in catalogue.load():
+        items = g.get("items") or [i for s in g["subgroups"] for i in s["items"]]
+        out.append(f'          <div class="ah-menu-group"><div class="ah-menu-title">{esc(g["name"])}</div>')
+        out += [f'            <a class="ah-menu-link" href="{attr(i["url"])}">{esc(i["name"])}</a>' for i in items]
+        out.append("          </div>")
+    out.append("        </div>")
+    return "\n".join(out)
+
+
 def render_partial(name: str, params: dict, partials_dir: Path) -> str:
     def read(n: str) -> str:
         return (partials_dir / f"{n}.html").read_text(encoding="utf-8").rstrip("\n")
@@ -579,7 +593,12 @@ def render_partial(name: str, params: dict, partials_dir: Path) -> str:
         cta = params.get("cta", "talk")
         if cta not in HEADER_CTAS:
             raise ValueError(f"header cta {cta!r} must be one of {', '.join(HEADER_CTAS)}")
-        links = "\n".join((_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label) for href, label in NAV_LINKS)
+        def one(href: str, label: str) -> str:
+            link = (_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label)
+            if href != "products.html":
+                return link
+            return f'        <span class="ah-nav-item">\n{link}\n{_product_menu()}\n        </span>'
+        links = "\n".join(one(href, label) for href, label in NAV_LINKS)
         return fill(read("header"), {"label": esc(params["label"]), "links": links, "cta": read(f"cta-{cta}")})
     if name == "footer":
         return fill(read("footer"), {

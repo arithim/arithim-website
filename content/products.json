@@ -93,7 +93,9 @@
   "service_type": "Battery storage site report",
   "audience_type": "Battery storage developers, land teams and landowners in Great Britain",
   "cta_h": "Want a report on a battery site?",
-  "cta_p": "Send us the location and the battery size. We will confirm what the report will cover and when you will have it."
+  "cta_p": "Send us the location and the battery size. We will confirm what the report will cover and when you will have it.",
+  "audience": "For battery developers and landowners in Great Britain",
+  "card_summary": "Is this site worth pursuing as a battery site, and what would end it? One site, one report."
  },
  {
   "slug": "grid-pre-screen",
@@ -186,7 +188,9 @@
   "service_type": "Grid capacity pre-screen",
   "audience_type": "Battery storage developers and the land teams and agents who source sites for them",
   "cta_h": "Want to screen a list of sites?",
-  "cta_p": "Send us the sites and the MW. We will confirm what the screen will cover and when you will have it."
+  "cta_p": "Send us the sites and the MW. We will confirm what the screen will cover and when you will have it.",
+  "audience": "For battery developers and land teams",
+  "card_summary": "How close is a site to grid headroom, and who already holds capacity there?"
  },
  {
   "slug": "planning-risk-screen",
@@ -282,7 +286,9 @@
   "service_type": "Planning constraint desk screen",
   "audience_type": "Solar, battery and wind developers, planning consultants and land agents",
   "cta_h": "Want a site screened for planning risk?",
-  "cta_p": "Send us the boundary and the technology. We will confirm what the screen will cover and when you will have it."
+  "cta_p": "Send us the boundary and the technology. We will confirm what the screen will cover and when you will have it.",
+  "audience": "For solar, battery and wind developers",
+  "card_summary": "Spot the planning constraints that could stop a site, before you pay for surveys."
  },
  {
   "slug": "uk-company-check",
@@ -376,7 +382,9 @@
   "service_type": "UK company check (KYB)",
   "audience_type": "Accountancy firms, lenders, platforms and energy developers that check UK companies",
   "cta_h": "Want to hear when early access opens?",
-  "cta_p": "Tell us what you check, how often, and what you need to see in the result. It shapes what we build first."
+  "cta_p": "Tell us what you check, how often, and what you need to see in the result. It shapes what we build first.",
+  "audience": "For accountants, lenders and platforms",
+  "card_summary": "Check who is behind a UK company, with a dated source for every fact."
  },
  {
   "slug": "solar-suitability-api",
@@ -468,6 +476,8 @@
   "service_type": "Solar suitability screening API",
   "audience_type": "Solar installers, lenders, landlords and developers",
   "cta_h": "Want to hear when early access opens?",
-  "cta_p": "Tell us what you screen, how many addresses, and what you need in the answer. It shapes what we build first."
+  "cta_p": "Tell us what you screen, how many addresses, and what you need in the answer. It shapes what we build first.",
+  "audience": "For installers, lenders and landlords",
+  "card_summary": "Will solar work at this address? A plain verdict, the reasons and a yield estimate."
  }
 ]

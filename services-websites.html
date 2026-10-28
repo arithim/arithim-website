@@ -45,7 +45,27 @@
       <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/ai</span></a>
       <nav data-nav aria-label="Main" class="ah-nav">
         <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
         <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-assay.html">Assay</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
         <a href="services.html" class="ah-nav-link-on" aria-current="page">Services</a>
         <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
         <a href="research.html" class="ah-nav-link">Research</a>
@@ -141,7 +161,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7E9B87&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A website that people, search engines and AI tools can all read.\nThe website that ChatGPT can actually read.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We structure your website so that people, search engines and AI answer tools such as ChatGPT, Perplexity and Gemini can all understand it. That means a clear page structure, consistent descriptions of your organisation and what it does, and structured metadata (schema) that machines can read. We also cover technical SEO, accessibility and performance.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We organise your pages and headings so the structure of the site is clear.\nWe make sure your organisation, products and services are named and described clearly and consistently.\nWe add structured metadata (schema) that search engines and AI tools can read.\nWe work on technical SEO, accessibility and performance.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A clear page and heading structure\nClear, consistent descriptions of your organisation\nStructured metadata (schema)\nTechnical SEO\nAccessibility and performance improvements&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Is this just SEO? :: Partly. It uses the same foundations as SEO, and the aim is to make your organisation easy to understand for people and for machines.\nWill AI tools like ChatGPT cite us? :: It becomes more likely. Clear structure, consistent descriptions of your organisation and schema help AI answer tools understand and reference you.\nDo you rebuild the whole site? :: Not necessarily. We often improve the structure and metadata of your existing site.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
     const accent = this.props.accent || '#E8A13C';

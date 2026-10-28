@@ -224,193 +224,143 @@ Call us
 
 ---
 
-## Enterprise software and SaaS from Arithim
+## Software and data products from Arithim
 
 URL: https://arithim.com/products.html
 
 PRODUCTS
 
-# Enterprise software and SaaS from Arithim
+# Software and data products from Arithim
 
-Arithim is a product company. Our enterprise products are set up for each customer on their own data, and our SaaS products are open to anyone online. Here are some of them.
+Enterprise software for distributors and regulated firms, data products for energy developers and risk teams, and SaaS for people looking for work.
 
-ENTERPRISE PRODUCTS
+ENTERPRISE SOFTWARE
 
-## Enterprise products
+## Enterprise software
 
-We deploy each one for a customer, load your data and set up your team. It starts with a demo on your own products, markets or project brief.
+Set up for each customer on their own data, starting with a demo or a pilot.
 
-FOR CHEMICAL AND INGREDIENT DISTRIBUTORS
+For chemical and ingredient distributors
 
 ### Technical Sales Guide
 
 Demos and pilots
 
-A salesperson asks for a product by application and condition, such as heat stress in broilers in Saudi Arabia. The Guide ranks products from every supplier in its catalogue and puts the dose, cost in use, landed cost and country registration beside each one, with the source.
+Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
-A catalogue of 466 products from 147 suppliers across 8 industries.
-
-Registrations tracked by product and country, with a reminder before each expiry.
-
-An interface in ten languages, Arabic among them.
-
-Request a demo →How it works
-
-Describe this animation
-
-Three examples play in turn: a heat-stress product for broilers in Saudi Arabia, a dispersant for a water-based wall paint in the UAE, and a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.
-
-FOR RENEWABLE DEVELOPERS IN GREAT BRITAIN
-
-### Site Finder
-
-Live
-
-Site Finder ranks land for solar, battery storage, solar with a battery and onshore wind across England, Scotland and Wales. Each site opens into its evidence: the grid connection and who holds capacity there, the planning record nearby and the economics.
-
-Every number carries its source, date and licence.
-
-Change an assumption and the list re-ranks, with a note of which sites moved and why.
-
-One-off reports from £195 ex VAT, and subscriptions for origination teams, market watching and data access.
-
-Book a demo →Prices from £195How it works
-
-Describe this animation
-
-Three briefs play in turn: a 50 MW solar farm in England and Wales, a 30 MW farm on a 33 kV connection in central Scotland, and an 80 MW farm in the East of England that avoids the best farmland. Each time, three candidate sites appear in ranked order with the distance to a substation and how nearby schemes fared at planning. Then the user changes something, such as marking a substation full or raising the hurdle rate, and a What changed note shows how the list moved. All names and figures are samples.
-
-FOR UK FIRMS THAT HAVE TO NAME THEIR AI MODELS
+Learn more →For UK firms that have to name their AI models
 
 ### Assay
 
 Early access
 
-Assay lists the AI models a company uses: the models its applications call over an API and the open-weight models on its own GPUs. It flags any you have ruled out and produces a dated attestation report that states its scope, method and confidence.
+Know which AI models your firm runs, with a dated report you can show customers and supervisors.
 
-Reads logs, cloud records and code that you already have, with read-only access and metadata only.
-
-Compares several sources and gives each finding a confidence level and its evidence.
-
-Lists what it could not see, with the signal that partly covers each gap.
-
-Book a scoping call →How it works
-
-### What a report holds
-
-Each application or host, what we saw, the model family and where it came from, a result of approved, review, flagged or open, and a confidence level. The report names its scope, its date and the registry version it used.
+Learn more →
 
 DATA PRODUCTS
 
-## Reports, screens and feeds built on public data
+## Data products
 
-Short, sourced answers for developers, lenders and suppliers. The ones marked early access can be ordered now. The ones marked planned are not built yet, and you can register your interest.
+Sourced answers on energy sites, grid, planning and companies. Order a report, or use them through an API.
+
+### Energy sites, grid and planning
+
+For renewable developers in Great Britain
+
+### Site Finder
+
+Available
+
+Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
+
+Learn more →For battery developers and landowners in Great Britain
 
 ### Battery storage siting report
 
 Early access
 
-A report on one battery storage site in Great Britain covering grid, planning constraints, land and economics, with the source and date of every figure.
+Is this site worth pursuing as a battery site, and what would end it? One site, one report.
 
-How it works
+Learn more →For battery developers and land teams
 
 ### Grid pre-screen
 
 Early access
 
-Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there, and what else on the land could stop it.
+How close is a site to grid headroom, and who already holds capacity there?
 
-How it works
+Learn more →For solar, battery and wind developers
 
 ### Planning risk screen
 
 Early access
 
-A desk screen of one site in Great Britain for farmland grade, peat, heritage and protected sites, with the field studies an application is likely to need.
+Spot the planning constraints that could stop a site, before you pay for surveys.
 
-How it works
-
-### UK company check
-
-Planned
-
-Planned: a check on one UK company that confirms it exists and is active, shows its corporate controllers, and gives a dated source for every fact.
-
-How it works
+Learn more →For installers, lenders and landlords
 
 ### Solar suitability check
 
 Planned
 
-Planned: an API that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield, with a source for each item.
+Will solar work at this address? A plain verdict, the reasons and a yield estimate.
 
-How it works
+Learn more →
 
-SAAS PRODUCTS
+### Company and counterparty data
 
-## SaaS products
+For accountants, lenders and platforms
 
-These are live on the web and open to anyone. Sign up on each product's site and start using it.
+### UK company check
 
-FOR PEOPLE LOOKING FOR WORK
+Planned
+
+Check who is behind a UK company, with a dated source for every fact.
+
+Learn more →
+
+SAAS
+
+## SaaS
+
+Live on the web and open to anyone. Sign up on each product's site.
+
+For people looking for work
 
 ### Find Me A Job
 
 Live
 
-A candidate describes themselves once. Find Me A Job reads live listings, scores each one against the profile for fit and for a realistic chance of success, and hands back a short list of roles worth applying to.
+Describe yourself once and get a short list of roles worth applying for.
 
-One profile in place of a search on every job board.
-
-Near-duplicate listings are dropped before the candidate sees them.
-
-Find jobs at findmeajob.uk ↗Why we built it
-
-Describe this animation
-
-Three candidates play in turn: a data analyst in Manchester, a staff nurse in Leeds and a new economics graduate in London. Each time, counters show how many live listings were read, how many duplicates were dropped and how many roles are worth a look, then the top three roles appear with a fit score, the chance of success and when each was posted. All figures are samples.
-
-FOR PEOPLE APPLYING FOR JOBS
+Visit the site →For people applying for jobs
 
 ### Unrejectable
 
 Live
 
-A candidate adds a CV and the role they are applying for. Unrejectable reads them the way a first-pass screener would, lists the fixable reasons the application could be turned down and helps rewrite those parts before anyone at the employer sees it.
+Find the fixable reasons your CV could be turned down, before anyone sees it.
 
-Each weak spot is explained against the role you entered.
+Visit the site →
 
-It is the companion to Find Me A Job: one finds the roles, the other works on the application.
+FREQUENTLY ASKED
 
-Check your CV at unrejectable.uk ↗Why we built it
+## Questions about our products
 
-Describe this animation
+Which Arithim products can I try or buy now?
 
-Three applications play in turn: a product manager role in payments, a graduate accountant role and a warehouse team leader role. Each time, a CV is added and the role typed, three checks appear showing two problems a screener would notice and one that passes, and a suggested rewrite of one line is typed out. All content is a sample.
+Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. Assay and three of the data products are in early access, and two more are planned.
 
-QUESTIONS
+What is the difference between enterprise software, data products and SaaS?
 
-## Questions about Arithim's products
-
-Can we try a product before we commit?
-
-For the Technical Sales Guide we run an eight-week pilot on one division in one country, with your principals' products. For Site Finder we run a demo on a project brief you choose. For Assay we start with a scoping call. Find Me A Job and Unrejectable are live at findmeajob.uk and unrejectable.uk.
-
-What is the difference between the enterprise and SaaS products?
-
-We set up an enterprise product for each customer, load their data and agree the scope with them, starting with a demo or a pilot. A SaaS product is the same for everyone, and you sign up on its website.
+Enterprise software is set up for each customer on their own data, starting with a demo or a pilot. Data products give you sourced answers on a site, a grid connection, a planning risk or a company, as a report or through an API. SaaS products are the same for everyone, and you sign up on their website.
 
 Does Arithim build software for clients too?
 
 Yes. We also take on AI readiness work, automation, SAP ERP reporting, websites, training and regulatory systems for clients. The services page has the details.
 
-## Want an enterprise product on your own data?
-
-Tell us which product and a little about your business, and we will set up a demo with your products, markets or project brief. The SaaS products need no call: sign up on their sites.
-
-Ask for a demo →
-
-Prefer email? hello@arithim.com
+Call us
 
 ---
 
