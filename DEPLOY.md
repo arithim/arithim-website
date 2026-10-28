@@ -36,6 +36,10 @@ What gets published: everything in the repo root except `content/`, `tools/`, `.
 
 Do not edit `insight-*.html` by hand. Edit the Markdown and rebuild. Do not edit between the `<!-- insights:start -->` and `<!-- research:start -->` markers, or inside any `<!-- partial:... -->` block, either.
 
+## Discovery files for search engines and AI tools
+
+`python3 tools/build_discovery.py` writes `llms.txt` and `llms-full.txt` from the pages themselves, adds schema.org JSON-LD (between `<!-- discovery:ld:start -->` and `<!-- discovery:ld:end -->`) to hand-written pages that have none, adds a `<main id="main">` landmark and skip link where one is missing, and marks `404.html` noindex. Run it after adding or editing a page, then commit what it changes. CI runs `--check` and fails if anything is stale. Pages with their own JSON-LD (the products) and the insight articles are left alone: edit their source instead. `robots.txt` is hand-written and names the main AI crawlers; it allows all of them.
+
 ## Where the look lives
 
 Colours, fonts and the pill radius are CSS variables (`--ah-*`) in the managed block at the top of `site.css`. Change a value there to restyle the site. Styles that repeat across pages are classes in the block at the end of `site.css`, named `ah-...`. A page that repeats an inline style three times or more, or writes a token colour in a `style=""` attribute, fails CI. Fix it with `python3 tools/centralise_styles.py --write`, then `python3 tools/build_insights.py`. `node tools/style_diff.mjs --a <clean checkout> --b <your branch>` compares the computed style of every element at two widths.
