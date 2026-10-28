@@ -426,7 +426,7 @@ Describe this animation
 
 Three examples play in turn. In animal nutrition, a rep asks for a heat-stress product for broilers in Saudi Arabia. In coatings, a dispersant for a water-based wall paint in the UAE. In construction chemicals, a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.
 
-466 products147 suppliers8 industries10 interface languages, Arabic included
+Hundreds of products100+ suppliers8 industries10 interface languages, Arabic included
 
 Load your range
 
@@ -538,7 +538,7 @@ Describe this animation
 
 A data sheet template is chosen with co-branding and an English option. A page builds up with two logos, a title, specification rows, a registration line and a sources footer. An export button and a draft-for-review status follow. All figures are samples.
 
-See these jobs run on your own product range.
+See it work on your own product range.
 
 Request a demo →
 
@@ -698,7 +698,7 @@ FREQUENTLY ASKED
 
 How can my sales team answer technical questions without calling our technical manager?
 
-The Technical Sales Guide lets a salesperson answer a customer's technical question without calling a specialist. It holds a catalogue of 466 products from 147 suppliers across 8 industries. Your rep asks by application and condition and sees the products ranked, with dose, cost in use and landed cost, competitor equivalents and substitutes, and the regulations and registrations that apply. It is a starting point for a technical person to confirm.
+The Technical Sales Guide lets a salesperson answer a customer's technical question without calling a specialist. It holds a catalogue of hundreds of products from over 100 suppliers across 8 industries. Your rep asks by application and condition and sees the products ranked, with dose, cost in use and landed cost, competitor equivalents and substitutes, and the regulations and registrations that apply. It is a starting point for a technical person to confirm.
 
 How is this different from Copilot or ChatGPT over our SharePoint?
 
