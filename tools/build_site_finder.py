@@ -272,10 +272,14 @@ def build() -> str:
 
   <section class="tsg-sec" id="see" aria-labelledby="see-h">
     <div class="tsg-wrap">
-      <div class="tsg-eyebrow">SEE IT WORK</div>
-      <h2 class="tsg-h2" id="see-h">What does Site Finder look like when you ask a question?</h2>
-      <p class="tsg-lead">Load the app, read the verdict and scan the ranked list, then look across the map of scored sites. Names and figures are made up to show the interface.</p>
-      {scene("j1", hero=True)}
+      <div class="ah-split">
+        <div>
+          <div class="tsg-eyebrow">SEE IT WORK</div>
+          <h2 class="tsg-h2" id="see-h">What does Site Finder look like when you ask a question?</h2>
+          <p class="tsg-lead">Load the app, read the verdict and scan the ranked list, then look across the map of scored sites. Names and figures are made up to show the interface.</p>
+        </div>
+        {scene("j1", hero=True)}
+      </div>
     </div>
   </section>
 

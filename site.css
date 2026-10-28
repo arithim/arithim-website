@@ -663,8 +663,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .sf-hero .sf-cap { max-width: none; }
 .sf-meta { font: 400 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--ah-text-5); }
 .sf-vgrid { display: grid; gap: var(--ah-s-28) var(--ah-s-20); margin-top: 26px; }
-.sf-v3 { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-36); }
-.sf-v4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sf-v3, .sf-v4 { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-36); }
 .sf-fig h4 { font-family:var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-18); letter-spacing: -0.015em; color: var(--ah-cream); margin: var(--ah-s-14) 0 0; line-height: 1.25; }
 .sf-fig h4 + .sf-cap { margin-top: var(--ah-s-6); }
 .sf-sub { font-weight: 600; font-size: var(--ah-fs-22); letter-spacing: -0.02em; color: var(--ah-cream); margin-top: var(--ah-s-44); }
@@ -771,8 +770,8 @@ html:has(.sf) { scroll-behavior: smooth; }
    everything the scenes draw is below, in a 400 by 440 stage that the script scales to the card. */
 .sf .tsg-fig.sf-sfig { aspect-ratio: 400/440; max-width: 520px; }
 .sf .sf-fig .tsg-desc { margin: var(--ah-s-12) 0 0; max-width: none; }
-.sf-v3 .sf-fig { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: var(--ah-s-14) var(--ah-s-32); align-items: center; }
-.sf-v3 .sf-fig h4 { margin-top: 0; font-size: var(--ah-fs-22); }
+.sf-v3 .sf-fig, .sf-v4 .sf-fig { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: var(--ah-s-14) var(--ah-s-32); align-items: center; }
+.sf-v3 .sf-fig h4, .sf-v4 .sf-fig h4 { margin-top: 0; font-size: var(--ah-fs-22); }
 .sf-hero .tsg-ctl, .sf-hero .tsg-desc { max-width: 520px; }
 .s-body { flex: 1; position: relative; overflow: hidden; min-height: 0; }
 .s-a { position: absolute; box-sizing: border-box; }
@@ -861,12 +860,12 @@ html:has(.sf) { scroll-behavior: smooth; }
 .s-rt b { font-size: var(--ah-fs-20); font-weight: 700; letter-spacing: -.02em; } .s-npv b { font: 700 30px 'Schibsted Grotesk', sans-serif; color: var(--ah-sage-text); letter-spacing: -.02em; } .s-npv b.neg { color: #F2A07B; }
 .s-thr { padding: var(--ah-s-10) var(--ah-s-12); background: var(--ah-amber-08); border: 1px solid var(--ah-amber-50); border-radius: var(--ah-r-10); }
 .s-thr b { font-size: var(--ah-fs-15); color: var(--ah-amber-light); } .tsg-stage .s-thr p { margin: 5px 0 0; font-size: var(--ah-fs-14-5); line-height: 1.5; color: var(--ah-sand-2); }
-@media (max-width: 900px) { .sf-v3 .sf-fig { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-14); } .sf-v3 .sf-fig h4 { font-size: var(--ah-fs-18); } }
+@media (max-width: 900px) { .sf-v3 .sf-fig, .sf-v4 .sf-fig { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-14); } .sf-v3 .sf-fig h4, .sf-v4 .sf-fig h4 { font-size: var(--ah-fs-18); } }
 
 /* Alternate the working-session scenes left and right, as on the Technical Sales Guide page. */
 @media (min-width: 901px) {
-  .sf-v3 .sf-fig:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); }
-  .sf-v3 .sf-fig:nth-child(even) .sf-sc-v { order: 2; }
+  .sf-v3 .sf-fig:nth-child(even), .sf-v4 .sf-fig:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); }
+  .sf-v3 .sf-fig:nth-child(even) .sf-sc-v, .sf-v4 .sf-fig:nth-child(even) .sf-sc-v { order: 2; }
 }
 
 /* Pricing, shipped grid and early-access status (v8) */
@@ -1095,7 +1094,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
 /* The same hero on every product page: eyebrow, headline, lead, buttons, then a hairline and the price and status note under it. */
 .ah-h1 + .as-def { margin-top: var(--ah-s-20); }
-.ah-hero-foot { max-width: 760px; margin-top: var(--ah-s-28); padding-top: var(--ah-s-20); border-top: 1px solid var(--ah-cream-08); }
+.ah-hero-foot { max-width: 760px; margin-top: var(--ah-s-28); padding-top: var(--ah-s-20); border-top: 1px solid var(--ah-cream-18); }
 .ah-hero-foot .ah-price { margin: 0; }
 .ah-hero-foot .as-note { margin: var(--ah-s-8) 0 0; }
 .ah-hero-foot .ah-price + .as-note { margin-top: var(--ah-s-8); }
@@ -1761,7 +1760,8 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 }
 /* ---- 13. Hero layout with a picture beside the text. The one drawing kept here, tools/illustrations.py, is parked for Site Finder. ---- */
 .ah-art { margin: 0; }
-.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--ah-s-40); align-items: center; }
+.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--ah-s-40); align-items: start; }
+.ah-has-art .ah-nature { margin-top: var(--ah-s-24); }
 .ah-has-art .ah-h1 { font-size: var(--ah-fs-46); }
 .ah-art svg { display: block; width: 100%; height: auto; max-width: 440px; margin: 0 auto; font-family: var(--ah-font-display); color: var(--ah-cream); }
 .ah-art .p { fill: var(--ah-card); stroke: var(--ah-cream-14); stroke-width: 1; }
@@ -1987,3 +1987,11 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 .ah-contours-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); overflow: hidden; }
 .ah-contours-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .ah-contours figcaption.ah-contours-cap { margin-top: var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
+
+/* One line under every page hero, so the hero and the first section never run together. */
+main > section[data-hero]:first-child { border-bottom: 1px solid var(--ah-cream-12); }
+
+/* Split section: text on one side, an animation on the other, the same on every page (Technical Sales Guide and Site Finder "See it work"). */
+.ah-split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--ah-s-40); align-items: start; }
+.ah-split > :first-child .tsg-lead { margin-bottom: 0; }
+@media (max-width: 900px) { .ah-split { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-24); } }
