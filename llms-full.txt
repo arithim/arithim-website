@@ -1994,29 +1994,65 @@ OUR PRODUCTS
 
 Each product has its own page. The case studies below are client work. All products →
 
-ENTERPRISE
+ENTERPRISE SOFTWARE · DEMOS AND PILOTS
 
-Technical Sales Guide →
+Technical Sales Guide
 
-For chemical and ingredient distributors
+Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
-ENTERPRISE
+ENTERPRISE SOFTWARE · EARLY ACCESS
 
-Site Finder →
+AI model inventory
 
-For solar developers in Great Britain
+Know which AI models your business runs on, and prove it with a dated report.
 
-SAAS
+DATA PRODUCTS · AVAILABLE
 
-Find Me A Job →
+Site Finder
 
-For people looking for work
+Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
 
-SAAS
+DATA PRODUCTS · EARLY ACCESS
 
-Unrejectable →
+Battery storage siting report
 
-For people applying for jobs
+Is this site worth pursuing as a battery site, and what would end it? One site, one report.
+
+DATA PRODUCTS · EARLY ACCESS
+
+Grid pre-screen
+
+How close is a site to grid headroom, and who already holds capacity there?
+
+DATA PRODUCTS · EARLY ACCESS
+
+Planning risk screen
+
+Spot the planning constraints that could stop a site, before you pay for surveys.
+
+DATA PRODUCTS · PLANNED
+
+Solar suitability check
+
+Will solar work at this address? A plain verdict, the reasons and a yield estimate.
+
+DATA PRODUCTS · PLANNED
+
+UK company check
+
+Check who is behind a UK company, with a dated source for every fact.
+
+SAAS · LIVE
+
+Find Me A Job
+
+Describe yourself once and get a short list of roles worth applying for.
+
+SAAS · LIVE
+
+Unrejectable
+
+Find the fixable reasons your CV could be turned down, before anyone sees it.
 
 CLIENT WORK
 
