@@ -178,6 +178,780 @@
   }
  },
  {
+  "area": "Great Britain",
+  "status": "Available",
+  "cta": "Order now",
+  "slug": "landowner-check",
+  "name": "Landowner check",
+  "label": "landowner-check",
+  "title": "What should I do if a developer wants to build solar or a battery on my land? | Arithim",
+  "description": "A one page check for landowners and land agents: what the land looks like, how crowded the nearest grid point is, who the developer is and what the letter asks of you.",
+  "eyebrow": "LANDOWNER CHECK · GREAT BRITAIN",
+  "h1": "Had a letter from a developer? Know where you stand before you reply.",
+  "sub": "One page on your land for solar, battery or wind: the nearest grid point and how crowded it is, who the developer is and what else they hold nearby, the likely consent route, and any pressure terms in the letter.",
+  "status_note": "Order by email and receive your report in three working days.",
+  "benefits_h": "Why landowners use it",
+  "benefits": [
+   [
+    "Know what you have",
+    "A plain view of what your land looks like for solar, battery storage or wind."
+   ],
+   [
+    "Know who is asking",
+    "Who the developer is and what else they hold nearby."
+   ],
+   [
+    "Spot pressure",
+    "Terms in the letter that push you to sign quickly are flagged."
+   ],
+   [
+    "Questions for your adviser",
+    "Specific points to take to a solicitor or land agent."
+   ]
+  ],
+  "gets_h": "What is on the page",
+  "gets": [
+   [
+    "The land",
+    "What it looks like for solar, battery or wind."
+   ],
+   [
+    "The grid",
+    "The nearest grid point and how crowded it is."
+   ],
+   [
+    "The developer",
+    "Who they are and what else they hold nearby."
+   ],
+   [
+    "The route to consent",
+    "The likely route, and what it means for timing."
+   ],
+   [
+    "The letter",
+    "Any pressure terms, in plain words."
+   ],
+   [
+    "Next steps",
+    "Questions to ask an adviser before you reply."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Landowners",
+    "Approached by a developer and unsure what to ask."
+   ],
+   [
+    "Land agents",
+    "Advising several clients on the same kind of approach."
+   ],
+   [
+    "Farm and estate managers",
+    "Comparing an offer with what the land could support."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send the details",
+    "A postcode or map pin, the developer's name and, if you have it, a copy of their letter."
+   ],
+   [
+    "We check",
+    "We look at the land, the grid, the developer and the letter."
+   ],
+   [
+    "You receive a page",
+    "A one page report in three working days."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It is a screening aid. It is not legal advice, a valuation or a connection offer.",
+   "It covers Great Britain.",
+   "Grid and planning information comes from published sources, and the report says where each point comes from.",
+   "If you have a letter from the developer, attaching it lets us flag the terms in it."
+  ],
+  "faq": [
+   [
+    "What is a landowner check?",
+    "A one page report on your land, the nearest grid point, the developer who approached you and any pressure terms in their letter, with questions for an adviser."
+   ],
+   [
+    "How much does it cost and how long does it take?",
+    "£195 a report, excluding VAT. We deliver it within three working days of a complete order."
+   ],
+   [
+    "Does it tell me whether to sign?",
+    "No. It gives you facts and questions to take to a solicitor or land agent. It is not legal or financial advice."
+   ],
+   [
+    "What do I need to send?",
+    "A postcode or a map pin, the developer's name and, if you have it, their letter."
+   ],
+   [
+    "Does it cover Scotland and Wales?",
+    "It covers Great Britain. Northern Ireland is not covered."
+   ],
+   [
+    "What if the developer is a company I cannot find?",
+    "We say what we could and could not find about them. We do not guess."
+   ],
+   [
+    "How do I order?",
+    "Press Order and your email app opens a message with the details we need. We confirm the order by email."
+   ]
+  ],
+  "related": [
+   "site-feasibility-report",
+   "site-finder"
+  ],
+  "service_type": "Landowner check report",
+  "audience_type": "Landowners and land agents in Great Britain",
+  "audience": "For landowners and land agents",
+  "card_summary": "Had a letter from a developer? One page on your land, the grid, the developer and the terms.",
+  "cta_h": "Had a letter you are unsure about?",
+  "cta_p": "Send us the postcode and the letter. We will return one page in three working days.",
+  "price": {
+   "line": "£195 a report, excluding VAT",
+   "note": "Delivered in three working days.",
+   "amount": "195"
+  },
+  "card_price": "£195 a report",
+  "nature": {
+   "scene": "farmgate",
+   "title": "A letter arriving at a farm gate",
+   "desc": "A dotted field with a gate, a fence and a farmhouse. A letter drifts in on the breeze and lands on the gate, then ticks appear along the fence, one for each question answered. One tick carries an amber dot, for a pressure term. A sample, not a real address."
+  },
+  "order": {
+   "product": "Landowner check",
+   "needs": [
+    "Postcode or map pin:",
+    "Developer's name:",
+    "The developer's letter, if you have one (attach it):"
+   ]
+  }
+ },
+ {
+  "area": "Great Britain",
+  "status": "Available",
+  "cta": "Order now",
+  "slug": "site-feasibility-report",
+  "name": "Site feasibility report",
+  "label": "site-feasibility",
+  "title": "How do I check whether a solar, battery or wind site is feasible? | Arithim",
+  "description": "A feasibility report on one site in Great Britain: a verdict with reasons, constraints on a map, grid, planning, economics, contacts and sources.",
+  "eyebrow": "SITE FEASIBILITY REPORT · GREAT BRITAIN",
+  "h1": "A verdict on one site, with the reasons and the sources.",
+  "sub": "For solar, battery or wind in Great Britain: a verdict with reasons, the constraints on a map, grid, planning and economics, contacts, and the sources and licences behind each number.",
+  "status_note": "Order by email and receive your report in three working days. The solar and battery hybrid analysis is an optional extra.",
+  "benefits_h": "Why developers use it",
+  "benefits": [
+   [
+    "A decision you can defend",
+    "The reasons and the source for each number, ready for a committee or lender."
+   ],
+   [
+    "Grid, planning and economics together",
+    "One report joins what usually takes several."
+   ],
+   [
+    "Fast",
+    "Three working days from a complete order."
+   ],
+   [
+    "Your format",
+    "PDF, with Word and Excel on request."
+   ]
+  ],
+  "gets_h": "What is in the report",
+  "gets": [
+   [
+    "A verdict with reasons",
+    "Pursue, pass or proceed with caution, and why."
+   ],
+   [
+    "Constraints on a map",
+    "What could stop or change the project."
+   ],
+   [
+    "Grid",
+    "The nearest connection points and what we know about them."
+   ],
+   [
+    "Planning",
+    "The local planning position and the consent route."
+   ],
+   [
+    "Economics",
+    "What the site needs to make money, and how sensitive that is."
+   ],
+   [
+    "Contacts, sources and licences",
+    "Who to speak to, and where each number comes from."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "First-time developers",
+    "Get a view on one site before you commit."
+   ],
+   [
+    "Consultants",
+    "Add a sourced screening step to your own work."
+   ],
+   [
+    "Land teams and funds",
+    "Compare sites with the same checks."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send the site",
+    "A point, a drawn boundary, or a KML or shapefile, with the technology and size."
+   ],
+   [
+    "We assess",
+    "We join grid, planning, land and economics for that site."
+   ],
+   [
+    "You receive the report",
+    "A PDF in three working days, with Word and Excel on request."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It is a screening aid. It is not a grid connection offer, a planning decision or legal advice.",
+   "It covers Great Britain.",
+   "Every number carries its source, date and licence.",
+   "For a solar and battery site on one connection, the hybrid analysis is £500 on top."
+  ],
+  "faq": [
+   [
+    "What is a site feasibility report?",
+    "A report on one site in Great Britain that gives a verdict with reasons and joins the grid, planning, land and economics for that site, with sources."
+   ],
+   [
+    "How much does it cost and how long does it take?",
+    "£1,950 a site, excluding VAT, delivered in three working days. The solar and battery hybrid analysis is £500 on top."
+   ],
+   [
+    "How is this different from the Battery storage siting report?",
+    "The Battery storage siting report is built for battery sites, to decide whether one is worth pursuing and what would end it. The site feasibility report covers solar, battery or wind, with planning, economics, contacts and sources."
+   ],
+   [
+    "What do I need to send?",
+    "The location (a point, a drawn boundary, or a KML or shapefile), the technology and the project size in MW."
+   ],
+   [
+    "What is the hybrid analysis?",
+    "Hybrid economics for solar and battery on one connection, with clipping and dispatch, compared with solar alone. It needs the size of both."
+   ],
+   [
+    "Can I share it with a lender or committee?",
+    "Yes. The report carries sources and licences so others can check it. It is a screening aid and not a substitute for advice from the bodies that decide."
+   ],
+   [
+    "How do I order?",
+    "Press Order and your email app opens a message with the details we need. We confirm the order by email."
+   ]
+  ],
+  "related": [
+   "battery-siting-report",
+   "landowner-check",
+   "site-finder"
+  ],
+  "service_type": "Site feasibility report",
+  "audience_type": "Renewable developers, consultants and funds in Great Britain",
+  "audience": "For developers, consultants and funds",
+  "card_summary": "A verdict on one solar, battery or wind site, with the reasons and the sources.",
+  "cta_h": "Want a verdict on a site?",
+  "cta_p": "Send us the location, the technology and the size. We will return the report in three working days.",
+  "price": {
+   "line": "£1,950 a site, excluding VAT",
+   "note": "Solar and battery hybrid analysis is £500 more.",
+   "amount": "1950"
+  },
+  "card_price": "£1,950 a site",
+  "nature": {
+   "scene": "plotsurvey",
+   "title": "A plot of land being surveyed",
+   "desc": "A dotted plot of land. Survey stakes appear at the corners, contour rings tighten and four small gauges fill for grid, planning, land and economics. One gauge carries an amber dot. A sample, not a real site."
+  },
+  "order": {
+   "product": "Site feasibility report",
+   "needs": [
+    "Location (a point, a drawn boundary, or a KML or shapefile attached):",
+    "Technology (solar, battery or wind):",
+    "Project size (MW):"
+   ]
+  }
+ },
+ {
+  "area": "Great Britain",
+  "status": "Available",
+  "cta": "Order now",
+  "slug": "portfolio-screen",
+  "name": "Portfolio screen",
+  "label": "portfolio-screen",
+  "title": "How do I check a seller's list of solar or battery sites before buying? | Arithim",
+  "description": "A portfolio screen checks every claim in a seller's site list against the public record and marks it confirmed, contradicted, not verifiable or seller-supplied.",
+  "eyebrow": "PORTFOLIO SCREEN · GREAT BRITAIN",
+  "h1": "Test a seller's pipeline before you pay for it.",
+  "sub": "Every claim in a seller's site list is checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with the source for each contradiction.",
+  "status_note": "Order by email and receive your screen in five working days.",
+  "benefits_h": "Why investors use it",
+  "benefits": [
+   [
+    "Claims, not impressions",
+    "Each claim is marked confirmed, contradicted, not verifiable or seller-supplied."
+   ],
+   [
+    "Both values shown",
+    "Where the record disagrees, you see the seller's value and the record's, with the source."
+   ],
+   [
+    "A roll-up",
+    "A view of the whole portfolio, so you see where the risk sits."
+   ],
+   [
+    "Ready for the data room",
+    "A PDF and an Excel workbook, with a sources and licence appendix."
+   ]
+  ],
+  "gets_h": "What you receive",
+  "gets": [
+   [
+    "A check of every claim",
+    "Against the public record, site by site."
+   ],
+   [
+    "Contradictions with sources",
+    "Both values and where each comes from."
+   ],
+   [
+    "A portfolio roll-up",
+    "How the list stands as a whole."
+   ],
+   [
+    "A data-room PDF",
+    "For your committee, lender or adviser."
+   ],
+   [
+    "An Excel workbook",
+    "To filter and sort the findings."
+   ],
+   [
+    "Sources and licences",
+    "An appendix listing what was used."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Fund and acquisition analysts",
+    "Test a pipeline before you commit to a price."
+   ],
+   [
+    "Lenders and advisers",
+    "Add an independent check to your diligence."
+   ],
+   [
+    "Developers",
+    "Check a partner's list before you join it."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send the list",
+    "The seller's site list as a spreadsheet, KML or GeoJSON."
+   ],
+   [
+    "We check each claim",
+    "Against the public record, with a status for each."
+   ],
+   [
+    "You receive the screen",
+    "A PDF and an Excel workbook in five working days."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It checks claims against published records. It does not replace legal, technical or commercial diligence.",
+   "Where something cannot be checked, it is marked not verifiable. We do not guess.",
+   "It covers Great Britain.",
+   "Pricing is £7,500 for up to 50 sites and £120 for each extra site, excluding VAT."
+  ],
+  "faq": [
+   [
+    "What is a portfolio screen?",
+    "A check of every claim in a seller's list of sites against the public record, with each claim marked confirmed, contradicted, not verifiable or seller-supplied."
+   ],
+   [
+    "How much does it cost and how long does it take?",
+    "£7,500 for up to 50 sites and £120 for each extra site, excluding VAT, delivered in five working days."
+   ],
+   [
+    "What do I need to send?",
+    "The seller's site list as a spreadsheet, KML or GeoJSON, and the number of sites."
+   ],
+   [
+    "What does not verifiable mean?",
+    "The public record has nothing we can check the claim against. We say so and do not guess."
+   ],
+   [
+    "Can I share it with my lender or committee?",
+    "Yes. It comes as a PDF with sources and licences, and an Excel workbook."
+   ],
+   [
+    "Is it a substitute for diligence?",
+    "No. It is a fast independent check on the seller's claims. Legal, technical and commercial diligence still apply."
+   ],
+   [
+    "How do I order?",
+    "Press Order and your email app opens a message with the details we need. We confirm the order by email."
+   ]
+  ],
+  "related": [
+   "site-feasibility-report",
+   "site-finder"
+  ],
+  "service_type": "Portfolio screen",
+  "audience_type": "Fund and acquisition analysts, lenders and developers in Great Britain",
+  "audience": "For funds, lenders and developers",
+  "card_summary": "Check every claim in a seller's site list against the public record before you pay.",
+  "cta_h": "Looking at a seller's site list?",
+  "cta_p": "Send us the list. We will mark every claim and return the screen in five working days.",
+  "price": {
+   "line": "£7,500 for up to 50 sites, excluding VAT",
+   "note": "£120 for each extra site.",
+   "amount": "7500"
+  },
+  "card_price": "From £7,500",
+  "nature": {
+   "scene": "orchard",
+   "title": "An orchard checked row by row",
+   "desc": "Rows of small dotted trees stand for a seller's sites. A breeze moves along the rows and each tree settles: steady for confirmed, an amber dot for contradicted, faint for not verifiable, leaning for seller supplied. A sample, not real sites."
+  },
+  "order": {
+   "product": "Portfolio screen",
+   "needs": [
+    "The seller's site list (spreadsheet, KML or GeoJSON attached):",
+    "Number of sites:"
+   ]
+  }
+ },
+ {
+  "area": "Great Britain",
+  "status": "Available",
+  "cta": "Ask for a quote",
+  "slug": "market-watch",
+  "name": "Market Watch",
+  "label": "market-watch",
+  "title": "How do I track who holds grid capacity and what competitors are doing? | Arithim",
+  "description": "Market Watch follows company holdings by group and substation, exposed Gate 2 positions, idle connections and changes, with a weekly email digest.",
+  "eyebrow": "MARKET WATCH · GREAT BRITAIN",
+  "h1": "See who holds the grid and hear when it changes.",
+  "sub": "Company holdings by group, substation and league table, exposed Gate 2 positions, idle connections and a change feed, with a weekly email digest and watchlists for the companies and areas you follow.",
+  "status_note": "Ask for a demo first if you like. We reply by email.",
+  "benefits_h": "Why teams use it",
+  "benefits": [
+   [
+    "Who holds what",
+    "A company group's projects and connections by technology, stage, substation and planning authority."
+   ],
+   [
+    "Weak positions",
+    "Gate 2 positions with no planning application, and connections that sit idle."
+   ],
+   [
+    "What changed",
+    "New applications, Gate changes, status moves and holder changes for what you watch."
+   ],
+   [
+    "Your watchlists",
+    "Follow the companies, substations and areas that matter to you."
+   ]
+  ],
+  "gets_h": "What you get",
+  "gets": [
+   [
+    "Holdings by group",
+    "And by substation, with a league table."
+   ],
+   [
+    "Exposed Gate 2 positions",
+    "Where a position is not backed up."
+   ],
+   [
+    "Idle connections",
+    "Connections that are not being used."
+   ],
+   [
+    "A change feed",
+    "In the app, with a weekly email digest."
+   ],
+   [
+    "Watchlists",
+    "Companies, substations and areas."
+   ],
+   [
+    "Sources and dates",
+    "Every record carries its source and date."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Developer origination teams",
+    "See who you are competing with at each substation."
+   ],
+   [
+    "Funds and acquirers",
+    "Understand a seller's position and their neighbours."
+   ],
+   [
+    "Advisers and analysts",
+    "Follow the market without building your own tracker."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Tell us what you follow",
+    "The companies, substations and areas you care about."
+   ],
+   [
+    "We set up your watchlists",
+    "With the weekly digest to your team."
+   ],
+   [
+    "You see changes as they happen",
+    "In the app and in your inbox."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It covers Great Britain.",
+   "It reports published records and says where each one comes from.",
+   "It is a market intelligence service, not advice on whether to buy, sell or build.",
+   "Price is from £15,000 a year, excluding VAT, depending on the number of users."
+  ],
+  "faq": [
+   [
+    "What is Market Watch?",
+    "A subscription that follows company holdings, Gate 2 positions, idle connections and changes in the Great Britain grid queue, with watchlists and a weekly email digest."
+   ],
+   [
+    "How much does it cost?",
+    "From £15,000 a year, excluding VAT, depending on the number of users."
+   ],
+   [
+    "What changes does it report?",
+    "New connection applications, Gate changes, status moves and holder changes for the companies, substations and areas you watch."
+   ],
+   [
+    "Is there a free trial?",
+    "We offer a demo. Ask for a quote and say you would like one first."
+   ],
+   [
+    "Is it part of Site Finder?",
+    "It is a separate product. The Site Finder platform includes it as part of the origination desk, and Market Watch is available on its own."
+   ],
+   [
+    "How do I order?",
+    "Press Ask for a quote and your email app opens a message with the details we need. We reply by email."
+   ]
+  ],
+  "related": [
+   "site-finder",
+   "data-api"
+  ],
+  "service_type": "Grid market intelligence subscription",
+  "audience_type": "Developers, funds and advisers in Great Britain",
+  "audience": "For developers, funds and advisers",
+  "card_summary": "Who holds the grid, which positions are exposed and what changed, with a weekly digest.",
+  "cta_h": "Want to follow the grid queue?",
+  "cta_p": "Tell us the companies and areas you follow. We will set up your watchlists.",
+  "price": {
+   "line": "From £15,000 a year, excluding VAT",
+   "note": "Depending on the number of users.",
+   "amount": "15000"
+  },
+  "card_price": "From £15,000 a year",
+  "nature": {
+   "scene": "lookout",
+   "title": "A watchtower on a hill",
+   "desc": "A dotted watchtower on a hill. Ripples sweep out like a radar and small dotted birds arrive from the horizon and settle on a wire, one for each change. One arrival carries an amber dot. A sample, not real data."
+  },
+  "order": {
+   "product": "Market Watch",
+   "needs": [
+    "Number of users:",
+    "Preferred start date:",
+    "Demo first (yes or no):"
+   ],
+   "quote": true
+  }
+ },
+ {
+  "area": "Great Britain",
+  "status": "Available",
+  "cta": "Ask for a quote",
+  "slug": "data-api",
+  "name": "Data API and MCP",
+  "label": "data-api",
+  "title": "Is there an API for UK grid, project and planning data? | Arithim",
+  "description": "A read-only API and MCP server for your tools and AI assistants: projects, substations, map cells, company holdings and changes, each with its source, date and licence.",
+  "eyebrow": "DATA API AND MCP · GREAT BRITAIN",
+  "h1": "Let your tools and AI assistants read the grid.",
+  "sub": "A read-only API and an MCP server for projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence.",
+  "status_note": "Tell us what you plan to connect and we will scope keys and limits.",
+  "benefits_h": "Why teams use it",
+  "benefits": [
+   [
+    "Your data, in your tools",
+    "Read projects, substations and holdings from your own systems."
+   ],
+   [
+    "Ready for AI assistants",
+    "An MCP server so your assistants can ask questions of the data directly."
+   ],
+   [
+    "Traceable",
+    "Every record carries its source, date and licence."
+   ],
+   [
+    "Controlled",
+    "Keys and usage limits for each organisation."
+   ]
+  ],
+  "gets_h": "What you get",
+  "gets": [
+   [
+    "A read-only API",
+    "Projects, substations and grid nodes, map cells, company groups and holdings."
+   ],
+   [
+    "An MCP server",
+    "For your own AI assistants and tools."
+   ],
+   [
+    "Changes",
+    "A feed of what moved and when."
+   ],
+   [
+    "Licences",
+    "The licence of each source, with each record."
+   ],
+   [
+    "Keys and limits",
+    "Per organisation, with usage limits."
+   ],
+   [
+    "Support",
+    "From a person who knows the data."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Developers' data teams",
+    "Feed origination tools with the same data."
+   ],
+   [
+    "Funds and analysts",
+    "Build models and dashboards on a clean source."
+   ],
+   [
+    "Teams with AI assistants",
+    "Let an assistant answer grid questions with sources."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Tell us what you will connect",
+    "The tools or assistants and the data you need."
+   ],
+   [
+    "We issue keys",
+    "Per organisation, with usage limits."
+   ],
+   [
+    "You connect",
+    "The API and MCP server are read-only."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It is read-only.",
+   "It covers Great Britain.",
+   "Each record carries its source, date and licence, and you must respect the licence when you reuse it.",
+   "Price is from £18,000 a year, excluding VAT, depending on use."
+  ],
+  "faq": [
+   [
+    "What is the Data API and MCP?",
+    "A read-only API and an MCP server that give your tools and AI assistants the same grid, project and holdings data we use, with sources."
+   ],
+   [
+    "How much does it cost?",
+    "From £18,000 a year, excluding VAT, depending on use."
+   ],
+   [
+    "What is MCP?",
+    "Model Context Protocol, a standard way for AI assistants to call tools and read data. Our MCP server lets your assistant ask questions of the data."
+   ],
+   [
+    "Can I resell the data?",
+    "No. Each record carries its licence, and your use must respect it."
+   ],
+   [
+    "Is it part of Site Finder?",
+    "It is a separate product. The Site Finder platform includes access for its own team, and the API is available on its own."
+   ],
+   [
+    "How do I order?",
+    "Press Ask for a quote and your email app opens a message with the details we need. We reply by email."
+   ]
+  ],
+  "related": [
+   "site-finder",
+   "market-watch"
+  ],
+  "service_type": "Grid and project data API",
+  "audience_type": "Developers' data teams, funds and analysts in Great Britain",
+  "audience": "For data teams and analysts",
+  "card_summary": "A read-only API and MCP server so your tools and AI assistants can read the grid, with sources.",
+  "cta_h": "Want your tools to read the grid?",
+  "cta_p": "Tell us what you plan to connect. We will scope the keys and limits.",
+  "price": {
+   "line": "From £18,000 a year, excluding VAT",
+   "note": "Per-organisation keys and usage limits.",
+   "amount": "18000"
+  },
+  "card_price": "From £18,000 a year",
+  "nature": {
+   "scene": "streams",
+   "title": "A spring feeding streams to small houses",
+   "desc": "A dotted spring feeds streams that fork into channels and flow to several small dotted houses and windmills, which stand for your tools. Droplets of dots carry a small tag for their source. A sample, not real data."
+  },
+  "order": {
+   "product": "Data API and MCP",
+   "needs": [
+    "Tools or assistants you plan to connect:",
+    "Preferred start date:",
+    "Demo first (yes or no):"
+   ],
+   "quote": true
+  }
+ },
+ {
   "slug": "battery-siting-report",
   "name": "Battery storage siting report",
   "label": "battery-siting",

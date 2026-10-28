@@ -13,6 +13,13 @@
           "summary": "Rank products by application and condition, with cost in use, landed cost and country registrations beside each one."
         },
         {
+          "name": "Site Finder",
+          "url": "product-site-finder.html",
+          "status": "Available",
+          "audience": "For developer and fund teams in Great Britain",
+          "summary": "The enterprise origination desk: ranked sites for solar, battery and onshore wind, with the evidence behind every number."
+        },
+        {
           "slug": "ai-model-inventory",
           "status": "Early access"
         }
@@ -27,11 +34,16 @@
           "name": "Energy sites, grid and planning",
           "items": [
             {
-              "name": "Site Finder",
-              "url": "product-site-finder.html",
-              "status": "Available",
-              "audience": "For renewable developers in Great Britain",
-              "summary": "Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site."
+              "slug": "landowner-check",
+              "status": "Available"
+            },
+            {
+              "slug": "site-feasibility-report",
+              "status": "Available"
+            },
+            {
+              "slug": "portfolio-screen",
+              "status": "Available"
             },
             {
               "slug": "battery-siting-report",
@@ -48,6 +60,19 @@
             {
               "slug": "solar-suitability-api",
               "status": "Planned"
+            }
+          ]
+        },
+        {
+          "name": "Grid market data and API",
+          "items": [
+            {
+              "slug": "market-watch",
+              "status": "Available"
+            },
+            {
+              "slug": "data-api",
+              "status": "Available"
             }
           ]
         },
