@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar suitability sample</title>
+<style>
+  :root {
+    --page: #F4F0E8;
+    --ink: #2B2A27;
+    --muted: #6F6A60;
+    --card: #FFFDF8;
+    --line: #E6DDCD;
+    --sky-a: #FBF4E7;
+    --sky-b: #F1E0C4;
+    --sage: #8DB07A;
+    --sage-ink: #203318;
+    --sun: #F2B233;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #15140F;
+      --ink: #F1EBDF;
+      --muted: #A8A195;
+      --card: #27241E;
+      --line: #3A352C;
+      --sky-a: #2B2C35;
+      --sky-b: #1C1D24;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #15140F;
+    --ink: #F1EBDF;
+    --muted: #A8A195;
+    --card: #27241E;
+    --line: #3A352C;
+    --sky-a: #2B2C35;
+    --sky-b: #1C1D24;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--page);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  figure { margin: 0; width: min(960px, 100%); }
+
+  .scene {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    container-type: inline-size;
+    background: linear-gradient(180deg, var(--sky-a) 0%, var(--sky-b) 100%);
+    box-shadow: 0 0 0 1px var(--line), 0 14px 34px rgba(60, 40, 15, 0.10);
+  }
+  .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  #scene-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .title {
+    position: absolute;
+    left: 4cqw;
+    top: 4cqw;
+    margin: 0;
+    font-size: clamp(14px, 2.9cqw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .clock {
+    position: absolute;
+    right: 4cqw;
+    top: 4cqw;
+    padding: 0.3em 0.75em;
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--muted);
+    font-size: clamp(11px, 1.9cqw, 15px);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    opacity: 0.92;
+  }
+
+  .card {
+    position: absolute;
+    right: 3cqw;
+    bottom: 4cqw;
+    width: clamp(168px, 30cqw, 300px);
+    padding: clamp(10px, 1.7cqw, 17px);
+    border-radius: 14px;
+    background: var(--card);
+    box-shadow: 0 10px 28px rgba(60, 40, 15, 0.18), 0 0 0 1px var(--line);
+    font-size: clamp(11px, 1.6cqw, 14px);
+    line-height: 1.35;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .scene.ready .card { opacity: 1; transform: none; }
+  @container (max-width: 600px) {
+    .card {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: auto;
+      margin: 0 4cqw 4cqw;
+    }
+  }
+  .k {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.5em;
+    padding: 0.35em 0.8em 0.35em 0.6em;
+    border-radius: 999px;
+    background: var(--sage);
+    color: var(--sage-ink);
+    font-weight: 700;
+  }
+  .chip svg { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+  .yield-label { margin-top: 0.9em; display: block; }
+  .yield {
+    margin-top: 0.3em;
+    font-size: clamp(22px, 4.1cqw, 40px);
+    font-weight: 750;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  .yield small {
+    margin-left: 0.3em;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .sub { margin-top: 0.4em; color: var(--muted); }
+  .reasons {
+    list-style: none;
+    margin: 0.8em 0 0;
+    padding: 0.7em 0 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.45em;
+  }
+  .reasons li { display: flex; align-items: flex-start; gap: 0.55em; }
+  .dot {
+    flex: 0 0 auto;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.05em;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.72em;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .ok .dot { background: var(--sage); color: var(--sage-ink); }
+  .warn .dot { background: var(--sun); color: #3B2A08; }
+
+  figcaption {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+  }
+</style>
+</head>
+<body>
+<figure>
+  <div class="scene" id="scene" role="img" aria-label="Illustrated sample of a house with solar panels on a south-facing roof. Verdict: likely suitable. Reasons: the roof faces south, and a tree shades one slope for part of the day, costing about 6 percent of output. Sample yield: about 3,420 kWh a year for a 4 kW system. Illustrative example, not real data.">
+    <div class="stage">
+    <svg id="scene-svg" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF1C9" stop-opacity="0.95"/>
+          <stop offset="40%" stop-color="#F6CF6B" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#F6CF6B" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="clipA"></clipPath>
+        <clipPath id="clipLawn"></clipPath>
+      </defs>
+      <path d="M180 290 A300 150 0 0 1 780 290" fill="none" stroke="#A8A195" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+    <div class="title">Will solar work at this address?</div>
+    <div class="clock" id="clock">06:00</div>
+    </div>
+    <div class="card" id="card">
+      <div class="k">Sample address</div>
+      <span class="chip">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Likely suitable
+      </span>
+      <span class="k yield-label">Estimated yield</span>
+      <div class="yield"><span id="yv">0</span><small>kWh a year</small></div>
+      <div class="sub">Sample figure for a 4 kW system</div>
+      <ul class="reasons">
+        <li class="ok"><span class="dot">&#10003;</span><span>Roof faces south</span></li>
+        <li class="warn"><span class="dot">!</span><span>Tree shade on one slope, about 6% of output</span></li>
+        <li class="ok"><span class="dot">&#10003;</span><span>No listed building or conservation area found</span></li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Illustrative example. Not real data.</figcaption>
+</figure>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const K = 70, CX = 480, CY = 326, C30 = Math.cos(Math.PI / 6);
+const PERIOD = 14;          // seconds for one sample day
+const YEAR_KWH = 3420;      // sample figure
+const NA = [0, 0.6, 0.8];   // roof A normal (faces south and up)
+const P0 = [0, 1.0, 1.0];   // a point on roof A (eave)
+const CROWN = [-1.0, 1.9, 2.3];
+const TRUNK_BASE = [-1.0, 1.9];
+const SHADE_R = 0.8;
+const MAXEL = 0.95;
+const PANEL_DARK = [31, 68, 102];
+const PANEL_LIT = [84, 150, 210];
+
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const P = (x, y, z) => [CX + (x - y) * C30 * K, CY + (x + y) * 0.5 * K - z * K];
+const pts = arr => arr.map(p => P(p[0], p[1], p[2]).map(n => n.toFixed(1)).join(',')).join(' ');
+const mk = (tag, attrs, parent) => {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const mix = (a, b, t) => 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',') + ')';
+const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+
+// Roof A: eave at y = 1, ridge at y = 0. Point at fraction v up the slope.
+const PA = (x, v) => [x, 1 - v, 1 + 0.75 * v];
+const ROOF_A = [[-1.3, 1, 1], [1.3, 1, 1], [1.3, 0, 1.75], [-1.3, 0, 1.75]];
+const ROOF_B = [[-1.3, -1, 1], [1.3, -1, 1], [1.3, 0, 1.75], [-1.3, 0, 1.75]];
+const FOOT = [[-1.3, -1], [1.3, -1], [1.3, 1], [-1.3, 1]];
+
+const PANELS = [];
+for (let r = 0; r < 2; r++) {
+  for (let c = 0; c < 5; c++) {
+    const x0 = -1.15 + c * 0.46, x1 = x0 + 0.40;
+    const v0 = [0.12, 0.54][r], v1 = v0 + 0.34;
+    PANELS.push({
+      corners: [PA(x0, v0), PA(x1, v0), PA(x1, v1), PA(x0, v1)],
+      c: PA((x0 + x1) / 2, (v0 + v1) / 2)
+    });
+  }
+}
+
+// Sun: dawn in the east, noon to the south, dusk in the west.
+function sunAt(t) {
+  const phi = Math.PI * t;
+  const e = MAXEL * Math.sin(phi);
+  const c = Math.cos(e);
+  return { phi, e, c, S: [-Math.cos(phi) * c, Math.sin(phi) * c, Math.sin(e)] };
+}
+
+// Where the tree's shadow lands on roof A, or null.
+function shadowPoint(S) {
+  const d = NA[1] * S[1] + NA[2] * S[2];
+  if (d < 0.02) return null;
+  const u = (NA[1] * (CROWN[1] - P0[1]) + NA[2] * (CROWN[2] - P0[2])) / d;
+  if (u < 0) return null;
+  return [CROWN[0] - u * S[0], CROWN[1] - u * S[1], CROWN[2] - u * S[2]];
+}
+
+function panelLevels(S, Ps) {
+  const dot = clamp(NA[1] * S[1] + NA[2] * S[2], 0, 1);
+  return PANELS.map(p => {
+    let mul = 1;
+    if (Ps) mul = 1 - 0.8 * clamp((SHADE_R + 0.25 - dist(p.c, Ps)) / 0.5, 0, 1);
+    return Math.pow(dot, 0.8) * mul;
+  });
+}
+
+// Cumulative sample output across the day, to convert time into a yield fraction.
+const N = 240;
+const CUM = [0];
+for (let i = 1; i <= N; i++) {
+  const t = i / N, s = sunAt(t);
+  const lv = panelLevels(s.S, shadowPoint(s.S));
+  CUM[i] = CUM[i - 1] + lv.reduce((a, b) => a + b, 0);
+}
+function cumFrac(t) {
+  const x = clamp(t * N, 0, N), i = Math.floor(x), f = x - i;
+  const a = CUM[i], b = CUM[Math.min(N, i + 1)];
+  return (a + (b - a) * f) / CUM[N];
+}
+
+// ---- Build the scene ----
+const svg = $('scene-svg');
+const defs = svg.querySelector('defs');
+
+// Sun
+const sunGlow = mk('circle', { r: 120, fill: 'url(#glow)' }, svg);
+const sunDisc = mk('circle', { r: 22, fill: '#F2B233' }, svg);
+
+// Plot slab (lawn with earth edge)
+const SL = 2.6;
+mk('polygon', { points: pts([[SL, -SL, -0.12], [SL, SL, -0.12], [SL, SL, 0], [SL, -SL, 0]]), fill: '#CDB99A' }, svg);
+mk('polygon', { points: pts([[-SL, SL, -0.12], [SL, SL, -0.12], [SL, SL, 0], [-SL, SL, 0]]), fill: '#BBA383' }, svg);
+mk('polygon', { points: pts([[-SL, -SL, 0], [SL, -SL, 0], [SL, SL, 0], [-SL, SL, 0]]), fill: '#B7D19D' }, svg);
+
+// Stone path from the front door to the plot edge
+mk('polygon', { points: pts([[-0.22, 1.0, 0.01], [0.22, 1.0, 0.01], [0.22, SL, 0.01], [-0.22, SL, 0.01]]), fill: '#F4EBDC' }, svg);
+
+// Ground shadows (dynamic), grouped so overlaps do not darken
+mk('polygon', { points: pts([[-SL, -SL, 0], [SL, -SL, 0], [SL, SL, 0], [-SL, SL, 0]]) }, svg.querySelector('#clipLawn'));
+const gShade = mk('g', { fill: '#2B2118', 'clip-path': 'url(#clipLawn)' }, svg);
+const houseShadow = [];
+for (let i = 0; i < 5; i++) houseShadow.push(mk('polygon', {}, gShade));
+const treeShadow = mk('polygon', {}, gShade);
+
+// House: back roof, front wall, side wall with gable, front roof
+mk('polygon', { points: pts(ROOF_B), fill: '#B9603F' }, svg);
+mk('polygon', { points: pts([[-1.3, 1, 0], [1.3, 1, 0], [1.3, 1, 1], [-1.3, 1, 1]]), fill: '#F3E6CF' }, svg);
+mk('polygon', { points: pts([[1.3, -1, 0], [1.3, 1, 0], [1.3, 1, 1], [1.3, -1, 1]]), fill: '#E2CFAE' }, svg);
+mk('polygon', { points: pts([[1.3, -1, 1], [1.3, 1, 1], [1.3, 0, 1.75]]), fill: '#B9603F' }, svg);
+// Windows and door
+[[-0.95, -0.5], [0.5, 0.95]].forEach(([a, b]) => {
+  mk('polygon', { points: pts([[a, 1.01, 0.3], [b, 1.01, 0.3], [b, 1.01, 0.72], [a, 1.01, 0.72]]), fill: '#4B5560' }, svg);
+});
+mk('polygon', { points: pts([[1.31, -0.7, 0.3], [1.31, -0.25, 0.3], [1.31, -0.25, 0.72], [1.31, -0.7, 0.72]]), fill: '#4B5560' }, svg);
+mk('polygon', { points: pts([[-0.24, 1.01, 0], [0.24, 1.01, 0], [0.24, 1.01, 0.62], [-0.24, 1.01, 0.62]]), fill: '#5B4636' }, svg);
+
+// Front roof with panels
+mk('polygon', { points: pts(ROOF_A), fill: '#D9734E' }, svg);
+const clipPoly = mk('polygon', { points: pts(ROOF_A) }, defs.querySelector('#clipA'));
+const ridge = P(-1.3, 0, 1.75), ridgeEnd = P(1.3, 0, 1.75);
+mk('line', { x1: ridge[0], y1: ridge[1], x2: ridgeEnd[0], y2: ridgeEnd[1], stroke: '#9C4B2F', 'stroke-width': 2.5, 'stroke-linecap': 'round' }, svg);
+
+PANELS.forEach(p => {
+  p.el = mk('polygon', { points: pts(p.corners), fill: 'rgb(31,68,102)', stroke: 'rgba(255,255,255,0.35)', 'stroke-width': 0.8, 'stroke-linejoin': 'round' }, svg);
+  p.glint = mk('polygon', { points: pts(p.corners), fill: '#FFF4D6', opacity: 0 }, svg);
+});
+
+const gBlob = mk('g', { 'clip-path': 'url(#clipA)' }, svg);
+const blobSoft = mk('polygon', { fill: '#1E160E', 'fill-opacity': 0.14 }, gBlob);
+const blob = mk('polygon', { fill: '#1E160E', 'fill-opacity': 0.34 }, gBlob);
+
+// Tree (in front of the house, to the left)
+const tb = P(TRUNK_BASE[0], TRUNK_BASE[1], 0), tt = P(TRUNK_BASE[0], TRUNK_BASE[1], 2.1);
+mk('line', { x1: tb[0], y1: tb[1], x2: tt[0], y2: tt[1], stroke: '#5B4636', 'stroke-width': 9, 'stroke-linecap': 'round' }, svg);
+const cc = P(CROWN[0], CROWN[1], CROWN[2]);
+const TC = 52;
+mk('circle', { cx: cc[0], cy: cc[1], r: TC, fill: '#6E9A5E' }, svg);
+mk('circle', { cx: cc[0] - 26, cy: cc[1] + 14, r: TC * 0.72, fill: '#6E9A5E' }, svg);
+mk('circle', { cx: cc[0] + 24, cy: cc[1] - 16, r: TC * 0.66, fill: '#8DB07A' }, svg);
+
+// ---- Per-frame render ----
+function render(t, final) {
+  const s = sunAt(t);
+  const fade = clamp(s.e / 0.18, 0, 1);
+
+  // Sun on its arc
+  const sx = 480 - Math.cos(s.phi) * 300, sy = 290 - Math.sin(s.phi) * 150;
+  for (const el of [sunDisc, sunGlow]) { el.setAttribute('cx', sx.toFixed(1)); el.setAttribute('cy', sy.toFixed(1)); }
+  sunDisc.setAttribute('opacity', (0.35 + 0.65 * fade).toFixed(2));
+  sunGlow.setAttribute('opacity', (0.15 + 0.85 * fade).toFixed(2));
+
+  // Ground shadows, pointing away from the sun
+  const dirx = -s.S[0] / s.c, diry = -s.S[1] / s.c;
+  const sn = Math.max(Math.sin(s.e), 0.05);
+  const Lh = Math.min(3.2, 1.75 * s.c / sn);
+  const ox = dirx * Lh, oy = diry * Lh;
+  for (let i = 0; i < 4; i++) {
+    const a = FOOT[i], b = FOOT[(i + 1) % 4];
+    houseShadow[i].setAttribute('points', pts([[a[0], a[1], 0], [b[0], b[1], 0], [b[0] + ox, b[1] + oy, 0], [a[0] + ox, a[1] + oy, 0]]));
+  }
+  houseShadow[4].setAttribute('points', pts(FOOT.map(p => [p[0] + ox, p[1] + oy, 0])));
+  const Lt = Math.min(2.6, 2.3 * s.c / sn);
+  const tx = dirx * Lt / 2, ty = diry * Lt / 2;
+  const ring = [];
+  for (let k = 0; k < 18; k++) {
+    const th = (k / 18) * Math.PI * 2;
+    const a = Lt / 2 + 0.25, b = 0.55;
+    const along = a * Math.cos(th), across = b * Math.sin(th);
+    ring.push([TRUNK_BASE[0] + tx + dirx * along - diry * across, TRUNK_BASE[1] + ty + diry * along + dirx * across, 0]);
+  }
+  treeShadow.setAttribute('points', pts(ring));
+  gShade.setAttribute('opacity', (0.2 * fade).toFixed(3));
+
+  // Tree shadow on roof A, and panel light
+  const Ps = shadowPoint(s.S);
+  const lv = panelLevels(s.S, Ps);
+  PANELS.forEach((p, i) => {
+    const l = lv[i];
+    p.el.setAttribute('fill', mix(PANEL_DARK, PANEL_LIT, clamp(l, 0, 1)));
+    p.glint.setAttribute('opacity', (0.32 * clamp(l, 0, 1) * clamp(fade * 1.2, 0, 1)).toFixed(3));
+  });
+  if (Ps) {
+    const ringFor = r => {
+      const out = [];
+      for (let k = 0; k < 24; k++) {
+        const th = (k / 24) * Math.PI * 2;
+        out.push([Ps[0] + r * Math.cos(th), Ps[1] - 0.8 * r * Math.sin(th), Ps[2] + 0.6 * r * Math.sin(th)]);
+      }
+      return pts(out);
+    };
+    blob.setAttribute('points', ringFor(SHADE_R));
+    blobSoft.setAttribute('points', ringFor(SHADE_R * 1.3));
+    const o = clamp(fade * 1.5, 0, 1);
+    blob.setAttribute('fill-opacity', (0.34 * o).toFixed(3));
+    blobSoft.setAttribute('fill-opacity', (0.14 * o).toFixed(3));
+  } else {
+    blob.setAttribute('points', '');
+    blobSoft.setAttribute('points', '');
+  }
+
+  // Yield and clock
+  const yv = final ? YEAR_KWH : Math.round(YEAR_KWH * cumFrac(t));
+  $('yv').textContent = yv.toLocaleString('en-GB');
+  const hours = 6 + 12 * t;
+  const hh = Math.floor(hours), mm = Math.min(55, Math.floor((hours - hh) * 12) * 5);
+  $('clock').textContent = String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+}
+
+// ---- Loop, pause when off screen or hidden, static frame for reduced motion ----
+const scene = $('scene');
+const reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+let rafId = 0, last = 0, elapsed = 0, onScreen = true;
+
+function frame(now) {
+  if (last) elapsed += (now - last) / 1000;
+  last = now;
+  render((elapsed % PERIOD) / PERIOD, false);
+  rafId = requestAnimationFrame(frame);
+}
+function start() {
+  if (rafId || reduceMQ.matches || document.hidden || !onScreen) return;
+  last = 0;
+  rafId = requestAnimationFrame(frame);
+}
+function stop() {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = 0;
+  last = 0;
+}
+function showStatic() {
+  stop();
+  render(0.5, true);
+}
+
+if (reduceMQ.matches) {
+  showStatic();
+} else {
+  render(0, false);
+  start();
+}
+scene.classList.add('ready');
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stop(); else start();
+});
+if (window.IntersectionObserver) {
+  new IntersectionObserver(entries => {
+    onScreen = entries[0].isIntersecting;
+    if (onScreen) start(); else stop();
+  }, { threshold: 0.2 }).observe(scene);
+}
+const onMotionChange = () => {
+  if (reduceMQ.matches) showStatic(); else start();
+};
+if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', onMotionChange);
+</script>
+</body>
+</html>
