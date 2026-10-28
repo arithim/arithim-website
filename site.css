@@ -1091,6 +1091,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-pcard-price { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-cream); }
 .ah-ring-spin { position: absolute; inset: -150%; background: conic-gradient(from 0deg, transparent 50%, var(--ah-amber), var(--ah-amber-light), transparent 78%); animation: ah-spin 3s linear infinite; }
 .ah-btn-face { position: relative; display: inline-flex; align-items: center; gap: var(--ah-s-8); padding: var(--ah-s-16) 30px; border-radius: var(--ah-r-pill); background: var(--ah-card-2); color: var(--ah-cream); font-size: var(--ah-fs-16); font-weight: 600; }
+.ah-btn-face.ah-btn-face-sm { padding: 11px var(--ah-s-20); font-size: var(--ah-fs-14); gap: var(--ah-s-8); }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
 /* The same hero on every product page: eyebrow, headline, lead, buttons, then a hairline and the price and status note under it. */
 .ah-h1 + .as-def { margin-top: var(--ah-s-20); }
@@ -1995,3 +1996,19 @@ main > section[data-hero]:first-child { border-bottom: 1px solid var(--ah-cream-
 .ah-split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--ah-s-40); align-items: start; }
 .ah-split > :first-child .tsg-lead { margin-bottom: 0; }
 @media (max-width: 900px) { .ah-split { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-24); } }
+
+.ah-hero-steps { margin: var(--ah-s-8) 0 var(--ah-s-28); }
+.ah-price a { color: inherit; text-decoration: none; }
+
+/* Section backgrounds (option B, drifting colour): every band after the hero gets two very soft amber and blue glows that wander slowly.
+   One rule for the whole site, theme aware, off for reduced motion. The hero animations are separate and stay. */
+main > section:not([data-hero]):not(.ah-globe):not(.ah-contours), main > .r-gut { position: relative; overflow: hidden; isolation: isolate; }
+main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::before, main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::after,
+main > .r-gut::before, main > .r-gut::after { content: ""; position: absolute; z-index: -1; width: 60vmax; height: 60vmax; border-radius: 50%; opacity: 0.5; pointer-events: none; }
+main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::before, main > .r-gut::before { left: -15vmax; top: -30vmax; background: radial-gradient(circle, var(--ah-amber-16), transparent 65%); animation: ah-wander-a 38s ease-in-out infinite alternate; }
+main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::after, main > .r-gut::after { right: -20vmax; bottom: -35vmax; background: radial-gradient(circle, var(--ah-blue-18), transparent 65%); animation: ah-wander-b 46s ease-in-out infinite alternate; }
+@keyframes ah-wander-a { to { transform: translate(18vmax, 10vmax); } }
+@keyframes ah-wander-b { to { transform: translate(-16vmax, -8vmax); } }
+@media (prefers-reduced-motion: reduce) {
+  main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::before, main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::after, main > .r-gut::before, main > .r-gut::after { animation: none; }
+}

@@ -217,9 +217,7 @@ def build() -> str:
     also = '<div class="tsg-grid tsg-g3">' + "".join(f'<a class="tsg-card ah-pcard" href="{e(u)}"><h3>{e(n)}</h3><p>{e(w)}</p><span class="ah-pcard-price">{e(pr)}</span><span class="ah-pcard-more">Learn more →</span></a>' for n, u, w, pr in ALSO) + '</div>'
     subs = "".join(price_card(n, p, w, nd, None) for n, p, w, nd in SUBS)
     ent = price_card(*ENTERPRISE, None)
-    btn = ('<a href="contact.html?product=site-finder" style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
-           '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
-           '<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Book a demo →</span></a>')
+    btn = '<a href="contact.html?product=site-finder" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Book a demo →</span></a>'
     return f'''<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -252,22 +250,19 @@ def build() -> str:
 <!-- /partial:header -->
 
 <main id="main">
-  <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="sf-h1">
+  <section data-hero class="ah-clip" aria-labelledby="sf-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
-    <div class="tsg-wrap" style="position:relative;padding-top:56px;padding-bottom:10px;">
-      <div class="tsg-hero-grid">
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN</div>
-          <h1 id="sf-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;">{e(H1)}</h1>
-          <p style="font-size:19px;line-height:1.55;color:#AEB8C6;max-width:560px;margin-top:20px;">Say what you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks land across England, Scotland and Wales by grid headroom, planning record and project economics, so you know which sites deserve a visit and can show your investment committee why.</p>
-          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{btn}<a href="#pricing" class="tsg-link" style="font-size:16px;">See prices and order</a><a href="#videos" class="tsg-link" style="font-size:16px;">Watch it in use</a></div>
-          <p class="sf-hero-pr">{hero_prices}<br>Prices ex VAT. Order by email and pay by invoice.</p>
-        </div>
-        <figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="landscape" role="img" aria-label="{e(NATURE_ALT, quote=True)}">{e(NATURE_ALT)}</canvas><figcaption class="ah-nature-cap">Illustrative. Not your data.</figcaption></figure>
+    <div class="tsg-wrap ah-hero-in ah-has-art">
+      <div class="ah-hero-copy">
+        <div class="ah-eyebrow-amber">SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN</div>
+        <h1 id="sf-h1" class="tsg-hero-h ah-h1">{e(H1)}</h1>
+        <p class="as-def">Say what you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks land across England, Scotland and Wales by grid headroom, planning record and project economics, so you know which sites deserve a visit and can show your investment committee why.</p>
+        <div class="ah-actions">{btn}<a href="#pricing" class="tsg-link">See prices and order</a><a href="#see" class="tsg-link">See it work</a></div>
+        <div class="ah-hero-foot"><p class="ah-price"><strong>{hero_prices}</strong> <span>Prices ex VAT. Order by email and pay by invoice.</span></p></div>
       </div>
-      <ol class="tsg-steps" aria-label="How a session runs"><li>Say what you want to build</li><li>See the best land first</li><li>Check why a site ranks</li><li>Test your own assumptions</li></ol>
+      <figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="landscape" role="img" aria-label="{e(NATURE_ALT, quote=True)}">{e(NATURE_ALT)}</canvas><figcaption class="ah-nature-cap">Illustrative. Not your data.</figcaption></figure>
     </div>
+    <div class="tsg-wrap"><ol class="tsg-steps ah-hero-steps" aria-label="How a session runs"><li>Say what you want to build</li><li>See the best land first</li><li>Check why a site ranks</li><li>Test your own assumptions</li></ol></div>
   </section>
 
   <section class="tsg-sec" id="see" aria-labelledby="see-h">
