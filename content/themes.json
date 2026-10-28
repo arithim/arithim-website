@@ -1,13 +1,13 @@
 {
-  "default": "arithim",
+  "default": "light",
   "themes": {
     "arithim": {
-      "label": "Arithim dark (current)",
+      "label": "Dark",
       "mode": "dark",
       "public": true
     },
     "light": {
-      "label": "Light, slate and amber (draft)",
+      "label": "Light (default)",
       "tokens": {
         "ink": "#FFFFFF",
         "ink-deep": "#F6F9FC",
