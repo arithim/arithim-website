@@ -3412,7 +3412,7 @@ When you visit, Cloudflare, which hosts this site, processes technical data such
 
 ## Your device and browser
 
-The site stores one item in your browser's local storage, your light or dark theme choice, and only when you use the theme switch. It stays on your device and is not sent to us. We use no analytics or advertising cookies or similar tools, so we show no cookie banner. Cloudflare Turnstile, which protects our forms and the Call us button, may use browser storage to tell people from automated software. This is for security and is needed to provide what you ask for.
+The site stores one item in your browser's local storage, your light or dark theme choice, and only when you use the theme switch. It stays on your device and is not sent to us. We use no advertising cookies or similar tools. To see which pages are read, we use Cloudflare Web Analytics, which sets no cookies, does not identify or track individual visitors and does not build a profile of you. It reports page views, referrers, countries, device types and page speed in aggregate. Our lawful basis is legitimate interests in understanding and improving the site. Because it stores nothing on your device, we show no cookie banner. Cloudflare Turnstile, which protects our forms and the Call us button, may use browser storage to tell people from automated software. This is for security and is needed to provide what you ask for.
 
 ## How we use it
 
