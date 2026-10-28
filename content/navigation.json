@@ -20,7 +20,8 @@
     "about.html": {"groups": [{"name": null, "items": [
       {"name": "About Arithim", "url": "about.html"},
       {"name": "Contact", "url": "contact.html"},
-      {"name": "Privacy policy", "url": "privacy.html"}
+      {"name": "Privacy policy", "url": "privacy.html"},
+      {"name": "Legal notice", "url": "legal.html"}
     ]}]}
   }
 }

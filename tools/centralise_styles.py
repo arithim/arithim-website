@@ -38,7 +38,7 @@ PRODUCTS_JSON = ROOT / "content" / "products.json"
 
 
 def generated_names() -> set:
-    names = {"product-site-finder.html"}
+    names = {"product-site-finder.html", "privacy.html", "legal.html"}
     if PRODUCTS_JSON.exists():
         names |= {f"product-{p['slug']}.html" for p in json.loads(PRODUCTS_JSON.read_text(encoding="utf-8"))}
     return names

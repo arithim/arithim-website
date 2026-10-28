@@ -59,5 +59,6 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 ## Optional
 
 - [Privacy policy](https://arithim.com/privacy.html): What limited information Arithim Ltd collects through this website, and how we handle it.
+- [Legal notice](https://arithim.com/legal.html): Who runs this website, the terms for using it, and the limits of the information and data on it.
 - [Sitemap](https://arithim.com/sitemap.xml): every public page with its last modified date
 
