@@ -38,9 +38,11 @@ export function initRibbons(root) {
       return r.w * scale() * (0.15 + 0.85 * Math.abs(Math.sin(u + t * r.s * 0.7 + r.ph * 1.5)));
     };
     function draw(t) {
+      // The theme sets data-mode on <html>. Dark themes add light onto a dark page; light themes tint a pale page.
+      const lightMode = document.documentElement.dataset.mode === 'light';
       ctx.globalCompositeOperation = 'source-over';
       ctx.clearRect(0, 0, W, H);
-      if (!soft) {
+      if (!soft && !lightMode) {
         const bg = ctx.createLinearGradient(0, 0, W, H);
         bg.addColorStop(0, '#070C16'); bg.addColorStop(1, '#0A1424');
         ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
@@ -60,13 +62,13 @@ export function initRibbons(root) {
         g.addColorStop(0.5, `rgba(${hr},${hg},${hb},0.9)`);
         g.addColorStop(0.58, `rgba(${R},${G},${B},0.45)`);
         g.addColorStop(1, `rgba(${R},${G},${B},0.03)`);
-        ctx.globalCompositeOperation = 'lighter';
+        ctx.globalCompositeOperation = lightMode ? 'multiply' : 'lighter';
         ctx.beginPath();
         top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
         for (let i = bot.length - 1; i >= 0; i--) ctx.lineTo(bot[i][0], bot[i][1]);
         ctx.closePath();
-        ctx.fillStyle = g; ctx.globalAlpha = soft ? 0.4 : 0.55; ctx.fill();
-        ctx.globalAlpha = soft ? 0.6 : 0.9; ctx.lineWidth = 1.5; ctx.strokeStyle = `rgba(${hr},${hg},${hb},0.75)`;
+        ctx.fillStyle = g; ctx.globalAlpha = lightMode ? (soft ? 0.42 : 0.5) : (soft ? 0.4 : 0.55); ctx.fill();
+        ctx.globalAlpha = soft ? 0.6 : 0.9; ctx.lineWidth = 1.5; ctx.strokeStyle = lightMode ? `rgba(${R},${G},${B},0.8)` : `rgba(${hr},${hg},${hb},0.75)`;
         ctx.beginPath(); top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();
         ctx.globalAlpha = soft ? 0.25 : 0.35; ctx.lineWidth = 1;
         ctx.beginPath(); bot.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();

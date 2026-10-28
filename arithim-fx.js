@@ -125,7 +125,7 @@ export function initFx(root) {
 
   // ---- ribbon backgrounds (canvas[data-ribbons]) ----
   if (root.querySelector('canvas[data-ribbons]')) {
-    import('./ribbons.js?v=3').then((m) => { stops.push(m.initRibbons(root)); }).catch((e) => console.error('ribbons load failed', e));
+    import('./ribbons.js?v=5').then((m) => { stops.push(m.initRibbons(root)); }).catch((e) => console.error('ribbons load failed', e));
   }
 
   // ---- count ups ----
