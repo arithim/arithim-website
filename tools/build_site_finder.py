@@ -21,6 +21,7 @@ ORDER_EMAIL = "tarun@arithim.com"
 TITLE = "Where to build solar, battery or wind in Great Britain | Arithim"
 DESC = ("Screen land in Great Britain for solar, battery and onshore wind, and see the grid, planning and "
         "economics for each site before you spend on surveys. The enterprise platform licence is from £30,000 a year ex VAT.")
+NATURE_ALT = ("A dotted rolling landscape of map cells with a sun, a wind turbine and a battery shed. A breeze sweeps across the cells and three sites settle as ranked plots marked 1, 2 and 3, with dotted lines running to them. One cell is fenced off with an amber dot, ruled out. A sample, not a real map.")
 H1 = "Screen sites for grid and planning risk before you pay for surveys."
 
 e = html.escape
@@ -263,9 +264,18 @@ def build() -> str:
           <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{btn}<a href="#pricing" class="tsg-link" style="font-size:16px;">See prices and order</a><a href="#videos" class="tsg-link" style="font-size:16px;">Watch it in use</a></div>
           <p class="sf-hero-pr">{hero_prices}<br>Prices ex VAT. Order by email and pay by invoice.</p>
         </div>
-        {scene("j1", hero=True)}
+        <figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="landscape" role="img" aria-label="{e(NATURE_ALT, quote=True)}">{e(NATURE_ALT)}</canvas><figcaption class="ah-nature-cap">Illustrative. Not your data.</figcaption></figure>
       </div>
       <ol class="tsg-steps" aria-label="How a session runs"><li>Say what you want to build</li><li>See the best land first</li><li>Check why a site ranks</li><li>Test your own assumptions</li></ol>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="see" aria-labelledby="see-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">SEE IT WORK</div>
+      <h2 class="tsg-h2" id="see-h">What does Site Finder look like when you ask a question?</h2>
+      <p class="tsg-lead">Load the app, read the verdict and scan the ranked list, then look across the map of scored sites. Names and figures are made up to show the interface.</p>
+      {scene("j1", hero=True)}
     </div>
   </section>
 
@@ -365,6 +375,7 @@ def build() -> str:
       <p class="sf-note" style="margin:22px auto 0;">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
     </div>
   </section>
+<script src="/assets/dotscene.js?v=1" defer></script><script src="/assets/dotscene-landscape.js?v=1" defer></script>
 </main>
 
 <!-- partial:footer {{"back_href": "products.html", "back_text": "← ALL PRODUCTS"}} -->
