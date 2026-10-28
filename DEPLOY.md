@@ -42,7 +42,7 @@ Do not edit `insight-*.html` by hand. Edit the Markdown and rebuild. Do not edit
 
 ## Where the look lives
 
-`site.css` is the only stylesheet on the site, and CI fails if a page links another one. Colours, fonts and the pill radius are CSS variables (`--ah-*`) in the managed block at the top of `site.css`. Change a value there to restyle the site. Styles that repeat across pages are classes in the block at the end of `site.css`, named `ah-...`. A page that repeats an inline style three times or more, or writes a token colour in a `style=""` attribute, fails CI. Fix it with `python3 tools/centralise_styles.py --write`, then `python3 tools/build_insights.py`. `node tools/style_diff.mjs --a <clean checkout> --b <your branch>` compares the computed style of every element at two widths.
+Colours, fonts and the pill radius are CSS variables (`--ah-*`) in the managed block at the top of `site.css`. Change a value there to restyle the site. Styles that repeat across pages are classes in the block at the end of `site.css`, named `ah-...`. A page that repeats an inline style three times or more, or writes a token colour in a `style=""` attribute, fails CI. Fix it with `python3 tools/centralise_styles.py --write`, then `python3 tools/build_insights.py`. `node tools/style_diff.mjs --a <clean checkout> --b <your branch>` compares the computed style of every element at two widths.
 
 ## First-time setup (already done for arithim)
 
