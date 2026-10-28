@@ -85,6 +85,8 @@ def render(p: dict, products: list[dict]) -> str:
     price_html = f'<p class="ah-price"><strong>{e(price["line"])}</strong> <span>{e(price["note"])}</span></p>' if price else ""
     if price:
         service["offers"] = {"@type": "Offer", "priceCurrency": "GBP", "price": price["amount"], "description": price["line"] + ". " + price["note"], "url": url}
+    scene_html = (f'</div><figure class="ah-art ah-art-scene"><div data-pm-scene="{e(p["scene"])}" data-bare data-title="{e(p["scene_title"])}" data-desc="{e(p["scene_desc"])}"></div><figcaption class="ah-art-cap">Illustrative example. Not real data.</figcaption></figure>' if p.get('scene') else '')
+    scene_js = "import('./products-motion.js?v=1').then((pm) => { this._stop2 = pm.initProductsMotion(document); });" if p.get('scene') else ''
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
@@ -131,12 +133,12 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap ah-hero-in{' ah-has-art' if p.get('art') else ''}">
-      {'<div class="ah-hero-copy">' if p.get('art') else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+    <div class="tsg-wrap ah-hero-in{' ah-has-art' if (p.get('art') or p.get('scene')) else ''}">
+      {'<div class="ah-hero-copy">' if (p.get('art') or p.get('scene')) else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      {price_html}<p class="as-note">{e(p['status_note'])}</p>{'</div>' + illustrations.render(p['art']) if p.get('art') else ''}
+      {price_html}<p class="as-note">{e(p['status_note'])}</p>{'</div>' + illustrations.render(p['art']) if p.get('art') else ''}{scene_html}
     </div>
   </section>
 
@@ -170,7 +172,7 @@ def render(p: dict, products: list[dict]) -> str:
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {{
   componentDidMount() {{
-    import('./arithim-fx.js?v=5').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=5').then((m) => {{ this._stop = m.initFx(document); {scene_js} }}).catch((e) => console.error('fx load failed', e));
   }}
   componentWillUnmount() {{ if (this._stop) this._stop(); }}
   renderVals() {{ return {{}}; }}

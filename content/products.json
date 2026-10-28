@@ -433,7 +433,9 @@
   "card_summary": "How close is a site to grid headroom, and who already holds capacity there?",
   "cta_h": "Want to screen a list of sites?",
   "cta_p": "Send us the sites and the MW. We will confirm what the screen covers and when you will have it.",
-  "art": "grid-headroom"
+  "scene": "grid",
+  "scene_title": "A grid headroom check for a 20 MW battery",
+  "scene_desc": "A request for a 20 MW battery near a sample town. Four substations are linked by network lines, a site marker drops in 2.1 km from the nearest, and two bars show 38 MW of headroom against a 20 MW request, leaving 18 MW to spare. All names and figures are samples."
  },
  {
   "slug": "planning-risk-screen",

@@ -78,6 +78,29 @@ const UNRJ3 = { dur: 11, key: 9.6, label: 'Unrejectable · check', html: mk(`
     <div class="m-ans" data-in="4.3"><span data-type="4.5,42" data-text="Led a night shift of eight pickers and held a counterbalance forklift licence throughout."></span></div>
     ${src(7.6, 'Checked against the role you entered')}`) };
 
+// Grid pre-screen: a request lands on the network map, the nearest substations light up and headroom is weighed against it.
+const GRID = { dur: 10, key: 8.6, label: 'Grid pre-screen · sample', html: mk(`
+    <div class="m-q"><span data-type="0.2,34" data-text="20 MW battery, near Didcot"></span><b class="m-caret"></b></div>
+    <svg class="gp-map" viewBox="0 0 488 214" aria-hidden="true">
+      <ellipse class="gp-cloud" cx="86" cy="34" rx="34" ry="10"/><ellipse class="gp-cloud c2" cx="402" cy="26" rx="28" ry="8"/>
+      <path class="gp-line" data-in="0.9" d="M96 150 C140 96 176 82 214 72"/>
+      <path class="gp-line" data-in="1.2" d="M214 72 C256 80 300 120 336 158"/>
+      <path class="gp-line" data-in="1.5" d="M214 72 C290 40 360 44 424 60"/>
+      <g class="gp-sub" data-in="0.6"><circle cx="96" cy="150" r="10"/><text x="96" y="178" text-anchor="middle">Sub A</text></g>
+      <g class="gp-sub" data-in="0.8"><circle cx="214" cy="72" r="10"/><text x="214" y="54" text-anchor="middle">Sub B</text></g>
+      <g class="gp-sub" data-in="1.0"><circle cx="336" cy="158" r="10"/><text x="336" y="186" text-anchor="middle">Sub C</text></g>
+      <g class="gp-sub" data-in="1.2"><circle cx="424" cy="60" r="10"/><text x="424" y="42" text-anchor="middle">Sub D</text></g>
+      <circle class="gp-dot" data-in="2.2" r="3.5"/><circle class="gp-dot d2" data-in="2.6" r="3.5"/>
+      <g class="gp-site" data-in="2.0"><path class="gp-tether" d="M148 160 L108 152"/><circle class="gp-ring" cx="148" cy="164" r="14"/><path class="gp-pin" d="M148 172 C140 162 138 158 138 154 a10 10 0 0 1 20 0 c0 4 -2 8 -10 18z"/><circle class="gp-pinc" cx="148" cy="154" r="3.6"/></g>
+      <g class="gp-km" data-in="3.0"><rect x="112" y="122" width="62" height="20" rx="10"/><text x="143" y="136" text-anchor="middle">2.1 km</text></g>
+    </svg>
+    <div class="m-lbl" data-in="3.6">HEADROOM AT THE NEAREST SUBSTATION</div>
+    <div class="gp-bar" data-in="3.8"><span>Available</span><div class="m-fit"><i class="s" data-grow="3.9,1.1" style="--w:100%"></i></div><b>38 MW</b></div>
+    <div class="gp-bar" data-in="4.4"><span>Your request</span><div class="m-fit"><i class="a" data-grow="4.5,1.1" style="--w:53%"></i></div><b>20 MW</b></div>
+    <div class="gp-verdict" data-in="5.9"><span class="gp-spark">&#10022;</span>Room to spare: 18 MW<em>Looks promising</em></div>
+    <div class="m-chips" data-in="6.9"><span class="m-chip g">Holder: Network operator</span><span class="m-chip a">Queue: 2 nearby</span></div>
+    <div class="m-src" data-in="7.6"><svg viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M2 1h5l3 3v7H2z" fill="none" stroke="currentColor" stroke-width="1"/></svg>Published headroom, dated</div>`) };
+
 const SCENES = {
   tsg: TSG.hero,
 
@@ -118,6 +141,7 @@ const SCENES = {
     ${src(7.6, 'Checked against the role you entered')}`) },
 };
 
+SCENES.grid = GRID;
 SCENES.sf = { variants: [SCENES.sf1, SF2, SF3] };
 SCENES.fmaj = { variants: [SCENES.fmaj1, FMAJ2, FMAJ3] };
 SCENES.unrj = { variants: [SCENES.unrj1, UNRJ2, UNRJ3] };
