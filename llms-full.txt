@@ -3490,7 +3490,9 @@ We use this information to answer your enquiry, to pass your message to a person
 
 ## Who processes it for us
 
-ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
+ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and Web Analytics, and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
+
+Each provider publishes the list of companies it uses to deliver its service: Cloudflare sub-processors, Resend sub-processors, Anthropic sub-processors and ElevenLabs sub-processors. Those lists change from time to time, and the provider is responsible for keeping its own up to date.
 
 ## Where your data is processed
 

@@ -8,7 +8,7 @@
    "h1": "Privacy policy",
    "description": "What limited information Arithim Ltd collects through this website, and how we handle it.",
    "updated": "28 OCTOBER 2026",
-   "note": "Retention periods approved by Tarun on 28 October 2026 (enquiries 24 months, orders 6 years, ElevenLabs 30 days, call records 90 days), based on the AI solicitor review. Still to do: confirm each provider's data processing agreement is accepted and filed and that no provider trains on our transcripts, pay the ICO fee, keep a record of processing. A solicitor should review before reliance.",
+   "note": "Retention periods approved by Tarun on 28 October 2026 (enquiries 24 months, orders 6 years, ElevenLabs 30 days, call records 90 days). Tarun decided not to file or monitor provider data processing agreements; the policy links to each provider's published sub-processor list instead and makes no claim about model training. ICO fee and record of processing are Tarun's to-do items (via the chief of staff). Agentic legal review accepted for now.",
    "sections": [
     {
      "h": "Who we are",
@@ -79,7 +79,8 @@
     {
      "h": "Who processes it for us",
      "p": [
-      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing."
+      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and Web Analytics, and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.",
+      "Each provider publishes the list of companies it uses to deliver its service: <a href=\"https://www.cloudflare.com/gdpr/subprocessors/\" rel=\"noopener\">Cloudflare sub-processors</a>, <a href=\"https://resend.com/legal/subprocessors\" rel=\"noopener\">Resend sub-processors</a>, <a href=\"https://trust.anthropic.com/subprocessors\" rel=\"noopener\">Anthropic sub-processors</a> and <a href=\"https://compliance.elevenlabs.io/subprocessors\" rel=\"noopener\">ElevenLabs sub-processors</a>. Those lists change from time to time, and the provider is responsible for keeping its own up to date."
      ]
     },
     {
