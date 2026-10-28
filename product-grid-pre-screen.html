@@ -46,14 +46,19 @@
         <div class="ah-menu" role="group" aria-label="Products">
           <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
             <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
             <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
           </div>
           <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
-            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
             <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
             <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
             <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
             <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
             <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
           </div>
           <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
@@ -148,9 +153,9 @@
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">See which sites have grid capacity before you shortlist them.</h1>
       <p class="as-def">A fast screen of one site or many in Great Britain. For each one, how close it is to published grid headroom, who already holds capacity there and what else could stand in the way.</p>
       <div class="ah-actions"><a href="contact.html?product=grid-pre-screen" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Request a screen →</span></a><span class="pp-st">Early access</span></div>
-      <p class="as-note">Available today for battery storage sites. Screening for data centres and electrolysers is planned. Screening through an API is in early access.</p></div><figure class="ah-art ah-art-scene"><div data-pm-scene="grid" data-bare data-title="A grid headroom check for a 20 MW battery" data-desc="A request for a 20 MW battery near a sample town. Four substations are linked by network lines, a site marker drops in 2.1 km from the nearest, and two bars show 38 MW of headroom against a 20 MW request, leaving 18 MW to spare. All names and figures are samples."></div><figcaption class="ah-art-cap">Illustrative example. Not real data.</figcaption></figure>
+      <div class="ah-hero-foot"><p class="as-note">Available today for battery storage sites. Screening for data centres and electrolysers is planned. Screening through an API is in early access.</p></div></div><figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="hills" role="img" aria-label="Dotted hills with pylons above a river gauge. Dotted hills carry four pylons whose wires sway, with a small shed on the right marking the site. In the foreground a river sits at 20 of a 38 unit gauge, with an amber buoy for the request and a bird gliding in the space above it, to show 38 MW of headroom against a 20 MW request and 18 MW to spare. All figures are samples.">Dotted hills carry four pylons whose wires sway, with a small shed on the right marking the site. In the foreground a river sits at 20 of a 38 unit gauge, with an amber buoy for the request and a bird gliding in the space above it, to show 38 MW of headroom against a 20 MW request and 18 MW to spare. All figures are samples.</canvas><figcaption class="ah-nature-cap">Illustrative. Not your data.</figcaption></figure>
     </div>
-  </section>
+  </section><script src="/assets/dotscene.js?v=1" defer></script><script src="/assets/dotscene-hills.js?v=1" defer></script>
 
   <section class="tsg-sec" id="benefits" aria-labelledby="benefits-h">
     <div class="tsg-wrap">
@@ -217,7 +222,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); import('./products-motion.js?v=1').then((pm) => { this._stop2 = pm.initProductsMotion(document); }); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
   }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }

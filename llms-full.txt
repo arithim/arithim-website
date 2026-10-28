@@ -42,7 +42,7 @@ Pick the problem that sounds most like yours. Each one leads to the service or p
 
 Reps can't answer a technical question without calling a specialistTechnical Sales Guide →Invoices and forms are still keyed in by handAI systems and automation →SAP ERP reports arrive too late to act onSAP ERP intelligence layer →AI assistants don't mention your company when buyers askAI-optimised websites →Nobody can say which AI projects are worth fundingAI readiness and strategy →Approvals and their evidence live in email threadsRegulatory and technical systems →Shortlisting land for a solar farm means working through dozens of datasetsSite Finder →Your team has AI tools but not the habits to use them wellTraining and enablement →
 
-Something else? Tell us what is slow, and we will tell you honestly whether AI is the right tool.
+Something else? Tell us what is slow, and we will work with you to solve it.
 
 Start a conversation →
 
@@ -104,6 +104,12 @@ Technical Sales Guide
 
 Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
+ENTERPRISE SOFTWARE · AVAILABLE
+
+Site Finder
+
+The enterprise origination desk: ranked sites for solar, battery and onshore wind, with the evidence behind every number.
+
 ENTERPRISE SOFTWARE · EARLY ACCESS
 
 AI model inventory
@@ -112,9 +118,21 @@ Know which AI models your business runs on, and prove it with a dated report.
 
 DATA PRODUCTS · AVAILABLE
 
-Site Finder
+Landowner check
 
-Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
+Had a letter from a developer? One page on your land, the grid, the developer and the terms.
+
+DATA PRODUCTS · AVAILABLE
+
+Site feasibility report
+
+A verdict on one solar, battery or wind site, with the reasons and the sources.
+
+DATA PRODUCTS · AVAILABLE
+
+Portfolio screen
+
+Check every claim in a seller's site list against the public record before you pay.
 
 DATA PRODUCTS · EARLY ACCESS
 
@@ -139,6 +157,18 @@ DATA PRODUCTS · PLANNED
 Solar suitability check
 
 Will solar work at this address? A plain verdict, the reasons and a yield estimate.
+
+DATA PRODUCTS · AVAILABLE
+
+Market Watch
+
+Who holds the grid, which positions are exposed and what changed, with a weekly digest.
+
+DATA PRODUCTS · AVAILABLE
+
+Data API and MCP
+
+A read-only API and MCP server so your tools and AI assistants can read the grid, with sources.
 
 DATA PRODUCTS · PLANNED
 
@@ -294,6 +324,14 @@ Demos and pilots
 
 Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
+Learn more →For developer and fund teams in Great Britain
+
+### Site Finder
+
+Available
+
+The enterprise origination desk: ranked sites for solar, battery and onshore wind, with the evidence behind every number.
+
 Learn more →For CISOs and security teams
 
 ### AI model inventory
@@ -312,15 +350,31 @@ Sourced answers on energy sites, grid, planning and companies. Order a report, o
 
 ### Energy sites, grid and planning
 
-For renewable developers in Great Britain
+For landowners and land agents
 
-### Site Finder
+### Landowner check
 
 Available
 
-Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
+Had a letter from a developer? One page on your land, the grid, the developer and the terms.
 
-Learn more →For battery developers and landowners in Great Britain
+£195 a reportLearn more →For developers, consultants and funds
+
+### Site feasibility report
+
+Available
+
+A verdict on one solar, battery or wind site, with the reasons and the sources.
+
+£1,950 a siteLearn more →For funds, lenders and developers
+
+### Portfolio screen
+
+Available
+
+Check every claim in a seller's site list against the public record before you pay.
+
+From £7,500Learn more →For battery developers and landowners in Great Britain
 
 ### Battery storage siting report
 
@@ -353,6 +407,26 @@ Planned
 Will solar work at this address? A plain verdict, the reasons and a yield estimate.
 
 Learn more →
+
+### Grid market data and API
+
+For developers, funds and advisers
+
+### Market Watch
+
+Available
+
+Who holds the grid, which positions are exposed and what changed, with a weekly digest.
+
+From £15,000 a yearLearn more →For data teams and analysts
+
+### Data API and MCP
+
+Available
+
+A read-only API and MCP server so your tools and AI assistants can read the grid, with sources.
+
+From £18,000 a yearLearn more →
 
 ### Company and counterparty data
 
@@ -396,7 +470,7 @@ FREQUENTLY ASKED
 
 Which Arithim products can I try or buy now?
 
-Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned.
+Site Finder, the landowner check, the site feasibility report, the portfolio screen, Market Watch and the data API are available now, ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned.
 
 What is the difference between enterprise software, data products and SaaS?
 
@@ -422,11 +496,11 @@ Your reps ask for a product by application and condition, in animal nutrition, c
 
 Request a demo →See what it does
 
-Describe this animation
+A dotted greenhouse. A small cloud with a question mark drifts in and rains a few drops. Three plants rise and flower in rank order, each with a tiny flag tag for a country. One tag carries an amber dot for a registration that is expiring. A sample, not real data.
 
-Three examples play in turn. In animal nutrition, a rep asks for a heat-stress product for broilers in Saudi Arabia. In coatings, a dispersant for a water-based wall paint in the UAE. In construction chemicals, a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.
+Illustrative. Not your data.
 
-466 products147 suppliers8 industries10 interface languages, Arabic included
+Hundreds of products100+ suppliers8 industries10 interface languages, Arabic included
 
 Load your range
 
@@ -435,6 +509,16 @@ Add your principals' documents
 Ask the customer's question
 
 Flag anything that looks wrong
+
+SEE IT WORK
+
+## What does a ranked answer look like?
+
+Three examples play in turn, with sample figures. You can pause the animation.
+
+Describe this animation
+
+Three examples play in turn. In animal nutrition, a rep asks for a heat-stress product for broilers in Saudi Arabia. In coatings, a dispersant for a water-based wall paint in the UAE. In construction chemicals, a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.
 
 WHAT IT DOES
 
@@ -538,7 +622,7 @@ Describe this animation
 
 A data sheet template is chosen with co-branding and an English option. A page builds up with two logos, a title, specification rows, a registration line and a sources footer. An export button and a draft-for-review status follow. All figures are samples.
 
-See these jobs run on your own product range.
+See it work on your own product range.
 
 Request a demo →
 
@@ -698,7 +782,7 @@ FREQUENTLY ASKED
 
 How can my sales team answer technical questions without calling our technical manager?
 
-The Technical Sales Guide lets a salesperson answer a customer's technical question without calling a specialist. It holds a catalogue of 466 products from 147 suppliers across 8 industries. Your rep asks by application and condition and sees the products ranked, with dose, cost in use and landed cost, competitor equivalents and substitutes, and the regulations and registrations that apply. It is a starting point for a technical person to confirm.
+The Technical Sales Guide lets a salesperson answer a customer's technical question without calling a specialist. It holds a catalogue of hundreds of products from over 100 suppliers across 8 industries. Your rep asks by application and condition and sees the products ranked, with dose, cost in use and landed cost, competitor equivalents and substitutes, and the regulations and registrations that apply. It is a starting point for a technical person to confirm.
 
 How is this different from Copilot or ChatGPT over our SharePoint?
 
@@ -852,13 +936,13 @@ Say what you want to build: solar, battery storage, solar with a battery, or ons
 
 Book a demo →See prices and orderWatch it in use
 
-Landowner check £195 · Feasibility report £1,950 · Portfolio screen £7,500 · Platform from £30,000 a year
+Platform from £30,000 a year
 
 Prices ex VAT. Order by email and pay by invoice.
 
-Describe this animation
+A dotted rolling landscape of map cells with a sun, a wind turbine and a battery shed. A breeze sweeps across the cells and three sites settle as ranked plots marked 1, 2 and 3, with dotted lines running to them. One cell is fenced off with an amber dot, ruled out. A sample, not a real map.
 
-A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.
+Illustrative. Not your data.
 
 Say what you want to build
 
@@ -867,6 +951,16 @@ See the best land first
 Check why a site ranks
 
 Test your own assumptions
+
+SEE IT WORK
+
+## What does Site Finder look like when you ask a question?
+
+Load the app, read the verdict and scan the ranked list, then look across the map of scored sites. Names and figures are made up to show the interface.
+
+Describe this animation
+
+A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.
 
 WHO IT IS FOR
 
@@ -880,23 +974,11 @@ Find the sites most likely to connect and get consent, and take the shortlist to
 
 Site Finder platform, from £30,000 a year →
 
-### Fund and acquisition analysts
+### Funds and acquisition teams with their own analysts
 
-Test a seller's pipeline before you pay for it. Each claim is marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.
+Screen a seller's pipeline, track who holds the grid and follow changes, with the evidence behind every number and a seat for each analyst.
 
-Portfolio screen, £7,500 for up to 50 sites →
-
-### Landowners and land agents
-
-Had a letter from a developer? See what the land looks like, how crowded the nearest grid point is, who the developer is, what else they hold nearby and any pressure terms in the letter.
-
-Landowner check, £195 →
-
-### First-time developers and consultants
-
-Get a verdict on one site with the reasons: the grid and planning position, the economics and the source behind each number.
-
-Site feasibility report, £1,950 →
+Site Finder platform, from £30,000 a year →
 
 Site Finder narrows where to look. Your team still visits the land, talks to the network operator and takes planning advice.
 
@@ -1048,49 +1130,7 @@ PRICES
 
 ## How much does Site Finder cost?
 
-Prices exclude VAT. Reports have fixed prices and subscriptions start at the price shown. Press Order and your email app opens a message with the details we need.
-
-### One-off reports
-
-#### Landowner check
-
-£195 a report
-
-Delivered in 3 working days
-
-One page on what the land looks like for solar, battery or wind, the nearest grid point and how crowded it is, who the developer is and what else they hold nearby, the likely consent route, any pressure terms in the letter, and questions for an adviser.
-
-Order
-
-#### Site feasibility report
-
-£1,950 a site (solar, battery or wind)
-
-Delivered in 3 working days
-
-A verdict with reasons, constraints with a map, grid, planning, economics, contacts, and sources and licences. PDF, with Word and Excel on request.
-
-Order
-
-#### Solar and battery hybrid add-on
-
-£500 on top of a feasibility report
-
-Delivered with the report
-
-Hybrid economics on a shared connection, with clipping and dispatch, compared with solar alone.
-
-Order
-
-#### Portfolio screen
-
-£7,500 for up to 50 sites; £120 for each extra site
-
-Delivered in 5 working days
-
-Every claim in a seller's list checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with both values and the source for each contradiction, a portfolio roll-up, and a data-room PDF and Excel workbook with a sources and licence appendix.
-
-Order
+Prices exclude VAT. The platform licence starts at the price shown. Press Order and your email app opens a message with the details we need.
 
 ### What do I get for the price?
 
@@ -1104,29 +1144,13 @@ Alerts when new queue entries, Gate moves and sales of project companies appear.
 
 Assumptions you can change, with a note of which sites moved and why.
 
-### Subscriptions
+### Enterprise licence
 
 #### Site Finder platform
 
 From £30,000 a year for 5 seats
 
 The origination desk: the ranked map for solar, battery, hybrid and onshore wind, pushback with what changed, evidence for every number, site upload, the pipeline board, documents, GB rules cards and alerts. Your own team can make unlimited landowner checks and feasibility reports.
-
-Order
-
-#### Market Watch
-
-From £15,000 a year
-
-Company holdings by group, substation and league table, exposed Gate 2 positions, idle connections, the change feed with a weekly email digest, and watchlists.
-
-Order
-
-#### Data API and MCP
-
-From £18,000 a year
-
-A read-only API and an MCP server for your own tools and AI assistants: projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence. Per-organisation keys and usage limits.
 
 Order
 
@@ -1139,6 +1163,42 @@ More seats, internal redistribution and named support.
 Ask for a quote
 
 We confirm every order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.
+
+NOT AN ENTERPRISE TEAM?
+
+## Which single reports and data products can I buy on their own?
+
+Each has its own page, a fixed price and an order button. No demo needed.
+
+### Landowner check
+
+Had a letter from a developer? One page on your land, the grid and the developer.
+
+£195 a reportLearn more →
+
+### Site feasibility report
+
+A verdict on one solar, battery or wind site, with the reasons and sources.
+
+£1,950 a siteLearn more →
+
+### Portfolio screen
+
+Check every claim in a seller's site list against the public record.
+
+From £7,500Learn more →
+
+### Market Watch
+
+Who holds the grid and what changed, with a weekly digest.
+
+From £15,000 a yearLearn more →
+
+### Data API and MCP
+
+A read-only API and MCP server for your tools and AI assistants.
+
+From £18,000 a yearLearn more →
 
 LIMITS
 
@@ -1172,15 +1232,15 @@ Yes. Change the technology, project size, revenue route, capex or hurdle rate, o
 
 How much does Site Finder cost?
 
-Prices exclude VAT. A landowner check is £195 a report. A site feasibility report is £1,950 a site, and the solar and battery hybrid add-on is £500 on top. A portfolio screen is £7,500 for up to 50 sites and £120 for each extra site. The Site Finder platform is from £30,000 a year for 5 seats, Market Watch from £15,000 a year, and the data API and MCP from £18,000 a year. Enterprise terms are on quote.
+The Site Finder platform is from £30,000 a year for 5 seats, excluding VAT, and your team makes unlimited landowner checks and feasibility reports. Enterprise terms for more seats, internal redistribution and named support are on quote. If you only need a single report, the landowner check (£195), the site feasibility report (£1,950 a site) and the portfolio screen (£7,500 for up to 50 sites) are sold on their own pages.
 
-How do I order, and how long does a report take?
+How do I order?
 
-Press Order on the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and the details we need listed in the body. We confirm the order by email and invoice after confirmation. A landowner check and a site feasibility report each take 3 working days, a hybrid add-on comes with its feasibility report, and a portfolio screen takes 5 working days. Orders are subject to our terms, sent with the invoice.
+Press Order on the platform in the pricing section. Your email app opens a message to tarun@arithim.com with the details we need. We confirm the order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.
 
 Who is Site Finder for, and can I see a demo first?
 
-Developers and their land teams, funds and acquisition analysts, landowners and land agents, and first-time developers and consultants. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about.
+Enterprise teams: developers and their land and origination teams, and funds and acquisition teams with their own analysts. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about. Landowners, first-time developers and consultants usually want one of the single reports instead.
 
 ## Want to see Site Finder run on your own brief?
 
@@ -1208,7 +1268,9 @@ Book a scoping call →Early access
 
 In early access. Tell us which models or rules you need to answer for and we will scope it with you.
 
-Illustrative example. Not real data.
+Five dotted trees sway gently, one for each model in a sample inventory. Three steady trees each have a bird perched on them to show they are approved. A bird circles the fourth because that model is still in review, and the fifth wilts and carries a single amber dot because it is flagged. All names and figures are samples.
+
+Illustrative. Not your data.
 
 WHERE YOUR MODELS RUN
 
@@ -2000,6 +2062,12 @@ Technical Sales Guide
 
 Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
+ENTERPRISE SOFTWARE · AVAILABLE
+
+Site Finder
+
+The enterprise origination desk: ranked sites for solar, battery and onshore wind, with the evidence behind every number.
+
 ENTERPRISE SOFTWARE · EARLY ACCESS
 
 AI model inventory
@@ -2008,9 +2076,21 @@ Know which AI models your business runs on, and prove it with a dated report.
 
 DATA PRODUCTS · AVAILABLE
 
-Site Finder
+Landowner check
 
-Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
+Had a letter from a developer? One page on your land, the grid, the developer and the terms.
+
+DATA PRODUCTS · AVAILABLE
+
+Site feasibility report
+
+A verdict on one solar, battery or wind site, with the reasons and the sources.
+
+DATA PRODUCTS · AVAILABLE
+
+Portfolio screen
+
+Check every claim in a seller's site list against the public record before you pay.
 
 DATA PRODUCTS · EARLY ACCESS
 
@@ -2035,6 +2115,18 @@ DATA PRODUCTS · PLANNED
 Solar suitability check
 
 Will solar work at this address? A plain verdict, the reasons and a yield estimate.
+
+DATA PRODUCTS · AVAILABLE
+
+Market Watch
+
+Who holds the grid, which positions are exposed and what changed, with a weekly digest.
+
+DATA PRODUCTS · AVAILABLE
+
+Data API and MCP
+
+A read-only API and MCP server so your tools and AI assistants can read the grid, with sources.
 
 DATA PRODUCTS · PLANNED
 

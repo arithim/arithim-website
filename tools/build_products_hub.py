@@ -22,13 +22,13 @@ SITE = "https://arithim.com"
 e = html.escape
 
 TITLE = "Arithim products: enterprise software, data products and SaaS"
-DESC = "Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, site and grid reports, company checks and SaaS."
+DESC = "Arithim products for distributors, energy developers, landowners, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, landowner checks, site and grid reports, company checks and SaaS."
 H1 = "Software and data products from Arithim"
 LEAD = "Enterprise software for distributors and regulated firms, data products for energy developers and risk teams, and SaaS for people looking for work."
 
 FAQ = [
     ("Which Arithim products can I try or buy now?",
-     "Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned."),
+     "Site Finder, the landowner check, the site feasibility report, the portfolio screen, Market Watch and the data API are available now, ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned."),
     ("What is the difference between enterprise software, data products and SaaS?",
      "Enterprise software is set up for each customer on their own data, starting with a demo or a pilot. Data products give you sourced answers on a site, a grid connection, a planning risk or a company, as a report or through an API. SaaS products are the same for everyone, and you sign up on their website."),
     ("Does Arithim build software for clients too?",
