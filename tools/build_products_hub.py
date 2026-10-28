@@ -37,7 +37,7 @@ FAQ = [
 
 
 def chip(i: dict) -> str:
-    return ""  # product icons removed 28 Oct 2026; the sprite and chip CSS stay for a redesign
+    return f'<span class="ah-icon-chip" aria-hidden="true"><svg class="ah-icon"><use href="assets/icons.svg#{i["icon"]}"></use></svg></span>' if i.get("icon") else ""
 
 
 def card(i: dict) -> str:

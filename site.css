@@ -87,6 +87,7 @@
   --ah-amber-18: rgba(232,161,60,0.18);
   --ah-amber-20: rgba(232,161,60,0.2);
   --ah-amber-22: rgba(232,161,60,0.22);
+  --ah-amber-24: rgba(232,161,60,0.24);
   --ah-amber-25: rgba(232,161,60,0.25);
   --ah-amber-28: rgba(232,161,60,0.28);
   --ah-amber-30: rgba(232,161,60,0.3);
@@ -1680,6 +1681,7 @@ html[data-theme="stripe"] {
   --ah-amber-18: rgba(58,83,208,0.18);
   --ah-amber-20: rgba(58,83,208,0.2);
   --ah-amber-22: rgba(58,83,208,0.22);
+  --ah-amber-24: rgba(58,83,208,0.24);
   --ah-amber-25: rgba(58,83,208,0.25);
   --ah-amber-28: rgba(58,83,208,0.28);
   --ah-amber-30: rgba(58,83,208,0.3);
@@ -1706,11 +1708,13 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 /* ah-themes:end */
 
 /* Icon chips and boxed hover cards. One pattern for every product card. */
-.ah-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; width: var(--ah-icon-size, 22px); height: var(--ah-icon-size, 22px); display: block; }
-.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-12, 12px); background: var(--ah-card-2); color: var(--ah-text-2); transition: color 0.2s, border-color 0.2s, background 0.2s; }
+.ah-icon { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; width: 24px; height: 24px; display: block; }
+/* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
+.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
 .ah-pcard, .ah-a8498e { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
 .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
-.ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible .ah-icon-chip { color: var(--ah-amber); border-color: var(--ah-amber-40); }
+.ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible /* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
+.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
 .ah-pcard-more { transition: transform 0.2s; }
 .ah-pcard:hover .ah-pcard-more { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) {
