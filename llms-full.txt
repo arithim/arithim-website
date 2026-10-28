@@ -346,14 +346,6 @@ Planned: an API that says whether solar is likely to work at an address, why, wh
 
 How it works
 
-### Tender feed
-
-Planned
-
-Planned: a feed of new UK public sector tenders that fit a company profile, with a fit score, the reasons for it, the deadline and the buyer's history.
-
-How it works
-
 SAAS PRODUCTS
 
 ## SaaS products

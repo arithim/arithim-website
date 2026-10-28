@@ -14,7 +14,6 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 - [Planning risk screen](https://arithim.com/product-planning-risk-screen.html): A desk screen of one site in Great Britain for farmland grade, peat, heritage and protected sites, with the field studies an application is likely to need.
 - [UK company check](https://arithim.com/product-uk-company-check.html): Planned: a check on one UK company that confirms it exists and is active, shows its corporate controllers, and gives a dated source for every fact.
 - [Solar suitability check](https://arithim.com/product-solar-suitability-api.html): Planned: an API that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield, with a source for each item.
-- [Tender feed](https://arithim.com/product-tender-feed.html): Planned: a feed of new UK public sector tenders that fit a company profile, with a fit score, the reasons for it, the deadline and the buyer's history.
 - [Find Me A Job](https://findmeajob.uk/)
 - [Unrejectable](https://www.unrejectable.uk/)
 - [Technical Sales Guide: security and trust](https://arithim.com/technical-sales-guide-security.html): How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.
