@@ -8,7 +8,7 @@
    "h1": "Privacy policy",
    "description": "What limited information Arithim Ltd collects through this website, and how we handle it.",
    "updated": "28 OCTOBER 2026",
-   "note": "TODO (Tarun): confirm the retention periods for enquiries (24 months) and orders (6 years), the ElevenLabs settings (30 days, audio off), the 90-day deletion job, that each provider's data processing agreement is accepted and filed and that no provider trains on our transcripts, then add a statement to that effect. Pay the ICO data protection fee. Keep a record of processing. A solicitor should review before reliance.",
+   "note": "Retention periods approved by Tarun on 28 October 2026 (enquiries 24 months, orders 6 years, ElevenLabs 30 days, call records 90 days), based on the AI solicitor review. Still to do: confirm each provider's data processing agreement is accepted and filed and that no provider trains on our transcripts, pay the ICO fee, keep a record of processing. A solicitor should review before reliance.",
    "sections": [
     {
      "h": "Who we are",
@@ -21,7 +21,7 @@
      "h": "What we collect",
      "p": [
       "We collect the information you choose to send us: the details you enter in a contact or demo form, and any messages you send to hello@arithim.com or research@arithim.com. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox. You do not have to give us any personal information. If you leave out a required field we cannot deal with your request, and without a name and contact details we cannot reply.",
-      "When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens. The site uses no advertising trackers."
+      "When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. The site loads its fonts from our own servers and uses no advertising trackers."
      ]
     },
     {
@@ -79,7 +79,7 @@
     {
      "h": "Who processes it for us",
      "p": [
-      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Google provides the fonts the site loads. Each of the first four acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing."
+      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing."
      ]
     },
     {
@@ -123,7 +123,7 @@
    "h1": "Legal notice",
    "description": "Who runs this website, the terms for using it, and the limits of the information and data on it.",
    "updated": "28 OCTOBER 2026",
-   "note": "TODO (Tarun): confirm whether Arithim Ltd is VAT registered (add the number here if so) and have a solicitor review this notice and the terms of sale before reliance. The registered office address is published with Tarun's approval (28 October 2026).",
+   "note": "VAT registration applied for (28 October 2026). Add the VAT number here once issued. A solicitor should review this notice and the terms of sale before reliance. The registered office address is published with Tarun's approval (28 October 2026).",
    "sections": [
     {
      "h": "Who we are",
@@ -204,7 +204,7 @@
    "h1": "Terms of sale",
    "description": "The terms on which Arithim Ltd supplies reports, screens and data products to businesses.",
    "updated": "28 OCTOBER 2026",
-   "note": "TODO (Tarun): solicitor review before first paid order. Confirm refund and cancellation position, VAT registration, and the 12-month and fees-paid liability cap are what you want.",
+   "note": "Solicitor review before first paid order. VAT registration applied for; prices are quoted excluding VAT, which is added where it applies.",
    "sections": [
     {
      "h": "Who these terms apply to",

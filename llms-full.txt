@@ -3444,7 +3444,7 @@ Arithim Ltd is a private limited company registered in England and Wales, compan
 
 We collect the information you choose to send us: the details you enter in a contact or demo form, and any messages you send to hello@arithim.com or research@arithim.com. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox. You do not have to give us any personal information. If you leave out a required field we cannot deal with your request, and without a name and contact details we cannot reply.
 
-When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens. The site uses no advertising trackers.
+When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. The site loads its fonts from our own servers and uses no advertising trackers.
 
 ## Your device and browser
 
@@ -3488,7 +3488,7 @@ We use this information to answer your enquiry, to pass your message to a person
 
 ## Who processes it for us
 
-ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Google provides the fonts the site loads. Each of the first four acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
+ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
 
 ## Where your data is processed
 
