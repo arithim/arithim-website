@@ -42,6 +42,7 @@ const CHECK = `(async () => {
   await new Promise(r => setTimeout(r, 1800));
   const ALLOW = ${JSON.stringify(ALLOW)};
   const out = [];
+  if (!document.querySelector('main')) out.push('page has no <main>, so no box on it can be audited or get the card behaviour');
   for (const el of document.querySelectorAll('main *')) {
     if (el.classList.contains('ah-fx-glow')) continue;
     const cs = getComputedStyle(el);
