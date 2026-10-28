@@ -1308,169 +1308,109 @@ Call us
 
 ---
 
-## Know which AI models run in your estate, with the evidence for each.
+## Know every AI model your business runs on.
 
 URL: https://arithim.com/product-assay.html
 
-ASSAY · AI MODEL ATTESTATION · UK
+ASSAY · AI MODEL ASSURANCE · UK
 
-# Know which AI models run in your estate, with the evidence for each.
+# Know every AI model your business runs on.
 
-Assay is an Arithim service that inventories the AI models a company uses: the models its applications call over an API, and the open-weight models running on its own GPUs. It flags any you have ruled out and produces a dated report that states its scope, method and confidence.
+Assay gives risk, security and compliance teams one clear picture of the AI models in use across the business and its suppliers, and the evidence to show customers and supervisors.
 
-Book a scoping call →What the report holdsEarly access
+Book a scoping call →Early access
 
-Connect read-only
+Assay is in early access. Tell us what you need to evidence and we will scope it with you.
 
-Discover models
+WHY TEAMS CHOOSE IT
 
-Match against the registry
+## Why teams choose Assay
 
-Read the report
+### One answer to a hard question
 
-THE PROBLEM
+Which AI models does our business depend on? Get a single, current answer in place of a spreadsheet nobody trusts.
 
-## Why would a company need a list of its AI models?
+### Evidence people accept
 
-A customer, a supplier or a supervisor may ask which models you depend on, and a list kept by hand misses models in two places.
+A dated report that states what was checked and what was found, written to be shown to customers and supervisors.
 
-### Calls to a provider's API
+### Keep up when the rules change
 
-An internal application sends requests to a hosted model. The destination shows up in network logs, code, configuration and cloud billing, but the host name does not always tell you which model answered. A call to a cloud provider can be served by an open-weight model of any origin.
+When a customer, a regulator or your own policy rules a model out, see where you use it and what to do next.
 
-### Models on your own GPUs
+WHAT YOU GET
 
-A team runs an open-weight model on an in-house cluster. Nothing leaves the building, so network logs show nothing. Assay looks at the inference servers, the container images and the model files themselves.
+## What Assay delivers
 
-In October 2026 the US Homeland Security Department told civilian federal agencies to remove DeepSeek products and third-party tools built on them (TechCrunch, 20 October 2026). That notice covers US federal civilian agencies. It is not UK law, and as of October 2026 we know of no UK rule that bans a specific model.
+### An AI model inventory
 
-HOW IT WORKS
+Every AI model your applications and suppliers use, and where each one sits in the business.
 
-## How does Assay find the models, and how often?
+### A verdict on each model
 
-It reads data you already produce and matches it against a registry of AI endpoints, model families, file hashes and lineage. A hint from one source is a lead. A second source that agrees makes it a finding, and where only one source supports a result, the report says so.
+Approved, review or flagged against the rules you set.
 
-SourceWhat we readHow often
+### A dated attestation report
 
-DNS, firewall and proxy logsDestination names and volumes, from logs you already keepHourly, or continuous
+A report you can hand over, with its scope and date stated.
 
-Cloud audit logs and billingManaged model deployments, invocation events, billing line itemsEvents near real time, inventory daily
+### Help to put it right
 
-Code repositoriesSDK imports, base URLs, model names, key patterns, container imagesOn each push, full scan weekly
+When a model has to go, help to replace it and to check that quality holds.
 
-GPU and on-premise hostsInference servers, open ports, model and tokenizer filesLight check daily, file check weekly
+### A picture that stays true
 
-SuppliersQuestionnaire answers and AI bills of materialsQuarterly
-
-Assay throttles itself, runs off-peak, and never touches GPU compute. You hold a switch that stops it. When a model is newly ruled out, past data is re-matched at once with no new load on your systems.
-
-THE REPORT
-
-## What does an Assay report contain?
-
-Every report names its scope, its date, the method and the registry version it used. It lists what we saw, how sure we are, and what we could not see.
-
-Attestation report · example layoutThe rows below are invented
-
-WhereWhat we sawResultConfidence
-
-Support assistantCalls to a hosted API, seen in DNS and in code● ApprovedHigh
-
-Document searchCalls through a cloud account to an open-weight model, lineage unclear◆ ReviewMedium
-
-Research node gpu-07Local inference server, weight file hash matched to a model family on the ruled-out list◆ FlaggedHigh
-
-Marketing plug-inSupplier product, questionnaire answer still outstanding◆ OpenLow
-
-This table shows the format. It is not a result for any company.
-
-We call it an attestation, not a certificate. It says which models we found in the scope we scanned, on the date shown. It does not claim to prove that no ruled-out model exists anywhere in your company.
+Regular refreshes, so your answer does not go stale.
 
 WHO IT IS FOR
 
 ## Who is Assay for?
 
-Firms that have to answer the question in writing.
+### Banks, insurers and regulated firms
 
-### UK banks, insurers and regulated firms
+Show that you know which AI your firm depends on, as part of third party and model risk.
 
-Third-party and model risk already sit on your agenda. Assay gives you the AI part of that list, with evidence behind it.
+### Suppliers to government and large customers
 
-### Suppliers to government customers
+Answer the question "does your product use this model?" with evidence, not an email.
 
-If your customer asks whether your product contains a specific model, you can answer with a dated report instead of an email.
+### Organisations running their own AI
 
-### Teams with their own GPU clusters
+See which open models your teams have set up in-house, and where they came from.
 
-If researchers or engineers run open-weight models in-house, Assay tells you which ones, and where they came from.
+HOW IT WORKS
 
-WHAT WE NEED
+## From first call to finished report
 
-## What does my team need to open up?
+01
 
-All access is read-only. We ask for the least we need and agree each item with you before we start.
+### Scope
 
-### Network logs
+Tell us what you need to evidence and which rules apply.
 
-A read-only export of DNS, firewall or proxy logs, or a forwarder pointing at our collector.
+02
 
-### Cloud accounts
+### Assess
 
-A read-only role in each account, covering audit logs, model deployments and billing.
+We map the AI models in use across your business and your suppliers.
 
-### Code repositories
+03
 
-Read-only access through an app that you approve and can revoke.
+### Report
 
-### GPU hosts
+You receive your inventory, a verdict on each model and a dated report, plus a plan for anything flagged.
 
-A read-only login, or a script you run yourselves and send back.
+GOOD TO KNOW
 
-### A home for the collector
+## Before you start
 
-One virtual machine or container with outbound HTTPS only. Nothing inbound.
+Assay reports what it finds, in an agreed scope, on a stated date. It is an attestation, not a guarantee about every system in your company.
 
-### A contact and a scope letter
+We agree scope with your security and compliance teams first.
 
-A named technical contact, and a signed note of what we may scan, when, and from where.
+Assay does not need to see your prompts or your customers' data.
 
-We do not need your prompts or payloads, administrator rights, an inline proxy, or agents on laptops for a first scan. Logs can hold personal data such as IP addresses and usernames, so we agree data processing terms with you first and keep what we collect to metadata.
-
-LIMITS
-
-## What can Assay not see?
-
-Each report lists these as stated limits, with the signal that partly covers each one.
-
-Devices off your network. A laptop on home broadband, or a tunnel to a relay, can hide a call. Endpoint tools you already run and a signed statement from your team cover part of this.
-
-Models inside supplier products. If a supplier runs a model on its own servers, your network never sees it. Questionnaires and contract terms are the control here.
-
-Hidden server names. Newer TLS features can encrypt the server name, which weakens DNS signals. Code, cloud and billing records fill the gap.
-
-Air-gapped sites. We cannot reach them over a network. We supply an offline scanner and a signed bundle that you return to us.
-
-AFTER THE FIRST REPORT
-
-## What happens after the first report?
-
-What you do with the findings is your decision. These are the next steps we can help with.
-
-### Replace a model
-
-Swap a flagged model for an approved one, rewrite the integration and test that quality holds.
-
-### Rescan on a schedule
-
-A report goes stale. Quarterly rescans keep the attestation current.
-
-### Monitor between scans
-
-An alert when a new application starts calling an endpoint you have ruled out.
-
-### Route calls through a gateway
-
-A single path that blocks ruled-out endpoints and logs every call. It sits in the traffic path, so it is optional and comes later.
+Assay is not a legal opinion on whether a rule applies to you.
 
 FREQUENTLY ASKED
 
@@ -1478,47 +1418,39 @@ FREQUENTLY ASKED
 
 What is Assay?
 
-Assay is an Arithim service that lists the AI models a company uses and shows where each one runs. It covers models your applications call over an API and open-weight models on your own GPUs. It flags the ones you have ruled out and produces a dated report with its scope, method and confidence stated.
+Assay is an Arithim service that tells you which AI models your business uses, flags the ones you have ruled out and gives you a dated report to show customers and supervisors.
 
-Do you read our prompts or the data sent to models?
+Is an Assay report a certificate?
 
-No. We collect metadata: destination names, timing, volume and the application making the call. We do not store prompts or responses.
+No. It is an attestation report that states its scope and date and says what we found in that scope. It does not claim to prove that nothing ruled out exists anywhere in your company.
 
-Will Assay slow our systems down?
+Does Assay read our prompts or customer data?
 
-It should not. It reads logs and cloud records you already have, in read-only mode, at low rates and outside peak hours. On GPU hosts it checks file sizes and dates first and never uses GPU compute. You hold a switch that stops it.
-
-Is the Assay report a certificate?
-
-No. It is an attestation report that states its scope, date and method. It says what we found and did not find in that scope, on that date. It does not claim to prove that no banned model exists anywhere in your company, so we do not call it a certificate.
+No. It does not need to.
 
 Which models does Assay flag?
 
-The models on the list you set. We start from the models named in the rules you are subject to, and our registry records which model family sits behind an endpoint or a model file. Every report names the registry version it used.
+The ones on the list you set, for example models named in rules that apply to you or in your customers' contracts.
 
-Can Assay tell which model is behind an endpoint?
+Can Assay tell which model sits behind a supplier's product?
 
-Not from the host name alone. A call to a US cloud provider can be served by an open-weight model of any origin. We compare several sources, give each finding a confidence level, and mark anything we could not confirm as open.
-
-Do we need to install anything?
-
-One collector, as a virtual machine or container inside your network, with outbound HTTPS only. A first scan needs no agents on laptops.
+Often, though not always. Where we cannot confirm it, the report says so and marks it open, and suggests the question to put to the supplier.
 
 Does a UK firm have to do this?
 
-As of October 2026 we know of no UK rule that bans a specific AI model. The US notice covers federal civilian agencies. UK firms usually come to us because a customer, a supplier or their own risk team has asked which models they use. We will tell you if you do not need Assay.
+As of October 2026 we know of no UK rule that bans a specific AI model. Customers, suppliers and risk teams are asking the question, and some US rules reach UK suppliers. We will tell you if you do not need Assay.
 
-How much does Assay cost?
+How long does it take, and what does it cost?
 
-We agree the scope in a call, then quote. The price depends on how many networks, cloud accounts, repositories and GPU hosts are in scope.
+We scope it with you first, then quote.
 
 Why is it called Assay?
 
-An assay is a test of what something is made of. We test which models an estate contains and say what we found, in what scope and on what date. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark.
+An assay is a test of what something is made of. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark.
 
-## Want to know what Assay would scan in your estate?
+## Want to know which AI your business runs on?
 
-Tell us roughly what you run: your networks, cloud accounts and any GPU clusters. We will tell you what we would scan, what we could not see, and whether it is worth doing.
+Tell us what you need to show and to whom. We will tell you what Assay would cover and whether it is worth doing.
 
 Book a scoping call →
 

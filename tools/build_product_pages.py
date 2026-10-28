@@ -1,15 +1,33 @@
 #!/usr/bin/env python3
-"""Build the early-access and planned product pages (product-<slug>.html) from content/products.json.
+"""Build the product pages (product-<slug>.html) from content/products.json.
 
-Each entry holds only claims that are safe to publish: what the product returns, what it needs, its
-limits and its status. Prices, competitor names and unlicensed data sources stay out of the file.
+The only thing that belongs to a page is its text. Structure, styling and links to the stylesheet are
+the same for every product and live here and in site.css. Each entry in content/products.json holds:
+
+  slug, name, label            file name product-<slug>.html, the product name, the word after /arithim
+  title, description           the <title> (phrased as a buyer's search) and the meta description
+  eyebrow, h1, sub             the label above the headline, the headline, and the line under it
+  status, status_note          Early access or Planned, and one line of context under the buttons
+  cta                          the button label
+  benefits_h, benefits         heading and [title, text] cards: why teams choose it
+  gets_h, gets                 heading and [title, text] cards: what you receive
+  who_h, who                   heading and [title, text] cards: who it is for
+  steps_h, steps               heading and [title, text] cards: how it works, in the buyer's terms
+  know_h, know                 heading and short honest points
+  faq                          [question, answer] pairs, also written as FAQPage data
+  related                      slugs of related products
+  service_type, audience_type  schema.org Service data
+  audience, card_summary       the card on the products page and in the menu
+  cta_h, cta_p                 the closing call to action
+
 Run `python3 tools/build_product_pages.py`, then `python3 tools/build_insights.py` to stamp the shared
-head, header and footer partials and refresh sitemap.xml. `--check` fails if a page is stale.
+head, header and footer. `--check` fails if a page is stale.
 """
 from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -23,69 +41,50 @@ def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + "</script>"
 
 
-def cards(items, grid):
-    return f'<div class="tsg-grid {grid}">' + "".join(f'<div class="tsg-card"><h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, b in items) + "</div>"
+def cards(items, numbered=False):
+    n = len(items)
+    cols = "tsg-g2" if n % 2 == 0 and n <= 4 else "tsg-g3"
+    body = ""
+    for i, (t, b) in enumerate(items, 1):
+        num = f'<span class="ah-step-n">{i:02d}</span>' if numbered else ""
+        body += f'<div class="tsg-card">{num}<h3>{e(t)}</h3><p>{e(b)}</p></div>'
+    return f'<div class="tsg-grid {cols}">{body}</div>'
 
 
-def grid_for(n):
-    return "tsg-g2" if n % 2 == 0 and n != 6 else "tsg-g3"
+def section(sid: str, eyebrow: str, heading: str, inner: str) -> str:
+    return f"""  <section class="tsg-sec" id="{sid}" aria-labelledby="{sid}-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">{e(eyebrow)}</div>
+      <h2 class="tsg-h2" id="{sid}-h">{e(heading)}</h2>
+      {inner}
+    </div>
+  </section>"""
 
 
-BTN = ('<a href="{href}" style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
-       '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
-       '<span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">{label}</span></a>')
+BTN = '<a href="{href}" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">{label}</span></a>'
 
 
 def render(p: dict, products: list[dict]) -> str:
     url = f"{SITE}/product-{p['slug']}.html"
     contact = f"contact.html?product={p['slug']}"
     cta = p["cta"]
-    faq = p["faq"]
     service = {"@context": "https://schema.org", "@type": "Service", "name": p["name"], "serviceType": p["service_type"], "url": url, "description": p["description"],
                "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/"}, "areaServed": {"@type": "Country", "name": p.get("area", "United Kingdom")},
                "audience": {"@type": "Audience", "audienceType": p["audience_type"]}}
-    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Arithim", "item": f"{SITE}/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": f"{SITE}/products.html"},
         {"@type": "ListItem", "position": 3, "name": p["name"], "item": url}]}
-    steps = "".join(f"<li>{e(s)}</li>" for s in p["steps"])
-    limits = "".join(f"<li>{e(x)}</li>" for x in p["limits"])
-    inputs = "".join(f"<li>{e(x)}</li>" for x in p["inputs"])
-    related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] != p["slug"] and r["slug"] in p.get("related", []))
-    faq_html = "".join(f"<details><summary>{e(q)}</summary><div class=\"ans\"><p>{e(a)}</p></div></details>" for q, a in faq)
-    sections = []
-    sections.append(f"""  <section class="tsg-sec" id="gets" aria-labelledby="gets-h">
-    <div class="tsg-wrap">
-      <div class="tsg-eyebrow">WHAT YOU GET</div>
-      <h2 class="tsg-h2" id="gets-h">{e(p['gets_h'])}</h2>
-      <p class="tsg-lead">{e(p['gets_lead'])}</p>
-      {cards(p['gets'], grid_for(len(p['gets'])))}
-    </div>
-  </section>""")
-    sections.append(f"""  <section class="tsg-sec" id="needs" aria-labelledby="needs-h">
-    <div class="tsg-wrap">
-      <div class="tsg-eyebrow">WHAT YOU SEND</div>
-      <h2 class="tsg-h2" id="needs-h">{e(p['needs_h'])}</h2>
-      <ul class="as-list">{inputs}</ul>
-      <p class="as-prose">{e(p['data_note'])}</p>
-    </div>
-  </section>""")
-    sections.append(f"""  <section class="tsg-sec" id="who" aria-labelledby="who-h">
-    <div class="tsg-wrap">
-      <div class="tsg-eyebrow">WHO IT IS FOR</div>
-      <h2 class="tsg-h2" id="who-h">{e(p['who_h'])}</h2>
-      <p class="tsg-lead">{e(p['who'])}</p>
-    </div>
-  </section>""")
-    sections.append(f"""  <section class="tsg-sec" id="limits" aria-labelledby="limits-h">
-    <div class="tsg-wrap">
-      <div class="tsg-eyebrow">LIMITS</div>
-      <h2 class="tsg-h2" id="limits-h">{e(p['limits_h'])}</h2>
-      <p class="tsg-lead">We state these on the page because they change what you can rely on.</p>
-      <ul class="as-list">{limits}</ul>
-    </div>
-  </section>""")
-    status_line = f'<span class="pp-st">{e(p["status"])}</span>'
+    know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
+    related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
+    faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
+    sections = [
+        section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
+        section("gets", "WHAT YOU GET", p["gets_h"], cards(p["gets"])),
+        section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),
+        section("steps", "HOW IT WORKS", p["steps_h"], cards(p["steps"], numbered=True)),
+        section("know", "GOOD TO KNOW", p["know_h"], f'<ul class="as-list">{know}</ul>'),
+    ]
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -113,21 +112,20 @@ def render(p: dict, products: list[dict]) -> str:
 <body>
 <x-dc>
 
-<div class="tsg" style="background:#070C16;color:#F5F1E8;min-height:100vh;">
+<div class="tsg ah-page">
 <a class="tsg-skip" href="#main">Skip to content</a>
 
-<!-- partial:header {{"label": "/{p['label']}", "active": "products.html", "cta": "contact"}} -->
+<!-- partial:header {{"label": "/{p['label']}", "active": "products.html"}} -->
 <!-- /partial:header -->
 
 <main id="main">
-  <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="pp-h1">
+  <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap" style="position:relative;padding-top:64px;padding-bottom:20px;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">{e(p['eyebrow'])}</div>
-      <h1 id="pp-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;max-width:860px;">{e(p['h1'])}</h1>
-      <p class="as-def">{e(p['definition'])}</p>
-      <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">{BTN.format(href=contact, label=e(cta) + " →")}{status_line}</div>
-      <ol class="tsg-steps" aria-label="How it works">{steps}</ol>
+    <div class="tsg-wrap ah-hero-in">
+      <div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+      <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
+      <p class="as-def">{e(p['sub'])}</p>
+      <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
       <p class="as-note">{e(p['status_note'])}</p>
     </div>
   </section>
@@ -139,17 +137,17 @@ def render(p: dict, products: list[dict]) -> str:
       <div class="tsg-eyebrow">FREQUENTLY ASKED</div>
       <h2 class="tsg-h2" id="faq-h">Questions about {e(p['name'])}</h2>
       <div class="tsg-faq">{faq_html}</div>
-      <p class="as-note">{related and 'Related: ' or ''}{related}</p>
+      <p class="as-note">{('Related: ' + related) if related else ''}</p>
     </div>
   </section>
 
   <section class="as-cta" id="contact" data-hero aria-labelledby="contact-h">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
-    <div class="tsg-wrap" style="position:relative;">
+    <div class="tsg-wrap ah-rel">
       <h2 id="contact-h">{e(p['cta_h'])}</h2>
       <p>{e(p['cta_p'])}</p>
       {BTN.format(href=contact, label=e(cta) + " →")}
-      <p class="tsg-note" style="margin:22px auto 0;">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
+      <p class="tsg-note ah-note-c">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
     </div>
   </section>
 </main>
@@ -179,18 +177,14 @@ def main():
     products = json.loads(DATA.read_text(encoding="utf-8"))
     sys.path.insert(0, str(ROOT / "tools"))
     import centralise_styles as cs
-    registry = cs.load_registry()  # inline styles that repeat site-wide become classes
+    registry = cs.load_registry()
+    strip = lambda t: re.sub(r"<!-- partial:(\w+)[^>]*?-->.*?<!-- /partial:\1 -->", "", t, flags=re.S)
     stale = []
     for p in products:
         out = ROOT / f"product-{p['slug']}.html"
         page = cs.rewrite(render(p, products), registry)
-        if out.exists():
-            old = out.read_text(encoding="utf-8")
-            # partials are stamped by build_insights.py, so compare outside those blocks
-            import re
-            strip = lambda t: re.sub(r"<!-- partial:(\w+)[^>]*?-->.*?<!-- /partial:\1 -->", "", t, flags=re.S)
-            if strip(old) == strip(page):
-                continue
+        if out.exists() and strip(out.read_text(encoding="utf-8")) == strip(page):
+            continue
         stale.append(out.name)
         if "--check" not in sys.argv:
             out.write_text(page, encoding="utf-8")
