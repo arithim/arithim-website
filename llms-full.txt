@@ -3520,3 +3520,71 @@ We update this notice when our business or the law changes. The date at the top 
 
 Call us
 
+---
+
+## Terms of sale
+
+URL: https://arithim.com/terms.html
+
+TERMS
+
+# Terms of sale
+
+LAST UPDATED · 28 OCTOBER 2026
+
+## Who these terms apply to
+
+These terms apply when Arithim Ltd (company number 17209022, registered office 6 Dorchester Court, Greenlands Road, Staines-Upon-Thames, England, TW18 4LS) supplies a report, screen, subscription or data product to you. We sell to businesses only. By ordering you confirm that you are acting for a business and not as a consumer. If you are a consumer, do not order.
+
+## Ordering
+
+Nothing on our website is an offer you can accept. An agreement is made only when we confirm your order by email. We confirm what you will receive, the price, and when we will deliver it. These terms form part of every agreement and prevail over any terms you send us.
+
+## Price and payment
+
+Prices are in pounds sterling and exclude VAT, which we add where it applies. We invoice on or after delivery and you pay within the period stated on the invoice, or within 30 days if none is stated. We may charge interest on late payment as the law allows.
+
+## Delivery
+
+We deliver by email or through the means we agree. Delivery times are our best estimate and are not guaranteed. A report reflects the data on the date shown on it.
+
+## What a report is, and is not
+
+Our reports and screens are screening aids. They rest on published data from third parties and are not a grid connection offer, a planning decision, a credit decision, an identity verification, or legal, financial or technical advice. We do not promise that the data is complete, current or free from error. You are responsible for checking anything important with the body that decides it and for your own decisions.
+
+## Licence
+
+We grant you a non-exclusive licence to use the report inside your business for your own internal purposes. You must not resell it, publish it, or supply it to others as a product or service. Intellectual property in the report and the data compilation stays with us or our licensors. Third-party data remains subject to its publisher's terms.
+
+## Early access and API products
+
+Early access products are provided as they are, may contain faults, and may change or be withdrawn. Where we supply access through an API, we may apply rate limits, suspend access to protect the service or for breach of these terms, change the interface with reasonable notice, and we do not guarantee uptime. You must not resell or sublicense API access.
+
+## Refunds
+
+Because a report is produced to your order from data on the date shown, it is not refundable once delivered, except where we failed to deliver what we confirmed. If we did, we will redo the work or refund the fee for that report, at our choice.
+
+## Limit on our liability
+
+Nothing in these terms limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, or for fraud or fraudulent misrepresentation.
+
+Subject to that, our total liability to you for all claims arising from or connected with an order, whether in contract, tort (including negligence) or otherwise, is limited to the fees you have paid us for the product or service that gave rise to the claim. We are not liable for loss of profit, revenue, business, data or goodwill, or for any indirect or consequential loss. You agree that these limits are reasonable given the price of the product.
+
+## Confidentiality and data protection
+
+Each of us will keep the other's non-public information confidential and use it only for the order. Each of us will comply with data protection law. Our privacy policy explains how we use personal information.
+
+## Ending the agreement
+
+Either of us may end an agreement for a material breach the other has not fixed within 14 days of notice. Sections on licence, liability, confidentiality and governing law survive.
+
+## Governing law
+
+These terms and any dispute connected with them are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction.
+
+## Contact
+
+Questions about these terms can be sent to hello@arithim.com.
+
+Call us
+
