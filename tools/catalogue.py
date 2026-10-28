@@ -15,7 +15,7 @@ def load() -> list[dict]:
     def resolve(item: dict) -> dict:
         if "slug" in item:
             p = prods[item["slug"]]
-            return {"name": p["name"], "url": f"product-{p['slug']}.html", "status": item["status"], "audience": p["audience"], "summary": p["card_summary"]}
+            return {"name": p["name"], "url": f"product-{p['slug']}.html", "status": item["status"], "audience": p["audience"], "summary": p["card_summary"], "price": p.get("card_price", "")}
         return item
 
     groups = []

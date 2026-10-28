@@ -1080,6 +1080,9 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-hero-in { position: relative; padding-top: var(--ah-s-64); padding-bottom: var(--ah-s-20); }
 .ah-eyebrow-amber { margin-bottom: var(--ah-s-18); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.12em; color: var(--ah-amber); }
 .ah-h1 { max-width: 860px; font-weight: 700; font-size: var(--ah-fs-52); line-height: 1; letter-spacing: -0.04em; color: var(--ah-cream); }
+.ah-price { margin: var(--ah-s-14) 0 0; font-size: var(--ah-fs-16); color: var(--ah-text-2); }
+.ah-price strong { font-family: var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-20); color: var(--ah-cream); }
+.ah-pcard-price { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-cream); }
 .ah-ring-spin { position: absolute; inset: -150%; background: conic-gradient(from 0deg, transparent 50%, var(--ah-amber), var(--ah-amber-light), transparent 78%); animation: ah-spin 3s linear infinite; }
 .ah-btn-face { position: relative; display: inline-flex; align-items: center; gap: var(--ah-s-8); padding: var(--ah-s-16) 30px; border-radius: var(--ah-r-pill); background: var(--ah-card-2); color: var(--ah-cream); font-size: var(--ah-fs-16); font-weight: 600; }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
