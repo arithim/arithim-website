@@ -303,10 +303,11 @@ class RepoBuildTests(unittest.TestCase):
 
     def test_research_section_lists_only_research_articles(self):
         articles, outputs = self._write_all()
-        research = outputs[self.tmp / "research.html"]
+        page = outputs[self.tmp / "research.html"]
+        research = re.search(r"<!-- research:start -->(.*?)<!-- research:end -->", page, re.S).group(1)  # the header menu lists every article
         for a in articles:
             self.assertEqual(a["file"] in research, a["research"], a["slug"])
-        self.assertEqual("LATEST RESEARCH" in research, any(a["research"] for a in articles))
+        self.assertEqual("LATEST RESEARCH" in page, any(a["research"] for a in articles))
 
     def test_insights_list_is_newest_first(self):
         articles, outputs = self._write_all()

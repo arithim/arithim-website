@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import functools
 import html
 import json
 import math
@@ -566,14 +567,28 @@ _NAV_LINK = '        <a href="{href}" class="ah-nav-link">{label}</a>'
 _NAV_LINK_ACTIVE = '        <a href="{href}" class="ah-nav-link-on" aria-current="page">{label}</a>'
 
 
-def _product_menu() -> str:
-    """The Products dropdown, from content/catalogue.json (the same source as the products page)."""
+@functools.lru_cache(maxsize=None)
+def _menus() -> dict:
+    """Dropdown menus for the header: href -> [(group name or None, [items])]. Products come from content/catalogue.json,
+    the other fixed menus from content/navigation.json, and Insights and Research list the newest articles."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import catalogue
-    out = ['        <div class="ah-menu" role="group" aria-label="Products">']
-    for g in catalogue.load():
-        items = g.get("items") or [i for s in g["subgroups"] for i in s["items"]]
-        out.append(f'          <div class="ah-menu-group"><div class="ah-menu-title">{esc(g["name"])}</div>')
+    menus: dict = {}
+    menus["products.html"] = [(g["name"], g.get("items") or [i for s in g["subgroups"] for i in s["items"]]) for g in catalogue.load()]
+    nav = json.loads((ROOT / "content" / "navigation.json").read_text(encoding="utf-8"))
+    for href, spec in nav["menus"].items():
+        menus[href] = [(grp["name"], grp["items"]) for grp in spec["groups"]]
+    articles = load_articles()
+    menus["insights.html"] = [(None, [{"name": "All insights", "url": "insights.html"}] + [{"name": a["title"], "url": a["file"]} for a in articles[:6]])]
+    research = [a for a in articles if a["research"]]
+    menus["research.html"] = [(None, [{"name": "All research", "url": "research.html"}] + [{"name": a["title"], "url": a["file"]} for a in research[:6]])]
+    return menus
+
+
+def _menu_html(href: str, label: str) -> str:
+    out = [f'        <div class="ah-menu" role="group" aria-label="{attr(label)}">']
+    for name, items in _menus()[href]:
+        out.append('          <div class="ah-menu-group">' + (f'<div class="ah-menu-title">{esc(name)}</div>' if name else ""))
         out += [f'            <a class="ah-menu-link" href="{attr(i["url"])}">{esc(i["name"])}</a>' for i in items]
         out.append("          </div>")
     out.append("        </div>")
@@ -595,9 +610,9 @@ def render_partial(name: str, params: dict, partials_dir: Path) -> str:
             raise ValueError(f"header cta {cta!r} must be one of {', '.join(HEADER_CTAS)}")
         def one(href: str, label: str) -> str:
             link = (_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label)
-            if href != "products.html":
+            if href not in _menus():
                 return link
-            return f'        <span class="ah-nav-item">\n{link}\n{_product_menu()}\n        </span>'
+            return f'        <span class="ah-nav-item">\n{link}\n{_menu_html(href, label)}\n        </span>'
         links = "\n".join(one(href, label) for href, label in NAV_LINKS)
         return fill(read("header"), {"label": esc(params["label"]), "links": links, "cta": read(f"cta-{cta}")})
     if name == "footer":

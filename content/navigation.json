@@ -1,0 +1,26 @@
+{
+  "menus": {
+    "services.html": {"groups": [{"name": null, "items": [
+      {"name": "All services", "url": "services.html"},
+      {"name": "AI readiness and strategy", "url": "services-ai-readiness.html"},
+      {"name": "AI systems and automation", "url": "services-automation.html"},
+      {"name": "SAP ERP intelligence layer", "url": "services-sap.html"},
+      {"name": "AI-optimised websites", "url": "services-websites.html"},
+      {"name": "Training and enablement", "url": "services-training.html"},
+      {"name": "Regulatory and technical systems", "url": "services-regulatory.html"}
+    ]}]},
+    "case-studies.html": {"groups": [{"name": null, "items": [
+      {"name": "All case studies", "url": "case-studies.html"},
+      {"name": "Compliance and vendor approval", "url": "case-compliance-vendor-approval.html"},
+      {"name": "Find Me A Job", "url": "case-find-me-a-job.html"},
+      {"name": "Operational intelligence platform", "url": "case-operational-intelligence-platform.html"},
+      {"name": "Telecommunications billing", "url": "case-telecommunications-billing.html"},
+      {"name": "Unrejectable", "url": "case-unrejectable.html"}
+    ]}]},
+    "about.html": {"groups": [{"name": null, "items": [
+      {"name": "About Arithim", "url": "about.html"},
+      {"name": "Contact", "url": "contact.html"},
+      {"name": "Privacy policy", "url": "privacy.html"}
+    ]}]}
+  }
+}

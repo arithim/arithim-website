@@ -27,7 +27,8 @@
    (tools/build_themes.py). This is the only stylesheet on the site. */
 
 /* ah-tokens:start (managed by tools/centralise_styles.py; edit values here to restyle the site) */
-:root {
+/* The animated product scenes keep the dark palette in every theme. */
+:root, .tsg-fig {
   --ah-ink: #070C16;
   --ah-ink-deep: #060A12;
   --ah-band: #0A101C;
@@ -1057,7 +1058,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 
 /* ---- 9. Header product menu, product cards and page hero (generated pages) ---- */
 .ah-nav-item { position: relative; display: inline-flex; }
-.ah-menu { position: absolute; top: 100%; left: 0; z-index: 60; display: none; min-width: 300px; padding: var(--ah-s-12); background: var(--ah-card); border: 1px solid var(--ah-cream-10); border-radius: var(--ah-r-16); box-shadow: var(--ah-shadow-05c7c7); }
+.ah-menu { position: absolute; top: 100%; left: 0; z-index: 60; display: none; min-width: 280px; max-width: 380px; padding: var(--ah-s-12); background: var(--ah-card); border: 1px solid var(--ah-cream-10); border-radius: var(--ah-r-16); box-shadow: var(--ah-shadow-05c7c7); }
 .ah-nav-item:hover > .ah-menu, .ah-nav-item:focus-within > .ah-menu { display: block; }
 .ah-menu-group + .ah-menu-group { margin-top: var(--ah-s-10); padding-top: var(--ah-s-10); border-top: 1px solid var(--ah-cream-08); }
 .ah-menu-title { padding: var(--ah-s-4) var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ah-text-4); }
@@ -1065,9 +1066,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-menu-link:hover, .ah-menu-link:focus-visible { background: var(--ah-cream-06); color: var(--ah-cream); }
 @media (max-width: 900px) {
   [data-nav].sn-open .ah-nav-item { display: block; }
-  [data-nav].sn-open .ah-menu { position: static; display: block; min-width: 0; padding: 0 0 var(--ah-s-8) var(--ah-s-12); background: transparent; border: 0; box-shadow: none; }
-  [data-nav].sn-open .ah-menu-group + .ah-menu-group { margin-top: var(--ah-s-4); padding-top: var(--ah-s-4); border-top: 0; }
-  [data-nav].sn-open a.ah-menu-link { padding: var(--ah-s-8) 2px !important; font-size: var(--ah-fs-15) !important; border-bottom: 0 !important; }
+  [data-nav].sn-open .ah-menu { display: none; }
 }
 .ah-pcard { display: flex; flex-direction: column; gap: var(--ah-s-10); color: inherit; }
 .ah-pcard h3 { margin: 0; }
