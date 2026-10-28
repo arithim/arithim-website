@@ -1751,99 +1751,33 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
   .ah-plan, .ah-plan-cs .ah-5e5090 { transition: none; }
   .ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within, .ah-plan-cs:hover .ah-5e5090 { transform: none; }
 }
-/* ---- 13. Hero illustrations (tools/illustrations.py markup; colours come from the active theme's --ah-* tokens) ---- */
-.ah-art { --ah-art-bad: #E5806F; margin: 0; }
-html[data-theme="light"] .ah-art, html[data-theme="stripe"] .ah-art { --ah-art-bad: #C2392B; }
-.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--ah-s-48); align-items: center; }
+/* ---- 13. Hero layout with a picture beside the text. The one drawing kept here, tools/illustrations.py, is parked for Site Finder. ---- */
+.ah-art { margin: 0; }
+.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--ah-s-40); align-items: center; }
 .ah-has-art .ah-h1 { font-size: var(--ah-fs-46); }
 .ah-art svg { display: block; width: 100%; height: auto; max-width: 440px; margin: 0 auto; font-family: var(--ah-font-display); color: var(--ah-cream); }
 .ah-art .p { fill: var(--ah-card); stroke: var(--ah-cream-14); stroke-width: 1; }
-.ah-art .k, .ah-art .g, .ah-art .dash, .ah-art .ac, .ah-art .ring, .ah-art .site, .ah-art .nd, .ah-art .roof, .ah-art .arc, .ah-art .pill, .ah-art .rk { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.ah-art .k { stroke: var(--ah-cream-25); stroke-width: 1.4; }
-.ah-art .g { stroke: var(--ah-cream-10); stroke-width: 1; }
+.ah-art .g { fill: none; stroke: var(--ah-cream-10); stroke-width: 1; stroke-linecap: round; }
 .ah-art .g.f { fill: var(--ah-cream-08); stroke: none; }
-.ah-art .g.tr { stroke: var(--ah-cream-12); stroke-width: 5; }
-.ah-art .dash { stroke: var(--ah-cream-50); stroke-width: 1.4; stroke-dasharray: 4 5; }
-.ah-art .ac { stroke: var(--ah-amber); stroke-width: 2.4; }
-.ah-art .site { stroke: var(--ah-amber); stroke-width: 2; fill: var(--ah-amber-14); }
-.ah-art .ring { stroke: var(--ah-amber); stroke-width: 1.5; stroke-opacity: 0.6; }
-.ah-art .nd { fill: var(--ah-card-2); stroke: var(--ah-cream-25); stroke-width: 1.4; }
-.ah-art .n { fill: var(--ah-cream); }
-.ah-art .roof { fill: var(--ah-amber-14); stroke: var(--ah-amber); stroke-width: 2; }
-.ah-art .k.t { stroke: var(--ah-amber-50); stroke-width: 1; }
-.ah-art .pill { fill: var(--ah-cream-04); stroke: var(--ah-cream-16); stroke-width: 1; }
-.ah-art .rk { fill: var(--ah-amber-18); stroke: var(--ah-amber); stroke-width: 1.5; }
-.ah-art .arc { stroke: var(--ah-sage); stroke-width: 5; stroke-dasharray: 134 164; }
 .ah-art .dt { fill: var(--ah-cream-25); }
-.ah-art .sun { fill: var(--ah-amber); }
-.ah-art .halo { fill: none; stroke: var(--ah-amber); stroke-width: 1.4; stroke-dasharray: 2 5; }
+.ah-art .rk { fill: var(--ah-amber-18); stroke: var(--ah-amber); stroke-width: 1.5; }
 .ah-art .ok { fill: var(--ah-sage); }
-.ah-art .rv { fill: var(--ah-amber); }
-.ah-art .bd { fill: var(--ah-art-bad); }
-.ah-art .b { fill-opacity: 0.16; }
-.ah-art .am.f { fill: var(--ah-amber); }
-.ah-art .hl { fill: var(--ah-art-bad); fill-opacity: 0.08; }
-.ah-art .f { stroke: none; }
 .ah-art text { font-size: var(--ah-fs-12); fill: var(--ah-text-3); }
 .ah-art .tx { font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.04em; }
 .ah-art .tx.s { font-size: var(--ah-fs-10-5); }
 .ah-art .tb { font-size: var(--ah-fs-13-5); font-weight: 600; fill: var(--ah-cream); }
 .ah-art .tb.s { font-size: var(--ah-fs-12); }
-.ah-art .am { font-family: var(--ah-font-mono); font-size: var(--ah-fs-10-5); letter-spacing: 0.06em; fill: var(--ah-amber); }
-.ah-art .big { font-size: var(--ah-fs-38); font-weight: 700; fill: var(--ah-cream); letter-spacing: -0.03em; }
 .ah-art figcaption.ah-art-cap { max-width: 440px; margin: var(--ah-s-10) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
 @media (max-width: 860px) {
   .ah-hero-in.ah-has-art { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-32); }
   .ah-has-art .ah-h1 { font-size: var(--ah-fs-36); }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .ah-art svg { animation: ah-art-in 0.7s ease-out both; }
-  @keyframes ah-art-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-}
-.ah-art .pill.pf { fill: var(--ah-card); }
 
-/* 14. Grid pre-screen scene: light, floaty map motion on the shared scene engine. */
-.gp-map { display: block; width: 100%; height: 214px; flex: none; }
-.gp-cloud { fill: var(--ah-cream-08); animation: gp-drift 9s ease-in-out infinite alternate; }
-.gp-cloud.c2 { animation-duration: 12s; animation-direction: alternate-reverse; }
-.gp-line { fill: none; stroke: var(--ah-blue-light); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 260; stroke-dashoffset: 260; opacity: 0.7; transition: stroke-dashoffset 1s ease-out, opacity 0.4s; }
-.tsg-stage .gp-line[data-in] { transform: none; }
-.tsg-stage .gp-line[data-in].on { stroke-dashoffset: 0; }
-.gp-sub, .gp-site, .gp-km { transform-box: fill-box; transform-origin: center; }
-.tsg-stage .gp-sub[data-in], .tsg-stage .gp-site[data-in], .tsg-stage .gp-km[data-in] { transform: scale(0.3); transition: opacity 0.3s, transform 0.6s cubic-bezier(0.34, 1.7, 0.5, 1); }
-.tsg-stage .gp-sub[data-in].on, .tsg-stage .gp-site[data-in].on, .tsg-stage .gp-km[data-in].on { transform: none; }
-.gp-sub circle { fill: var(--ah-card-2); stroke: var(--ah-blue-light); stroke-width: 2.4; }
-.gp-sub text, .gp-km text { font: 500 12px 'JetBrains Mono', monospace; fill: var(--ah-text-3); }
-.gp-site.on .gp-pin { animation: gp-float 3.2s ease-in-out infinite; }
-.gp-pin { fill: var(--ah-amber); stroke: none; transform-box: fill-box; transform-origin: bottom center; }
-.gp-pinc { fill: var(--ah-card-2); }
-.gp-ring { fill: none; stroke: var(--ah-amber); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
-.gp-site.on .gp-ring { animation: gp-ping 2.6s ease-out infinite 0.6s; }
-.gp-tether { stroke: var(--ah-amber); stroke-width: 1.5; stroke-dasharray: 3 4; fill: none; opacity: 0.8; }
-.gp-km rect { fill: var(--ah-amber-10); stroke: var(--ah-amber-50); }
-.gp-km text { fill: var(--ah-amber-light); }
-.gp-dot { fill: var(--ah-amber-light); offset-path: path('M96 150 C140 96 176 82 214 72'); offset-rotate: 0deg; }
-.gp-dot.d2 { offset-path: path('M214 72 C256 80 300 120 336 158'); fill: var(--ah-sage-light); }
-.gp-dot.on { animation: gp-run 3.6s linear infinite; }
-.gp-dot.d2.on { animation-duration: 4.4s; }
-.gp-bar { display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: var(--ah-s-10); font-size: var(--ah-fs-14); color: var(--ah-text-2); }
-.gp-bar b { font: 500 14px 'JetBrains Mono', monospace; color: var(--ah-cream); }
-.gp-bar .m-fit { margin: 0; height: 8px; }
-.gp-bar .m-fit i.s { background: linear-gradient(90deg, var(--ah-sage), var(--ah-sage-light)); }
-.gp-bar .m-fit i.a { background: linear-gradient(90deg, var(--ah-amber), var(--ah-amber-light)); }
-.gp-verdict { display: flex; align-items: center; gap: var(--ah-s-8); font-size: var(--ah-fs-15); color: var(--ah-sage-text); background: rgba(143, 178, 155, 0.1); border: 1px solid rgba(143, 178, 155, 0.4); border-radius: var(--ah-r-999); padding: 5px var(--ah-s-14); align-self: flex-start; }
-.gp-verdict em { font: 400 13px 'JetBrains Mono', monospace; font-style: normal; color: var(--ah-text-3); }
-.gp-spark { color: var(--ah-amber-light); display: inline-block; }
-.gp-verdict.on .gp-spark { animation: gp-twinkle 2.4s ease-in-out infinite; }
-@keyframes gp-drift { to { transform: translateX(18px); } }
-@keyframes gp-float { 50% { transform: translateY(-5px); } }
-@keyframes gp-ping { 0% { opacity: 0.8; transform: scale(0.5); } 100% { opacity: 0; transform: scale(2.2); } }
-@keyframes gp-run { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
-@keyframes gp-twinkle { 50% { transform: scale(1.4) rotate(20deg); opacity: 0.6; } }
-.tsg-stage.still .gp-cloud, .tsg-stage.still .gp-pin, .tsg-stage.still .gp-ring, .tsg-stage.still .gp-dot, .tsg-stage.still .gp-spark { animation: none !important; }
-@media (prefers-reduced-motion: reduce) {
-  .gp-cloud, .gp-pin, .gp-ring, .gp-dot, .gp-spark { animation: none !important; }
-}
+/* ---- 14. Dotted nature scenes (tools/build_product_pages.py markup, assets/dotscene.js drawing). Ink on light themes, pale dots on dark; one accent. ---- */
+.ah-nature { --ah-dot: var(--ah-cream); --ah-dot-dim: var(--ah-text-5); --ah-dot-flag: var(--ah-amber); position: relative; z-index: 0; margin: 0; }
+.ah-nature::before { content: ''; position: absolute; inset: -8% -6% 4%; z-index: -1; background: radial-gradient(closest-side, var(--ah-ink) 55%, transparent); opacity: 0.85; pointer-events: none; }
+.ah-nature-cv { display: block; width: 100%; max-width: 480px; aspect-ratio: 440 / 320; margin: 0 auto; }
+.ah-nature figcaption.ah-nature-cap { max-width: 480px; margin: var(--ah-s-8) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
 
 /* 15. Fonts, served from this site (latin and latin-ext subsets). */
 @font-face {
