@@ -225,6 +225,7 @@
   --ah-shadow-a66e3a: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--ah-amber-18);
   --ah-shadow-b3ff97: 0 0 12px var(--ah-sage-light);
   --ah-shadow-c16fc7: 0 0 0 4px var(--ah-amber-30);
+  --ah-shadow-c23741: var(--ah-shadow-card, 0 12px 32px rgba(0, 0, 0, 0.18));
   --ah-shadow-fde501: 0 0 10px var(--cu-sage);
   --ah-font-mono: 'JetBrains Mono',monospace;
   --ah-font-display: 'Schibsted Grotesk',sans-serif;
@@ -1703,3 +1704,16 @@ html[data-theme="stripe"] { color-scheme: light; }
 html[data-theme="stripe"] .ah-rb, html[data-theme="stripe"] .ah-rb-scrim, html[data-theme="stripe"] .ah-fx-glow { display: none; }
 html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter-spacing: -0.03em; }
 /* ah-themes:end */
+
+/* Icon chips and boxed hover cards. One pattern for every product card. */
+.ah-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; width: var(--ah-icon-size, 22px); height: var(--ah-icon-size, 22px); display: block; }
+.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-12, 12px); background: var(--ah-card-2); color: var(--ah-text-2); transition: color 0.2s, border-color 0.2s, background 0.2s; }
+.ah-pcard, .ah-a8498e { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
+.ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible .ah-icon-chip { color: var(--ah-amber); border-color: var(--ah-amber-40); }
+.ah-pcard-more { transition: transform 0.2s; }
+.ah-pcard:hover .ah-pcard-more { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .ah-pcard, .ah-a8498e, .ah-icon-chip, .ah-pcard-more { transition: none; }
+  .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible, .ah-pcard:hover .ah-pcard-more { transform: none; }
+}

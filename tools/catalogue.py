@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+ICONS = {"technical-sales-guide": "guide", "ai-model-inventory": "inventory", "site-finder": "site", "battery-siting-report": "battery", "grid-pre-screen": "grid",
+         "planning-risk-screen": "planning", "solar-suitability-api": "solar", "uk-company-check": "company", "Technical Sales Guide": "guide", "Site Finder": "site", "Find Me A Job": "job", "Unrejectable": "shield"}
 
 
 def load() -> list[dict]:
@@ -15,8 +17,8 @@ def load() -> list[dict]:
     def resolve(item: dict) -> dict:
         if "slug" in item:
             p = prods[item["slug"]]
-            return {"name": p["name"], "url": f"product-{p['slug']}.html", "status": item["status"], "audience": p["audience"], "summary": p["card_summary"], "price": p.get("card_price", "")}
-        return item
+            return {"name": p["name"], "url": f"product-{p['slug']}.html", "status": item["status"], "audience": p["audience"], "summary": p["card_summary"], "price": p.get("card_price", ""), "icon": ICONS.get(p["slug"], "")}
+        return {**item, "icon": ICONS.get(item.get("name", ""), "")}
 
     groups = []
     for g in cat["groups"]:
