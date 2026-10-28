@@ -752,6 +752,37 @@ html:has(.sf) { scroll-behavior: smooth; }
   .sf-v3 .sf-fig:nth-child(even) .sf-sc-v { order: 2; }
 }
 
+/* Pricing, shipped grid and early-access status (v8) */
+.sf-st.early-access { color: #D9C2F0; border-color: rgba(190,160,230,0.5); background: rgba(160,120,220,0.12); }
+.sf-shipped { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.sf-prices { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.sf-pr { display: flex; flex-direction: column; gap: 10px; }
+.sf-pr h4 { font-family:var(--ah-font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: var(--ah-cream); margin: 0; line-height: 1.25; }
+.sf-pr .sf-pr-p { font: 500 15px 'JetBrains Mono', monospace; letter-spacing: 0.01em; color: var(--ah-amber-light); margin: 0; }
+.sf-pr p { margin: 0; }
+.sf-pr .sf-pr-dl { font-size: 14px; color: var(--ah-text-3); }
+.sf-order { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 120px; padding: 10px 24px; border-radius: 999px; background: var(--ah-amber); color: var(--ah-surface-4); font-weight: 600; font-size: 15.5px; text-decoration: none; transition: background 0.2s; }
+.sf-order:hover { background: var(--ah-amber-light); }
+.sf-pr-terms { max-width: 820px; }
+@media (max-width: 640px) {
+  .sf-prices { grid-template-columns: minmax(0, 1fr); }
+  .sf-order { align-self: stretch; }
+}
+
+/* Hero prices, buyer links, proof beside the prices, live-feature list (v9) */
+.sf-hero-pr { margin-top: 18px; font-size: 15px; line-height: 1.7; color: var(--ah-text-3); max-width: 560px; }
+.sf-hero-pr a { color: var(--ah-amber-light); text-decoration: none; white-space: nowrap; }
+.sf-hero-pr a:hover { text-decoration: underline; }
+.sf-aud-pr { margin-top: 12px; font-weight: 600; }
+.sf-proof { margin-top: 22px; padding: 18px 22px; border: 1px solid var(--ah-amber-35); border-radius: 14px; background: var(--ah-amber-06); max-width: 900px; }
+.sf-proof h3 { margin: 0; font-family:var(--ah-font-display); font-weight: 600; font-size: 18px; color: var(--ah-cream); }
+.sf-proof .sf-list { margin-top: 8px; }
+.sf-proof .sf-list li { font-size: 15.5px; padding: 5px 0 5px 24px; }
+.sf-proof .sf-list li::before { top: 17px; }
+.sf-pr .sf-pr-p { font-size: 18px; font-weight: 600; }
+.sf-pr[id] { scroll-margin-top: 90px; }
+.sf-chips { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.sf-chips li { font-size: 14px; color: var(--ah-text-1); padding: 6px 12px; border: 1px solid rgba(169,200,179,0.4); border-radius: 999px; background: rgba(169,200,179,0.08); }
 /* ---- 5. The early access product pages and Assay (was assets/products/product-pages.css) ---- */
 /* Assay product page (product-assay.html). Page-specific parts only; shared layout lives in /site.css. */
 .as-sub { font-family:var(--ah-font-display); font-weight: 600; font-size: 19px; color: var(--ah-cream); margin: 34px 0 8px; }

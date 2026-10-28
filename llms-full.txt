@@ -260,21 +260,21 @@ Describe this animation
 
 Three examples play in turn: a heat-stress product for broilers in Saudi Arabia, a dispersant for a water-based wall paint in the UAE, and a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.
 
-FOR SOLAR DEVELOPERS IN GREAT BRITAIN
+FOR RENEWABLE DEVELOPERS IN GREAT BRITAIN
 
 ### Site Finder
 
-Demos
+Live
 
-An origination team describes the solar farm it wants to build. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into its evidence: the grid connection, the planning record nearby and the economics.
+Site Finder ranks land for solar, battery storage, solar with a battery and onshore wind across England, Scotland and Wales. Each site opens into its evidence: the grid connection and who holds capacity there, the planning record nearby and the economics.
 
-Built on open public data, and the app lists the source of every input.
+Every number carries its source, date and licence.
 
 Change an assumption and the list re-ranks, with a note of which sites moved and why.
 
-A one-page evidence pack for any site, ready to take to a land agent.
+One-off reports from £195 ex VAT, and subscriptions for origination teams, market watching and data access.
 
-Book a demo →How it works
+Book a demo →Prices from £195How it works
 
 Describe this animation
 
@@ -856,17 +856,21 @@ Request a demo and the security pack →Back to the Technical Sales Guide
 
 URL: https://arithim.com/product-site-finder.html
 
-SITE FINDER · FOR SOLAR TEAMS IN GREAT BRITAIN
+SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN
 
 # Find the land worth a site visit, with the evidence for every site.
 
-Describe the solar farm you want to build. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection, the planning record nearby and the economics.
+Describe the project you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection and who holds capacity there, the planning record nearby and the economics.
 
-Book a demo →Watch it in use
+Book a demo →See prices and orderWatch it in use
+
+Landowner check £195 · Feasibility report £1,950 · Portfolio screen £7,500 · Platform from £30,000 a year
+
+Prices ex VAT. Order by email and pay by invoice.
 
 Describe this animation
 
-A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Hulcott in Buckinghamshire needs £57.1 against a CfD price of £65.23, Stone Street in East Suffolk needs £60.5, and Belchamp St Paul in Braintree needs £59.7. Numbered markers place the sites on the map. All names and figures illustrate the interface on the launch data.
+A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.
 
 Describe the project
 
@@ -880,15 +884,31 @@ WHO IT IS FOR
 
 ## Who is Site Finder for?
 
-Origination analysts and investment committees at UK independent power producers (IPPs).
+Teams that develop, buy or host renewable projects in Great Britain.
 
-### Origination analysts
+### Origination teams at developers and IPPs
 
-An analyst gets a long list of land to take to a land agent or a network operator, with the reasoning attached.
+A ranked map for solar, battery, hybrid and onshore wind, a pipeline board that tracks each site's connection evidence and deadlines, and packs for the investment committee. Your team makes unlimited landowner checks and feasibility reports.
 
-### Investment committees
+Site Finder platform, from £30,000 a year →
 
-A committee member can ask why this site and not that one, see the answer in the data, then change an assumption and watch the ranking respond.
+### Fund and acquisition analysts
+
+Each claim in a seller's pipeline is checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.
+
+Portfolio screen, £7,500 for up to 50 sites →
+
+### Landowners and land agents
+
+One page on the land after a developer's letter: the nearest grid point and how crowded it is, who the developer is, what else they hold nearby and any pressure terms in the letter.
+
+Landowner check, £195 →
+
+### First-time developers and consultants
+
+A feasibility report on one site with a verdict, the reasons, the grid and planning position, the economics and the source of every number.
+
+Site feasibility report, £1,950 →
 
 Site Finder is a screening tool. It narrows where to look, and your team still visits the land, talks to the network operator and takes planning advice.
 
@@ -896,29 +916,67 @@ FOR EVERY SITE
 
 ## What does Site Finder show for each site?
 
-Each site in the list opens into four views, and each view names its sources.
+Each site in the list opens into four views, and every number in them carries its source, date and licence.
 
 ### Grid connection
 
-The nearest substations, whether the network operator publishes headroom for them, and an estimated energisation year.
+The nearest substations, the headroom each network operator publishes and the date of that figure, the Gate 2 context, and who holds capacity at the node and how firm their position is.
 
 ### Planning record
 
-Solar schemes built, consented and refused nearby, and how the local authority has decided solar applications.
+Schemes built, consented and refused nearby, how the local authority has decided similar applications, and the likely consent route for the project's size and nation.
 
 ### Economics
 
-An indicative connection cost, the price per MWh the site needs to reach your hurdle rate, and NPV and IRR.
+An indicative connection cost, the price per MWh the site needs to reach your hurdle rate, and sensitivities. For batteries, the break-even capex with and without the export credit.
 
-### Evidence pack
+### Evidence
 
-Every input with its source and a constraint checklist, printable as one page or exported as CSV and GeoJSON.
+The source, version, date and licence of every number, and a constraint checklist. Any site can go into a feasibility report, a grid pack, an investment committee pack or an Excel model.
+
+BEYOND THE MAP
+
+## What else can I do in Site Finder?
+
+The ranked map sits beside tools for tracking a pipeline, watching the market and checking someone else's sites. The data refreshes every week.
+
+### Site upload and screening
+
+Upload a boundary, a KML or a shapefile, or draw one on the map, and screen it against the same rules as the ranked list.
+
+### Pipeline board
+
+Track each site on a connection evidence ladder that runs from map only to energised, with clocks for Gate 2 milestones and land-rights deadlines.
+
+### Company holdings
+
+See a company group's projects and connections by technology, stage, substation and planning authority, a league table, Gate 2 positions with no planning application, and connections that sit idle.
+
+### Change feed and weekly digest
+
+New connection applications, Gate changes, status moves and holder changes appear in the app and in a weekly email, filtered by the companies, substations and areas on your watchlists.
+
+### Diligence
+
+Import a seller's site list and each claim is marked confirmed, contradicted, not verifiable or seller-supplied, then exported as a data-room PDF and Excel workbook.
+
+### "Can I build here?"
+
+Three guided checks: for a landowner approached by a developer, for a developer weighing one site, and for an investor testing a pipeline. Each ends with a one-page summary and questions for an adviser.
+
+### GB rules cards
+
+Dated cards on the consent route by nation and size, Gate 2 milestones and battery fire-safety guidance, each with a review date.
+
+### Data API and MCP server
+
+Your own tools and AI assistants can read projects, substations, map cells, company holdings and changes, each with its source, date and licence, through per-organisation keys.
 
 SEE IT IN USE
 
 ## What does Site Finder look like in use?
 
-Animated scenes of the interface. The names and figures come from the launch data and show how the tool works. They are not results for any project.
+Animated scenes of the interface. The names and figures are made up to show how the tool works. They are not results for any project.
 
 ### A working session
 
@@ -928,7 +986,7 @@ Load the app, read the verdict and scan the ranked list, then look across the ma
 
 Describe this animation
 
-A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Hulcott in Buckinghamshire needs £57.1 against a CfD price of £65.23, Stone Street in East Suffolk needs £60.5, and Belchamp St Paul in Braintree needs £59.7. Numbered markers place the sites on the map. All names and figures illustrate the interface on the launch data.
+A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.
 
 #### Open the evidence for a site
 
@@ -936,7 +994,7 @@ Open the top site: its score breakdown, substations, planning record and economi
 
 Describe this animation
 
-The top row, Hulcott in Buckinghamshire, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Aylesbury East Grid 33kV at 0.5 km with capacity ok, the planning record, and the economics: the site needs £57.1 against a CfD price of £65.23. All names and figures illustrate the interface on the launch data.
+The top row, Ellerstoke in Wendmoor, is selected and an evidence drawer slides up. Six bars grow for grid, planning, solar and terrain, economics, deliverability and environment. Cards then show the nearest substation, Carrowby East Grid 33kV at 0.7 km with capacity ok, the planning record, and the economics: the site needs £56.4 against a CfD price of £65.23. Names and figures are made up to show the interface.
 
 #### Push back and see what changed
 
@@ -944,7 +1002,7 @@ Mark a substation as full and rescore, read the What changed card, then assume a
 
 Describe this animation
 
-Four ranked sites sit above a card for the substation Aylesbury East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Hulcott falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause. All names and figures illustrate the interface on the launch data.
+Four ranked sites sit above a card for the substation Carrowby East Grid 33kV. Challenge is pressed, the substation is marked full, and a note says the operator has no spare capacity. After Rescore the rows move. Ellerstoke falls from first to fourth and the other three each rise one place. A What changed card lists each move and names the override as the cause. Names and figures are made up to show the interface.
 
 ### Features up close
 
@@ -954,7 +1012,7 @@ See which sites can connect in the current window, then assume a Gate 2 offer an
 
 Describe this animation
 
-A bar shows 134.6 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 40 MWac each take their share in rank order, and the figure falls to 94.6, 54.6 and then 14.6 MW. The fourth site, Weedon, also needs 40 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year. All names and figures illustrate the interface on the launch data.
+A bar shows 127.3 MW of Gate 2 solar capacity left in a zone. Three ranked sites of 38 MWac each take their share in rank order, and the figure falls to 89.3, 51.3 and then 13.3 MW. The fourth site, Daverby Magna, needs 36 MWac. It does not fit, so it moves to a box marked needs next window, with a later energisation year. Names and figures are made up to show the interface.
 
 #### Planning record by local authority
 
@@ -962,7 +1020,7 @@ Search the planning record by local authority for decisions, approval rates and 
 
 Describe this animation
 
-A table lists local authorities, with a bar for the share of solar schemes approved. Wiltshire is selected. Its panel says it approved 11 of 12 solar schemes since 2019, with a median decision time of 9 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme. All names and figures illustrate the interface on the launch data.
+A table lists local authorities, with a bar for the share of solar schemes approved. Saltmere is selected. Its panel says it approved 10 of 11 solar schemes since 2019, with a median decision time of 8 months, and a small chart shows decisions per year. A note says the rate is the authority's record and does not predict the outcome for a specific scheme. Names and figures are made up to show the interface.
 
 #### Refused schemes nearby
 
@@ -970,7 +1028,7 @@ A refused solar scheme near a site lowers its score, and the site's evidence nam
 
 Describe this animation
 
-A score waterfall for a site at Smeeth in Ashford starts at 0.83 before flags. Three multipliers follow: 0.90 for a refused scheme 1.4 km away, 0.94 for a National Park or AONB setting, and 0.93 for a listed building. The score ends at 0.65. A small map then shows the site, a dashed 1.4 km line and the refused scheme, East Stour Solar Farm, 49.9 MW. All names and figures illustrate the interface on the launch data.
+A score waterfall for a site at Fennick Green in Callowfield starts at 0.84 before flags. Three multipliers follow: 0.91 for a refused scheme 1.7 km away, 0.94 for a National Park or AONB setting, and 0.92 for a listed building. The score ends at 0.66. A small map then shows the site, a dashed 1.7 km line and the refused scheme, Fallowmere Solar Farm, 34.5 MW. Names and figures are made up to show the interface.
 
 #### Economics and project size
 
@@ -978,7 +1036,7 @@ Take the project size past 100 MWac and watch the consent route, transmission ch
 
 Describe this animation
 
-A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£8.5m to −£0.1m. A note names the size threshold and both values. All names and figures illustrate the interface on the launch data.
+A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the consent route changes from the local planning authority to the NSIP Development Consent Order route, and the NPV falls from +£7.6m to −£0.4m. A note names the size threshold and both values. Names and figures are made up to show the interface.
 
 PUSH BACK
 
@@ -988,7 +1046,7 @@ Analysts push back, so every challenge is a control on screen, and each one re-r
 
 ### Change the assumptions
 
-Change the weights, exclusion rules, project size, revenue route, capex and hurdle rate. Draw areas on the map to include or exclude, or override a single substation ("this one is full") with a note saying why.
+Change the technology, weights, exclusion rules, project size, revenue route, capex and hurdle rate. Draw areas on the map to include or exclude, or override a single substation ("this one is full") with a note saying why.
 
 ### See what changed
 
@@ -998,19 +1056,115 @@ After each edit, a card lists the sites that entered or left the top of the list
 
 Save a set of assumptions under a name, compare two side by side and send one to a colleague as a link.
 
+PRICES
+
+## How much does Site Finder cost?
+
+Prices exclude VAT. Reports have fixed prices and subscriptions start at the price shown. Press Order and your email app opens a message with the details we need.
+
+### One-off reports
+
+#### Landowner check
+
+£195 a report
+
+Delivered in 3 working days
+
+One page on what the land looks like for solar, battery or wind, the nearest grid point and how crowded it is, who the developer is and what else they hold nearby, the likely consent route, any pressure terms in the letter, and questions for an adviser.
+
+Order
+
+#### Site feasibility report
+
+£1,950 a site (solar, battery or wind)
+
+Delivered in 3 working days
+
+A verdict with reasons, constraints with a map, grid, planning, economics, contacts, and sources and licences. PDF, with Word and Excel on request.
+
+Order
+
+#### Solar and battery hybrid add-on
+
+£500 on top of a feasibility report
+
+Delivered with the report
+
+Hybrid economics on a shared connection, with clipping and dispatch, compared with solar alone.
+
+Order
+
+#### Portfolio screen
+
+£7,500 for up to 50 sites; £120 for each extra site
+
+Delivered in 5 working days
+
+Every claim in a seller's list checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with both values and the source for each contradiction, a portfolio roll-up, and a data-room PDF and Excel workbook with a sources and licence appendix.
+
+Order
+
+### Why it costs more than a land tool
+
+Grid, planning, capacity holders and economics joined in one answer for each site.
+
+The source, version, date and licence of every number, so a committee or lender can check it.
+
+Who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database, joined to company groups.
+
+Weekly snapshots of the registers, so new queue entries, Gate moves and sales of project companies show up.
+
+Any assumption can be changed, and the app shows which sites moved and why.
+
+### Subscriptions
+
+#### Site Finder platform
+
+From £30,000 a year for 5 seats
+
+The origination desk: the ranked map for solar, battery, hybrid and onshore wind, pushback with what changed, evidence for every number, site upload, the pipeline board, documents, GB rules cards and alerts. Your own team can make unlimited landowner checks and feasibility reports.
+
+Order
+
+#### Market Watch
+
+From £15,000 a year
+
+Company holdings by group, substation and league table, exposed Gate 2 positions, idle connections, the change feed with a weekly email digest, and watchlists.
+
+Order
+
+#### Data API and MCP
+
+From £18,000 a year
+
+A read-only API and an MCP server for your own tools and AI assistants: projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence. Per-organisation keys and usage limits.
+
+Order
+
+#### Enterprise terms
+
+On quote
+
+More seats, internal redistribution and named support.
+
+Ask for a quote
+
+We confirm every order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.
+
 LIMITS
 
 ## What does Site Finder not do yet?
 
 The app shows these on screen too.
 
+Aerodrome and Ministry of Defence safeguarding zones are not published as open data, so Site Finder does not assess them. Check with the aerodrome operator, the MoD safeguarding team and, for wind, the NATS self-assessment maps before you commit to a site.
+
 Connection costs are indicative estimates for comparing sites. A network operator quote will differ.
 
 Headroom is only as complete as what each network operator publishes. Where nothing is published, the app marks the site as unknown.
 
-Aerodrome and Ministry of Defence safeguarding zones are not openly published, so the tool does not assess them.
-
-Sites are areas of land, not parcels with owners. Ownership is not in this version.
+Company holdings cover projects and grid connections. HM Land Registry data on company-owned land is not included, and nor are land titles, so Site Finder does not show who owns a particular field.
 
 Coverage is Great Britain. Northern Ireland is not included.
 
@@ -1018,41 +1172,67 @@ ROADMAP
 
 ## What is on the Site Finder roadmap?
 
-Version 1 is available in demos. Planned items are grouped by quarter, and their timing can change.
+Everything described above this section is in the app today. Early-access items are available to API customers on request and are not yet part of the live product. Planned items are grouped by quarter, and their timing can change.
 
-shipped Available in version 1
+early access Available to API customers on request
 
-planned Scoped for a quarter
+planned Scoped, timing can change
 
 exploring Under consideration, no date
 
-### Q4 2026
+### Live in the app today
 
-shipped
+Solar, battery and hybrid siting
 
-#### Site Finder v1
+Onshore wind siting
 
-Gives an origination team one place to ask where to build and see why, with the data behind every rank.
+Evidence for every number
 
-planned
+Pushback with what changed
 
-#### Ownership chain (v1.1)
+Site upload and screening
 
-Shows who already holds consents, connections and land near a site, so a team can see competitors and likely sellers. Timing depends on a go-ahead.
+Pipeline board
+
+Documents
+
+GB rules cards
+
+Company holdings
+
+Change feed and weekly digest
+
+Diligence
+
+"Can I build here?" journeys
+
+Weekly data refresh
+
+Data API and MCP server
+
+### Early access and what comes next
+
+### EARLY ACCESS
+
+early access
+
+#### Screening call
+
+Send a boundary or a list of sites and get the verdict and reasons back as data. Available to API customers on request.
+
+early access
+
+#### Report call
+
+Request a landowner check, feasibility report or portfolio screen and receive the PDF and its data when it is ready. Available to API customers on request.
+
+early access
+
+#### Change webhooks
+
+Signed pushes for new connection applications, Gate changes, holder changes and planning moves on a watchlist. Available to API customers on request.
 
 ### Q1 2027
-
-planned
-
-#### Client accounts and single sign-on
-
-Lets a customer's whole team use the tool under their own security policy.
-
-planned
-
-#### Scheduled data refresh
-
-Registers, headroom figures and the planning database change every quarter, and a stale shortlist misleads.
 
 planned
 
@@ -1064,67 +1244,43 @@ planned
 
 #### CfD AR8 and AR9 eligibility screen
 
-Revenue route decides whether a site clears the hurdle, and the screen shows which sites could enter a round.
+Flags whether a site's consent status and Gate 2 position fit the next allocation rounds.
 
 ### Q2 2027
 
 planned
 
-#### Battery storage siting
-
-Many teams now develop solar and storage together, and the same grid and planning data applies.
-
-planned
-
-#### Planning applicant, agent and refusal reasons
-
-Refusal reasons show what an authority objects to, and the applicant shows who is active nearby.
-
-planned
-
 #### Aerial imagery checks
 
-Catches quarries, new housing and other features that the datasets lag behind.
+Shows current aerial imagery beside each site, to catch quarries, new housing and other land use the datasets lag behind.
 
 ### Q3 2027
 
 planned
 
-#### Co-located solar at existing wind connections
-
-Reusing a connection can avoid a queue, which is often the longest part of a project.
-
-planned
-
-#### Repowering candidates
-
-Existing sites already have a connection and a consent.
-
-planned
-
 #### Network-operator budget estimates and cable routing
 
-Connection cost is the largest uncertainty in the early numbers.
+Route-based cable costs and budget estimates from charging statements, because connection cost is the largest uncertainty in the early numbers.
 
 ### LATER
 
-exploring
+planned
 
-#### Onshore wind siting
+#### Online checkout
 
-Teams with wind pipelines would use one tool across technologies.
+Pay for a one-off report online. Until then, orders come by email and we invoice.
 
 exploring
 
 #### Council political context
 
-Politics affects consent as much as policy does, but the data licence is unclear today.
+Council control and policy stance beside the planning record, where the data licence allows it.
 
 exploring
 
 #### Northern Ireland
 
-Some IPPs develop across the whole UK.
+Coverage of Northern Ireland using its own planning, grid and land datasets.
 
 FREQUENTLY ASKED
 
@@ -1134,9 +1290,33 @@ Does Site Finder tell us where to build?
 
 It ranks candidate land and shows the evidence for each rank, and your team makes the decision. Use the list to start a conversation with a land agent and the network operator. Planning advice and site visits still come first.
 
+Which technologies does Site Finder cover?
+
+Solar, battery storage, solar with battery on a shared connection, and onshore wind, across England, Scotland and Wales. For wind, each site shows the modelled mean wind speed at 100 m from the Global Wind Atlas beside noise buffers, peat and designations.
+
+How much does Site Finder cost?
+
+Prices exclude VAT. A landowner check is £195 a report. A site feasibility report is £1,950 a site, and the solar and battery hybrid add-on is £500 on top. A portfolio screen is £7,500 for up to 50 sites and £120 for each extra site. The Site Finder platform is from £30,000 a year for 5 seats, Market Watch from £15,000 a year, and the data API and MCP from £18,000 a year. Enterprise terms are on quote.
+
+Why does Site Finder cost more than a land tool?
+
+Each site gets one answer that joins grid, planning, capacity holders and economics, and every number carries its source, version, date and licence, so a committee or lender can check it. Site Finder shows who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database joined to company groups. Weekly snapshots of the registers show new queue entries, Gate moves and sales of project companies, and you can change any assumption and see which sites moved.
+
+How do I order a report or a subscription?
+
+Press Order on the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and the details we need listed in the body. We confirm the order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.
+
+How long does a report take?
+
+A landowner check and a site feasibility report each take 3 working days. A hybrid add-on comes with its feasibility report. A portfolio screen takes 5 working days.
+
+Can our AI assistant use Site Finder data?
+
+Yes. The data API and MCP server let your own tools and AI assistants read projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence, and each organisation has its own keys and usage limits. A screening call, a report call and change webhooks are in early access, available to API customers on request.
+
 Where does the data come from?
 
-From open datasets published by UK government bodies, NESO and the distribution network operators, plus open land cover, solar resource and mapping data. The app lists every dataset with its version, retrieval date and licence.
+From open datasets published by UK government bodies, NESO and the distribution network operators, plus Companies House, the Global Wind Atlas, and open land cover, solar resource and mapping data. Every source is licensed for commercial use. The data refreshes every week, and the app lists every dataset with its version, retrieval date and licence.
 
 How reliable are the connection costs?
 
@@ -1144,17 +1324,17 @@ They are indicative. They are good for comparing one site with another and for s
 
 Does it know whether a substation has spare capacity?
 
-Where the network operator publishes a headroom figure, the tool uses it and marks the site as high confidence. Where it does not, the site is marked unknown, and the app warns you when most of a shortlist has no published headroom. You can override the figure for any substation and note why.
+Where the network operator publishes a headroom figure, the tool uses it and shows its date. Where it does not, the site is marked unknown, and the app warns you when most of a shortlist has no published headroom. You can override the figure for any substation and note why. The app also shows who already holds capacity at the node.
 
 Does it account for Gate 2 and Clean Power 2030?
 
-Yes. A site that is unlikely to get capacity in the current window is shown with a later energisation year. You can assume a Gate 2 offer is secured and see how the ranking changes.
+Yes. A site that is unlikely to get capacity in the current window is shown with a later energisation year. You can assume a Gate 2 offer is secured and see how the ranking changes, and the pipeline board keeps a clock for each site's Gate 2 milestones.
 
 Can we change the assumptions?
 
-Yes. Weights, exclusion rules, project size, revenue route, capex, hurdle rate and single-substation overrides are all editable. After each change the tool re-ranks and shows which sites moved and why. Every result comes from a rule you can open and read.
+Yes. Technology, weights, exclusion rules, project size, revenue route, capex, hurdle rate and single-substation overrides are all editable. After each change the tool re-ranks and shows which sites moved and why. Every result comes from a rule you can open and read.
 
-Can it show how a local authority has handled solar applications?
+Can it show how a local authority has handled applications?
 
 Yes. Search the planning record by local authority for decisions, approval rates and recent schemes. A refused scheme near a site lowers its score, and the evidence names it.
 
@@ -1164,19 +1344,19 @@ Yes. The app compares its rankings with how solar schemes have fared at planning
 
 Does it check airfields and military safeguarding?
 
-It excludes mapped aerodromes and military land. Official safeguarding zones are not published as open data, so check them with the aerodrome or the Ministry of Defence before you commit to a site.
+It excludes mapped aerodromes and military land. Official aerodrome and Ministry of Defence safeguarding zones are not published as open data, so check them with the aerodrome or the MoD before you commit to a site. For wind, also check the NATS self-assessment maps.
 
 Does it cover Northern Ireland or show who owns the land?
 
-Not yet. Coverage is Great Britain, and land ownership is on the roadmap.
+Coverage is Great Britain, and Northern Ireland is on the roadmap. Site Finder shows which company groups hold projects and grid connections, by substation and planning authority. It does not include land titles, so it does not show who owns a particular field.
 
-How do we get access?
+Can we see a demo before we subscribe?
 
-Book a demo. We set up an account for each customer and walk through the tool on a brief you choose.
+Yes. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about. You can also order a subscription straight away from the pricing section.
 
 ## Want to see Site Finder run on your own brief?
 
-Tell us the project size, how you want to connect and the regions you care about, and we will show you the ranked list and the evidence behind it.
+Tell us the technology, the project size, how you want to connect and the regions you care about, and we will show you the ranked list and the evidence behind it.
 
 Book a demo →
 
