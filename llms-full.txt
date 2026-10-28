@@ -20,6 +20,16 @@ Start a conversation →
 
 Explore services
 
+ACROSS EVERY SITE
+
+## Built for businesses that run in many places.
+
+Arithim works with regulated, multi-site businesses, where the hard part is seeing what runs where and keeping that picture current.
+
+A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data.
+
+Illustrative. Not your data.
+
 Energy◆Industrial◆Telecoms◆Regulated◆SAP-heavy◆FMCG◆
 
 document_intelligence/knowledge_copilots/operational_reporting/compliance_workflows/
@@ -1197,6 +1207,16 @@ An AI model inventory for CISOs, heads of cybersecurity and security architects.
 Book a scoping call →Early access
 
 In early access. Tell us which models or rules you need to answer for and we will scope it with you.
+
+WHERE YOUR MODELS RUN
+
+## The models behind your business sit in more places than one team can see.
+
+Applications, suppliers and teams call models hosted in many regions. The inventory records which ones you rely on, so a board or a customer gets one dated answer.
+
+A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data.
+
+Illustrative. Not your data.
 
 WHY TEAMS CHOOSE IT
 
