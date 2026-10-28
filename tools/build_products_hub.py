@@ -169,17 +169,18 @@ def home_cards(groups) -> str:
 
 
 def patch_home(groups) -> bool:
-    """Write every product from the catalogue into the Our products section of index.html, between its markers."""
-    path = ROOT / "index.html"
-    text = path.read_text(encoding="utf-8")
-    new = re.sub(r"(<!-- catalogue:start -->).*?(<!-- catalogue:end -->)", lambda m: m.group(1) + home_cards(groups) + m.group(2), text, flags=re.S)
-    import globe
-    new = re.sub(r"(<!-- globe:start -->).*?(<!-- globe:end -->)", lambda m: m.group(1) + globe.render(globe.HOME, "home-globe") + m.group(2), new, flags=re.S)
-    if new == text:
-        return False
-    if "--check" not in sys.argv:
-        path.write_text(new, encoding="utf-8")
-    return True
+    """Write every product from the catalogue between the markers on the home page and the case studies page."""
+    stale = False
+    cards = home_cards(groups)
+    for name in ("index.html", "case-studies.html"):
+        path = ROOT / name
+        text = path.read_text(encoding="utf-8")
+        new = re.sub(r"(<!-- catalogue:start -->).*?(<!-- catalogue:end -->)", lambda m: m.group(1) + cards + m.group(2), text, flags=re.S)
+        if new != text:
+            stale = True
+            if "--check" not in sys.argv:
+                path.write_text(new, encoding="utf-8")
+    return stale
 
 
 def main():
