@@ -87,6 +87,7 @@
   --ah-amber-18: rgba(232,161,60,0.18);
   --ah-amber-20: rgba(232,161,60,0.2);
   --ah-amber-22: rgba(232,161,60,0.22);
+  --ah-amber-24: rgba(232,161,60,0.24);
   --ah-amber-25: rgba(232,161,60,0.25);
   --ah-amber-28: rgba(232,161,60,0.28);
   --ah-amber-30: rgba(232,161,60,0.3);
@@ -1680,6 +1681,7 @@ html[data-theme="stripe"] {
   --ah-amber-18: rgba(58,83,208,0.18);
   --ah-amber-20: rgba(58,83,208,0.2);
   --ah-amber-22: rgba(58,83,208,0.22);
+  --ah-amber-24: rgba(58,83,208,0.24);
   --ah-amber-25: rgba(58,83,208,0.25);
   --ah-amber-28: rgba(58,83,208,0.28);
   --ah-amber-30: rgba(58,83,208,0.3);
@@ -1706,14 +1708,97 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 /* ah-themes:end */
 
 /* Icon chips and boxed hover cards. One pattern for every product card. */
-.ah-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; width: var(--ah-icon-size, 22px); height: var(--ah-icon-size, 22px); display: block; }
-.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-12, 12px); background: var(--ah-card-2); color: var(--ah-text-2); transition: color 0.2s, border-color 0.2s, background 0.2s; }
+.ah-icon { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; width: 24px; height: 24px; display: block; }
+/* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
+.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
 .ah-pcard, .ah-a8498e { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
 .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
-.ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible .ah-icon-chip { color: var(--ah-amber); border-color: var(--ah-amber-40); }
+.ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible /* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
+.ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
 .ah-pcard-more { transition: transform 0.2s; }
 .ah-pcard:hover .ah-pcard-more { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) {
   .ah-pcard, .ah-a8498e, .ah-icon-chip, .ah-pcard-more { transition: none; }
   .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible, .ah-pcard:hover .ah-pcard-more { transform: none; }
 }
+
+/* 38. Boxed plan cards (Services overview, Case Studies index). Built on the .ah-pcard pattern. */
+.ah-plan-grid, .ah-c3ad51 { align-items: stretch; }
+.ah-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ah-s-24); padding-top: var(--ah-s-32); }
+.ah-plan { position: relative; display: flex; flex-direction: column; gap: var(--ah-s-10); height: 100%; min-width: 0; padding: var(--ah-s-28); background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
+.ah-plan:focus-visible, .ah-plan-link:focus-visible { outline: 2px solid var(--ah-amber); outline-offset: 3px; }
+.ah-plan-link { color: inherit; text-decoration: none; }
+.ah-plan-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.ah-plan-link:hover { opacity: 1; }
+.ah-plan-link:focus-visible { outline: none; }
+.ah-plan:has(.ah-plan-link:focus-visible) { outline: 2px solid var(--ah-amber); outline-offset: 3px; }
+.ah-plan .ah-3d1931 { margin-bottom: 0; }
+.ah-plan .ah-plan-title { margin: 0; font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-26); line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; color: var(--ah-cream); }
+.ah-plan .ah-plan-sum { margin: 0; font-size: var(--ah-fs-15-5); line-height: 1.55; color: var(--ah-text-2); }
+.ah-plan-pts { display: flex; flex-direction: column; gap: var(--ah-s-6); padding-top: var(--ah-s-12); margin-top: var(--ah-s-6); border-top: 1px solid var(--ah-cream-08); }
+.ah-plan .ah-plan-pts span.ah-646de9 { position: relative; padding: 0 0 0 var(--ah-s-18); border: 0; border-radius: 0; background: none; font-size: var(--ah-fs-14); color: var(--ah-text-2); }
+.ah-plan .ah-plan-pts span.ah-646de9::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 2px; background: var(--ah-amber); }
+.ah-plan-scene { margin-top: auto; padding-top: var(--ah-s-16); pointer-events: none; }
+.ah-plan-cs { padding: var(--ah-s-32); text-decoration: none; }
+.ah-plan-cs .ah-plan-in { display: flex; flex-direction: column; flex: 1; }
+.ah-plan-cs .ah-5e5090 { margin-top: auto; transition: transform 0.2s; align-self: flex-start; }
+.ah-plan-cs .ah-ec0cad { margin-bottom: var(--ah-s-20); }
+.ah-plan-cs:hover .ah-5e5090 { transform: translateX(3px); }
+.ah-plan:hover .ah-plan-title { color: var(--ah-amber); }
+@media (max-width: 1100px) { .ah-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .ah-plan-grid { grid-template-columns: minmax(0, 1fr); } .ah-plan { padding: var(--ah-s-24); } }
+@media (prefers-reduced-motion: reduce) {
+  .ah-plan, .ah-plan-cs .ah-5e5090 { transition: none; }
+  .ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within, .ah-plan-cs:hover .ah-5e5090 { transform: none; }
+}
+/* ---- 13. Hero illustrations (tools/illustrations.py markup; colours come from the active theme's --ah-* tokens) ---- */
+.ah-art { --ah-art-bad: #E5806F; margin: 0; }
+html[data-theme="light"] .ah-art, html[data-theme="stripe"] .ah-art { --ah-art-bad: #C2392B; }
+.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--ah-s-48); align-items: center; }
+.ah-has-art .ah-h1 { font-size: var(--ah-fs-46); }
+.ah-art svg { display: block; width: 100%; height: auto; max-width: 440px; margin: 0 auto; font-family: var(--ah-font-display); color: var(--ah-cream); }
+.ah-art .p { fill: var(--ah-card); stroke: var(--ah-cream-14); stroke-width: 1; }
+.ah-art .k, .ah-art .g, .ah-art .dash, .ah-art .ac, .ah-art .ring, .ah-art .site, .ah-art .nd, .ah-art .roof, .ah-art .arc, .ah-art .pill, .ah-art .rk { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ah-art .k { stroke: var(--ah-cream-25); stroke-width: 1.4; }
+.ah-art .g { stroke: var(--ah-cream-10); stroke-width: 1; }
+.ah-art .g.f { fill: var(--ah-cream-08); stroke: none; }
+.ah-art .g.tr { stroke: var(--ah-cream-12); stroke-width: 5; }
+.ah-art .dash { stroke: var(--ah-cream-50); stroke-width: 1.4; stroke-dasharray: 4 5; }
+.ah-art .ac { stroke: var(--ah-amber); stroke-width: 2.4; }
+.ah-art .site { stroke: var(--ah-amber); stroke-width: 2; fill: var(--ah-amber-14); }
+.ah-art .ring { stroke: var(--ah-amber); stroke-width: 1.5; stroke-opacity: 0.6; }
+.ah-art .nd { fill: var(--ah-card-2); stroke: var(--ah-cream-25); stroke-width: 1.4; }
+.ah-art .n { fill: var(--ah-cream); }
+.ah-art .roof { fill: var(--ah-amber-14); stroke: var(--ah-amber); stroke-width: 2; }
+.ah-art .k.t { stroke: var(--ah-amber-50); stroke-width: 1; }
+.ah-art .pill { fill: var(--ah-cream-04); stroke: var(--ah-cream-16); stroke-width: 1; }
+.ah-art .rk { fill: var(--ah-amber-18); stroke: var(--ah-amber); stroke-width: 1.5; }
+.ah-art .arc { stroke: var(--ah-sage); stroke-width: 5; stroke-dasharray: 134 164; }
+.ah-art .dt { fill: var(--ah-cream-25); }
+.ah-art .sun { fill: var(--ah-amber); }
+.ah-art .halo { fill: none; stroke: var(--ah-amber); stroke-width: 1.4; stroke-dasharray: 2 5; }
+.ah-art .ok { fill: var(--ah-sage); }
+.ah-art .rv { fill: var(--ah-amber); }
+.ah-art .bd { fill: var(--ah-art-bad); }
+.ah-art .b { fill-opacity: 0.16; }
+.ah-art .am.f { fill: var(--ah-amber); }
+.ah-art .hl { fill: var(--ah-art-bad); fill-opacity: 0.08; }
+.ah-art .f { stroke: none; }
+.ah-art text { font-size: var(--ah-fs-12); fill: var(--ah-text-3); }
+.ah-art .tx { font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.04em; }
+.ah-art .tx.s { font-size: var(--ah-fs-10-5); }
+.ah-art .tb { font-size: var(--ah-fs-13-5); font-weight: 600; fill: var(--ah-cream); }
+.ah-art .tb.s { font-size: var(--ah-fs-12); }
+.ah-art .am { font-family: var(--ah-font-mono); font-size: var(--ah-fs-10-5); letter-spacing: 0.06em; fill: var(--ah-amber); }
+.ah-art .big { font-size: var(--ah-fs-38); font-weight: 700; fill: var(--ah-cream); letter-spacing: -0.03em; }
+.ah-art figcaption.ah-art-cap { max-width: 440px; margin: var(--ah-s-10) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
+@media (max-width: 860px) {
+  .ah-hero-in.ah-has-art { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-32); }
+  .ah-has-art .ah-h1 { font-size: var(--ah-fs-36); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ah-art svg { animation: ah-art-in 0.7s ease-out both; }
+  @keyframes ah-art-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+.ah-art .pill.pf { fill: var(--ah-card); }

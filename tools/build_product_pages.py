@@ -19,6 +19,7 @@ the same for every product and live here and in site.css. Each entry in content/
   service_type, audience_type  schema.org Service data
   audience, card_summary       the card on the products page and in the menu
   cta_h, cta_p                 the closing call to action
+  art                          optional name of a hero illustration (tools/illustrations.py), drawn beside the hero text
   globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
 
 Run `python3 tools/build_product_pages.py`, then `python3 tools/build_insights.py` to stamp the shared
@@ -34,6 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import globe
+import illustrations
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "content" / "products.json"
@@ -129,12 +131,12 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap ah-hero-in">
-      <div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+    <div class="tsg-wrap ah-hero-in{' ah-has-art' if p.get('art') else ''}">
+      {'<div class="ah-hero-copy">' if p.get('art') else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      {price_html}<p class="as-note">{e(p['status_note'])}</p>
+      {price_html}<p class="as-note">{e(p['status_note'])}</p>{'</div>' + illustrations.render(p['art']) if p.get('art') else ''}
     </div>
   </section>
 

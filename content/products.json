@@ -170,7 +170,8 @@
    "heading": "The models behind your business sit in more places than one team can see.",
    "text": "Applications, suppliers and teams call models hosted in many regions. The inventory records which ones you rely on, so a board or a customer gets one dated answer.",
    "alt": "A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data."
-  }
+  },
+  "art": "model-inventory"
  },
  {
   "slug": "battery-siting-report",
@@ -305,7 +306,8 @@
    "note": "Add a paired solar site for £500 more.",
    "amount": "1950"
   },
-  "card_price": "£1,950 a site"
+  "card_price": "£1,950 a site",
+  "art": "battery-site"
  },
  {
   "slug": "grid-pre-screen",
@@ -430,7 +432,8 @@
   "audience": "For battery developers and land teams",
   "card_summary": "How close is a site to grid headroom, and who already holds capacity there?",
   "cta_h": "Want to screen a list of sites?",
-  "cta_p": "Send us the sites and the MW. We will confirm what the screen covers and when you will have it."
+  "cta_p": "Send us the sites and the MW. We will confirm what the screen covers and when you will have it.",
+  "art": "grid-headroom"
  },
  {
   "slug": "planning-risk-screen",
@@ -556,7 +559,8 @@
   "audience": "For solar, battery and wind developers",
   "card_summary": "Spot the planning constraints that could stop a site, before you pay for surveys.",
   "cta_h": "Want a site screened for planning risk?",
-  "cta_p": "Send us the boundary and the technology. We will confirm what the screen covers and when you will have it."
+  "cta_p": "Send us the boundary and the technology. We will confirm what the screen covers and when you will have it.",
+  "art": "planning-bands"
  },
  {
   "slug": "uk-company-check",
@@ -674,7 +678,8 @@
   "audience": "For accountants, lenders and platforms",
   "card_summary": "Check who is behind a UK company, with a dated source for every fact.",
   "cta_h": "Want to hear when early access opens?",
-  "cta_p": "Tell us what you check, how often and what you need to see in the result. It shapes what we build first."
+  "cta_p": "Tell us what you check, how often and what you need to see in the result. It shapes what we build first.",
+  "art": "company-links"
  },
  {
   "slug": "solar-suitability-api",
@@ -795,6 +800,7 @@
   "audience": "For installers, lenders and landlords",
   "card_summary": "Will solar work at this address? A plain verdict, the reasons and a yield estimate.",
   "cta_h": "Want to hear when early access opens?",
-  "cta_p": "Tell us what you screen, how many addresses and what you need in the answer. It shapes what we build first."
+  "cta_p": "Tell us what you screen, how many addresses and what you need in the answer. It shapes what we build first.",
+  "art": "roof-sun"
  }
 ]
