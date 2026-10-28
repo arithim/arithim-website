@@ -51,7 +51,7 @@
           255
         ]
       },
-      "css": "html[data-theme=\"light\"] { color-scheme: light; }\nhtml[data-theme=\"light\"] .ah-rb, html[data-theme=\"light\"] .ah-rb-scrim { display: none; }",
+      "css": "html[data-theme=\"light\"] { color-scheme: light; }",
       "mode": "light",
       "public": true
     },
