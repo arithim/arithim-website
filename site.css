@@ -1752,3 +1752,53 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
   .ah-plan, .ah-plan-cs .ah-5e5090 { transition: none; }
   .ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within, .ah-plan-cs:hover .ah-5e5090 { transform: none; }
 }
+/* ---- 13. Hero illustrations (tools/illustrations.py markup; colours come from the active theme's --ah-* tokens) ---- */
+.ah-art { --ah-art-bad: #E5806F; margin: 0; }
+html[data-theme="light"] .ah-art, html[data-theme="stripe"] .ah-art { --ah-art-bad: #C2392B; }
+.ah-hero-in.ah-has-art { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--ah-s-48); align-items: center; }
+.ah-has-art .ah-h1 { font-size: var(--ah-fs-46); }
+.ah-art svg { display: block; width: 100%; height: auto; max-width: 440px; margin: 0 auto; font-family: var(--ah-font-display); color: var(--ah-cream); }
+.ah-art .p { fill: var(--ah-card); stroke: var(--ah-cream-14); stroke-width: 1; }
+.ah-art .k, .ah-art .g, .ah-art .dash, .ah-art .ac, .ah-art .ring, .ah-art .site, .ah-art .nd, .ah-art .roof, .ah-art .arc, .ah-art .pill, .ah-art .rk { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ah-art .k { stroke: var(--ah-cream-25); stroke-width: 1.4; }
+.ah-art .g { stroke: var(--ah-cream-10); stroke-width: 1; }
+.ah-art .g.f { fill: var(--ah-cream-08); stroke: none; }
+.ah-art .g.tr { stroke: var(--ah-cream-12); stroke-width: 5; }
+.ah-art .dash { stroke: var(--ah-cream-50); stroke-width: 1.4; stroke-dasharray: 4 5; }
+.ah-art .ac { stroke: var(--ah-amber); stroke-width: 2.4; }
+.ah-art .site { stroke: var(--ah-amber); stroke-width: 2; fill: var(--ah-amber-14); }
+.ah-art .ring { stroke: var(--ah-amber); stroke-width: 1.5; stroke-opacity: 0.6; }
+.ah-art .nd { fill: var(--ah-card-2); stroke: var(--ah-cream-25); stroke-width: 1.4; }
+.ah-art .n { fill: var(--ah-cream); }
+.ah-art .roof { fill: var(--ah-amber-14); stroke: var(--ah-amber); stroke-width: 2; }
+.ah-art .k.t { stroke: var(--ah-amber-50); stroke-width: 1; }
+.ah-art .pill { fill: var(--ah-cream-04); stroke: var(--ah-cream-16); stroke-width: 1; }
+.ah-art .rk { fill: var(--ah-amber-18); stroke: var(--ah-amber); stroke-width: 1.5; }
+.ah-art .arc { stroke: var(--ah-sage); stroke-width: 5; stroke-dasharray: 134 164; }
+.ah-art .dt { fill: var(--ah-cream-25); }
+.ah-art .sun { fill: var(--ah-amber); }
+.ah-art .halo { fill: none; stroke: var(--ah-amber); stroke-width: 1.4; stroke-dasharray: 2 5; }
+.ah-art .ok { fill: var(--ah-sage); }
+.ah-art .rv { fill: var(--ah-amber); }
+.ah-art .bd { fill: var(--ah-art-bad); }
+.ah-art .b { fill-opacity: 0.16; }
+.ah-art .am.f { fill: var(--ah-amber); }
+.ah-art .hl { fill: var(--ah-art-bad); fill-opacity: 0.08; }
+.ah-art .f { stroke: none; }
+.ah-art text { font-size: var(--ah-fs-12); fill: var(--ah-text-3); }
+.ah-art .tx { font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.04em; }
+.ah-art .tx.s { font-size: var(--ah-fs-10-5); }
+.ah-art .tb { font-size: var(--ah-fs-13-5); font-weight: 600; fill: var(--ah-cream); }
+.ah-art .tb.s { font-size: var(--ah-fs-12); }
+.ah-art .am { font-family: var(--ah-font-mono); font-size: var(--ah-fs-10-5); letter-spacing: 0.06em; fill: var(--ah-amber); }
+.ah-art .big { font-size: var(--ah-fs-38); font-weight: 700; fill: var(--ah-cream); letter-spacing: -0.03em; }
+.ah-art figcaption.ah-art-cap { max-width: 440px; margin: var(--ah-s-10) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
+@media (max-width: 860px) {
+  .ah-hero-in.ah-has-art { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-32); }
+  .ah-has-art .ah-h1 { font-size: var(--ah-fs-36); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ah-art svg { animation: ah-art-in 0.7s ease-out both; }
+  @keyframes ah-art-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+.ah-art .pill.pf { fill: var(--ah-card); }
