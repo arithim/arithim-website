@@ -1088,6 +1088,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-ring-spin { position: absolute; inset: -150%; background: conic-gradient(from 0deg, transparent 50%, var(--ah-amber), var(--ah-amber-light), transparent 78%); animation: ah-spin 3s linear infinite; }
 .ah-btn-face { position: relative; display: inline-flex; align-items: center; gap: var(--ah-s-8); padding: var(--ah-s-16) 30px; border-radius: var(--ah-r-pill); background: var(--ah-card-2); color: var(--ah-cream); font-size: var(--ah-fs-16); font-weight: 600; }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
+.ah-actions + .as-note, .ah-price + .as-note { margin-top: var(--ah-s-24); }
 .ah-rel { position: relative; }
 .ah-note-c { margin: var(--ah-s-22) auto 0; }
 .ah-step-n { display: block; margin-bottom: var(--ah-s-6); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); color: var(--ah-amber); }
