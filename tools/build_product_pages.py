@@ -19,6 +19,7 @@ the same for every product and live here and in site.css. Each entry in content/
   service_type, audience_type  schema.org Service data
   audience, card_summary       the card on the products page and in the menu
   cta_h, cta_p                 the closing call to action
+  globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
 
 Run `python3 tools/build_product_pages.py`, then `python3 tools/build_insights.py` to stamp the shared
 head, header and footer. `--check` fails if a page is stale.
@@ -30,6 +31,9 @@ import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import globe
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "content" / "products.json"
@@ -82,7 +86,7 @@ def render(p: dict, products: list[dict]) -> str:
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
-    sections = [
+    sections = ([globe.render(p["globe"], "globe") + "\n"] if p.get("globe") else []) + [
         section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
         section("gets", "WHAT YOU GET", p["gets_h"], cards(p["gets"])),
         section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),

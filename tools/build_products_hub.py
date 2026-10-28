@@ -173,6 +173,8 @@ def patch_home(groups) -> bool:
     path = ROOT / "index.html"
     text = path.read_text(encoding="utf-8")
     new = re.sub(r"(<!-- catalogue:start -->).*?(<!-- catalogue:end -->)", lambda m: m.group(1) + home_cards(groups) + m.group(2), text, flags=re.S)
+    import globe
+    new = re.sub(r"(<!-- globe:start -->).*?(<!-- globe:end -->)", lambda m: m.group(1) + globe.render(globe.HOME, "home-globe") + m.group(2), new, flags=re.S)
     if new == text:
         return False
     if "--check" not in sys.argv:
