@@ -217,9 +217,7 @@ def build() -> str:
     also = '<div class="tsg-grid tsg-g3">' + "".join(f'<a class="tsg-card ah-pcard" href="{e(u)}"><h3>{e(n)}</h3><p>{e(w)}</p><span class="ah-pcard-price">{e(pr)}</span><span class="ah-pcard-more">Learn more →</span></a>' for n, u, w, pr in ALSO) + '</div>'
     subs = "".join(price_card(n, p, w, nd, None) for n, p, w, nd in SUBS)
     ent = price_card(*ENTERPRISE, None)
-    btn = ('<a href="contact.html?product=site-finder" style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
-           '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
-           '<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Book a demo →</span></a>')
+    btn = '<a href="contact.html?product=site-finder" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Book a demo →</span></a>'
     return f'''<!DOCTYPE html>
 <html lang="en-GB">
 <head>

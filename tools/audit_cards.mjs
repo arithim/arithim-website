@@ -58,8 +58,16 @@ const CHECK = `(async () => {
   return JSON.stringify(out);
 })()`;
 
-const pages = args.pages ? args.pages.split(',') : (await readdir(ROOT)).filter((f) => f.endsWith('.html') && f !== '404.html').sort();
+// Buttons: every .ah-btn-ring must use the shared inner markup, so no page can carry its own copy of the button.
 let bad = 0;
+for (const f of (await readdir(ROOT)).filter((n) => n.endsWith('.html'))) {
+  const html = await readFile(join(ROOT, f), 'utf8');
+  for (const m of html.matchAll(/class="ah-btn-ring"[^>]*>\s*<span class="([^"]+)"><\/span>\s*<span class="([^"]+)"/g)) {
+    if (m[1] !== 'ah-ring-spin' || !/^ah-btn-face( ah-btn-face-sm)?$/.test(m[2])) { bad++; console.log(`DIFF  ${f}  button uses its own classes: ${m[1]} / ${m[2]}`); }
+  }
+}
+
+const pages = args.pages ? args.pages.split(',') : (await readdir(ROOT)).filter((f) => f.endsWith('.html') && f !== '404.html').sort();
 for (const page of pages) {
   const { targetId } = await send('Target.createTarget', { url: 'about:blank' });
   const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true });

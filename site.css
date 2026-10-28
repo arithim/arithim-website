@@ -1091,6 +1091,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-pcard-price { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-cream); }
 .ah-ring-spin { position: absolute; inset: -150%; background: conic-gradient(from 0deg, transparent 50%, var(--ah-amber), var(--ah-amber-light), transparent 78%); animation: ah-spin 3s linear infinite; }
 .ah-btn-face { position: relative; display: inline-flex; align-items: center; gap: var(--ah-s-8); padding: var(--ah-s-16) 30px; border-radius: var(--ah-r-pill); background: var(--ah-card-2); color: var(--ah-cream); font-size: var(--ah-fs-16); font-weight: 600; }
+.ah-btn-face.ah-btn-face-sm { padding: 11px var(--ah-s-20); font-size: var(--ah-fs-14); gap: var(--ah-s-8); }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
 /* The same hero on every product page: eyebrow, headline, lead, buttons, then a hairline and the price and status note under it. */
 .ah-h1 + .as-def { margin-top: var(--ah-s-20); }
