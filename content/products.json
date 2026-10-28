@@ -189,7 +189,7 @@
   "eyebrow": "LANDOWNER CHECK · GREAT BRITAIN",
   "h1": "Had a letter from a developer? Know where you stand before you reply.",
   "sub": "One page on your land for solar, battery or wind: the nearest grid point and how crowded it is, who the developer is and what else they hold nearby, the likely consent route, and any pressure terms in the letter.",
-  "status_note": "£195 a report, excluding VAT. Order by email and receive it in three working days.",
+  "status_note": "Order by email and receive your report in three working days.",
   "benefits_h": "Why landowners use it",
   "benefits": [
    [
@@ -345,7 +345,7 @@
   "eyebrow": "SITE FEASIBILITY REPORT · GREAT BRITAIN",
   "h1": "A verdict on one site, with the reasons and the sources.",
   "sub": "For solar, battery or wind in Great Britain: a verdict with reasons, the constraints on a map, grid, planning and economics, contacts, and the sources and licences behind each number.",
-  "status_note": "£1,950 a site, excluding VAT. Add the solar and battery hybrid analysis for £500. Delivered in three working days.",
+  "status_note": "Order by email and receive your report in three working days. The solar and battery hybrid analysis is an optional extra.",
   "benefits_h": "Why developers use it",
   "benefits": [
    [
@@ -502,7 +502,7 @@
   "eyebrow": "PORTFOLIO SCREEN · GREAT BRITAIN",
   "h1": "Test a seller's pipeline before you pay for it.",
   "sub": "Every claim in a seller's site list is checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with the source for each contradiction.",
-  "status_note": "£7,500 for up to 50 sites and £120 for each extra site, excluding VAT. Delivered in five working days.",
+  "status_note": "Order by email and receive your screen in five working days.",
   "benefits_h": "Why investors use it",
   "benefits": [
    [
@@ -657,7 +657,7 @@
   "eyebrow": "MARKET WATCH · GREAT BRITAIN",
   "h1": "See who holds the grid and hear when it changes.",
   "sub": "Company holdings by group, substation and league table, exposed Gate 2 positions, idle connections and a change feed, with a weekly email digest and watchlists for the companies and areas you follow.",
-  "status_note": "From £15,000 a year, excluding VAT. Ask for a demo first if you like.",
+  "status_note": "Ask for a demo first if you like. We reply by email.",
   "benefits_h": "Why teams use it",
   "benefits": [
    [
@@ -810,7 +810,7 @@
   "eyebrow": "DATA API AND MCP · GREAT BRITAIN",
   "h1": "Let your tools and AI assistants read the grid.",
   "sub": "A read-only API and an MCP server for projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence.",
-  "status_note": "From £18,000 a year, excluding VAT. Per-organisation keys and usage limits.",
+  "status_note": "Tell us what you plan to connect and we will scope keys and limits.",
   "benefits_h": "Why teams use it",
   "benefits": [
    [
