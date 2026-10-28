@@ -171,7 +171,11 @@
    "text": "Applications, suppliers and teams call models hosted in many regions. The inventory records which ones you rely on, so a board or a customer gets one dated answer.",
    "alt": "A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data."
   },
-  "art": "model-inventory"
+  "nature": {
+   "scene": "grove",
+   "title": "A grove with one tree for each AI model",
+   "desc": "Five dotted trees sway gently, one for each model in a sample inventory. Three steady trees each have a bird perched on them to show they are approved. A bird circles the fourth because that model is still in review, and the fifth wilts and carries a single amber dot because it is flagged. All names and figures are samples."
+  }
  },
  {
   "slug": "battery-siting-report",
@@ -307,7 +311,11 @@
    "amount": "1950"
   },
   "card_price": "£1,950 a site",
-  "art": "battery-site"
+  "nature": {
+   "scene": "pond",
+   "title": "A pond with a lily pad that marks the site",
+   "desc": "Ripples spread across a dotted pond from a lily pad that marks the site. Four petals grow from the pad for grid, planning, land and returns, each drawn inside a faint outline of a full score, and the shortest petal, planning, is tipped with an amber dot. A dragonfly drifts over the water. The scores are samples."
+  }
  },
  {
   "slug": "grid-pre-screen",
@@ -433,9 +441,11 @@
   "card_summary": "How close is a site to grid headroom, and who already holds capacity there?",
   "cta_h": "Want to screen a list of sites?",
   "cta_p": "Send us the sites and the MW. We will confirm what the screen covers and when you will have it.",
-  "scene": "grid",
-  "scene_title": "A grid headroom check for a 20 MW battery",
-  "scene_desc": "A request for a 20 MW battery near a sample town. Four substations are linked by network lines, a site marker drops in 2.1 km from the nearest, and two bars show 38 MW of headroom against a 20 MW request, leaving 18 MW to spare. All names and figures are samples."
+  "nature": {
+   "scene": "hills",
+   "title": "Dotted hills with pylons above a river gauge",
+   "desc": "Dotted hills carry four pylons whose wires sway, with a small shed on the right marking the site. In the foreground a river sits at 20 of a 38 unit gauge, with an amber buoy for the request and a bird gliding in the space above it, to show 38 MW of headroom against a 20 MW request and 18 MW to spare. All figures are samples."
+  }
  },
  {
   "slug": "planning-risk-screen",
@@ -562,7 +572,11 @@
   "card_summary": "Spot the planning constraints that could stop a site, before you pay for surveys.",
   "cta_h": "Want a site screened for planning risk?",
   "cta_p": "Send us the boundary and the technology. We will confirm what the screen covers and when you will have it.",
-  "art": "planning-bands"
+  "nature": {
+   "scene": "meadow",
+   "title": "A meadow under bands of cloud",
+   "desc": "A small house in a dotted meadow marks the site. Bands of cloud roll in above it: thin and sparse for low risk, thicker for medium, and dense with falling rain for high. The grass sways beneath. A sample of how risk is banded, not a forecast."
+  }
  },
  {
   "slug": "uk-company-check",
@@ -681,7 +695,11 @@
   "card_summary": "Check who is behind a UK company, with a dated source for every fact.",
   "cta_h": "Want to hear when early access opens?",
   "cta_p": "Tell us what you check, how often and what you need to see in the result. It shapes what we build first.",
-  "art": "company-links"
+  "nature": {
+   "scene": "tree",
+   "title": "A tree of directors and controllers",
+   "desc": "A dotted tree has a company at its heart, joined by swaying branches to two directors, a person with significant control and a controlling company above. Fireflies drift between them, and one amber firefly hovers by a director to show something worth a closer look. A sample, not a real company."
+  }
  },
  {
   "slug": "solar-suitability-api",
@@ -803,6 +821,10 @@
   "card_summary": "Will solar work at this address? A plain verdict, the reasons and a yield estimate.",
   "cta_h": "Want to hear when early access opens?",
   "cta_p": "Tell us what you screen, how many addresses and what you need in the answer. It shapes what we build first.",
-  "art": "roof-sun"
+  "nature": {
+   "scene": "sunflowers",
+   "title": "Sunflowers following the sun towards a roof",
+   "desc": "A field of dotted sunflowers turns to follow an amber sun across the sky. On the right a roof outline carries solar panels that brighten as the sun reaches them. A sample, not a real address."
+  }
  }
 ]

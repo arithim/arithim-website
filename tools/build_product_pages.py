@@ -19,7 +19,8 @@ the same for every product and live here and in site.css. Each entry in content/
   service_type, audience_type  schema.org Service data
   audience, card_summary       the card on the products page and in the menu
   cta_h, cta_p                 the closing call to action
-  art                          optional name of a hero illustration (tools/illustrations.py), drawn beside the hero text
+  nature                       {scene, title, desc}: the dotted nature scene drawn beside the hero text (assets/dotscene.js).
+                               scene names one of the scenes in that file; title and desc are its text alternative
   globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
 
 Run `python3 tools/build_product_pages.py`, then `python3 tools/build_insights.py` to stamp the shared
@@ -35,12 +36,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import globe
-import illustrations
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "content" / "products.json"
 SITE = "https://arithim.com"
 e = html.escape
+DOTSCENE_VERSION = "1"
 
 
 def ld(obj):
@@ -85,8 +86,11 @@ def render(p: dict, products: list[dict]) -> str:
     price_html = f'<p class="ah-price"><strong>{e(price["line"])}</strong> <span>{e(price["note"])}</span></p>' if price else ""
     if price:
         service["offers"] = {"@type": "Offer", "priceCurrency": "GBP", "price": price["amount"], "description": price["line"] + ". " + price["note"], "url": url}
-    scene_html = (f'</div><figure class="ah-art ah-art-scene"><div data-pm-scene="{e(p["scene"])}" data-bare data-title="{e(p["scene_title"])}" data-desc="{e(p["scene_desc"])}"></div><figcaption class="ah-art-cap">Illustrative example. Not real data.</figcaption></figure>' if p.get('scene') else '')
-    scene_js = "import('./products-motion.js?v=1').then((pm) => { this._stop2 = pm.initProductsMotion(document); });" if p.get('scene') else ''
+    n = p.get("nature")
+    nature_html = (f'</div><figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="{e(n["scene"])}" role="img" aria-label="{e(n["title"] + ". " + n["desc"], quote=True)}">{e(n["desc"])}</canvas>'
+                   f'<figcaption class="ah-nature-cap">{globe.CAPTION}</figcaption></figure>' if n else "")
+    nature_js = (f'<script src="/assets/dotscene.js?v={DOTSCENE_VERSION}" defer></script>'
+                 f'<script src="/assets/dotscene-{e(n["scene"])}.js?v={DOTSCENE_VERSION}" defer></script>') if n else ""
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
@@ -133,14 +137,14 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap ah-hero-in{' ah-has-art' if (p.get('art') or p.get('scene')) else ''}">
-      {'<div class="ah-hero-copy">' if (p.get('art') or p.get('scene')) else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+    <div class="tsg-wrap ah-hero-in{' ah-has-art' if n else ''}">
+      {'<div class="ah-hero-copy">' if n else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      {price_html}<p class="as-note">{e(p['status_note'])}</p>{'</div>' + illustrations.render(p['art']) if p.get('art') else ''}{scene_html}
+      {price_html}<p class="as-note">{e(p['status_note'])}</p>{nature_html}
     </div>
-  </section>
+  </section>{nature_js}
 
 {chr(10).join(sections)}
 
@@ -172,7 +176,7 @@ def render(p: dict, products: list[dict]) -> str:
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {{
   componentDidMount() {{
-    import('./arithim-fx.js?v=5').then((m) => {{ this._stop = m.initFx(document); {scene_js} }}).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=5').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
   }}
   componentWillUnmount() {{ if (this._stop) this._stop(); }}
   renderVals() {{ return {{}}; }}

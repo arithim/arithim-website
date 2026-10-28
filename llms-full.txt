@@ -1208,7 +1208,9 @@ Book a scoping call →Early access
 
 In early access. Tell us which models or rules you need to answer for and we will scope it with you.
 
-Illustrative example. Not real data.
+Five dotted trees sway gently, one for each model in a sample inventory. Three steady trees each have a bird perched on them to show they are approved. A bird circles the fourth because that model is still in review, and the fifth wilts and carries a single amber dot because it is flagged. All names and figures are samples.
+
+Illustrative. Not your data.
 
 WHERE YOUR MODELS RUN
 
