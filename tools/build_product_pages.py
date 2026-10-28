@@ -109,8 +109,6 @@ def render(p: dict, products: list[dict]) -> str:
 {ld(crumbs)}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/products/product-pages.css?v=2">
-<link rel="stylesheet" href="/assets/callus.css?v=4">
 </head>
 <body>
 <x-dc>

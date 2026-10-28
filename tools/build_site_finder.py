@@ -174,8 +174,6 @@ def build() -> str:
 {ld()}
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/site-finder/site-finder.css?v=7">
-<link rel="stylesheet" href="/assets/callus.css?v=4">
 </head>
 <body>
 <x-dc>

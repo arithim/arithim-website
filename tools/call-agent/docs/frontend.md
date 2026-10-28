@@ -1,7 +1,7 @@
 # "Call us" front end
 
-Files: `assets/callus.js`, `assets/callus.css`, `assets/vendor/elevenlabs-client-1.29.0.js`.
-Every page carries `<link rel=stylesheet href=/assets/callus.css?v=3>`, a plain `<a class="callus-link" href="/contact.html">` and `<script src=/assets/callus.js?v=3 defer>`. Insight pages get them from `tools/templates/insight.html`. Without JavaScript the link goes to the contact form. `/assets/*` is served `immutable` for a year (`_headers`), so bump `?v=` in every page whenever callus.js or callus.css changes (or rename the files). `tools/stage_site.sh` also rewrites `?v=` to a content hash in the staged copy, so a deploy always busts the cache; the manual number only matters for local runs. Currently `?v=3`.
+Files: `assets/callus.js` (its styles are in `site.css`), `assets/vendor/elevenlabs-client-1.29.0.js`.
+Every page carries a plain `<a class="callus-link" href="/contact.html">` and `<script src=/assets/callus.js?v=3 defer>`. Insight pages get them from `tools/templates/insight.html`. Without JavaScript the link goes to the contact form. `/assets/*` is served `immutable` for a year (`_headers`), so bump `?v=` in every page whenever callus.js or callus.css changes (or rename the files). `tools/stage_site.sh` also rewrites `?v=` to a content hash in the staged copy, so a deploy always busts the cache; the manual number only matters for local runs. Currently `?v=3`.
 
 On index.html and contact.html there is also an inline `<a class="callus-link callus-cta">` as the main call-to-action; the email addresses stay as secondary links.
 

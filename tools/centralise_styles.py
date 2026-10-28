@@ -283,7 +283,7 @@ def put_block(css: str, start: str, end: str, block: str, before: str | None = N
 
 
 # ---- stylesheets ----------------------------------------------------------------------------------
-CSS_FILES = ["site.css", "assets/products/product-pages.css", "assets/callus.css"]
+CSS_FILES = ["site.css"]
 URL_RX = re.compile(r"url\((?:[^()]|\([^()]*\))*\)")
 FONT_RX = re.compile(r"font-family:\s*('[^']+'),\s*(monospace|sans-serif)")
 
@@ -331,6 +331,12 @@ def main():
     targets = [*page_files(), *PARTIALS, *TEMPLATES]
     if lint:
         bad = 0
+        sheets = re.compile(r'<link rel="stylesheet" href="([^"]+)"')
+        for p in sorted(ROOT.glob("*.html")):
+            extra = [h for h in sheets.findall(p.read_text(encoding="utf-8")) if not h.startswith("https://fonts.googleapis.com") and not h.startswith("/site.css")]
+            if extra:
+                bad += 1
+                print(f"{p.name}: links a second stylesheet {extra}; site.css is the only stylesheet")
         for p in page_files():
             text = GENERATED_REGION.sub("", PARTIAL_BLOCK.sub("", p.read_text(encoding="utf-8")))
             dup = [c for c in styles_in(text) if counts.get(c, 0) >= MIN_REPEATS and c not in registry]
