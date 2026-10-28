@@ -624,7 +624,6 @@ html { scroll-padding-top: 96px; }
 /* Homepage "Where we help": problem cards that lead to a service or product */
 .hk-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--ah-s-14); margin-top:var(--ah-s-36); }
 .hk-card { display:flex; flex-direction:column; justify-content:space-between; gap:var(--ah-s-14); padding:var(--ah-s-22) var(--ah-s-24); border-radius:var(--ah-r-16); background:var(--ah-card); border:1px solid var(--ah-cream-08); transition:border-color .2s; }
-.hk-card:hover, .hk-card:focus-visible { border-color:var(--ah-amber-50); }
 .hk-p { font:600 19px/1.3 'Schibsted Grotesk',sans-serif; letter-spacing:-0.015em; color:var(--ah-cream); }
 .hk-s { font:500 13px 'JetBrains Mono',monospace; letter-spacing:0.04em; color:var(--ah-amber); }
 .hk-cta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--ah-s-18) 30px; margin-top:var(--ah-s-28); padding:var(--ah-s-24) var(--ah-s-28); border:1px solid var(--ah-amber-35); border-radius:var(--ah-r-18); background:var(--ah-amber-05); }
@@ -1058,6 +1057,13 @@ html:has(.sf) { scroll-behavior: smooth; }
 [data-fx-glow="hero"] { --fx-size: 650px; }
 [data-fx-glow]:hover > .ah-fx-glow { opacity: 1; }
 @media (prefers-reduced-motion: reduce), (hover: none) { .ah-fx-glow { display: none; } }
+/* ---- Shared card behaviour. arithim-fx.js marks every card-like box in <main> with data-fx-glow="card" (one test, in isSurface), and
+   this is the only place that says what a card does when you point at it: lift, amber edge, shadow, and the pointer glow in section 8.
+   Do not add hover rules for individual card classes. tools/audit_cards.mjs fails if a box looks like a card and is not marked. */
+[data-fx-glow="card"] { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+[data-fx-glow="card"]:hover, [data-fx-glow="card"]:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
+@media (prefers-reduced-motion: reduce) { [data-fx-glow="card"] { transition: none; } [data-fx-glow="card"]:hover, [data-fx-glow="card"]:focus-within { transform: none; } }
+
 
 /* ---- 9. Header product menu, product cards and page hero (generated pages) ---- */
 .ah-nav-item { position: relative; display: inline-flex; }
@@ -1077,7 +1083,6 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-pcard .pp-st { align-self: flex-start; margin-top: 0; }
 .ah-pcard-aud { font-family: var(--ah-font-mono); font-size: var(--ah-fs-11-5); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ah-text-4); }
 .ah-pcard-more { margin-top: auto; padding-top: var(--ah-s-6); font-size: var(--ah-fs-14); color: var(--ah-amber); }
-.ah-pcard:hover { border-color: var(--ah-amber-40); }
 .ah-sub { margin: var(--ah-s-36) 0 var(--ah-s-12); font-family: var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-19); color: var(--ah-cream); }
 .ah-hero-in { position: relative; padding-top: var(--ah-s-64); padding-bottom: var(--ah-s-20); }
 .ah-eyebrow-amber { margin-bottom: var(--ah-s-18); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.12em; color: var(--ah-amber); }
@@ -1088,8 +1093,12 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-ring-spin { position: absolute; inset: -150%; background: conic-gradient(from 0deg, transparent 50%, var(--ah-amber), var(--ah-amber-light), transparent 78%); animation: ah-spin 3s linear infinite; }
 .ah-btn-face { position: relative; display: inline-flex; align-items: center; gap: var(--ah-s-8); padding: var(--ah-s-16) 30px; border-radius: var(--ah-r-pill); background: var(--ah-card-2); color: var(--ah-cream); font-size: var(--ah-fs-16); font-weight: 600; }
 .ah-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-20); margin-top: var(--ah-s-28); }
-.ah-actions + .ah-price { margin-top: var(--ah-s-24); }
-.ah-actions + .as-note, .ah-price + .as-note { margin-top: var(--ah-s-24); }
+/* The same hero on every product page: eyebrow, headline, lead, buttons, then a hairline and the price and status note under it. */
+.ah-h1 + .as-def { margin-top: var(--ah-s-20); }
+.ah-hero-foot { max-width: 760px; margin-top: var(--ah-s-28); padding-top: var(--ah-s-20); border-top: 1px solid var(--ah-cream-08); }
+.ah-hero-foot .ah-price { margin: 0; }
+.ah-hero-foot .as-note { margin: var(--ah-s-8) 0 0; }
+.ah-hero-foot .ah-price + .as-note { margin-top: var(--ah-s-8); }
 .ah-rel { position: relative; }
 .ah-note-c { margin: var(--ah-s-22) auto 0; }
 .ah-step-n { display: block; margin-bottom: var(--ah-s-6); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); color: var(--ah-amber); }
@@ -1712,22 +1721,19 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 .ah-icon { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; width: 24px; height: 24px; display: block; }
 /* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
 .ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
-.ah-pcard, .ah-a8498e { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
-.ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
 .ah-pcard:hover .ah-icon-chip, .ah-pcard:focus-visible .ah-icon-chip, .ah-a8498e:hover .ah-icon-chip, .ah-a8498e:focus-visible /* ah-icon-chip: 48px rounded chip, 24px Lucide icon, amber on a faint amber tint (tokens switch per theme) */
 .ah-icon-chip { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; margin-bottom: var(--ah-s-6); border: 1px solid var(--ah-amber-24); border-radius: var(--ah-r-12); background: var(--ah-amber-10); color: var(--ah-amber); transition: background 0.2s, border-color 0.2s; }
 .ah-pcard-more { transition: transform 0.2s; }
 .ah-pcard:hover .ah-pcard-more { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) {
-  .ah-pcard, .ah-a8498e, .ah-icon-chip, .ah-pcard-more { transition: none; }
-  .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible, .ah-pcard:hover .ah-pcard-more { transform: none; }
+  .ah-icon-chip, .ah-pcard-more { transition: none; }
+  .ah-pcard:hover .ah-pcard-more { transform: none; }
 }
 
 /* 38. Boxed plan cards (Services overview, Case Studies index). Built on the .ah-pcard pattern. */
 .ah-plan-grid, .ah-c3ad51 { align-items: stretch; }
 .ah-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ah-s-24); padding-top: var(--ah-s-32); }
 .ah-plan { position: relative; display: flex; flex-direction: column; gap: var(--ah-s-10); height: 100%; min-width: 0; padding: var(--ah-s-28); background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
-.ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
 .ah-plan:focus-visible, .ah-plan-link:focus-visible { outline: 2px solid var(--ah-amber); outline-offset: 3px; }
 .ah-plan-link { color: inherit; text-decoration: none; }
 .ah-plan-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
@@ -1751,7 +1757,7 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
 @media (max-width: 700px) { .ah-plan-grid { grid-template-columns: minmax(0, 1fr); } .ah-plan { padding: var(--ah-s-24); } }
 @media (prefers-reduced-motion: reduce) {
   .ah-plan, .ah-plan-cs .ah-5e5090 { transition: none; }
-  .ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within, .ah-plan-cs:hover .ah-5e5090 { transform: none; }
+  .ah-plan-cs:hover .ah-5e5090 { transform: none; }
 }
 /* ---- 13. Hero layout with a picture beside the text. The one drawing kept here, tools/illustrations.py, is parked for Site Finder. ---- */
 .ah-art { margin: 0; }
