@@ -41,6 +41,16 @@ jobs:
         run: python3 -m unittest tools/test_build_insights.py
       - name: Generated files are up to date
         run: python3 tools/build_insights.py --check
+      - name: Discovery files (llms.txt, structured data, landmarks) are up to date
+        run: python3 tools/build_discovery.py --check
+      - name: Product pages are up to date
+        run: python3 tools/build_product_pages.py --check
+      - name: Products page is up to date
+        run: python3 tools/build_products_hub.py --check
+      - name: Legal pages are up to date
+        run: python3 tools/build_legal_pages.py --check
+      - name: Repeated inline styles are in site.css, not in pages
+        run: python3 tools/centralise_styles.py --lint
 
   preview:
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository

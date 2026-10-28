@@ -223,8 +223,8 @@ class PartialTests(unittest.TestCase):
     def test_header_marks_exactly_one_active_link(self):
         out = self.stamp("header", {"label": "/about", "active": "about.html"})
         self.assertEqual(out.count('aria-current="page"'), 1)
-        self.assertIn('<a href="about.html" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">About</a>', out)
-        self.assertEqual(len(re.findall(r'<a href="[^"]+" style="position:relative;padding:9px 15px', out)), len(b.NAV_LINKS))
+        self.assertIn('<a href="about.html" class="ah-nav-link-on" aria-current="page">About</a>', out)
+        self.assertEqual(len(re.findall(r'<a href="[^"]+" class="ah-nav-link', out)), len(b.NAV_LINKS))
         self.assertNotIn("stale", out)
         self.assertTrue(out.startswith("before\n") and out.endswith("\nafter"))
 
@@ -303,10 +303,11 @@ class RepoBuildTests(unittest.TestCase):
 
     def test_research_section_lists_only_research_articles(self):
         articles, outputs = self._write_all()
-        research = outputs[self.tmp / "research.html"]
+        page = outputs[self.tmp / "research.html"]
+        research = re.search(r"<!-- research:start -->(.*?)<!-- research:end -->", page, re.S).group(1)  # the header menu lists every article
         for a in articles:
             self.assertEqual(a["file"] in research, a["research"], a["slug"])
-        self.assertEqual("LATEST RESEARCH" in research, any(a["research"] for a in articles))
+        self.assertEqual("LATEST RESEARCH" in page, any(a["research"] for a in articles))
 
     def test_insights_list_is_newest_first(self):
         articles, outputs = self._write_all()

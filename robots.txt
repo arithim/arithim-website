@@ -1,4 +1,27 @@
+# arithim.com welcomes search engines, AI assistants and agents.
+# Everything public may be crawled, indexed, summarised and quoted, with a link back.
+# An index for language-model tools is at https://arithim.com/llms.txt (full text: /llms-full.txt).
+
 User-agent: *
 Allow: /
+Disallow: /api/
+
+# AI search, assistant and agent crawlers, named so the policy is explicit.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+User-agent: Meta-ExternalAgent
+User-agent: cohere-ai
+User-agent: CCBot
+Allow: /
+Disallow: /api/
 
 Sitemap: https://arithim.com/sitemap.xml

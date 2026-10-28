@@ -1,0 +1,64 @@
+# Arithim
+
+> Arithim builds practical AI systems, workflow automation, and operational infrastructure that make complex, regulated businesses measurably clearer to run.
+
+Arithim Ltd is based in London. It builds enterprise software and SaaS products and takes on applied AI, automation and reporting work for operational, regulated businesses. Contact: hello@arithim.com. Pages are plain HTML, and the sitemap lists every public page.
+
+## Products
+
+- [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.
+- [Assay](https://arithim.com/product-assay.html): Assay gives you one dated view of the AI models your business runs on, flags the ones you have ruled out and gives you a report to show customers and supervisors.
+- [Site Finder](https://arithim.com/product-site-finder.html): Site Finder ranks land in Great Britain for solar, battery and onshore wind, with the grid, planning and economics evidence for every site. Reports from £195 ex VAT, ordered by email.
+- [Battery storage siting report](https://arithim.com/product-battery-siting-report.html): A report on one battery storage site in Great Britain covering grid, planning, land and returns, with the source and date of every figure.
+- [Grid pre-screen](https://arithim.com/product-grid-pre-screen.html): Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there and what else could stop it.
+- [Planning risk screen](https://arithim.com/product-planning-risk-screen.html): A desk screen of one site in Great Britain for farmland, peat, heritage and protected sites, with the field studies an application is likely to need.
+- [Solar suitability check](https://arithim.com/product-solar-suitability-api.html): Planned: a solar suitability check that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield.
+- [UK company check](https://arithim.com/product-uk-company-check.html): Planned: a check on one UK company that confirms it exists and is active, shows who controls it and gives a dated source for every fact.
+- [Find Me A Job](https://findmeajob.uk/)
+- [Unrejectable](https://www.unrejectable.uk/)
+- [Technical Sales Guide: security and trust](https://arithim.com/technical-sales-guide-security.html): How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.
+- [All products](https://arithim.com/products.html): Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, Assay, Site Finder, site and grid reports, company checks and SaaS.
+
+## Services
+
+- [AI services for operations, finance and IT teams overview](https://arithim.com/services.html): Six Arithim services for operations, finance and IT teams: AI readiness, document automation, SAP ERP reporting, AI-readable websites, training and regulated approval workflows.
+- [What does an AI readiness assessment involve?](https://arithim.com/services-ai-readiness.html): An AI readiness assessment maps your workflows, checks your data and ranks the AI use cases worth doing, then sets out the architecture, governance and roadmap to build them.
+- [How can AI automate work in your existing systems?](https://arithim.com/services-automation.html): We build AI tools and workflow automation into the systems you already run, on a 90-day model, and hand over a monitoring playbook so your team can maintain them.
+- [How do you build compliance workflows with an audit trail?](https://arithim.com/services-regulatory.html): Structured compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, an audit trail, and people signing off where judgment matters.
+- [How can you get more from SAP ERP without replacing it?](https://arithim.com/services-sap.html): We add a reporting and automation layer on top of SAP ERP. It turns scattered transactional data into reports your operations team can use and automates manual steps, with the core left as it is.
+- [How do you train your team to run AI systems themselves?](https://arithim.com/services-training.html): Practical workshops and hands-on practice based on your own workflows, so the people who run your AI systems can operate, govern and improve them without relying on us.
+- [How do you make your website readable by ChatGPT and AI search?](https://arithim.com/services-websites.html): We structure your website so people, search engines and AI tools like ChatGPT, Perplexity and Gemini can read it, covering page structure, clear descriptions, schema, technical SEO, accessibility and performance.
+
+## Case studies
+
+- [Case Studies overview](https://arithim.com/case-studies.html): Client work across energy, industrial, telecoms and regulated environments. Each one shipped into real operations.
+- [Compliance & Vendor Approval System](https://arithim.com/case-compliance-vendor-approval.html): Structured workflows for approval, evidence collection and stakeholder coordination, without flattening the human judgment compliance depends on.
+- [Find Me A Job](https://arithim.com/case-find-me-a-job.html): An AI job-search product that reads a candidate's profile, matches it against live listings, and surfaces only the roles genuinely worth applying to.
+- [Operational Intelligence Platform](https://arithim.com/case-operational-intelligence-platform.html): A connected reporting and decision-support layer built over fragmented operational data, so one team could finally see how the business actually runs.
+- [Telecommunications Billing Infrastructure](https://arithim.com/case-telecommunications-billing.html): Process modernisation and systems integration for reliable billing coordination, where precision across data, process and commercial operations is non-negotiable.
+- [Unrejectable](https://arithim.com/case-unrejectable.html): An AI tool that pressure-tests a job application before a human sees it, then tells the candidate exactly what to fix to get past the first cut.
+
+## Insights
+
+- [Insights overview](https://arithim.com/insights.html): Short, opinionated pieces on where AI creates durable operational value, written for people who have to run the result.
+- [Designing Websites for AI Discoverability](https://arithim.com/insight-designing-websites-for-ai-discoverability.html): Modern websites are read by people, search engines and AI systems. That changes the role of structure.
+- [How Do We Choose an Enterprise Architecture Tool in 2026?](https://arithim.com/insight-how-to-choose-an-enterprise-architecture-tool.html): Modelling features are mature across the market. Choose an EA tool on how its repository stays current, how it prices AI and applications, whether your AI assistants can query it, and where it hosts your data. Based on Gartner's October 2026 Magic Quadrant.
+- [How Do We Reduce Our Application Security Backlog?](https://arithim.com/insight-how-to-reduce-application-security-backlog.html): Cut the noise first, route every finding to an owner, fix dependencies in bulk and automate the loop around each fix. A practical plan for shrinking an AppSec backlog, based on Gartner's 2025 and 2026 research.
+- [How Do I Secure Our CI/CD Pipelines and GitHub Actions?](https://arithim.com/insight-how-to-secure-ci-cd-pipelines-github-actions.html): Pipeline security is the weakest area of most application security programmes. A practical checklist for GitHub Actions and other CI/CD systems, the 2025 attacks that showed why it matters, and where Gartner says the tools still fall short.
+- [How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?](https://arithim.com/insight-how-to-secure-vibe-coded-apps.html): Find them, give each one an owner, scan them like any other code and explain the results in plain language. A practical process for securing AI-built apps, based on Gartner's 2026 secure software engineering research.
+- [Do You Need More Than One Application Security Testing Tool?](https://arithim.com/insight-more-than-one-application-security-testing-tool.html): Probably. Gartner's 2025 comparison of 16 AST vendors found none that covers the whole field. We look at what each vendor is good at, the work that falls between the tools, and where AI agents fit.
+- [Operational Intelligence vs Automation](https://arithim.com/insight-operational-intelligence-vs-automation.html): Automation moves a task to structured execution. Operational intelligence improves how information, judgement and action move through a business.
+- [What Most Businesses Actually Need From AI](https://arithim.com/insight-what-businesses-need-from-ai.html): Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction and support better decisions.
+
+## Company
+
+- [About](https://arithim.com/about.html): Arithim is a London software company. We make enterprise software and SaaS products, and we help energy, industrial, telecoms and regulated businesses put AI into their operations.
+- [Research](https://arithim.com/research.html): Not abstract AI capability in isolation, but the systems required to make intelligence useful inside real operational environments.
+- [Contact](https://arithim.com/contact.html): Share the operational problem. We will tell you honestly whether AI is the right tool, and what we would build.
+
+## Optional
+
+- [Privacy policy](https://arithim.com/privacy.html): What limited information Arithim Ltd collects through this website, and how we handle it.
+- [Legal notice](https://arithim.com/legal.html): Who runs this website, the terms for using it, and the limits of the information and data on it.
+- [Sitemap](https://arithim.com/sitemap.xml): every public page with its last modified date
+

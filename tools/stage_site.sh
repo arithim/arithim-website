@@ -35,9 +35,9 @@ rsync -a --delete \
   --exclude '*.md' \
   "$repo_root"/ "$target"/
 
-# Cache busting: /assets/* is served immutable for a year, so the ?v= on callus.js/css must change when the file does.
+# Cache busting: /assets/* is served immutable for a year, so the ?v= on callus.js must change when the file does.
 # Rewrite it to a short content hash in the staged copy (the repo keeps a manual ?v=N for local runs).
-for asset in callus.js callus.css; do
+for asset in callus.js; do
   f="$target/assets/$asset"
   [ -f "$f" ] || continue
   h="$(shasum -a 256 "$f" | cut -c1-10)"

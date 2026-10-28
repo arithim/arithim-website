@@ -1,0 +1,87 @@
+{
+  "groups": [
+    {
+      "id": "enterprise",
+      "name": "Enterprise software",
+      "lead": "Set up for each customer on their own data, starting with a demo or a pilot.",
+      "items": [
+        {
+          "name": "Technical Sales Guide",
+          "url": "technical-sales-guide.html",
+          "status": "Demos and pilots",
+          "audience": "For chemical and ingredient distributors",
+          "summary": "Rank products by application and condition, with cost in use, landed cost and country registrations beside each one."
+        },
+        {
+          "slug": "assay",
+          "status": "Early access"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Data products",
+      "lead": "Sourced answers on energy sites, grid, planning and companies. Order a report, or use them through an API.",
+      "subgroups": [
+        {
+          "name": "Energy sites, grid and planning",
+          "items": [
+            {
+              "name": "Site Finder",
+              "url": "product-site-finder.html",
+              "status": "Available",
+              "audience": "For renewable developers in Great Britain",
+              "summary": "Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site."
+            },
+            {
+              "slug": "battery-siting-report",
+              "status": "Early access"
+            },
+            {
+              "slug": "grid-pre-screen",
+              "status": "Early access"
+            },
+            {
+              "slug": "planning-risk-screen",
+              "status": "Early access"
+            },
+            {
+              "slug": "solar-suitability-api",
+              "status": "Planned"
+            }
+          ]
+        },
+        {
+          "name": "Company and counterparty data",
+          "items": [
+            {
+              "slug": "uk-company-check",
+              "status": "Planned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saas",
+      "name": "SaaS",
+      "lead": "Live on the web and open to anyone. Sign up on each product's site.",
+      "items": [
+        {
+          "name": "Find Me A Job",
+          "url": "https://findmeajob.uk/",
+          "status": "Live",
+          "audience": "For people looking for work",
+          "summary": "Describe yourself once and get a short list of roles worth applying for."
+        },
+        {
+          "name": "Unrejectable",
+          "url": "https://www.unrejectable.uk/",
+          "status": "Live",
+          "audience": "For people applying for jobs",
+          "summary": "Find the fixable reasons your CV could be turned down, before anyone sees it."
+        }
+      ]
+    }
+  ]
+}

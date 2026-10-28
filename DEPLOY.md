@@ -36,6 +36,30 @@ What gets published: everything in the repo root except `content/`, `tools/`, `.
 
 Do not edit `insight-*.html` by hand. Edit the Markdown and rebuild. Do not edit between the `<!-- insights:start -->` and `<!-- research:start -->` markers, or inside any `<!-- partial:... -->` block, either.
 
+## Adding or changing a page
+
+A page is its text. Structure, styling, the header and footer, menus, the sitemap, `llms.txt` and structured data are written from that text and from `site.css`, so a new page never needs a hand edit to another page.
+
+| You want to | Edit | Then |
+|---|---|---|
+| Add or change a product page | `content/products.json`, and `content/catalogue.json` to list it on the products page and in the menu | `python3 tools/build_all.py` |
+| Add or change an article | a Markdown file in `content/insights/` | `python3 tools/build_all.py` |
+| Change the privacy policy or the legal notice | `content/legal.json` | `python3 tools/build_all.py` |
+| Change a dropdown menu | `content/navigation.json` (Services, Case Studies, About) or the catalogue (Products) | `python3 tools/build_all.py` |
+| Add a top-level nav item | `NAV_LINKS` in `tools/build_insights.py`, plus its menu in `content/navigation.json` if it has one | `python3 tools/build_all.py` |
+| Change the look | the tokens and classes in `site.css`, or a theme in `content/themes.json` | `python3 tools/build_all.py` |
+| Edit a hand-built page (home, Technical Sales Guide, services, case studies, About, Contact) | its HTML, using the classes in `site.css`; no `style=""` attributes | `python3 tools/build_all.py` |
+
+`build_all.py` rewrites the shared header and footer inside every page and the generated lists, so many files change in one commit. That is expected: commit all of them. `python3 tools/build_all.py --check` is what CI runs.
+
+## Discovery files for search engines and AI tools
+
+`python3 tools/build_discovery.py` writes `llms.txt` and `llms-full.txt` from the pages themselves, adds schema.org JSON-LD (between `<!-- discovery:ld:start -->` and `<!-- discovery:ld:end -->`) to hand-written pages that have none, adds a `<main id="main">` landmark and skip link where one is missing, and marks `404.html` noindex. Run it after adding or editing a page, then commit what it changes. CI runs `--check` and fails if anything is stale. Pages with their own JSON-LD (the products) and the insight articles are left alone: edit their source instead. `robots.txt` is hand-written and names the main AI crawlers; it allows all of them.
+
+## Where the look lives
+
+Colours, fonts and the pill radius are CSS variables (`--ah-*`) in the managed block at the top of `site.css`. Change a value there to restyle the site. Styles that repeat across pages are classes in the block at the end of `site.css`, named `ah-...`. A page that carries an inline `style=""` attribute fails CI, apart from runtime bindings such as `style="{{ ... }}"`, which the page script fills in. Fix it with `python3 tools/centralise_styles.py --write`, then `python3 tools/build_insights.py`. `node tools/style_diff.mjs --a <clean checkout> --b <your branch>` compares the computed style of every element at two widths.
+
 ## First-time setup (already done for arithim)
 
 ```bash

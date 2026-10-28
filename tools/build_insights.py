@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import functools
 import html
 import json
 import math
@@ -48,7 +49,7 @@ OPTIONAL_FIELDS = (
 )
 
 # Pages that get priority 0.8 in the sitemap. index.html is 1.0, everything else 0.6.
-HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "product-site-finder.html", "products.html", "research.html", "services.html", "technical-sales-guide.html"}
+HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "product-assay.html", "product-site-finder.html", "products.html", "research.html", "services.html", "technical-sales-guide.html"}
 SITEMAP_SKIP = {"404.html"}
 
 # Header nav, in order. The header partial renders these; the page's "active" param highlights one.
@@ -472,6 +473,10 @@ def fill(template: str, values: dict[str, str]) -> str:
 
 
 def render_article(a: dict, articles: list[dict], template: str | None = None) -> str:
+    return _classify(_render_article_raw(a, articles, template))
+
+
+def _render_article_raw(a: dict, articles: list[dict], template: str | None = None) -> str:
     template = template if template is not None else TEMPLATE.read_text(encoding="utf-8")
     extra_meta = []
     if a.get("updated"):
@@ -536,8 +541,16 @@ def render_research_section(articles: list[dict]) -> str:
     )
 
 
+def _classify(markup: str) -> str:
+    """Turn inline styles in generated markup into the site.css classes recorded in tools/style_classes.json."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import centralise_styles as cs
+    return cs.rewrite(markup, cs.load_registry())
+
+
 def replace_between(text: str, name: str, content: str) -> str:
     """Replace everything between <!-- name:start --> and <!-- name:end -->."""
+    content = _classify(content) if content else content
     pat = re.compile(rf"([ \t]*<!-- {name}:start -->)(.*?)([ \t]*<!-- {name}:end -->)", re.S)
     if not pat.search(text):
         raise ValueError(f"markers <!-- {name}:start --> / <!-- {name}:end --> not found")
@@ -550,8 +563,36 @@ def replace_between(text: str, name: str, content: str) -> str:
 # ---------------------------------------------------------------------------
 
 _PARTIAL_RE = re.compile(r"(<!-- partial:([a-z]+)(?: (\{.*?\}))? -->)(.*?)(<!-- /partial:\2 -->)", re.S)
-_NAV_LINK = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">{label}</a>'
-_NAV_LINK_ACTIVE = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">{label}</a>'
+_NAV_LINK = '        <a href="{href}" class="ah-nav-link">{label}</a>'
+_NAV_LINK_ACTIVE = '        <a href="{href}" class="ah-nav-link-on" aria-current="page">{label}</a>'
+
+
+@functools.lru_cache(maxsize=None)
+def _menus() -> dict:
+    """Dropdown menus for the header: href -> [(group name or None, [items])]. Products come from content/catalogue.json,
+    the other fixed menus from content/navigation.json, and Insights and Research list the newest articles."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import catalogue
+    menus: dict = {}
+    menus["products.html"] = [(g["name"], g.get("items") or [i for s in g["subgroups"] for i in s["items"]]) for g in catalogue.load()]
+    nav = json.loads((ROOT / "content" / "navigation.json").read_text(encoding="utf-8"))
+    for href, spec in nav["menus"].items():
+        menus[href] = [(grp["name"], grp["items"]) for grp in spec["groups"]]
+    articles = load_articles()
+    menus["insights.html"] = [(None, [{"name": "All insights", "url": "insights.html"}] + [{"name": a["title"], "url": a["file"]} for a in articles[:6]])]
+    research = [a for a in articles if a["research"]]
+    menus["research.html"] = [(None, [{"name": "All research", "url": "research.html"}] + [{"name": a["title"], "url": a["file"]} for a in research[:6]])]
+    return menus
+
+
+def _menu_html(href: str, label: str) -> str:
+    out = [f'        <div class="ah-menu" role="group" aria-label="{attr(label)}">']
+    for name, items in _menus()[href]:
+        out.append('          <div class="ah-menu-group">' + (f'<div class="ah-menu-title">{esc(name)}</div>' if name else ""))
+        out += [f'            <a class="ah-menu-link" href="{attr(i["url"])}">{esc(i["name"])}</a>' for i in items]
+        out.append("          </div>")
+    out.append("        </div>")
+    return "\n".join(out)
 
 
 def render_partial(name: str, params: dict, partials_dir: Path) -> str:
@@ -567,7 +608,12 @@ def render_partial(name: str, params: dict, partials_dir: Path) -> str:
         cta = params.get("cta", "talk")
         if cta not in HEADER_CTAS:
             raise ValueError(f"header cta {cta!r} must be one of {', '.join(HEADER_CTAS)}")
-        links = "\n".join((_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label) for href, label in NAV_LINKS)
+        def one(href: str, label: str) -> str:
+            link = (_NAV_LINK_ACTIVE if href == active else _NAV_LINK).format(href=href, label=label)
+            if href not in _menus():
+                return link
+            return f'        <span class="ah-nav-item">\n{link}\n{_menu_html(href, label)}\n        </span>'
+        links = "\n".join(one(href, label) for href, label in NAV_LINKS)
         return fill(read("header"), {"label": esc(params["label"]), "links": links, "cta": read(f"cta-{cta}")})
     if name == "footer":
         return fill(read("footer"), {

@@ -1,0 +1,747 @@
+[
+ {
+  "slug": "assay",
+  "name": "Assay",
+  "label": "assay",
+  "area": "United Kingdom",
+  "title": "How do I find out which AI models my company uses? | Arithim",
+  "description": "Assay gives you one dated view of the AI models your business runs on, flags the ones you have ruled out and gives you a report to show customers and supervisors.",
+  "eyebrow": "ASSAY · AI MODEL ASSURANCE · UK",
+  "h1": "Know every AI model your business runs on.",
+  "sub": "Assay gives risk, security and compliance teams one clear picture of the AI models in use across the business and its suppliers, and the evidence to show customers and supervisors.",
+  "status": "Early access",
+  "status_note": "Assay is in early access. Tell us what you need to evidence and we will scope it with you.",
+  "cta": "Book a scoping call",
+  "benefits_h": "Why teams choose Assay",
+  "benefits": [
+   [
+    "One answer to a hard question",
+    "Which AI models does our business depend on? Get a single, current answer in place of a spreadsheet nobody trusts."
+   ],
+   [
+    "Evidence people accept",
+    "A dated report that states what was checked and what was found, written to be shown to customers and supervisors."
+   ],
+   [
+    "Keep up when the rules change",
+    "When a customer, a regulator or your own policy rules a model out, see where you use it and what to do next."
+   ]
+  ],
+  "gets_h": "What Assay delivers",
+  "gets": [
+   [
+    "An AI model inventory",
+    "Every AI model your applications and suppliers use, and where each one sits in the business."
+   ],
+   [
+    "A verdict on each model",
+    "Approved, review or flagged against the rules you set."
+   ],
+   [
+    "A dated attestation report",
+    "A report you can hand over, with its scope and date stated."
+   ],
+   [
+    "Help to put it right",
+    "When a model has to go, help to replace it and to check that quality holds."
+   ],
+   [
+    "A picture that stays true",
+    "Regular refreshes, so your answer does not go stale."
+   ]
+  ],
+  "who_h": "Who is Assay for?",
+  "who": [
+   [
+    "Banks, insurers and regulated firms",
+    "Show that you know which AI your firm depends on, as part of third party and model risk."
+   ],
+   [
+    "Suppliers to government and large customers",
+    "Answer the question \"does your product use this model?\" with evidence, not an email."
+   ],
+   [
+    "Organisations running their own AI",
+    "See which open models your teams have set up in-house, and where they came from."
+   ]
+  ],
+  "steps_h": "From first call to finished report",
+  "steps": [
+   [
+    "Scope",
+    "Tell us what you need to evidence and which rules apply."
+   ],
+   [
+    "Assess",
+    "We map the AI models in use across your business and your suppliers."
+   ],
+   [
+    "Report",
+    "You receive your inventory, a verdict on each model and a dated report, plus a plan for anything flagged."
+   ]
+  ],
+  "know_h": "Before you start",
+  "know": [
+   "Assay reports what it finds, in an agreed scope, on a stated date. It is an attestation, not a guarantee about every system in your company.",
+   "We agree scope with your security and compliance teams first.",
+   "Assay does not need to see your prompts or your customers' data.",
+   "Assay is not a legal opinion on whether a rule applies to you."
+  ],
+  "faq": [
+   [
+    "What is Assay?",
+    "Assay is an Arithim service that tells you which AI models your business uses, flags the ones you have ruled out and gives you a dated report to show customers and supervisors."
+   ],
+   [
+    "Is an Assay report a certificate?",
+    "No. It is an attestation report that states its scope and date and says what we found in that scope. It does not claim to prove that nothing ruled out exists anywhere in your company."
+   ],
+   [
+    "Does Assay read our prompts or customer data?",
+    "No. It does not need to."
+   ],
+   [
+    "Which models does Assay flag?",
+    "The ones on the list you set, for example models named in rules that apply to you or in your customers' contracts."
+   ],
+   [
+    "Can Assay tell which model sits behind a supplier's product?",
+    "Often, though not always. Where we cannot confirm it, the report says so and marks it open, and suggests the question to put to the supplier."
+   ],
+   [
+    "Does a UK firm have to do this?",
+    "As of October 2026 we know of no UK rule that bans a specific AI model. Customers, suppliers and risk teams are asking the question, and some US rules reach UK suppliers. We will tell you if you do not need Assay."
+   ],
+   [
+    "How long does it take, and what does it cost?",
+    "We scope it with you first, then quote."
+   ],
+   [
+    "Why is it called Assay?",
+    "An assay is a test of what something is made of. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark."
+   ]
+  ],
+  "related": [],
+  "service_type": "AI model assurance and attestation",
+  "audience_type": "UK regulated firms, suppliers to government and large customers, and organisations that run their own AI",
+  "audience": "For UK firms that have to name their AI models",
+  "card_summary": "Know which AI models your firm runs, with a dated report you can show customers and supervisors.",
+  "cta_h": "Want to know which AI your business runs on?",
+  "cta_p": "Tell us what you need to show and to whom. We will tell you what Assay would cover and whether it is worth doing."
+ },
+ {
+  "slug": "battery-siting-report",
+  "name": "Battery storage siting report",
+  "label": "battery-siting",
+  "area": "United Kingdom",
+  "title": "How do I check if a site is suitable for battery storage in Great Britain? | Arithim",
+  "description": "A report on one battery storage site in Great Britain covering grid, planning, land and returns, with the source and date of every figure.",
+  "eyebrow": "BATTERY STORAGE SITING REPORT · GREAT BRITAIN",
+  "h1": "Know if a battery site is worth pursuing before you spend on it.",
+  "sub": "One report on one site in Great Britain, covering grid, planning, land and returns, so your team can say yes or no with the evidence in hand.",
+  "status": "Early access",
+  "status_note": "Order a report by email today and receive it in three working days. Ordering online and through an API is in early access.",
+  "cta": "Request a report",
+  "benefits_h": "Why developers choose it",
+  "benefits": [
+   [
+    "A faster yes or no",
+    "Reach a view on a site in days, before you commit to surveys and legal work."
+   ],
+   [
+    "See what could end it",
+    "The report names the grid, planning or land issue most likely to stop the site."
+   ],
+   [
+    "Figures you can defend",
+    "Every number shows its source and date, so the report holds up when your team reviews it."
+   ]
+  ],
+  "gets_h": "What is in the report",
+  "gets": [
+   [
+    "A clear verdict",
+    "Pursue or pass, with the reasons."
+   ],
+   [
+    "Grid position",
+    "Nearby connection points, published headroom and the projects already holding capacity."
+   ],
+   [
+    "Planning and land constraints",
+    "Designations, flood zones, heritage, green belt, peat and farmland grade on one map."
+   ],
+   [
+    "Competing storage nearby",
+    "Operating, consented and pending battery schemes around the site."
+   ],
+   [
+    "Returns",
+    "Low, central and high cases, and what moves the answer."
+   ],
+   [
+    "Sources",
+    "Where each figure came from and when it was published."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Battery developers",
+    "Decide which sites deserve surveys and legal work."
+   ],
+   [
+    "Land teams and agents",
+    "Start the conversation with a landowner with evidence behind you."
+   ],
+   [
+    "Landowners",
+    "Understand whether a site suits a battery and whether an offer is fair for the location."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send the site",
+    "A location or boundary, and the size of battery you have in mind."
+   ],
+   [
+    "We prepare the report",
+    "We check grid, planning and land, and model the returns."
+   ],
+   [
+    "You decide",
+    "You receive the report and take it to your team or your landowner."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "The report covers Great Britain. Northern Ireland is not covered.",
+   "Grid figures are what the network operators have published, with their dates. They are not connection offers.",
+   "Returns are modelled from public figures and stated assumptions. They are not a revenue forecast.",
+   "The report does not replace the site studies a planning application needs."
+  ],
+  "faq": [
+   [
+    "Where does the grid information come from, and how current is it?",
+    "From the registers that NESO and the network operators publish. Every figure carries its source and the date that source published it."
+   ],
+   [
+    "Does it cover Scotland and Wales?",
+    "Yes, for grid, designations, heritage, flood, farmland and peat. Land title information covers England and Wales only."
+   ],
+   [
+    "Can I change the assumptions?",
+    "Yes. Battery size, duration, cost and the treatment of grid reinforcement can be changed, and the report shows what moved as a result."
+   ],
+   [
+    "Does the report predict a connection offer or a planning decision?",
+    "No. It shows what has been published and labels cost and delay as assumptions. The network operator and the planning authority decide."
+   ],
+   [
+    "How long does it take, and how do I order?",
+    "Three working days from a complete order. Order by email today. Ordering through an API is in early access."
+   ]
+  ],
+  "related": [
+   "grid-pre-screen",
+   "planning-risk-screen"
+  ],
+  "service_type": "Battery storage site report",
+  "audience_type": "Battery storage developers, land teams and landowners in Great Britain",
+  "audience": "For battery developers and landowners in Great Britain",
+  "card_summary": "Is this site worth pursuing as a battery site, and what would end it? One site, one report.",
+  "cta_h": "Want a report on a battery site?",
+  "cta_p": "Send us the location and the battery size. We will confirm what the report covers and when you will have it."
+ },
+ {
+  "slug": "grid-pre-screen",
+  "name": "Grid pre-screen",
+  "label": "grid-pre-screen",
+  "area": "United Kingdom",
+  "title": "How do I find out if a site has grid capacity for a battery or large load? | Arithim",
+  "description": "Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there and what else could stop it.",
+  "eyebrow": "GRID PRE-SCREEN · GREAT BRITAIN",
+  "h1": "See which sites have grid capacity before you shortlist them.",
+  "sub": "A fast screen of one site or many in Great Britain. For each one, how close it is to published grid headroom, who already holds capacity there and what else could stand in the way.",
+  "status": "Early access",
+  "status_note": "Available today for battery storage sites. Screening for data centres and electrolysers is planned. Screening through an API is in early access.",
+  "cta": "Request a screen",
+  "benefits_h": "Why developers choose it",
+  "benefits": [
+   [
+    "Shortlist with confidence",
+    "Rule sites in or out on grid before you spend on land and surveys."
+   ],
+   [
+    "Know who is already there",
+    "See the projects already holding capacity near each site."
+   ],
+   [
+    "Spot other blockers early",
+    "Land and planning constraints come with every screen."
+   ]
+  ],
+  "gets_h": "What the screen shows for each site",
+  "gets": [
+   [
+    "Nearest connection points",
+    "The substations closest to the site, and how far away they are."
+   ],
+   [
+    "Published headroom",
+    "The operator's own figure and rating, with its date."
+   ],
+   [
+    "Capacity already taken",
+    "Registered projects holding capacity nearby, and where the queue stands."
+   ],
+   [
+    "A rough cost class",
+    "A guide to how heavy a connection is likely to be. It is not an operator's quote."
+   ],
+   [
+    "Land and planning flags",
+    "The main constraints on the site."
+   ],
+   [
+    "Better sites nearby",
+    "A ranked list of stronger sites close by, where there are any."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Battery developers",
+    "Compare a list of sites on grid in one pass."
+   ],
+   [
+    "Land teams and agents",
+    "Know which sites are worth taking to a landowner."
+   ],
+   [
+    "Large energy users, later",
+    "Data centre and electrolyser screening is planned."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send your sites",
+    "Points or boundaries, and the MW you have in mind."
+   ],
+   [
+    "We screen each one",
+    "Grid, capacity held nearby and the main land constraints."
+   ],
+   [
+    "Compare side by side",
+    "One short report, and the same results as data."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "The screen covers Great Britain.",
+   "Headroom is the figure the operator has published, on its stated date. It is not a connection offer.",
+   "Low voltage headroom is not published, and queue positions are only partly public.",
+   "Data centre and electrolyser screening is planned and is not available today."
+  ],
+  "faq": [
+   [
+    "Is the headroom figure the same as the network operator's?",
+    "Yes. We show the figure the operator published, with its date and the operator's own rating, and we name the operator on every row."
+   ],
+   [
+    "Does it tell me who else is queuing at the substation?",
+    "It shows the projects on the public registers at that point, with their size and status. Contract terms and the full queue are not public."
+   ],
+   [
+    "Can I send several sites at once?",
+    "Yes. You can send a list of sites, and the screening API takes several sites per call in early access."
+   ],
+   [
+    "Does it cover data centres or electrolysers?",
+    "Not yet. That is planned. The grid screen is available today for battery storage."
+   ],
+   [
+    "Is the headroom live?",
+    "No. It is the figure the operator last published, with its date."
+   ]
+  ],
+  "related": [
+   "battery-siting-report",
+   "planning-risk-screen"
+  ],
+  "service_type": "Grid capacity pre-screen",
+  "audience_type": "Battery storage developers and the land teams and agents who source sites for them",
+  "audience": "For battery developers and land teams",
+  "card_summary": "How close is a site to grid headroom, and who already holds capacity there?",
+  "cta_h": "Want to screen a list of sites?",
+  "cta_p": "Send us the sites and the MW. We will confirm what the screen covers and when you will have it."
+ },
+ {
+  "slug": "planning-risk-screen",
+  "name": "Planning risk screen",
+  "label": "planning-risk",
+  "area": "United Kingdom",
+  "title": "What planning constraints could stop a solar, battery or wind site? | Arithim",
+  "description": "A desk screen of one site in Great Britain for farmland, peat, heritage and protected sites, with the field studies an application is likely to need.",
+  "eyebrow": "PLANNING RISK SCREEN · GREAT BRITAIN",
+  "h1": "Find the planning constraints before you pay for surveys.",
+  "sub": "A desk screen of one site in Great Britain that flags the constraints most likely to cause trouble for a solar, battery or wind scheme, and lists the studies you will probably need.",
+  "status": "Early access",
+  "status_note": "The checks are built and appear today inside our feasibility reports. The standalone screen is in early access.",
+  "cta": "Request a screen",
+  "benefits_h": "Why developers choose it",
+  "benefits": [
+   [
+    "Avoid a wasted survey",
+    "See the issue that could sink an application before you commission fieldwork."
+   ],
+   [
+    "Plan the studies",
+    "Get the list of field studies the site will probably need."
+   ],
+   [
+    "One view of the site",
+    "Land, heritage and protected-site constraints together, with how much of the site each one covers."
+   ]
+  ],
+  "gets_h": "What the screen reports",
+  "gets": [
+   [
+    "Farmland",
+    "How much of the site falls in each agricultural land grade, and how much of that rests on a detailed survey."
+   ],
+   [
+    "Peat",
+    "How much deep peat there is and how far away it is."
+   ],
+   [
+    "Heritage",
+    "Listed buildings, monuments, parks and gardens, battlefields and World Heritage Sites on and around the site."
+   ],
+   [
+    "Protected sites",
+    "National Parks, designated landscapes and habitats, ancient woodland and wild land, with share and distance."
+   ],
+   [
+    "Other constraints",
+    "Flood zones, green belt, open access land, and distance to aerodromes and built-up areas."
+   ],
+   [
+    "The study list",
+    "The field studies the application will probably need."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Solar, battery and wind developers",
+    "Check a parcel before you pay for surveys."
+   ],
+   [
+    "Planning consultants",
+    "Start a site review with the constraints already mapped."
+   ],
+   [
+    "Land agents",
+    "Back a conversation with a landowner with evidence."
+   ]
+  ],
+  "steps_h": "How it works",
+  "steps": [
+   [
+    "Send the site",
+    "A boundary, or a point and a size, and the technology."
+   ],
+   [
+    "We screen it",
+    "Farmland, peat, heritage, protected sites and other constraints."
+   ],
+   [
+    "Plan your next step",
+    "You receive the screen and the likely study list."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "The screen covers Great Britain.",
+   "Farmland grades come mostly from predictive and provisional maps. A soil survey confirms them on the ground.",
+   "Peat depth needs probing on site. The screen reports mapped peat only.",
+   "Glint and glare, conservation areas and archaeology records are not included.",
+   "The screen does not predict a planning decision."
+  ],
+  "faq": [
+   [
+    "Does it tell me if my site is best and most versatile land?",
+    "It reports how much of the site is mapped as grades 1, 2 and 3a, and how much of that comes from a detailed survey. Where the map is predictive, it says so, and a soil survey is still needed."
+   ],
+   [
+    "Does it cover Scotland?",
+    "Yes. In Scotland it uses prime agricultural land, mapped peat classes, heritage data and designations."
+   ],
+   [
+    "Which listed buildings does it count?",
+    "Those on the site and in the area around it, with the highest grades counted separately, and the distance to the nearest of each."
+   ],
+   [
+    "Does it replace a consultant's survey?",
+    "No. It helps you decide whether surveys are worth paying for."
+   ],
+   [
+    "Does it predict planning outcomes?",
+    "No. It reports constraints and the studies you will probably need. The planning authority decides."
+   ]
+  ],
+  "related": [
+   "battery-siting-report",
+   "grid-pre-screen"
+  ],
+  "service_type": "Planning constraint desk screen",
+  "audience_type": "Solar, battery and wind developers, planning consultants and land agents",
+  "audience": "For solar, battery and wind developers",
+  "card_summary": "Spot the planning constraints that could stop a site, before you pay for surveys.",
+  "cta_h": "Want a site screened for planning risk?",
+  "cta_p": "Send us the boundary and the technology. We will confirm what the screen covers and when you will have it."
+ },
+ {
+  "slug": "uk-company-check",
+  "name": "UK company check",
+  "label": "company-check",
+  "area": "United Kingdom",
+  "title": "How do I check a UK company before I do business with it? | Arithim",
+  "description": "Planned: a check on one UK company that confirms it exists and is active, shows who controls it and gives a dated source for every fact.",
+  "eyebrow": "UK COMPANY CHECK · PLANNED",
+  "h1": "Know who is behind a UK company before you deal with it.",
+  "sub": "A planned check for know your business (KYB) work. Send a company number or name and get a summary of the company, who controls it as far as the UK register shows, and anything that deserves a closer look, with a dated source for every fact.",
+  "status": "Planned",
+  "status_note": "Not yet available. Register your interest and we will tell you when early access opens. Early access will cover UK registered companies only.",
+  "cta": "Register your interest",
+  "benefits_h": "Why teams will choose it",
+  "benefits": [
+   [
+    "A quick first look",
+    "Confirm a company exists and is active in moments, before you spend time on it."
+   ],
+   [
+    "Flags with reasons",
+    "Anything that needs a closer look comes with a plain reason, so your team can decide."
+   ],
+   [
+    "Evidence for every item",
+    "Each fact shows where it came from and when we retrieved it."
+   ]
+  ],
+  "gets_h": "What the check will return",
+  "gets": [
+   [
+    "Company status",
+    "Whether the company is active, when it was incorporated, its registered office and its filing history."
+   ],
+   [
+    "Corporate controllers",
+    "The chain of companies that control it, as far as the UK register shows."
+   ],
+   [
+    "Flags with plain reasons",
+    "The check says clear or review. It does not tell you to accept or reject a customer."
+   ],
+   [
+    "Dated sources",
+    "The source and retrieval date for each item."
+   ],
+   [
+    "Energy holdings",
+    "For energy counterparties, the renewable and storage projects the company's group holds or has applied for."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Accountants, lenders and platforms",
+    "Onboard UK business customers and suppliers with a sourced first check."
+   ],
+   [
+    "Energy developers",
+    "Check a landowner company or an offtaker before you sign an option or a power purchase agreement."
+   ]
+  ],
+  "steps_h": "How it will work",
+  "steps": [
+   [
+    "Send a company",
+    "A company number or a name."
+   ],
+   [
+    "We check the register",
+    "Status, controllers and anything unusual."
+   ],
+   [
+    "You decide",
+    "A summary with sources, for your own team to act on."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "UK registered companies only. Ownership chains that leave the UK stop where the UK register stops.",
+   "Ownership comes from information that companies file about themselves. We report what the register says and do not verify it.",
+   "No credit scores, politically exposed persons screening or adverse media.",
+   "It is a screening aid. It does not decide whether you meet your own legal duties."
+  ],
+  "faq": [
+   [
+    "What is a KYB check?",
+    "KYB means know your business: checking that a company is real, who stands behind it and whether anything should make you look closer before you deal with it. This service supports that check. It does not make you compliant on its own."
+   ],
+   [
+    "Is the UK company check available now?",
+    "No. It is planned. Early access will start with a small group of named users."
+   ],
+   [
+    "Does it work for companies outside the UK?",
+    "No. Early access covers companies registered in the UK only."
+   ],
+   [
+    "Does it tell us whether to accept a customer?",
+    "No. It returns flags, reasons and evidence for your own team to decide."
+   ],
+   [
+    "Can I see where each fact came from?",
+    "Yes. Every item will show its source and the date we retrieved it."
+   ],
+   [
+    "Will it show me who owns the company?",
+    "It will show the chain of corporate owners recorded with Companies House. Individual owners are not shown in the current design."
+   ]
+  ],
+  "related": [],
+  "service_type": "UK company check (KYB)",
+  "audience_type": "Accountants, lenders, platforms and energy developers that check UK companies",
+  "audience": "For accountants, lenders and platforms",
+  "card_summary": "Check who is behind a UK company, with a dated source for every fact.",
+  "cta_h": "Want to hear when early access opens?",
+  "cta_p": "Tell us what you check, how often and what you need to see in the result. It shapes what we build first."
+ },
+ {
+  "slug": "solar-suitability-api",
+  "name": "Solar suitability check",
+  "label": "solar-suitability",
+  "area": "United Kingdom",
+  "title": "How do I check whether solar will work on a building? | Arithim",
+  "description": "Planned: a solar suitability check that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield.",
+  "eyebrow": "SOLAR SUITABILITY API · PLANNED",
+  "h1": "Find out if solar will work at an address before you pay for a survey.",
+  "sub": "A planned check that gives a plain verdict on whether solar is likely to work at an address or site, the reasons, the constraints in the way and an estimated annual yield, with a source for each item.",
+  "status": "Planned",
+  "status_note": "Not yet available. Register your interest and we will tell you when early access opens. We will state where it covers before anyone relies on it.",
+  "cta": "Register your interest",
+  "benefits_h": "Why teams will choose it",
+  "benefits": [
+   [
+    "Qualify leads faster",
+    "Know which addresses are worth a survey before you send anyone."
+   ],
+   [
+    "Screen a whole portfolio",
+    "Run a list of buildings in one pass."
+   ],
+   [
+    "Reasons, not a black box",
+    "Every verdict comes with the reasons and the sources behind them."
+   ]
+  ],
+  "gets_h": "What the check will return",
+  "gets": [
+   [
+    "A plain verdict",
+    "Suitable, likely suitable, constrained or unlikely."
+   ],
+   [
+    "The reasons",
+    "In plain words."
+   ],
+   [
+    "Constraints found",
+    "Listed buildings, conservation areas, flood zones and planning designations."
+   ],
+   [
+    "Grid headroom",
+    "Where the network operator publishes it."
+   ],
+   [
+    "Estimated annual yield",
+    "In kWh, for a stated system size."
+   ],
+   [
+    "An evidence list",
+    "The source and date for each item."
+   ]
+  ],
+  "who_h": "Who is it for?",
+  "who": [
+   [
+    "Solar installers",
+    "Qualify leads before paying for a survey."
+   ],
+   [
+    "Lenders and landlords",
+    "Screen a portfolio of buildings."
+   ],
+   [
+    "Developers",
+    "Run an early check on a larger site."
+   ]
+  ],
+  "steps_h": "How it will work",
+  "steps": [
+   [
+    "Send an address or site",
+    "An address, a UPRN, coordinates or a boundary."
+   ],
+   [
+    "We check it",
+    "Constraints and expected yield."
+   ],
+   [
+    "You decide",
+    "Book the survey, or move on."
+   ]
+  ],
+  "know_h": "Good to know",
+  "know": [
+   "It is not a design tool. There is no panel layout and there are no engineering drawings.",
+   "It is not a quote and gives no payback or savings figures.",
+   "It does not replace a site survey.",
+   "Grid headroom appears only where an operator publishes it.",
+   "Planning history differs between councils and will be incomplete."
+  ],
+  "faq": [
+   [
+    "Does it design the system for me?",
+    "No. It tells you whether solar is likely to work and what could get in the way. It does not lay out panels or produce drawings."
+   ],
+   [
+    "Does it replace a site survey?",
+    "No. It helps you decide whether a survey is worth booking."
+   ],
+   [
+    "Can it tell me if I will get planning permission?",
+    "No. It flags known constraints such as a conservation area or listed status. The council decides permission."
+   ],
+   [
+    "Is it available now?",
+    "No. It is planned. Early access will start with a small group of named users."
+   ]
+  ],
+  "related": [
+   "planning-risk-screen"
+  ],
+  "service_type": "Solar suitability screening API",
+  "audience_type": "Solar installers, lenders, landlords and developers",
+  "audience": "For installers, lenders and landlords",
+  "card_summary": "Will solar work at this address? A plain verdict, the reasons and a yield estimate.",
+  "cta_h": "Want to hear when early access opens?",
+  "cta_p": "Tell us what you screen, how many addresses and what you need in the answer. It shapes what we build first."
+ }
+]

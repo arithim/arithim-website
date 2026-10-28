@@ -60,37 +60,60 @@ export function initFx(root) {
     stops.push(() => { cancelAnimationFrame(raf); if (ro) ro.disconnect(); canvas.removeEventListener('pointermove', onMove); canvas.removeEventListener('pointerleave', onLeave); });
   });
 
-  // ---- hero cursor glow ----
-  root.querySelectorAll('[data-hero-glow]').forEach((glow) => {
-    const host = glow.closest('[data-hero]'); if (!host) return;
-    const move = (e) => { const r = host.getBoundingClientRect(); glow.style.background = 'radial-gradient(650px circle at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, rgba(232,161,60,0.16), transparent 55%)'; glow.style.opacity = '1'; };
-    const leave = () => { glow.style.opacity = '0'; };
-    host.addEventListener('pointermove', move); host.addEventListener('pointerleave', leave);
-    stops.push(() => { host.removeEventListener('pointermove', move); host.removeEventListener('pointerleave', leave); });
-  });
+  // ---- pointer glow and magnetic buttons: central, no per-page markup ----
+  // Every card-like surface in <main> and every [data-hero] gets a glow that follows the pointer. The look is
+  // .ah-fx-glow in site.css. To change what counts as a surface, change isSurface() here.
+  const MAGNETIC = '.ah-btn-ring';
+  const isSurface = (el) => {
+    const cs = getComputedStyle(el);
+    if (cs.display === 'inline' || cs.display === 'contents' || cs.display === 'none') return false;
+    const r = parseFloat(cs.borderTopLeftRadius);
+    if (!(r >= 10 && r < 60) || !(parseFloat(cs.borderTopWidth) > 0) || cs.backgroundColor === 'rgba(0, 0, 0, 0)') return false;
+    const b = el.getBoundingClientRect();
+    return b.width >= 160 && b.height >= 64 && !el.closest('header, footer, nav, figure, [data-pm-scene], [data-home-scene], [data-sf-scene], [data-tsg-scene]');
+  };
+  const markGlow = (el, kind) => {
+    if (el.hasAttribute('data-fx-glow')) return;
+    el.setAttribute('data-fx-glow', kind);
+    if (getComputedStyle(el).position === 'static') el.classList.add('ah-fx-rel');
+    const layer = document.createElement('span'); layer.className = 'ah-fx-glow'; layer.setAttribute('aria-hidden', 'true');
+    el.appendChild(layer);
+  };
+  const scanGlow = () => {
+    root.querySelectorAll('[data-hero]').forEach((el) => markGlow(el, 'hero'));
+    root.querySelectorAll('main *').forEach((el) => { if (el.classList.contains('ah-fx-glow') || el.hasAttribute('data-fx-glow')) return; if (isSurface(el)) markGlow(el, 'card'); });
+  };
+  const track = (e) => {
+    const host = e.target.closest && e.target.closest('[data-fx-glow]'); if (!host) return;
+    const r = host.getBoundingClientRect();
+    host.style.setProperty('--mx', (e.clientX - r.left) + 'px'); host.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  };
+  let scanTimer = 0;
+  const rescan = () => { clearTimeout(scanTimer); scanTimer = setTimeout(scanGlow, 200); };
+  const mo = new MutationObserver((muts) => { if (muts.some((m) => [...m.addedNodes].some((n) => n.nodeType === 1 && !n.classList.contains('ah-fx-glow')))) rescan(); });
+  setTimeout(scanGlow, 400);
+  mo.observe(root.documentElement || root, { childList: true, subtree: true });
+  document.addEventListener('pointermove', track, { passive: true });
+  stops.push(() => { mo.disconnect(); clearTimeout(scanTimer); document.removeEventListener('pointermove', track); });
 
-  // ---- card spotlights ----
-  root.querySelectorAll('[data-spotlight]').forEach((card) => {
-    const layer = card.querySelector('[data-spot-layer]'); if (!layer) return;
-    const move = (e) => { const r = card.getBoundingClientRect(); layer.style.background = 'radial-gradient(360px circle at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, rgba(232,161,60,0.16), transparent 55%)'; layer.style.opacity = '1'; };
-    const leave = () => { layer.style.opacity = '0'; };
-    card.addEventListener('pointermove', move); card.addEventListener('pointerleave', leave);
-    stops.push(() => { card.removeEventListener('pointermove', move); card.removeEventListener('pointerleave', leave); });
-  });
-
-  // ---- magnetic buttons ----
-  root.querySelectorAll('[data-magnetic]').forEach((el) => {
-    const move = (e) => { const r = el.getBoundingClientRect(); el.style.transform = 'translate(' + (e.clientX - (r.left + r.width / 2)) * 0.25 + 'px,' + (e.clientY - (r.top + r.height / 2)) * 0.3 + 'px)'; };
-    const leave = () => { el.style.transform = 'translate(0,0)'; el.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)'; };
-    const enter = () => { el.style.transition = 'transform 0.1s ease-out'; };
-    el.addEventListener('pointerenter', enter); el.addEventListener('pointermove', move); el.addEventListener('pointerleave', leave);
-    stops.push(() => { el.removeEventListener('pointerenter', enter); el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', leave); });
-  });
+  const magnetic = (e) => {
+    const el = e.target.closest && e.target.closest(MAGNETIC); if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.transform = 'translate(' + (e.clientX - (r.left + r.width / 2)) * 0.25 + 'px,' + (e.clientY - (r.top + r.height / 2)) * 0.3 + 'px)';
+    el.style.transition = 'transform 0.1s ease-out';
+  };
+  const unmagnet = (e) => {
+    const el = e.target.closest && e.target.closest(MAGNETIC); if (!el || el.contains(e.relatedTarget)) return;
+    el.style.transform = 'translate(0,0)'; el.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+  };
+  document.addEventListener('pointermove', magnetic, { passive: true });
+  document.addEventListener('pointerout', unmagnet);
+  stops.push(() => { document.removeEventListener('pointermove', magnetic); document.removeEventListener('pointerout', unmagnet); });
 
   // ---- animated nav pill ----
   root.querySelectorAll('[data-nav]').forEach((nav) => {
     const pill = nav.querySelector('[data-nav-pill]'); if (!pill) return;
-    [...nav.querySelectorAll('a')].forEach((a) => {
+    [...nav.querySelectorAll(':scope > a, :scope > .ah-nav-item > a')].forEach((a) => {
       const enter = () => { const nr = nav.getBoundingClientRect(); const r = a.getBoundingClientRect(); pill.style.width = r.width + 'px'; pill.style.transform = 'translateX(' + (r.left - nr.left) + 'px)'; pill.style.opacity = '1'; };
       a.addEventListener('pointerenter', enter);
       stops.push(() => a.removeEventListener('pointerenter', enter));

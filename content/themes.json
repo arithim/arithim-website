@@ -1,0 +1,119 @@
+{
+  "default": "light",
+  "themes": {
+    "arithim": {
+      "label": "Dark",
+      "mode": "dark",
+      "public": true
+    },
+    "light": {
+      "label": "Light (default)",
+      "tokens": {
+        "ink": "#FFFFFF",
+        "ink-deep": "#F6F9FC",
+        "band": "#F6F9FC",
+        "card": "#FFFFFF",
+        "card-2": "#F6F9FC",
+        "cream": "#1A2C44",
+        "text-1": "#2B3C55",
+        "text-2": "#3C4F69",
+        "text-3": "#50617A",
+        "text-4": "#596B85",
+        "text-5": "#667691",
+        "text-6": "#8895A9",
+        "rule-faint": "#D4DEE9",
+        "amber": "#B25E00",
+        "amber-light": "#D98A1F",
+        "sand": "#8A5A12",
+        "sage": "#4F7A5E",
+        "sage-light": "#3F6B50",
+        "blue": "#2F5FC4",
+        "blue-light": "#2F56A8",
+        "on-accent": "#FFFFFF",
+        "sage-text": "#3F6B50",
+        "surface-2": "#F1F5F9",
+        "surface-3": "#EAF0F6",
+        "surface-4": "#F6F9FC",
+        "cream-2": "#1A2C44",
+        "sand-2": "#7A4A00",
+        "lilac": "#5B3B8C",
+        "sage-pale": "#2F5F46"
+      },
+      "rgb": {
+        "cream": [
+          26,
+          44,
+          68
+        ],
+        "ink": [
+          255,
+          255,
+          255
+        ]
+      },
+      "css": "html[data-theme=\"light\"] { color-scheme: light; }\nhtml[data-theme=\"light\"] .ah-rb, html[data-theme=\"light\"] .ah-rb-scrim { display: none; }",
+      "mode": "light",
+      "public": true
+    },
+    "stripe": {
+      "label": "Stripe-style, white and blue (draft)",
+      "tokens": {
+        "ink": "#FFFFFF",
+        "ink-deep": "#F6F9FC",
+        "band": "#F6F9FC",
+        "card": "#FFFFFF",
+        "card-2": "#F6F9FC",
+        "cream": "#1A2C44",
+        "text-1": "#2B3C55",
+        "text-2": "#3C4F69",
+        "text-3": "#50617A",
+        "text-4": "#596B85",
+        "text-5": "#667691",
+        "text-6": "#8895A9",
+        "rule-faint": "#D4DEE9",
+        "amber": "#3A53D0",
+        "amber-light": "#6B83E8",
+        "sand": "#2B3C8F",
+        "sage": "#1F7A4D",
+        "sage-light": "#1F7A4D",
+        "blue": "#3A53D0",
+        "blue-light": "#3A53D0",
+        "on-accent": "#FFFFFF",
+        "sage-text": "#1F7A4D",
+        "surface-2": "#F1F5F9",
+        "surface-3": "#EAF0F6",
+        "surface-4": "#F6F9FC",
+        "r-12": "6px",
+        "r-14": "8px",
+        "r-16": "8px",
+        "r-17": "8px",
+        "r-18": "10px",
+        "r-20": "12px",
+        "cream-2": "#1A2C44",
+        "sand-2": "#7A4A00",
+        "lilac": "#5B3B8C",
+        "sage-pale": "#2F5F46"
+      },
+      "rgb": {
+        "cream": [
+          26,
+          44,
+          68
+        ],
+        "ink": [
+          255,
+          255,
+          255
+        ],
+        "amber": [
+          58,
+          83,
+          208
+        ]
+      },
+      "css": "html[data-theme=\"stripe\"] { color-scheme: light; }\nhtml[data-theme=\"stripe\"] .ah-rb, html[data-theme=\"stripe\"] .ah-rb-scrim, html[data-theme=\"stripe\"] .ah-fx-glow { display: none; }\nhtml[data-theme=\"stripe\"] .tsg-hero-h, html[data-theme=\"stripe\"] .ah-h1 { letter-spacing: -0.03em; }",
+      "mode": "light",
+      "public": false
+    }
+  }
+}
