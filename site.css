@@ -1717,3 +1717,34 @@ html[data-theme="stripe"] .tsg-hero-h, html[data-theme="stripe"] .ah-h1 { letter
   .ah-pcard, .ah-a8498e, .ah-icon-chip, .ah-pcard-more { transition: none; }
   .ah-pcard:hover, .ah-pcard:focus-visible, .ah-a8498e:hover, .ah-a8498e:focus-visible, .ah-pcard:hover .ah-pcard-more { transform: none; }
 }
+
+/* 38. Boxed plan cards (Services overview, Case Studies index). Built on the .ah-pcard pattern. */
+.ah-plan-grid, .ah-c3ad51 { align-items: stretch; }
+.ah-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ah-s-24); padding-top: var(--ah-s-32); }
+.ah-plan { position: relative; display: flex; flex-direction: column; gap: var(--ah-s-10); height: 100%; min-width: 0; padding: var(--ah-s-28); background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
+.ah-plan:focus-visible, .ah-plan-link:focus-visible { outline: 2px solid var(--ah-amber); outline-offset: 3px; }
+.ah-plan-link { color: inherit; text-decoration: none; }
+.ah-plan-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.ah-plan-link:hover { opacity: 1; }
+.ah-plan-link:focus-visible { outline: none; }
+.ah-plan:has(.ah-plan-link:focus-visible) { outline: 2px solid var(--ah-amber); outline-offset: 3px; }
+.ah-plan .ah-3d1931 { margin-bottom: 0; }
+.ah-plan .ah-plan-title { margin: 0; font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-26); line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; color: var(--ah-cream); }
+.ah-plan .ah-plan-sum { margin: 0; font-size: var(--ah-fs-15-5); line-height: 1.55; color: var(--ah-text-2); }
+.ah-plan-pts { display: flex; flex-direction: column; gap: var(--ah-s-6); padding-top: var(--ah-s-12); margin-top: var(--ah-s-6); border-top: 1px solid var(--ah-cream-08); }
+.ah-plan .ah-plan-pts span.ah-646de9 { position: relative; padding: 0 0 0 var(--ah-s-18); border: 0; border-radius: 0; background: none; font-size: var(--ah-fs-14); color: var(--ah-text-2); }
+.ah-plan .ah-plan-pts span.ah-646de9::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 2px; background: var(--ah-amber); }
+.ah-plan-scene { margin-top: auto; padding-top: var(--ah-s-16); pointer-events: none; }
+.ah-plan-cs { padding: var(--ah-s-32); text-decoration: none; }
+.ah-plan-cs .ah-plan-in { display: flex; flex-direction: column; flex: 1; }
+.ah-plan-cs .ah-5e5090 { margin-top: auto; transition: transform 0.2s; align-self: flex-start; }
+.ah-plan-cs .ah-ec0cad { margin-bottom: var(--ah-s-20); }
+.ah-plan-cs:hover .ah-5e5090 { transform: translateX(3px); }
+.ah-plan:hover .ah-plan-title { color: var(--ah-amber); }
+@media (max-width: 1100px) { .ah-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .ah-plan-grid { grid-template-columns: minmax(0, 1fr); } .ah-plan { padding: var(--ah-s-24); } }
+@media (prefers-reduced-motion: reduce) {
+  .ah-plan, .ah-plan-cs .ah-5e5090 { transition: none; }
+  .ah-plan:hover, .ah-plan:focus-visible, .ah-plan:focus-within, .ah-plan-cs:hover .ah-5e5090 { transform: none; }
+}
