@@ -162,7 +162,7 @@ def render(p: dict, products: list[dict]) -> str:
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      {price_html}<p class="as-note">{e(p['status_note'])}</p>{nature_html}
+      <div class="ah-hero-foot">{price_html}<p class="as-note">{e(p['status_note'])}</p></div>{nature_html}
     </div>
   </section>{nature_js}{contours_html}
 
