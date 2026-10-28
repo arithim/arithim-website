@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -61,7 +61,6 @@
 
   <div data-hero class="ah-clip">
     <div class="ah-8327a3"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-fbf26f">
       <div class="ah-4f7402"><a class="ah-h-d4e703" href="case-studies.html">Case Studies</a> / <span class="ah-amber">Operational Intelligence Platform</span></div>
       <span class="ah-586b8d">OPERATIONAL MODERNIZATION</span>
@@ -108,17 +107,16 @@
   <div class="r-gut ah-9bf499">
     <div class="ah-c4d39d">MORE WORK</div>
     <div class="r-g2 ah-f77901">
-      <a href="case-compliance-vendor-approval.html" data-spotlight class="ah-a69e6b"><div class="ah-3bbaf8"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-fa8c89">WORKFLOW</span><h3 class="ah-55ca3e">Compliance &amp; Vendor Approval System →</h3></div></a>
-      <a href="case-telecommunications-billing.html" data-spotlight class="ah-a69e6b"><div class="ah-3bbaf8"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-fa8c89">TECHNICAL</span><h3 class="ah-55ca3e">Telecommunications Billing Infrastructure →</h3></div></a>
+      <a href="case-compliance-vendor-approval.html" class="ah-a69e6b"><div class="ah-3bbaf8"><span class="ah-fa8c89">WORKFLOW</span><h3 class="ah-55ca3e">Compliance &amp; Vendor Approval System →</h3></div></a>
+      <a href="case-telecommunications-billing.html" class="ah-a69e6b"><div class="ah-3bbaf8"><span class="ah-fa8c89">TECHNICAL</span><h3 class="ah-55ca3e">Telecommunications Billing Infrastructure →</h3></div></a>
     </div>
   </div>
 
   <div data-hero class="r-gut ah-542561">
     <div class="ah-4ea577"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Have a similar problem?</h2>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -131,7 +129,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }
 }

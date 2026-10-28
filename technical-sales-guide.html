@@ -60,14 +60,13 @@
   <section data-hero class="ah-clip" aria-labelledby="tsg-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-ef69cb"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="tsg-wrap ah-477b99">
       <div class="tsg-hero-grid">
         <div>
           <div class="ah-7e9587">TECHNICAL SALES GUIDE · FOR CHEMICAL AND INGREDIENT DISTRIBUTORS</div>
           <h1 id="tsg-h1" class="tsg-hero-h ah-2ec719">Every salesperson answers like your best technical manager.</h1>
           <p class="ah-a90d84">Ask for a product by application and condition, in animal nutrition, coatings, construction chemicals or another industry you sell into. The Guide returns a ranked answer showing cost in use, landed cost, registrations by country and the source. The interface and the website concierge work in Arabic.</p>
-          <div class="ah-f63772"><a href="#demo" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Request a demo →</span></a><a href="#jobs" class="tsg-link ah-6c28d0">See what it does</a></div>
+          <div class="ah-f63772"><a href="#demo" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Request a demo →</span></a><a href="#jobs" class="tsg-link ah-6c28d0">See what it does</a></div>
         </div>
         <div><div data-tsg-scene="hero" data-title="Ranked product answers in animal nutrition, coatings and construction chemicals"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>Three examples play in turn. In animal nutrition, a rep asks for a heat-stress product for broilers in Saudi Arabia. In coatings, a dispersant for a water-based wall paint in the UAE. In construction chemicals, a superplasticiser for ready-mix concrete poured in a Riyadh summer. Each time, three products from three principals appear in ranked order with dose, cost in use and landed cost, the sources are listed, and Replace swaps in a competitor equivalent with the saving shown. All figures are samples.</p></details></div>
       </div>
@@ -121,7 +120,7 @@
   </section>
 
   <section class="tsg-sec">
-    <div class="tsg-wrap"><div class="tsg-cta-strip ah-291b7b"><p>See these jobs run on your own product range.</p><a href="#demo" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Request a demo →</span></a></div></div>
+    <div class="tsg-wrap"><div class="tsg-cta-strip ah-291b7b"><p>See these jobs run on your own product range.</p><a href="#demo" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Request a demo →</span></a></div></div>
   </section>
 
   <section class="pp-group" id="more" aria-labelledby="more-h">
@@ -221,7 +220,6 @@
   <section id="demo" data-hero class="ah-65eb20" aria-labelledby="cta">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-c76c46"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="tsg-wrap ah-87db22">
       <div class="tsg-demo"><div class="tsg-demo-in">
         <div>
@@ -260,7 +258,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./tsg-motion.js?v=3').then((m) => { this._stopMotion = m.initTsgMotion(document); }).catch((e) => console.error('motion load failed', e));
     import('./tsg-page.js?v=2').then((m) => { this._stopPage = m.initTsgPage(document); }).catch((e) => console.error('page load failed', e));
   }

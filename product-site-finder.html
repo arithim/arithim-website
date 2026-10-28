@@ -60,14 +60,13 @@
   <section data-hero class="ah-clip" aria-labelledby="sf-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-ef69cb"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="tsg-wrap ah-477b99">
       <div class="tsg-hero-grid">
         <div>
           <div class="ah-7e9587">SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN</div>
           <h1 id="sf-h1" class="tsg-hero-h ah-a3b078">Find the land worth a site visit, with the evidence for every site.</h1>
           <p class="ah-b0a2d7">Describe the project you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection and who holds capacity there, the planning record nearby and the economics.</p>
-          <div class="ah-f63772"><a href="contact.html?product=site-finder" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Book a demo →</span></a><a href="#pricing" class="tsg-link ah-6c28d0">See prices and order</a><a href="#videos" class="tsg-link ah-6c28d0">Watch it in use</a></div>
+          <div class="ah-f63772"><a href="contact.html?product=site-finder" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Book a demo →</span></a><a href="#pricing" class="tsg-link ah-6c28d0">See prices and order</a><a href="#videos" class="tsg-link ah-6c28d0">Watch it in use</a></div>
           <p class="sf-hero-pr"><a href="#order-landowner-check">Landowner check £195</a> · <a href="#order-site-feasibility-report">Feasibility report £1,950</a> · <a href="#order-portfolio-screen">Portfolio screen £7,500</a> · <a href="#order-site-finder-platform">Platform from £30,000 a year</a><br>Prices ex VAT. Order by email and pay by invoice.</p>
         </div>
         <figure class="sf-fig"><div data-sf-scene="j1" data-title="Ask the question and read the answer"></div><details class="tsg-desc"><summary>Describe this animation</summary><p>A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.</p></details></figure>
@@ -176,7 +175,7 @@
     <div class="tsg-wrap ah-87db22">
       <h2 id="demo-h">Want to see Site Finder run on your own brief?</h2>
       <p>Tell us the technology, the project size, how you want to connect and the regions you care about, and we will show you the ranked list and the evidence behind it.</p>
-      <a href="contact.html?product=site-finder" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Book a demo →</span></a>
+      <a href="contact.html?product=site-finder" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-c153f3">Book a demo →</span></a>
       <p class="sf-note ah-e47eeb">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
     </div>
   </section>
@@ -191,7 +190,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./site-finder-motion.js').then((m) => { this._stopMotion = m.initSfMotion(document); }).catch((e) => console.error('motion load failed', e));
   }
   componentWillUnmount() { ['_stop','_stopMotion'].forEach((k) => { if (this[k]) this[k](); }); }

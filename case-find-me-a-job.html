@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -61,7 +61,6 @@
 
   <div data-hero class="ah-clip">
     <div class="ah-5527a6"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-fbf26f">
       <div class="ah-4f7402"><a class="ah-h-d4e703" href="case-studies.html">Case Studies</a> / <span class="ah-amber">Find Me A Job</span></div>
       <div class="ah-79095c">
@@ -110,17 +109,16 @@
   <div class="r-gut ah-9bf499">
     <div class="ah-c4d39d">MORE WORK</div>
     <div class="r-g2 ah-f77901">
-      <a href="case-unrejectable.html" data-spotlight class="ah-a69e6b"><div class="ah-3bbaf8"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-fa8c89">ARITHIM PRODUCT</span><h3 class="ah-55ca3e">Unrejectable →</h3></div></a>
-      <a href="case-operational-intelligence-platform.html" data-spotlight class="ah-a69e6b"><div class="ah-3bbaf8"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-fa8c89">OPERATIONAL</span><h3 class="ah-55ca3e">Operational Intelligence Platform →</h3></div></a>
+      <a href="case-unrejectable.html" class="ah-a69e6b"><div class="ah-3bbaf8"><span class="ah-fa8c89">ARITHIM PRODUCT</span><h3 class="ah-55ca3e">Unrejectable →</h3></div></a>
+      <a href="case-operational-intelligence-platform.html" class="ah-a69e6b"><div class="ah-3bbaf8"><span class="ah-fa8c89">OPERATIONAL</span><h3 class="ah-55ca3e">Operational Intelligence Platform →</h3></div></a>
     </div>
   </div>
 
   <div data-hero class="r-gut ah-542561">
     <div class="ah-4ea577"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Want something like this built?</h2>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -133,7 +131,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }
 }

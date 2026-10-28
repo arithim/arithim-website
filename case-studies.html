@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -63,7 +63,6 @@
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-b357df"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-9a682c">
       <div class="ah-63d0d0">CASE STUDIES</div>
       <h1 class="r-f2 ah-f371f2">Evidence over adjectives.</h1>
@@ -90,15 +89,14 @@
     <div class="ah-017744">CLIENT WORK</div>
     <div class="ah-074dd7">
       <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-        <div onClick="{{ onFilter }}" data-filter="{{ f.key }}" style="{{ f.style }}">{{ f.label }}</div>
+        <div onClick="{{ onFilter }}" data-filter="{{ f.key }}" class="cs-chip" data-on="{{ f.on }}">{{ f.label }}</div>
       </sc-for>
       <span class="ah-6d83b0">{{ count }}</span>
     </div>
     <div class="r-g3 ah-c3ad51">
       <sc-for list="{{ studies }}" as="s" hint-placeholder-count="3">
-        <a href="{{ s.slug }}" data-spotlight class="ah-5ff5b2">
+        <a href="{{ s.slug }}" class="ah-5ff5b2">
           <div class="ah-bcce86">
-            <div data-spot-layer class="ah-glow-layer-fast"></div>
             <div class="ah-5933cb"><span class="ah-fcbedc">{{ s.tag }}</span><span class="ah-9d605b">{{ s.date }}</span></div>
             <h3 class="ah-3513ce">{{ s.title }}</h3>
             <p class="ah-ec0cad">{{ s.desc }}</p>
@@ -113,10 +111,9 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-4ea577"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Your problem could be next.</h2>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -131,7 +128,7 @@
 class Component extends DCLogic {
   state = { filter: 'all' };
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
   }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
@@ -147,10 +144,9 @@ class Component extends DCLogic {
       { key: 'Technical systems', label: 'Technical' }
     ];
     const active = this.state.filter;
-    const base = "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;padding:9px 16px;border-radius:999px;cursor:pointer;transition:none;border:1px solid transparent;";
     const filters = cats.map((c) => ({
       key: c.key, label: c.label,
-      style: base + (c.key === active ? 'background:rgba(232,161,60,0.12);border-color:rgba(232,161,60,0.4);color:#F5F1E8;' : 'background:rgba(245,241,232,0.03);color:#9AA6B6;')
+      on: c.key === active ? '1' : '0'
     }));
     const studies = active === 'all' ? all : all.filter((s) => s.sector === active);
     return {

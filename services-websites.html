@@ -52,31 +52,29 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
 
-<main id="main">
+<main id="main" class="svc-accent-sage">
 
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-5527a6"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-3ad0e2">
-      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span style="{{ eyebrowInline }}">AI-Optimised Websites</span></div>
+      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span class="svc-accent-text">AI-Optimised Websites</span></div>
       <h1 class="r-f4 ah-4c8470">How do you make your website readable by ChatGPT and AI search?</h1>
-      <div style="{{ eyebrowStyle }}">SERVICE 04 · AI-OPTIMISED WEBSITES</div>
+      <div class="svc-eyebrow">SERVICE 04 · AI-OPTIMISED WEBSITES</div>
       <h2 class="r-f3 ah-597b3a">{{ headline }}</h2>
       <p class="ah-9e4a17">{{ intro }}</p>
-      <div class="ah-e85f22"><a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Audit my site →</span></a></div>
+      <div class="ah-e85f22"><a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Audit my site →</span></a></div>
     </div>
   </div>
 
   <div class="r-gut ah-597b5a">
-    <div data-spotlight class="ah-59939d">
-      <div class="r-gut ah-955aba"><div data-spot-layer class="ah-glow-layer-fast"></div>
-        <svg viewBox="0 0 600 300" class="ah-b28ac9">
+    <div class="ah-59939d">
+      <div class="r-gut ah-955aba">        <svg viewBox="0 0 600 300" class="ah-b28ac9">
           <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5" fill="none"><path d="M80,150 L280,64"/><path d="M80,150 L280,150"/><path d="M80,150 L280,236"/><path d="M280,64 L470,40"/><path d="M280,64 L470,92"/><path d="M280,150 L470,140"/><path d="M280,236 L470,208"/><path d="M280,236 L470,262"/></g>
           <circle cx="80" cy="150" r="8" fill="#7E9B87"/><text x="48" y="176" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Your site</text>
           <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="280" cy="64" r="6" fill="#7E9B87"/><text x="242" y="50">Who you are</text><circle cx="280" cy="150" r="6" fill="#7E9B87"/><text x="248" y="138">Metadata</text><circle cx="280" cy="236" r="6" fill="#7E9B87"/><text x="250" y="262">Structure</text></g>
@@ -94,7 +92,7 @@
     <div class="ah-fe3fb0">
       <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
         <div class="ah-e3babc">
-          <span style="{{ numStyle }}">{{ s.n }}</span>
+          <span class="svc-num">{{ s.n }}</span>
           <span class="ah-c7bf1a">{{ s.text }}</span>
         </div>
       </sc-for>
@@ -107,7 +105,7 @@
     <div class="r-g2 ah-001013">
       <sc-for list="{{ ways }}" as="w" hint-placeholder-count="5">
         <div class="ah-d4a377">
-          <span style="{{ numStyle }}">{{ w.n }}</span>
+          <span class="svc-num">{{ w.n }}</span>
           <span class="ah-666aa2">{{ w.text }}</span>
         </div>
       </sc-for>
@@ -127,11 +125,10 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-8e7fbf"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Can AI tools read your website today?</h2>
       <p class="ah-c6160e">Get in touch and tell us about your current site.</p>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -144,7 +141,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7E9B87&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A website that people, search engines and AI tools can all read.\nThe website that ChatGPT can actually read.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We structure your website so that people, search engines and AI answer tools such as ChatGPT, Perplexity and Gemini can all understand it. That means a clear page structure, consistent descriptions of your organisation and what it does, and structured metadata (schema) that machines can read. We also cover technical SEO, accessibility and performance.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We organise your pages and headings so the structure of the site is clear.\nWe make sure your organisation, products and services are named and described clearly and consistently.\nWe add structured metadata (schema) that search engines and AI tools can read.\nWe work on technical SEO, accessibility and performance.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A clear page and heading structure\nClear, consistent descriptions of your organisation\nStructured metadata (schema)\nTechnical SEO\nAccessibility and performance improvements&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Is this just SEO? :: Partly. It uses the same foundations as SEO, and the aim is to make your organisation easy to understand for people and for machines.\nWill AI tools like ChatGPT cite us? :: It becomes more likely. Clear structure, consistent descriptions of your organisation and schema help AI answer tools understand and reference you.\nDo you rebuild the whole site? :: Not necessarily. We often improve the structure and metadata of your existing site.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
     const accent = this.props.accent || '#E8A13C';
@@ -158,13 +155,6 @@ class Component extends DCLogic {
       intro: this.props.intro || '',
       ways, faqs, steps,
       waysLabel: ways.length + (ways.length === 1 ? ' way' : ' ways'),
-      eyebrowStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:" + accent + ";",
-      eyebrowInline: "color:" + accent + ";",
-      badgeInline: "color:" + accent + ";",
-      badgeInline2: "color:" + accent + ";",
-      numStyle: "font-family:'JetBrains Mono',monospace;font-size:14px;color:" + accent + ";",
-      ctaInner: "position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;",
-      ringStyle: "position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%," + accent + ",transparent 78%);animation:ah-spin 3s linear infinite;"
     };
   }
 }

@@ -52,31 +52,29 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
 
-<main id="main">
+<main id="main" class="svc-accent-blue">
 
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-ef69cb"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-3ad0e2">
-      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span style="{{ eyebrowInline }}">SAP ERP reporting and automation</span></div>
+      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span class="svc-accent-text">SAP ERP reporting and automation</span></div>
       <h1 class="r-f4 ah-4c8470">How can you get more from SAP ERP without replacing it?</h1>
-      <div style="{{ eyebrowStyle }}">SERVICE 03 · SAP ERP</div>
+      <div class="svc-eyebrow">SERVICE 03 · SAP ERP</div>
       <h2 class="r-f3 ah-597b3a">{{ headline }}</h2>
       <p class="ah-9e4a17">{{ intro }}</p>
-      <div class="ah-e85f22"><a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Talk to us about SAP →</span></a></div>
+      <div class="ah-e85f22"><a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Talk to us about SAP →</span></a></div>
     </div>
   </div>
 
   <div class="r-gut ah-597b5a">
-    <div data-spotlight class="ah-c8baec">
-      <div class="r-gut ah-955aba"><div data-spot-layer class="ah-glow-layer-fast"></div>
-        <svg viewBox="0 0 600 300" class="ah-1f3e57">
+    <div class="ah-c8baec">
+      <div class="r-gut ah-955aba">        <svg viewBox="0 0 600 300" class="ah-1f3e57">
           <g stroke="rgba(245,241,232,0.14)" stroke-width="1.5"><line x1="230" y1="238" x2="230" y2="62"/><line x1="370" y1="238" x2="370" y2="62"/></g>
           <rect x="140" y="230" width="320" height="52" rx="12" fill="rgba(59,111,212,0.14)" stroke="#3B6FD4" stroke-width="1.2"/><text x="300" y="261" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#AEC2E0">SAP ERP core</text>
           <rect x="140" y="134" width="320" height="52" rx="12" fill="rgba(232,161,60,0.12)" stroke="#E8A13C" stroke-width="1.2"><animate attributeName="opacity" values="1;0.7;1" dur="2.6s" repeatCount="indefinite"/></rect><text x="300" y="165" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#E8C79A">Reporting and automation layer</text>
@@ -93,7 +91,7 @@
     <div class="ah-fe3fb0">
       <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
         <div class="ah-e3babc">
-          <span style="{{ numStyle }}">{{ s.n }}</span>
+          <span class="svc-num">{{ s.n }}</span>
           <span class="ah-c7bf1a">{{ s.text }}</span>
         </div>
       </sc-for>
@@ -106,7 +104,7 @@
     <div class="r-g2 ah-001013">
       <sc-for list="{{ ways }}" as="w" hint-placeholder-count="3">
         <div class="ah-d4a377">
-          <span style="{{ numStyle }}">{{ w.n }}</span>
+          <span class="svc-num">{{ w.n }}</span>
           <span class="ah-666aa2">{{ w.text }}</span>
         </div>
       </sc-for>
@@ -126,11 +124,10 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-c76c46"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Want more from the SAP system you already run?</h2>
       <p class="ah-c6160e">Tell us which SAP processes and reports take the most manual effort today.</p>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -143,7 +140,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#3B6FD4&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Get more from the SAP you already run.\nModernise SAP ERP without touching the core.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We add a reporting and automation layer on top of your existing SAP ERP system. It turns transactional data that is currently scattered across SAP into reports and decision support your operations team can use, and it automates process steps that people now do by hand. Your SAP core stays as it is, so you avoid a risky and expensive replacement.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We connect a layer to your existing SAP ERP that reads its data and leaves the core unchanged.\nWe turn the scattered transactional data into operational reports and decision support.\nWe automate repetitive process steps and reports that rely on manual effort today.\nAny change the layer makes in SAP is controlled, auditable and reversible.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Operational reporting from your SAP data\nAutomation of repetitive SAP process steps\nNo replacement of your SAP core&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do you replace our SAP system? :: No. We add reporting and automation on top of your existing SAP ERP and leave the core untouched.\nIs it safe to use on a live production ERP? :: Yes. The layer reads data and coordinates work, and any change it makes is controlled, auditable and reversible.\nWhat can it automate in SAP? :: Repetitive process steps and reports that currently rely on manual effort.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
     const accent = this.props.accent || '#E8A13C';
@@ -157,13 +154,6 @@ class Component extends DCLogic {
       intro: this.props.intro || '',
       ways, faqs, steps,
       waysLabel: ways.length + (ways.length === 1 ? ' way' : ' ways'),
-      eyebrowStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:" + accent + ";",
-      eyebrowInline: "color:" + accent + ";",
-      badgeInline: "color:" + accent + ";",
-      badgeInline2: "color:" + accent + ";",
-      numStyle: "font-family:'JetBrains Mono',monospace;font-size:14px;color:" + accent + ";",
-      ctaInner: "position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;",
-      ringStyle: "position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%," + accent + ",transparent 78%);animation:ah-spin 3s linear infinite;"
     };
   }
 }

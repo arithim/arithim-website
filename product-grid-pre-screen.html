@@ -59,12 +59,11 @@
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="tsg-wrap ah-7dd2a9">
       <div class="ah-7e9587">GRID PRE-SCREEN · GREAT BRITAIN</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-138d30">See which sites sit near grid headroom, and who already holds capacity there.</h1>
       <p class="as-def">The grid pre-screen is an Arithim screen of one or more sites in Great Britain. It shows how close each site is to published grid headroom for the load or export you have in mind, and the main land and planning constraints that would stop it.</p>
-      <div class="ah-f63772"><a href="contact.html?product=grid-pre-screen" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Request a screen →</span></a><span class="pp-st">Early access</span></div>
+      <div class="ah-f63772"><a href="contact.html?product=grid-pre-screen" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Request a screen →</span></a><span class="pp-st">Early access</span></div>
       <ol class="tsg-steps" aria-label="How it works"><li>Send the sites and the MW</li><li>We find the nearest substations</li><li>We check headroom and constraints</li><li>You receive a short report</li></ol>
       <p class="as-note">Today the grid screen is available for battery storage sites, inside the battery storage siting report. A standalone pre-screen is in early access. A demand-only mode for data centres and electrolysers is planned and is not available. Screening through an API is in early access for named customers, up to 5 sites per call.</p>
     </div>
@@ -116,7 +115,7 @@
     <div class="tsg-wrap ah-87db22">
       <h2 id="contact-h">Want to screen a list of sites?</h2>
       <p>Send us the sites and the MW. We will confirm what the screen will cover and when you will have it.</p>
-      <a href="contact.html?product=grid-pre-screen" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Request a screen →</span></a>
+      <a href="contact.html?product=grid-pre-screen" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Request a screen →</span></a>
       <p class="tsg-note ah-e47eeb">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
     </div>
   </section>
@@ -131,7 +130,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
   }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }

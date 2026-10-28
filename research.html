@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -63,7 +63,6 @@
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-bb157e"></div>
     <div class="ah-6e1bc9"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-ebc72d">
       <div class="ah-cf97bb">ARITHIM LABS · RESEARCH</div>
       <h1 class="r-f2 ah-70eb79">Research that stays close to implementation.</h1>
@@ -103,7 +102,7 @@
         <div class="ah-c1af08">COLLABORATION</div>
         <h2 class="r-f5 ah-78d258">Work with us on hard, real problems.</h2>
         <p class="ah-63725b">Collaboration is most valuable where research questions are connected to real constraints: legacy systems, imperfect data, regulated workflows, and measurable implementation outcomes. Open to academic and industry partners.</p>
-        <a href="mailto:research@arithim.com" data-magnetic class="ah-btn-ring"><span class="ah-78d9fc"></span><span class="ah-0636e3">research@arithim.com →</span></a>
+        <a href="mailto:research@arithim.com" class="ah-btn-ring"><span class="ah-78d9fc"></span><span class="ah-0636e3">research@arithim.com →</span></a>
       </div>
     </div>
   </div>
@@ -117,7 +116,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }
 }

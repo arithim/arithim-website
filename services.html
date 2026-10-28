@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -63,7 +63,6 @@
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-8327a3"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-fe5993">
       <div class="ah-69d89c">SERVICES</div>
       <h1 class="r-f2 ah-20a063">What can Arithim build or fix for your business?</h1>
@@ -150,11 +149,10 @@
   <div data-hero class="r-gut ah-e3dcc2">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-9541ea"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a26664">Not sure where to start?</h2>
       <p class="ah-54ae1b">Most engagements begin with a readiness assessment. We will tell you honestly what is worth building.</p>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Book a readiness call →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Book a readiness call →</span></a>
     </div>
   </div>
 </main>
@@ -168,7 +166,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./home-motion.js?v=2').then((m) => { this._stopMotion = m.initHomeMotion(document); }).catch((e) => console.error('motion load failed', e));
   }
   componentWillUnmount() { ['_stop', '_stopMotion'].forEach((k) => { if (this[k]) this[k](); }); }

@@ -291,7 +291,7 @@ def build() -> str:
     reports = "".join(price_card(*r) for r in REPORTS)
     subs = "".join(price_card(n, p, w, nd, None) for n, p, w, nd in SUBS)
     ent = price_card(*ENTERPRISE, None)
-    btn = ('<a href="contact.html?product=site-finder" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
+    btn = ('<a href="contact.html?product=site-finder" style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
            '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
            '<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">Book a demo →</span></a>')
     return f'''<!DOCTYPE html>
@@ -329,7 +329,6 @@ def build() -> str:
   <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="sf-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,111,212,0.2),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
-    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div class="tsg-wrap" style="position:relative;padding-top:56px;padding-bottom:10px;">
       <div class="tsg-hero-grid">
         <div>
@@ -459,7 +458,7 @@ def build() -> str:
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {{
   componentDidMount() {{
-    import('./arithim-fx.js?v=2').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
     import('./site-finder-motion.js').then((m) => {{ this._stopMotion = m.initSfMotion(document); }}).catch((e) => console.error('motion load failed', e));
   }}
   componentWillUnmount() {{ ['_stop','_stopMotion'].forEach((k) => {{ if (this[k]) this[k](); }}); }}

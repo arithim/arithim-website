@@ -31,7 +31,7 @@ def grid_for(n):
     return "tsg-g2" if n % 2 == 0 and n != 6 else "tsg-g3"
 
 
-BTN = ('<a href="{href}" data-magnetic style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
+BTN = ('<a href="{href}" style="position:relative;display:inline-block;padding:1.5px;border-radius:999px;overflow:hidden;">'
        '<span style="position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%,#E8A13C,#F6CE8C,transparent 78%);animation:ah-spin 3s linear infinite;"></span>'
        '<span style="position:relative;display:inline-flex;align-items:center;gap:8px;background:#0C1424;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;">{label}</span></a>')
 
@@ -122,7 +122,6 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero style="position:relative;overflow:hidden;" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div data-hero-glow style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
     <div class="tsg-wrap" style="position:relative;padding-top:64px;padding-bottom:20px;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#E8A13C;margin-bottom:18px;">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h" style="font-weight:700;font-size:52px;line-height:1;letter-spacing:-0.04em;color:#F5F1E8;max-width:860px;">{e(p['h1'])}</h1>
@@ -163,7 +162,7 @@ def render(p: dict, products: list[dict]) -> str:
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {{
   componentDidMount() {{
-    import('./arithim-fx.js?v=2').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => {{ this._stop = m.initFx(document); }}).catch((e) => console.error('fx load failed', e));
   }}
   componentWillUnmount() {{ if (this._stop) this._stop(); }}
   renderVals() {{ return {{}}; }}

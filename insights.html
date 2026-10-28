@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -62,7 +62,6 @@
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-8327a3"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-dda093">
       <div class="ah-63d0d0">INSIGHTS</div>
       <h1 class="r-f2 ah-70eb79">Notes on practical AI.</h1>
@@ -77,18 +76,16 @@
       <a href="products.html" class="ah-53dc6b ah-h-d4e703">All products →</a>
     </div>
     <div class="r-g2 ah-f77901">
-      <a href="case-find-me-a-job.html" data-spotlight class="ah-e211cd">
+      <a href="case-find-me-a-job.html" class="ah-e211cd">
         <div class="ah-29a9e1">
-          <div data-spot-layer class="ah-glow-layer-fast"></div>
           <div class="ah-fb97b6"><span class="ah-7a2dba">PRODUCT · LIVE</span><span class="ah-b62b82">findmeajob.uk ↗</span></div>
           <h3 class="ah-5a4d2a">Find Me A Job</h3>
           <p class="ah-d3be0e">Reads a candidate's profile against live listings and returns a short list of roles worth applying to.</p>
           <span class="ah-5e5090">Read case study →</span>
         </div>
       </a>
-      <a href="case-unrejectable.html" data-spotlight class="ah-f46b8c">
+      <a href="case-unrejectable.html" class="ah-f46b8c">
         <div class="ah-29a9e1">
-          <div data-spot-layer class="ah-glow-layer-fast"></div>
           <div class="ah-fb97b6"><span class="ah-7a2dba">PRODUCT · LIVE</span><span class="ah-b62b82">unrejectable.uk ↗</span></div>
           <h3 class="ah-5a4d2a">Unrejectable</h3>
           <p class="ah-d3be0e">AI that pressure-tests an application before a human sees it, and rewrites the reasons it would get rejected.</p>
@@ -145,7 +142,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }
 }

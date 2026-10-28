@@ -50,7 +50,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -58,7 +58,6 @@
   <!-- ===== hero ===== -->
   <div data-hero class="ah-6b8bf2">
     <canvas data-ribbons aria-hidden="true" class="ah-542d90"></canvas>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-scrim ah-402347"></div>
     <div class="r-gut ah-cfc363">
       <div class="ah-f38e96">
@@ -67,7 +66,7 @@
       <h1 data-hero-h1 class="r-f1 ah-8b40a3">Make your<br>operations <span class="ah-b82347">think.</span></h1>
       <p class="ah-51611b">Arithim builds practical AI systems, workflow automation, and operational infrastructure that make complex, regulated businesses measurably clearer to run.</p>
       <div class="r-btns ah-b65ab6">
-        <a href="contact.html" data-magnetic class="ah-btn-ring">
+        <a href="contact.html" class="ah-btn-ring">
           <span class="ah-92119b"></span>
           <span class="ah-c153f3">Start a conversation →</span>
         </a>
@@ -146,14 +145,14 @@
     <div class="ah-91243a">SELECTED WORK</div>
     <h2 class="r-f3 ah-84d9a0">Evidence over adjectives.</h2>
     <div class="r-g3 ah-cb5aaa">
-      <a href="case-operational-intelligence-platform.html" data-spotlight class="ah-5ff5b2">
-        <div class="ah-568287"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-534f7e">OPERATIONAL MODERNIZATION</span><h3 class="ah-84e1b1">Operational Intelligence Platform</h3><p class="ah-15e36d">Improved visibility across reporting, coordination, and operational decision points.</p><span class="ah-5e5090">Read case study →</span></div>
+      <a href="case-operational-intelligence-platform.html" class="ah-5ff5b2">
+        <div class="ah-568287"><span class="ah-534f7e">OPERATIONAL MODERNIZATION</span><h3 class="ah-84e1b1">Operational Intelligence Platform</h3><p class="ah-15e36d">Improved visibility across reporting, coordination, and operational decision points.</p><span class="ah-5e5090">Read case study →</span></div>
       </a>
-      <a href="case-compliance-vendor-approval.html" data-spotlight class="ah-5ff5b2">
-        <div class="ah-568287"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-534f7e">WORKFLOW COORDINATION</span><h3 class="ah-84e1b1">Compliance &amp; Vendor Approval System</h3><p class="ah-15e36d">Reduced approval ambiguity and improved evidence handling across operational teams.</p><span class="ah-5e5090">Read case study →</span></div>
+      <a href="case-compliance-vendor-approval.html" class="ah-5ff5b2">
+        <div class="ah-568287"><span class="ah-534f7e">WORKFLOW COORDINATION</span><h3 class="ah-84e1b1">Compliance &amp; Vendor Approval System</h3><p class="ah-15e36d">Reduced approval ambiguity and improved evidence handling across operational teams.</p><span class="ah-5e5090">Read case study →</span></div>
       </a>
-      <a href="case-telecommunications-billing.html" data-spotlight class="ah-5ff5b2">
-        <div class="ah-568287"><div data-spot-layer class="ah-glow-layer-fast"></div><span class="ah-534f7e">TECHNICAL SYSTEMS</span><h3 class="ah-84e1b1">Telecommunications Billing Infrastructure</h3><p class="ah-15e36d">More coherent billing workflows supported by structured operational infrastructure.</p><span class="ah-5e5090">Read case study →</span></div>
+      <a href="case-telecommunications-billing.html" class="ah-5ff5b2">
+        <div class="ah-568287"><span class="ah-534f7e">TECHNICAL SYSTEMS</span><h3 class="ah-84e1b1">Telecommunications Billing Infrastructure</h3><p class="ah-15e36d">More coherent billing workflows supported by structured operational infrastructure.</p><span class="ah-5e5090">Read case study →</span></div>
       </a>
     </div>
   </div>
@@ -162,13 +161,12 @@
   <div data-hero class="r-gut ah-47befa">
     <div class="ah-613601"></div>
     <div class="ah-520657"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-8b789e">
       <div class="ah-0baddf">GET STARTED</div>
       <h2 class="r-f2 ah-b6751d">Practical AI starts with operational clarity.</h2>
       <div class="r-btns ah-17eb37">
         <a class="callus-link callus-cta" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
-        <a href="mailto:hello@arithim.com" data-magnetic class="ah-btn-ring">
+        <a href="mailto:hello@arithim.com" class="ah-btn-ring">
           <span class="ah-92119b"></span>
           <span class="ah-486da9">hello@arithim.com</span>
         </a>
@@ -205,7 +203,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
     import('./home-motion.js?v=2').then((m) => { this._stopMotion = m.initHomeMotion(document); }).catch((e) => console.error('motion load failed', e));
     // Service explorer: on desktop the open panel fills the right column; on phones it opens under its button.
     const x = document.querySelector('[data-svc-x]');

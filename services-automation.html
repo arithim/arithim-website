@@ -52,31 +52,29 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
 
-<main id="main">
+<main id="main" class="svc-accent-amber">
 
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-8327a3"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-3ad0e2">
-      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span style="{{ eyebrowInline }}">AI Systems &amp; Automation</span></div>
+      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span class="svc-accent-text">AI Systems &amp; Automation</span></div>
       <h1 class="r-f4 ah-4c8470">How can AI automate work in your existing systems?</h1>
-      <div style="{{ eyebrowStyle }}">SERVICE 02 · AI SYSTEMS AND AUTOMATION</div>
+      <div class="svc-eyebrow">SERVICE 02 · AI SYSTEMS AND AUTOMATION</div>
       <h2 class="r-f3 ah-1c8720">{{ headline }}</h2>
       <p class="ah-9e4a17">{{ intro }}</p>
-      <div class="ah-e85f22"><a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Scope a build →</span></a></div>
+      <div class="ah-e85f22"><a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Scope a build →</span></a></div>
     </div>
   </div>
 
   <div class="r-gut ah-597b5a">
-    <div data-spotlight class="ah-5ddde2">
-      <div class="r-gut ah-955aba"><div data-spot-layer class="ah-glow-layer-fast"></div>
-        <svg viewBox="0 0 600 300" class="ah-b28ac9">
+    <div class="ah-5ddde2">
+      <div class="r-gut ah-955aba">        <svg viewBox="0 0 600 300" class="ah-b28ac9">
           <g stroke="rgba(245,241,232,0.15)" stroke-width="1.5"><line x1="300" y1="150" x2="430" y2="150"/><line x1="300" y1="150" x2="365" y2="48"/><line x1="300" y1="150" x2="235" y2="48"/><line x1="300" y1="150" x2="170" y2="150"/><line x1="300" y1="150" x2="235" y2="252"/><line x1="300" y1="150" x2="365" y2="252"/></g>
           <g font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6"><circle cx="430" cy="150" r="6" fill="#7E9B87"/><text x="444" y="154">Documents</text><circle cx="365" cy="48" r="6" fill="#E8A13C"/><text x="380" y="44">Assistants</text><circle cx="235" cy="48" r="6" fill="#E8A13C"/><text x="150" y="44">Dashboards</text><circle cx="170" cy="150" r="6" fill="#E8A13C"/><text x="70" y="154">Pipelines</text><circle cx="235" cy="252" r="6" fill="#7E9B87"/><text x="140" y="270">Integrations</text><circle cx="365" cy="252" r="6" fill="#7E9B87"/><text x="380" y="270">Monitoring</text></g>
           <circle cx="300" cy="150" r="24" fill="none" stroke="#E8A13C" stroke-width="1.5"><animate attributeName="r" values="22;40" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite"/></circle>
@@ -93,7 +91,7 @@
     <div class="ah-fe3fb0">
       <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
         <div class="ah-e3babc">
-          <span style="{{ numStyle }}">{{ s.n }}</span>
+          <span class="svc-num">{{ s.n }}</span>
           <span class="ah-c7bf1a">{{ s.text }}</span>
         </div>
       </sc-for>
@@ -106,7 +104,7 @@
     <div class="r-g2 ah-001013">
       <sc-for list="{{ ways }}" as="w" hint-placeholder-count="6">
         <div class="ah-d4a377">
-          <span style="{{ numStyle }}">{{ w.n }}</span>
+          <span class="svc-num">{{ w.n }}</span>
           <span class="ah-666aa2">{{ w.text }}</span>
         </div>
       </sc-for>
@@ -126,11 +124,10 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-4ea577"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Which part of your work should be automated first?</h2>
       <p class="ah-c6160e">Tell us about the process you want to automate and the systems it runs on.</p>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -143,7 +140,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E8A13C&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;AI built into your operations on a 90-day model.\nAssistants and automations your team actually uses.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We build AI tools and workflow automation into the systems and operations you already run. That can mean tools that read documents and pull out the information you need, assistants that answer questions from your own information, dashboards, and the data pipelines behind them. Most builds go live on a 90-day model, and we design each one so your team can audit and maintain it.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We start with the use case that offers the most value and design it with you.\nWe build the data pipelines that feed it.\nWe build the tool itself, such as document processing, a knowledge assistant or a dashboard.\nWe connect it to the systems you already use, so you do not have to move everything.\nWe hand over a monitoring playbook so your team can keep it healthy after launch.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;A designed use case, starting with the most valuable one\nData pipelines that feed your AI tools\nDocument processing that reads and extracts information\nKnowledge assistants that answer questions from your own information\nConnections to the systems you already use\nA monitoring playbook for after launch&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;How long does it take to build an AI automation? :: Most builds go into operation on a 90-day model, starting with the use case that offers the most value.\nWill it work with our existing systems? :: Yes. We build into your current systems and connect to them, so you do not have to move everything.\nWhat happens after launch? :: You get a monitoring playbook that keeps the system healthy and helps it keep improving.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
     const accent = this.props.accent || '#E8A13C';
@@ -157,13 +154,6 @@ class Component extends DCLogic {
       intro: this.props.intro || '',
       ways, faqs, steps,
       waysLabel: ways.length + (ways.length === 1 ? ' way' : ' ways'),
-      eyebrowStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:" + accent + ";",
-      eyebrowInline: "color:" + accent + ";",
-      badgeInline: "color:" + accent + ";",
-      badgeInline2: "color:" + accent + ";",
-      numStyle: "font-family:'JetBrains Mono',monospace;font-size:14px;color:" + accent + ";",
-      ctaInner: "position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;",
-      ringStyle: "position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%," + accent + ",transparent 78%);animation:ah-spin 3s linear infinite;"
     };
   }
 }

@@ -52,31 +52,29 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
 
-<main id="main">
+<main id="main" class="svc-accent-sage">
 
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-ef69cb"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-3ad0e2">
-      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span style="{{ eyebrowInline }}">Regulatory &amp; Technical Systems</span></div>
+      <div class="ah-58aff0"><a class="ah-h-d4e703" href="services.html">Services</a> / <span class="svc-accent-text">Regulatory &amp; Technical Systems</span></div>
       <h1 class="r-f4 ah-4c8470">How do you build compliance workflows with an audit trail?</h1>
-      <div style="{{ eyebrowStyle }}">SERVICE 06 · REGULATORY SYSTEMS</div>
+      <div class="svc-eyebrow">SERVICE 06 · REGULATORY SYSTEMS</div>
       <h2 class="r-f3 ah-b587b2">{{ headline }}</h2>
       <p class="ah-9e4a17">{{ intro }}</p>
-      <div class="ah-e85f22"><a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Discuss requirements →</span></a></div>
+      <div class="ah-e85f22"><a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Discuss requirements →</span></a></div>
     </div>
   </div>
 
   <div class="r-gut ah-597b5a">
-    <div data-spotlight class="ah-c8baec">
-      <div class="r-gut ah-955aba"><div data-spot-layer class="ah-glow-layer-fast"></div>
-        <svg viewBox="0 0 600 300" class="ah-b28ac9">
+    <div class="ah-c8baec">
+      <div class="r-gut ah-955aba">        <svg viewBox="0 0 600 300" class="ah-b28ac9">
           <line x1="60" y1="150" x2="540" y2="150" stroke="rgba(245,241,232,0.16)" stroke-width="1.5"/>
           <circle cx="60" cy="150" r="7" fill="#7E9B87"/><text x="40" y="182" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#9AA6B6">Submit</text>
           <g fill="rgba(232,161,60,0.14)" stroke="#E8A13C" stroke-width="1.4"><rect x="176" y="132" width="34" height="34" transform="rotate(45 193 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/></rect><rect x="303" y="132" width="34" height="34" transform="rotate(45 320 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></rect><rect x="430" y="132" width="34" height="34" transform="rotate(45 447 149)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" begin="1.6s" repeatCount="indefinite"/></rect></g>
@@ -95,7 +93,7 @@
     <div class="ah-fe3fb0">
       <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
         <div class="ah-e3babc">
-          <span style="{{ numStyle }}">{{ s.n }}</span>
+          <span class="svc-num">{{ s.n }}</span>
           <span class="ah-c7bf1a">{{ s.text }}</span>
         </div>
       </sc-for>
@@ -108,7 +106,7 @@
     <div class="r-g2 ah-001013">
       <sc-for list="{{ ways }}" as="w" hint-placeholder-count="3">
         <div class="ah-d4a377">
-          <span style="{{ numStyle }}">{{ w.n }}</span>
+          <span class="svc-num">{{ w.n }}</span>
           <span class="ah-666aa2">{{ w.text }}</span>
         </div>
       </sc-for>
@@ -128,11 +126,10 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-c76c46"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-a87c57">Need a compliance process with a clearer audit trail?</h2>
       <p class="ah-c6160e">Tell us about the process and the rules it has to meet.</p>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span style="{{ ringStyle }}"></span><span style="{{ ctaInner }}">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="svc-ring"></span><span class="svc-cta-face">Start a conversation →</span></a>
     </div>
   </div>
 </main>
@@ -145,7 +142,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7E9B87&quot;,&quot;options&quot;:[&quot;#E8A13C&quot;,&quot;#7E9B87&quot;,&quot;#3B6FD4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;headlinesText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Compliance workflows with the evidence built in.\nAutomation that keeps its own audit trail.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We build structured workflows for regulated, compliance-heavy operations. The system coordinates the work between teams and records the evidence as each item moves through review and approval, while people still make the decisions that need judgment. We build around your legacy systems, your controls and the workflows your regulators expect.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero A/B (one per line, rotates)&quot;},&quot;stepsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;We start from your real constraints: legacy systems, existing controls and the workflows your regulators expect.\nWe turn the process into a structured workflow with clear steps, such as submit, review and approve.\nWe add decision points where a person signs off, so judgment stays with your people.\nThe system captures evidence at each step and keeps an audit log, designed in from the start.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;How it works (one step per line)&quot;},&quot;waysText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Structured workflows for regulated processes\nCoordination of compliance work across teams\nEvidence capture and an audit log&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Deliverables (one per line, count auto)&quot;},&quot;faqsText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Is it ready for audit? :: Yes. Evidence capture and an audit trail are part of the design from the start.\nCan it handle our regulatory constraints? :: Yes. We build around your real constraints, including legacy systems, existing controls and the workflows your regulators expect.\nHow do people stay in control of decisions? :: People make every decision that needs judgment. Decision points require a person to sign off, and the system handles the coordination and evidence.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;FAQ (Question :: Answer per line)&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() {
     const accent = this.props.accent || '#E8A13C';
@@ -159,13 +156,6 @@ class Component extends DCLogic {
       intro: this.props.intro || '',
       ways, faqs, steps,
       waysLabel: ways.length + (ways.length === 1 ? ' way' : ' ways'),
-      eyebrowStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;color:" + accent + ";",
-      eyebrowInline: "color:" + accent + ";",
-      badgeInline: "color:" + accent + ";",
-      badgeInline2: "color:" + accent + ";",
-      numStyle: "font-family:'JetBrains Mono',monospace;font-size:14px;color:" + accent + ";",
-      ctaInner: "position:relative;display:inline-flex;align-items:center;gap:10px;background:#0B1320;color:#F5F1E8;font-size:16px;font-weight:600;padding:16px 30px;border-radius:999px;",
-      ringStyle: "position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 50%," + accent + ",transparent 78%);animation:ah-spin 3s linear infinite;"
     };
   }
 }

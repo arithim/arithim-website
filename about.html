@@ -52,7 +52,7 @@
         <a href="insights.html" class="ah-nav-link">Insights</a>
         <a href="about.html" class="ah-nav-link-on" aria-current="page">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -63,7 +63,6 @@
   <div data-hero class="ah-clip">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
     <div class="ah-5abadb"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-1cc1b5">
       <div class="ah-69d89c">ABOUT ARITHIM</div>
       <h1 class="r-f2 ah-acde64">A production-minded AI practice, not a hype machine.</h1>
@@ -117,11 +116,10 @@
   <div data-hero class="r-gut ah-287075">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
     <div class="ah-066cd0"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-1cba2d">
       <h2 class="r-f3 ah-94539f">Let's build something that lasts.</h2>
       <div class="r-btns ah-17eb37">
-        <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">hello@arithim.com</span></a>
+        <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">hello@arithim.com</span></a>
         <a href="mailto:research@arithim.com" class="ah-c06de0 ah-h-8adba5">research@arithim.com</a>
       </div>
     </div>
@@ -137,7 +135,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
   }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }

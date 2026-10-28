@@ -276,7 +276,7 @@
         <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
         <a href="about.html" class="ah-nav-link">About</a>
       </nav>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-f3e619"></span><span class="ah-d1ddf7">Let's talk →</span></a>
     </div>
   </header>
 <!-- /partial:header -->
@@ -285,7 +285,6 @@
 
   <div data-hero class="ah-clip">
     <div class="ah-c3044e"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="r-gut ah-03baa5">
       <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Application security</span></div>
       <h1 class="r-f3 ah-debd25">Do You Need More Than One Application Security Testing Tool?</h1>
@@ -379,10 +378,9 @@
 
   <div data-hero class="r-gut ah-146921">
     <div class="ah-848209"></div>
-    <div data-hero-glow class="ah-glow-layer"></div>
     <div class="ah-844aa6">
       <h2 class="r-f4 ah-946f94">Running three AppSec consoles and still chasing fixes by hand?</h2>
-      <a href="contact.html" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-486da9">Start a conversation →</span></a>
     </div>
   </div>
 
@@ -396,7 +394,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentDidMount() { import('./arithim-fx.js?v=4').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }
 }
