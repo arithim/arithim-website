@@ -550,8 +550,8 @@ def replace_between(text: str, name: str, content: str) -> str:
 # ---------------------------------------------------------------------------
 
 _PARTIAL_RE = re.compile(r"(<!-- partial:([a-z]+)(?: (\{.*?\}))? -->)(.*?)(<!-- /partial:\2 -->)", re.S)
-_NAV_LINK = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#9AA6B6;transition:color 0.2s;" style-hover="color:#F5F1E8;">{label}</a>'
-_NAV_LINK_ACTIVE = '        <a href="{href}" style="position:relative;padding:9px 15px;font-size:15px;color:#F5F1E8;" aria-current="page">{label}</a>'
+_NAV_LINK = '        <a href="{href}" class="ah-nav-link">{label}</a>'
+_NAV_LINK_ACTIVE = '        <a href="{href}" class="ah-nav-link-on" aria-current="page">{label}</a>'
 
 
 def render_partial(name: str, params: dict, partials_dir: Path) -> str:
