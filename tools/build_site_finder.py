@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import html
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -309,5 +310,7 @@ class Component extends DCLogic {{
 
 
 if __name__ == "__main__":
-    OUT.write_text(build(), encoding="utf-8")
+    sys.path.insert(0, str(ROOT / "tools"))
+    import centralise_styles as cs
+    OUT.write_text(cs.rewrite(build(), cs.load_registry()), encoding="utf-8")
     print("wrote", OUT.relative_to(ROOT))

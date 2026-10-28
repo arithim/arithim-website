@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE_CSS = ROOT / "site.css"
-MIN_REPEATS = 3
+MIN_REPEATS = 1  # every inline style that can be a class becomes one, so site.css is the only source of design
 
 REGISTRY_FILE = ROOT / "tools" / "style_classes.json"  # canonical style -> class name; append only, so names stay stable
 PRODUCTS_JSON = ROOT / "content" / "products.json"
@@ -205,6 +205,14 @@ def build_registry():
     for p in [*PARTIALS, *TEMPLATES]:
         for c in styles_in(p.read_text(encoding="utf-8")):
             registry.setdefault(c, name_for(c))
+    for p in page_files():  # list cards that tools/build_insights.py writes into insights.html and research.html
+        for region in GENERATED_REGION.finditer(p.read_text(encoding="utf-8")):
+            for c in styles_in(region.group(0)):
+                registry.setdefault(c, name_for(c))
+    for p in sorted(ROOT.glob("*.html")):  # pages built by tools/build_insights.py and tools/build_site_finder.py
+        if GENERATED.match(p.name):
+            for s in styles_in(PARTIAL_BLOCK.sub("", p.read_text(encoding="utf-8"))):
+                registry.setdefault(s, name_for(s))
     for page in generator_pages():
         for c in styles_in(page):
             registry.setdefault(c, name_for(c))
@@ -339,11 +347,11 @@ def main():
                 print(f"{p.name}: links a second stylesheet {extra}; site.css is the only stylesheet")
         for p in page_files():
             text = GENERATED_REGION.sub("", PARTIAL_BLOCK.sub("", p.read_text(encoding="utf-8")))
-            dup = [c for c in styles_in(text) if counts.get(c, 0) >= MIN_REPEATS and c not in registry]
+            dup = styles_in(text)
             raw = [m for m in re.findall(r'\sstyle="([^"]*)"', text) if convertible(m) and any(h.upper() in HEX_TOKENS for h in HEX_RX.findall(m))]
             if dup or raw:
                 bad += 1
-                print(f"{p.name}: {len(dup)} repeated inline styles, {len(raw)} inline styles with raw token colours")
+                print(f"{p.name}: {len(dup)} inline styles, {len(raw)} inline styles with raw token colours")
         print("lint ok" if not bad else f"{bad} page(s) need `python3 tools/centralise_styles.py --write`")
         sys.exit(1 if bad else 0)
 

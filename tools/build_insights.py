@@ -472,6 +472,10 @@ def fill(template: str, values: dict[str, str]) -> str:
 
 
 def render_article(a: dict, articles: list[dict], template: str | None = None) -> str:
+    return _classify(_render_article_raw(a, articles, template))
+
+
+def _render_article_raw(a: dict, articles: list[dict], template: str | None = None) -> str:
     template = template if template is not None else TEMPLATE.read_text(encoding="utf-8")
     extra_meta = []
     if a.get("updated"):
@@ -536,8 +540,16 @@ def render_research_section(articles: list[dict]) -> str:
     )
 
 
+def _classify(markup: str) -> str:
+    """Turn inline styles in generated markup into the site.css classes recorded in tools/style_classes.json."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import centralise_styles as cs
+    return cs.rewrite(markup, cs.load_registry())
+
+
 def replace_between(text: str, name: str, content: str) -> str:
     """Replace everything between <!-- name:start --> and <!-- name:end -->."""
+    content = _classify(content) if content else content
     pat = re.compile(rf"([ \t]*<!-- {name}:start -->)(.*?)([ \t]*<!-- {name}:end -->)", re.S)
     if not pat.search(text):
         raise ValueError(f"markers <!-- {name}:start --> / <!-- {name}:end --> not found")
