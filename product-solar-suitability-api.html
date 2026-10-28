@@ -220,7 +220,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
-    import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+    import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document);  }).catch((e) => console.error('fx load failed', e));
   }
   componentWillUnmount() { if (this._stop) this._stop(); }
   renderVals() { return {}; }

@@ -1802,3 +1802,46 @@ html[data-theme="light"] .ah-art, html[data-theme="stripe"] .ah-art { --ah-art-b
   @keyframes ah-art-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
 .ah-art .pill.pf { fill: var(--ah-card); }
+
+/* 14. Grid pre-screen scene: light, floaty map motion on the shared scene engine. */
+.gp-map { display: block; width: 100%; height: 214px; flex: none; }
+.gp-cloud { fill: var(--ah-cream-08); animation: gp-drift 9s ease-in-out infinite alternate; }
+.gp-cloud.c2 { animation-duration: 12s; animation-direction: alternate-reverse; }
+.gp-line { fill: none; stroke: var(--ah-blue-light); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 260; stroke-dashoffset: 260; opacity: 0.7; transition: stroke-dashoffset 1s ease-out, opacity 0.4s; }
+.tsg-stage .gp-line[data-in] { transform: none; }
+.tsg-stage .gp-line[data-in].on { stroke-dashoffset: 0; }
+.gp-sub, .gp-site, .gp-km { transform-box: fill-box; transform-origin: center; }
+.tsg-stage .gp-sub[data-in], .tsg-stage .gp-site[data-in], .tsg-stage .gp-km[data-in] { transform: scale(0.3); transition: opacity 0.3s, transform 0.6s cubic-bezier(0.34, 1.7, 0.5, 1); }
+.tsg-stage .gp-sub[data-in].on, .tsg-stage .gp-site[data-in].on, .tsg-stage .gp-km[data-in].on { transform: none; }
+.gp-sub circle { fill: var(--ah-card-2); stroke: var(--ah-blue-light); stroke-width: 2.4; }
+.gp-sub text, .gp-km text { font: 500 12px 'JetBrains Mono', monospace; fill: var(--ah-text-3); }
+.gp-site.on .gp-pin { animation: gp-float 3.2s ease-in-out infinite; }
+.gp-pin { fill: var(--ah-amber); stroke: none; transform-box: fill-box; transform-origin: bottom center; }
+.gp-pinc { fill: var(--ah-card-2); }
+.gp-ring { fill: none; stroke: var(--ah-amber); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.gp-site.on .gp-ring { animation: gp-ping 2.6s ease-out infinite 0.6s; }
+.gp-tether { stroke: var(--ah-amber); stroke-width: 1.5; stroke-dasharray: 3 4; fill: none; opacity: 0.8; }
+.gp-km rect { fill: var(--ah-amber-10); stroke: var(--ah-amber-50); }
+.gp-km text { fill: var(--ah-amber-light); }
+.gp-dot { fill: var(--ah-amber-light); offset-path: path('M96 150 C140 96 176 82 214 72'); offset-rotate: 0deg; }
+.gp-dot.d2 { offset-path: path('M214 72 C256 80 300 120 336 158'); fill: var(--ah-sage-light); }
+.gp-dot.on { animation: gp-run 3.6s linear infinite; }
+.gp-dot.d2.on { animation-duration: 4.4s; }
+.gp-bar { display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: var(--ah-s-10); font-size: var(--ah-fs-14); color: var(--ah-text-2); }
+.gp-bar b { font: 500 14px 'JetBrains Mono', monospace; color: var(--ah-cream); }
+.gp-bar .m-fit { margin: 0; height: 8px; }
+.gp-bar .m-fit i.s { background: linear-gradient(90deg, var(--ah-sage), var(--ah-sage-light)); }
+.gp-bar .m-fit i.a { background: linear-gradient(90deg, var(--ah-amber), var(--ah-amber-light)); }
+.gp-verdict { display: flex; align-items: center; gap: var(--ah-s-8); font-size: var(--ah-fs-15); color: var(--ah-sage-text); background: rgba(143, 178, 155, 0.1); border: 1px solid rgba(143, 178, 155, 0.4); border-radius: var(--ah-r-999); padding: 5px var(--ah-s-14); align-self: flex-start; }
+.gp-verdict em { font: 400 13px 'JetBrains Mono', monospace; font-style: normal; color: var(--ah-text-3); }
+.gp-spark { color: var(--ah-amber-light); display: inline-block; }
+.gp-verdict.on .gp-spark { animation: gp-twinkle 2.4s ease-in-out infinite; }
+@keyframes gp-drift { to { transform: translateX(18px); } }
+@keyframes gp-float { 50% { transform: translateY(-5px); } }
+@keyframes gp-ping { 0% { opacity: 0.8; transform: scale(0.5); } 100% { opacity: 0; transform: scale(2.2); } }
+@keyframes gp-run { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+@keyframes gp-twinkle { 50% { transform: scale(1.4) rotate(20deg); opacity: 0.6; } }
+.tsg-stage.still .gp-cloud, .tsg-stage.still .gp-pin, .tsg-stage.still .gp-ring, .tsg-stage.still .gp-dot, .tsg-stage.still .gp-spark { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .gp-cloud, .gp-pin, .gp-ring, .gp-dot, .gp-spark { animation: none !important; }
+}
