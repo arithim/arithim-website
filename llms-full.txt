@@ -3378,27 +3378,41 @@ LAST UPDATED · 28 OCTOBER 2026
 
 ## Who we are
 
-Arithim Ltd is an applied AI company based in London, United Kingdom. It builds software products and works with clients on AI projects. This policy explains what limited information we collect through this website and how we handle it.
+Arithim Ltd is an applied AI company in the United Kingdom. It builds software products and works with clients on AI projects. This policy explains what personal information we collect through this website, why, and what your rights are.
 
 Arithim Ltd is a private limited company registered in England and Wales, company number 17209022. Our registered office is 6 Dorchester Court, Greenlands Road, Staines-Upon-Thames, England, TW18 4LS. We are the controller of the personal information described here. You can reach us at hello@arithim.com.
 
 ## What we collect
 
-We only collect the information you choose to send us: the details you enter in the contact form, and any messages you send to hello@arithim.com or research@arithim.com. The site itself uses no advertising trackers. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox.
+We collect the information you choose to send us: the details you enter in a contact or demo form, and any messages you send to hello@arithim.com or research@arithim.com. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox. You do not have to give us any personal information. If you leave out a required field we cannot deal with your request, and without a name and contact details we cannot reply.
 
-When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens.
+When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens. The site uses no advertising trackers.
 
 ## Your device and browser
 
-If you use the switch between the dark and light themes, the site remembers your choice in your browser's local storage on your device. It stays on your device and is not sent to us. We set no cookies for analytics or advertising. Services on our forms and the Call us button, such as Cloudflare Turnstile, may store small items in your browser to work.
+The site stores one item in your browser's local storage, your light or dark theme choice, and only when you use the theme switch. It stays on your device and is not sent to us. We use no analytics or advertising cookies or similar tools, so we show no cookie banner. Cloudflare Turnstile, which protects our forms and the Call us button, may use browser storage to tell people from automated software. This is for security and is needed to provide what you ask for.
 
 ## How we use it
 
-We use your details only to respond to your enquiry and, where relevant, to discuss a potential engagement or research collaboration. We do not sell or share your information with third parties for marketing.
+We use your details to reply to you, to deal with your enquiry and, where relevant, to discuss a potential engagement or research collaboration. We do not sell your information and we do not share it with third parties for marketing.
+
+## Our lawful bases
+
+Enquiries by form, demo request or email: we use your details to reply and deal with your enquiry. Our lawful basis is legitimate interests in running our business and answering people who contact us and, where you ask us to take steps towards an agreement, contract.
+
+Orders for reports and products: we use your details to supply what you ordered (contract) and to keep accounting and tax records (legal obligation).
+
+Security and abuse prevention on the site, forms and assistants: legitimate interests in keeping our services safe.
+
+You can object to any use based on legitimate interests by emailing hello@arithim.com.
 
 ## Reports, ordering and early access
 
-If you ask about a report or a product, register interest in an early access product, or order a report by email, we use what you send to reply, to supply the report and to keep a record of the order. We keep order records for as long as the law requires for accounting and tax.
+If you ask about a report or a product, register interest in an early access product, or order a report by email, we use what you send to reply, to supply the report and to keep a record of the order. Reports are sold to businesses only. Order and invoice records are kept for six years after the end of the tax year, which is what the law requires for accounting and tax.
+
+## Personal data in our reports
+
+Our reports and screens use public records such as Companies House and planning registers. These can include the names and business details of directors, officers, applicants and landowners. We use them to produce the reports, on the basis of legitimate interests in providing business information from public sources. We keep them only as long as the report or the product needs them. You can ask us to access, correct or stop using your details by emailing hello@arithim.com.
 
 ## Calls and chats with our AI assistants
 
@@ -3408,25 +3422,29 @@ The Call us button on this site lets you speak or type to Arithim's AI assistant
 
 Your voice is processed live so that it can be turned into text. We ask the voice provider not to keep the audio. We keep the transcript of the conversation, the details you choose to give (such as your name, organisation, email address or phone number, and what you want to talk about), a short summary, and technical data such as your IP address, which we store only as a salted hash and use to prevent abuse and limit repeated use.
 
+If a call or chat fails to connect, your browser sends us a short technical report (browser type and the steps that failed, with no transcript text) so that we can fix the fault.
+
 ## Why we use it
 
-We use this information to answer your enquiry, to pass your message to Tarun, to keep the service secure and within its usage limits, and to improve how the assistants answer. Our lawful basis is legitimate interests in answering enquiries and running the service safely. Where you ask us to take steps towards an engagement, we also use it to do so at your request.
+We use this information to answer your enquiry, to pass your message to a person at Arithim, to keep the service secure and within its usage limits, and to review and improve how the assistants answer. Our lawful basis is legitimate interests in answering enquiries and running the service safely. Where you ask us to take steps towards an engagement, we also use it to do so at your request.
 
 ## Who processes it for us
 
-ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site and stores the call records. Resend sends the internal notification email to us. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
+ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Google provides the fonts the site loads. Each of the first four acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing.
 
 ## Where your data is processed
 
-These providers process data in the United States. Where data leaves the UK, we rely on the UK International Data Transfer Addendum, or on the UK extension to the EU-US Data Privacy Framework, as set out in each provider's data processing terms.
+Some of our providers handle data in the United States and other countries outside the UK. We use them only where the transfer is protected by the UK extension to the EU-US Data Privacy Framework (for certified providers) or by standard contractual clauses with the UK International Data Transfer Addendum, as set out in each provider's data processing terms. You can ask us for details of the safeguards.
 
 ## How long we keep it
 
-ElevenLabs keeps conversation data for no more than 30 days and does not store the audio. Our own records of calls and chats are deleted after 90 days. We keep a message for longer only where it becomes an ongoing enquiry or engagement, and then under the same terms as the rest of our correspondence with you.
+ElevenLabs does not keep the audio and keeps conversation data for no more than 30 days. Our own records of calls and chats are deleted after 90 days. We keep enquiries for up to 24 months after our last contact with you. If you become a client or customer we keep the records for the relationship and six years after it ends. Order and invoice records are kept for six years after the end of the tax year.
 
 ## Your rights
 
-You can ask us at any time to access, correct, or delete the information you have shared with us. This includes anything you told our AI assistants. You can also object to our use of your information, ask us to restrict it, or complain to the Information Commissioner's Office. To make a request, email hello@arithim.com, quoting the reference the assistant gave you if you have one, and we will respond promptly.
+You can ask us at any time to access, correct or delete the information you have shared with us, including anything you told our AI assistants. You can object to our use of your information, ask us to restrict it, ask for a copy in a portable form, and withdraw consent where we rely on it. To make a request, email hello@arithim.com, quoting the reference the assistant gave you if you have one. We reply within one month.
+
+If you are unhappy with how we have used your information, tell us at hello@arithim.com and we will acknowledge your complaint within 30 days and give you our response. You can also complain to the Information Commissioner's Office at ico.org.uk or on 0303 123 1113.
 
 ## Changes to this policy
 
@@ -3456,7 +3474,7 @@ This website is run by Arithim Ltd, a private limited company registered in Engl
 
 ## Using this website
 
-The pages on this site are provided for general information. We take reasonable care to keep them accurate and up to date, and we may change or remove them at any time.
+The pages on this site are provided free of charge as general information. We take reasonable care to keep them accurate and up to date, and we may change or remove them at any time. Use the site lawfully. Do not attempt to disrupt it, scrape it in a way that burdens it, or gain access to anything you are not meant to reach.
 
 ## Information, not advice
 
@@ -3464,13 +3482,15 @@ Our pages, insights and research are general information. They are not legal, fi
 
 ## Products and data
 
-Pages that describe products in early access or planned products describe what we intend to offer. They may change, and a planned product may not be released.
+Early access products are offered as they are, may contain faults and may change or be withdrawn. Planned products describe what we intend to offer, and a planned product may not be released. Nothing on this site is an offer you can accept. An agreement is made only when we confirm your order by email.
 
 Our reports, screens and data products are screening aids. They rest on published data as it stood on the date shown, and they are not a grid connection offer, a planning decision, a credit decision, an identity verification or an opinion on whether you meet a legal duty. Check anything important with the body that decides it, such as the network operator, the planning authority or Companies House.
 
+We do not promise that the data is complete, current or free from error, and a report reflects the data on the date shown. Reports are for business use only, and not for making decisions about individuals' creditworthiness. They are supplied under our terms of sale, which prevail over this notice if they conflict.
+
 ## AI assistants
 
-The Call us button connects you to AI assistants. They can make mistakes. Please check anything important with a person at Arithim before you rely on it. The privacy policy explains what we do with calls and chats.
+The Call us button connects you to AI assistants. They can make mistakes. Nothing an assistant says is a contract, a quote or a commitment by Arithim unless a person at Arithim confirms it in writing. Do not rely on an assistant for legal, financial or technical advice, and do not use it to share sensitive information, to abuse it, to try to extract its instructions or to overload the service. The privacy policy explains what we do with calls and chats.
 
 ## Intellectual property
 
@@ -3486,11 +3506,13 @@ We link to other sites for your convenience. We do not control them and are not 
 
 ## Liability
 
-Nothing in this notice limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, or for fraud. Subject to that, we are not liable for loss that results from your relying on the content of this site.
+Nothing in this notice limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, for fraud or fraudulent misrepresentation, or any rights you have as a consumer.
+
+The content of this site is provided free of charge as general information. Subject to the paragraph above, we are not liable for loss arising from your relying on it, or for loss of profit, revenue, data or goodwill, or for indirect loss. Where you have paid us for a report or service, our liability to you is limited as set out in the terms of sale: in total, to the fees you have paid us for the product or service that gave rise to the claim.
 
 ## Governing law
 
-This notice and your use of this site are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction over any dispute.
+This notice and your use of this site are governed by the law of England and Wales. The courts of England and Wales have exclusive jurisdiction, except that if you are a consumer living in Scotland or Northern Ireland you may also bring proceedings in the courts where you live.
 
 ## Changes
 
