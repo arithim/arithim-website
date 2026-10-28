@@ -49,7 +49,7 @@ OPTIONAL_FIELDS = (
 )
 
 # Pages that get priority 0.8 in the sitemap. index.html is 1.0, everything else 0.6.
-HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "product-assay.html", "product-site-finder.html", "products.html", "research.html", "services.html", "technical-sales-guide.html"}
+HUB_PAGES = {"about.html", "case-studies.html", "contact.html", "insights.html", "product-ai-model-inventory.html", "product-site-finder.html", "products.html", "research.html", "services.html", "technical-sales-guide.html"}
 SITEMAP_SKIP = {"404.html"}
 
 # Header nav, in order. The header partial renders these; the page's "active" param highlights one.

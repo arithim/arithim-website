@@ -7,7 +7,7 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 ## Products
 
 - [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.
-- [Assay](https://arithim.com/product-assay.html): Assay gives you one dated view of the AI models your business runs on, flags the ones you have ruled out and gives you a report to show customers and supervisors.
+- [AI model inventory](https://arithim.com/product-ai-model-inventory.html): An AI model inventory for CISOs and security teams: see which AI models your business and suppliers run, flag the ones you have ruled out, and prove it.
 - [Site Finder](https://arithim.com/product-site-finder.html): Site Finder ranks land in Great Britain for solar, battery and onshore wind, with the grid, planning and economics evidence for every site. Reports from £195 ex VAT, ordered by email.
 - [Battery storage siting report](https://arithim.com/product-battery-siting-report.html): A report on one battery storage site in Great Britain covering grid, planning, land and returns, with the source and date of every figure.
 - [Grid pre-screen](https://arithim.com/product-grid-pre-screen.html): Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there and what else could stop it.
@@ -17,7 +17,7 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 - [Find Me A Job](https://findmeajob.uk/)
 - [Unrejectable](https://www.unrejectable.uk/)
 - [Technical Sales Guide: security and trust](https://arithim.com/technical-sales-guide-security.html): How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.
-- [All products](https://arithim.com/products.html): Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, Assay, Site Finder, site and grid reports, company checks and SaaS.
+- [All products](https://arithim.com/products.html): Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, site and grid reports, company checks and SaaS.
 
 ## Services
 

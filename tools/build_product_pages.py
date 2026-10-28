@@ -75,6 +75,10 @@ def render(p: dict, products: list[dict]) -> str:
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Arithim", "item": f"{SITE}/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": f"{SITE}/products.html"},
         {"@type": "ListItem", "position": 3, "name": p["name"], "item": url}]}
+    price = p.get("price")
+    price_html = f'<p class="ah-price"><strong>{e(price["line"])}</strong> <span>{e(price["note"])}</span></p>' if price else ""
+    if price:
+        service["offers"] = {"@type": "Offer", "priceCurrency": "GBP", "price": price["amount"], "description": price["line"] + ". " + price["note"], "url": url}
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
@@ -126,7 +130,7 @@ def render(p: dict, products: list[dict]) -> str:
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      <p class="as-note">{e(p['status_note'])}</p>
+      {price_html}<p class="as-note">{e(p['status_note'])}</p>
     </div>
   </section>
 

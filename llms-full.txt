@@ -88,29 +88,65 @@ PRODUCTS
 
 ALL PRODUCTS →
 
-ENTERPRISE · CHEMICAL DISTRIBUTORS
+ENTERPRISE SOFTWARE · DEMOS AND PILOTS
 
 Technical Sales Guide
 
-Ranked product answers with cost in use, landed cost and registrations by country.
+Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
-ENTERPRISE · SOLAR DEVELOPERS
+ENTERPRISE SOFTWARE · EARLY ACCESS
+
+AI model inventory
+
+Know which AI models your business runs on, and prove it with a dated report.
+
+DATA PRODUCTS · AVAILABLE
 
 Site Finder
 
-Candidate land for solar farms in Great Britain, with the evidence for every site.
+Find and rank land for solar, battery storage and onshore wind, with the evidence behind every site.
 
-SAAS · JOB SEEKERS
+DATA PRODUCTS · EARLY ACCESS
+
+Battery storage siting report
+
+Is this site worth pursuing as a battery site, and what would end it? One site, one report.
+
+DATA PRODUCTS · EARLY ACCESS
+
+Grid pre-screen
+
+How close is a site to grid headroom, and who already holds capacity there?
+
+DATA PRODUCTS · EARLY ACCESS
+
+Planning risk screen
+
+Spot the planning constraints that could stop a site, before you pay for surveys.
+
+DATA PRODUCTS · PLANNED
+
+Solar suitability check
+
+Will solar work at this address? A plain verdict, the reasons and a yield estimate.
+
+DATA PRODUCTS · PLANNED
+
+UK company check
+
+Check who is behind a UK company, with a dated source for every fact.
+
+SAAS · LIVE
 
 Find Me A Job
 
-A short list of live roles worth applying to, from one profile.
+Describe yourself once and get a short list of roles worth applying for.
 
-SAAS · JOB SEEKERS
+SAAS · LIVE
 
 Unrejectable
 
-Checks a CV against a role and helps fix what a screener would reject.
+Find the fixable reasons your CV could be turned down, before anyone sees it.
 
 SELECTED WORK
 
@@ -248,13 +284,13 @@ Demos and pilots
 
 Rank products by application and condition, with cost in use, landed cost and country registrations beside each one.
 
-Learn more →For UK firms that have to name their AI models
+Learn more →For CISOs and security teams
 
-### Assay
+### AI model inventory
 
 Early access
 
-Know which AI models your firm runs, with a dated report you can show customers and supervisors.
+Know which AI models your business runs on, and prove it with a dated report.
 
 Learn more →
 
@@ -282,7 +318,7 @@ Early access
 
 Is this site worth pursuing as a battery site, and what would end it? One site, one report.
 
-Learn more →For battery developers and land teams
+£1,950 a siteLearn more →For battery developers and land teams
 
 ### Grid pre-screen
 
@@ -350,7 +386,7 @@ FREQUENTLY ASKED
 
 Which Arithim products can I try or buy now?
 
-Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. Assay and three of the data products are in early access, and two more are planned.
+Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned.
 
 What is the difference between enterprise software, data products and SaaS?
 
@@ -1308,75 +1344,87 @@ Call us
 
 ---
 
-## Know every AI model your business runs on.
+## Know every AI model your business runs on, and prove it.
 
-URL: https://arithim.com/product-assay.html
+URL: https://arithim.com/product-ai-model-inventory.html
 
-ASSAY · AI MODEL ASSURANCE · UK
+AI MODEL INVENTORY · FOR CISOS AND SECURITY TEAMS · UK
 
-# Know every AI model your business runs on.
+# Know every AI model your business runs on, and prove it.
 
-Assay gives risk, security and compliance teams one clear picture of the AI models in use across the business and its suppliers, and the evidence to show customers and supervisors.
+An AI model inventory for CISOs, heads of cybersecurity and security architects. See which models your applications, suppliers and teams use, flag the ones you have ruled out, and give your board and your customers a dated report.
 
 Book a scoping call →Early access
 
-Assay is in early access. Tell us what you need to evidence and we will scope it with you.
+In early access. Tell us which models or rules you need to answer for and we will scope it with you.
 
 WHY TEAMS CHOOSE IT
 
-## Why teams choose Assay
+## Why security teams choose it
 
-### One answer to a hard question
+### One answer for the board
 
-Which AI models does our business depend on? Get a single, current answer in place of a spreadsheet nobody trusts.
+Which AI models do we depend on, and are any of them ruled out? Give a clear, current answer in place of a spreadsheet nobody trusts.
 
-### Evidence people accept
+### Shadow AI brought into view
 
-A dated report that states what was checked and what was found, written to be shown to customers and supervisors.
+Find the models your teams, products and suppliers use that nobody signed off, so you can approve, replace or retire them.
 
-### Keep up when the rules change
+### Evidence on request
 
-When a customer, a regulator or your own policy rules a model out, see where you use it and what to do next.
+A dated report you can hand to customers, auditors and supervisors when they ask what runs in your estate.
+
+### A fast answer when the rules change
+
+When a customer, a regulator or a government names a model you must stop using, see where you use it and what to do next.
 
 WHAT YOU GET
 
-## What Assay delivers
+## What you get
 
 ### An AI model inventory
 
-Every AI model your applications and suppliers use, and where each one sits in the business.
+Every model in use, where it runs and who owns it.
 
 ### A verdict on each model
 
-Approved, review or flagged against the rules you set.
+Approved, review or flagged against your own policy.
+
+### Supplier visibility
+
+Which of your suppliers' products rely on models you have ruled out, and the questions to put to them.
 
 ### A dated attestation report
 
-A report you can hand over, with its scope and date stated.
+Its scope, date and findings stated, ready to share.
 
-### Help to put it right
+### A route to fix it
 
-When a model has to go, help to replace it and to check that quality holds.
+Help to replace a flagged model and to check that quality holds.
 
-### A picture that stays true
+### Assurance that stays current
 
 Regular refreshes, so your answer does not go stale.
 
 WHO IT IS FOR
 
-## Who is Assay for?
+## Who is it for?
 
-### Banks, insurers and regulated firms
+### CISOs and heads of cybersecurity
 
-Show that you know which AI your firm depends on, as part of third party and model risk.
+Answer the AI question with evidence, for your board and your customers.
+
+### Security architects
+
+Know which models are deployed and where, so you can design controls around them.
+
+### Risk, compliance and third party risk teams
+
+Fill supplier questionnaires and AI governance registers with facts.
 
 ### Suppliers to government and large customers
 
-Answer the question "does your product use this model?" with evidence, not an email.
-
-### Organisations running their own AI
-
-See which open models your teams have set up in-house, and where they came from.
+Answer "does your product use this model?" with evidence, not an email.
 
 HOW IT WORKS
 
@@ -1386,7 +1434,7 @@ HOW IT WORKS
 
 ### Scope
 
-Tell us what you need to evidence and which rules apply.
+Tell us what you need to evidence, to whom, and which rules or customer requirements apply.
 
 02
 
@@ -1404,53 +1452,79 @@ GOOD TO KNOW
 
 ## Before you start
 
-Assay reports what it finds, in an agreed scope, on a stated date. It is an attestation, not a guarantee about every system in your company.
+The report states what it covered, what it did not and how confident we are in each finding. It is an attestation, not a guarantee about every system in your company.
 
-We agree scope with your security and compliance teams first.
+Some use cannot be seen from company systems, such as AI on personal devices. The report says so.
 
-Assay does not need to see your prompts or your customers' data.
+A model that runs inside a supplier's own service can only be confirmed with the supplier's help. Where it cannot be, the report marks it open.
 
-Assay is not a legal opinion on whether a rule applies to you.
+It does not need to see your prompts or your customers' data.
+
+It is not a legal opinion on whether a rule applies to you.
 
 FREQUENTLY ASKED
 
-## Questions about Assay
+## Questions about AI model inventory
 
-What is Assay?
+What is an AI model inventory?
 
-Assay is an Arithim service that tells you which AI models your business uses, flags the ones you have ruled out and gives you a dated report to show customers and supervisors.
+A current list of the AI models your business uses, in your products, your systems and your suppliers' services, with where each runs, who owns it and whether it is approved.
 
-Is an Assay report a certificate?
+Is this the same as AI security posture management, shadow AI discovery or a CASB?
 
-No. It is an attestation report that states its scope and date and says what we found in that scope. It does not claim to prove that nothing ruled out exists anywhere in your company.
+Those tools watch and control how AI is used. This answers a different question: which models are in use, and can you prove it. It can sit alongside them.
 
-Does Assay read our prompts or customer data?
+Why not just ask teams and suppliers?
+
+You should, and we help you structure the questions. Answers from people are incomplete and go out of date quickly, and a questionnaire is not evidence. The inventory gives you something to check them against.
+
+Does it find shadow AI?
+
+It looks for AI use that is not on your approved list, across the areas we agree in scope, and says what it could not see.
+
+Does it cover AI inside our suppliers' products?
+
+Where it shows up in your own estate and with the supplier's help. Where it cannot be confirmed, the report marks it open and suggests the question to put to the supplier.
+
+Do you need agents on our endpoints or changes to our network?
+
+We agree what access is needed before we start. We aim to work from what you already have, with read-only access, and we do not sit in the path of your live traffic.
+
+Does it read our prompts or customer data?
 
 No. It does not need to.
 
-Which models does Assay flag?
+Can it show open models running on our own GPUs?
 
-The ones on the list you set, for example models named in rules that apply to you or in your customers' contracts.
+Yes, if you want that in scope.
 
-Can Assay tell which model sits behind a supplier's product?
+Does it help with ISO 42001, the NIST AI RMF, the EU AI Act or customer questionnaires?
 
-Often, though not always. Where we cannot confirm it, the report says so and marks it open, and suggests the question to put to the supplier.
+It gives you the factual inventory those frameworks and questionnaires ask for. It does not certify compliance and it is not legal advice.
+
+Which models can it flag, for example DeepSeek?
+
+Whichever your policy rules out. Governments and customers have started naming particular models. In October 2026 the US Department of Homeland Security told federal civilian agencies to remove DeepSeek products and third-party tools built on them. We flag whatever you list.
+
+Is the report a certificate?
+
+No. It is an attestation report that states its scope and date and says what we found in that scope. It does not claim to prove that nothing ruled out exists anywhere in your company.
+
+How do we know the answer is complete?
+
+The report says what was covered, what was not and our confidence in each finding. Where it is partial, we tell you, and we tell you what would close the gap.
 
 Does a UK firm have to do this?
 
-As of October 2026 we know of no UK rule that bans a specific AI model. Customers, suppliers and risk teams are asking the question, and some US rules reach UK suppliers. We will tell you if you do not need Assay.
+As of October 2026 we know of no UK rule that bans a specific AI model. Customers, suppliers and risk teams are asking the question, and some US rules reach UK suppliers. We will tell you if you do not need it.
 
 How long does it take, and what does it cost?
 
-We scope it with you first, then quote.
+We scope it with you first, agree a first milestone, then quote.
 
-Why is it called Assay?
+## Need a straight answer on which AI you run?
 
-An assay is a test of what something is made of. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark.
-
-## Want to know which AI your business runs on?
-
-Tell us what you need to show and to whom. We will tell you what Assay would cover and whether it is worth doing.
+Tell us what you need to show and to whom. We will tell you what the inventory would cover and whether it is worth doing.
 
 Book a scoping call →
 

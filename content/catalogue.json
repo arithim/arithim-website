@@ -13,7 +13,7 @@
           "summary": "Rank products by application and condition, with cost in use, landed cost and country registrations beside each one."
         },
         {
-          "slug": "assay",
+          "slug": "ai-model-inventory",
           "status": "Early access"
         }
       ]

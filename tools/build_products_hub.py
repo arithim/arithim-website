@@ -22,13 +22,13 @@ SITE = "https://arithim.com"
 e = html.escape
 
 TITLE = "Arithim products: enterprise software, data products and SaaS"
-DESC = "Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, Assay, Site Finder, site and grid reports, company checks and SaaS."
+DESC = "Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, site and grid reports, company checks and SaaS."
 H1 = "Software and data products from Arithim"
 LEAD = "Enterprise software for distributors and regulated firms, data products for energy developers and risk teams, and SaaS for people looking for work."
 
 FAQ = [
     ("Which Arithim products can I try or buy now?",
-     "Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. Assay and three of the data products are in early access, and two more are planned."),
+     "Site Finder is available now, with reports and subscriptions ordered by email. The Technical Sales Guide runs as demos and pilots. Find Me A Job and Unrejectable are live. The AI model inventory and three of the data products are in early access, and two more are planned."),
     ("What is the difference between enterprise software, data products and SaaS?",
      "Enterprise software is set up for each customer on their own data, starting with a demo or a pilot. Data products give you sourced answers on a site, a grid connection, a planning risk or a company, as a report or through an API. SaaS products are the same for everyone, and you sign up on their website."),
     ("Does Arithim build software for clients too?",
@@ -37,9 +37,11 @@ FAQ = [
 
 
 def card(i: dict) -> str:
+    price = f'<span class="ah-pcard-price">{e(i["price"])}</span>' if i.get("price") else ""
+    more = "Visit the site" if i["url"].startswith("http") else "Learn more"
     return (f'<a class="tsg-card ah-pcard" href="{e(i["url"])}"><span class="ah-pcard-aud">{e(i["audience"])}</span>'
-            f'<h3>{e(i["name"])}</h3><span class="pp-st">{e(i["status"])}</span><p>{e(i["summary"])}</p>'
-            f'<span class="ah-pcard-more">{"Visit the site" if i["url"].startswith("http") else "Learn more"} →</span></a>')
+            f'<h3>{e(i["name"])}</h3><span class="pp-st">{e(i["status"])}</span><p>{e(i["summary"])}</p>{price}'
+            f'<span class="ah-pcard-more">{more} →</span></a>')
 
 
 def grid(items: list[dict]) -> str:
@@ -149,6 +151,31 @@ class Component extends DCLogic {{
 '''
 
 
+HOME_CARD = ('<a href="{url}" class="ah-a8498e ah-h-0826d6"><div class="ah-b79a62">{eyebrow}</div>'
+             '<div class="ah-cc198a">{name}</div><p class="ah-515d06">{summary}</p></a>')
+
+
+def home_cards(groups) -> str:
+    out = []
+    for g in groups:
+        items = g.get("items") or [i for s in g["subgroups"] for i in s["items"]]
+        for i in items:
+            out.append(HOME_CARD.format(url=e(i["url"]), eyebrow=e((g["name"] + " · " + i["status"]).upper()), name=e(i["name"]), summary=e(i["summary"])))
+    return "".join(out)
+
+
+def patch_home(groups) -> bool:
+    """Write every product from the catalogue into the Our products section of index.html, between its markers."""
+    path = ROOT / "index.html"
+    text = path.read_text(encoding="utf-8")
+    new = re.sub(r"(<!-- catalogue:start -->).*?(<!-- catalogue:end -->)", lambda m: m.group(1) + home_cards(groups) + m.group(2), text, flags=re.S)
+    if new == text:
+        return False
+    if "--check" not in sys.argv:
+        path.write_text(new, encoding="utf-8")
+    return True
+
+
 def main():
     groups = catalogue.load()
     page = render(groups)
@@ -158,9 +185,10 @@ def main():
     out = ROOT / "products.html"
     strip = lambda t: re.sub(r"<!-- partial:(\w+)[^>]*?-->.*?<!-- /partial:\1 -->", "", t, flags=re.S)
     same = out.exists() and strip(out.read_text(encoding="utf-8")) == strip(page)
+    home_stale = patch_home(groups)
     if "--check" in sys.argv:
-        print("ok: products page is up to date" if same else "stale: products.html")
-        sys.exit(0 if same else 1)
+        print("ok: products page is up to date" if same and not home_stale else "stale: products.html or the products list on index.html")
+        sys.exit(0 if same and not home_stale else 1)
     if not same:
         out.write_text(page, encoding="utf-8")
         print("wrote products.html")
