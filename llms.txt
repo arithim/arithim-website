@@ -6,9 +6,9 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 
 ## Products
 
-- [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.
+- [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Help every salesperson find the right product for the application, with cost in use, landed cost and registrations by country. Built for chemical and ingredient distributors in the Gulf, with an Arabic interface.
 - [AI model inventory](https://arithim.com/product-ai-model-inventory.html): An AI model inventory for CISOs and security teams: see which AI models your business and suppliers run, flag the ones you have ruled out, and prove it.
-- [Site Finder](https://arithim.com/product-site-finder.html): Site Finder ranks land in Great Britain for solar, battery and onshore wind, with the grid, planning and economics evidence for every site. Reports from £195 ex VAT, ordered by email.
+- [Site Finder](https://arithim.com/product-site-finder.html): Screen land in Great Britain for solar, battery and onshore wind, and see the grid, planning and economics for each site before you spend on surveys. Reports from £195 ex VAT, ordered by email.
 - [Battery storage siting report](https://arithim.com/product-battery-siting-report.html): A report on one battery storage site in Great Britain covering grid, planning, land and returns, with the source and date of every figure.
 - [Grid pre-screen](https://arithim.com/product-grid-pre-screen.html): Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there and what else could stop it.
 - [Planning risk screen](https://arithim.com/product-planning-risk-screen.html): A desk screen of one site in Great Britain for farmland, peat, heritage and protected sites, with the field studies an application is likely to need.
@@ -21,13 +21,13 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 
 ## Services
 
-- [AI services for operations, finance and IT teams overview](https://arithim.com/services.html): Six Arithim services for operations, finance and IT teams: AI readiness, document automation, SAP ERP reporting, AI-readable websites, training and regulated approval workflows.
-- [What does an AI readiness assessment involve?](https://arithim.com/services-ai-readiness.html): An AI readiness assessment maps your workflows, checks your data and ranks the AI use cases worth doing, then sets out the architecture, governance and roadmap to build them.
-- [How can AI automate work in your existing systems?](https://arithim.com/services-automation.html): We build AI tools and workflow automation into the systems you already run, on a 90-day model, and hand over a monitoring playbook so your team can maintain them.
-- [How do you build compliance workflows with an audit trail?](https://arithim.com/services-regulatory.html): Structured compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, an audit trail, and people signing off where judgment matters.
-- [How can you get more from SAP ERP without replacing it?](https://arithim.com/services-sap.html): We add a reporting and automation layer on top of SAP ERP. It turns scattered transactional data into reports your operations team can use and automates manual steps, with the core left as it is.
-- [How do you train your team to run AI systems themselves?](https://arithim.com/services-training.html): Practical workshops and hands-on practice based on your own workflows, so the people who run your AI systems can operate, govern and improve them without relying on us.
-- [How do you make your website readable by ChatGPT and AI search?](https://arithim.com/services-websites.html): We structure your website so people, search engines and AI tools like ChatGPT, Perplexity and Gemini can read it, covering page structure, clear descriptions, schema, technical SEO, accessibility and performance.
+- [AI services for operations, finance and IT teams overview](https://arithim.com/services.html): Six Arithim services for operations, finance and IT teams: AI readiness, document automation, SAP ERP reporting, AI search readiness for your website, AI training for teams and regulated approval workflows.
+- [What does an AI readiness assessment involve?](https://arithim.com/services-ai-readiness.html): An AI readiness assessment shows which AI use cases are worth doing in your business, which to start with and what needs to be in place first, backed by evidence from your own workflows.
+- [How can AI automate work in your existing systems?](https://arithim.com/services-automation.html): Workflow automation and document automation built into the systems you already run, designed so your team can audit and maintain them. Most builds go live on a 90-day model.
+- [How do you build compliance workflows with an audit trail?](https://arithim.com/services-regulatory.html): Compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, a clear audit trail and human review wherever judgment matters.
+- [How can you get more from SAP ERP without replacing it?](https://arithim.com/services-sap.html): Reporting on SAP ERP your team can trust. A read-only reporting layer on top of your existing SAP ERP, for less manual month-end reporting, with the core system left as it is.
+- [How do you train your team to run AI systems themselves?](https://arithim.com/services-training.html): AI training for teams: practical workshops built on your own workflows, so the people who run your AI systems can operate, govern and improve them without relying on us.
+- [How do you make your website readable by ChatGPT and AI search?](https://arithim.com/services-websites.html): AI search readiness for your website. Clear structure, consistent descriptions and structured data so ChatGPT, Perplexity, Gemini and search engines can read and reference your site.
 
 ## Case studies
 

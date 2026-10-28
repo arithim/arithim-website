@@ -408,7 +408,7 @@ TECHNICAL SALES GUIDE · FOR CHEMICAL AND INGREDIENT DISTRIBUTORS
 
 # Every salesperson answers like your best technical manager.
 
-Ask for a product by application and condition, in animal nutrition, coatings, construction chemicals or another industry you sell into. The Guide returns a ranked answer showing cost in use, landed cost, registrations by country and the source. The interface and the website concierge work in Arabic.
+Your reps ask for a product by application and condition, in animal nutrition, coatings, construction chemicals or another industry you sell into. They get a ranked answer with cost in use, landed cost and the registrations that apply in each country, without waiting for the technical manager. The interface and the website concierge work in Arabic.
 
 Request a demo →See what it does
 
@@ -418,25 +418,25 @@ Three examples play in turn. In animal nutrition, a rep asks for a heat-stress p
 
 466 products147 suppliers8 industries10 interface languages, Arabic included
 
-Start from the catalogue
+Load your range
 
 Add your principals' documents
 
-Ask at the mill
+Ask the customer's question
 
-Flag a wrong answer for review
+Flag anything that looks wrong
 
 WHAT IT DOES
 
 ## What can the Technical Sales Guide do for a distributor?
 
-Technical answers sit with a few managers and in folders of PDFs. These are the six main jobs the Guide takes on, each shown with sample figures. You can pause any of the animations.
+Technical answers sit with a few managers and in folders of PDFs. These are the six jobs the Guide takes off their desks, each shown with sample figures. You can pause any of the animations.
 
 ### How do I find the right product for an application and condition?
 
-Pick an application and a condition, such as heat stress in broilers. The Guide ranks products from every supplier in the catalogue for that condition, performance first, with the commercial numbers beside them.
+Name the application and the condition, such as heat stress in broilers. Your rep sees which products fit best, from every supplier in your range, with the numbers needed to quote beside each one.
 
-Dose, cost in use and landed cost sit next to each product.
+Dose, cost in use and landed cost beside each product, so the rep can quote on the spot.
 
 Competitor equivalents, and Replace for when a supply line fails or a customer asks for another brand.
 
@@ -448,13 +448,13 @@ A rep types an application and condition. Three products from three principals a
 
 ### How do I answer a customer's technical question from our principals' documents?
 
-Upload the data sheets, safety data sheets and certificates your principals send. Ask in plain words and the answer comes back with the document and the page it came from, so a technical manager can check it.
+Add the data sheets, safety data sheets and certificates your principals send. Reps ask in plain words and get the answer with the document and page it came from, so a technical manager can confirm it quickly.
 
 The matching lines are highlighted on the page.
 
-Certificates and documents carry expiry dates, and the owner gets an alert before they lapse.
+Certificates and documents carry expiry dates, and the owner is reminded before they lapse.
 
-Attributes such as moisture or shelf life go into a review queue, and nothing reaches a product page until a person approves it.
+Details taken from a document, such as moisture or shelf life, go on a product page only after a person has approved them.
 
 A technical manager uploads a principal's data sheet and asks for the maximum inclusion rate in layer feed. The answer points to page 3.
 
@@ -462,15 +462,15 @@ Describe this animation
 
 A PDF data sheet is added and opens at page 1. A question about layer inclusion rates is typed. The answer appears with a citation to page 3 and the matching lines are highlighted. An expiry alert and an extraction waiting for review follow. All figures are samples.
 
-### How do I track product registrations and expiry dates by country?
+### Which of our products are registered where, and what expires next?
 
-Regulations, key dates and registrations sit against each product and country, with the holder and the document checklist. A reminder reaches the owner before an expiry.
+Each product and country has a registration record with the holder, the number, the expiry date and the document checklist. The owner is reminded before anything lapses.
 
-Rules and key dates per country, with the products and customers each rule reaches.
+Rules and key dates per country, with the products and customers each one affects.
 
-A registration record per product and country: holder, number, expiry and documents.
+A record per product and country: holder, number, expiry and documents.
 
-An expiry reminder that creates a renewal task.
+An expiry reminder that becomes a renewal task.
 
 A registration in Saudi Arabia is 60 days from expiry. The regulatory team gets an alert and a renewal task, and sales sees which customers buy the product.
 
@@ -480,7 +480,7 @@ A table of registrations by product and country. One row for Saudi Arabia turns 
 
 ### How do I show a principal where its products win and lose?
 
-Principals log in to a live, permissioned view of their own products: what you proposed, won and lost, and why. The review packs you already produce for each principal by country become a screen the principal opens whenever it likes.
+Principals log in to a live view of their own products: what you proposed, won and lost, and why. The review packs you already produce for each principal by country become a screen the principal opens whenever it likes.
 
 Wins, losses and recorded loss reasons by country and product.
 
@@ -494,9 +494,9 @@ Describe this animation
 
 A principal portal limited to one principal's products. Counts of proposals, wins and losses rise. Bars show results by country and reasons for lost deals. A note says a competitor was named on five of nine losses. All figures are samples.
 
-### How do I turn website questions into routed leads?
+### How do I turn website visitors' questions into leads for the right team?
 
-A product advisor on your website answers visitors from your catalogue and your principals' documents, with sources. When a visitor wants a person, it takes their details and sends the lead to the right team.
+A product advisor on your website answers visitors from your catalogue and your principals' documents. When a visitor wants to talk to a person, it takes their details and sends the lead to the right team.
 
 Visitors ask in their own language, including Arabic.
 
@@ -510,15 +510,15 @@ Describe this animation
 
 A chat on a website. The visitor writes in Arabic about heat stress in broilers, with an English gloss under each line. The advisor answers with a source and offers a contact from the Eastern Province team. The visitor agrees, and a lead card shows the interest, language and place. All figures are samples.
 
-### How do I make co-branded data sheets and application guides from approved sources?
+### How do I produce a co-branded data sheet or application guide without starting from a blank page?
 
-Choose a document type and the Guide drafts it from the catalogue and your library, in your branding or with the principal's.
+Choose a document type and the Guide drafts it from your catalogue and library, in your branding or with the principal's.
 
 Branded and co-branded data sheets, application guides and comparison sheets.
 
-Regulatory statements that quote the registration record.
+Regulatory statements that use the registration details on file.
 
-Content drafts for your website, written from sourced facts.
+Draft content for your website.
 
 Every draft goes to a person for review before it is used.
 
@@ -534,9 +534,9 @@ Request a demo →
 
 ALSO IN THE PRODUCT
 
-## What else does the Technical Sales Guide include?
+## What else helps the sales team day to day?
 
-Tools for the sales team around the six main jobs: a light CRM, training for new reps, answer review, offline briefs, product data quality and formulation.
+Around the six main jobs: a light CRM, training for new reps, a way to flag wrong answers, offline briefs, product data you can rely on and feed formulation tools.
 
 ### Can we keep accounts and opportunities in the Guide without replacing our CRM?
 
@@ -564,9 +564,9 @@ A learning path of five modules shows two done, one in progress and two to go. A
 
 ### What happens when an answer is wrong?
 
-Anyone can flag an answer with one click and say what looks wrong. Flagged answers are reviewed each working day, and the fix goes in with that day's review.
+Anyone can flag an answer with one click and say what looks wrong. Flagged answers are reviewed each working day and corrected.
 
-Each rating shows its basis: a supplier source, an expert draft or a confirmed review.
+Each answer shows where it came from: a supplier source, an expert draft or a confirmed review.
 
 A rep spots a dose that looks high against the new data sheet, flags it, and sees it corrected after review.
 
@@ -586,7 +586,7 @@ A brief marked as saved for offline use shows the plant, the products the custom
 
 ### How do we keep product data complete and consistent?
 
-Each product has one passport page with a completeness score. Gaps and possible duplicates are called out, and the passport feeds your website, CRM and ERP.
+Each product has one passport page with a completeness score. Gaps and possible duplicates are called out, and the same facts reach your website, CRM and ERP.
 
 A product manager sees a xylanase blend at 78% complete, fills in the shelf life and merges a duplicate entry.
 
@@ -596,7 +596,7 @@ A product passport shows a completeness bar rising to 78%. Two gaps are listed, 
 
 ### Can the Guide help with feed formulation?
 
-Two tools help a rep or nutritionist talk numbers with a customer: feed savings worked out from enzyme matrix values, and a mycotoxin risk advisor.
+Two tools help a rep or nutritionist talk numbers with a customer: feed savings worked out from enzyme matrix values, and a mycotoxin risk advisor. Both are a starting point for a nutritionist to confirm.
 
 A rep shows a broiler mill how much phosphate phytase can replace, and what that saves per tonne after the enzyme cost.
 
@@ -624,11 +624,11 @@ Principal review packs split by country.
 
 Import accounts and opportunities from Dynamics 365 or Salesforce. The Guide stays a light CRM for technical selling.
 
-REST API with an OpenAPI 3.1 description and signed webhooks: catalogue, rankings, accounts, opportunities, places and shipments. An ERP reference travels with each order.
+A REST API and signed webhooks let your IT team read the catalogue and rankings, and keep accounts, opportunities and shipments in step. An ERP reference travels with each order.
 
 CSV export, and a company export on request.
 
-Product passport feeds to your website, CRM and ERP.
+The same product facts reach your website, CRM and ERP.
 
 SECURITY AND TRUST
 
@@ -638,19 +638,19 @@ What was in place on 22 October 2026. The security page has every answer in full
 
 ### Each customer's data is separate
 
-Row-level security is enabled and enforced on every table that holds customer data. Arithim audited all 106 tables on 19 October 2026.
+Each customer's data is kept apart from every other customer's, and only people in your company can see it.
 
 ### No passwords
 
 People sign in with an emailed link or a one-time code. A company can require two-step sign-in for its administrators or for everyone.
 
-### A log that cannot be edited
+### A record of who did what
 
-Administrators see changes, imports, exports and sign-ins, and each entry is chained to the one before it, so tampering is detectable.
+Administrators can see changes, imports, exports and sign-ins.
 
 ### Hosted in Frankfurt
 
-The application runs in Vercel's Frankfurt region and the database is Supabase in Frankfurt, as of 22 October 2026.
+The application and its data are hosted in Frankfurt, as of 22 October 2026.
 
 ### AI is off by default
 
@@ -672,9 +672,9 @@ Founder, Arithim, London
 
 Tarun founded Arithim in London. He has worked on enterprise systems, SAP ERP environments and regulated industry workflows. About Arithim
 
-### How answers are checked
+### How will I know an answer is right?
 
-Each rating is labelled with its basis: a supplier source, an expert draft or a confirmed review. Anyone can flag an answer, and flagged answers are reviewed and corrected each working day.
+Each answer shows where it came from, and anyone can flag one that looks wrong. Flagged answers are reviewed and corrected each working day. Treat a ranking as a starting point for a technical person to confirm.
 
 ### Start with a scoped pilot
 
@@ -686,37 +686,37 @@ FREQUENTLY ASKED
 
 ## Questions about the Technical Sales Guide
 
-What is a technical sales guide for chemical and ingredient distributors?
+How can my sales team answer technical questions without calling our technical manager?
 
-It is a system that lets a salesperson answer a technical question from a customer without calling a specialist. The Technical Sales Guide holds a catalogue of 466 products from 147 suppliers across 8 industries. It ranks products for an application and condition, shows dose, cost in use and landed cost, lists competitor equivalents and substitutes, and tracks the regulations and registrations that apply.
+The Technical Sales Guide lets a salesperson answer a customer's technical question without calling a specialist. It holds a catalogue of 466 products from 147 suppliers across 8 industries. Your rep asks by application and condition and sees the products ranked, with dose, cost in use and landed cost, competitor equivalents and substitutes, and the regulations and registrations that apply. It is a starting point for a technical person to confirm.
 
-How is the Technical Sales Guide different from Copilot or ChatGPT over our SharePoint?
+How is this different from Copilot or ChatGPT over our SharePoint?
 
-A chat assistant over a document folder can quote a data sheet. The Guide adds structured data that a folder does not have: a catalogue that spans suppliers and their competitors, ranking by performance for an application, cost in use and landed cost, registrations per product and country, and a daily review of flagged answers. Every answer shows its sources.
+A chat assistant over a document folder can quote a data sheet. The Guide adds what a folder does not hold: products from many suppliers and their competitors side by side, a ranking by performance for an application, cost in use and landed cost, and registrations per product and country. Answers show where they came from, and flagged answers are reviewed each working day.
 
 Does it work with Copilot?
 
 You can keep Copilot for chat over your own files. The Guide adds ranked, cross-supplier answers with cost and registrations, and other tools can request its rankings through the REST API. There is no Copilot connector yet.
 
-Does the Technical Sales Guide work in Arabic?
+Does it work in Arabic?
 
 The interface is available in ten languages, including Arabic, which displays right to left. The website concierge takes questions in Arabic. Product and catalogue content is in English today.
 
-Can principals see our data in the principal portal?
+Can a principal see our data?
 
-A principal sees a live, permissioned view of its own products only: where they were proposed, won and lost, and the reasons recorded. It does not see other principals or the rest of your pipeline. You decide who gets access.
+A principal sees a live view of its own products only: where they were proposed, won and lost, and the reasons recorded. It does not see other principals or the rest of your pipeline. You decide who gets access.
 
 Does it connect to Dynamics 365 or Salesforce?
 
 You can import accounts and opportunities from Dynamics 365 and Salesforce using ready-made import settings. A REST API with scoped keys and signed webhooks lets you keep accounts and opportunities in step with a CRM or ERP, read the catalogue and request rankings.
 
-How do you keep the product data accurate?
+How do I know the answers are right?
 
-Answers show their sources. Each rating shows its basis, such as a supplier source, an expert draft or a confirmed review. Anyone can flag an answer, and flagged answers are reviewed each working day and corrected. Regulatory dates and registration expiries raise alerts for the person who owns them.
+Every answer shows where it came from, such as a supplier source, an expert draft or a confirmed review. Anyone can flag an answer that looks wrong, and flagged answers are reviewed each working day and corrected. Registration expiries remind the person who owns them.
 
 How do we get started, and what does it cost?
 
-Request a demo. Arithim provisions each customer directly, so there is no self-service sign-up. A pilot runs for eight weeks on one division in one country, using your principals' products and your team's real questions. Pricing depends on the modules and the number of users, and we give you a figure in the demo conversation.
+Request a demo. Arithim sets up each customer directly, so there is no self-service sign-up. A pilot runs for eight weeks on one division in one country, using your principals' products and your team's real questions. Pricing depends on the modules and the number of users, and we give you a figure in the demo conversation.
 
 REQUEST A DEMO
 
@@ -830,15 +830,15 @@ Request a demo and the security pack →Back to the Technical Sales Guide
 
 ---
 
-## Find the land worth a site visit, with the evidence for every site.
+## Screen sites for grid and planning risk before you pay for surveys.
 
 URL: https://arithim.com/product-site-finder.html
 
 SITE FINDER · SOLAR, BATTERY AND WIND IN GREAT BRITAIN
 
-# Find the land worth a site visit, with the evidence for every site.
+# Screen sites for grid and planning risk before you pay for surveys.
 
-Describe the project you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks candidate land across England, Scotland and Wales, and each site opens into the evidence behind its rank: the grid connection and who holds capacity there, the planning record nearby and the economics.
+Say what you want to build: solar, battery storage, solar with a battery, or onshore wind. Site Finder ranks land across England, Scotland and Wales by grid headroom, planning record and project economics, so you know which sites deserve a visit and can show your investment committee why.
 
 Book a demo →See prices and orderWatch it in use
 
@@ -850,105 +850,105 @@ Describe this animation
 
 A question is typed: where should we build next? Chips show the project as 50 MWp, auto connection, CfD and a 6.5% hurdle. A verdict box says 8 of the top 20 sites are deliverable. A hex map fills in and a ranked list follows. Ellerstoke in Wendmoor needs £56.4 against a CfD price of £65.23, Kinlarrow in Glenmorvie needs £60.1, and Llanbedwyn in Dyffryn Cerwen needs £59.2. Numbered markers place the sites on the map. Names and figures are made up to show the interface.
 
-Describe the project
+Say what you want to build
 
-Read the ranked list
+See the best land first
 
-Open a site's evidence
+Check why a site ranks
 
-Push back and re-rank
+Test your own assumptions
 
 WHO IT IS FOR
 
-## Who is Site Finder for?
+## Who uses Site Finder?
 
-Teams that develop, buy or host renewable projects in Great Britain.
+Developers, funds and landowners who need to decide where to spend time and money.
 
-### Origination teams at developers and IPPs
+### Developer land and origination teams
 
-A ranked map for solar, battery, hybrid and onshore wind, a pipeline board that tracks each site's connection evidence and deadlines, and packs for the investment committee. Your team makes unlimited landowner checks and feasibility reports.
+Find the sites most likely to connect and get consent, and take the shortlist to your investment committee with the evidence attached. Your team makes unlimited landowner checks and feasibility reports.
 
 Site Finder platform, from £30,000 a year →
 
 ### Fund and acquisition analysts
 
-Each claim in a seller's pipeline is checked against the public record and marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.
+Test a seller's pipeline before you pay for it. Each claim is marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.
 
 Portfolio screen, £7,500 for up to 50 sites →
 
 ### Landowners and land agents
 
-One page on the land after a developer's letter: the nearest grid point and how crowded it is, who the developer is, what else they hold nearby and any pressure terms in the letter.
+Had a letter from a developer? See what the land looks like, how crowded the nearest grid point is, who the developer is, what else they hold nearby and any pressure terms in the letter.
 
 Landowner check, £195 →
 
 ### First-time developers and consultants
 
-A feasibility report on one site with a verdict, the reasons, the grid and planning position, the economics and the source of every number.
+Get a verdict on one site with the reasons: the grid and planning position, the economics and the source behind each number.
 
 Site feasibility report, £1,950 →
 
-Site Finder is a screening tool. It narrows where to look, and your team still visits the land, talks to the network operator and takes planning advice.
+Site Finder narrows where to look. Your team still visits the land, talks to the network operator and takes planning advice.
 
 FOR EVERY SITE
 
-## What does Site Finder show for each site?
+## What will I know about a site before I visit?
 
-Each site in the list opens into four views, and every number in them carries its source, date and licence.
+Every site opens into four answers you can take to a land agent, a network operator or your committee.
 
-### Grid connection
+### Can it connect?
 
-The nearest substations, the headroom each network operator publishes and the date of that figure, the Gate 2 context, and who holds capacity at the node and how firm their position is.
+The nearest substations, the headroom the network operator publishes, whether the site is likely to fit the current Gate 2 window, and who else already holds capacity there.
 
-### Planning record
+### Will it get consent?
 
-Schemes built, consented and refused nearby, how the local authority has decided similar applications, and the likely consent route for the project's size and nation.
+Schemes built, consented and refused nearby, how the local authority has decided similar applications, and the likely consent route for the size of your project.
 
-### Economics
+### Does it make money?
 
-An indicative connection cost, the price per MWh the site needs to reach your hurdle rate, and sensitivities. For batteries, the break-even capex with and without the export credit.
+An indicative connection cost, the price per MWh the site needs to reach your hurdle rate, and how that moves when your assumptions change. For batteries, the break-even capex with and without the export credit.
 
-### Evidence
+### Can we defend it?
 
-The source, version, date and licence of every number, and a constraint checklist. Any site can go into a feasibility report, a grid pack, an investment committee pack or an Excel model.
+A constraint checklist and the source behind every number. Any site can go into a feasibility report, a grid pack, an investment committee pack or an Excel model.
 
 BEYOND THE MAP
 
-## What else can I do in Site Finder?
+## What can I do once I have a shortlist?
 
-The ranked map sits beside tools for tracking a pipeline, watching the market and checking someone else's sites. The data refreshes every week.
+Keep working the shortlist: track each site to energisation, watch what other developers are doing and check a seller's claims.
 
-### Site upload and screening
+### Screen your own sites
 
-Upload a boundary, a KML or a shapefile, or draw one on the map, and screen it against the same rules as the ranked list.
+Upload a boundary, a KML or a shapefile, or draw one on the map, and see how it compares with the ranked list.
 
-### Pipeline board
+### Track every site to energisation
 
-Track each site on a connection evidence ladder that runs from map only to energised, with clocks for Gate 2 milestones and land-rights deadlines.
+A pipeline board shows how firm each site's connection evidence is, from map only to energised, with reminders for Gate 2 milestones and land-rights deadlines.
 
-### Company holdings
+### See who holds the grid
 
-See a company group's projects and connections by technology, stage, substation and planning authority, a league table, Gate 2 positions with no planning application, and connections that sit idle.
+A company group's projects and connections by technology, stage, substation and planning authority, plus Gate 2 positions with no planning application and connections that sit idle.
 
-### Change feed and weekly digest
+### Hear about competitor moves
 
-New connection applications, Gate changes, status moves and holder changes appear in the app and in a weekly email, filtered by the companies, substations and areas on your watchlists.
+New connection applications, Gate changes, status moves and holder changes for the companies, substations and areas you watch, in the app and in a weekly email.
 
-### Diligence
+### Check a seller's pipeline
 
-Import a seller's site list and each claim is marked confirmed, contradicted, not verifiable or seller-supplied, then exported as a data-room PDF and Excel workbook.
+Import a seller's site list and see each claim marked confirmed, contradicted, not verifiable or seller-supplied, with a data-room PDF and Excel workbook.
 
 ### "Can I build here?"
 
 Three guided checks: for a landowner approached by a developer, for a developer weighing one site, and for an investor testing a pipeline. Each ends with a one-page summary and questions for an adviser.
 
-### GB rules cards
+### Know the rules
 
-Dated cards on the consent route by nation and size, Gate 2 milestones and battery fire-safety guidance, each with a review date.
+Dated cards on the consent route by nation and size, Gate 2 milestones and battery fire-safety guidance.
 
-### Data API and MCP server
+### Feed your own tools and AI assistants
 
-Your own tools and AI assistants can read projects, substations, map cells, company holdings and changes, each with its source, date and licence, through per-organisation keys.
+Through the data API and MCP server, your tools and assistants can read projects, substations, map cells, company holdings and changes.
 
 SEE IT IN USE
 
@@ -1018,19 +1018,19 @@ A slider for project size moves from 90 to 110 MWac. As it passes 100 MWac the c
 
 PUSH BACK
 
-## How can my team challenge the answer?
+## What if my team disagrees with the ranking?
 
-Analysts push back, so every challenge is a control on screen, and each one re-ranks the map.
+Change what you believe about the market and the ranking follows, so the answer reflects your view.
 
-### Change the assumptions
+### Test your own assumptions
 
-Change the technology, weights, exclusion rules, project size, revenue route, capex and hurdle rate. Draw areas on the map to include or exclude, or override a single substation ("this one is full") with a note saying why.
+Change the technology, project size, revenue route, capex and hurdle rate. Draw areas on the map to include or exclude, or mark a single substation as full and note why.
 
-### See what changed
+### See what moved and why
 
-After each edit, a card lists the sites that entered or left the top of the list, how far each moved and which assumption moved it.
+After each change, a card lists the sites that entered or left the top of the list, how far each moved and which assumption caused it.
 
-### Save and share scenarios
+### Share the scenario
 
 Save a set of assumptions under a name, compare two side by side and send one to a colleague as a link.
 
@@ -1082,17 +1082,17 @@ Every claim in a seller's list checked against the public record and marked conf
 
 Order
 
-### Why it costs more than a land tool
+### What do I get for the price?
 
-Grid, planning, capacity holders and economics joined in one answer for each site.
+One answer for each site that joins grid, planning, capacity holders and economics.
 
-The source, version, date and licence of every number, so a committee or lender can check it.
+Evidence that a committee or lender can check.
 
-Who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database, joined to company groups.
+A view of who holds capacity at each substation and how firm their position is.
 
-Weekly snapshots of the registers, so new queue entries, Gate moves and sales of project companies show up.
+Alerts when new queue entries, Gate moves and sales of project companies appear.
 
-Any assumption can be changed, and the app shows which sites moved and why.
+Assumptions you can change, with a note of which sites moved and why.
 
 ### Subscriptions
 
@@ -1132,205 +1132,45 @@ We confirm every order by email and invoice after confirmation. Orders are subje
 
 LIMITS
 
-## What does Site Finder not do yet?
+## What does Site Finder not cover?
 
-The app shows these on screen too.
-
-Aerodrome and Ministry of Defence safeguarding zones are not published as open data, so Site Finder does not assess them. Check with the aerodrome operator, the MoD safeguarding team and, for wind, the NATS self-assessment maps before you commit to a site.
-
-Connection costs are indicative estimates for comparing sites. A network operator quote will differ.
-
-Headroom is only as complete as what each network operator publishes. Where nothing is published, the app marks the site as unknown.
-
-Company holdings cover projects and grid connections. HM Land Registry data on company-owned land is not included, and nor are land titles, so Site Finder does not show who owns a particular field.
-
-Coverage is Great Britain. Northern Ireland is not included.
-
-ROADMAP
-
-## What is on the Site Finder roadmap?
-
-Everything described above this section is in the app today. Early-access items are available to API customers on request and are not yet part of the live product. Planned items are grouped by quarter, and their timing can change.
-
-early access Available to API customers on request
-
-planned Scoped, timing can change
-
-exploring Under consideration, no date
-
-### Live in the app today
-
-Solar, battery and hybrid siting
-
-Onshore wind siting
-
-Evidence for every number
-
-Pushback with what changed
-
-Site upload and screening
-
-Pipeline board
-
-Documents
-
-GB rules cards
-
-Company holdings
-
-Change feed and weekly digest
-
-Diligence
-
-"Can I build here?" journeys
-
-Weekly data refresh
-
-Data API and MCP server
-
-### Early access and what comes next
-
-### EARLY ACCESS
-
-early access
-
-#### Screening call
-
-Send a boundary or a list of sites and get the verdict and reasons back as data. Available to API customers on request.
-
-early access
-
-#### Report call
-
-Request a landowner check, feasibility report or portfolio screen and receive the PDF and its data when it is ready. Available to API customers on request.
-
-early access
-
-#### Change webhooks
-
-Signed pushes for new connection applications, Gate changes, holder changes and planning moves on a watchlist. Available to API customers on request.
-
-### Q1 2027
-
-planned
-
-#### Per-site yield with P50 and P90
-
-Yield feeds the price needed to hit the hurdle, and lenders and committees ask for P90.
-
-planned
-
-#### CfD AR8 and AR9 eligibility screen
-
-Flags whether a site's consent status and Gate 2 position fit the next allocation rounds.
-
-### Q2 2027
-
-planned
-
-#### Aerial imagery checks
-
-Shows current aerial imagery beside each site, to catch quarries, new housing and other land use the datasets lag behind.
-
-### Q3 2027
-
-planned
-
-#### Network-operator budget estimates and cable routing
-
-Route-based cable costs and budget estimates from charging statements, because connection cost is the largest uncertainty in the early numbers.
-
-### LATER
-
-planned
-
-#### Online checkout
-
-Pay for a one-off report online. Until then, orders come by email and we invoice.
-
-exploring
-
-#### Council political context
-
-Council control and policy stance beside the planning record, where the data licence allows it.
-
-exploring
-
-#### Northern Ireland
-
-Coverage of Northern Ireland using its own planning, grid and land datasets.
+Site Finder screens sites. It does not replace a network operator's connection offer, planning advice or a site visit, and its connection costs are estimates for comparing sites. Where a network operator publishes no headroom, the site is marked unknown. Aerodrome and Ministry of Defence safeguarding is not assessed, so check it with the aerodrome operator, the MoD safeguarding team and, for wind, the NATS self-assessment maps before you commit. Coverage is Great Britain, and Site Finder does not show who owns a particular field.
 
 FREQUENTLY ASKED
 
-## Questions about Site Finder
+## Questions buyers ask about Site Finder
 
-Does Site Finder tell us where to build?
+How does Site Finder help me find sites?
 
-It ranks candidate land and shows the evidence for each rank, and your team makes the decision. Use the list to start a conversation with a land agent and the network operator. Planning advice and site visits still come first.
+Tell it what you want to build and it ranks land across England, Scotland and Wales, with the grid, planning and economics behind each rank. Your team can spend survey money on sites that already look viable.
 
-Which technologies does Site Finder cover?
+Which technologies and areas does it cover?
 
-Solar, battery storage, solar with battery on a shared connection, and onshore wind, across England, Scotland and Wales. For wind, each site shows the modelled mean wind speed at 100 m from the Global Wind Atlas beside noise buffers, peat and designations.
+Solar, battery storage, solar with battery on a shared connection, and onshore wind, across Great Britain. Northern Ireland is not covered.
+
+Does it replace a grid connection offer or planning advice?
+
+No. It narrows where to look. Connection costs are indicative, so a network operator quote will differ, and planning advice, a site visit and aerodrome or Ministry of Defence checks still come before you commit.
+
+Can it tell me whether a site can connect soon?
+
+Where the network operator publishes a headroom figure, Site Finder shows it with its date, and where it does not, the site is marked unknown. It also shows who already holds capacity at the substation, and you can assume a Gate 2 offer and see how the ranking changes.
+
+Can I test my own assumptions?
+
+Yes. Change the technology, project size, revenue route, capex or hurdle rate, or mark a substation as full. The ranking updates and a card lists which sites moved and why.
 
 How much does Site Finder cost?
 
 Prices exclude VAT. A landowner check is £195 a report. A site feasibility report is £1,950 a site, and the solar and battery hybrid add-on is £500 on top. A portfolio screen is £7,500 for up to 50 sites and £120 for each extra site. The Site Finder platform is from £30,000 a year for 5 seats, Market Watch from £15,000 a year, and the data API and MCP from £18,000 a year. Enterprise terms are on quote.
 
-Why does Site Finder cost more than a land tool?
+How do I order, and how long does a report take?
 
-Each site gets one answer that joins grid, planning, capacity holders and economics, and every number carries its source, version, date and licence, so a committee or lender can check it. Site Finder shows who holds capacity at each substation and how firm their position is, from the TEC register, the embedded capacity registers and the Renewable Energy Planning Database joined to company groups. Weekly snapshots of the registers show new queue entries, Gate moves and sales of project companies, and you can change any assumption and see which sites moved.
+Press Order on the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and the details we need listed in the body. We confirm the order by email and invoice after confirmation. A landowner check and a site feasibility report each take 3 working days, a hybrid add-on comes with its feasibility report, and a portfolio screen takes 5 working days. Orders are subject to our terms, sent with the invoice.
 
-How do I order a report or a subscription?
+Who is Site Finder for, and can I see a demo first?
 
-Press Order on the product in the pricing section. Your email app opens a message to tarun@arithim.com with the product in the subject and the details we need listed in the body. We confirm the order by email and invoice after confirmation. Orders are subject to our terms, sent with the invoice.
-
-How long does a report take?
-
-A landowner check and a site feasibility report each take 3 working days. A hybrid add-on comes with its feasibility report. A portfolio screen takes 5 working days.
-
-Can our AI assistant use Site Finder data?
-
-Yes. The data API and MCP server let your own tools and AI assistants read projects, substations and grid nodes, map cells, company groups and holdings, changes and licences. Every record carries its source, date and licence, and each organisation has its own keys and usage limits. A screening call, a report call and change webhooks are in early access, available to API customers on request.
-
-Where does the data come from?
-
-From open datasets published by UK government bodies, NESO and the distribution network operators, plus Companies House, the Global Wind Atlas, and open land cover, solar resource and mapping data. Every source is licensed for commercial use. The data refreshes every week, and the app lists every dataset with its version, retrieval date and licence.
-
-How reliable are the connection costs?
-
-They are indicative. They are good for comparing one site with another and for spotting when a larger project would need a higher connection voltage, and a network operator quote will differ.
-
-Does it know whether a substation has spare capacity?
-
-Where the network operator publishes a headroom figure, the tool uses it and shows its date. Where it does not, the site is marked unknown, and the app warns you when most of a shortlist has no published headroom. You can override the figure for any substation and note why. The app also shows who already holds capacity at the node.
-
-Does it account for Gate 2 and Clean Power 2030?
-
-Yes. A site that is unlikely to get capacity in the current window is shown with a later energisation year. You can assume a Gate 2 offer is secured and see how the ranking changes, and the pipeline board keeps a clock for each site's Gate 2 milestones.
-
-Can we change the assumptions?
-
-Yes. Technology, weights, exclusion rules, project size, revenue route, capex, hurdle rate and single-substation overrides are all editable. After each change the tool re-ranks and shows which sites moved and why. Every result comes from a rule you can open and read.
-
-Can it show how a local authority has handled applications?
-
-Yes. Search the planning record by local authority for decisions, approval rates and recent schemes. A refused scheme near a site lowers its score, and the evidence names it.
-
-Does Site Finder check its rankings against real planning outcomes?
-
-Yes. The app compares its rankings with how solar schemes have fared at planning and shows you the result. It labels the check as a diagnostic.
-
-Does it check airfields and military safeguarding?
-
-It excludes mapped aerodromes and military land. Official aerodrome and Ministry of Defence safeguarding zones are not published as open data, so check them with the aerodrome or the MoD before you commit to a site. For wind, also check the NATS self-assessment maps.
-
-Does it cover Northern Ireland or show who owns the land?
-
-Coverage is Great Britain, and Northern Ireland is on the roadmap. Site Finder shows which company groups hold projects and grid connections, by substation and planning authority. It does not include land titles, so it does not show who owns a particular field.
-
-Can we see a demo before we subscribe?
-
-Yes. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about. You can also order a subscription straight away from the pricing section.
+Developers and their land teams, funds and acquisition analysts, landowners and land agents, and first-time developers and consultants. Book a demo and we run Site Finder on a brief you choose: the technology, the project size, how you want to connect and the regions you care about.
 
 ## Want to see Site Finder run on your own brief?
 
@@ -1504,7 +1344,7 @@ It gives you the factual inventory those frameworks and questionnaires ask for. 
 
 Which models can it flag, for example DeepSeek?
 
-Whichever your policy rules out. Governments and customers have started naming particular models. In October 2026 the US Department of Homeland Security told federal civilian agencies to remove DeepSeek products and third-party tools built on them. We flag whatever you list.
+Whichever your policy rules out. Governments and customers have started naming particular models, and we flag whatever you list.
 
 Is the report a certificate?
 
@@ -1514,9 +1354,9 @@ How do we know the answer is complete?
 
 The report says what was covered, what was not and our confidence in each finding. Where it is partial, we tell you, and we tell you what would close the gap.
 
-Does a UK firm have to do this?
+Do UK firms have to keep an AI model inventory?
 
-As of October 2026 we know of no UK rule that bans a specific AI model. Customers, suppliers and risk teams are asking the question, and some US rules reach UK suppliers. We will tell you if you do not need it.
+Not by a single UK rule that we can point to. Customers, suppliers and risk teams are asking the question, and frameworks such as ISO 42001 expect a register of AI in use. We will tell you if you do not need it.
 
 How long does it take, and what does it cost?
 
@@ -1542,13 +1382,13 @@ SERVICES
 
 # What can Arithim build or fix for your business?
 
-Six services for operations, finance and IT teams. Each one ends with something your team runs itself, and each section below shows a short example of the work.
+Six services for operations, finance and IT teams, each aimed at a result: time saved, reports you trust, decisions backed by evidence and a team that runs the work itself. Each section below shows a short example.
 
 01
 
 ## AI Readiness & Strategy →
 
-We look at how each team works, check whether its data is good enough, and give you a ranked list of AI projects worth building, with the risks and controls each one needs.
+Not sure where AI is worth it? We look at how each team works, check whether its data is good enough, and give you a ranked list of projects worth building, with the risks and controls each one needs.
 
 Workflow analysisData readinessRanked use casesRisk & governance
 
@@ -1556,7 +1396,7 @@ Workflow analysisData readinessRanked use casesRisk & governance
 
 ## AI Systems & Automation →
 
-We automate document-heavy work. Invoices, forms and reports are read, checked and sent to the right person, and staff can ask questions of your own documents. Built on a 90-day model.
+Less time spent on invoices, forms and reports. They are read, checked and sent to the right person, and your staff can ask questions of their own documents. Built on a 90-day model.
 
 Document processingAnswers from your documentsIntegrationsMonitoring
 
@@ -1564,7 +1404,7 @@ Document processingAnswers from your documentsIntegrationsMonitoring
 
 ## SAP ERP Intelligence Layer →
 
-We read from your existing SAP ERP and add the reporting and automation it lacks, without replacing or changing the core system.
+Reporting on SAP ERP your team can trust, including month-end reporting, without replacing or changing the core system. We read from your existing SAP ERP and add the reporting and automation it lacks.
 
 No core replacementProcess automationOperational reporting
 
@@ -1572,7 +1412,7 @@ No core replacementProcess automationOperational reporting
 
 ## AI-Optimised Websites →
 
-We structure your website so people, search engines and AI assistants can read it, which makes AI answers more likely to cite you.
+Be found and quoted by AI search. We structure your website so people, search engines and AI assistants can read it, which makes AI answers more likely to cite you.
 
 Semantic structureStructured metadataTechnical SEOAccessibility
 
@@ -1580,7 +1420,7 @@ Semantic structureStructured metadataTechnical SEOAccessibility
 
 ## Training & Enablement →
 
-Practical workshops and a plan for running the work, so your team can operate and improve its AI systems after we leave.
+AI training for teams: practical workshops and a plan for running the work, so your team can operate and improve its AI systems after we leave.
 
 Practical workshopsOperating modelsGovernance guidance
 
@@ -1588,7 +1428,7 @@ Practical workshopsOperating modelsGovernance guidance
 
 ## Regulatory & Technical Systems →
 
-For compliance-heavy work, we build workflows where each approval passes explicit checks and the evidence is kept at every step.
+Approvals you can defend. For compliance-heavy work, each approval passes explicit checks and the evidence is kept at every step.
 
 Structured workflowsCompliance coordinationEvidence handling
 
@@ -1636,45 +1476,63 @@ Call us
 
 ## Page content
 
-Know exactly where AI is worth it.
+Where is AI worth it in your business?
 
-A ranked AI plan you can build from.
+A ranked AI plan your team can build from.
 
-An AI readiness assessment tells you where AI will pay off in your organisation and what you need in place to build it. We study your workflows, check how ready your data is, and give you a ranked list of AI projects with the design, governance plan and roadmap to deliver them.
+An AI readiness assessment shows you which AI use cases are worth doing in your organisation, which one to start with and what has to be in place first. You finish with a ranked plan, backed by evidence from your own workflows, that your team can act on.
 
-We map your current workflows to see where AI could help.
+We talk through how work gets done today and where time is lost.
 
 We check your data and tell you plainly what is usable now and what needs work first.
 
-We rank the possible use cases so you know which ones to do first.
+We rank the use cases so you know which to do first and which to leave.
 
-We design the target architecture: the systems needed to run the top use cases.
+We hand over the plan: design, governance and roadmap.
 
-We set out the risks, the governance to run the systems safely, and a roadmap for building them.
+A clear picture of how work gets done today
 
-A map of your current workflows
+A plain view of how ready your data is
 
-An assessment of how ready your data is
+A ranked list of AI use cases, best first
 
-A ranked list of AI use cases
+A design for the systems that would run the top ones
 
-A design for the systems that will run them
+A risk and governance plan, so you can run them safely
 
-A risk and governance plan
+A roadmap your team can build from
 
-A roadmap for building it
+Q: What is an AI readiness assessment?
+
+A: A short piece of work that tells you where AI will pay off in your organisation and what you need in place to use it. It ends in a ranked plan rather than a list of ideas.
 
 Q: How long does an AI readiness assessment take?
 
-A: Most take a few weeks. At the end you have a ranked list of use cases and a target architecture you can build against.
+A: Most take a few weeks.
 
 Q: Do we need clean data before we start?
 
 A: No. Checking your data is part of the assessment, and we tell you honestly what is usable now and what needs work.
 
-Q: What do we get at the end of an AI readiness assessment?
+Q: What do we get at the end?
 
-A: A prioritised plan. It covers the use cases worth doing, the architecture to support them and the governance to run them safely.
+A: A prioritised plan: the use cases worth doing, the design of the systems to support them, the governance to run them safely and a roadmap to build against.
+
+Q: What if AI is not the right answer for us?
+
+A: We will say so. The assessment is there to tell you honestly what is worth building, and that can include not building.
+
+Q: Who needs to be involved from our side?
+
+A: The people who know how the work really gets done. We keep it to conversations and the information you already have.
+
+Q: What does it cost?
+
+A: It is scoped first, after a conversation about what you need. We do not publish prices.
+
+Q: Do we have to build with you afterwards?
+
+A: No. The plan is yours and is written so your team or another supplier can build from it. Most of our engagements do begin with a readiness assessment.
 
 ---
 
@@ -1706,33 +1564,31 @@ Call us
 
 ## Page content
 
-AI built into your operations on a 90-day model.
+Less manual work, inside the systems you already use.
 
-Assistants and automations your team actually uses.
+Workflow automation your team will actually use.
 
-We build AI tools and workflow automation into the systems and operations you already run. That can mean tools that read documents and pull out the information you need, assistants that answer questions from your own information, dashboards, and the data pipelines behind them. Most builds go live on a 90-day model, and we design each one so your team can audit and maintain it.
+We take the manual, repetitive work out of your operations: reading documents and pulling out what you need, answering questions from your own information, and keeping reports current. It runs inside the systems you already have, and your team can audit and maintain it. Most builds go live on a 90-day model.
 
-We start with the use case that offers the most value and design it with you.
+We agree the use case worth doing first and what good looks like.
 
-We build the data pipelines that feed it.
+We build it and connect it to the systems you already use.
 
-We build the tool itself, such as document processing, a knowledge assistant or a dashboard.
+Your team tries it on real work and we adjust.
 
-We connect it to the systems you already use, so you do not have to move everything.
+It goes live, with a playbook for your team to keep it running.
 
-We hand over a monitoring playbook so your team can keep it healthy after launch.
+Hours back from repetitive document and data work
 
-A designed use case, starting with the most valuable one
+Document automation that reads files and extracts what you need
 
-Data pipelines that feed your AI tools
+Assistants that answer questions from your own information
 
-Document processing that reads and extracts information
-
-Knowledge assistants that answer questions from your own information
+Dashboards that stay current without manual effort
 
 Connections to the systems you already use
 
-A monitoring playbook for after launch
+A playbook so your team can keep it healthy after launch
 
 Q: How long does it take to build an AI automation?
 
@@ -1742,9 +1598,29 @@ Q: Will it work with our existing systems?
 
 A: Yes. We build into your current systems and connect to them, so you do not have to move everything.
 
+Q: What kinds of work can you automate?
+
+A: Reading documents and extracting information, answering questions from your own information, dashboards and the data behind them. We will tell you honestly if something is not worth automating.
+
+Q: Will it replace our people or our systems?
+
+A: No. It takes repetitive work off your team and sits alongside the systems you already run. People stay in charge of the decisions.
+
 Q: What happens after launch?
 
-A: You get a monitoring playbook that keeps the system healthy and helps it keep improving.
+A: You get a monitoring playbook that keeps the system healthy and helps it keep improving, so your team can run it.
+
+Q: Can we check what it has done?
+
+A: Yes. We design each build so your team can audit and maintain it.
+
+Q: What does it cost?
+
+A: It is scoped first, after a conversation about the work and the systems involved. We do not publish prices.
+
+Q: Who is involved from our side?
+
+A: Someone who owns the process today, and whoever looks after the systems it will connect to.
 
 ---
 
@@ -1776,25 +1652,29 @@ Call us
 
 ## Page content
 
-Compliance workflows with the evidence built in.
+Compliance workflows with the evidence already in place.
 
-Automation that keeps its own audit trail.
+An audit trail that builds itself as the work gets done.
 
-We build structured workflows for regulated, compliance-heavy operations. The system coordinates the work between teams and records the evidence as each item moves through review and approval, while people still make the decisions that need judgment. We build around your legacy systems, your controls and the workflows your regulators expect.
+We build compliance workflows for regulated, compliance-heavy operations, so approvals are clearer, evidence is ready when it is asked for and the work moves between teams without chasing. People still make the decisions that need judgment. We build around your legacy systems, your controls and the workflows your regulators expect.
 
-We start from your real constraints: legacy systems, existing controls and the workflows your regulators expect.
+We start from your real constraints: legacy systems, existing controls and what your regulators expect.
 
-We turn the process into a structured workflow with clear steps, such as submit, review and approve.
+We turn the process into clear steps, such as submit, review and approve.
 
-We add decision points where a person signs off, so judgment stays with your people.
+We put human review where a person has to sign off.
 
-The system captures evidence at each step and keeps an audit log, designed in from the start.
+Evidence and an audit trail are built in from the start.
 
-Structured workflows for regulated processes
+Compliance workflows that match how your teams work
 
-Coordination of compliance work across teams
+Work that moves between teams without chasing
 
-Evidence capture and an audit log
+Evidence gathered as the work happens
+
+An audit trail you can show when asked
+
+Human review at the points that need judgment
 
 Q: Is it ready for audit?
 
@@ -1806,7 +1686,27 @@ A: Yes. We build around your real constraints, including legacy systems, existin
 
 Q: How do people stay in control of decisions?
 
-A: People make every decision that needs judgment. Decision points require a person to sign off, and the system handles the coordination and evidence.
+A: People make every decision that needs judgment. Decision points require a person to sign off, and the system handles the coordination and the evidence.
+
+Q: Will it replace our compliance team or our systems?
+
+A: No. It gives your team a clearer way to run the work and sits around the systems you already have.
+
+Q: Does it give legal or regulatory advice?
+
+A: No. It organises the work and the evidence. What your regulators require is for you and your advisers to decide.
+
+Q: How long does it take?
+
+A: It depends on the process and the systems involved, so we agree the timing once we have scoped it.
+
+Q: What does it cost?
+
+A: It is scoped first, after a conversation about your process. We do not publish prices.
+
+Q: Who is involved from our side?
+
+A: The people who own the process and the controls today, and whoever signs off in your organisation.
 
 ---
 
@@ -1838,37 +1738,59 @@ Call us
 
 ## Page content
 
-Get more from the SAP you already run.
+Reporting on SAP ERP your team can trust.
 
-Modernise SAP ERP without touching the core.
+SAP reporting without replacing the core.
 
-We add a reporting and automation layer on top of your existing SAP ERP system. It turns transactional data that is currently scattered across SAP into reports and decision support your operations team can use, and it automates process steps that people now do by hand. Your SAP core stays as it is, so you avoid a risky and expensive replacement.
+Your SAP ERP already holds the figures your operations team needs. We add a reporting layer on top of it so those figures reach people as reports they can use, without waiting on manual extracts and spreadsheets. Month-end reporting takes less manual effort, repetitive SAP steps done by hand can be automated, and your core system is not replaced or changed.
 
-We connect a layer to your existing SAP ERP that reads its data and leaves the core unchanged.
+We talk through which SAP reports and routines take the most manual effort today.
 
-We turn the scattered transactional data into operational reports and decision support.
+We agree the reports and decisions that matter most to your team.
 
-We automate repetitive process steps and reports that rely on manual effort today.
+We connect a read-only reporting layer to your existing SAP ERP and build those reports.
 
-Any change the layer makes in SAP is controlled, auditable and reversible.
+Your team starts using them, and we hand over so you can run them yourselves.
 
-Operational reporting from your SAP data
+Reports on your SAP data that your operations team can use
 
-Automation of repetitive SAP process steps
+Month-end reporting with less manual effort
 
-No replacement of your SAP core
+Fewer repetitive SAP steps done by hand
+
+Your SAP core left exactly as it is
 
 Q: Do you replace our SAP system?
 
-A: No. We add reporting and automation on top of your existing SAP ERP and leave the core untouched.
+A: No. We add a reporting layer on top of your existing SAP ERP, and the core system stays as it is.
 
-Q: Is it safe to use on a live production ERP?
+Q: Does it change anything in our SAP?
 
-A: Yes. The layer reads data and coordinates work, and any change it makes is controlled, auditable and reversible.
+A: The reporting is read-only. If you also choose to automate a process step, any change made in SAP is controlled, auditable and reversible.
 
-Q: What can it automate in SAP?
+Q: Is it safe to run next to our live SAP ERP?
 
-A: Repetitive process steps and reports that currently rely on manual effort.
+A: The layer reads data and coordinates work, and we talk through your setup with you before anything is built.
+
+Q: What can it report on?
+
+A: The transactional data in your SAP ERP, turned into reports your team can use for operational decisions. We agree the reports with you at the start.
+
+Q: Can it help with month-end reporting?
+
+A: Reports that rely on manual effort today are the best place to start, and month-end reporting is a natural candidate.
+
+Q: What will it not do?
+
+A: It will not replace, reconfigure or migrate your SAP ERP.
+
+Q: Who needs to be involved from our side?
+
+A: Someone who knows your SAP processes and the people who use the reports.
+
+Q: How much does it cost and how long does it take?
+
+A: Scope and price are agreed after a conversation about what you want to report on.
 
 ---
 
@@ -1900,25 +1822,25 @@ Call us
 
 ## Page content
 
-Your team runs its AI systems without depending on us.
+A team that runs its AI systems without calling us.
 
-AI skills your team keeps after we leave.
+AI training for teams, built on your own work.
 
-We train the teams and leaders who will own and run AI systems day to day, using your own workflows and the systems you actually use. By the end, your team can operate, govern and improve those systems without relying on us.
+AI training for the teams and leaders who will own and run AI systems day to day. Sessions use your own workflows and the systems you actually use, so your people finish able to operate, govern and improve those systems without relying on us.
 
-Practical workshops based on your workflows and systems.
+We agree who will run which systems and what each person needs to be able to do.
 
-Hands-on practice with the systems we build for you.
+Practical workshops based on your own workflows.
 
-A plan for who owns each AI system and how it is run day to day.
+Hands-on practice with the systems you use, including any we build for you.
 
-Guidance on governance, so your team stays in control of how AI is used.
+A plan for who owns each AI system and how it is run day to day, with guidance on governance.
 
-Practical workshops
+A team that can operate, govern and improve your AI systems
 
-A clear plan for who owns and runs each AI system
+Clear ownership of each AI system
 
-Governance guidance
+Governance guidance so your team stays in control of how AI is used
 
 Q: Who is the training for?
 
@@ -1931,6 +1853,22 @@ A: No. It is based on your workflows and the systems you actually use.
 Q: What will our team be able to do afterwards?
 
 A: Operate, govern and improve your AI systems on its own.
+
+Q: What does the governance guidance cover?
+
+A: How your team stays in control of how AI is used, including who owns each system.
+
+Q: Will we depend on you afterwards?
+
+A: We build to hand over. You are left with an operating model and a trained team.
+
+Q: Who from our side needs to be involved?
+
+A: The people who will run the systems, and someone who can tell us which workflows matter most.
+
+Q: How much does it cost and how long does it take?
+
+A: Scope and price are agreed after a conversation about who needs training and on which systems.
 
 ---
 
@@ -1962,41 +1900,61 @@ Call us
 
 ## Page content
 
-A website that people, search engines and AI tools can all read.
+Be found and quoted by AI search.
 
-The website that ChatGPT can actually read.
+A website ChatGPT, Perplexity and Gemini can read.
 
-We structure your website so that people, search engines and AI answer tools such as ChatGPT, Perplexity and Gemini can all understand it. That means a clear page structure, consistent descriptions of your organisation and what it does, and structured metadata (schema) that machines can read. We also cover technical SEO, accessibility and performance.
+When someone asks ChatGPT, Perplexity or Gemini who does what you do, your site needs to be easy for them to understand. We improve how your site is structured and described so people, search engines and AI answer tools can all read it. That is AI search readiness: answer engine optimisation built on clear structure, consistent descriptions and structured data, alongside technical SEO, accessibility and performance.
 
-We organise your pages and headings so the structure of the site is clear.
+We review how your site reads today to people, search engines and AI tools.
 
-We make sure your organisation, products and services are named and described clearly and consistently.
+We tidy the page and heading structure and describe your organisation and services clearly and the same way everywhere.
 
-We add structured metadata (schema) that search engines and AI tools can read.
+We add structured data (schema) that search engines and AI tools can read.
 
-We work on technical SEO, accessibility and performance.
+We cover technical SEO, accessibility and performance.
 
-A clear page and heading structure
+A site that AI answer tools are more likely to understand and reference
 
-Clear, consistent descriptions of your organisation
+Clear, consistent descriptions of your organisation and services
 
-Structured metadata (schema)
+Structured data in place
 
-Technical SEO
+Technical SEO, accessibility and performance improvements
 
-Accessibility and performance improvements
+Usually improvements to the site you have, without a rebuild
 
 Q: Is this just SEO?
 
 A: Partly. It uses the same foundations as SEO, and the aim is to make your organisation easy to understand for people and for machines.
 
-Q: Will AI tools like ChatGPT cite us?
+Q: Will ChatGPT and other AI tools cite us?
 
-A: It becomes more likely. Clear structure, consistent descriptions of your organisation and schema help AI answer tools understand and reference you.
+A: It becomes more likely. We cannot promise citations, but clear structure, consistent descriptions and schema help AI answer tools understand and reference you.
+
+Q: What is answer engine optimisation?
+
+A: Making your site easy for AI answer tools to understand, so they can reference it when someone asks a question you can answer.
+
+Q: What is structured data?
+
+A: Machine-readable labels, known as schema, that tell search engines and AI tools what your organisation, services and FAQs are.
 
 Q: Do you rebuild the whole site?
 
 A: Not necessarily. We often improve the structure and metadata of your existing site.
+
+Q: Does it cover accessibility and speed?
+
+A: Yes. Accessibility and performance are part of the work alongside technical SEO.
+
+Q: Who needs to be involved from our side?
+
+A: Someone who can approve how the organisation is described and give us access to the site.
+
+Q: How much does it cost and how long does it take?
+
+A: Scope and price are agreed after a conversation about your site.
 
 ---
 
