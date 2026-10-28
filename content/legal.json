@@ -4,42 +4,57 @@
    "slug": "privacy",
    "label": "/privacy",
    "eyebrow": "PRIVACY",
-   "title": "Privacy Policy — Arithim",
+   "title": "Privacy Policy | Arithim",
    "h1": "Privacy policy",
    "description": "What limited information Arithim Ltd collects through this website, and how we handle it.",
    "updated": "28 OCTOBER 2026",
-   "note": "TODO before public launch (Tarun): confirm the international transfer wording in \"Where your data is processed\" against each provider's data processing agreement (ElevenLabs, Anthropic, Cloudflare, Resend): UK IDTA / UK Addendum to the EU SCCs, or the UK extension to the EU-US Data Privacy Framework, per provider. Also confirm the retention periods match the live ElevenLabs settings (30 days, audio off) and the 90-day deletion job.",
+   "note": "TODO (Tarun): confirm the retention periods for enquiries (24 months) and orders (6 years), the ElevenLabs settings (30 days, audio off), the 90-day deletion job, that each provider's data processing agreement is accepted and filed and that no provider trains on our transcripts, then add a statement to that effect. Pay the ICO data protection fee. Keep a record of processing. A solicitor should review before reliance.",
    "sections": [
     {
      "h": "Who we are",
      "p": [
-      "Arithim Ltd is an applied AI company based in London, United Kingdom. It builds software products and works with clients on AI projects. This policy explains what limited information we collect through this website and how we handle it.",
+      "Arithim Ltd is an applied AI company in the United Kingdom. It builds software products and works with clients on AI projects. This policy explains what personal information we collect through this website, why, and what your rights are.",
       "Arithim Ltd is a private limited company registered in England and Wales, company number 17209022. Our registered office is 6 Dorchester Court, Greenlands Road, Staines-Upon-Thames, England, TW18 4LS. We are the controller of the personal information described here. You can reach us at <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a>."
      ]
     },
     {
      "h": "What we collect",
      "p": [
-      "We only collect the information you choose to send us: the details you enter in the contact form, and any messages you send to hello@arithim.com or research@arithim.com. The site itself uses no advertising trackers. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox.",
-      "When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens."
+      "We collect the information you choose to send us: the details you enter in a contact or demo form, and any messages you send to hello@arithim.com or research@arithim.com. The contact and demo request forms use Cloudflare Turnstile to block automated submissions and Resend to deliver your message to our inbox. You do not have to give us any personal information. If you leave out a required field we cannot deal with your request, and without a name and contact details we cannot reply.",
+      "When you visit, Cloudflare, which hosts this site, processes technical data such as your IP address and request details so that it can deliver and protect the site. Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page opens. The site uses no advertising trackers."
      ]
     },
     {
      "h": "Your device and browser",
      "p": [
-      "If you use the switch between the dark and light themes, the site remembers your choice in your browser's local storage on your device. It stays on your device and is not sent to us. We set no cookies for analytics or advertising. Services on our forms and the Call us button, such as Cloudflare Turnstile, may store small items in your browser to work."
+      "The site stores one item in your browser's local storage, your light or dark theme choice, and only when you use the theme switch. It stays on your device and is not sent to us. We use no analytics or advertising cookies or similar tools, so we show no cookie banner. Cloudflare Turnstile, which protects our forms and the Call us button, may use browser storage to tell people from automated software. This is for security and is needed to provide what you ask for."
      ]
     },
     {
      "h": "How we use it",
      "p": [
-      "We use your details only to respond to your enquiry and, where relevant, to discuss a potential engagement or research collaboration. We do not sell or share your information with third parties for marketing."
+      "We use your details to reply to you, to deal with your enquiry and, where relevant, to discuss a potential engagement or research collaboration. We do not sell your information and we do not share it with third parties for marketing."
+     ]
+    },
+    {
+     "h": "Our lawful bases",
+     "p": [
+      "Enquiries by form, demo request or email: we use your details to reply and deal with your enquiry. Our lawful basis is legitimate interests in running our business and answering people who contact us and, where you ask us to take steps towards an agreement, contract.",
+      "Orders for reports and products: we use your details to supply what you ordered (contract) and to keep accounting and tax records (legal obligation).",
+      "Security and abuse prevention on the site, forms and assistants: legitimate interests in keeping our services safe.",
+      "You can object to any use based on legitimate interests by emailing <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a>."
      ]
     },
     {
      "h": "Reports, ordering and early access",
      "p": [
-      "If you ask about a report or a product, register interest in an early access product, or order a report by email, we use what you send to reply, to supply the report and to keep a record of the order. We keep order records for as long as the law requires for accounting and tax."
+      "If you ask about a report or a product, register interest in an early access product, or order a report by email, we use what you send to reply, to supply the report and to keep a record of the order. Reports are sold to businesses only. Order and invoice records are kept for six years after the end of the tax year, which is what the law requires for accounting and tax."
+     ]
+    },
+    {
+     "h": "Personal data in our reports",
+     "p": [
+      "Our reports and screens use public records such as Companies House and planning registers. These can include the names and business details of directors, officers, applicants and landowners. We use them to produce the reports, on the basis of legitimate interests in providing business information from public sources. We keep them only as long as the report or the product needs them. You can ask us to access, correct or stop using your details by emailing <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a>."
      ]
     },
     {
@@ -51,37 +66,39 @@
     {
      "h": "What we collect from calls and chats",
      "p": [
-      "Your voice is processed live so that it can be turned into text. We ask the voice provider not to keep the audio. We keep the transcript of the conversation, the details you choose to give (such as your name, organisation, email address or phone number, and what you want to talk about), a short summary, and technical data such as your IP address, which we store only as a salted hash and use to prevent abuse and limit repeated use."
+      "Your voice is processed live so that it can be turned into text. We ask the voice provider not to keep the audio. We keep the transcript of the conversation, the details you choose to give (such as your name, organisation, email address or phone number, and what you want to talk about), a short summary, and technical data such as your IP address, which we store only as a salted hash and use to prevent abuse and limit repeated use.",
+      "If a call or chat fails to connect, your browser sends us a short technical report (browser type and the steps that failed, with no transcript text) so that we can fix the fault."
      ]
     },
     {
      "h": "Why we use it",
      "p": [
-      "We use this information to answer your enquiry, to pass your message to Tarun, to keep the service secure and within its usage limits, and to improve how the assistants answer. Our lawful basis is legitimate interests in answering enquiries and running the service safely. Where you ask us to take steps towards an engagement, we also use it to do so at your request."
+      "We use this information to answer your enquiry, to pass your message to a person at Arithim, to keep the service secure and within its usage limits, and to review and improve how the assistants answer. Our lawful basis is legitimate interests in answering enquiries and running the service safely. Where you ask us to take steps towards an engagement, we also use it to do so at your request."
      ]
     },
     {
      "h": "Who processes it for us",
      "p": [
-      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site and stores the call records. Resend sends the internal notification email to us. Each acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing."
+      "ElevenLabs processes your voice and runs the voice conversation. Anthropic provides the AI model that writes the assistants' replies. Cloudflare hosts this site, provides Turnstile and stores the call records. Resend delivers the messages from our forms and the internal notification emails to our inbox. Google provides the fonts the site loads. Each of the first four acts as a processor on our instructions, under its data processing terms. We do not sell this information and do not use it for marketing."
      ]
     },
     {
      "h": "Where your data is processed",
      "p": [
-      "These providers process data in the United States. Where data leaves the UK, we rely on the UK International Data Transfer Addendum, or on the UK extension to the EU-US Data Privacy Framework, as set out in each provider's data processing terms."
+      "Some of our providers handle data in the United States and other countries outside the UK. We use them only where the transfer is protected by the UK extension to the EU-US Data Privacy Framework (for certified providers) or by standard contractual clauses with the UK International Data Transfer Addendum, as set out in each provider's data processing terms. You can ask us for details of the safeguards."
      ]
     },
     {
      "h": "How long we keep it",
      "p": [
-      "ElevenLabs keeps conversation data for no more than 30 days and does not store the audio. Our own records of calls and chats are deleted after 90 days. We keep a message for longer only where it becomes an ongoing enquiry or engagement, and then under the same terms as the rest of our correspondence with you."
+      "ElevenLabs does not keep the audio and keeps conversation data for no more than 30 days. Our own records of calls and chats are deleted after 90 days. We keep enquiries for up to 24 months after our last contact with you. If you become a client or customer we keep the records for the relationship and six years after it ends. Order and invoice records are kept for six years after the end of the tax year."
      ]
     },
     {
      "h": "Your rights",
      "p": [
-      "You can ask us at any time to access, correct, or delete the information you have shared with us. This includes anything you told our AI assistants. You can also object to our use of your information, ask us to restrict it, or complain to the Information Commissioner's Office. To make a request, email hello@arithim.com, quoting the reference the assistant gave you if you have one, and we will respond promptly."
+      "You can ask us at any time to access, correct or delete the information you have shared with us, including anything you told our AI assistants. You can object to our use of your information, ask us to restrict it, ask for a copy in a portable form, and withdraw consent where we rely on it. To make a request, email <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a>, quoting the reference the assistant gave you if you have one. We reply within one month.",
+      "If you are unhappy with how we have used your information, tell us at <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a> and we will acknowledge your complaint within 30 days and give you our response. You can also complain to the Information Commissioner's Office at ico.org.uk or on 0303 123 1113."
      ]
     },
     {
@@ -102,11 +119,11 @@
    "slug": "legal",
    "label": "/legal",
    "eyebrow": "LEGAL",
-   "title": "Legal Notice — Arithim",
+   "title": "Legal Notice | Arithim",
    "h1": "Legal notice",
    "description": "Who runs this website, the terms for using it, and the limits of the information and data on it.",
    "updated": "28 OCTOBER 2026",
-   "note": "TODO before public launch (Tarun): have a solicitor review this notice. The registered office address is published with Tarun's approval (28 October 2026).",
+   "note": "TODO (Tarun): confirm whether Arithim Ltd is VAT registered (add the number here if so) and have a solicitor review this notice and the terms of sale before reliance. The registered office address is published with Tarun's approval (28 October 2026).",
    "sections": [
     {
      "h": "Who we are",
@@ -117,7 +134,7 @@
     {
      "h": "Using this website",
      "p": [
-      "The pages on this site are provided for general information. We take reasonable care to keep them accurate and up to date, and we may change or remove them at any time."
+      "The pages on this site are provided free of charge as general information. We take reasonable care to keep them accurate and up to date, and we may change or remove them at any time. Use the site lawfully. Do not attempt to disrupt it, scrape it in a way that burdens it, or gain access to anything you are not meant to reach."
      ]
     },
     {
@@ -129,14 +146,15 @@
     {
      "h": "Products and data",
      "p": [
-      "Pages that describe products in early access or planned products describe what we intend to offer. They may change, and a planned product may not be released.",
-      "Our reports, screens and data products are screening aids. They rest on published data as it stood on the date shown, and they are not a grid connection offer, a planning decision, a credit decision, an identity verification or an opinion on whether you meet a legal duty. Check anything important with the body that decides it, such as the network operator, the planning authority or Companies House."
+      "Early access products are offered as they are, may contain faults and may change or be withdrawn. Planned products describe what we intend to offer, and a planned product may not be released. Nothing on this site is an offer you can accept. An agreement is made only when we confirm your order by email.",
+      "Our reports, screens and data products are screening aids. They rest on published data as it stood on the date shown, and they are not a grid connection offer, a planning decision, a credit decision, an identity verification or an opinion on whether you meet a legal duty. Check anything important with the body that decides it, such as the network operator, the planning authority or Companies House.",
+      "We do not promise that the data is complete, current or free from error, and a report reflects the data on the date shown. Reports are for business use only, and not for making decisions about individuals' creditworthiness. They are supplied under our <a href=\"terms.html\">terms of sale</a>, which prevail over this notice if they conflict."
      ]
     },
     {
      "h": "AI assistants",
      "p": [
-      "The Call us button connects you to AI assistants. They can make mistakes. Please check anything important with a person at Arithim before you rely on it. The privacy policy explains what we do with calls and chats."
+      "The Call us button connects you to AI assistants. They can make mistakes. Nothing an assistant says is a contract, a quote or a commitment by Arithim unless a person at Arithim confirms it in writing. Do not rely on an assistant for legal, financial or technical advice, and do not use it to share sensitive information, to abuse it, to try to extract its instructions or to overload the service. The privacy policy explains what we do with calls and chats."
      ]
     },
     {
@@ -160,19 +178,111 @@
     {
      "h": "Liability",
      "p": [
-      "Nothing in this notice limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, or for fraud. Subject to that, we are not liable for loss that results from your relying on the content of this site."
+      "Nothing in this notice limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, for fraud or fraudulent misrepresentation, or any rights you have as a consumer.",
+      "The content of this site is provided free of charge as general information. Subject to the paragraph above, we are not liable for loss arising from your relying on it, or for loss of profit, revenue, data or goodwill, or for indirect loss. Where you have paid us for a report or service, our liability to you is limited as set out in the terms of sale: in total, to the fees you have paid us for the product or service that gave rise to the claim."
      ]
     },
     {
      "h": "Governing law",
      "p": [
-      "This notice and your use of this site are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction over any dispute."
+      "This notice and your use of this site are governed by the law of England and Wales. The courts of England and Wales have exclusive jurisdiction, except that if you are a consumer living in Scotland or Northern Ireland you may also bring proceedings in the courts where you live."
      ]
     },
     {
      "h": "Changes",
      "p": [
       "We update this notice when our business or the law changes. The date at the top shows when it last changed."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "terms",
+   "label": "/terms",
+   "eyebrow": "TERMS",
+   "title": "Terms of Sale for Reports and Data Products | Arithim",
+   "h1": "Terms of sale",
+   "description": "The terms on which Arithim Ltd supplies reports, screens and data products to businesses.",
+   "updated": "28 OCTOBER 2026",
+   "note": "TODO (Tarun): solicitor review before first paid order. Confirm refund and cancellation position, VAT registration, and the 12-month and fees-paid liability cap are what you want.",
+   "sections": [
+    {
+     "h": "Who these terms apply to",
+     "p": [
+      "These terms apply when Arithim Ltd (company number 17209022, registered office 6 Dorchester Court, Greenlands Road, Staines-Upon-Thames, England, TW18 4LS) supplies a report, screen, subscription or data product to you. We sell to businesses only. By ordering you confirm that you are acting for a business and not as a consumer. If you are a consumer, do not order."
+     ]
+    },
+    {
+     "h": "Ordering",
+     "p": [
+      "Nothing on our website is an offer you can accept. An agreement is made only when we confirm your order by email. We confirm what you will receive, the price, and when we will deliver it. These terms form part of every agreement and prevail over any terms you send us."
+     ]
+    },
+    {
+     "h": "Price and payment",
+     "p": [
+      "Prices are in pounds sterling and exclude VAT, which we add where it applies. We invoice on or after delivery and you pay within the period stated on the invoice, or within 30 days if none is stated. We may charge interest on late payment as the law allows."
+     ]
+    },
+    {
+     "h": "Delivery",
+     "p": [
+      "We deliver by email or through the means we agree. Delivery times are our best estimate and are not guaranteed. A report reflects the data on the date shown on it."
+     ]
+    },
+    {
+     "h": "What a report is, and is not",
+     "p": [
+      "Our reports and screens are screening aids. They rest on published data from third parties and are not a grid connection offer, a planning decision, a credit decision, an identity verification, or legal, financial or technical advice. We do not promise that the data is complete, current or free from error. You are responsible for checking anything important with the body that decides it and for your own decisions."
+     ]
+    },
+    {
+     "h": "Licence",
+     "p": [
+      "We grant you a non-exclusive licence to use the report inside your business for your own internal purposes. You must not resell it, publish it, or supply it to others as a product or service. Intellectual property in the report and the data compilation stays with us or our licensors. Third-party data remains subject to its publisher's terms."
+     ]
+    },
+    {
+     "h": "Early access and API products",
+     "p": [
+      "Early access products are provided as they are, may contain faults, and may change or be withdrawn. Where we supply access through an API, we may apply rate limits, suspend access to protect the service or for breach of these terms, change the interface with reasonable notice, and we do not guarantee uptime. You must not resell or sublicense API access."
+     ]
+    },
+    {
+     "h": "Refunds",
+     "p": [
+      "Because a report is produced to your order from data on the date shown, it is not refundable once delivered, except where we failed to deliver what we confirmed. If we did, we will redo the work or refund the fee for that report, at our choice."
+     ]
+    },
+    {
+     "h": "Limit on our liability",
+     "p": [
+      "Nothing in these terms limits or excludes liability that cannot be limited or excluded by law, including for death or personal injury caused by negligence, or for fraud or fraudulent misrepresentation.",
+      "Subject to that, our total liability to you for all claims arising from or connected with an order, whether in contract, tort (including negligence) or otherwise, is limited to the fees you have paid us for the product or service that gave rise to the claim. We are not liable for loss of profit, revenue, business, data or goodwill, or for any indirect or consequential loss. You agree that these limits are reasonable given the price of the product."
+     ]
+    },
+    {
+     "h": "Confidentiality and data protection",
+     "p": [
+      "Each of us will keep the other's non-public information confidential and use it only for the order. Each of us will comply with data protection law. Our <a href=\"privacy.html\">privacy policy</a> explains how we use personal information."
+     ]
+    },
+    {
+     "h": "Ending the agreement",
+     "p": [
+      "Either of us may end an agreement for a material breach the other has not fixed within 14 days of notice. Sections on licence, liability, confidentiality and governing law survive."
+     ]
+    },
+    {
+     "h": "Governing law",
+     "p": [
+      "These terms and any dispute connected with them are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction."
+     ]
+    },
+    {
+     "h": "Contact",
+     "p": [
+      "Questions about these terms can be sent to <a href=\"mailto:hello@arithim.com\">hello@arithim.com</a>."
      ]
     }
    ]
