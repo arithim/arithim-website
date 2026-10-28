@@ -60,6 +60,7 @@ HEX_TOKENS = {
     "#556074": "text-6", "#3A4557": "rule-faint", "#E8A13C": "amber", "#F6CE8C": "amber-light",
     "#D8C3A0": "sand", "#7E9B87": "sage", "#8FB29B": "sage-light", "#3B6FD4": "blue", "#AEC2E0": "blue-light",
     "#C6CEDA": "text-1", "#0A1526": "on-accent", "#A9C8B3": "sage-text", "#0F1828": "surface-2", "#131D30": "surface-3", "#0B1320": "surface-4",
+    "#EDEBE4": "cream-2", "#E9DCC2": "sand-2", "#D9C2F0": "lilac", "#B9CDBF": "sage-pale",
 }
 RGB_BASES = {(245, 241, 232): "cream", (232, 161, 60): "amber", (7, 12, 22): "ink", (126, 155, 135): "sage", (59, 111, 212): "blue"}
 FONT_TOKENS = {
