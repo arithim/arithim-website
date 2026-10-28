@@ -141,6 +141,7 @@ PROTECTED = re.compile(r"<script\b.*?</script>|<style\b.*?</style>|<!--.*?-->", 
 TAG_RX = re.compile(r"<([a-zA-Z][\w:-]*)((?:\s+[^\s=>/\"']+(?:\s*=\s*(?:\"[^\"]*\"|'[^']*'|[^\s>\"']+))?)*)\s*(/?)>")
 STYLE_ATTR = re.compile(r"\sstyle=\"([^\"]*)\"")
 CLASS_ATTR = re.compile(r"(\sclass=\")([^\"]*)(\")")
+HOVER_ATTR = re.compile(r"\sstyle-hover=\"([^\"]*)\"")
 PARTIAL_BLOCK = re.compile(r"<!-- partial:(\w+)[^>]*?-->.*?<!-- /partial:\1 -->", re.S)
 GENERATED_REGION = re.compile(r"<!-- (insights|research):start -->.*?<!-- \1:end -->", re.S)  # written by tools/build_insights.py
 
@@ -171,8 +172,29 @@ def styles_in(text: str):
     return found
 
 
+def hovers_in(text: str):
+    found = []
+    def grab(m):
+        s = HOVER_ATTR.search(m.group(0))
+        if s and convertible(s.group(1)):
+            found.append(canon(s.group(1)))
+        return m.group(0)
+    walk(text, grab)
+    return found
+
+
 def name_for(c: str) -> str:
+    if c.startswith("hover:"):
+        return "ah-h-" + hashlib.sha1(c.encode()).hexdigest()[:6]
     return NAMES.get(c) or "ah-" + hashlib.sha1(c.encode()).hexdigest()[:6]
+
+
+def add_class(tag: str, cls: str) -> str:
+    cm = CLASS_ATTR.search(tag)
+    if cm:
+        return tag[:cm.start()] + cm.group(1) + cm.group(2) + " " + cls + cm.group(3) + tag[cm.end():]
+    m = re.match(r"<([a-zA-Z][\w:-]*)", tag)
+    return tag[:m.end()] + f' class="{cls}"' + tag[m.end():]
 
 
 def page_files():
@@ -216,6 +238,10 @@ def build_registry():
     for page in generator_pages():
         for c in styles_in(page):
             registry.setdefault(c, name_for(c))
+    sources = [p.read_text(encoding="utf-8") for p in [*sorted(ROOT.glob("*.html")), *PARTIALS, *TEMPLATES]] + generator_pages()
+    for text in sources:
+        for h in hovers_in(text):
+            registry.setdefault("hover:" + h, name_for("hover:" + h))
     for c, n in NAMES.items():  # strings written by Python (the nav in build_insights.py) and named by hand
         registry.setdefault(c, n)
     names = collections.Counter(registry.values())
@@ -228,6 +254,11 @@ def build_registry():
 def rewrite(text: str, registry: dict) -> str:
     def fix(m):
         tag = m.group(0)
+        h = HOVER_ATTR.search(tag)
+        if h and convertible(h.group(1)):
+            hcls = registry.get("hover:" + canon(h.group(1)))
+            if hcls:
+                tag = add_class(tag[:h.start()] + tag[h.end():], hcls)
         s = STYLE_ATTR.search(tag)
         if not s:
             return tag
@@ -275,8 +306,9 @@ def used_alphas(texts) -> set:
 def class_block(registry: dict) -> str:
     lines = [CLS_START]
     for c, name in sorted(registry.items(), key=lambda kv: kv[1]):
-        decls = ";".join(tokenise_decl(d) for d in c.rstrip(";").split(";"))
-        lines.append(f".{name}.{name} {{ {decls}; }}")
+        hover = c.startswith("hover:")
+        decls = ";".join(tokenise_decl(d) for d in (c[6:] if hover else c).rstrip(";").split(";"))
+        lines.append(f".{name}.{name}{':hover' if hover else ''} {{ {decls}; }}")
     lines.append(CLS_END)
     return "\n".join(lines)
 
@@ -349,6 +381,10 @@ def main():
             text = GENERATED_REGION.sub("", PARTIAL_BLOCK.sub("", p.read_text(encoding="utf-8")))
             dup = styles_in(text)
             raw = [m for m in re.findall(r'\sstyle="([^"]*)"', text) if convertible(m) and any(h.upper() in HEX_TOKENS for h in HEX_RX.findall(m))]
+            hov = hovers_in(text)
+            if hov:
+                bad += 1
+                print(f"{p.name}: {len(hov)} style-hover attributes; they are hover rules in site.css")
             if dup or raw:
                 bad += 1
                 print(f"{p.name}: {len(dup)} inline styles, {len(raw)} inline styles with raw token colours")

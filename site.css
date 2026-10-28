@@ -1327,6 +1327,14 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-footer.ah-footer { background:var(--ah-ink-deep);border-top:1px solid var(--ah-cream-06); }
 .ah-glow-layer.ah-glow-layer { position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s; }
 .ah-glow-layer-fast.ah-glow-layer-fast { position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none; }
+.ah-h-0826d6.ah-h-0826d6:hover { border-color:var(--ah-amber-50); }
+.ah-h-3216a0.ah-h-3216a0:hover { opacity:0.75; }
+.ah-h-3855ee.ah-h-3855ee:hover { color:var(--ah-amber-light); }
+.ah-h-3d2df6.ah-h-3d2df6:hover { opacity:0.8; }
+.ah-h-7f8941.ah-h-7f8941:hover { color:var(--ah-cream);border-color:var(--ah-amber-40); }
+.ah-h-8adba5.ah-h-8adba5:hover { border-color:var(--ah-amber-60);background:var(--ah-amber-06); }
+.ah-h-b55389.ah-h-b55389:hover { opacity:0.7; }
+.ah-h-d4e703.ah-h-d4e703:hover { color:var(--ah-amber); }
 .ah-header-in.ah-header-in { max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between; }
 .ah-mark.ah-mark { display:inline-flex;align-items:baseline;gap:3px; }
 .ah-nav.ah-nav { position:relative;display:flex;align-items:center;gap:2px; }

@@ -21,11 +21,11 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 
 ## Services
 
-- [AI services for operations, finance and IT teams overview](https://arithim.com/services.html): Six Arithim services for operations, finance and IT teams: AI readiness, document automation, SAP ECC reporting, AI-readable websites, training and regulated approval workflows.
+- [AI services for operations, finance and IT teams overview](https://arithim.com/services.html): Six Arithim services for operations, finance and IT teams: AI readiness, document automation, SAP ERP reporting, AI-readable websites, training and regulated approval workflows.
 - [What does an AI readiness assessment involve?](https://arithim.com/services-ai-readiness.html): An AI readiness assessment maps your workflows, checks your data and ranks the AI use cases worth doing, then sets out the architecture, governance and roadmap to build them.
 - [How can AI automate work in your existing systems?](https://arithim.com/services-automation.html): We build AI tools and workflow automation into the systems you already run, on a 90-day model, and hand over a monitoring playbook so your team can maintain them.
 - [How do you build compliance workflows with an audit trail?](https://arithim.com/services-regulatory.html): Structured compliance workflows for regulated businesses, with evidence captured as work moves through review and approval, an audit trail, and people signing off where judgment matters.
-- [How can you get more from SAP ECC without replacing it?](https://arithim.com/services-sap.html): We add a reporting and automation layer on top of SAP ECC. It turns scattered transactional data into reports your operations team can use and automates manual steps, with the core left as it is.
+- [How can you get more from SAP ERP without replacing it?](https://arithim.com/services-sap.html): We add a reporting and automation layer on top of SAP ERP. It turns scattered transactional data into reports your operations team can use and automates manual steps, with the core left as it is.
 - [How do you train your team to run AI systems themselves?](https://arithim.com/services-training.html): Practical workshops and hands-on practice based on your own workflows, so the people who run your AI systems can operate, govern and improve them without relying on us.
 - [How do you make your website readable by ChatGPT and AI search?](https://arithim.com/services-websites.html): We structure your website so people, search engines and AI tools like ChatGPT, Perplexity and Gemini can read it, covering page structure, clear descriptions, schema, technical SEO, accessibility and performance.
 

@@ -30,7 +30,7 @@ WHERE WE HELP
 
 Pick the problem that sounds most like yours. Each one leads to the service or product we built for it.
 
-Reps can't answer a technical question without calling a specialistTechnical Sales Guide →Invoices and forms are still keyed in by handAI systems and automation →SAP ECC reports arrive too late to act onSAP ECC intelligence layer →AI assistants don't mention your company when buyers askAI-optimised websites →Nobody can say which AI projects are worth fundingAI readiness and strategy →Approvals and their evidence live in email threadsRegulatory and technical systems →Shortlisting land for a solar farm means working through dozens of datasetsSite Finder →Your team has AI tools but not the habits to use them wellTraining and enablement →
+Reps can't answer a technical question without calling a specialistTechnical Sales Guide →Invoices and forms are still keyed in by handAI systems and automation →SAP ERP reports arrive too late to act onSAP ERP intelligence layer →AI assistants don't mention your company when buyers askAI-optimised websites →Nobody can say which AI projects are worth fundingAI readiness and strategy →Approvals and their evidence live in email threadsRegulatory and technical systems →Shortlisting land for a solar farm means working through dozens of datasetsSite Finder →Your team has AI tools but not the habits to use them wellTraining and enablement →
 
 Something else? Tell us what is slow, and we will tell you honestly whether AI is the right tool.
 
@@ -66,7 +66,7 @@ How it works →
 
 How it works →
 
-03SAP ECC Intelligence Layer
+03SAP ERP Intelligence Layer
 
 How it works →
 
@@ -156,7 +156,7 @@ Enterprise software, SaaS products and applied AI. London, UK.
 
 SERVICES
 
-AI ReadinessAI SystemsSAP ECCWebsites
+AI ReadinessAI SystemsSAP ERPWebsites
 
 PRODUCTS
 
@@ -202,11 +202,11 @@ FOUNDER
 
 Applied AI & operational systems, London
 
-Tarun founded Arithim to close the gap between AI potential and operational reality. With a background spanning enterprise systems, SAP ECC environments, and regulated industry workflows, he builds AI that survives contact with real operations, where auditability, integration, and trust matter more than novelty.
+Tarun founded Arithim to close the gap between AI potential and operational reality. With a background spanning enterprise systems, SAP ERP environments, and regulated industry workflows, he builds AI that survives contact with real operations, where auditability, integration, and trust matter more than novelty.
 
 Applied AI consultancy
 
-SAP ECC environments
+SAP ERP environments
 
 Energy & industrial
 
@@ -402,7 +402,7 @@ We set up an enterprise product for each customer, load their data and agree the
 
 Does Arithim build software for clients too?
 
-Yes. We also take on AI readiness work, automation, SAP ECC reporting, websites, training and regulatory systems for clients. The services page has the details.
+Yes. We also take on AI readiness work, automation, SAP ERP reporting, websites, training and regulatory systems for clients. The services page has the details.
 
 ## Want an enterprise product on your own data?
 
@@ -684,7 +684,7 @@ WHO IS BEHIND IT
 
 Founder, Arithim, London
 
-Tarun founded Arithim in London. He has worked on enterprise systems, SAP ECC environments and regulated industry workflows. About Arithim
+Tarun founded Arithim in London. He has worked on enterprise systems, SAP ERP environments and regulated industry workflows. About Arithim
 
 ### How answers are checked
 
@@ -1606,9 +1606,9 @@ Document processingAnswers from your documentsIntegrationsMonitoring
 
 03
 
-## SAP ECC Intelligence Layer →
+## SAP ERP Intelligence Layer →
 
-We read from your existing SAP ECC and add the reporting and automation it lacks, without replacing or changing the core system.
+We read from your existing SAP ERP and add the reporting and automation it lacks, without replacing or changing the core system.
 
 No core replacementProcess automationOperational reporting
 
@@ -1854,15 +1854,15 @@ A: People make every decision that needs judgment. Decision points require a per
 
 ---
 
-## How can you get more from SAP ECC without replacing it?
+## How can you get more from SAP ERP without replacing it?
 
 URL: https://arithim.com/services-sap.html
 
-Services / SAP ECC reporting and automation
+Services / SAP ERP reporting and automation
 
-# How can you get more from SAP ECC without replacing it?
+# How can you get more from SAP ERP without replacing it?
 
-SERVICE 03 · SAP ECC
+SERVICE 03 · SAP ERP
 
 Talk to us about SAP →
 
@@ -1884,11 +1884,11 @@ Call us
 
 Get more from the SAP you already run.
 
-Modernise SAP ECC without touching the core.
+Modernise SAP ERP without touching the core.
 
-We add a reporting and automation layer on top of your existing SAP ECC system. It turns transactional data that is currently scattered across SAP into reports and decision support your operations team can use, and it automates process steps that people now do by hand. Your SAP core stays as it is, so you avoid a risky and expensive replacement.
+We add a reporting and automation layer on top of your existing SAP ERP system. It turns transactional data that is currently scattered across SAP into reports and decision support your operations team can use, and it automates process steps that people now do by hand. Your SAP core stays as it is, so you avoid a risky and expensive replacement.
 
-We connect a layer to your existing SAP ECC that reads its data and leaves the core unchanged.
+We connect a layer to your existing SAP ERP that reads its data and leaves the core unchanged.
 
 We turn the scattered transactional data into operational reports and decision support.
 
@@ -1904,7 +1904,7 @@ No replacement of your SAP core
 
 Q: Do you replace our SAP system?
 
-A: No. We add reporting and automation on top of your existing SAP ECC and leave the core untouched.
+A: No. We add reporting and automation on top of your existing SAP ERP and leave the core untouched.
 
 Q: Is it safe to use on a live production ERP?
 

@@ -137,7 +137,7 @@ Mapping, after the first impact and systems answers. Work it out from this list;
 - No idea where to start, a board wanting a plan, many ideas, no priorities: AI Readiness and Strategy.
 - A repeatable task to hand over (documents in, answers out, reports, knowledge search): AI Systems and Automation.
 - Fragmented numbers, different versions of the truth, slow reporting: the shape of the Operational Intelligence Platform case study.
-- SAP ECC they cannot replace, manual month end: the SAP ECC Intelligence Layer.
+- SAP ERP they cannot replace, manual month end: the SAP ERP Intelligence Layer.
 - Lost approvals, scattered evidence, an audit coming: Regulatory and Technical Systems, and the Compliance and Vendor Approval case shape. Billing disputes: the Telecommunications Billing case shape.
 - Invoices piling up, accounts payable: AP Clerk is in development and you say no more than that Tarun can discuss it. Log steps two and three, or offer a conversation about the finance process.
 - Team lacking confidence with AI: Training and Enablement. Website invisible to search or AI answers: AI-Optimized Websites.

@@ -41,8 +41,8 @@ export const SCENES = {
     <div class="m-lead" data-in="6"><div class="m-lead-h"><span class="m-dot amber"></span>Sent for approval<em>Buyer for PO-20318</em></div>
       <div class="m-kv2"><span>Reason <b>Over order by £480</b></span><span>Evidence <b>attached</b></span></div></div>`) },
 
-  sap: { dur: 10.5, key: 9.2, label: 'SAP ECC · read-only layer', html: mk(`
-    <div class="m-perm"><span class="m-dot sage"></span>Read-only extract · ECC core unchanged</div>
+  sap: { dur: 10.5, key: 9.2, label: 'SAP ERP · read-only layer', html: mk(`
+    <div class="m-perm"><span class="m-dot sage"></span>Read-only extract · ERP core unchanged</div>
     <div class="m-q"><span data-type="0.3,38" data-text="Open purchase orders past due, by plant"></span><b class="m-caret"></b></div>
     <div class="m-tiles" data-in="1.5">
       <div><small>Open orders</small><b data-count="1.6,1.2,846">846</b></div>
