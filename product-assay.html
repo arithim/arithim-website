@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How do I check which AI models my company is running? | Arithim</title>
+<meta name="description" content="Assay finds the AI models your applications call and the models on your own GPUs, flags any you have ruled out, and gives you a dated report.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="How do I check which AI models my company is running? | Arithim">
+<meta property="og:description" content="Assay finds the AI models your applications call and the models on your own GPUs, flags any you have ruled out, and gives you a dated report.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/product-assay.html">
+<meta property="og:url" content="https://arithim.com/product-assay.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Assay", "serviceType": "AI model inventory and attestation", "url": "https://arithim.com/product-assay.html", "description": "Assay finds the AI models your applications call and the models on your own GPUs, flags any you have ruled out, and gives you a dated report.", "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": "https://arithim.com/"}, "areaServed": {"@type": "Country", "name": "United Kingdom"}, "audience": {"@type": "Audience", "audienceType": "UK regulated firms, suppliers to government customers and teams that run their own GPU clusters"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Assay?", "acceptedAnswer": {"@type": "Answer", "text": "Assay is an Arithim service that lists the AI models a company uses and shows where each one runs. It covers models your applications call over an API and open-weight models on your own GPUs. It flags the ones you have ruled out and produces a dated report with its scope, method and confidence stated."}}, {"@type": "Question", "name": "Do you read our prompts or the data sent to models?", "acceptedAnswer": {"@type": "Answer", "text": "No. We collect metadata: destination names, timing, volume and the application making the call. We do not store prompts or responses."}}, {"@type": "Question", "name": "Will Assay slow our systems down?", "acceptedAnswer": {"@type": "Answer", "text": "It should not. It reads logs and cloud records you already have, in read-only mode, at low rates and outside peak hours. On GPU hosts it checks file sizes and dates first and never uses GPU compute. You hold a switch that stops it."}}, {"@type": "Question", "name": "Is the Assay report a certificate?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is an attestation report that states its scope, date and method. It says what we found and did not find in that scope, on that date. It does not claim to prove that no banned model exists anywhere in your company, so we do not call it a certificate."}}, {"@type": "Question", "name": "Which models does Assay flag?", "acceptedAnswer": {"@type": "Answer", "text": "The models on the list you set. We start from the models named in the rules you are subject to, and our registry records which model family sits behind an endpoint or a model file. Every report names the registry version it used."}}, {"@type": "Question", "name": "Can Assay tell which model is behind an endpoint?", "acceptedAnswer": {"@type": "Answer", "text": "Not from the host name alone. A call to a US cloud provider can be served by an open-weight model of any origin. We compare several sources, give each finding a confidence level, and mark anything we could not confirm as open."}}, {"@type": "Question", "name": "Do we need to install anything?", "acceptedAnswer": {"@type": "Answer", "text": "One collector, as a virtual machine or container inside your network, with outbound HTTPS only. A first scan needs no agents on laptops."}}, {"@type": "Question", "name": "Does a UK firm have to do this?", "acceptedAnswer": {"@type": "Answer", "text": "As of October 2026 we know of no UK rule that bans a specific AI model. The US notice covers federal civilian agencies. UK firms usually come to us because a customer, a supplier or their own risk team has asked which models they use. We will tell you if you do not need Assay."}}, {"@type": "Question", "name": "How much does Assay cost?", "acceptedAnswer": {"@type": "Answer", "text": "We agree the scope in a call, then quote. The price depends on how many networks, cloud accounts, repositories and GPU hosts are in scope."}}, {"@type": "Question", "name": "Why is it called Assay?", "acceptedAnswer": {"@type": "Answer", "text": "An assay is a test of what something is made of. We test which models an estate contains and say what we found, in what scope and on what date. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Arithim", "item": "https://arithim.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://arithim.com/products.html"}, {"@type": "ListItem", "position": 3, "name": "Assay", "item": "https://arithim.com/product-assay.html"}]}</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=6">
+<!-- /partial:head -->
+<link rel="stylesheet" href="/assets/products/product-pages.css?v=2">
+<link rel="stylesheet" href="/assets/callus.css?v=4">
+</head>
+<body>
+<x-dc>
+
+<div class="tsg ah-page">
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/assay", "active": "products.html", "cta": "contact"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/assay</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <a href="products.html" class="ah-nav-link-on" aria-current="page">Products</a>
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <a href="insights.html" class="ah-nav-link">Insights</a>
+        <a href="about.html" class="ah-nav-link">About</a>
+      </nav>
+      <a href="contact.html" class="ah-f420ec">Contact</a>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+  <section data-hero class="ah-clip" aria-labelledby="as-h1">
+    <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
+    <div style="position:absolute;top:-30%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--ah-blue-20),transparent 60%);filter:blur(80px);animation:ah-aurora-a 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div data-hero-glow class="ah-glow-layer"></div>
+    <div class="tsg-wrap ah-7dd2a9">
+      <div class="ah-7e9587">ASSAY · AI MODEL ATTESTATION · UK</div>
+      <h1 id="as-h1" class="tsg-hero-h ah-138d30">Know which AI models run in your estate, with the evidence for each.</h1>
+      <p class="as-def">Assay is an Arithim service that inventories the AI models a company uses: the models its applications call over an API, and the open-weight models running on its own GPUs. It flags any you have ruled out and produces a dated report that states its scope, method and confidence.</p>
+      <div class="ah-f63772"><a href="contact.html?product=assay" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Book a scoping call →</span></a><a class="tsg-link" href="#report">What the report holds</a><span class="pp-st">Early access</span></div>
+      <ol class="tsg-steps" aria-label="How Assay works"><li>Connect read-only</li><li>Discover models</li><li>Match against the registry</li><li>Read the report</li></ol>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="why" aria-labelledby="why-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">THE PROBLEM</div>
+      <h2 class="tsg-h2" id="why-h">Why would a company need a list of its AI models?</h2>
+      <p class="tsg-lead">A customer, a supplier or a supervisor may ask which models you depend on, and a list kept by hand misses models in two places.</p>
+      <div class="tsg-grid tsg-g2"><div class="tsg-card"><h3>Calls to a provider&#x27;s API</h3><p>An internal application sends requests to a hosted model. The destination shows up in network logs, code, configuration and cloud billing, but the host name does not always tell you which model answered. A call to a cloud provider can be served by an open-weight model of any origin.</p></div><div class="tsg-card"><h3>Models on your own GPUs</h3><p>A team runs an open-weight model on an in-house cluster. Nothing leaves the building, so network logs show nothing. Assay looks at the inference servers, the container images and the model files themselves.</p></div></div>
+      <p class="as-note">In October 2026 the US Homeland Security Department told civilian federal agencies to remove DeepSeek products and third-party tools built on them (<a href="https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/" rel="noopener">TechCrunch, 20 October 2026</a>). That notice covers US federal civilian agencies. It is not UK law, and as of October 2026 we know of no UK rule that bans a specific model.</p>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="how" aria-labelledby="how-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">HOW IT WORKS</div>
+      <h2 class="tsg-h2" id="how-h">How does Assay find the models, and how often?</h2>
+      <p class="tsg-lead">It reads data you already produce and matches it against a registry of AI endpoints, model families, file hashes and lineage. A hint from one source is a lead. A second source that agrees makes it a finding, and where only one source supports a result, the report says so.</p>
+      <div class="as-tablewrap"><table class="as-table"><thead><tr><th>Source</th><th>What we read</th><th>How often</th></tr></thead><tbody><tr><td>DNS, firewall and proxy logs</td><td>Destination names and volumes, from logs you already keep</td><td>Hourly, or continuous</td></tr><tr><td>Cloud audit logs and billing</td><td>Managed model deployments, invocation events, billing line items</td><td>Events near real time, inventory daily</td></tr><tr><td>Code repositories</td><td>SDK imports, base URLs, model names, key patterns, container images</td><td>On each push, full scan weekly</td></tr><tr><td>GPU and on-premise hosts</td><td>Inference servers, open ports, model and tokenizer files</td><td>Light check daily, file check weekly</td></tr><tr><td>Suppliers</td><td>Questionnaire answers and AI bills of materials</td><td>Quarterly</td></tr></tbody></table></div>
+      <p class="as-note">Assay throttles itself, runs off-peak, and never touches GPU compute. You hold a switch that stops it. When a model is newly ruled out, past data is re-matched at once with no new load on your systems.</p>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="report" aria-labelledby="report-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">THE REPORT</div>
+      <h2 class="tsg-h2" id="report-h">What does an Assay report contain?</h2>
+      <p class="tsg-lead">Every report names its scope, its date, the method and the registry version it used. It lists what we saw, how sure we are, and what we could not see.</p>
+      <div class="as-panel">
+        <div class="as-panel-head"><span>Attestation report · <b>example layout</b></span><span>The rows below are invented</span></div>
+        <div class="as-tablewrap"><table class="as-table"><thead><tr><th>Where</th><th>What we saw</th><th>Result</th><th>Confidence</th></tr></thead><tbody><tr><td>Support assistant</td><td>Calls to a hosted API, seen in DNS and in code</td><td><span class="as-tag sage">● Approved</span></td><td>High</td></tr><tr><td>Document search</td><td>Calls through a cloud account to an open-weight model, lineage unclear</td><td><span class="as-tag amber">◆ Review</span></td><td>Medium</td></tr><tr><td>Research node gpu-07</td><td>Local inference server, weight file hash matched to a model family on the ruled-out list</td><td><span class="as-tag amber">◆ Flagged</span></td><td>High</td></tr><tr><td>Marketing plug-in</td><td>Supplier product, questionnaire answer still outstanding</td><td><span class="as-tag amber">◆ Open</span></td><td>Low</td></tr></tbody></table></div>
+        <p class="as-note">This table shows the format. It is not a result for any company.</p>
+      </div>
+      <p class="as-prose">We call it an attestation, not a certificate. It says which models we found in the scope we scanned, on the date shown. It does not claim to prove that no ruled-out model exists anywhere in your company.</p>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="who" aria-labelledby="who-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">WHO IT IS FOR</div>
+      <h2 class="tsg-h2" id="who-h">Who is Assay for?</h2>
+      <p class="tsg-lead">Firms that have to answer the question in writing.</p>
+      <div class="tsg-grid tsg-g3"><div class="tsg-card"><h3>UK banks, insurers and regulated firms</h3><p>Third-party and model risk already sit on your agenda. Assay gives you the AI part of that list, with evidence behind it.</p></div><div class="tsg-card"><h3>Suppliers to government customers</h3><p>If your customer asks whether your product contains a specific model, you can answer with a dated report instead of an email.</p></div><div class="tsg-card"><h3>Teams with their own GPU clusters</h3><p>If researchers or engineers run open-weight models in-house, Assay tells you which ones, and where they came from.</p></div></div>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="access" aria-labelledby="access-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">WHAT WE NEED</div>
+      <h2 class="tsg-h2" id="access-h">What does my team need to open up?</h2>
+      <p class="tsg-lead">All access is read-only. We ask for the least we need and agree each item with you before we start.</p>
+      <div class="tsg-grid tsg-g3"><div class="tsg-card"><h3>Network logs</h3><p>A read-only export of DNS, firewall or proxy logs, or a forwarder pointing at our collector.</p></div><div class="tsg-card"><h3>Cloud accounts</h3><p>A read-only role in each account, covering audit logs, model deployments and billing.</p></div><div class="tsg-card"><h3>Code repositories</h3><p>Read-only access through an app that you approve and can revoke.</p></div><div class="tsg-card"><h3>GPU hosts</h3><p>A read-only login, or a script you run yourselves and send back.</p></div><div class="tsg-card"><h3>A home for the collector</h3><p>One virtual machine or container with outbound HTTPS only. Nothing inbound.</p></div><div class="tsg-card"><h3>A contact and a scope letter</h3><p>A named technical contact, and a signed note of what we may scan, when, and from where.</p></div></div>
+      <p class="as-prose">We do not need your prompts or payloads, administrator rights, an inline proxy, or agents on laptops for a first scan. Logs can hold personal data such as IP addresses and usernames, so we agree data processing terms with you first and keep what we collect to metadata.</p>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="limits" aria-labelledby="limits-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">LIMITS</div>
+      <h2 class="tsg-h2" id="limits-h">What can Assay not see?</h2>
+      <p class="tsg-lead">Each report lists these as stated limits, with the signal that partly covers each one.</p>
+      <ul class="as-list"><li><b>Devices off your network.</b> A laptop on home broadband, or a tunnel to a relay, can hide a call. Endpoint tools you already run and a signed statement from your team cover part of this.</li><li><b>Models inside supplier products.</b> If a supplier runs a model on its own servers, your network never sees it. Questionnaires and contract terms are the control here.</li><li><b>Hidden server names.</b> Newer TLS features can encrypt the server name, which weakens DNS signals. Code, cloud and billing records fill the gap.</li><li><b>Air-gapped sites.</b> We cannot reach them over a network. We supply an offline scanner and a signed bundle that you return to us.</li></ul>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="after" aria-labelledby="after-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">AFTER THE FIRST REPORT</div>
+      <h2 class="tsg-h2" id="after-h">What happens after the first report?</h2>
+      <p class="tsg-lead">What you do with the findings is your decision. These are the next steps we can help with.</p>
+      <div class="tsg-grid tsg-g2"><div class="tsg-card"><h3>Replace a model</h3><p>Swap a flagged model for an approved one, rewrite the integration and test that quality holds.</p></div><div class="tsg-card"><h3>Rescan on a schedule</h3><p>A report goes stale. Quarterly rescans keep the attestation current.</p></div><div class="tsg-card"><h3>Monitor between scans</h3><p>An alert when a new application starts calling an endpoint you have ruled out.</p></div><div class="tsg-card"><h3>Route calls through a gateway</h3><p>A single path that blocks ruled-out endpoints and logs every call. It sits in the traffic path, so it is optional and comes later.</p></div></div>
+    </div>
+  </section>
+
+  <section class="tsg-sec" id="faq" aria-labelledby="faq-h">
+    <div class="tsg-wrap">
+      <div class="tsg-eyebrow">FREQUENTLY ASKED</div>
+      <h2 class="tsg-h2" id="faq-h">Questions about Assay</h2>
+      <div class="tsg-faq"><details><summary>What is Assay?</summary><div class="ans"><p>Assay is an Arithim service that lists the AI models a company uses and shows where each one runs. It covers models your applications call over an API and open-weight models on your own GPUs. It flags the ones you have ruled out and produces a dated report with its scope, method and confidence stated.</p></div></details><details><summary>Do you read our prompts or the data sent to models?</summary><div class="ans"><p>No. We collect metadata: destination names, timing, volume and the application making the call. We do not store prompts or responses.</p></div></details><details><summary>Will Assay slow our systems down?</summary><div class="ans"><p>It should not. It reads logs and cloud records you already have, in read-only mode, at low rates and outside peak hours. On GPU hosts it checks file sizes and dates first and never uses GPU compute. You hold a switch that stops it.</p></div></details><details><summary>Is the Assay report a certificate?</summary><div class="ans"><p>No. It is an attestation report that states its scope, date and method. It says what we found and did not find in that scope, on that date. It does not claim to prove that no banned model exists anywhere in your company, so we do not call it a certificate.</p></div></details><details><summary>Which models does Assay flag?</summary><div class="ans"><p>The models on the list you set. We start from the models named in the rules you are subject to, and our registry records which model family sits behind an endpoint or a model file. Every report names the registry version it used.</p></div></details><details><summary>Can Assay tell which model is behind an endpoint?</summary><div class="ans"><p>Not from the host name alone. A call to a US cloud provider can be served by an open-weight model of any origin. We compare several sources, give each finding a confidence level, and mark anything we could not confirm as open.</p></div></details><details><summary>Do we need to install anything?</summary><div class="ans"><p>One collector, as a virtual machine or container inside your network, with outbound HTTPS only. A first scan needs no agents on laptops.</p></div></details><details><summary>Does a UK firm have to do this?</summary><div class="ans"><p>As of October 2026 we know of no UK rule that bans a specific AI model. The US notice covers federal civilian agencies. UK firms usually come to us because a customer, a supplier or their own risk team has asked which models they use. We will tell you if you do not need Assay.</p></div></details><details><summary>How much does Assay cost?</summary><div class="ans"><p>We agree the scope in a call, then quote. The price depends on how many networks, cloud accounts, repositories and GPU hosts are in scope.</p></div></details><details><summary>Why is it called Assay?</summary><div class="ans"><p>An assay is a test of what something is made of. We test which models an estate contains and say what we found, in what scope and on what date. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark.</p></div></details></div>
+    </div>
+  </section>
+
+  <section class="as-cta" id="scoping" data-hero aria-labelledby="scoping-h">
+    <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-c"></div>
+    <div class="tsg-wrap ah-87db22">
+      <h2 id="scoping-h">Want to know what Assay would scan in your estate?</h2>
+      <p>Tell us roughly what you run: your networks, cloud accounts and any GPU clusters. We will tell you what we would scan, what we could not see, and whether it is worth doing.</p>
+      <a href="contact.html?product=assay" data-magnetic class="ah-btn-ring"><span class="ah-92119b"></span><span class="ah-7318e7">Book a scoping call →</span></a>
+      <p class="tsg-note ah-e47eeb">Prefer email? Write to <a class="tsg-link" href="mailto:hello@arithim.com">hello@arithim.com</a>.</p>
+    </div>
+  </section>
+</main>
+
+<!-- partial:footer {"back_href": "products.html", "back_text": "← ALL PRODUCTS"} -->
+  <footer class="ah-footer"><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a href="privacy.html" style-hover="color:#E8A13C;">PRIVACY</a></span><a href="products.html" style-hover="color:#E8A13C;">← ALL PRODUCTS</a><span>LONDON, UK · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    import('./arithim-fx.js?v=2').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));
+  }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=3" defer></script>
+</body>
+</html>

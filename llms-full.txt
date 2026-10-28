@@ -280,6 +280,80 @@ Describe this animation
 
 Three briefs play in turn: a 50 MW solar farm in England and Wales, a 30 MW farm on a 33 kV connection in central Scotland, and an 80 MW farm in the East of England that avoids the best farmland. Each time, three candidate sites appear in ranked order with the distance to a substation and how nearby schemes fared at planning. Then the user changes something, such as marking a substation full or raising the hurdle rate, and a What changed note shows how the list moved. All names and figures are samples.
 
+FOR UK FIRMS THAT HAVE TO NAME THEIR AI MODELS
+
+### Assay
+
+Early access
+
+Assay lists the AI models a company uses: the models its applications call over an API and the open-weight models on its own GPUs. It flags any you have ruled out and produces a dated attestation report that states its scope, method and confidence.
+
+Reads logs, cloud records and code that you already have, with read-only access and metadata only.
+
+Compares several sources and gives each finding a confidence level and its evidence.
+
+Lists what it could not see, with the signal that partly covers each gap.
+
+Book a scoping call →How it works
+
+### What a report holds
+
+Each application or host, what we saw, the model family and where it came from, a result of approved, review, flagged or open, and a confidence level. The report names its scope, its date and the registry version it used.
+
+DATA PRODUCTS
+
+## Reports, screens and feeds built on public data
+
+Short, sourced answers for developers, lenders and suppliers. The ones marked early access can be ordered now. The ones marked planned are not built yet, and you can register your interest.
+
+### Battery storage siting report
+
+Early access
+
+A report on one battery storage site in Great Britain covering grid, planning constraints, land and economics, with the source and date of every figure.
+
+How it works
+
+### Grid pre-screen
+
+Early access
+
+Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there, and what else on the land could stop it.
+
+How it works
+
+### Planning risk screen
+
+Early access
+
+A desk screen of one site in Great Britain for farmland grade, peat, heritage and protected sites, with the field studies an application is likely to need.
+
+How it works
+
+### UK company check
+
+Planned
+
+Planned: a check on one UK company that confirms it exists and is active, shows its corporate controllers, and gives a dated source for every fact.
+
+How it works
+
+### Solar suitability check
+
+Planned
+
+Planned: an API that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield, with a source for each item.
+
+How it works
+
+### Tender feed
+
+Planned
+
+Planned: a feed of new UK public sector tenders that fit a company profile, with a fit score, the reasons for it, the deadline and the buyer's history.
+
+How it works
+
 SAAS PRODUCTS
 
 ## SaaS products
@@ -328,7 +402,7 @@ QUESTIONS
 
 Can we try a product before we commit?
 
-For the Technical Sales Guide we run an eight-week pilot on one division in one country, with your principals' products. For Site Finder we run a demo on a project brief you choose. Find Me A Job and Unrejectable are live at findmeajob.uk and unrejectable.uk.
+For the Technical Sales Guide we run an eight-week pilot on one division in one country, with your principals' products. For Site Finder we run a demo on a project brief you choose. For Assay we start with a scoping call. Find Me A Job and Unrejectable are live at findmeajob.uk and unrejectable.uk.
 
 What is the difference between the enterprise and SaaS products?
 
@@ -1105,6 +1179,226 @@ Book a demo. We set up an account for each customer and walk through the tool on
 Tell us the project size, how you want to connect and the regions you care about, and we will show you the ranked list and the evidence behind it.
 
 Book a demo →
+
+Prefer email? Write to hello@arithim.com.
+
+Call us
+
+---
+
+## Know which AI models run in your estate, with the evidence for each.
+
+URL: https://arithim.com/product-assay.html
+
+ASSAY · AI MODEL ATTESTATION · UK
+
+# Know which AI models run in your estate, with the evidence for each.
+
+Assay is an Arithim service that inventories the AI models a company uses: the models its applications call over an API, and the open-weight models running on its own GPUs. It flags any you have ruled out and produces a dated report that states its scope, method and confidence.
+
+Book a scoping call →What the report holdsEarly access
+
+Connect read-only
+
+Discover models
+
+Match against the registry
+
+Read the report
+
+THE PROBLEM
+
+## Why would a company need a list of its AI models?
+
+A customer, a supplier or a supervisor may ask which models you depend on, and a list kept by hand misses models in two places.
+
+### Calls to a provider's API
+
+An internal application sends requests to a hosted model. The destination shows up in network logs, code, configuration and cloud billing, but the host name does not always tell you which model answered. A call to a cloud provider can be served by an open-weight model of any origin.
+
+### Models on your own GPUs
+
+A team runs an open-weight model on an in-house cluster. Nothing leaves the building, so network logs show nothing. Assay looks at the inference servers, the container images and the model files themselves.
+
+In October 2026 the US Homeland Security Department told civilian federal agencies to remove DeepSeek products and third-party tools built on them (TechCrunch, 20 October 2026). That notice covers US federal civilian agencies. It is not UK law, and as of October 2026 we know of no UK rule that bans a specific model.
+
+HOW IT WORKS
+
+## How does Assay find the models, and how often?
+
+It reads data you already produce and matches it against a registry of AI endpoints, model families, file hashes and lineage. A hint from one source is a lead. A second source that agrees makes it a finding, and where only one source supports a result, the report says so.
+
+SourceWhat we readHow often
+
+DNS, firewall and proxy logsDestination names and volumes, from logs you already keepHourly, or continuous
+
+Cloud audit logs and billingManaged model deployments, invocation events, billing line itemsEvents near real time, inventory daily
+
+Code repositoriesSDK imports, base URLs, model names, key patterns, container imagesOn each push, full scan weekly
+
+GPU and on-premise hostsInference servers, open ports, model and tokenizer filesLight check daily, file check weekly
+
+SuppliersQuestionnaire answers and AI bills of materialsQuarterly
+
+Assay throttles itself, runs off-peak, and never touches GPU compute. You hold a switch that stops it. When a model is newly ruled out, past data is re-matched at once with no new load on your systems.
+
+THE REPORT
+
+## What does an Assay report contain?
+
+Every report names its scope, its date, the method and the registry version it used. It lists what we saw, how sure we are, and what we could not see.
+
+Attestation report · example layoutThe rows below are invented
+
+WhereWhat we sawResultConfidence
+
+Support assistantCalls to a hosted API, seen in DNS and in code● ApprovedHigh
+
+Document searchCalls through a cloud account to an open-weight model, lineage unclear◆ ReviewMedium
+
+Research node gpu-07Local inference server, weight file hash matched to a model family on the ruled-out list◆ FlaggedHigh
+
+Marketing plug-inSupplier product, questionnaire answer still outstanding◆ OpenLow
+
+This table shows the format. It is not a result for any company.
+
+We call it an attestation, not a certificate. It says which models we found in the scope we scanned, on the date shown. It does not claim to prove that no ruled-out model exists anywhere in your company.
+
+WHO IT IS FOR
+
+## Who is Assay for?
+
+Firms that have to answer the question in writing.
+
+### UK banks, insurers and regulated firms
+
+Third-party and model risk already sit on your agenda. Assay gives you the AI part of that list, with evidence behind it.
+
+### Suppliers to government customers
+
+If your customer asks whether your product contains a specific model, you can answer with a dated report instead of an email.
+
+### Teams with their own GPU clusters
+
+If researchers or engineers run open-weight models in-house, Assay tells you which ones, and where they came from.
+
+WHAT WE NEED
+
+## What does my team need to open up?
+
+All access is read-only. We ask for the least we need and agree each item with you before we start.
+
+### Network logs
+
+A read-only export of DNS, firewall or proxy logs, or a forwarder pointing at our collector.
+
+### Cloud accounts
+
+A read-only role in each account, covering audit logs, model deployments and billing.
+
+### Code repositories
+
+Read-only access through an app that you approve and can revoke.
+
+### GPU hosts
+
+A read-only login, or a script you run yourselves and send back.
+
+### A home for the collector
+
+One virtual machine or container with outbound HTTPS only. Nothing inbound.
+
+### A contact and a scope letter
+
+A named technical contact, and a signed note of what we may scan, when, and from where.
+
+We do not need your prompts or payloads, administrator rights, an inline proxy, or agents on laptops for a first scan. Logs can hold personal data such as IP addresses and usernames, so we agree data processing terms with you first and keep what we collect to metadata.
+
+LIMITS
+
+## What can Assay not see?
+
+Each report lists these as stated limits, with the signal that partly covers each one.
+
+Devices off your network. A laptop on home broadband, or a tunnel to a relay, can hide a call. Endpoint tools you already run and a signed statement from your team cover part of this.
+
+Models inside supplier products. If a supplier runs a model on its own servers, your network never sees it. Questionnaires and contract terms are the control here.
+
+Hidden server names. Newer TLS features can encrypt the server name, which weakens DNS signals. Code, cloud and billing records fill the gap.
+
+Air-gapped sites. We cannot reach them over a network. We supply an offline scanner and a signed bundle that you return to us.
+
+AFTER THE FIRST REPORT
+
+## What happens after the first report?
+
+What you do with the findings is your decision. These are the next steps we can help with.
+
+### Replace a model
+
+Swap a flagged model for an approved one, rewrite the integration and test that quality holds.
+
+### Rescan on a schedule
+
+A report goes stale. Quarterly rescans keep the attestation current.
+
+### Monitor between scans
+
+An alert when a new application starts calling an endpoint you have ruled out.
+
+### Route calls through a gateway
+
+A single path that blocks ruled-out endpoints and logs every call. It sits in the traffic path, so it is optional and comes later.
+
+FREQUENTLY ASKED
+
+## Questions about Assay
+
+What is Assay?
+
+Assay is an Arithim service that lists the AI models a company uses and shows where each one runs. It covers models your applications call over an API and open-weight models on your own GPUs. It flags the ones you have ruled out and produces a dated report with its scope, method and confidence stated.
+
+Do you read our prompts or the data sent to models?
+
+No. We collect metadata: destination names, timing, volume and the application making the call. We do not store prompts or responses.
+
+Will Assay slow our systems down?
+
+It should not. It reads logs and cloud records you already have, in read-only mode, at low rates and outside peak hours. On GPU hosts it checks file sizes and dates first and never uses GPU compute. You hold a switch that stops it.
+
+Is the Assay report a certificate?
+
+No. It is an attestation report that states its scope, date and method. It says what we found and did not find in that scope, on that date. It does not claim to prove that no banned model exists anywhere in your company, so we do not call it a certificate.
+
+Which models does Assay flag?
+
+The models on the list you set. We start from the models named in the rules you are subject to, and our registry records which model family sits behind an endpoint or a model file. Every report names the registry version it used.
+
+Can Assay tell which model is behind an endpoint?
+
+Not from the host name alone. A call to a US cloud provider can be served by an open-weight model of any origin. We compare several sources, give each finding a confidence level, and mark anything we could not confirm as open.
+
+Do we need to install anything?
+
+One collector, as a virtual machine or container inside your network, with outbound HTTPS only. A first scan needs no agents on laptops.
+
+Does a UK firm have to do this?
+
+As of October 2026 we know of no UK rule that bans a specific AI model. The US notice covers federal civilian agencies. UK firms usually come to us because a customer, a supplier or their own risk team has asked which models they use. We will tell you if you do not need Assay.
+
+How much does Assay cost?
+
+We agree the scope in a call, then quote. The price depends on how many networks, cloud accounts, repositories and GPU hosts are in scope.
+
+Why is it called Assay?
+
+An assay is a test of what something is made of. We test which models an estate contains and say what we found, in what scope and on what date. UK assay offices test and mark precious metals. We are not an assay office, and our report is not an official mark.
+
+## Want to know what Assay would scan in your estate?
+
+Tell us roughly what you run: your networks, cloud accounts and any GPU clusters. We will tell you what we would scan, what we could not see, and whether it is worth doing.
+
+Book a scoping call →
 
 Prefer email? Write to hello@arithim.com.
 

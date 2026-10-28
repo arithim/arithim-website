@@ -8,6 +8,13 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 
 - [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Rank products by application, with cost in use, landed cost and registrations by country. Built for chemical distributors in the Gulf, with an Arabic interface.
 - [Site Finder](https://arithim.com/product-site-finder.html): Site Finder ranks candidate land for utility-scale solar across Great Britain and shows the evidence behind every site. Book a demo with Arithim.
+- [Assay](https://arithim.com/product-assay.html): Assay finds the AI models your applications call and the models on your own GPUs, flags any you have ruled out, and gives you a dated report.
+- [Battery storage siting report](https://arithim.com/product-battery-siting-report.html): A report on one battery storage site in Great Britain covering grid, planning constraints, land and economics, with the source and date of every figure.
+- [Grid pre-screen](https://arithim.com/product-grid-pre-screen.html): Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there, and what else on the land could stop it.
+- [Planning risk screen](https://arithim.com/product-planning-risk-screen.html): A desk screen of one site in Great Britain for farmland grade, peat, heritage and protected sites, with the field studies an application is likely to need.
+- [UK company check](https://arithim.com/product-uk-company-check.html): Planned: a check on one UK company that confirms it exists and is active, shows its corporate controllers, and gives a dated source for every fact.
+- [Solar suitability check](https://arithim.com/product-solar-suitability-api.html): Planned: an API that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield, with a source for each item.
+- [Tender feed](https://arithim.com/product-tender-feed.html): Planned: a feed of new UK public sector tenders that fit a company profile, with a fit score, the reasons for it, the deadline and the buyer's history.
 - [Find Me A Job](https://findmeajob.uk/)
 - [Unrejectable](https://www.unrejectable.uk/)
 - [Technical Sales Guide: security and trust](https://arithim.com/technical-sales-guide-security.html): How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.
