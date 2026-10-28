@@ -821,10 +821,9 @@
   "card_summary": "Will solar work at this address? A plain verdict, the reasons and a yield estimate.",
   "cta_h": "Want to hear when early access opens?",
   "cta_p": "Tell us what you screen, how many addresses and what you need in the answer. It shapes what we build first.",
-  "nature": {
-   "scene": "sunflowers",
-   "title": "Sunflowers following the sun towards a roof",
-   "desc": "A field of dotted sunflowers turns to follow an amber sun across the sky. On the right a roof outline carries solar panels that brighten as the sun reaches them. A sample, not a real address."
+  "contours": {
+   "title": "A sample address on a solar irradiance map",
+   "desc": "Contour lines drift across a map. A pin drops on a sample address, the lines tighten around it, and a Good fit verdict appears. Reasons follow: the roof faces south with light shading, the building is not listed or in a conservation area, and flood risk is low. A sample yield of about 3,900 kWh a year for a 3.5 kWp system counts up. All figures are samples."
   }
  }
 ]

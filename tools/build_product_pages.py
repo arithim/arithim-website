@@ -19,6 +19,7 @@ the same for every product and live here and in site.css. Each entry in content/
   service_type, audience_type  schema.org Service data
   audience, card_summary       the card on the products page and in the menu
   cta_h, cta_p                 the closing call to action
+  contours                     {title, desc}: the editorial contour map band under the hero (assets/solar-contours.js).
   nature                       {scene, title, desc}: the dotted nature scene drawn beside the hero text (assets/dotscene.js).
                                scene names one of the scenes in that file; title and desc are its text alternative
   globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
@@ -91,6 +92,11 @@ def render(p: dict, products: list[dict]) -> str:
                    f'<figcaption class="ah-nature-cap">{globe.CAPTION}</figcaption></figure>' if n else "")
     nature_js = (f'<script src="/assets/dotscene.js?v={DOTSCENE_VERSION}" defer></script>'
                  f'<script src="/assets/dotscene-{e(n["scene"])}.js?v={DOTSCENE_VERSION}" defer></script>') if n else ""
+    c = p.get("contours")
+    contours_html = (f'<section class="ah-contours" aria-label="{e(c["title"], quote=True)}"><div class="tsg-wrap"><figure class="ah-contours-fig"><div class="ah-contours-frame">'
+                     f'<canvas class="ah-contours-cv" data-solar-contours role="img" aria-label="{e(c["title"] + ". " + c["desc"], quote=True)}">{e(c["desc"])}</canvas></div>'
+                     f'<figcaption class="ah-contours-cap">{globe.CAPTION}</figcaption></figure></div></section>'
+                     f'<script src="/assets/solar-contours.js?v=2" defer></script>' if c else "")
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
@@ -144,7 +150,7 @@ def render(p: dict, products: list[dict]) -> str:
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
       {price_html}<p class="as-note">{e(p['status_note'])}</p>{nature_html}
     </div>
-  </section>{nature_js}
+  </section>{nature_js}{contours_html}
 
 {chr(10).join(sections)}
 
