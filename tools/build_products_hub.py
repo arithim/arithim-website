@@ -36,10 +36,14 @@ FAQ = [
 ]
 
 
+def chip(i: dict) -> str:
+    return f'<span class="ah-icon-chip" aria-hidden="true"><svg class="ah-icon"><use href="assets/icons.svg#{i["icon"]}"></use></svg></span>' if i.get("icon") else ""
+
+
 def card(i: dict) -> str:
     price = f'<span class="ah-pcard-price">{e(i["price"])}</span>' if i.get("price") else ""
     more = "Visit the site" if i["url"].startswith("http") else "Learn more"
-    return (f'<a class="tsg-card ah-pcard" href="{e(i["url"])}"><span class="ah-pcard-aud">{e(i["audience"])}</span>'
+    return (f'<a class="tsg-card ah-pcard" href="{e(i["url"])}">{chip(i)}<span class="ah-pcard-aud">{e(i["audience"])}</span>'
             f'<h3>{e(i["name"])}</h3><span class="pp-st">{e(i["status"])}</span><p>{e(i["summary"])}</p>{price}'
             f'<span class="ah-pcard-more">{more} →</span></a>')
 
@@ -151,7 +155,7 @@ class Component extends DCLogic {{
 '''
 
 
-HOME_CARD = ('<a href="{url}" class="ah-a8498e ah-h-0826d6"><div class="ah-b79a62">{eyebrow}</div>'
+HOME_CARD = ('<a href="{url}" class="ah-a8498e ah-h-0826d6">{chip}<div class="ah-b79a62">{eyebrow}</div>'
              '<div class="ah-cc198a">{name}</div><p class="ah-515d06">{summary}</p></a>')
 
 
@@ -160,7 +164,7 @@ def home_cards(groups) -> str:
     for g in groups:
         items = g.get("items") or [i for s in g["subgroups"] for i in s["items"]]
         for i in items:
-            out.append(HOME_CARD.format(url=e(i["url"]), eyebrow=e((g["name"] + " · " + i["status"]).upper()), name=e(i["name"]), summary=e(i["summary"])))
+            out.append(HOME_CARD.format(chip=chip(i), url=e(i["url"]), eyebrow=e((g["name"] + " · " + i["status"]).upper()), name=e(i["name"]), summary=e(i["summary"])))
     return "".join(out)
 
 
