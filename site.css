@@ -1059,9 +1059,9 @@ html:has(.sf) { scroll-behavior: smooth; }
 /* ---- Shared card behaviour. arithim-fx.js marks every card-like box in <main> with data-fx-glow="card" (one test, in isSurface), and
    this is the only place that says what a card does when you point at it: lift, amber edge, shadow, and the pointer glow in section 8.
    Do not add hover rules for individual card classes. tools/audit_cards.mjs fails if a box looks like a card and is not marked. */
-[data-fx-glow="card"] { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
-[data-fx-glow="card"]:hover, [data-fx-glow="card"]:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40); box-shadow: var(--ah-shadow-c23741); }
-@media (prefers-reduced-motion: reduce) { [data-fx-glow="card"] { transition: none; } [data-fx-glow="card"]:hover, [data-fx-glow="card"]:focus-within { transform: none; } }
+[data-fx-glow="card"][data-fx-glow] { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important; }
+[data-fx-glow="card"][data-fx-glow]:hover, [data-fx-glow="card"][data-fx-glow]:focus-within { transform: translateY(-2px); border-color: var(--ah-amber-40) !important; box-shadow: var(--ah-shadow-c23741); }
+@media (prefers-reduced-motion: reduce) { [data-fx-glow="card"] { transition: none !important; } [data-fx-glow="card"][data-fx-glow]:hover, [data-fx-glow="card"][data-fx-glow]:focus-within { transform: none; } }
 
 
 /* ---- 9. Header product menu, product cards and page hero (generated pages) ---- */
@@ -1072,9 +1072,19 @@ html:has(.sf) { scroll-behavior: smooth; }
 .ah-menu-title { padding: var(--ah-s-4) var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ah-text-4); }
 .ah-menu-link { display: block; padding: var(--ah-s-8) var(--ah-s-10); border-radius: var(--ah-r-8); font-size: var(--ah-fs-14-5); color: var(--ah-text-2); }
 .ah-menu-link:hover, .ah-menu-link:focus-visible { background: var(--ah-cream-06); color: var(--ah-cream); }
+.sn-sub { display: none; }
 @media (max-width: 900px) {
-  [data-nav].sn-open .ah-nav-item { display: block; }
-  [data-nav].sn-open .ah-menu { display: none; }
+  /* Phone menu: room at the top, big tap targets, and each drop-down opens in place from its arrow. */
+  [data-nav].sn-open { padding: var(--ah-s-24) var(--ah-s-24) var(--ah-s-32) !important; max-height: calc(100vh - var(--sn-top, 72px)); overflow-y: auto; }
+  [data-nav].sn-open a { padding: var(--ah-s-18) 2px !important; min-height: 56px; display: flex; align-items: center; }
+  [data-nav].sn-open .ah-nav-item { display: flex; flex-wrap: wrap; align-items: stretch; border-bottom: 1px solid var(--ah-cream-07); }
+  [data-nav].sn-open .ah-nav-item > a { flex: 1 1 auto; border-bottom: 0; }
+  [data-nav].sn-open .sn-sub { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 56px; min-height: 56px; border: 0; background: transparent; color: var(--ah-text-2); cursor: pointer; }
+  [data-nav].sn-open .sn-sub svg { transition: transform 0.2s ease; }
+  [data-nav].sn-open .sn-sub-open > .sn-sub svg { transform: rotate(180deg); }
+  [data-nav].sn-open .ah-menu { display: none !important; position: static; width: 100%; min-width: 0; max-width: none; margin: 0; padding: 0 0 var(--ah-s-12) var(--ah-s-12); background: transparent; border: 0; box-shadow: none; flex: 1 1 100%; }
+  [data-nav].sn-open .sn-sub-open > .ah-menu { display: block !important; }
+  [data-nav].sn-open .ah-menu-link { padding: var(--ah-s-14) var(--ah-s-8) !important; min-height: 48px; border-bottom: 0; font-size: var(--ah-fs-16) !important; }
 }
 .ah-pcard { display: flex; flex-direction: column; gap: var(--ah-s-10); color: inherit; }
 .ah-pcard h3 { margin: 0; }
@@ -2012,3 +2022,14 @@ main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::after, main > 
 @media (prefers-reduced-motion: reduce) {
   main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::before, main > section:not([data-hero]):not(.ah-globe):not(.ah-contours)::after, main > .r-gut::before, main > .r-gut::after { animation: none; }
 }
+
+/* Shared button behaviour. Primary ring buttons (.ah-btn-ring) nudge toward the pointer (arithim-fx.js). Every solid filled button below
+   lightens the same way. A button element used as a ring button needs no browser chrome. */
+button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+.sf-order, .pp-btn, .tsg-submit, .callus-cta, .ah-solid { transition: filter 0.2s ease, transform 0.2s ease; }
+.sf-order:hover, .pp-btn:hover, .tsg-submit:hover:not(:disabled), .callus-cta:hover, .ah-solid:hover { filter: brightness(1.1); }
+.cs-chip.cs-chip { cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
+.cs-chip.cs-chip:hover { border-color: var(--ah-amber-40); color: var(--ah-cream); }
+@media (prefers-reduced-motion: reduce) { .sf-order, .pp-btn, .tsg-submit, .callus-cta, .ah-solid, .cs-chip.cs-chip { transition: none; } }
+
+@media (max-width: 900px) { .sn-btn { flex: 0 0 auto; min-width: 44px; min-height: 44px; } .ah-header-end > a, .ah-header-end > .ah-btn-ring { white-space: nowrap; } }

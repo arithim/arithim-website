@@ -30,8 +30,8 @@ const srv = createServer(async (req, res) => {
 });
 await new Promise((ok) => srv.listen(PORT, '127.0.0.1', ok));
 const udd = await mkdtemp(join(tmpdir(), 'ac-chrome-'));
-const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', '--no-first-run', `--user-data-dir=${udd}`, `--remote-debugging-port=${DEBUG}`, 'about:blank'], { stdio: 'ignore' });
-let ver; for (let i = 0; i < 60 && !ver; i++) { try { ver = await (await fetch(`http://127.0.0.1:${DEBUG}/json/version`)).json(); } catch { await new Promise((r) => setTimeout(r, 200)); } }
+const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--no-first-run', `--user-data-dir=${udd}`, `--remote-debugging-port=${DEBUG}`, 'about:blank'], { stdio: 'ignore' });
+let ver; for (let i = 0; i < 200 && !ver; i++) { try { ver = await (await fetch(`http://127.0.0.1:${DEBUG}/json/version`)).json(); } catch { await new Promise((r) => setTimeout(r, 200)); } }
 const ws = new WebSocket(ver.webSocketDebuggerUrl); await new Promise((ok) => (ws.onopen = ok));
 let id = 0; const cb = new Map(); const waiters = [];
 ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) { cb.get(d.id)(d); cb.delete(d.id); } else if (d.method) { const i = waiters.findIndex((w) => w.method === d.method && w.sessionId === d.sessionId); if (i >= 0) waiters.splice(i, 1)[0].ok(d); } };
@@ -42,6 +42,7 @@ const CHECK = `(async () => {
   await new Promise(r => setTimeout(r, 1800));
   const ALLOW = ${JSON.stringify(ALLOW)};
   const out = [];
+  if (!document.querySelector('main')) out.push('page has no <main>, so no box on it can be audited or get the card behaviour');
   for (const el of document.querySelectorAll('main *')) {
     if (el.classList.contains('ah-fx-glow')) continue;
     const cs = getComputedStyle(el);
