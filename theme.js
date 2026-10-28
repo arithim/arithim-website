@@ -3,7 +3,7 @@
    host (a preview, localhost), ?theme=<name> picks a theme, the choice is remembered, and a picker appears. */
 (function () {
   var DEFAULT = "arithim";
-  var LABELS = {"arithim": "Arithim dark (current)", "light": "Light, slate and amber (draft)"};
+  var LABELS = {"arithim": "Arithim dark (current)", "light": "Light, slate and amber (draft)", "stripe": "Stripe-style, white and blue (draft)"};
   var prod = /(^|\.)arithim\.com$/.test(location.hostname);
   var name = DEFAULT;
   try {
