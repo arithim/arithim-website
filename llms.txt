@@ -7,17 +7,22 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 ## Products
 
 - [Technical Sales Guide](https://arithim.com/technical-sales-guide.html): Help every salesperson find the right product for the application, with cost in use, landed cost and registrations by country. Built for chemical and ingredient distributors in the Gulf, with an Arabic interface.
+- [Site Finder](https://arithim.com/product-site-finder.html): Screen land in Great Britain for solar, battery and onshore wind, and see the grid, planning and economics for each site before you spend on surveys. The enterprise platform licence is from £30,000 a year ex VAT.
 - [AI model inventory](https://arithim.com/product-ai-model-inventory.html): An AI model inventory for CISOs and security teams: see which AI models your business and suppliers run, flag the ones you have ruled out, and prove it.
-- [Site Finder](https://arithim.com/product-site-finder.html): Screen land in Great Britain for solar, battery and onshore wind, and see the grid, planning and economics for each site before you spend on surveys. Reports from £195 ex VAT, ordered by email.
+- [Landowner check](https://arithim.com/product-landowner-check.html): A one page check for landowners and land agents: what the land looks like, how crowded the nearest grid point is, who the developer is and what the letter asks of you.
+- [Site feasibility report](https://arithim.com/product-site-feasibility-report.html): A feasibility report on one site in Great Britain: a verdict with reasons, constraints on a map, grid, planning, economics, contacts and sources.
+- [Portfolio screen](https://arithim.com/product-portfolio-screen.html): A portfolio screen checks every claim in a seller's site list against the public record and marks it confirmed, contradicted, not verifiable or seller-supplied.
 - [Battery storage siting report](https://arithim.com/product-battery-siting-report.html): A report on one battery storage site in Great Britain covering grid, planning, land and returns, with the source and date of every figure.
 - [Grid pre-screen](https://arithim.com/product-grid-pre-screen.html): Grid pre-screen shows how close a Great Britain site is to published grid headroom, who already holds capacity there and what else could stop it.
 - [Planning risk screen](https://arithim.com/product-planning-risk-screen.html): A desk screen of one site in Great Britain for farmland, peat, heritage and protected sites, with the field studies an application is likely to need.
 - [Solar suitability check](https://arithim.com/product-solar-suitability-api.html): Planned: a solar suitability check that says whether solar is likely to work at an address, why, which constraints apply and the estimated yield.
+- [Market Watch](https://arithim.com/product-market-watch.html): Market Watch follows company holdings by group and substation, exposed Gate 2 positions, idle connections and changes, with a weekly email digest.
+- [Data API and MCP](https://arithim.com/product-data-api.html): A read-only API and MCP server for your tools and AI assistants: projects, substations, map cells, company holdings and changes, each with its source, date and licence.
 - [UK company check](https://arithim.com/product-uk-company-check.html): Planned: a check on one UK company that confirms it exists and is active, shows who controls it and gives a dated source for every fact.
 - [Find Me A Job](https://findmeajob.uk/)
 - [Unrejectable](https://www.unrejectable.uk/)
 - [Technical Sales Guide: security and trust](https://arithim.com/technical-sales-guide-security.html): How the Technical Sales Guide protects distributor and principal data: tenant separation, sign-in, audit log, hosting in Frankfurt, AI use, sub-processors and certification status.
-- [All products](https://arithim.com/products.html): Arithim products for distributors, energy developers, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, site and grid reports, company checks and SaaS.
+- [All products](https://arithim.com/products.html): Arithim products for distributors, energy developers, landowners, risk teams and job seekers: the Technical Sales Guide, the AI model inventory, Site Finder, landowner checks, site and grid reports, company checks and SaaS.
 
 ## Services
 

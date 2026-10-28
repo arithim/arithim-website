@@ -30,6 +30,7 @@ head, header and footer. `--check` fails if a page is stale.
 from __future__ import annotations
 
 import html
+from urllib.parse import quote
 import json
 import re
 import sys
@@ -41,6 +42,8 @@ import globe
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "content" / "products.json"
 SITE = "https://arithim.com"
+ORDER_EMAIL = "tarun@arithim.com"
+YOUR_DETAILS = ["Name:", "Company:", "Invoice address:", "Purchase order number (if any):"]
 e = html.escape
 DOTSCENE_VERSION = "1"
 
@@ -72,9 +75,20 @@ def section(sid: str, eyebrow: str, heading: str, inner: str) -> str:
 BTN = '<a href="{href}" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">{label}</span></a>'
 
 
+def order_mailto(o: dict) -> str:
+    """An order or quote email with the product in the subject and the details we need listed in the body."""
+    quote_only = bool(o.get("quote"))
+    first = f"I would like a quote for {o['product']}" if quote_only else f"I would like to order: {o['product']}"
+    details = YOUR_DETAILS[:2] if quote_only else YOUR_DETAILS
+    lines = [first, "", "What we need:" if quote_only else "Order details:"] + [f"- {n}" for n in o["needs"]] + ["", "My details:"] + [f"- {d}" for d in details]
+    subject = f"{o['product']} {'quote' if quote_only else 'order'}"
+    body = "\r\n".join(lines) + "\r\n"
+    return f"mailto:{ORDER_EMAIL}?subject={quote(subject, safe='')}&body={quote(body, safe='')}"
+
+
 def render(p: dict, products: list[dict]) -> str:
     url = f"{SITE}/product-{p['slug']}.html"
-    contact = f"contact.html?product={p['slug']}"
+    contact = order_mailto(p["order"]) if p.get("order") else f"contact.html?product={p['slug']}"
     cta = p["cta"]
     service = {"@context": "https://schema.org", "@type": "Service", "name": p["name"], "serviceType": p["service_type"], "url": url, "description": p["description"],
                "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/"}, "areaServed": {"@type": "Country", "name": p.get("area", "United Kingdom")},
