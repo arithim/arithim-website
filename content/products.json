@@ -2302,9 +2302,9 @@
   "cta_h": "Tell us what your estate looks like today.",
   "cta_p": "Tell us how many applications and AI tools you think you run, who keeps the architecture records and how projects reach the PMO. We will say where Arithim Estate would help first, and which parts are ready for you.",
   "nature": {
-   "scene": "orchard",
-   "title": "An orchard of applications, checked row by row",
-   "desc": "Rows of small dotted trees stand for the applications a company runs. A breeze moves along the rows and each tree settles, most steady and a few marked, one with an amber dot for something nobody registered. A sample, not a real estate."
+   "scene": "estate",
+   "title": "A skyline of applications lighting up",
+   "desc": "A scan line sweeps across a dotted skyline at dusk and towers appear, each window a dot: bright where an application is in use and faint where it is hardly used. Light packets travel along the road at the foot. One window in the tallest tower flickers in amber, and a small drone in the sky is ringed in amber, both standing for something nobody registered. A sample, not a real estate."
   },
   "see": {
    "eyebrow": "SEE IT WORK",
