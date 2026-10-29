@@ -1605,11 +1605,11 @@
   "name": "Arithim Estate",
   "label": "estate",
   "area": "Worldwide",
-  "title": "How do I manage enterprise architecture, SaaS spend and projects in one system? | Arithim",
-  "description": "Arithim Estate keeps one record of the applications you run, what they cost, what they are for and what will change them. Enterprise architecture, SaaS management and portfolio management on the same data. In early access.",
-  "eyebrow": "ARITHIM ESTATE · FOR CIOS, ARCHITECTS AND PMOS",
+  "title": "How do I find shadow AI and manage enterprise architecture and SaaS in one system? | Arithim",
+  "description": "Arithim Estate finds the shadow AI, AI agents and shadow IT nobody registered, then keeps one record of the applications you run, what they cost and what will change them. Enterprise architecture, SaaS management and portfolio management on the same data. In early access.",
+  "eyebrow": "ARITHIM ESTATE · FOR CIOS, CISOS, ARCHITECTS AND PMOS",
   "h1": "One record of what you run, what it costs and what is changing it.",
-  "sub": "Enterprise architecture, SaaS management and portfolio management on one set of records. It fills itself from your identity, finance and contract systems, so your first report arrives before anyone has typed a thing.",
+  "sub": "Find the shadow AI, AI agents and shadow IT nobody registered, then keep one record of what you run, what it costs and what is changing it. It fills itself from your identity, finance and contract systems, so your first report arrives before anyone has typed a thing.",
   "status": "Early access",
   "status_note": "Opening first to a small group of design partners. The SaaS management core comes first and the architecture and portfolio tiers follow. Every feature below carries its own status, and we have not dated any of them.",
   "cta": "Talk to us about early access",
@@ -1642,8 +1642,8 @@
   "benefits_h": "Why teams choose it",
   "benefits": [
    [
-    "A first report in ten working days",
-    "Connect read-only to the systems you already run. Spend, unused seats, shadow IT and shadow AI, and upcoming renewals arrive in about two weeks, with no workshops."
+    "Shadow AI and shadow IT, found in days",
+    "Connect read-only to the systems you already run. Within about two weeks you see the AI tools, agents and applications nobody registered, with spend, unused seats and renewals alongside."
    ],
    [
     "Records that keep themselves current",
@@ -1681,6 +1681,27 @@
   "features_lead": "Ten parts carry most of the product. Each animation shows one in a few seconds, and the points beside it say what it does in practice.",
   "features": [
    {
+    "id": "shadow-ai",
+    "anim": "ai",
+    "title": "Shadow AI: every AI tool and agent, found and owned",
+    "status": "Early access",
+    "status_note": "Discovery, cost and owners come first. Risk tiers and re-attestation arrive with the architecture tier.",
+    "text": "Find the AI tools, assistants and agents your people use that nobody registered, and the ones your suppliers' products bring in. Each gets an owner, a business purpose, a cost and a risk tier, in the same portfolio as everything else.",
+    "points": [
+     "Found through sign-ins, OAuth grants, vendor usage reports and spend, including personal accounts used on work data",
+     "Each agent is tiered by autonomy, data reach and external effect",
+     "Ownerless and dormant AI is flagged, and people are offered an approved alternative",
+     "Metadata only. Prompts and outputs are never read",
+     "An inventory to start AI governance and EU AI Act work from"
+    ],
+    "anim_title": "An unregistered agent found, tiered and given an owner",
+    "anim_desc": "A new agent appears in the portfolio. Arrows show the data it can reach, a risk tier is assigned and an owner is asked to confirm.",
+    "link": {
+     "href": "product-ai-model-inventory.html",
+     "text": "Need proof of which AI models you depend on? See the AI model inventory."
+    }
+   },
+   {
     "id": "report",
     "anim": "report",
     "title": "Your first report in ten working days",
@@ -1692,7 +1713,6 @@
      "A shadow IT and shadow AI list, ranked by risk and spend",
      "Renewals by notice date, suggested owners and a draft capability map"
     ],
-    "how": "Identity and card events arrive within minutes. The product cleans names and domains, matches each one to a catalogue with a score, and merges duplicates into one vendor, one application and one instance. Matches scoring below 0.85 go to a merge queue where an analyst accepts, changes or splits them.",
     "anim_title": "Feeds filling an application inventory",
     "anim_desc": "Identity, finance and card feeds flow into an inventory list. Applications appear, a spend total counts up and a shadow IT flag lands on one of them."
    },
@@ -1704,30 +1724,12 @@
     "text": "Each value carries its source, its age and how sure the product is. When two systems disagree, both stay on screen and the difference becomes an exception for a person to resolve.",
     "points": [
      "Confidence is Confirmed, Likely or Inferred, and says why",
-     "A value turns grey once it is older than twice its refresh interval",
+     "Out-of-date values are greyed out, with the reason",
      "Conflicting figures sit side by side and are never picked silently",
-     "A person's judgement is stored the same way, under their name"
+     "A person's judgement is recorded the same way, under their name"
     ],
-    "how": "Every fact is kept as an observation with its source, method, time and expected refresh. The value on screen is derived from those observations, and the older ones are kept for audit. Rules that act on usage, such as reclaiming a seat, need a Likely or Confirmed figure. An Inferred one prompts a question to a person instead.",
     "anim_title": "A figure with its source, age and a conflict",
     "anim_desc": "A seat count appears with chips for source, age and confidence. A second source disagrees, and both figures stay visible beside a reconciliation flag."
-   },
-   {
-    "id": "ai",
-    "anim": "ai",
-    "title": "AI tools and agents in the same portfolio",
-    "status": "Early access",
-    "status_note": "Discovery, cost and owners come first. Risk tiers and re-attestation arrive with the architecture tier.",
-    "text": "Copilots, assistants and agents are applications like any other, with an owner, a business capability, a cost and the data they can reach. There is no separate AI product to keep up to date.",
-    "points": [
-     "Found through sign-ins, OAuth grants, vendor usage reports and spend",
-     "Each agent is tiered by autonomy, data reach and external effect",
-     "Ownerless, dormant (60 days) and personal-account use is flagged",
-     "Metadata only. Prompts and outputs are never read"
-    ],
-    "how": "When a new AI domain, workspace, key or agent appears in any source, the product creates or merges an application of kind AI tool or AI agent. It records the host, model, tools and reachable data as interfaces, makes the creator the technical owner and asks their manager to be the business owner. Higher tiers go to the architect, then to a design authority with data protection and legal. Tier 2 and 3 agents are re-attested every 90 days.",
-    "anim_title": "An agent registered, tiered and given an owner",
-    "anim_desc": "A new agent appears in the portfolio. Arrows show the data it can reach, a risk tier is assigned and an owner is asked to confirm."
    },
    {
     "id": "door",
@@ -1741,7 +1743,6 @@
      "One thread and one status for the requester",
      "Three requests for the same unsanctioned app in 30 days raise a demand"
     ],
-    "how": "Every ask is one Request that changes type as it is routed. Under the access limit it goes to access. Under the purchase limit it goes to purchase, with security, architecture and procurement reviewing in parallel. Above that, or where delivery work is needed, it becomes a demand. The limits are numbers on one settings page in your reporting currency.",
     "anim_title": "A chat request answered with something you already own",
     "anim_desc": "An employee asks for a diagramming tool in chat. The reply offers a licensed tool with a spare seat, and the request is routed as access."
    },
@@ -1757,7 +1758,6 @@
      "Day 60: decision due. Day 30: escalation, and a drafted notice for a person to send",
      "Unconfirmed contract dates stay red, and the product never sends notice to a vendor"
     ],
-    "how": "The product extracts terms from the contract and a named person confirms the dates, notice period and value before any clock uses them. The renewal brief can be shared as a link without a login, so a budget owner can read it on a phone. The renewal outcome becomes the saving.",
     "anim_title": "A renewal clock counting 120, 90, 60 and 30 days",
     "anim_desc": "A timeline shows the four points before the notice deadline. At each point an action appears: reclaim, brief, decide, escalate."
    },
@@ -1773,7 +1773,6 @@
      "The user sees Keep or Release, then their manager is asked after 5 working days",
      "Batches are capped at 25 changes or 5% of a contract, with undo for 14 days"
     ],
-    "how": "A new rule runs in review-only mode for 30 days, showing exactly who it would touch. When it goes live it downgrades or removes by ticket, or by removing the person from an allow-listed group if you have given the second consent. The seat returns to the pool and the product records a potential saving. The author of a rule cannot approve its first live run, and your security lead has a kill switch for each rule.",
     "anim_title": "Seats released into a pool, with undo",
     "anim_desc": "A grid of seats shows some unused. A Keep or Release card goes to a user, the seat moves to a pool, and an undo control stays visible."
    },
@@ -1782,14 +1781,13 @@
     "anim": "map",
     "title": "A capability map with a TIME position on every application",
     "status": "Soon",
-    "text": "Start from a map of about 60 business capabilities. The product proposes which capability each application serves and whether to Tolerate, Invest, Migrate or Eliminate it, showing the evidence. Architects confirm in an afternoon, and nothing waits on the map.",
+    "text": "Start from a map of a starter map of business capabilities. The product proposes which capability each application serves and whether to Tolerate, Invest, Migrate or Eliminate it, showing the evidence. Architects confirm in an afternoon, and nothing waits on the map.",
     "points": [
      "Heatmap lenses for spend, TIME mix, risk, overlap, investment and coverage",
      "\"Unmapped\" is allowed, so the map is useful from day one",
-     "TIME is computed from value, fit, cost efficiency and overlap",
+     "TIME is proposed from the evidence, and people confirm it",
      "A confirmed position never changes silently"
     ],
-    "how": "An AI model proposes one primary and up to two partial capabilities per application, with a confidence and a reason. High-confidence links publish as Inferred and the rest are batched by capability for the lead architect. The owner and architect confirm TIME for the top 50 applications by spend and for any application on a critical capability. A time slider shows the roadmap against the target state.",
     "anim_title": "A capability heatmap switching lens",
     "anim_desc": "A grid of business capabilities is shaded by spend, then by TIME position. A single application is placed in the Migrate quadrant with its evidence."
    },
@@ -1805,7 +1803,6 @@
      "The pack shows overlap, standards, vendor risk, data classes and interfaces",
      "One decision, with conditions tracked as tasks and exceptions that expire"
     ],
-    "how": "The product assembles the pack, starts the right clock and records one Decision. That decision is written to the request, the project gate and the risk log, and the conditions become tasks that gates read. Any new application over the review threshold is at least Tier 2, and SLA breaches escalate to the head of architecture. Without the architecture tier, a named IT or security reviewer handles these instead.",
     "anim_title": "Requests routed to three review tiers",
     "anim_desc": "Three requests arrive. One is approved on a clock, one goes to a single architect and one is added to a design authority agenda, each with a decision stamped."
    },
@@ -1821,7 +1818,6 @@
      "Status is derived from schedule, cost, scope and adoption, with the project manager's override beside it",
      "Every initiative declares which applications it introduces, changes, replaces or retires"
     ],
-    "how": "The demand manager accepts a proposed route in one click. The case is drafted for the project manager to edit, and a benefit cannot be submitted without a measure and a named owner. Gates block on open architecture conditions. Each week the project manager confirms, edits or overrides a drafted status of up to 120 words, and the product never edits tasks or plans in your delivery tool.",
     "anim_title": "A demand moving through case, gates and status",
     "anim_desc": "A demand card passes through triage, a business case and three gates, then shows a derived status with an override beside it."
    },
@@ -1838,7 +1834,6 @@
      "A retirement counts only when assignments are zero and spend has stopped for two billing cycles",
      "Project benefits refer to savings and never copy them"
     ],
-    "how": "The core holds the money evidence, so it writes the only Saving record. Savings without a project sit under a standing optimisation initiative for the fiscal year, so they still appear in the portfolio's benefits view. Where an approved business case set a baseline, that baseline is used. Otherwise the product uses the trailing 12 months.",
     "anim_title": "One saving signed once and landing on a benefit line",
     "anim_desc": "A saving is created with a cause and class, finance signs it, and it links to a benefit line while the ledger total ticks up."
    }
@@ -2151,7 +2146,7 @@
   "ai": [
    [
     "Matching names and spend",
-    "Decides above 0.85 confidence and suggests below it. Every merge can be split."
+    "Decides only when it is very sure, and suggests otherwise. Every merge can be split."
    ],
    [
     "Reading contracts",
@@ -2253,6 +2248,14 @@
     "A system of record for the technology a company runs, what it pays for, why it has it and what will change it. It combines SaaS management, enterprise architecture and portfolio management on one set of records, so the three views agree."
    ],
    [
+    "How do I find shadow AI in my company?",
+    "Connect read-only to your identity provider, finance and card feeds and the AI vendors' admin reports. Arithim Estate finds AI tools, assistants and agents that nobody registered, shows who uses them, what they cost and what data they can reach, and asks the owner to confirm. It records metadata only and never reads prompts or outputs."
+   ],
+   [
+    "Does it help with AI governance and the EU AI Act?",
+    "It gives you the inventory and the owner, risk tier and review records those programmes start from. It is not legal advice. If you also need dated proof of which AI models you depend on, pair it with the AI model inventory."
+   ],
+   [
     "Is it SaaS management, enterprise architecture or PMO software?",
     "All three, on the same data. The SaaS management core is always included. The architecture and portfolio tiers add capability mapping, reviews and decisions on one side and demand, cases, gates and benefits on the other."
    ],
@@ -2295,8 +2298,64 @@
   "service_type": "Enterprise architecture, SaaS management and portfolio management software",
   "audience_type": "CIOs, enterprise architects, PMO leads and IT operations teams",
   "audience": "For CIOs, architects and PMOs at companies of 1,000 to 10,000 people",
-  "card_summary": "One record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.",
+  "card_summary": "Find shadow AI and shadow IT, then keep one record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.",
   "cta_h": "Tell us what your estate looks like today.",
-  "cta_p": "Tell us how many applications you think you run, who keeps the architecture records and how projects reach the PMO. We will say where Arithim Estate would help first, and which parts are ready for you."
+  "cta_p": "Tell us how many applications and AI tools you think you run, who keeps the architecture records and how projects reach the PMO. We will say where Arithim Estate would help first, and which parts are ready for you.",
+  "nature": {
+   "scene": "orchard",
+   "title": "An orchard of applications, checked row by row",
+   "desc": "Rows of small dotted trees stand for the applications a company runs. A breeze moves along the rows and each tree settles, most steady and a few marked, one with an amber dot for something nobody registered. A sample, not a real estate."
+  },
+  "see": {
+   "eyebrow": "SEE IT WORK",
+   "heading": "What does Arithim Estate do in twelve seconds?",
+   "text": "Feeds fill the inventory, every application gets a business capability and a position, a chat request is answered with something you already own, a renewal clock runs down and a saving is signed once. Names and figures are made up to show the idea."
+  },
+  "usecases_h": "Start with the question that worries you most",
+  "usecases_lead": "Most customers begin with one of these. All of them run on the same records, so the second one is already half answered when you reach it.",
+  "usecases": [
+   [
+    "CISOs and heads of cybersecurity",
+    "Shadow AI and AI agents",
+    "Which AI tools and agents are in use, who owns them and what data can they reach? Find the ones nobody registered, tier them by risk and give your board a current answer.",
+    "#f-shadow-ai",
+    "See shadow AI discovery"
+   ],
+   [
+    "CIOs and heads of IT operations",
+    "Shadow IT and SaaS sprawl",
+    "See every application your people use and pay for, including the ones bought on a card, and decide which to keep, merge or retire.",
+    "#f-report",
+    "See the first report"
+   ],
+   [
+    "Procurement and finance",
+    "Renewals and wasted licences",
+    "Never miss a notice date again, and get unused seats back into a pool before the renewal, with finance signing each saving once.",
+    "#f-renewal",
+    "See the renewal clock"
+   ],
+   [
+    "Enterprise architects",
+    "A portfolio that keeps itself current",
+    "A capability map and a position on every application, filled from live data so it stops going stale, with reviews sized to the risk.",
+    "#f-map",
+    "See the capability map"
+   ],
+   [
+    "PMO leads",
+    "One view of change",
+    "Requests, renewals and projects on one record, with status drawn from the delivery tool and benefits measured from real spend.",
+    "#f-portfolio",
+    "See request to delivery"
+   ],
+   [
+    "Security and audit teams",
+    "Evidence on request",
+    "Access reviews, leaver checks and a log of who approved what, ready for an auditor without a scramble.",
+    "#details",
+    "See the smaller features"
+   ]
+  ]
  }
 ]

@@ -25,10 +25,12 @@ the same for every product and live here and in site.css. Each entry in content/
   globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
 
 A larger product (a "full" page) adds any of these, and the page then reads in the order below. Every part is optional except where noted.
-  video                        {mp4, webm, poster, title, desc}: a muted looping hero video in the slot the nature scene would use
+  usecases_h, usecases_lead, usecases
+                               [who, title, text, anchor, link text] cards: the questions people arrive with, directly under the hero
+  video, see                   video {mp4, webm, poster, title, desc} plays in a "see it work" split section; see is {eyebrow, heading, text}
   status_key_h, status_key     heading and [status, meaning] pairs that explain Early access, Soon, Planned and Later
   features_h, features_lead, features
-                               large features, each {id, anim, title, status, status_note, text, points, how, anim_title, anim_desc};
+                               large features, each {id, anim, title, status, status_note, text, points, link, anim_title, anim_desc};
                                anim names a scene in tools/feature_anim.py, played by assets/fanim.js
   tiers_h, tiers_lead, tiers, tiers_note
                                [name, status, text] cards for the modules or tiers
@@ -94,6 +96,11 @@ def tag_cards(items, tag_first=True, label_idx=None):
     return f'<div class="tsg-grid {cols}">{body}</div>'
 
 
+def usecase_cards(items):
+    body = "".join(f'<div class="tsg-card"><span class="ah-day">{e(w)}</span><h3>{e(t)}</h3><p>{e(b)}</p><p><a class="tsg-link" href="{e(h)}">{e(l)} →</a></p></div>' for w, t, b, h, l in items)
+    return f'<div class="tsg-grid tsg-g3">{body}</div>'
+
+
 def day_cards(items):
     body = "".join(f'<div class="tsg-card"><span class="ah-day">{e(w)}</span><h3>{e(t)}</h3><p>{e(b)}</p></div>' for w, t, b in items)
     return f'<div class="tsg-grid tsg-g2">{body}</div>'
@@ -102,8 +109,9 @@ def day_cards(items):
 def feature(f: dict, fanim) -> str:
     note = f'<p class="ah-note">{e(f["status_note"])}</p>' if f.get("status_note") else ""
     pts = "".join(f"<li>{e(x)}</li>" for x in f["points"])
+    link = f'<p><a class="tsg-link" href="{e(f["link"]["href"])}">{e(f["link"]["text"])}</a></p>' if f.get("link") else ""
     return (f'<article class="ah-feature" id="f-{e(f["id"])}"><div class="ah-feature-copy">{tag(f["status"])}<h3>{e(f["title"])}</h3>{note}'
-            f'<p>{e(f["text"])}</p><ul class="ah-points">{pts}</ul><p class="ah-how"><span class="ah-day">How it works</span>{e(f["how"])}</p></div>'
+            f'<p>{e(f["text"])}</p><ul class="ah-points">{pts}</ul>{link}</div>'
             f'<figure class="ah-feature-fig">{fanim.render(f["anim"], f["anim_title"], f["anim_desc"])}</figure></article>')
 
 
@@ -150,8 +158,22 @@ def render(p: dict, products: list[dict]) -> str:
     nature_html = (f'</div><figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="{e(n["scene"])}" role="img" aria-label="{e(n["title"] + ". " + n["desc"], quote=True)}">{e(n["desc"])}</canvas>'
                    f'<figcaption class="ah-nature-cap">{globe.CAPTION}</figcaption></figure>' if n else "")
     v = p.get("video")
-    video_html = (f'</div><figure class="ah-video"><video class="ah-video-cv" muted loop playsinline autoplay preload="metadata" poster="{e(v["poster"])}" aria-label="{e(v["title"] + ". " + v["desc"], quote=True)}">'
-                  f'<source src="{e(v["webm"])}" type="video/webm"><source src="{e(v["mp4"])}" type="video/mp4"></video><figcaption>{e(v["title"])}</figcaption></figure>' if v else "")
+    see_html = ""
+    if v:
+        see = p["see"]
+        see_html = (f'''  <section class="tsg-sec" id="see" aria-labelledby="see-h">
+    <div class="tsg-wrap">
+      <div class="ah-split">
+        <div>
+          <div class="tsg-eyebrow">{e(see["eyebrow"])}</div>
+          <h2 class="tsg-h2" id="see-h">{e(see["heading"])}</h2>
+          <p class="tsg-lead">{e(see["text"])}</p>
+        </div>
+        <figure class="ah-video"><video class="ah-video-cv" muted loop playsinline autoplay preload="metadata" poster="{e(v["poster"])}" aria-label="{e(v["title"] + ". " + v["desc"], quote=True)}">
+        <source src="{e(v["webm"])}" type="video/webm"><source src="{e(v["mp4"])}" type="video/mp4"></video><figcaption>{e(v["title"])}</figcaption></figure>
+      </div>
+    </div>
+  </section>''')
     nature_js = (f'<script src="/assets/dotscene.js?v={DOTSCENE_VERSION}" defer></script>'
                  f'<script src="/assets/dotscene-{e(n["scene"])}.js?v={DOTSCENE_VERSION}" defer></script>') if n else ""
     c = p.get("contours")
@@ -168,6 +190,8 @@ def render(p: dict, products: list[dict]) -> str:
     if full:
         import feature_anim
         parts = {
+            "usecases": section("usecases", "WHERE TO START", p["usecases_h"], lead("usecases_lead") + usecase_cards(p["usecases"])),
+            "see": see_html,
             "key": section("status", "WHERE EACH PART STANDS", p["status_key_h"], '<ul class="ah-key">' + "".join(f"<li>{tag(a)}<br>{e(b)}</li>" for a, b in p["status_key"]) + "</ul>"),
             "benefits": section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
             "steps": section("steps", "HOW IT WORKS", p["steps_h"], cards(p["steps"], numbered=True)),
@@ -181,7 +205,7 @@ def render(p: dict, products: list[dict]) -> str:
             "who": section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),
             "know": section("know", "GOOD TO KNOW", p["know_h"], f'<ul class="as-list">{know}</ul>'),
         }
-        order = ["key", "benefits", "steps", "features", "tiers", "details", "connect", "rollout", "ai", "trust", "who", "know"]
+        order = ["usecases", "see", "key", "benefits", "steps", "features", "tiers", "details", "connect", "rollout", "ai", "trust", "who", "know"]
         sections = [parts[k] for k in order]
     else:
         sections = ([globe.render(p["globe"], "globe") + "\n"] if p.get("globe") else []) + [
@@ -228,12 +252,12 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap ah-hero-in{' ah-has-art' if (n or v) else ''}">
-      {'<div class="ah-hero-copy">' if (n or v) else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+    <div class="tsg-wrap ah-hero-in{' ah-has-art' if n else ''}">
+      {'<div class="ah-hero-copy">' if n else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      <div class="ah-hero-foot">{price_html}<p class="as-note">{e(p['status_note'])}</p></div>{nature_html}{video_html}
+      <div class="ah-hero-foot">{price_html}<p class="as-note">{e(p['status_note'])}</p></div>{nature_html}
     </div>
   </section>{nature_js}{contours_html}{page_js}
 

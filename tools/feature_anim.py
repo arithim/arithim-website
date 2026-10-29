@@ -97,12 +97,12 @@ def trust():
     out.append(g(f'<path class="f-conflict" d="M216 109 L264 109"/>' + chip(205, 92, "≠", "f-amber", 22), t=4.6))
     out.append(g(rect(16, 204, 448, 76, "f-card", 12) + text(32, 226, "Disagreement kept, never picked silently", "f-txt") + text(32, 245, "Raised as an exception for a person to reconcile.", "f-dim")
                  + chip(380, 244, "Reconcile", "f-amber"), t=5.2))
-    out.append(g(text(240, 292, "Grey after twice its refresh interval", "f-cap", "middle"), t=6.4))
+    out.append(g(text(240, 292, "Out-of-date values are greyed out", "f-cap", "middle"), t=6.4))
     return frame("".join(out)), 7.6
 
 
 def ai():
-    out = [g(chip(20, 18, "New agent seen", "f-amber"), t=0.3)]
+    out = [g(chip(20, 18, "Unregistered AI agent", "f-amber"), t=0.3)]
     out.append(g('<circle class="f-node" cx="120" cy="150" r="42"/>' + text(120, 146, "Agent", "f-txt", "middle") + text(120, 164, "support bot", "f-dim", "middle"), t=0.8))
     for i, (lbl, y) in enumerate([("Customer data", 70), ("Documents", 150), ("Tickets", 230)]):
         out.append(curve(f"M160 140 C230 140 240 {y} 300 {y}", 1.6 + i * 0.4))

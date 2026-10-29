@@ -2053,6 +2053,7 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
 .ah-video { position: relative; z-index: 0; margin: 0; }
 .ah-has-art .ah-video { margin-top: var(--ah-s-24); }
 .ah-video-cv { display: block; width: 100%; max-width: 560px; aspect-ratio: 16 / 9; margin: 0 auto; border-radius: var(--ah-r-12); border: 1px solid var(--ah-cream-14); background: var(--ah-ink-deep); object-fit: cover; }
+.ah-split .ah-video-cv { max-width: none; }
 .ah-video figcaption { max-width: 560px; margin: var(--ah-s-8) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
 
 /* Large features: copy on one side, a short looping animation on the other, alternating down the page. */
@@ -2065,7 +2066,6 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
 .ah-points { margin: 0 0 var(--ah-s-16); padding: 0; list-style: none; display: grid; gap: var(--ah-s-8); }
 .ah-points li { position: relative; padding-left: var(--ah-s-20); color: var(--ah-text-2); font-size: var(--ah-fs-15); line-height: 1.5; }
 .ah-points li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 1px; background: var(--ah-amber); }
-.ah-how { border-left: 2px solid var(--ah-amber-40); padding-left: var(--ah-s-14); font-size: var(--ah-fs-14); }
 .ah-feature-fig { margin: 0; }
 @media (max-width: 900px) { .ah-feature { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-20); } .ah-feature:nth-child(even) .ah-feature-fig { order: 0; } .ah-feature-fig { order: -1; } .ah-features { gap: var(--ah-s-40); } }
 .ah-subhead { margin: var(--ah-s-40) 0 var(--ah-s-8); font: 500 var(--ah-fs-13) var(--ah-font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ah-amber-light); }
