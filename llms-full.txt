@@ -116,6 +116,12 @@ AI model inventory
 
 Know which AI models your business runs on, and prove it with a dated report.
 
+ENTERPRISE SOFTWARE · EARLY ACCESS
+
+Arithim Estate
+
+Find shadow AI and shadow IT, then keep one record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.
+
 DATA PRODUCTS · AVAILABLE
 
 Landowner check
@@ -339,6 +345,14 @@ Learn more →For CISOs and security teams
 Early access
 
 Know which AI models your business runs on, and prove it with a dated report.
+
+Learn more →For CIOs, architects and PMOs at companies of 1,000 to 10,000 people
+
+### Arithim Estate
+
+Early access
+
+Find shadow AI and shadow IT, then keep one record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.
 
 Learn more →
 
@@ -2071,6 +2085,12 @@ ENTERPRISE SOFTWARE · EARLY ACCESS
 AI model inventory
 
 Know which AI models your business runs on, and prove it with a dated report.
+
+ENTERPRISE SOFTWARE · EARLY ACCESS
+
+Arithim Estate
+
+Find shadow AI and shadow IT, then keep one record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.
 
 DATA PRODUCTS · AVAILABLE
 

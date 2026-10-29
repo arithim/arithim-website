@@ -22,6 +22,10 @@
         {
           "slug": "ai-model-inventory",
           "status": "Early access"
+        },
+        {
+          "slug": "estate",
+          "status": "Early access"
         }
       ]
     },

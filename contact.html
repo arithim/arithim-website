@@ -50,6 +50,7 @@
             <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
             <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
             <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
           </div>
           <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
             <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
@@ -244,7 +245,7 @@ class Component extends DCLogic {
       this._tsTimer = setTimeout(renderTs, 150);
     };
     renderTs();
-    const topic = { 'technical-sales-guide': 'Technical Sales Guide demo', 'site-finder': 'Site Finder demo', 'find-me-a-job': 'Find Me A Job or Unrejectable', 'unrejectable': 'Find Me A Job or Unrejectable' }[new URLSearchParams(location.search).get('product')];
+    const topic = { 'technical-sales-guide': 'Technical Sales Guide demo', 'site-finder': 'Site Finder demo', 'estate': 'Arithim Estate early access', 'find-me-a-job': 'Find Me A Job or Unrejectable', 'unrejectable': 'Find Me A Job or Unrejectable' }[new URLSearchParams(location.search).get('product')];
     const setTopic = (n) => { const s = document.querySelector('[data-topic]'); if (s) s.value = topic; else if (n > 0) setTimeout(() => setTopic(n - 1), 100); };
     if (topic) setTopic(20);
   }
