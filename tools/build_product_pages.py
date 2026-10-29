@@ -24,6 +24,24 @@ the same for every product and live here and in site.css. Each entry in content/
                                scene names one of the scenes in that file; title and desc are its text alternative
   globe                        optional {eyebrow, heading, text, alt}: adds the dotted-globe section under the hero (tools/globe.py)
 
+A larger product (a "full" page) adds any of these, and the page then reads in the order below. Every part is optional except where noted.
+  video                        {mp4, webm, poster, title, desc}: a muted looping hero video in the slot the nature scene would use
+  status_key_h, status_key     heading and [status, meaning] pairs that explain Early access, Soon, Planned and Later
+  features_h, features_lead, features
+                               large features, each {id, anim, title, status, status_note, text, points, how, anim_title, anim_desc};
+                               anim names a scene in tools/feature_anim.py, played by assets/fanim.js
+  tiers_h, tiers_lead, tiers, tiers_note
+                               [name, status, text] cards for the modules or tiers
+  details_h, details_lead, details
+                               groups {name, items: [[name, status, how it works]]} for the smaller features
+  connect_h, connect_lead, connect, connect_note
+                               [group, status, text] cards for what the product connects to
+  rollout_h, rollout_lead, rollout
+                               [when, title, text] cards for the first days and weeks
+  ai_h, ai_lead, ai, ai_note   [title, text] cards for where AI helps and who decides
+  trust_h, trust_lead, trust   [title, text] cards for security, data and control
+Statuses are exactly Early access, Soon, Planned or Later. gets_h and gets are optional on a full page.
+
 Run `python3 tools/build_product_pages.py`, then `python3 tools/build_insights.py` to stamp the shared
 head, header and footer. `--check` fails if a page is stale.
 """
@@ -46,6 +64,8 @@ ORDER_EMAIL = "tarun@arithim.com"
 YOUR_DETAILS = ["Name:", "Company:", "Invoice address:", "Purchase order number (if any):"]
 e = html.escape
 DOTSCENE_VERSION = "1"
+FANIM_VERSION = "3"
+HEROVIDEO_VERSION = "1"
 
 
 def ld(obj):
@@ -60,6 +80,31 @@ def cards(items, numbered=False):
         num = f'<span class="ah-step-n">{i:02d}</span>' if numbered else ""
         body += f'<div class="tsg-card">{num}<h3>{e(t)}</h3><p>{e(b)}</p></div>'
     return f'<div class="tsg-grid {cols}">{body}</div>'
+
+
+def tag(status: str) -> str:
+    return f'<span class="ah-tag ah-tag-{status.lower().replace(" ", "-")}">{e(status)}</span>'
+
+
+def tag_cards(items, tag_first=True, label_idx=None):
+    """Cards of [title, status, text]. Used for tiers, small features and connectors."""
+    n = len(items)
+    cols = "tsg-g2" if n % 2 == 0 and n <= 4 else "tsg-g3"
+    body = "".join(f'<div class="tsg-card">{tag(st)}<h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, st, b in items)
+    return f'<div class="tsg-grid {cols}">{body}</div>'
+
+
+def day_cards(items):
+    body = "".join(f'<div class="tsg-card"><span class="ah-day">{e(w)}</span><h3>{e(t)}</h3><p>{e(b)}</p></div>' for w, t, b in items)
+    return f'<div class="tsg-grid tsg-g2">{body}</div>'
+
+
+def feature(f: dict, fanim) -> str:
+    note = f'<p class="ah-note">{e(f["status_note"])}</p>' if f.get("status_note") else ""
+    pts = "".join(f"<li>{e(x)}</li>" for x in f["points"])
+    return (f'<article class="ah-feature" id="f-{e(f["id"])}"><div class="ah-feature-copy">{tag(f["status"])}<h3>{e(f["title"])}</h3>{note}'
+            f'<p>{e(f["text"])}</p><ul class="ah-points">{pts}</ul><p class="ah-how"><span class="ah-day">How it works</span>{e(f["how"])}</p></div>'
+            f'<figure class="ah-feature-fig">{fanim.render(f["anim"], f["anim_title"], f["anim_desc"])}</figure></article>')
 
 
 def section(sid: str, eyebrow: str, heading: str, inner: str) -> str:
@@ -91,7 +136,7 @@ def render(p: dict, products: list[dict]) -> str:
     contact = order_mailto(p["order"]) if p.get("order") else f"contact.html?product={p['slug']}"
     cta = p["cta"]
     service = {"@context": "https://schema.org", "@type": "Service", "name": p["name"], "serviceType": p["service_type"], "url": url, "description": p["description"],
-               "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/"}, "areaServed": {"@type": "Country", "name": p.get("area", "United Kingdom")},
+               "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/"}, "areaServed": {"@type": "Place" if p.get("area") == "Worldwide" else "Country", "name": p.get("area", "United Kingdom")},
                "audience": {"@type": "Audience", "audienceType": p["audience_type"]}}
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -104,6 +149,9 @@ def render(p: dict, products: list[dict]) -> str:
     n = p.get("nature")
     nature_html = (f'</div><figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="{e(n["scene"])}" role="img" aria-label="{e(n["title"] + ". " + n["desc"], quote=True)}">{e(n["desc"])}</canvas>'
                    f'<figcaption class="ah-nature-cap">{globe.CAPTION}</figcaption></figure>' if n else "")
+    v = p.get("video")
+    video_html = (f'</div><figure class="ah-video"><video class="ah-video-cv" muted loop playsinline autoplay preload="metadata" poster="{e(v["poster"])}" aria-label="{e(v["title"] + ". " + v["desc"], quote=True)}">'
+                  f'<source src="{e(v["webm"])}" type="video/webm"><source src="{e(v["mp4"])}" type="video/mp4"></video><figcaption>{e(v["title"])}</figcaption></figure>' if v else "")
     nature_js = (f'<script src="/assets/dotscene.js?v={DOTSCENE_VERSION}" defer></script>'
                  f'<script src="/assets/dotscene-{e(n["scene"])}.js?v={DOTSCENE_VERSION}" defer></script>') if n else ""
     c = p.get("contours")
@@ -114,13 +162,36 @@ def render(p: dict, products: list[dict]) -> str:
     know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
     faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
-    sections = ([globe.render(p["globe"], "globe") + "\n"] if p.get("globe") else []) + [
-        section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
-        section("gets", "WHAT YOU GET", p["gets_h"], cards(p["gets"])),
-        section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),
-        section("steps", "HOW IT WORKS", p["steps_h"], cards(p["steps"], numbered=True)),
-        section("know", "GOOD TO KNOW", p["know_h"], f'<ul class="as-list">{know}</ul>'),
-    ]
+    lead = lambda k: f'<p class="tsg-lead">{e(p[k])}</p>' if p.get(k) else ""
+    note = lambda k: f'<p class="as-note">{e(p[k])}</p>' if p.get(k) else ""
+    full = bool(p.get("features"))
+    if full:
+        import feature_anim
+        parts = {
+            "key": section("status", "WHERE EACH PART STANDS", p["status_key_h"], '<ul class="ah-key">' + "".join(f"<li>{tag(a)}<br>{e(b)}</li>" for a, b in p["status_key"]) + "</ul>"),
+            "benefits": section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
+            "steps": section("steps", "HOW IT WORKS", p["steps_h"], cards(p["steps"], numbered=True)),
+            "features": section("features", "THE LARGE FEATURES", p["features_h"], lead("features_lead") + '<div class="ah-features">' + "".join(feature(f, feature_anim) for f in p["features"]) + "</div>"),
+            "tiers": section("tiers", "MODULES", p["tiers_h"], lead("tiers_lead") + tag_cards(p["tiers"]) + note("tiers_note")),
+            "details": section("details", "THE SMALLER FEATURES", p["details_h"], lead("details_lead") + "".join(f'<h3 class="ah-subhead">{e(g["name"])}</h3>' + tag_cards(g["items"]) for g in p["details"])),
+            "connect": section("connect", "CONNECTIONS", p["connect_h"], lead("connect_lead") + tag_cards(p["connect"]) + note("connect_note")),
+            "rollout": section("rollout", "THE FIRST 90 DAYS", p["rollout_h"], lead("rollout_lead") + day_cards(p["rollout"])),
+            "ai": section("ai", "AI IN THE PRODUCT", p["ai_h"], lead("ai_lead") + cards(p["ai"]) + note("ai_note")),
+            "trust": section("trust", "SECURITY AND CONTROL", p["trust_h"], lead("trust_lead") + cards(p["trust"])),
+            "who": section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),
+            "know": section("know", "GOOD TO KNOW", p["know_h"], f'<ul class="as-list">{know}</ul>'),
+        }
+        order = ["key", "benefits", "steps", "features", "tiers", "details", "connect", "rollout", "ai", "trust", "who", "know"]
+        sections = [parts[k] for k in order]
+    else:
+        sections = ([globe.render(p["globe"], "globe") + "\n"] if p.get("globe") else []) + [
+            section("benefits", "WHY TEAMS CHOOSE IT", p["benefits_h"], cards(p["benefits"])),
+            section("gets", "WHAT YOU GET", p["gets_h"], cards(p["gets"])),
+            section("who", "WHO IT IS FOR", p["who_h"], cards(p["who"])),
+            section("steps", "HOW IT WORKS", p["steps_h"], cards(p["steps"], numbered=True)),
+            section("know", "GOOD TO KNOW", p["know_h"], f'<ul class="as-list">{know}</ul>'),
+        ]
+    page_js = (f'<script src="/assets/fanim.js?v={FANIM_VERSION}" defer></script>' if full else "") + (f'<script src="/assets/herovideo.js?v={HEROVIDEO_VERSION}" defer></script>' if p.get("video") else "")
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -157,14 +228,14 @@ def render(p: dict, products: list[dict]) -> str:
 <main id="main">
   <section data-hero class="ah-clip" aria-labelledby="pp-h1">
     <canvas class="ah-rb" data-ribbons="soft" aria-hidden="true"></canvas><div class="ah-rb-scrim ah-rb-l"></div>
-    <div class="tsg-wrap ah-hero-in{' ah-has-art' if n else ''}">
-      {'<div class="ah-hero-copy">' if n else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
+    <div class="tsg-wrap ah-hero-in{' ah-has-art' if (n or v) else ''}">
+      {'<div class="ah-hero-copy">' if (n or v) else ''}<div class="ah-eyebrow-amber">{e(p['eyebrow'])}</div>
       <h1 id="pp-h1" class="tsg-hero-h ah-h1">{e(p['h1'])}</h1>
       <p class="as-def">{e(p['sub'])}</p>
       <div class="ah-actions">{BTN.format(href=contact, label=e(cta) + " →")}<span class="pp-st">{e(p['status'])}</span></div>
-      <div class="ah-hero-foot">{price_html}<p class="as-note">{e(p['status_note'])}</p></div>{nature_html}
+      <div class="ah-hero-foot">{price_html}<p class="as-note">{e(p['status_note'])}</p></div>{nature_html}{video_html}
     </div>
-  </section>{nature_js}{contours_html}
+  </section>{nature_js}{contours_html}{page_js}
 
 {chr(10).join(sections)}
 

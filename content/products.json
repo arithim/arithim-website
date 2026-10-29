@@ -1599,5 +1599,704 @@
    "title": "A sample address on a solar irradiance map",
    "desc": "Contour lines drift across a map. A pin drops on a sample address, the lines tighten around it, and a Good fit verdict appears. Reasons follow: the roof faces south with light shading, the building is not listed or in a conservation area, and flood risk is low. A sample yield of about 3,900 kWh a year for a 3.5 kWp system counts up. All figures are samples."
   }
+ },
+ {
+  "slug": "estate",
+  "name": "Arithim Estate",
+  "label": "estate",
+  "area": "Worldwide",
+  "title": "How do I manage enterprise architecture, SaaS spend and projects in one system? | Arithim",
+  "description": "Arithim Estate keeps one record of the applications you run, what they cost, what they are for and what will change them. Enterprise architecture, SaaS management and portfolio management on the same data. In early access.",
+  "eyebrow": "ARITHIM ESTATE · FOR CIOS, ARCHITECTS AND PMOS",
+  "h1": "One record of what you run, what it costs and what is changing it.",
+  "sub": "Enterprise architecture, SaaS management and portfolio management on one set of records. It fills itself from your identity, finance and contract systems, so your first report arrives before anyone has typed a thing.",
+  "status": "Early access",
+  "status_note": "Opening first to a small group of design partners. The SaaS management core comes first and the architecture and portfolio tiers follow. Every feature below carries its own status, and we have not dated any of them.",
+  "cta": "Talk to us about early access",
+  "video": {
+   "mp4": "/assets/estate/hero.mp4",
+   "webm": "/assets/estate/hero.webm",
+   "poster": "/assets/estate/hero-poster.jpg",
+   "title": "Arithim Estate in twelve seconds",
+   "desc": "Feeds from identity, finance and card systems fill an application list and a spend total. Each application gets a business capability and a position of Tolerate, Invest, Migrate or Eliminate. A chat request is answered with something the company already owns. A renewal clock counts down 120, 90, 60 and 30 days. A saving is signed once and lands on a benefit line."
+  },
+  "status_key_h": "How to read the status on each feature",
+  "status_key": [
+   [
+    "Early access",
+    "Opens first, to design partners. These parts make up the SaaS management core."
+   ],
+   [
+    "Soon",
+    "Part of the first full release. The architecture and portfolio tiers sit here."
+   ],
+   [
+    "Planned",
+    "Designed and agreed for the release after that."
+   ],
+   [
+    "Later",
+    "On the roadmap with no release set."
+   ]
+  ],
+  "benefits_h": "Why teams choose it",
+  "benefits": [
+   [
+    "A first report in ten working days",
+    "Connect read-only to the systems you already run. Spend, unused seats, shadow IT and shadow AI, and upcoming renewals arrive in about two weeks, with no workshops."
+   ],
+   [
+    "Records that keep themselves current",
+    "The portfolio fills from identity, finance, card and contract feeds. People are asked only for judgement: who owns this, how critical it is and what should happen next."
+   ],
+   [
+    "One answer for the CIO, the architect, the PMO and finance",
+    "Each person opens on the screen that answers their question, from the same records. The capability map, the renewal board, the project funnel and the savings ledger never disagree."
+   ],
+   [
+    "Decisions that reach the work",
+    "A board decision becomes a record that gates, renewals and project plans read. A retirement counts as a saving only when the spend has actually stopped."
+   ]
+  ],
+  "steps_h": "One loop: discover, decide, change, prove",
+  "steps": [
+   [
+    "Discover",
+    "Find what the company runs and pays for, including applications and AI agents nobody registered."
+   ],
+   [
+    "Decide",
+    "Route every request by size and risk, set an architecture position and make the renewal decision with the facts in front of you."
+   ],
+   [
+    "Change",
+    "Carry the decision through a request, a renewal or a project, with owners, gates and a roadmap."
+   ],
+   [
+    "Prove",
+    "Show that the money moved. Finance signs each saving once, and every figure links back to its source."
+   ]
+  ],
+  "features_h": "The large features, and how each one works",
+  "features_lead": "Ten parts carry most of the product. Each animation shows one in a few seconds, and the points beside it say what it does in practice.",
+  "features": [
+   {
+    "id": "report",
+    "anim": "report",
+    "title": "Your first report in ten working days",
+    "status": "Early access",
+    "text": "Connect read-only to your identity provider, finance system, card feed and contract folder. Within ten working days you have a reconciled inventory of what you run and pay for, before anyone has typed a record.",
+    "points": [
+     "Spend by application, vendor and cost centre",
+     "Unused seats, and licences paid for but not used",
+     "A shadow IT and shadow AI list, ranked by risk and spend",
+     "Renewals by notice date, suggested owners and a draft capability map"
+    ],
+    "how": "Identity and card events arrive within minutes. The product cleans names and domains, matches each one to a catalogue with a score, and merges duplicates into one vendor, one application and one instance. Matches scoring below 0.85 go to a merge queue where an analyst accepts, changes or splits them.",
+    "anim_title": "Feeds filling an application inventory",
+    "anim_desc": "Identity, finance and card feeds flow into an inventory list. Applications appear, a spend total counts up and a shadow IT flag lands on one of them."
+   },
+   {
+    "id": "trust",
+    "anim": "trust",
+    "title": "Every number shows where it came from",
+    "status": "Early access",
+    "text": "Each value carries its source, its age and how sure the product is. When two systems disagree, both stay on screen and the difference becomes an exception for a person to resolve.",
+    "points": [
+     "Confidence is Confirmed, Likely or Inferred, and says why",
+     "A value turns grey once it is older than twice its refresh interval",
+     "Conflicting figures sit side by side and are never picked silently",
+     "A person's judgement is stored the same way, under their name"
+    ],
+    "how": "Every fact is kept as an observation with its source, method, time and expected refresh. The value on screen is derived from those observations, and the older ones are kept for audit. Rules that act on usage, such as reclaiming a seat, need a Likely or Confirmed figure. An Inferred one prompts a question to a person instead.",
+    "anim_title": "A figure with its source, age and a conflict",
+    "anim_desc": "A seat count appears with chips for source, age and confidence. A second source disagrees, and both figures stay visible beside a reconciliation flag."
+   },
+   {
+    "id": "ai",
+    "anim": "ai",
+    "title": "AI tools and agents in the same portfolio",
+    "status": "Early access",
+    "status_note": "Discovery, cost and owners come first. Risk tiers and re-attestation arrive with the architecture tier.",
+    "text": "Copilots, assistants and agents are applications like any other, with an owner, a business capability, a cost and the data they can reach. There is no separate AI product to keep up to date.",
+    "points": [
+     "Found through sign-ins, OAuth grants, vendor usage reports and spend",
+     "Each agent is tiered by autonomy, data reach and external effect",
+     "Ownerless, dormant (60 days) and personal-account use is flagged",
+     "Metadata only. Prompts and outputs are never read"
+    ],
+    "how": "When a new AI domain, workspace, key or agent appears in any source, the product creates or merges an application of kind AI tool or AI agent. It records the host, model, tools and reachable data as interfaces, makes the creator the technical owner and asks their manager to be the business owner. Higher tiers go to the architect, then to a design authority with data protection and legal. Tier 2 and 3 agents are re-attested every 90 days.",
+    "anim_title": "An agent registered, tiered and given an owner",
+    "anim_desc": "A new agent appears in the portfolio. Arrows show the data it can reach, a risk tier is assigned and an owner is asked to confirm."
+   },
+   {
+    "id": "door",
+    "anim": "door",
+    "title": "One front door in chat, portal and email",
+    "status": "Early access",
+    "text": "People ask for a tool in Slack, Teams, a portal or by email. The product checks whether you already own something that does the job, offers a spare seat first and routes everything else by size and risk.",
+    "points": [
+     "At most five questions, mapped to a business capability",
+     "A pooled seat or a sanctioned alternative is offered before any purchase",
+     "One thread and one status for the requester",
+     "Three requests for the same unsanctioned app in 30 days raise a demand"
+    ],
+    "how": "Every ask is one Request that changes type as it is routed. Under the access limit it goes to access. Under the purchase limit it goes to purchase, with security, architecture and procurement reviewing in parallel. Above that, or where delivery work is needed, it becomes a demand. The limits are numbers on one settings page in your reporting currency.",
+    "anim_title": "A chat request answered with something you already own",
+    "anim_desc": "An employee asks for a diagramming tool in chat. The reply offers a licensed tool with a spare seat, and the request is routed as access."
+   },
+   {
+    "id": "renewal",
+    "anim": "renewal",
+    "title": "Renewals start 120 days before the notice deadline",
+    "status": "Early access",
+    "text": "One clock runs per contract, anchored on the date by which you must give notice. Decisions get made in time, with the architecture position and the usage data in front of the person deciding.",
+    "points": [
+     "Day 120: reclamation batch runs, and the architecture position is posted",
+     "Day 90: a brief with renew, right-size, renegotiate, replace or cancel",
+     "Day 60: decision due. Day 30: escalation, and a drafted notice for a person to send",
+     "Unconfirmed contract dates stay red, and the product never sends notice to a vendor"
+    ],
+    "how": "The product extracts terms from the contract and a named person confirms the dates, notice period and value before any clock uses them. The renewal brief can be shared as a link without a login, so a budget owner can read it on a phone. The renewal outcome becomes the saving.",
+    "anim_title": "A renewal clock counting 120, 90, 60 and 30 days",
+    "anim_desc": "A timeline shows the four points before the notice deadline. At each point an action appears: reclaim, brief, decide, escalate."
+   },
+   {
+    "id": "reclaim",
+    "anim": "reclaim",
+    "title": "Licence reclamation with a safety net",
+    "status": "Early access",
+    "text": "Unused seats go back into a pool, and the person decides first. Nothing is removed in the first 30 days of a new rule, and every change can be undone.",
+    "points": [
+     "Candidates come with a reason and the annual cost",
+     "Leave, new joiners, admins, service accounts and named executives are exempt",
+     "The user sees Keep or Release, then their manager is asked after 5 working days",
+     "Batches are capped at 25 changes or 5% of a contract, with undo for 14 days"
+    ],
+    "how": "A new rule runs in review-only mode for 30 days, showing exactly who it would touch. When it goes live it downgrades or removes by ticket, or by removing the person from an allow-listed group if you have given the second consent. The seat returns to the pool and the product records a potential saving. The author of a rule cannot approve its first live run, and your security lead has a kill switch for each rule.",
+    "anim_title": "Seats released into a pool, with undo",
+    "anim_desc": "A grid of seats shows some unused. A Keep or Release card goes to a user, the seat moves to a pool, and an undo control stays visible."
+   },
+   {
+    "id": "map",
+    "anim": "map",
+    "title": "A capability map with a TIME position on every application",
+    "status": "Soon",
+    "text": "Start from a map of about 60 business capabilities. The product proposes which capability each application serves and whether to Tolerate, Invest, Migrate or Eliminate it, showing the evidence. Architects confirm in an afternoon, and nothing waits on the map.",
+    "points": [
+     "Heatmap lenses for spend, TIME mix, risk, overlap, investment and coverage",
+     "\"Unmapped\" is allowed, so the map is useful from day one",
+     "TIME is computed from value, fit, cost efficiency and overlap",
+     "A confirmed position never changes silently"
+    ],
+    "how": "An AI model proposes one primary and up to two partial capabilities per application, with a confidence and a reason. High-confidence links publish as Inferred and the rest are batched by capability for the lead architect. The owner and architect confirm TIME for the top 50 applications by spend and for any application on a critical capability. A time slider shows the roadmap against the target state.",
+    "anim_title": "A capability heatmap switching lens",
+    "anim_desc": "A grid of business capabilities is shaded by spend, then by TIME position. A single application is placed in the Migrate quadrant with its evidence."
+   },
+   {
+    "id": "review",
+    "anim": "review",
+    "title": "Architecture reviews sized to the risk",
+    "status": "Soon",
+    "text": "Small, low-risk requests are approved on a clock. Larger ones go to one architect. The few that carry real risk go to a design authority with a pack already assembled.",
+    "points": [
+     "Tier 1 auto-approves unless the architect stops it",
+     "Tier 2 goes to one named architect, Tier 3 to the design authority",
+     "The pack shows overlap, standards, vendor risk, data classes and interfaces",
+     "One decision, with conditions tracked as tasks and exceptions that expire"
+    ],
+    "how": "The product assembles the pack, starts the right clock and records one Decision. That decision is written to the request, the project gate and the risk log, and the conditions become tasks that gates read. Any new application over the review threshold is at least Tier 2, and SLA breaches escalate to the head of architecture. Without the architecture tier, a named IT or security reviewer handles these instead.",
+    "anim_title": "Requests routed to three review tiers",
+    "anim_desc": "Three requests arrive. One is approved on a clock, one goes to a single architect and one is added to a design authority agenda, each with a decision stamped."
+   },
+   {
+    "id": "portfolio",
+    "anim": "portfolio",
+    "title": "From request to delivery on one record",
+    "status": "Soon",
+    "text": "A demand becomes a business case, then a funded initiative, then a set of gates, with status drawn from the delivery tool your teams already use. Nothing is copied from one record to the next.",
+    "points": [
+     "Fast track, one-screen case or full case, depending on value and risk",
+     "Scored for strategic fit, return, cost removed, risk reduction and confidence",
+     "Status is derived from schedule, cost, scope and adoption, with the project manager's override beside it",
+     "Every initiative declares which applications it introduces, changes, replaces or retires"
+    ],
+    "how": "The demand manager accepts a proposed route in one click. The case is drafted for the project manager to edit, and a benefit cannot be submitted without a measure and a named owner. Gates block on open architecture conditions. Each week the project manager confirms, edits or overrides a drafted status of up to 120 words, and the product never edits tasks or plans in your delivery tool.",
+    "anim_title": "A demand moving through case, gates and status",
+    "anim_desc": "A demand card passes through triage, a business case and three gates, then shows a derived status with an override beside it."
+   },
+   {
+    "id": "ledger",
+    "anim": "ledger",
+    "title": "A savings ledger that finance signs once",
+    "status": "Early access",
+    "status_note": "The ledger is in the core. Benefit lines on projects arrive with the portfolio tier.",
+    "text": "Every saving has one cause and one class, and finance signs it once. The same money can never be claimed by a reclamation, a renegotiation and a project at the same time.",
+    "points": [
+     "Realised and avoided savings are totalled on separate lines",
+     "Potential savings are shown and never added in",
+     "A retirement counts only when assignments are zero and spend has stopped for two billing cycles",
+     "Project benefits refer to savings and never copy them"
+    ],
+    "how": "The core holds the money evidence, so it writes the only Saving record. Savings without a project sit under a standing optimisation initiative for the fiscal year, so they still appear in the portfolio's benefits view. Where an approved business case set a baseline, that baseline is used. Otherwise the product uses the trailing 12 months.",
+    "anim_title": "One saving signed once and landing on a benefit line",
+    "anim_desc": "A saving is created with a cause and class, finance signs it, and it links to a benefit line while the ledger total ticks up."
+   }
+  ],
+  "tiers_h": "One core, with two tiers on the same data",
+  "tiers_lead": "The SaaS management core is always included. The architecture and portfolio tiers read the same records, so adding one never means another import.",
+  "tiers": [
+   [
+    "SaaS management core",
+    "Early access",
+    "For the CIO, head of IT operations, procurement and finance. Discovery, spend and contract matching, the front door, fulfilment and seat pool, renewals, licence reclamation, offboarding, access reviews, the savings ledger and the IT pack. It also includes a read API, a read-only MCP server and continuous export to a bucket you own."
+   ],
+   [
+    "Architecture tier",
+    "Soon",
+    "For the head of architecture. Capability mapping, TIME assessment, technology risk and standards, tiered architecture reviews, the decision log, derived lifecycle, observed interfaces, the rationalisation workbench, the roadmap and the architecture pack."
+   ],
+   [
+    "Portfolio tier",
+    "Soon",
+    "For the PMO lead and head of IT portfolio. Demand triage, business cases, prioritisation, stage gates, derived status, RAID, benefit lines, weighted objectives, the portfolio pack, and import from spreadsheets and legacy project plans."
+   ]
+  ],
+  "tiers_note": "A company that buys only the core still gets a working front door. Requests that would go to the demand path wait in a named approver queue, and Tier 2 and 3 reviews go to a named IT or security reviewer. Adding a tier swaps those queues for the review board and the portfolio.",
+  "details_h": "How the smaller features work",
+  "details_lead": "Twenty-eight smaller features sit around the ten above, grouped by the loop. Each says what it does and how it behaves when it runs.",
+  "details": [
+   {
+    "name": "Discover",
+    "items": [
+     [
+      "Shadow app and risk triage",
+      "Early access",
+      "On the first sighting of an unapproved app, the product scores its risk, checks for overlap and asks the first user what it is for and what data goes in. A free, low-risk app with five users or fewer and no overlap is marked Allowed. Overlap triggers an offer of the approved app. Blocking is advisory, and revoking access is always a ticket."
+     ],
+     [
+      "Spend matching and contract capture",
+      "Early access",
+      "Card descriptors and invoices are cleaned and matched to vendors, invoices are split by line, and currency is converted at the transaction-date rate. Contract terms are extracted by AI and stay Inferred until a named person confirms them. The product never reads full card numbers and never makes payments."
+     ],
+     [
+      "Ownership and freshness chase",
+      "Early access",
+      "Each application has a business, technical and budget owner. The product suggests an owner with the reason, such as \"212 active users in Marketing, renews 14 March\", and asks Accept, Not me or Ask a question. Leavers' apps move to their manager the same day, and nobody gets more than one question or nudge per app a week."
+     ],
+     [
+      "Technology risk and standards",
+      "Soon",
+      "For custom, hosted and desktop software, the product joins versions to end-of-support dates and to your adopt, trial, contain and retire standards. The technical owner picks Plan upgrade, Accept risk until a date or Already handled. Accepted risk expires and re-triggers."
+     ],
+     [
+      "Observed interfaces",
+      "Soon",
+      "App-to-app OAuth grants, API connections and MCP links seen by the feeds are recorded as interfaces, so the impact of retiring an application shows what depends on it."
+     ]
+    ]
+   },
+   {
+    "name": "Decide",
+    "items": [
+     [
+      "Seat pool, access and purchase",
+      "Early access",
+      "Access requests pick a tier, role and duration and follow the policy's approval chain. A pooled seat is used first, and the seat expires by ticket. Use is checked after 30 days. Purchases go in parallel to the budget owner, security, the architect and procurement, and the signed contract creates the vendor, application and renewal. Privileged roles never self-serve."
+     ],
+     [
+      "Demand triage",
+      "Soon",
+      "A daily digest proposes a route for each demand: fast track, one-screen case, full case, merge or reject with a reason. The demand manager accepts or changes it in one click. Findings and renewals never create initiatives on their own."
+     ],
+     [
+      "Business case",
+      "Soon",
+      "The product drafts options, cost lines and benefit lines, each bound to a measure such as \"matched spend reaches zero\". The project manager writes up to 300 words and a sponsor confirms. Above the board threshold, finance reviews and the portfolio board approves."
+     ],
+     [
+      "Prioritisation and scoring",
+      "Soon",
+      "Initiatives are scored for strategic fit, financial return, cost removed, risk reduction and delivery confidence, ranked, and a funding line is drawn. Manual moves need a visible reason, and the board approves the funded list. Estimated effort is totalled by team per quarter."
+     ],
+     [
+      "Rationalisation and retirement proposals",
+      "Soon",
+      "Candidates are ranked by saving multiplied by confidence, with a target app. The impact view shows users, interfaces, data to export and the last safe notice day. On approval it raises a demand carrying the evidence, fast-tracked if small."
+     ]
+    ]
+   },
+   {
+    "name": "Change",
+    "items": [
+     [
+      "Stage gates and change control",
+      "Soon",
+      "Each gate pack marks every item evidenced, attested or missing. At the build gate the product checks that the review passed with no open conditions, that security and data protection are signed off and that a baseline exists. Variance opens a pre-filled change request, and impact changes reopen architecture review."
+     ],
+     [
+      "Derived status",
+      "Soon",
+      "Schedule, cost, scope, adoption, risk and overdue conditions each get a rating from the data. The project manager gets a card to confirm, edit or override with a reason. After Friday noon an unconfirmed status is published marked \"not confirmed by PM\". Adoption turns red only on Likely or Confirmed usage."
+     ],
+     [
+      "Roadmap, risks and conflicts",
+      "Soon",
+      "The roadmap is derived from each initiative's impacts and milestones. The product detects conflicts such as a retirement after a notice date, a capability left with no Invest app, or two initiatives on one app in a quarter, and posts each to the risk log as a suggestion with evidence."
+     ],
+     [
+      "Offboarding",
+      "Early access",
+      "For each leaver the product computes their footprint, checks identity deactivation, raises one ticket per non-SSO account, returns licences to the pool and proposes ownership transfer to the manager. It also flags agents, keys and card subscriptions under the leaver's identity. It deactivates and never deletes, and a legal hold stops destructive steps."
+     ],
+     [
+      "Access reviews",
+      "Early access",
+      "A campaign recommends keep or revoke with a reason: leaver, unused for 90 days, policy deviation or moved. Reviewers act from a chat or email card without logging in. Leaver revocations are accepted automatically, privileged access needs a second reviewer, and there is no approve-all on it. The campaign closes with an evidence pack for auditors."
+     ]
+    ]
+   },
+   {
+    "name": "Prove",
+    "items": [
+     [
+      "Close and retirement confirmation",
+      "Soon",
+      "For each retired app the product checks zero assignments, no sign-ins for 30 days, unassigned licences, evidence of non-renewal and two billing cycles without spend. Nobody sets Retired by hand. The owner attests data archiving and retention, and benefits are handed over with 3, 6 and 12-month reviews."
+     ],
+     [
+      "Packs for boards and reviews",
+      "Early access",
+      "The IT pack covers spend, savings, renewals, shadow AI and coverage. The architecture pack and the portfolio pack follow with their tiers. Each opens with the decisions needed, links every figure to evidence and carries an AI-drafted narrative labelled a draft until the author releases it. They share as a page without a login, with PDF and slide exports."
+     ],
+     [
+      "Read API, MCP server and continuous export",
+      "Early access",
+      "A read API and a read-only MCP server answer questions over your data, and any proposal they make needs a person to approve it. The full dataset exports continuously to a bucket you own, with a documented schema."
+     ],
+     [
+      "Spreadsheet and legacy project import",
+      "Soon",
+      "A one-off upload with column mapping brings in project registers, project plans and spreadsheets, so the portfolio starts with history. Imported rows are marked as imported."
+     ],
+     [
+      "Browser, device and AI-vendor feeds",
+      "Soon",
+      "After the first value report you can add a browser extension, device management and AI vendor usage reports. The product shows a scope manifest for each, and an aggregate-only mode and a works council pack are available for Europe."
+     ]
+    ]
+   },
+   {
+    "name": "Next and later",
+    "items": [
+     [
+      "Team-level capacity on the prioritisation board",
+      "Planned",
+      "Capacity by team and quarter, with no named people, so the funding line reflects what teams can deliver."
+     ],
+     [
+      "Cloud account and code-host feeds",
+      "Planned",
+      "Technology components for custom software are read from cloud accounts and code hosts, so the standards and obsolescence views stay current without manual entry."
+     ],
+     [
+      "More agent platforms and connectors",
+      "Planned",
+      "Discovery for further agent and automation platforms, more procurement connectors, a planning-tool connector for status and a ticketing connector for incidents."
+     ],
+     [
+      "Access fulfilment by group add",
+      "Planned",
+      "Where pilots ask for it and security teams accept it, access can be granted by adding a person to an allow-listed group instead of by ticket."
+     ],
+     [
+      "Birthright access, joiners and movers",
+      "Later",
+      "Access that follows a person's role when they join or move, starting with the ten applications that hold the most seats."
+     ],
+     [
+      "App-level provisioning and revocation",
+      "Later",
+      "Provisioning and deprovisioning inside applications, and approved revocation of OAuth grants and API keys."
+     ],
+     [
+      "More status and planning connectors",
+      "Later",
+      "Status from further work-management tools, and read and write-back with financial planning tools."
+     ],
+     [
+      "Price benchmarks and custom dashboards",
+      "Later",
+      "Opt-in, anonymised price benchmarks across customers, and a dashboard builder for views we have not thought of."
+     ]
+    ]
+   }
+  ],
+  "connect_h": "What it connects to, and what it can do there",
+  "connect_lead": "Most connections are read-only. The product writes messages in chat and email, tickets in one queue you name and, if you switch it on, epics in one delivery project. It never writes to finance, ERP or HR systems.",
+  "connect": [
+   [
+    "Identity provider",
+    "Early access",
+    "Microsoft Entra ID, Okta, Google Workspace, JumpCloud and OneLogin. Read-only at first. Removal from allow-listed licence groups is opt-in under the second consent."
+   ],
+   [
+    "Microsoft 365 and Google Workspace",
+    "Early access",
+    "Licences, usage reports, OAuth grants and Copilot or Gemini usage, through the same read-only consent."
+   ],
+   [
+    "HR system",
+    "Early access",
+    "Workday, SuccessFactors, BambooHR, HiBob, Personio, UKG and Rippling. Named fields only. No salary, address or protected characteristics. Required before reclamation goes live."
+   ],
+   [
+    "Finance and ERP",
+    "Early access",
+    "NetSuite, Oracle Fusion, Dynamics 365, Sage Intacct and Xero, by read-only role or saved report, with file export accepted and 24 months of backfill."
+   ],
+   [
+    "Cards and expenses",
+    "Early access",
+    "Amex, Ramp, Brex, Navan, Expensify, Pleo, Spendesk and Payhawk, filtered to software merchants, with a CSV fallback. Card numbers are dropped."
+   ],
+   [
+    "Contracts",
+    "Early access",
+    "Bulk upload from day one, then a connector to one named SharePoint or Drive folder, or to Box, DocuSign or a contract platform."
+   ],
+   [
+    "Chat and email",
+    "Early access",
+    "Slack and Microsoft Teams for the front door and every card, with no channel history read. A forwarding address takes request and invoice mailboxes without mailbox access."
+   ],
+   [
+    "Ticketing",
+    "Early access",
+    "Jira Service Management, Zendesk and other service desks, through an integration user limited to one queue."
+   ],
+   [
+    "Delivery tools",
+    "Soon",
+    "Jira Cloud and Azure DevOps. Read work items and, if you switch it on, create epics in one project. Fields only."
+   ],
+   [
+    "Vendor admin APIs",
+    "Early access",
+    "Read-only admin tokens for Microsoft 365, Slack, Zoom, Atlassian, Salesforce, Adobe, GitHub, Miro, Figma and DocuSign. Your ten biggest by spend first."
+   ],
+   [
+    "Devices, browsers and network security",
+    "Soon",
+    "Intune and Jamf, a browser extension for Chrome, Edge and Firefox, and summaries from Netskope, Zscaler, Defender for Cloud Apps and Cloudflare. All optional."
+   ],
+   [
+    "AI vendor admin APIs",
+    "Soon",
+    "OpenAI, Anthropic, GitHub Copilot, Cursor and Copilot Studio usage, cost, seat and agent listings. Never prompts or outputs."
+   ],
+   [
+    "Your own bucket, and your sign-in",
+    "Early access",
+    "Write-only export to your S3, Azure Blob or Google Cloud Storage bucket, and SAML or OIDC sign-in with SCIM from your identity provider."
+   ]
+  ],
+  "connect_note": "These are the connectors we are building first, in the order design partners ask for them. If a system you rely on is missing, tell us. A file export is the fallback for most finance, card and HR sources.",
+  "rollout_h": "What happens from day 1 to day 90",
+  "rollout_lead": "A company that stops at day 10 has a working SaaS management product, and the architecture and portfolio screens open already filled with its data.",
+  "rollout": [
+   [
+    "Day 1",
+    "Connect",
+    "You sign the first consent. Identity, Microsoft 365 or Google, a finance export, the card feed, chat, a ticket queue and our sign-in are connected, and contracts are uploaded. You see a connector board with freshness for each source and an inventory filling within hours."
+   ],
+   [
+    "Day 5",
+    "Reconcile",
+    "Our onboarding lead works the merge queue with you and connects your ten biggest vendor accounts. You see the first reconciled inventory with confidence on each field and a list of exceptions."
+   ],
+   [
+    "Day 10",
+    "First value report",
+    "Spend by application and cost centre, unused seats, shadow IT and shadow AI, renewals by notice date, suggested owners and a draft capability map. The project funnel already shows renewal demands from the clock."
+   ],
+   [
+    "Day 15",
+    "Second consent",
+    "Offered on the strength of the report: browser extension, device management and AI vendor reports, each with a scope manifest, and a works council pack where one is needed."
+   ],
+   [
+    "Day 30",
+    "Front door live",
+    "The lead architect confirms the starter map for the top 50 applications in an afternoon. The front door goes live with the capability check and the seat pool, and reclamation rules run in review-only mode. Owner coverage passes 60%."
+   ],
+   [
+    "Day 45",
+    "Reviews and demand",
+    "Tiered architecture reviews and demand triage go live, and you see the first derived project status with the project manager's override beside it."
+   ],
+   [
+    "Day 60",
+    "TIME and first release of seats",
+    "TIME proposals appear with their evidence, the first access review runs on audit-scope apps and reclamation goes live where the HR system is connected."
+   ],
+   [
+    "Day 90",
+    "First signed saving",
+    "The first renewal is decided with an architecture position, finance signs the first saving and the first portfolio pack goes out with every figure linked to its source."
+   ]
+  ],
+  "ai_h": "Where AI helps, and who decides",
+  "ai_lead": "AI drafts, suggests and summarises inside each flow. It acts alone only on a reversible change to the product's own records, above a confidence threshold. A named person decides everything else, and every AI suggestion is labelled as one.",
+  "ai": [
+   [
+    "Matching names and spend",
+    "Decides above 0.85 confidence and suggests below it. Every merge can be split."
+   ],
+   [
+    "Reading contracts",
+    "Drafts the dates, notice period, value and terms. A named person confirms them before any clock uses them."
+   ],
+   [
+    "Mapping capabilities and TIME",
+    "Suggests links and positions, marked Inferred. Owners and the architect confirm the ones that matter."
+   ],
+   [
+    "Review packs, business cases and status",
+    "Drafts options, cases and up to 120 words of weekly status. The architect, the project manager or the sponsor decides."
+   ],
+   [
+    "Access review recommendations",
+    "Suggests keep or revoke with a reason, and accepts leaver revocations. A reviewer decides the rest."
+   ],
+   [
+    "The MCP server and packs",
+    "Answers questions over your data and drafts the narrative of a pack. A person approves any proposal and releases any pack."
+   ]
+  ],
+  "ai_note": "AI never sends anything to a vendor, never approves a write to one of your systems, never reads prompt content and never changes a Confirmed value.",
+  "trust_h": "Security, data and control",
+  "trust_lead": "We give your security team a scope manifest for each connector on the first call: every scope, the fields it yields, why we need it, how long we keep it and which feature uses it.",
+  "trust": [
+   [
+    "Two consents, not one",
+    "The first covers read-only access to your systems of record, plus messages, tickets and, if you choose, epics. The second follows your first report and covers the browser extension, device management, AI vendor reports and opt-in group removal after 30 days in review-only mode."
+   ],
+   [
+    "What we never ask for",
+    "Mailbox or calendar content, chat history, salary or protected characteristics, prompts or outputs from AI tools, full card numbers, write access to finance, ERP or HR systems, passwords, or network scanners on your estate."
+   ],
+   [
+    "Guardrails on every write",
+    "30 days review-only for a new rule, allow-listed apps and groups, deactivate and never delete, capped batches, exemptions, one-click undo for 14 days, a kill switch per rule and an exportable log of who approved what."
+   ],
+   [
+    "Your region, your retention",
+    "Tenant data stays in its region: the EU and the US at launch, with the UK and Australia on request. Raw usage events are kept for 90 days and daily roll-ups for 25 months."
+   ],
+   [
+    "Leaving is designed in",
+    "Continuous export of the full dataset to a bucket you own, a documented schema, a read API and a contractual wind-down of at least 90 days."
+   ],
+   [
+    "Security paperwork",
+    "A completed CAIQ and SIG Lite, a data processing agreement with standard contractual clauses, a sub-processor list and a penetration test summary. SOC 2 Type I is planned for launch, with Type II and ISO 27001 within twelve months."
+   ]
+  ],
+  "who_h": "What each person sees first",
+  "who": [
+   [
+    "CIO",
+    "A capability heatmap with lenses for spend, TIME mix, risk and overlap, a feed of what changed this week and the decisions due at the next board."
+   ],
+   [
+    "Enterprise architect",
+    "The capability map and a queue of reviews, low-confidence mappings, contested TIME proposals and expiring exceptions, each with one-click accept."
+   ],
+   [
+    "PMO lead",
+    "A funnel from request to realised benefit with value at every stage, an exceptions inbox, the prioritisation board and the pack builder."
+   ],
+   [
+    "Project manager",
+    "One scroll: derived status with evidence, milestones, risks, the gate checklist, budget against actuals, the applications in scope and the benefits."
+   ],
+   [
+    "IT and SaaS operations",
+    "A decisions inbox sorted by money at stake and deadline: renewals, shadow apps, reclaim batches, ownerless apps with spend and connector failures."
+   ],
+   [
+    "Procurement and finance",
+    "The renewal board by notice month, the matching queue, renewal briefs and negotiation packs, and the savings ledger with sign-off cards."
+   ],
+   [
+    "Budget owner",
+    "\"My money\": the apps, spend, renewals, initiatives and benefits for their cost centres, readable on a phone."
+   ],
+   [
+    "Anyone in Slack or Teams",
+    "No screen at all. The app answers \"I need a tool for X\", shows what they already have and carries every card for requests, owner confirmations and reviews."
+   ]
+  ],
+  "know_h": "Good to know before you talk to us",
+  "know": [
+   "This page describes a product being built. The status beside each feature is our current intention, not a delivery date, and it may change as design partners tell us what matters.",
+   "The product has a fixed set of workflows. You change thresholds, approvers, channels and exemptions in settings, preview the effect and dry-run any workflow, but there is no general workflow builder.",
+   "It uses a small, fixed data model with tags and a few custom fields per object. There is no configurable metamodel.",
+   "It is not a diagram tool. It does not model business processes or value streams, and it is not a scheduling, task or timesheet tool.",
+   "It does not scan mailboxes or calendars, inspect prompts, handle payments or virtual cards, or send anything to a vendor on your behalf.",
+   "It does not run on your own servers. It is delivered as a service."
+  ],
+  "faq": [
+   [
+    "What is Arithim Estate?",
+    "A system of record for the technology a company runs, what it pays for, why it has it and what will change it. It combines SaaS management, enterprise architecture and portfolio management on one set of records, so the three views agree."
+   ],
+   [
+    "Is it SaaS management, enterprise architecture or PMO software?",
+    "All three, on the same data. The SaaS management core is always included. The architecture and portfolio tiers add capability mapping, reviews and decisions on one side and demand, cases, gates and benefits on the other."
+   ],
+   [
+    "How long until I see value?",
+    "The first report arrives within ten working days of connecting read-only to your identity provider, finance export, card feed and contracts. It shows spend, unused seats, shadow IT and shadow AI, and renewals by notice date."
+   ],
+   [
+    "Does it change anything in our systems?",
+    "In the first release it writes messages in Slack, Teams and email, tickets in one queue you name and, if you switch it on, epics in one delivery project. With your second consent it can also remove people from allow-listed licence groups after 30 days in review-only mode. It never writes to finance, ERP or HR systems."
+   ],
+   [
+    "Can we start with only the SaaS management core?",
+    "Yes. You still get the front door, the seat pool, the renewal clock, licence reclamation and the savings ledger. Requests that need a bigger decision wait with a named approver until you add a tier."
+   ],
+   [
+    "How does it find AI tools and agents we did not register?",
+    "From sign-ins, OAuth grants, vendor usage reports, browser signals and spend. It records metadata only and never reads prompts or outputs. Each agent gets an owner, a risk tier and a re-attestation date."
+   ],
+   [
+    "How does it work with Jira or Azure DevOps?",
+    "It reads work items and dates to derive project status and, if you switch it on, creates epics in one project you name. It never edits tasks or plans."
+   ],
+   [
+    "Where is our data kept?",
+    "In your region. The EU and the US are available at launch, and the UK and Australia on request. You can export everything continuously to a bucket you own."
+   ],
+   [
+    "What happens if we want to leave?",
+    "Your data is already in your bucket in a documented schema, and we commit to a wind-down of at least 90 days."
+   ],
+   [
+    "Which features can I use today?",
+    "None of them are generally available yet. The status on each feature shows what opens first to design partners (Early access), what follows in the first full release (Soon), and what is Planned or Later. Talk to us and we will tell you where your needs fall."
+   ]
+  ],
+  "related": [
+   "ai-model-inventory"
+  ],
+  "service_type": "Enterprise architecture, SaaS management and portfolio management software",
+  "audience_type": "CIOs, enterprise architects, PMO leads and IT operations teams",
+  "audience": "For CIOs, architects and PMOs at companies of 1,000 to 10,000 people",
+  "card_summary": "One record of the applications you run, what they cost and what will change them. SaaS management, enterprise architecture and portfolio management on the same data.",
+  "cta_h": "Tell us what your estate looks like today.",
+  "cta_p": "Tell us how many applications you think you run, who keeps the architecture records and how projects reach the PMO. We will say where Arithim Estate would help first, and which parts are ready for you."
  }
 ]

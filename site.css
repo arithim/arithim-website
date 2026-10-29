@@ -122,6 +122,7 @@
   --ah-blue-30: rgba(59,111,212,0.3);
   --ah-blue-40: rgba(59,111,212,0.4);
   --ah-blue-50: rgba(59,111,212,0.5);
+  --ah-fs-10: 10px;
   --ah-fs-10-5: 10.5px;
   --ah-fs-11: 11px;
   --ah-fs-11-5: 11.5px;
@@ -2033,3 +2034,109 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
 @media (prefers-reduced-motion: reduce) { .sf-order, .pp-btn, .tsg-submit, .callus-cta, .ah-solid, .cs-chip.cs-chip { transition: none; } }
 
 @media (max-width: 900px) { .sn-btn { flex: 0 0 auto; min-width: 44px; min-height: 44px; } .ah-header-end > a, .ah-header-end > .ah-btn-ring { white-space: nowrap; } }
+
+/* Status tags. One small pill that says where a feature stands: Early access, Soon, Planned or Later. */
+.ah-tag { display: inline-block; font: 500 var(--ah-fs-11) var(--ah-font-mono); letter-spacing: 0.08em; text-transform: uppercase; padding: 3px var(--ah-s-10); border-radius: var(--ah-r-999); border: 1px solid var(--ah-cream-22); color: var(--ah-text-2); white-space: nowrap; }
+.ah-tag-early-access { color: var(--ah-amber-light); background: var(--ah-amber-12); border-color: var(--ah-amber-40); }
+.ah-tag-soon { color: var(--ah-sage-text); background: var(--ah-sage-12); border-color: var(--ah-sage-20); }
+.ah-tag-planned { color: var(--ah-blue-light); border-color: var(--ah-cream-22); }
+.ah-tag-later { color: var(--ah-text-4); border-color: var(--ah-cream-14); border-style: dashed; }
+.tsg-card .ah-tag { margin-bottom: var(--ah-s-12); }
+.ah-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ah-s-12); flex-wrap: wrap; }
+.ah-key { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ah-s-16); margin: var(--ah-s-24) 0 0; padding: 0; list-style: none; }
+.ah-key li { border-top: 1px solid var(--ah-cream-18); padding-top: var(--ah-s-12); color: var(--ah-text-2); font-size: var(--ah-fs-14); line-height: 1.5; }
+.ah-key .ah-tag { margin-bottom: var(--ah-s-8); }
+@media (max-width: 900px) { .ah-key { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (max-width: 520px) { .ah-key { grid-template-columns: minmax(0, 1fr); } }
+
+/* Hero video, in the same slot as the dotted nature scenes. The poster shows until it plays, and always for reduced motion. */
+.ah-video { position: relative; z-index: 0; margin: 0; }
+.ah-has-art .ah-video { margin-top: var(--ah-s-24); }
+.ah-video-cv { display: block; width: 100%; max-width: 560px; aspect-ratio: 16 / 9; margin: 0 auto; border-radius: var(--ah-r-12); border: 1px solid var(--ah-cream-14); background: var(--ah-ink-deep); object-fit: cover; }
+.ah-video figcaption { max-width: 560px; margin: var(--ah-s-8) auto 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.08em; color: var(--ah-text-4); text-align: center; }
+
+/* Large features: copy on one side, a short looping animation on the other, alternating down the page. */
+.ah-features { display: grid; gap: var(--ah-s-56); margin-top: var(--ah-s-36); }
+.ah-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ah-s-40); align-items: center; padding-top: var(--ah-s-36); border-top: 1px solid var(--ah-cream-12); }
+.ah-feature:nth-child(even) .ah-feature-fig { order: -1; }
+.ah-feature h3 { margin: var(--ah-s-12) 0 var(--ah-s-12); font-size: var(--ah-fs-24); line-height: 1.2; color: var(--ah-cream); }
+.ah-feature p { color: var(--ah-text-2); line-height: 1.6; margin: 0 0 var(--ah-s-16); }
+.ah-feature .ah-note { color: var(--ah-text-4); font-size: var(--ah-fs-13); }
+.ah-points { margin: 0 0 var(--ah-s-16); padding: 0; list-style: none; display: grid; gap: var(--ah-s-8); }
+.ah-points li { position: relative; padding-left: var(--ah-s-20); color: var(--ah-text-2); font-size: var(--ah-fs-15); line-height: 1.5; }
+.ah-points li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 1px; background: var(--ah-amber); }
+.ah-how { border-left: 2px solid var(--ah-amber-40); padding-left: var(--ah-s-14); font-size: var(--ah-fs-14); }
+.ah-feature-fig { margin: 0; }
+@media (max-width: 900px) { .ah-feature { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-20); } .ah-feature:nth-child(even) .ah-feature-fig { order: 0; } .ah-feature-fig { order: -1; } .ah-features { gap: var(--ah-s-40); } }
+.ah-subhead { margin: var(--ah-s-40) 0 var(--ah-s-8); font: 500 var(--ah-fs-13) var(--ah-font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ah-amber-light); }
+.ah-day { display: block; margin-bottom: var(--ah-s-4); font: 500 var(--ah-fs-12) var(--ah-font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ah-amber-light); }
+
+/* Feature animations (assets/fanim.js plays them; tools/feature_anim.py draws them). All colours come from the site tokens, so both themes work. */
+.fa { display: block; width: 100%; height: auto; border-radius: var(--ah-r-16); }
+.fa text { font-family: inherit; fill: var(--ah-cream); font-size: var(--ah-fs-13); }
+.fa .f-bg { fill: var(--ah-card); stroke: var(--ah-cream-14); }
+.fa .f-card { fill: var(--ah-surface-3); stroke: var(--ah-cream-14); }
+.fa .f-panel { fill: var(--ah-surface-2); stroke: var(--ah-cream-16); }
+.fa .f-warn { stroke: var(--ah-amber-60); }
+.fa .f-ok { stroke: var(--ah-sage); }
+.fa .f-glow { fill: var(--ah-amber-12); stroke: var(--ah-amber); stroke-width: 1.5; }
+.fa .f-txt { fill: var(--ah-cream); }
+.fa .f-dim { fill: var(--ah-text-3); font-size: var(--ah-fs-12); }
+.fa .f-cap { fill: var(--ah-text-4); font-family: var(--ah-font-mono); font-size: var(--ah-fs-10); letter-spacing: 0.1em; text-transform: uppercase; }
+.fa .f-big { fill: var(--ah-cream); font-size: var(--ah-fs-26); font-weight: 600; }
+.fa .f-huge { fill: var(--ah-cream); font-size: var(--ah-fs-40); font-weight: 600; }
+.fa .f-faint { fill: var(--ah-text-4); }
+.fa .f-sm { font-size: var(--ah-fs-11); }
+.fa .f-xs { font-size: var(--ah-fs-10); }
+.fa .f-on-amber { fill: var(--ah-on-accent); font-weight: 600; }
+.fa .f-chip rect { fill: var(--ah-surface-4); stroke: var(--ah-cream-22); }
+.fa .f-chip text { fill: var(--ah-text-1); font-size: var(--ah-fs-11); }
+.fa .f-chip.f-amber rect { fill: var(--ah-amber-14); stroke: var(--ah-amber-60); }
+.fa .f-chip.f-amber text { fill: var(--ah-amber-light); }
+.fa .f-chip.f-sage rect { fill: var(--ah-sage-12); stroke: var(--ah-sage); }
+.fa .f-chip.f-sage text { fill: var(--ah-sage-text); }
+.fa .f-chip.f-blue rect { fill: var(--ah-surface-4); stroke: var(--ah-blue-light); }
+.fa .f-chip.f-blue text { fill: var(--ah-blue-light); }
+.fa .f-line, .fa .f-axis, .fa .f-axis-hot { fill: none; stroke: var(--ah-cream-25); stroke-width: 1.5; }
+.fa .f-axis-hot, .fa .f-conflict { stroke: var(--ah-amber); }
+.fa .f-conflict { stroke-width: 2; stroke-dasharray: 4 3; }
+.fa .f-tick { fill: var(--ah-amber); stroke: var(--ah-card); stroke-width: 3; }
+.fa .f-flag { fill: var(--ah-amber); }
+.fa .f-node { fill: var(--ah-surface-3); stroke: var(--ah-amber-60); stroke-width: 1.5; }
+.fa .f-dot { fill: var(--ah-amber); }
+.fa .f-dot2 { fill: var(--ah-text-3); }
+.fa .f-bubble { fill: var(--ah-surface-3); stroke: var(--ah-cream-16); }
+.fa .f-bubble-me { fill: var(--ah-amber-12); stroke: var(--ah-amber-40); }
+.fa .f-seat { fill: var(--ah-cream-12); stroke: none; }
+.fa .f-unused, .fa .f-unused2 { fill: var(--ah-cream-06); stroke: var(--ah-cream-25); stroke-dasharray: 3 2; }
+.fa .f-mark { fill: var(--ah-amber-25); stroke: var(--ah-amber); }
+.fa .f-pooled { fill: var(--ah-sage); stroke: none; }
+.fa .f-pool { fill: var(--ah-sage-10); stroke: var(--ah-sage); stroke-dasharray: 4 3; rx: 10; }
+.fa .f-bar { fill: var(--ah-cream-10); }
+.fa .f-barfill { fill: var(--ah-sage); transform-box: fill-box; transform-origin: left; transform: scaleX(0); transition: transform 1.2s ease; }
+.fa .f-barfill.on { transform: scaleX(1); }
+.fa .f-heat { fill: var(--ah-amber); }
+.fa .f-o1 { fill-opacity: 0.1; } .fa .f-o2 { fill-opacity: 0.2; } .fa .f-o3 { fill-opacity: 0.3; } .fa .f-o4 { fill-opacity: 0.4; } .fa .f-o5 { fill-opacity: 0.5; }
+.fa .f-o6 { fill-opacity: 0.6; } .fa .f-o7 { fill-opacity: 0.7; } .fa .f-o8 { fill-opacity: 0.8; } .fa .f-o9 { fill-opacity: 0.9; }
+.fa .f-t-i { fill: var(--ah-sage); } .fa .f-t-t { fill: var(--ah-blue-light); } .fa .f-t-m { fill: var(--ah-amber); } .fa .f-t-e { fill: var(--ah-text-5); }
+.fa .f-token { fill: var(--ah-amber); stroke: none; }
+.fa .f-rag-g { fill: var(--ah-sage); } .fa .f-rag-a { fill: var(--ah-amber); }
+.fa .f-stamp { fill: var(--ah-sage-12); stroke: var(--ah-sage); stroke-width: 2; }
+.fa .f-check { fill: none; stroke: var(--ah-sage-text); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.fa .fa-stage { transition: opacity 0.6s ease; }
+.fa .fa-stage.fa-fade { opacity: 0; }
+.fa .fa-i { opacity: 0; transform: translateY(5px); transition: opacity 0.45s ease, transform 0.45s ease; }
+.fa .fa-i.on { opacity: 1; transform: none; }
+.fa .fa-draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s ease; }
+.fa .fa-draw.on { stroke-dashoffset: 0; }
+.fa .fa-flow.on { opacity: 1; transform: none; animation: fa-flow var(--du, 1.6s) linear var(--dl, 0s) infinite; }
+.fa .fa-fly { transition: opacity 0.3s ease, transform 1s cubic-bezier(0.4, 0, 0.2, 1); transform: none; }
+.fa .fa-fly.on { transform: translate(var(--dx), var(--dy)); }
+@keyframes fa-flow { 0% { transform: translate(0, 0); opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+.fa .fa-stage:not(.fa-live) .fa-i[data-off] { display: none; }
+.fa .fa-stage:not(.fa-live) .fa-i { opacity: 1; transform: none; }
+.fa .fa-stage:not(.fa-live) .fa-draw { stroke-dashoffset: 0; }
+.fa .fa-stage:not(.fa-live) .f-barfill { transform: none; }
+.fa .fa-stage:not(.fa-live) .fa-flow, .fa .fa-stage:not(.fa-live) .f-mark { display: none; }
+@media (prefers-reduced-motion: reduce) { .fa .fa-i, .fa .fa-draw, .fa .fa-fly, .fa .f-barfill, .fa .fa-stage { transition: none; animation: none; } .fa .fa-flow { display: none; } }

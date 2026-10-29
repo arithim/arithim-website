@@ -5,3 +5,5 @@ tools/call-agent/build/
 
 # ElevenLabs CLI key (never commit)
 .env.local
+
+tools/remotion-estate/node_modules
