@@ -188,3 +188,5 @@ That makes data freshness and open access the selection criteria we would weight
 Keeping the repository current is the job we think agents should take on first. An agent can compare the EA repository against the systems that actually change: the CMDB, cloud accounts, the single sign-on application list, software contracts and spend, and change tickets in ServiceNow or Jira. It can then propose updates, such as a new application found in SSO logs or an owner who has left, for an architect to approve in the EA tool itself. Over time it can flag drift between what the roadmap says and what is being built.
 
 This works with whichever EA tool you already own, provided it has a usable API or MCP server. The architect still decides what goes into the repository; the agent takes over the data entry that most architects would happily give up.
+
+If you want a current record of the applications and AI tools in use, including the ones nobody registered, see how [Arithim Estate](product-estate.html) keeps an architecture record up to date from live feeds.

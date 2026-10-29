@@ -158,7 +158,9 @@
     "We scope it with you first, agree a first milestone, then quote."
    ]
   ],
-  "related": [],
+  "related": [
+   "estate"
+  ],
   "service_type": "AI model inventory and attestation",
   "audience_type": "CISOs, heads of cybersecurity, security architects and risk teams",
   "audience": "For CISOs and security teams",
@@ -1651,7 +1653,7 @@
    ],
    [
     "One answer for the CIO, the architect, the PMO and finance",
-    "Each person opens on the screen that answers their question, from the same records. The capability map, the renewal board, the project funnel and the savings ledger never disagree."
+    "Each person opens on the screen that answers their question, from the same records. The capability map, the renewal board, the project funnel and the savings ledger never disagree. The idea behind it is [operational intelligence](insight-operational-intelligence-vs-automation.html)."
    ],
    [
     "Decisions that reach the work",
@@ -1839,7 +1841,7 @@
    }
   ],
   "tiers_h": "One core, with two tiers on the same data",
-  "tiers_lead": "The SaaS management core is always included. The architecture and portfolio tiers read the same records, so adding one never means another import.",
+  "tiers_lead": "The SaaS management core is always included. The architecture and portfolio tiers read the same records, so adding one never means another import. Choosing between tools? Read [how to choose an enterprise architecture tool](insight-how-to-choose-an-enterprise-architecture-tool.html).",
   "tiers": [
    [
     "SaaS management core",
@@ -1859,7 +1861,7 @@
   ],
   "tiers_note": "A company that buys only the core still gets a working front door. Requests that would go to the demand path wait in a named approver queue, and Tier 2 and 3 reviews go to a named IT or security reviewer. Adding a tier swaps those queues for the review board and the portfolio.",
   "details_h": "How the smaller features work",
-  "details_lead": "Twenty-eight smaller features sit around the ten above, grouped by the loop. Each says what it does and how it behaves when it runs.",
+  "details_lead": "Thirty-two smaller features sit around the ten above, grouped by the loop. Each says what it does and how it behaves when it runs.",
   "details": [
    {
     "name": "Discover",
@@ -1867,7 +1869,7 @@
      [
       "Shadow app and risk triage",
       "Early access",
-      "On the first sighting of an unapproved app, the product scores its risk, checks for overlap and asks the first user what it is for and what data goes in. A free, low-risk app with five users or fewer and no overlap is marked Allowed. Overlap triggers an offer of the approved app. Blocking is advisory, and revoking access is always a ticket."
+      "On the first sighting of an unapproved app, the product scores its risk, checks for overlap and asks the first user what it is for and what data goes in. A free, low-risk app with five users or fewer and no overlap is marked Allowed. Overlap triggers an offer of the approved app. Blocking is advisory, and revoking access is always a ticket. This is the same discovery that catches [vibe-coded apps built outside IT](insight-how-to-secure-vibe-coded-apps.html)."
      ],
      [
       "Spend matching and contract capture",
@@ -2023,6 +2025,26 @@
       "Price benchmarks and custom dashboards",
       "Later",
       "Opt-in, anonymised price benchmarks across customers, and a dashboard builder for views we have not thought of."
+     ],
+     [
+      "Sovereign deployment in your own estate",
+      "Planned",
+      "Run Arithim Estate inside your own cloud or data centre as an independent application. AI features use endpoints you control: your own GPU clusters, or models through your [AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) or [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry) account, so the AI calls stay within the boundary you set."
+     ],
+     [
+      "Your own workflows",
+      "Later",
+      "Build your own workflows on the same records, with the same guardrails: review-only first, undo, and an exportable log. The ready-made workflows we ship stay as starting points."
+     ],
+     [
+      "Your own data model",
+      "Later",
+      "Add your own object types, fields and relationships, so the product can hold what is specific to your organisation. The standard model stays as the default."
+     ],
+     [
+      "Diagrams from your records and from code",
+      "Later",
+      "Architecture, process and value stream diagrams generated from your records and from code, the way coding assistants draw them today, and kept in step with the data. It works with the diagramming, scheduling and task tools you already use through their APIs, instead of replacing them."
      ]
     ]
    }
@@ -2096,7 +2118,7 @@
     "Write-only export to your S3, Azure Blob or Google Cloud Storage bucket, and SAML or OIDC sign-in with SCIM from your identity provider."
    ]
   ],
-  "connect_note": "These are the connectors we are building first, in the order design partners ask for them. If a system you rely on is missing, tell us. A file export is the fallback for most finance, card and HR sources.",
+  "connect_note": "These are the connectors we are building first, in the order design partners ask for them. If a system you rely on is missing, tell us. A file export is the fallback for most finance, card and HR sources. If your ERP is SAP, we also build [read-only reporting on SAP ERP](services-sap.html).",
   "rollout_h": "What happens from day 1 to day 90",
   "rollout_lead": "A company that stops at day 10 has a working SaaS management product, and the architecture and portfolio screens open already filled with its data.",
   "rollout": [
@@ -2169,9 +2191,9 @@
     "Answers questions over your data and drafts the narrative of a pack. A person approves any proposal and releases any pack."
    ]
   ],
-  "ai_note": "AI never sends anything to a vendor, never approves a write to one of your systems, never reads prompt content and never changes a Confirmed value.",
+  "ai_note": "AI never sends anything to a vendor, never approves a write to one of your systems, never reads prompt content and never changes a Confirmed value. If your people need help owning these decisions, see our [AI readiness assessment](services-ai-readiness.html) and [AI training](services-training.html).",
   "trust_h": "Security, data and control",
-  "trust_lead": "We give your security team a scope manifest for each connector on the first call: every scope, the fields it yields, why we need it, how long we keep it and which feature uses it.",
+  "trust_lead": "We give your security team a scope manifest for each connector on the first call: every scope, the fields it yields, why we need it, how long we keep it and which feature uses it. For regulated teams we also build [compliance workflows with an audit trail](services-regulatory.html).",
   "trust": [
    [
     "Two consents, not one",
@@ -2218,7 +2240,7 @@
    ],
    [
     "IT and SaaS operations",
-    "A decisions inbox sorted by money at stake and deadline: renewals, shadow apps, reclaim batches, ownerless apps with spend and connector failures."
+    "A decisions inbox sorted by money at stake and deadline: renewals, shadow apps, reclaim batches, ownerless apps with spend and connector failures. See [a connected reporting layer we built](case-operational-intelligence-platform.html)."
    ],
    [
     "Procurement and finance",
@@ -2236,11 +2258,8 @@
   "know_h": "Good to know before you talk to us",
   "know": [
    "This page describes a product being built. The status beside each feature is our current intention, not a delivery date, and it may change as design partners tell us what matters.",
-   "The product has a fixed set of workflows. You change thresholds, approvers, channels and exemptions in settings, preview the effect and dry-run any workflow, but there is no general workflow builder.",
-   "It uses a small, fixed data model with tags and a few custom fields per object. There is no configurable metamodel.",
-   "It is not a diagram tool. It does not model business processes or value streams, and it is not a scheduling, task or timesheet tool.",
    "It does not scan mailboxes or calendars, inspect prompts, handle payments or virtual cards, or send anything to a vendor on your behalf.",
-   "It does not run on your own servers. It is delivered as a service."
+   "It is delivered as a service. It can also be deployed inside your own estate as an independent, sovereign application, using your own AI endpoints: models on your own GPU clusters, or through your own [AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) or [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry) account. Talk to us about what that needs."
   ],
   "faq": [
    [
@@ -2290,6 +2309,10 @@
    [
     "Which features can I use today?",
     "None of them are generally available yet. The status on each feature shows what opens first to design partners (Early access), what follows in the first full release (Soon), and what is Planned or Later. Talk to us and we will tell you where your needs fall."
+   ],
+   [
+    "Can we run it inside our own environment?",
+    "That is planned. Arithim Estate can run inside your own estate as an independent application, with AI features using endpoints you control: your own GPU clusters, or your [AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) or [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry) account. Today it is delivered as a service, and we can talk through what a sovereign deployment would need."
    ]
   ],
   "related": [
@@ -2352,7 +2375,7 @@
    [
     "Security and audit teams",
     "Evidence on request",
-    "Access reviews, leaver checks and a log of who approved what, ready for an auditor without a scramble.",
+    "Access reviews, leaver checks and a log of who approved what, ready for an auditor without a scramble. See a [regulated approval workflow we built](case-compliance-vendor-approval.html).",
     "#details",
     "See the smaller features"
    ]

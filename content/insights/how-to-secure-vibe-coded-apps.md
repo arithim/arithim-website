@@ -132,3 +132,5 @@ Banning AI app builders is the obvious response, and it usually backfires. The p
 Most of this process is repetitive coordination. Someone has to watch the discovery signals, open a record for each new app, ask the builder a few questions, run the scans, translate the results and chase the fix. We think an intake agent can do most of that. It would pick up a new app from the logs, message the builder in Slack or Teams to confirm ownership and purpose, run the scans, and write up each finding in plain language with a suggested fix. A person on the security team would still approve any move to the business-critical tier.
 
 This is one of the agents we described in our [application security research](insight-more-than-one-application-security-testing-tool.html). As far as we can see, no vendor covers it end to end yet. Several discover AI assets, but finding an app is only the first step.
+
+To find the apps and AI tools nobody told IT about in the first place, see shadow app discovery in [Arithim Estate](product-estate.html).

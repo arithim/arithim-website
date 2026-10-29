@@ -65,6 +65,20 @@ SITE = "https://arithim.com"
 ORDER_EMAIL = "tarun@arithim.com"
 YOUR_DETAILS = ["Name:", "Company:", "Invoice address:", "Purchase order number (if any):"]
 e = html.escape
+LINK = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+
+
+def r(text: str) -> str:
+    """Escape text, turning [anchor](url) into a link. External links open normally and carry rel=noopener."""
+    def a(m):
+        href = m.group(2)
+        rel = ' rel="noopener"' if href.startswith("http") else ""
+        return f'<a class="tsg-link" href="{href}"{rel}>{m.group(1)}</a>'
+    return LINK.sub(a, e(text))
+
+
+def plain(text: str) -> str:
+    return LINK.sub(r"\1", text)
 DOTSCENE_VERSION = "1"
 FANIM_VERSION = "3"
 HEROVIDEO_VERSION = "1"
@@ -80,7 +94,7 @@ def cards(items, numbered=False):
     body = ""
     for i, (t, b) in enumerate(items, 1):
         num = f'<span class="ah-step-n">{i:02d}</span>' if numbered else ""
-        body += f'<div class="tsg-card">{num}<h3>{e(t)}</h3><p>{e(b)}</p></div>'
+        body += f'<div class="tsg-card">{num}<h3>{e(t)}</h3><p>{r(b)}</p></div>'
     return f'<div class="tsg-grid {cols}">{body}</div>'
 
 
@@ -92,7 +106,7 @@ def tag_cards(items, tag_first=True, label_idx=None):
     """Cards of [title, status, text]. Used for tiers, small features and connectors."""
     n = len(items)
     cols = "tsg-g2" if n % 2 == 0 and n <= 4 else "tsg-g3"
-    body = "".join(f'<div class="tsg-card">{tag(st)}<h3>{e(t)}</h3><p>{e(b)}</p></div>' for t, st, b in items)
+    body = "".join(f'<div class="tsg-card">{tag(st)}<h3>{e(t)}</h3><p>{r(b)}</p></div>' for t, st, b in items)
     return f'<div class="tsg-grid {cols}">{body}</div>'
 
 
@@ -102,16 +116,16 @@ def usecase_cards(items):
 
 
 def day_cards(items):
-    body = "".join(f'<div class="tsg-card"><span class="ah-day">{e(w)}</span><h3>{e(t)}</h3><p>{e(b)}</p></div>' for w, t, b in items)
+    body = "".join(f'<div class="tsg-card"><span class="ah-day">{e(w)}</span><h3>{e(t)}</h3><p>{r(b)}</p></div>' for w, t, b in items)
     return f'<div class="tsg-grid tsg-g2">{body}</div>'
 
 
 def feature(f: dict, fanim) -> str:
     note = f'<p class="ah-note">{e(f["status_note"])}</p>' if f.get("status_note") else ""
-    pts = "".join(f"<li>{e(x)}</li>" for x in f["points"])
+    pts = "".join(f"<li>{r(x)}</li>" for x in f["points"])
     link = f'<p><a class="tsg-link" href="{e(f["link"]["href"])}">{e(f["link"]["text"])}</a></p>' if f.get("link") else ""
     return (f'<article class="ah-feature" id="f-{e(f["id"])}"><div class="ah-feature-copy">{tag(f["status"])}<h3>{e(f["title"])}</h3>{note}'
-            f'<p>{e(f["text"])}</p><ul class="ah-points">{pts}</ul>{link}</div>'
+            f'<p>{r(f["text"])}</p><ul class="ah-points">{pts}</ul>{link}</div>'
             f'<figure class="ah-feature-fig">{fanim.render(f["anim"], f["anim_title"], f["anim_desc"])}</figure></article>')
 
 
@@ -146,7 +160,7 @@ def render(p: dict, products: list[dict]) -> str:
     service = {"@context": "https://schema.org", "@type": "Service", "name": p["name"], "serviceType": p["service_type"], "url": url, "description": p["description"],
                "provider": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/"}, "areaServed": {"@type": "Place" if p.get("area") == "Worldwide" else "Country", "name": p.get("area", "United Kingdom")},
                "audience": {"@type": "Audience", "audienceType": p["audience_type"]}}
-    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in p["faq"]]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Arithim", "item": f"{SITE}/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": f"{SITE}/products.html"},
         {"@type": "ListItem", "position": 3, "name": p["name"], "item": url}]}
@@ -181,11 +195,11 @@ def render(p: dict, products: list[dict]) -> str:
                      f'<canvas class="ah-contours-cv" data-solar-contours role="img" aria-label="{e(c["title"] + ". " + c["desc"], quote=True)}">{e(c["desc"])}</canvas></div>'
                      f'<figcaption class="ah-contours-cap">{globe.CAPTION}</figcaption></figure></div></section>'
                      f'<script src="/assets/solar-contours.js?v=2" defer></script>' if c else "")
-    know = "".join(f"<li>{e(x)}</li>" for x in p["know"])
+    know = "".join(f"<li>{r(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])
-    faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{e(a)}</p></div></details>' for q, a in p["faq"])
-    lead = lambda k: f'<p class="tsg-lead">{e(p[k])}</p>' if p.get(k) else ""
-    note = lambda k: f'<p class="as-note">{e(p[k])}</p>' if p.get(k) else ""
+    faq_html = "".join(f'<details><summary>{e(q)}</summary><div class="ans"><p>{r(a)}</p></div></details>' for q, a in p["faq"])
+    lead = lambda k: f'<p class="tsg-lead">{r(p[k])}</p>' if p.get(k) else ""
+    note = lambda k: f'<p class="as-note">{r(p[k])}</p>' if p.get(k) else ""
     full = bool(p.get("features"))
     if full:
         import feature_anim
