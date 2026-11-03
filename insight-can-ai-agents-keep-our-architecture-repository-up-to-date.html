@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can AI Agents Keep Our Architecture Repository Up to Date? — Arithim</title>
+<meta name="description" content="AI agents can find drift between an architecture repository and the systems it describes, and propose fixes for an architect to approve. They cannot yet be trusted to edit it unattended. Based on Gartner&#x27;s 2026 research on enterprise architecture tools and the context layer for AI agents.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Can AI Agents Keep Our Architecture Repository Up to Date? — Arithim">
+<meta property="og:description" content="AI agents can find drift between an architecture repository and the systems it describes, and propose fixes for an architect to approve. They cannot yet be trusted to edit it unattended. Based on Gartner&#x27;s 2026 research on enterprise architecture tools and the context layer for AI agents.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html">
+<meta property="og:url" content="https://arithim.com/insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-10-26">
+<meta property="article:section" content="Enterprise architecture">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html#article",
+      "headline": "Can AI Agents Keep Our Architecture Repository Up to Date?",
+      "description": "AI agents can find drift between an architecture repository and the systems it describes, and propose fixes for an architect to approve. They cannot yet be trusted to edit it unattended. Based on Gartner's 2026 research on enterprise architecture tools and the context layer for AI agents.",
+      "datePublished": "2026-10-26",
+      "dateModified": "2026-10-26",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Enterprise architecture",
+      "keywords": [
+        "can AI keep enterprise architecture repository up to date",
+        "AI agents enterprise architecture",
+        "architecture repository automation",
+        "EA tool MCP server",
+        "keep CMDB and EA tool in sync",
+        "context layer for AI agents",
+        "enterprise architecture tools 2026",
+        "Gartner enterprise architecture AI"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Enterprise architecture"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Architecture repositories"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Ardoq",
+          "url": "https://www.ardoq.com/platform-overview"
+        },
+        {
+          "@type": "Organization",
+          "name": "SAP LeanIX",
+          "url": "https://www.leanix.net/en/"
+        },
+        {
+          "@type": "Organization",
+          "name": "ServiceNow",
+          "url": "https://www.servicenow.com/products/enterprise-architecture.html"
+        },
+        {
+          "@type": "Organization",
+          "name": "Orbus Software",
+          "url": "https://www.orbussoftware.com/landing-pages/orbusinfinity-enterprise-architecture"
+        },
+        {
+          "@type": "Organization",
+          "name": "Bee360",
+          "url": "https://www.bee360.com/product"
+        },
+        {
+          "@type": "Organization",
+          "name": "Avolution",
+          "url": "https://www.avolutionsoftware.com/abacus/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Magic Quadrant for Enterprise Architecture Tools",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-10-13",
+        "identifier": "G00842974",
+        "url": "https://www.gartner.com/doc/reprints?id=00ThR00000O0uUFUAZ&ct=261019&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can AI agents update an enterprise architecture repository automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They can propose updates automatically, and some tools let an agent write to the repository, but Gartner's 2026 research says practitioners find AI output hard to trust for critical decisions. Most teams should let an agent compare the repository with source systems and queue changes for an architect to approve, then widen what it may change without approval as its record builds up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does an architecture repository go out of date?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner describes EA teams caught in nonstop manual maintenance. The repository depends on feeds from the CMDB, planning, finance and process tools, and each feed has its own data quality and owners. Applications are bought, retired and renamed faster than anyone updates the model."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do EA tools support MCP so that AI agents can connect to them?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some do. Gartner says buyers increasingly see MCP access as essential. In its 2026 Magic Quadrant it notes that Bee360 provides a vendor-managed MCP server, that SAP LeanIX has shipped interactive MCP apps, and that Orbus Software trails most peers on customer-accessible MCP. Check the current state of each product with the vendor before you rely on it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What data does an AI agent need to maintain an architecture repository?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's research on the context layer for AI agents names three components. Semantics defines what your entities and rules mean, operational state gives the agent right-time access to systems, and provenance records what the agent decided and why. An EA repository already holds much of the first, which is why the second and third decide how far an agent can be trusted."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will AI pricing change what an EA tool costs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Probably. Gartner reports that vendors are moving from per-seat licensing towards consumption- and outcome-based pricing, because people increasingly query company-wide AI assistants instead of opening the EA tool. Ask each vendor how AI usage is metered and what happens when an agent runs every night."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Can AI Agents Keep Our Architecture Repository Up to Date?",
+          "item": "https://arithim.com/insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=7">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html">Can AI Agents Keep Our Architecture Repository Up to Date?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+            <a class="ah-menu-link" href="insight-more-than-one-application-security-testing-tool.html">Do You Need More Than One Application Security Testing Tool?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-can-ai-agents-keep-our-architecture-repository-up-to-date.html">Can AI Agents Keep Our Architecture Repository Up to Date?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+            <a class="ah-menu-link" href="insight-more-than-one-application-security-testing-tool.html">Do You Need More Than One Application Security Testing Tool?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Enterprise architecture</span></div>
+      <h1 class="r-f3 ah-debd25">Can AI Agents Keep Our Architecture Repository Up to Date?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">EA · RESEARCH</span><span class="ah-rule">·</span><span>26 OCT 2026</span><span class="ah-rule">·</span><span>8 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">Partly. AI agents can compare an enterprise architecture repository with the CMDB, cloud accounts, contracts and change tickets, spot what has drifted and propose updates for an architect to approve. Gartner's 2026 research says practitioners still struggle with data quality and with AI output they cannot trust for critical decisions, so the sensible set-up has an agent doing the checking and a person approving what goes in.</p>
+    <p>Most architecture repositories start going stale the day after they are updated. This piece looks at whether AI agents can fix that. It draws on two Gartner reports, the <a href="https://www.gartner.com/doc/reprints?id=00ThR00000O0uUFUAZ&amp;ct=261019&amp;st=sb" rel="noopener">Magic Quadrant for Enterprise Architecture Tools</a> from October 2026 and <a href="https://www.gartner.com/doc/reprints?id=1-2NCKLMK5&amp;ct=260514&amp;st=sb" rel="noopener">The 3 Core Components of the Context Layer for AI Agents</a> from March 2026.</p>
+    <h2>Why the repository goes out of date</h2>
+    <p>Gartner calls the core problem in this market constant manual maintenance, and it says the ideal opportunity for EA teams is to end it and get a live view of the organisation's current state. The repository is meant to capture the relationships between applications, capabilities, processes, roles, information and technology. It also has to connect to the CMDB, planning, financial and business process tools. Gartner points out that its value therefore depends on data access, data quality and data governance across all of those systems.</p>
+    <p>That dependence explains the drift. Each connected system has its own owners and its own errors, and the architecture team sits at the end of the chain. When a team buys a new application, retires an old one or changes an owner, the repository only learns about it if somebody remembers to say so.</p>
+    <h2>What an agent can do about it</h2>
+    <p>The task suits an agent because it is repetitive, the sources are known, and a mistake is easy to spot when a person looks at a proposed change. An agent can read the repository and the systems that change around it, then work out where they disagree. One example is an application that appears in the single sign-on list but not in the repository. Another is an owner who has left the company.</p>
+    <p>For this job the agent needs read access to the sources, a clear rule for what counts as a match, and a queue where its proposals wait for review. We described the same pattern for security findings in <a href="insight-how-to-reduce-application-security-backlog.html">how to reduce your application security backlog</a>, where the agent follows an item through to a verified result and a person approves the change.</p>
+    <h2>What the EA tool vendors are doing</h2>
+    <p>Gartner reports that AI is the main driver of change in the market this year, and the vendors are splitting into two groups. Some are building agents into the product. Gartner credits ServiceNow with cross-product AI agent orchestration and a native CMDB, and it says ServiceNow and SAP LeanIX lead on AI agents and AI usage. Others rely on your own agents connecting from outside.</p>
+    <p>For that second route the connection point is the Model Context Protocol. Gartner says buyers increasingly see MCP access as essential, and it names a few examples. Bee360 provides a vendor-managed MCP server, SAP LeanIX has shipped interactive MCP apps, and Orbus Software trails most peers on customer-accessible MCP. The <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> is an open standard, so an agent you build or buy for another purpose can often read an EA tool that supports it.</p>
+    <p>There are gaps. Gartner notes that Avolution's ABACUS has no native artifact generation, component discovery or content enrichment, and that fewer than a quarter of the AI capabilities UNICOM proposed were generally available. Product pages and roadmaps describe intent, so test the specific feature you need before you rely on it. Vendor pages for reference include <a href="https://www.ardoq.com/platform-overview" rel="noopener">Ardoq</a>, <a href="https://www.leanix.net/en/" rel="noopener">SAP LeanIX</a>, <a href="https://www.servicenow.com/products/enterprise-architecture.html" rel="noopener">ServiceNow</a>, <a href="https://www.orbussoftware.com/landing-pages/orbusinfinity-enterprise-architecture" rel="noopener">Orbus Software</a>, <a href="https://www.bee360.com/product" rel="noopener">Bee360</a> and <a href="https://www.avolutionsoftware.com/abacus/" rel="noopener">Avolution</a>.</p>
+    <h2>Why you cannot hand it over completely</h2>
+    <p>Gartner is direct about two problems that practitioners face with AI inside EA tools. The first is data quality. The second is AI output that is hard to trust when the decision matters. A wrong owner or dependency written into the repository is hard to spot, and other people then build roadmaps on top of it.</p>
+    <p>The context layer report explains the mechanism. Gartner says agents behave unreliably and cost more when a large language model works on poorly prioritised or noisy data without effective filtering. It describes the context layer as three components that have to work together. Semantics is the explicit meaning and relationships in business data, operational state is right-time access to what is happening in the business, and provenance is a record of the agent's decisions, actions and outcomes, with feedback collected on them.</p>
+    <p>An EA repository is a good deal of the first component already, because it holds entities, relationships and ownership. What an agent still needs is the second, live access to the CMDB, cloud and contract data, and the third, a log that shows why it proposed each change. Gartner also says that the context layer is not an off-the-shelf product. It has to be assembled from services and custom modelling, and Gartner advises starting with one or two high-value use cases rather than building everything at once. Keeping an EA repository current looks like a sensible first use case.</p>
+    <h2>Cost and ownership</h2>
+    <p>Two commercial points can catch buyers out. Gartner reports that vendors are moving from per-seat licensing towards consumption- and outcome-based pricing, because customers increasingly ask company-wide AI assistants for architecture answers rather than opening the EA tool. An agent that checks the repository every night will use more of whatever is metered than a human does.</p>
+    <p>Gartner also notes that Ardoq, GBTEC and ins-pi absorb or avoid third-party model costs, and warns that this may put pressure on their margins as agentic workflows grow. It tells buyers to check contract language on future AI features. Separately, Gartner flags some EA teams building their own AI tools on coding platforms to copy EA tool features, and treats that as an unmanaged AI risk. If you build a maintenance agent, give it an owner, access limits and a log like any other system.</p>
+    <h2>How to try it</h2>
+    <ol><li>Pick one source of truth to compare against, such as the CMDB or the single sign-on application list, and one slice of the repository, such as applications and owners.</li><li>Check that your EA tool exposes what the agent needs through an API or an MCP server, and ask the vendor how usage is charged.</li><li>Have the agent propose changes only. Keep a person approving each one at first.</li><li>Log every proposal with the evidence that triggered it, and record whether the architect accepted it.</li><li>Measure how often proposals are accepted before widening the agent's scope. Gartner proposes a similar measure for agent reliability, the share of actions with positive business outcomes.</li></ol>
+    <p>Gartner's context layer paper suggests two further measures that suit this kind of pilot. Retrieval precision is the share of retrieved items that turn out to be relevant, and recall is the share of all relevant items that the agent found. For a repository agent, that translates into how many of its flagged differences were real, and how many real differences it missed. Gartner also proposes tracking the share of agent actions that comply with rules and policies, using audit logs or automated validation, which gives the architecture team evidence for widening the agent's remit.</p>
+    <h2>Where agents help</h2>
+    <p>Keeping the repository current is the job we think agents should take on first. The agent Arithim would build for this problem reads the sources that change, including the CMDB, cloud accounts, the single sign-on application list, software contracts and change tickets. It compares them with the repository in whichever EA tool you already own, and it posts proposed updates with their evidence for an architect to approve. It has its own identity and limited access, it logs each decision with its reasoning, and it never writes to the repository without a person's approval.</p>
+    <p>The architect decides what the repository says, and the agent takes over the data entry. Which EA tool to run it against is covered in <a href="insight-how-to-choose-an-enterprise-architecture-tool.html">how to choose an enterprise architecture tool</a>.</p>
+    <h2>Common questions</h2>
+    <h3>Can AI agents update an enterprise architecture repository automatically?</h3>
+    <p>They can propose updates automatically, and some tools let an agent write to the repository, but Gartner's 2026 research says practitioners find AI output hard to trust for critical decisions. Most teams should let an agent compare the repository with source systems and queue changes for an architect to approve, then widen what it may change without approval as its record builds up.</p>
+    <h3>Why does an architecture repository go out of date?</h3>
+    <p>Gartner describes EA teams caught in nonstop manual maintenance. The repository depends on feeds from the CMDB, planning, finance and process tools, and each feed has its own data quality and owners. Applications are bought, retired and renamed faster than anyone updates the model.</p>
+    <h3>Do EA tools support MCP so that AI agents can connect to them?</h3>
+    <p>Some do. Gartner says buyers increasingly see MCP access as essential. In its 2026 Magic Quadrant it notes that Bee360 provides a vendor-managed MCP server, that SAP LeanIX has shipped interactive MCP apps, and that Orbus Software trails most peers on customer-accessible MCP. Check the current state of each product with the vendor before you rely on it.</p>
+    <h3>What data does an AI agent need to maintain an architecture repository?</h3>
+    <p>Gartner's research on the context layer for AI agents names three components. Semantics defines what your entities and rules mean, operational state gives the agent right-time access to systems, and provenance records what the agent decided and why. An EA repository already holds much of the first, which is why the second and third decide how far an agent can be trusted.</p>
+    <h3>Will AI pricing change what an EA tool costs?</h3>
+    <p>Probably. Gartner reports that vendors are moving from per-seat licensing towards consumption- and outcome-based pricing, because people increasingly query company-wide AI assistants instead of opening the EA tool. Ask each vendor how AI usage is metered and what happens when an agent runs every night.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=00ThR00000O0uUFUAZ&amp;ct=261019&amp;st=sb" rel="noopener">Magic Quadrant for Enterprise Architecture Tools</a>, Austin Steinmetz, Rowan Wakeford et al., 13 October 2026, ID G00842974. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NCKLMK5&amp;ct=260514&amp;st=sb" rel="noopener">The 3 Core Components of the Context Layer for AI Agents</a>, Andrés García-Rodeja, Michael Gonzales et al., 11 March 2026, ID G00848874. Complimentary reprint; the link may expire.</li>
+      <li>Vendor product pages and the <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> site, as linked. Accessed 3 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-choose-an-enterprise-architecture-tool.html"><h3 class="ah-772add">How Do We Choose an Enterprise Architecture Tool in 2026?</h3><span class="ah-90030f">EA · RESEARCH · 23 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html"><h3 class="ah-772add">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span class="ah-90030f">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-reduce-application-security-backlog.html"><h3 class="ah-772add">How Do We Reduce Our Application Security Backlog?</h3><span class="ah-90030f">APPSEC · RESEARCH · 22 OCT 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Want to see how much of your architecture repository has drifted from reality?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=3" defer></script>
+</body>
+</html>
