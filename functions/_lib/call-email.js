@@ -4,6 +4,7 @@
 import { first, all, run, nowSec } from "./d1.js";
 import { esc, clean } from "./escape.js";
 import { parseDenylist, scanAgentLines } from "./filter.js";
+import { AUTO_CAPTURE_NOTE } from "./auto-capture.js";
 import { UNVERIFIED_TYPES } from "./message-types.js";
 
 export const BANNER = "Caller identity not verified. Do not act on payment or bank details from this message.";
@@ -68,6 +69,9 @@ export async function sendCallEmail(env, db, call, transcript, secs) {
   const denylist = parseDenylist(env.CALL_DENYLIST);
   // The filter applies to what the agent said. The caller's own words are never filtered, only scanned for bank wording.
   const scanHits = scanAgentLines(lines.filter((l) => l.agent).map((l) => l.text), denylist, lines.filter((l) => !l.agent).map((l) => l.text).join("\n"));
+  // The auto-captured summary is model text built from the caller's words: scan it like the agent's lines.
+  const autoSummaries = msgs.filter((m) => m.fields?.auto_captured).map((m) => String(m.fields.summary || ""));
+  if (autoSummaries.length) scanHits.push(...scanAgentLines(autoSummaries, denylist, lines.filter((l) => !l.agent).map((l) => l.text).join("\n")));
   const paymentWording = lines.some((l) => !l.agent && PAYMENT_RE.test(l.text || "")) || msgs.some((m) => PAYMENT_RE.test(flatten(m.fields)));
   const flagSet = new Set([...(call.flags || "").split(",").filter(Boolean), ...scanHits, ...(paymentWording ? ["payment-details"] : [])]);
   // blocked transfers and brain errors are informational, not content flags
@@ -85,7 +89,8 @@ export async function sendCallEmail(env, db, call, transcript, secs) {
     flagSet.size ? `Flags: ${[...flagSet].join(", ")}` : null,
   ].filter(Boolean);
 
-  const msgText = msgs.map((m) => `--- ${m.ref} (${m.type}) ---\n` + flatten(m.fields)).join("\n\n") || "(no message taken)";
+  const noteFor = (m) => (m.fields?.auto_captured ? `${AUTO_CAPTURE_NOTE}. The agent did not log this message.\n` : "");
+  const msgText = msgs.map((m) => `--- ${m.ref} (${m.type}) ---\n` + noteFor(m) + flatten(m.fields)).join("\n\n") || "(no message taken)";
   const tr = lines.map((l) => `${l.who}: ${clean(l.text, 4000)}`).join("\n").slice(0, 30000);
   // The banner is on EVERY call email; the model-chosen message type only decides how loud it is.
   const text = BANNER + "\n" + head.join("\n") + "\n\nMessages\n" + msgText + "\n\nTranscript\n" + tr + "\n";
@@ -98,7 +103,7 @@ export async function sendCallEmail(env, db, call, transcript, secs) {
     `<p style="font:14px system-ui,sans-serif;">${esc(head.join(" | "))}</p>` +
     `<h3 style="font-family:system-ui,sans-serif;">Messages</h3>` +
     (msgs.length
-      ? msgs.map((m) => `<p style="font:14px system-ui,sans-serif;"><strong>${esc(m.ref)}</strong> (${esc(m.type)})<br><span style="white-space:pre-wrap;">${esc(flatten(m.fields))}</span></p>`).join("")
+      ? msgs.map((m) => `<p style="font:14px system-ui,sans-serif;"><strong>${esc(m.ref)}</strong> (${esc(m.type)})<br>${m.fields?.auto_captured ? `<em>${esc(noteFor(m).trim())}</em><br>` : ""}<span style="white-space:pre-wrap;">${esc(flatten(m.fields))}</span></p>`).join("")
       : `<p style="font:14px system-ui,sans-serif;">(no message taken)</p>`) +
     `<h3 style="font-family:system-ui,sans-serif;">Transcript</h3><pre style="font:13px ui-monospace,monospace;white-space:pre-wrap;">${esc(tr)}</pre>`;
 

@@ -11,6 +11,11 @@
   var TURNSTILE_SITEKEY = '0x4AAAAAAFddwijZvXOLiEH1';
   var TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
   var CONNECT_TIMEOUT_MS = 8000;
+  var LEVEL_HEARD = 0.04;       // SDK input volume (0 to 1) that counts as the caller being heard
+  var LEVEL_POLL_MS = 120;
+  var NO_INPUT_MS = 6000;       // silence after the greeting before the "We can't hear you" prompt
+  var NO_INPUT_AFTER_HEARD_MS = 10000; // longer once we have heard them at least once, so a caller who is thinking is not nagged
+  var GREETING_FALLBACK_MS = 12000;
   var SUMMARY_POLL_MS = 1500;
   var SUMMARY_POLL_MAX = 24;
   var CONTACT_URL = '/contact.html';
@@ -46,14 +51,14 @@
   var S = {
     open: false, view: 'intro', mode: 'voice', opener: null,
     token: '', tsReady: false, tsFailed: false, tsId: null, tsPending: false, unlockCtx: null, micProbe: null,
-    callId: null, conv: null, mock: false, mockTimers: [], agentName: 'Hannah', roster: {},
+    gen: 0, callId: null, conv: null, mock: false, mockTimers: [], agentName: 'Hannah', roster: {},
     muted: false, started: 0, tick: null, wake: null, connectTimer: null, ended: false, confirmClose: false,
     hadCall: false, helpfulSent: false, summaryText: '', waitingReply: false
   };
 
   /* ---------- diagnostics trail (no transcript text, no personal data beyond the user agent) ---------- */
   var DIAG_MAX_BYTES = 3800, DIAG_MAX_SENDS = 3, DIAG_QUICK_MS = 5000;
-  var T = { t0: 0, ev: [], dbg: {}, sends: 0, env: null, sdkAt: 0, agentMsgs: 0, dropped: false };
+  var T = { t0: 0, ev: [], dbg: {}, sends: 0, env: null, sdkAt: 0, agentMsgs: 0, dropped: false, lvl: null };
   function tr(code, d) {
     if (T.ev.length >= 80) return;
     var e = [Date.now() - T.t0, code];
@@ -61,7 +66,7 @@
     T.ev.push(e);
   }
   function trReset() {
-    T.t0 = Date.now(); T.ev = []; T.dbg = {}; T.sends = 0; T.sdkAt = 0; T.agentMsgs = 0; T.dropped = false;
+    T.t0 = Date.now(); T.ev = []; T.dbg = {}; T.sends = 0; T.sdkAt = 0; T.agentMsgs = 0; T.dropped = false; T.lvl = null;
     T.env = {
       ua: String(navigator.userAgent || '').slice(0, 220),
       rtc: !!window.RTCPeerConnection,
@@ -79,9 +84,12 @@
       var p = c.close && c.close(); if (p && p.catch) p.catch(function () {});
     } catch (e) { T.env.ac = 'error:' + (e && e.name); }
   }
+  function round3(x) { return Math.round(x * 1000) / 1000; }
   function errInfo(e) { return e ? String(e.name || 'Error') + ': ' + String(e.message || '').slice(0, 120) : ''; }
   function diagBody(reason) {
     var obj = { v: 1, reason: reason, env: T.env, ev: T.ev.slice(), dbg: T.dbg };
+    // Microphone level summary (numbers only, no audio): lowest and highest input volume seen while unmuted, samples taken, and whether it ever crossed the "heard" threshold.
+    if (T.lvl) { obj.heard_any_audio = !!T.lvl.heard; obj.lvl = { min: round3(T.lvl.min), max: round3(T.lvl.max), n: T.lvl.n, th: LEVEL_HEARD }; }
     var str = JSON.stringify(obj);
     while (str.length > DIAG_MAX_BYTES && obj.ev.length > 8) { obj.ev.splice(4, 1); obj.trimmed = true; str = JSON.stringify(obj); }
     if (str.length > DIAG_MAX_BYTES) { obj.dbg = {}; obj.env.ua = obj.env.ua.slice(0, 80); str = JSON.stringify(obj); }
@@ -292,6 +300,7 @@
     timeEl = h('span', { 'aria-hidden': 'true', text: '0:00' });
     S.dot = h('span', { class: 'callus-dot live' });
     b.appendChild(h('div', { class: 'callus-status' }, S.dot, statusEl, whoEl, timeEl));
+    if (S.mode === 'voice' && !S.mock) buildMeter(b);
     capEl = h('ul', { class: 'callus-captions' + (S.mode === 'text' ? '' : ''), role: 'log', 'aria-live': 'polite', 'aria-label': 'Conversation', tabindex: '0' });
     b.appendChild(capEl);
     var actions = h('div', { class: 'callus-row', id: 'callus-actions' });
@@ -310,6 +319,7 @@
     }, 1000);
     setStatus('Listening', 'live');
     if (S.mode === 'text') chatBox.focus(); else if (muteBtn) muteBtn.focus();
+    if (S.mode === 'voice' && !S.mock) startLevelWatch();
   }
 
   function renderActions() { renderConfirm(); }
@@ -350,6 +360,8 @@
   /* ---------- actions ---------- */
   function toggleMute() {
     S.muted = !S.muted;
+    L.quietSince = 0; if (S.muted) hideNudge();
+    if (meterLabel) meterLabel.textContent = S.muted ? 'Microphone muted' : 'Waiting for you';
     try { if (S.conv && S.conv.setMicMuted) S.conv.setMicMuted(S.muted); } catch (e) {}
     muteBtn.setAttribute('aria-pressed', S.muted ? 'true' : 'false');
     muteBtn.textContent = S.muted ? 'Unmute' : 'Mute';
@@ -369,7 +381,7 @@
   /* ---------- start flow ---------- */
   function startFlow(mode) {
     S.mode = mode; S.ended = false; S.muted = false; S.helpfulSent = false; S.mock = false;
-    S.agentName = 'Hannah'; S.callId = null; S.hadCall = true;
+    S.agentName = 'Hannah'; S.callId = null; S.hadCall = true; S.gen++;
     trReset();
     showConnecting();
     var micStep = Promise.resolve();
@@ -381,11 +393,13 @@
       }
       tr('mic_request');
       // Safari only lets audio start inside a user gesture, and the SDK builds its AudioContext after the network round trip.
-      // Unlock one here, synchronously in the click, and keep the mic probe stream open until the session is up.
+      // Unlock an AudioContext here, synchronously in the click (output only, it never captures). The permission probe is
+      // stopped as soon as it is granted: the SDK opens its own capture and must be the only one holding the microphone
+      // (a second live capture track is the likeliest cause of Safari muting the SDK's track after the first word).
       unlockAudio();
       micStep = navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
         tr('mic_granted');
-        stopMicProbe(); S.micProbe = stream;
+        S.micProbe = stream; stopMicProbe(); tr('probe_stopped');
         probeAudioContext();
       });
     }
@@ -452,7 +466,7 @@
 
   /* ---------- real session (ElevenLabs SDK) ---------- */
   function runSdk(data) {
-    var timedOut = false, conv = null;
+    var timedOut = false, conv = null, gen = S.gen;
     var timeout = new Promise(function (_, rej) {
       S.connectTimer = setTimeout(function () { timedOut = true; var e = new Error('timeout'); e.kind = 'timeout'; rej(e); }, CONNECT_TIMEOUT_MS);
     });
@@ -466,7 +480,7 @@
         onConnect: function () { tr('on_connect'); if (!timedOut) { clearTimeout(S.connectTimer); } },
         onStatusChange: function (st) { tr('status', st && (st.status || st)); },
         onDebug: function (d) { var k = d && typeof d.type === 'string' ? d.type.slice(0, 40) : 'other'; if (T.dbg[k] || Object.keys(T.dbg).length < 20) T.dbg[k] = (T.dbg[k] || 0) + 1; },
-        onDisconnect: function (d) { noteDisconnect(d); if (S.conv || conv || S.view === 'connecting') onSessionEnd(d); },
+        onDisconnect: function (d) { noteDisconnect(d); if (gen !== S.gen) return; /* a session we replaced (switch to text) */ if (S.conv || conv || S.view === 'connecting') onSessionEnd(d); },
         onError: function (msg, ctx) {
           var c = ''; try { c = ctx == null ? '' : (typeof ctx === 'string' ? ctx : JSON.stringify(ctx)); } catch (e) {}
           tr('on_error', String(msg && msg.message || msg || '').slice(0, 160) + (c ? ' | ' + c.slice(0, 160) : ''));
@@ -475,6 +489,7 @@
         onMessage: onSdkMessage,
         onModeChange: function (m2) {
           if (S.mode !== 'voice') return;
+          levelMode(m2.mode);
           if (m2.mode === 'speaking') setStatus(S.agentName + ' is speaking', 'speaking'); else setStatus('Listening', 'live');
         },
         onAgentToolRequest: function (t) { if (/transfer/i.test(t.tool_name)) { setStatus('Transferring you', 'live'); addLine('sys', 'Transferring you to a colleague…'); } },
@@ -499,13 +514,14 @@
       if (S.view !== 'connecting') { try { if (c) c.endSession(); } catch (e) {} return; }
       if (T.dropped) { try { if (c) c.endSession(); } catch (e) {} return couldntConnect('dropped_while_connecting'); }
       S.conv = c; S.ended = false;
-      stopMicProbe();
+      stopMicProbe(); closeUnlock();
       showCall();
       if (S.mode === 'voice') { acquireWake(); setStatus('Listening', 'live'); }
       else setStatus('Connected. Say hello', 'live');
     }).catch(function (e) {
       clearTimeout(S.connectTimer);
       if (e && e.kind === 'timeout') { tr('timeout'); throw e; }
+      if (e && (e.name === 'NotAllowedError' || e.name === 'NotFoundError' || e.name === 'SecurityError')) { var em = new Error('mic'); em.mic = true; em.name = e.name; throw em; }
       var e2 = new Error('sdk'); e2.kind = 'http'; throw e2;
     });
   }
@@ -578,7 +594,7 @@
   function closeUnlock() { try { if (S.unlockCtx && S.unlockCtx.close) S.unlockCtx.close().catch(function () {}); } catch (e) {} S.unlockCtx = null; }
 
   function cleanupCall() {
-    stopMicProbe(); closeUnlock();
+    stopMicProbe(); closeUnlock(); stopLevelWatch();
     clearTimeout(S.connectTimer);
     clearInterval(S.tick);
     S.mockTimers.forEach(clearTimeout); S.mockTimers = [];
@@ -595,6 +611,74 @@
     cleanupCall();
     sendDiag('end');
     showSummary(note);
+  }
+
+  /* ---------- microphone level and "we can't hear you" (voice calls) ----------
+     The vendored SDK exposes getInputVolume() (0 to 1, from the analyser on its own capture). It reads 0 while muted.
+     The indicator is decoration (aria-hidden); the polite live region only speaks transitions that matter. */
+  var L = { timer: null, sawSpeaking: false, speaking: false, greetingDone: false, quietSince: 0, heard: false, prompt: false, startedAt: 0, lastLabel: '' };
+  var meterBar, meterLabel, nudgeEl, micLiveEl;
+  function buildMeter(b) {
+    meterBar = h('span', { class: 'callus-meter-bar' });
+    meterLabel = h('span', { class: 'callus-meter-label', 'aria-hidden': 'true', text: 'Waiting for you' });
+    micLiveEl = h('span', { class: 'callus-sr', role: 'status', 'aria-live': 'polite' });
+    b.appendChild(h('div', { class: 'callus-meter' }, h('span', { class: 'callus-meter-track', 'aria-hidden': 'true' }, meterBar), meterLabel, micLiveEl));
+    nudgeEl = h('div', { class: 'callus-nudge', hidden: true },
+      h('p', { text: 'We can’t hear you. Check your microphone is on, or switch to text.' }),
+      h('button', { class: 'callus-btn', type: 'button', onclick: switchToText }, 'Switch to text'));
+    b.appendChild(nudgeEl);
+  }
+  function micSay(msg) { if (micLiveEl) { micLiveEl.textContent = ''; setTimeout(function () { if (micLiveEl) micLiveEl.textContent = msg; }, 30); } }
+  function startLevelWatch() {
+    stopLevelWatch();
+    L.sawSpeaking = false; L.speaking = false; L.greetingDone = false; L.quietSince = 0; L.heard = false; L.prompt = false; L.startedAt = Date.now(); L.lastLabel = '';
+    T.lvl = { min: 1, max: 0, n: 0, heard: false };
+    if (!S.conv || typeof S.conv.getInputVolume !== 'function') { tr('no_input_volume_api'); if (meterBar && meterBar.parentNode) meterBar.parentNode.parentNode.hidden = true; return; }
+    L.timer = setInterval(levelTick, LEVEL_POLL_MS);
+  }
+  function stopLevelWatch() { if (L.timer) clearInterval(L.timer); L.timer = null; }
+  function levelMode(mode) {
+    if (mode === 'speaking') { L.sawSpeaking = true; L.speaking = true; L.quietSince = 0; }
+    else { L.speaking = false; if (L.sawSpeaking && !L.greetingDone) { L.greetingDone = true; tr('greeting_done'); } if (mode === 'listening') L.quietSince = 0; }
+  }
+  function levelTick() {
+    if (!S.conv || S.view !== 'call') return;
+    var now = Date.now(), v = 0;
+    try { v = Number(S.conv.getInputVolume()) || 0; } catch (e) {}
+    if (!L.greetingDone && !L.sawSpeaking && now - L.startedAt > GREETING_FALLBACK_MS) { L.greetingDone = true; tr('greeting_done', 'timeout'); }
+    var heardNow = !S.muted && v >= LEVEL_HEARD;
+    if (!S.muted && T.lvl) { T.lvl.n++; if (v < T.lvl.min) T.lvl.min = v; if (v > T.lvl.max) T.lvl.max = v; }
+    if (meterBar) meterBar.style.transform = 'scaleX(' + Math.min(1, v * 4).toFixed(2) + ')';
+    var label = S.muted ? 'Microphone muted' : (heardNow ? 'Hearing you' : 'Waiting for you');
+    if (meterLabel && label !== L.lastLabel) { L.lastLabel = label; meterLabel.textContent = label; }
+    if (heardNow) {
+      if (!L.heard) { L.heard = true; if (T.lvl) T.lvl.heard = true; tr('heard_first'); micSay('Microphone is working'); }
+      L.quietSince = now;
+      if (L.prompt) { hideNudge(); micSay('Microphone is picking you up again'); }
+      return;
+    }
+    // The clock only runs once the greeting has finished, while the agent is not speaking and the microphone is not muted.
+    if (!L.greetingDone || L.speaking || S.muted || S.waitingReply) { L.quietSince = 0; return; }
+    if (!L.quietSince) { L.quietSince = now; return; }
+    if (!L.prompt && now - L.quietSince >= (L.heard ? NO_INPUT_AFTER_HEARD_MS : NO_INPUT_MS)) showNudge();
+  }
+  function showNudge() {
+    if (!nudgeEl) return;
+    L.prompt = true; nudgeEl.hidden = false;
+    tr('no_input_prompt', L.heard ? 'after_heard' : 'never_heard');
+    sendDiag('no_input');
+    micSay('We can’t hear you. Check your microphone is on, or switch to text.');
+  }
+  function hideNudge() { L.prompt = false; if (nudgeEl) nudgeEl.hidden = true; }
+  // End the voice session and open a text chat. startFlow takes a fresh human-check token through obtainToken().
+  function switchToText() {
+    tr('switch_to_text', 'no_input');
+    sendDiag('no_input_switch');
+    S.ended = true;
+    var c = S.conv; S.conv = null;
+    try { if (c && c.isOpen && c.isOpen()) c.endSession(); } catch (e) {}
+    cleanupCall();
+    startFlow('text');
   }
 
   /* ---------- wake lock (voice calls) ---------- */

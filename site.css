@@ -1015,6 +1015,14 @@ html:has(.sf) { scroll-behavior: smooth; }
 .callus-captions li.sys { color: var(--cu-muted); font-style: italic; font-size: var(--ah-fs-13); }
 .callus-note { margin-top: var(--ah-s-10); font-size: var(--ah-fs-13); color: var(--cu-muted); }
 .callus-err { margin: 0 0 var(--ah-s-12); padding: var(--ah-s-10) var(--ah-s-12); border-radius: var(--ah-r-12); border: 1px solid rgba(240,160,138,.35); background: rgba(240,160,138,.07); color: var(--cu-err) !important; font-size: var(--ah-fs-14); }
+.callus-meter { display: flex; align-items: center; gap: var(--ah-s-10); margin: 0 0 var(--ah-s-10); font: 500 11px/1.2 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; color: var(--cu-muted); text-transform: uppercase; }
+.callus-meter[hidden] { display: none; }
+.callus-meter-track { flex: 0 0 96px; height: 6px; border-radius: 3px; background: var(--ah-cream-08); overflow: hidden; }
+.callus-meter-bar { display: block; width: 100%; height: 100%; background: var(--cu-sage); transform: scaleX(0); transform-origin: left center; }
+@media (prefers-reduced-motion: no-preference) { .callus-meter-bar { transition: transform .1s linear; } }
+.callus-nudge { margin: 0 0 var(--ah-s-10); padding: var(--ah-s-10) var(--ah-s-12); border-radius: var(--ah-r-12); border: 1px solid var(--ah-amber-60); background: var(--ah-amber-06); }
+.callus-nudge[hidden] { display: none; }
+.callus-nudge p { margin: 0 0 var(--ah-s-8); font-size: var(--ah-fs-14); color: var(--cu-text); }
 .callus-mic { display: inline-flex; gap: 3px; align-items: flex-end; height: 16px; margin-left: var(--ah-s-4); }
 .callus-chat { display: flex; gap: var(--ah-s-8); margin-top: var(--ah-s-10); }
 .callus-chat textarea { flex: 1 1 auto; min-height: 46px; max-height: 120px; resize: none; padding: var(--ah-s-12) var(--ah-s-14); border-radius: var(--ah-r-12); background: var(--ah-cream-03); border: 1px solid var(--cu-line); color: var(--cu-text); font: 400 15px/1.4 "Hanken Grotesk", sans-serif; }

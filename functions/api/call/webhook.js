@@ -9,6 +9,7 @@ import { json, clean } from "../../_lib/escape.js";
 import { finalizeCall } from "../../_lib/budget.js";
 import { BANNER, sendCallEmail, sendCallEmailOnce } from "../../_lib/call-email.js";
 import { cleanupOld, runMaintenance } from "../../_lib/cleanup.js";
+import { autoCaptureMessage } from "../../_lib/auto-capture.js";
 
 export { BANNER, sendCallEmail, cleanupOld };
 const MAX_BODY = 8_000_000;
@@ -61,6 +62,10 @@ export async function onRequestPost({ request, env, waitUntil }) {
       used, JSON.stringify(transcript), call.call_id
     );
   }
+
+  // Never lose a lead: a caller who gave a name, email, phone number or asked for a call back but hung up before the agent
+  // logged a message gets one built from the transcript. Failure here must not stop the email.
+  try { await autoCaptureMessage(env, db, call.call_id, transcript); } catch (e) { console.error("auto-capture", e); }
 
   // The record is stored: acknowledge with 200 whatever happens to the email, so ElevenLabs never disables the endpoint
   // over a Resend problem. email_sent stays 0 on failure and the email is retried on the next webhook or /start.
