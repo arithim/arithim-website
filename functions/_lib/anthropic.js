@@ -33,7 +33,7 @@ async function post(env, params, signal) {
 
 // Streams one assistant turn. onText(delta) is called for every text delta (thinking is never surfaced).
 // Returns {content: assembled blocks, stopReason, usage}.
-export async function anthropicStream({ env, params, signal, onText }) {
+export async function anthropicStream({ env, params, signal, onText, onTextEnd }) {
   const res = await post(env, { ...params, stream: true }, signal);
   const blocks = [];
   const partial = {};
@@ -64,6 +64,7 @@ export async function anthropicStream({ env, params, signal, onText }) {
       }
       case "content_block_stop": {
         const b = blocks[ev.index];
+        if (b && b.type === "text") onTextEnd?.(); // the text block is complete: the caller can release its last fragment now, not after the tool call that follows
         if (b && b.type === "tool_use") {
           try { b.input = partial[ev.index] ? JSON.parse(partial[ev.index]) : {}; } catch { b.input = {}; b.badJson = true; }
         }

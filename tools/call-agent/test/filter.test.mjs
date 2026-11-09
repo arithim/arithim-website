@@ -142,3 +142,97 @@ test("filterText takes the caller's text for read-backs", () => {
   const r = filterText("Invoice for £4,800. Also £900 extra.", [], "I was billed £4,800");
   assert.ok(LINES_FIGURES.some((l) => r.text === `Invoice for £4,800. ${l}`), r.text);
 });
+
+// ---- clause release: speech starts before the sentence ends, with the filter's safety intact ----
+function streamPieces(text, size, opts = {}) {
+  const sp = new SentenceSplitter({ clauseFlush: true, ...opts });
+  const pieces = [], ctx = [];
+  const take = (arr) => arr.forEach((x, i) => { pieces.push(x); ctx.push(sp.contexts[i]); });
+  for (let i = 0; i < text.length; i += size) take(sp.push(text.slice(i, i + size)));
+  take(sp.flush());
+  return pieces.map((p, i) => filterSentence(p, opts.denylist || [], ctx[i]));
+}
+
+test("clause release: the first clause is out before the sentence is finished", () => {
+  const sp = new SentenceSplitter({ clauseFlush: true });
+  assert.deepEqual(sp.push("Right, that sounds like a real drag "), ["Right,"]);
+  assert.deepEqual(sp.push("every month, and the team spends "), ["that sounds like a real drag every month,"]);
+  assert.deepEqual(sp.push("ages on it. Is that right?"), ["and the team spends ages on it."]);
+  assert.deepEqual(sp.flush(), ["Is that right?"]);
+  // off by default: whole sentences only
+  const plain = new SentenceSplitter();
+  assert.deepEqual(plain.push("Right, that sounds like a real drag every month, "), []);
+});
+
+test("clause release: 'and' and 'but' split only after six words; a dash is a pause", () => {
+  const sp = new SentenceSplitter({ clauseFlush: true });
+  assert.deepEqual(sp.push("Yes and no. "), ["Yes and no."]);
+  assert.deepEqual(sp.push("The team is small but very capable at this "), []);
+  const out = sp.push("sort of work and then some more. ");
+  assert.deepEqual(out, ["The team is small but very capable at this sort of work", "and then some more."]);
+  const sp2 = new SentenceSplitter({ clauseFlush: true });
+  assert.deepEqual(sp2.push("Okay — got it. "), ["Okay,", "got it."]);
+});
+
+test("clause release: numbers, promises and reference read-backs are never split", () => {
+  const sp = new SentenceSplitter({ clauseFlush: true });
+  assert.deepEqual(sp.push("It would be around five, "), []); // ends on a number word
+  assert.deepEqual(sp.push("thousand pounds. "), ["It would be around five, thousand pounds."]);
+  const sp2 = new SentenceSplitter({ clauseFlush: true });
+  assert.deepEqual(sp2.push("The only thing I can promise is a reply, "), []);
+  const sp3 = new SentenceSplitter({ clauseFlush: true });
+  const got = [...sp3.push("Your reference is A R C, two six one, zero two four, then J three Z E. "), ...sp3.flush()];
+  assert.deepEqual(got, ["Your reference is A R C, two six one, zero two four, then J three Z E."]);
+  const sp4 = new SentenceSplitter({ clauseFlush: true, denylist: ["Secretco and Partners"] });
+  assert.deepEqual(sp4.push("We have in the past worked with Secretco and "), []); // 'Secretco' could start a deny-list term: held until the sentence says more
+  const sp5 = new SentenceSplitter({ clauseFlush: true, denylist: ["Secretco and Partners"] });
+  assert.deepEqual(sp5.push("We have in the past worked with Secretco and the rest of it, "), ["We have in the past worked with Secretco and the rest of it,"]);
+});
+
+test("a trigger split across a flush boundary is still caught, whatever the chunk size", () => {
+  const cases = [
+    // [sentence, text that must never be spoken]
+    ["Honestly, it would cost about five thousand pounds a month, give or take.", "five thousand"],
+    ["Honestly, I think it would be around five, maybe six thousand pounds, give or take.", "thousand pounds"],
+    ["It'll be around £5,000, maybe less, depending on the scope.", "5,000"],
+    ["Right, Tarun will look at it properly, and he'll get back to you by Friday.", "Friday"],
+    ["Right, Tarun will pick it up, and then he will call you, tomorrow morning.", "tomorrow"],
+    ["Well, I can't say exactly, but we'd happily guarantee it, and more.", "guarantee"],
+    ["Fair enough, it is about ten grand, or maybe a bit more than that.", "ten grand"],
+    ["We'll be in touch, within a couple of days, I expect, as a rule.", "couple of days"],
+  ];
+  for (const [text, banned] of cases) {
+    for (let size = 1; size <= 13; size++) {
+      const out = streamPieces(text, size);
+      assert.ok(out.some((r) => r.hits.length > 0), `${text} (chunk ${size}) has a hit`);
+      assert.ok(!out.map((r) => r.text).join(" ").includes(banned), `${banned} is never spoken (chunk ${size})`);
+    }
+  }
+});
+
+test("a deny-list term split by 'and' or a comma is caught or held", () => {
+  const dl = ["Secretco and Partners"];
+  const text = "Well, we did work with Secretco and Partners, last year and before that.";
+  for (let size = 1; size <= 13; size++) {
+    const out = streamPieces(text, size, { denylist: dl });
+    assert.ok(out.some((r) => r.hits.includes("denylist")), `chunk ${size}`);
+    assert.ok(!/Secretco/i.test(out.map((r) => r.text).join(" ")), `chunk ${size} leaks`);
+  }
+});
+
+test("clause release leaves clean speech and the sanctioned promise alone", () => {
+  const cases = [
+    "Right, that sounds like a real drag every month, and the team spends ages on it.",
+    "The only thing I can promise is a reply, within one working day.",
+    "Your reference is A R C, two six one, zero two four, then J three Z E, and Tarun will get back to you within one working day.",
+    "Sorry, I didn't catch that, could you say your name again?",
+    "I can't commit to a time, but Tarun will get back to you within one working day.",
+  ];
+  for (const text of cases) {
+    for (let size = 1; size <= 13; size++) {
+      const out = streamPieces(text, size);
+      assert.deepEqual(out.flatMap((r) => r.hits), [], `${text} (chunk ${size})`);
+      assert.equal(out.map((r) => r.text).join(" ").replace(/[,\s]+/g, " "), text.replace(/[,\s]+/g, " "));
+    }
+  }
+});

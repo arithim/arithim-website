@@ -63,3 +63,9 @@ Exit codes: 0 ok, 1 deny-list hits or a bad allowlist, 2 deny-list file missing.
 - `sync.mjs --env staging|prod [--dry-run]`: creates or patches the four agents, writes `agents.<env>.lock.json`, prints (never runs) the D1 config SQL. Test: `node --test tools/call-agent/test/sync.test.mjs`.
 - `digest.py [--email]`: weekly Markdown digest from D1, no model. Test: `python3 -m unittest discover -s tools/call-agent -p 'test_*.py'`.
 - Go-live steps: `arithim-ops/call-agent/RUNBOOK.md`.
+
+## Measuring how long callers wait
+
+- `node --env-file=$HOME/.config/arithim/anthropic-calls.env tools/call-agent/test/latency.mjs [--label x] [--out file.json]` runs ten scripted turns per role through the real brain and the real Anthropic API and prints p50 and p95 for the first model token, the first clause and the first words the caller would hear (after the filter), plus cache hits and reply length. `--tokens` prints the prompt size per role. The key is read from the environment and never printed.
+- The pack slices in `build_pack.py` (`ROLE_PAGES`) decide what each role carries on every turn. `think` still reads everything.
+- `CALL_CACHE_TTL=5m` switches the prompt cache back from one hour to five minutes.

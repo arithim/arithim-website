@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { makeDb, seedCall, anthropicSse, mockFetch, llmRequest, readSse, EL_TOOLS } from "./helpers.mjs";
 import { handle } from "../../../functions/api/call/llm/[role].js";
 import { LINES_FIGURES } from "../../../functions/_lib/filter.js";
-import { FALLBACK_LINE } from "../../../functions/_lib/brain.js";
+import { FALLBACK_LINE, spokenRef, toolTakeMessage, cacheControl, loggedNote } from "../../../functions/_lib/brain.js";
+import { anthropicStream } from "../../../functions/_lib/anthropic.js";
 
 const ID = "a".repeat(32);
 const baseEnv = (db, extra = {}) => ({ CALLS_DB: db, CALL_LLM_SECRET: "s3cret", ANTHROPIC_API_KEY: "k", ...extra });
@@ -173,7 +174,7 @@ test("end_call after take_message with no closing text: reference and goodbye ar
   ]);
   try {
     const out = await readSse(await call(env, "customer-desk", [user("Thanks, that's everything, I have to dash.")], { tools: EL_TOOLS }));
-    assert.match(out.text, /^Right, got it\. Thanks, Sam\. Your reference is A R C, [a-z ]+, [a-z ]+, then [A-Za-z ]+\. Tarun will pick it up himself and get back to you at sam@example\.com within one working day\. Bye for now\.$/);
+    assert.match(out.text, /^Right, got it\. Thanks, Sam\. Your reference is A R C, [a-z ]+, [a-z ]+, then [A-Za-z ]+\. Tarun will get back to you at sam@example\.com within one working day\. Bye for now\.$/);
     assert.equal(out.toolCalls[0].name, "end_call"); assert.equal(out.finish, "tool_calls");
     await settle();
     const agent = (await db.prepare("SELECT text FROM turns WHERE speaker='agent'").all()).results.map((t) => t.text).join(" ");
@@ -368,5 +369,106 @@ test("filter in the brain: the caller's own amount is read back, a new amount is
     assert.ok(out.text.includes("four thousand eight hundred pounds"), out.text);
     assert.ok(!out.text.includes("£900")); assert.ok(LINES_FIGURES.some((l) => out.text.includes(l)));
     assert.ok(!out.text.includes("零")); assert.ok(out.text.includes("two six one, two two"), out.text);
+  } finally { m.restore(); }
+});
+
+
+// ---- cycle 2: deterministic reference read-back, cache lifetime, cut-off tool input, early text flush ----
+test("take_message hands the model the reference already in spoken form", async () => {
+  const db = makeDb(); const c = await seedCall(db);
+  const r = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" });
+  const ref = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r)[1];
+  assert.ok(r.includes(`"${spokenRef(ref)}"`), "the spoken form is in the result, in quotes");
+  assert.match(r, /say exactly this, word for word/);
+  // every digit survives: six digits and four tail characters
+  const spoken = spokenRef(ref);
+  assert.match(spoken, /^A R C, (?:\w+ ){2}\w+, (?:\w+ ){2}\w+, then (?:\w+ ){3}\w+$/);
+  assert.equal(spokenRef("ARC-261024-J3ZE"), "A R C, two six one, zero two four, then J three Z E");
+  assert.equal(spokenRef("ARC-261109-K7Q2"), "A R C, two six one, one zero nine, then K seven Q two");
+});
+
+test("the role prompt is cached for an hour, volatile platform notes sit after the breakpoint; CALL_CACHE_TTL=5m reverts", async () => {
+  assert.deepEqual(cacheControl({}), { type: "ephemeral", ttl: "1h" });
+  assert.deepEqual(cacheControl({ CALL_CACHE_TTL: "5m" }), { type: "ephemeral" });
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const m = mockFetch([anthropicSse([{ type: "text", text: "Hello." }])]);
+  try {
+    await readSse(await call(env, "front-desk", [{ role: "system", content: "Time is 10:42:07" }, user("hi")]));
+    const b = m.calls[0].body;
+    assert.deepEqual(b.system[0].cache_control, { type: "ephemeral", ttl: "1h" });
+    assert.ok(!b.system[0].text.includes("10:42"), "nothing volatile in the cached block");
+    assert.equal(b.system[1].cache_control, undefined);
+    assert.ok(b.max_tokens >= 1000, "room for thinking plus a long take_message input");
+  } finally { m.restore(); }
+});
+
+function rawSse(events) {
+  const body = events.map((e) => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join("");
+  return new Response(body, { status: 200, headers: { "content-type": "text/event-stream" } });
+}
+
+test("a take_message input cut off at the token limit is not run: the model is told and tries again", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const cut = rawSse([
+    { type: "message_start", message: { usage: { input_tokens: 5 } } },
+    { type: "content_block_start", index: 0, content_block: { type: "text", text: "" } },
+    { type: "content_block_delta", index: 0, delta: { type: "text_delta", text: "Got it." } },
+    { type: "content_block_stop", index: 0 },
+    { type: "content_block_start", index: 1, content_block: { type: "tool_use", id: "toolu_cut", name: "take_message", input: {} } },
+    { type: "content_block_delta", index: 1, delta: { type: "input_json_delta", partial_json: '{"type":"enquiry","summary":"Needs a long' } },
+    { type: "content_block_stop", index: 1 },
+    { type: "message_delta", delta: { stop_reason: "max_tokens" }, usage: { output_tokens: 400 } },
+    { type: "message_stop" },
+  ]);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_ok", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" } };
+  const m = mockFetch([cut, anthropicSse([tm], "tool_use"), anthropicSse([{ type: "text", text: "All logged." }])]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("please log it")]));
+    assert.match(m.calls[1].body.messages.at(-1).content[0].content, /cut off, so nothing was done/);
+    assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM messages").first()).n, 1);
+    assert.match(out.text, /Got it\. All logged\./);
+  } finally { m.restore(); }
+});
+
+test("the last words before a tool call are released when the text block ends, not after the tool input", async () => {
+  const enc = new TextEncoder();
+  const ev = (e) => enc.encode(`event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`);
+  let ctl;
+  const stream = new ReadableStream({ start(c) { ctl = c; } });
+  const m = mockFetch([new Response(stream, { status: 200, headers: { "content-type": "text/event-stream" } })]);
+  try {
+    const events = [];
+    const p = anthropicStream({ env: { ANTHROPIC_API_KEY: "k" }, params: { model: "x" }, onText: (d) => events.push("text:" + d), onTextEnd: () => events.push("end") });
+    for (const e of [
+      { type: "message_start", message: { usage: {} } },
+      { type: "content_block_start", index: 0, content_block: { type: "text", text: "" } },
+      { type: "content_block_delta", index: 0, delta: { type: "text_delta", text: "Got it." } },
+      { type: "content_block_stop", index: 0 },
+    ]) ctl.enqueue(ev(e));
+    await new Promise((r) => setTimeout(r, 30));
+    assert.deepEqual(events, ["text:Got it.", "end"], "released while the stream is still open");
+    for (const e of [{ type: "message_delta", delta: { stop_reason: "end_turn" }, usage: {} }, { type: "message_stop" }]) ctl.enqueue(ev(e));
+    ctl.close();
+    await p;
+  } finally { m.restore(); }
+});
+
+test("messages logged earlier in the call are listed for the model after the cache breakpoint, and quote marks are not spoken", async () => {
+  const db = makeDb(); const c = await seedCall(db); const env = baseEnv(db);
+  assert.equal(await loggedNote(db, c.call_id), "");
+  const r = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" });
+  const ref = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r)[1];
+  const note = await loggedNote(db, c.call_id);
+  assert.ok(note.includes(`"${spokenRef(ref)}"`) && note.includes("name Sam") && note.includes("1 of 3"));
+  const m = mockFetch([anthropicSse([{ type: "text", text: `Your reference is "${spokenRef(ref)}". Bye.` }])]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("did you get that?")]));
+    const sys = m.calls[0].body.system;
+    assert.equal(sys.length, 2);
+    assert.equal(sys[1].cache_control, undefined);
+    assert.ok(sys[1].text.includes(spokenRef(ref)));
+    assert.ok(!sys[0].text.includes(ref), "the cached block never holds call data");
+    assert.ok(!out.text.includes('"'));
+    assert.ok(out.text.includes(spokenRef(ref)));
   } finally { m.restore(); }
 });
