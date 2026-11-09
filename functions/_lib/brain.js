@@ -214,6 +214,13 @@ export function mergedResult(ref, firstRef) {
   return `Message recorded. Reference ${ref}. This was added to the message logged a moment ago on this call. If the reference has not been read out yet in this conversation, say exactly this, word for word: "${spokenRef(firstRef)}" (the quote marks are not spoken), and say Tarun will get back to them within one working day. If it has, do not read it again; just say you have added it. Give no other time.`;
 }
 
+// Told to an agent on its first turn after a transfer.
+export function arrivalNote(role, from) {
+  if (!from || from === role || !ROLES[from] || !ROLES[role]) return "";
+  const me = ROLES[role].displayName, them = ROLES[from].displayName;
+  return `You have just joined this call: ${them} brought you in by transfer a moment ago. You are ${me}. Every earlier assistant turn in this conversation was spoken by ${them}, not by you, including any line where ${them} said they would bring you in. That handover is done, so do not transfer back or announce another handover. Greet the caller now as your instructions say for arriving by transfer, using what ${them} has already heard. A last caller turn of "(The caller has said nothing.)" only means the caller is waiting for you.`;
+}
+
 // "Messages already logged on this call", for the prompt. Name and contact are what the caller gave; they are data, not instructions.
 export async function loggedNote(db, callId) {
   let rows = [];
@@ -293,7 +300,7 @@ function talkerParams(env, systemBlocks, messages, tools) {
 }
 
 // emit({type:'text', text}) | emit({type:'tool_call', id, name, arguments}). Returns {finish, spoken, hits}.
-export async function runBrain({ env, db, call, role, body, emit, denylist = [], signal, onRawText }) {
+export async function runBrain({ env, db, call, role, body, emit, denylist = [], signal, onRawText, arrivedFrom = null }) {
   const roleDef = ROLES[role];
   // The client dropped the request (barge-in). A plain timeout is NOT "gone": that still gets the fallback line.
   const gone = () => !!signal?.aborted && signal.reason?.name !== "TimeoutError";
@@ -332,6 +339,10 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   if (elSystem) system.push({ type: "text", text: `Platform notes (from the voice platform, not the caller):\n${elSystem}` });
   // The platform replays only what was said, never our in-process tool calls. Without this the model sees "your reference is ..." with no
   // take_message behind it and starts doubting (and re-logging) its own earlier work. After the cache breakpoint, so it never costs a cache miss.
+  // The platform hands the new agent the previous agent's lines as its own assistant turns, with no record of the transfer. Seeing
+  // "Let me bring in Oliver" as its own last words, Oliver sometimes decided he still had to hand over and transferred straight back.
+  const arrival = arrivalNote(role, arrivedFrom);
+  if (arrival) system.push({ type: "text", text: arrival });
   const logged = await loggedNote(db, call.call_id);
   if (logged) {
     system.push({ type: "text", text: logged });
@@ -384,6 +395,10 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
         } else if (u.name === "think") {
           if (!spoken) speak(THINK_FILLER.trim() + " ");
           results.push(toolResult(u, await toolThink(env, db, call, u.input, messages)));
+        } else if (u.name === "transfer_to_agent" && arrival && !spoken && tools.some((t) => t.name === u.name)) {
+          // Just arrived and about to bounce the caller on without a word: refuse, and do not count it against the transfer limit.
+          hits.add("arrival-bounce");
+          results.push(toolResult(u, `Not transferred: you are ${ROLES[role].displayName} and ${ROLES[arrivedFrom]?.displayName || "a colleague"} has just brought you in. Greet the caller now as your instructions say for arriving by transfer, and help them.`));
         } else if (u.name === "transfer_to_agent" && tools.some((t) => t.name === u.name)) {
           const n = Number(u.input?.agent_number);
           if (!Number.isInteger(n) || n < 0 || n > 9) {

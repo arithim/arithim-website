@@ -555,3 +555,33 @@ test("callerNames picks up a name the caller gave, so narration about them is ca
   assert.deepEqual(callerNames("I'm just ringing about an invoice. It's Sam Jones here."), ["Sam"]);
   assert.deepEqual(callerNames("i'm calling about our reporting"), []);
 });
+
+test("first turn after a transfer: the agent is told it has just been brought in, and a silent bounce back is refused (staging logs 9 Nov)", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db); // seedCall leaves current_role front-desk, so consulting is a fresh arrival
+  const m = mockFetch([
+    anthropicSse([{ type: "tool_use", name: "transfer_to_agent", id: "toolu_b1", input: { agent_number: 0 } }], "tool_use"),
+    anthropicSse([{ type: "text", text: "Hi Priya, Oliver here, Hannah says month-end reporting takes three people a week. How does it work today?" }]),
+  ]);
+  try {
+    const msgs = [user("Hi, I'm Priya. Month-end reporting takes three people a week."), { role: "assistant", content: "Let me bring in Oliver, he's the one for this." }];
+    const out = await readSse(await call(env, "consulting", msgs, { tools: EL_TOOLS }));
+    assert.equal(out.toolCalls.length, 0);
+    assert.match(out.text, /^Hi Priya, Oliver here/);
+    const sys = m.calls[0].body.system.map((b) => b.text).join("\n");
+    assert.match(sys, /You have just joined this call: Hannah brought you in/);
+    assert.match(m.calls[1].body.messages.at(-1).content[0].content, /Not transferred: you are Oliver/);
+    await settle();
+    const c = await db.prepare("SELECT transfers, flags FROM calls").first();
+    assert.equal(c.transfers, 0);
+    assert.match(c.flags, /arrival-bounce/);
+  } finally { m.restore(); }
+});
+
+test("no arrival note when the role has not changed", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const m = mockFetch([anthropicSse([{ type: "text", text: "Hello." }])]);
+  try {
+    await readSse(await call(env, "front-desk", [user("hello")]));
+    assert.doesNotMatch(m.calls[0].body.system.map((b) => b.text).join("\n"), /You have just joined this call/);
+  } finally { m.restore(); }
+});

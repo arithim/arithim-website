@@ -101,7 +101,7 @@ async function inner({ request, env, params, waitUntil }) {
         await step0Log(db, request, { role, body, authOk: true, ref, action: r.action });
         result = { finish: r.finish, spoken: r.spoken, hits: [] };
       } else {
-        result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist, signal });
+        result = await runBrain({ env, db, call, role, body, emit: (e) => sink(e), denylist, signal, arrivedFrom: roleChanged ? call.current_role : null });
       }
     }
     // Log what was actually written to the stream (streaming) rather than everything the model generated.
