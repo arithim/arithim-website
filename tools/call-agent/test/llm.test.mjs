@@ -472,3 +472,17 @@ test("messages logged earlier in the call are listed for the model after the cac
     assert.ok(out.text.includes(spokenRef(ref)));
   } finally { m.restore(); }
 });
+
+test("a second message on the same call is an update: the model is told to add it silently and re-read the first reference only if asked", async () => {
+  const db = makeDb(); const c = await seedCall(db);
+  const r1 = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" });
+  const ref1 = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r1)[1];
+  assert.match(r1, /say exactly this, word for word/);
+  const r2 = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help, and a number: 07700 900123" });
+  const ref2 = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r2)[1];
+  assert.notEqual(ref1, ref2);
+  assert.match(r2, /update to a message already logged/);
+  assert.match(r2, /do not read this reference out/);
+  assert.ok(r2.includes(`"${spokenRef(ref1)}"`), "the first reference is the one to re-read");
+  assert.ok(!r2.includes(spokenRef(ref2)), "the update's own reference is never offered in spoken form");
+});

@@ -146,12 +146,23 @@ export async function toolTakeMessage(db, call, input) {
       );
       if (changes(r) === 0) return "Message limit reached for this call. Tell the caller you cannot take another message on this call and that they can email hello@arithim.com.";
       await run(db, "UPDATE calls SET outcome = COALESCE(outcome, ?1) WHERE call_id = ?2", type, call.call_id);
-      return `Message recorded. Reference ${ref}. To read the reference out, say exactly this, word for word, and nothing else in its place: "${spokenRef(ref)}" (the quote marks are not spoken). Say Tarun will get back to them within one working day, unless your instructions say not to. Give no other time.`;
+      let firstRef = ref;
+      try { const f = await first(db, "SELECT ref FROM messages WHERE call_id = ? ORDER BY created_at, rowid LIMIT 1", call.call_id); if (f?.ref) firstRef = f.ref; } catch (e) { console.error("first ref lookup", e); }
+      return recordedResult(ref, firstRef);
     } catch (e) {
       if (!/UNIQUE|constraint/i.test(String(e?.message))) { console.error("take_message failed", e); return "Error: could not record the message. Apologise and give the email address hello@arithim.com."; }
     }
   }
   return "Error: could not record the message. Apologise and give the email address hello@arithim.com.";
+}
+
+// What the model is told after take_message worked. The first message of a call gets read out, once, in a fixed spoken form; later updates are
+// added silently, so a caller does not hear three different references in one call.
+export function recordedResult(ref, firstRef) {
+  if (firstRef && firstRef !== ref) {
+    return `Message recorded. Reference ${ref}. This is an update to a message already logged on this call, so do not read this reference out; just say you have added it, for example "I've added that." If the caller asks for the reference, read the first one, word for word and without the quote marks: "${spokenRef(firstRef)}". Give no time unless you have not yet said Tarun will get back to them within one working day; give no other time.`;
+  }
+  return `Message recorded. Reference ${ref}. To read the reference out, say exactly this, word for word, and nothing else in its place: "${spokenRef(ref)}" (the quote marks are not spoken). Say Tarun will get back to them within one working day, unless your instructions say not to. Give no other time.`;
 }
 
 // "Messages already logged on this call", for the prompt. Name and contact are what the caller gave; they are data, not instructions.
