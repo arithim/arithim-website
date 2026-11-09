@@ -110,6 +110,10 @@
       "turn": {
         "turn_timeout": 7,
         "silence_end_call_timeout": 30,
+        "_turn_note": "2026-11-09, from the ElevenLabs OpenAPI TurnConfig: turn_eagerness is patient, normal or eager, and eager answers on a lower turn probability, so the reply starts sooner. spelling_patience auto keeps the extra wait while someone dictates an email, a phone number or a reference. speculative_turn stays off on purpose: it starts a second LLM request during silence, and every request to our endpoint logs a turn and can call take_message. If callers get cut off mid-thought, set turn_eagerness back to normal and sync again.",
+        "turn_eagerness": "eager",
+        "spelling_patience": "auto",
+        "speculative_turn": false,
         "soft_timeout_config": {
           "timeout_seconds": 4.0,
           "message": "Bear with me a moment.",
