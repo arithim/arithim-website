@@ -67,6 +67,25 @@ export function cacheControl(env) {
 }
 const OWN_TOOLS = new Set(["take_message", "think"]);
 
+// The model sometimes plans out loud before a tool call ("Priya's message is already logged, and she's now signalling she's done. I'll close
+// with the reference."). Since speech is released early, that would reach the caller. A sentence that talks about the caller in the third
+// person, names a tool, or announces closing the call is planning, not speech. names: the caller's first names as logged on this call.
+export function isNarration(sentence, names = []) {
+  const s = String(sentence || "");
+  if (/\bthe caller\b|\bcaller's\b/i.test(s)) return true;
+  if (/\b(?:take_message|end_call|transfer_to_agent|agent_number)\b/i.test(s)) return true;
+  if (/\bsignall?ing\b/i.test(s)) return true;
+  if (/\bI(?:'ll| will) (?:now |just )?(?:close (?:with|out|the call)|end the call|hang up)\b/i.test(s)) return true;
+  if (/\b(?:she|he)(?:'s| is| has)? (?:now |just )?(?:indicating|confirmed|done\b|finished\b|wrapping up)/i.test(s)) return true;
+  for (const n of names) {
+    const first = String(n || "").trim().split(/\s+/)[0];
+    if (!first || first.length < 2 || /^tarun$/i.test(first)) continue;
+    const esc = first.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (new RegExp(`\\b${esc}(?:'s| is| has| wants| gave| confirmed)\\b`, "i").test(s)) return true;
+  }
+  return false;
+}
+
 // ---- request plumbing ----
 
 export function bearerOrSecret(request) {
@@ -252,8 +271,11 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let spoken = "";
   let lastReplacement = null;
   let callerText = "";
-  const speak = (sentence, context = "") => {
+  let names = []; // caller names already logged on this call, for isNarration
+  let narrating = false; // set once the current model response starts planning out loud; the rest of that response is not spoken
+  const speak = (sentence, context = "", own = false) => {
     sentence = sentence.replace(/["\u201c\u201d]/g, ""); // quote marks around a read-back string are never spoken
+    if (!own && (narrating || isNarration(sentence, names))) { narrating = true; hits.add("narration"); return; }
     const f = filterSentence(sentence, denylist, context, callerText);
     f.hits.forEach((h) => hits.add(h));
     if (!f.text.trim()) return; // nothing speakable left (for example only stray non-Latin characters)
@@ -280,7 +302,10 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   // The platform replays only what was said, never our in-process tool calls. Without this the model sees "your reference is ..." with no
   // take_message behind it and starts doubting (and re-logging) its own earlier work. After the cache breakpoint, so it never costs a cache miss.
   const logged = await loggedNote(db, call.call_id);
-  if (logged) system.push({ type: "text", text: logged });
+  if (logged) {
+    system.push({ type: "text", text: logged });
+    try { names = (await all(db, "SELECT fields FROM messages WHERE call_id = ?", call.call_id)).map((r) => { try { return JSON.parse(r.fields || "{}").name; } catch { return ""; } }).filter(Boolean); } catch (e) { console.error("names lookup", e); }
+  }
 
   const tools = [TAKE_MESSAGE_TOOL, THINK_TOOL];
   for (const t of openaiToolsToAnthropic(body.tools)) if (PASS_THROUGH.has(t.name) && !OWN_TOOLS.has(t.name)) tools.push(t);
@@ -293,6 +318,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   try {
     for (let step = 0; step < CAPS.steps; step++) {
       if (gone()) break;
+      narrating = false;
       const res = await anthropicStream({
         env,
         signal: signal || AbortSignal.timeout(30_000),
@@ -321,6 +347,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
           if (rm) {
             lastMsg = { ref: rm[1], name: clean(typeof u.input?.name === "string" ? u.input.name : "", 200), contact: clean(typeof u.input?.contact === "string" ? u.input.contact : "", 200) };
             spokenAtMsg = spoken.length;
+            if (lastMsg.name) names.push(lastMsg.name);
           }
         } else if (u.name === "think") {
           if (!spoken) speak(THINK_FILLER.trim() + " ");
@@ -357,7 +384,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
               if (row) { const f = JSON.parse(row.fields || "{}"); msg = { ref: row.ref, name: f.name, contact: f.contact }; }
             } catch (e) { console.error("closing lookup", e); }
           }
-          if (silent && !gone()) speak(closingLine(msg));
+          if (silent && !gone()) speak(closingLine(msg), "", true);
         }
         emit({ type: "tool_call", id: pending.id.startsWith("toolu_") ? "call_" + pending.id.slice(6) : pending.id, name: pending.name, arguments: JSON.stringify(pending.input || {}) });
         finish = "tool_calls";
