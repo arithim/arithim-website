@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { makeDb, seedCall, anthropicSse, mockFetch, llmRequest, readSse, EL_TOOLS } from "./helpers.mjs";
 import { handle } from "../../../functions/api/call/llm/[role].js";
 import { LINES_FIGURES } from "../../../functions/_lib/filter.js";
-import { FALLBACK_LINE, spokenRef, toolTakeMessage, cacheControl, loggedNote } from "../../../functions/_lib/brain.js";
+import { FALLBACK_LINE, spokenRef, toolTakeMessage, cacheControl, loggedNote, isNarration } from "../../../functions/_lib/brain.js";
 import { anthropicStream } from "../../../functions/_lib/anthropic.js";
 
 const ID = "a".repeat(32);
@@ -194,6 +194,30 @@ test("end_call after take_message with a closing line already spoken is unchange
     assert.equal(out.text, "Your reference is on its way by email. Goodbye.");
     assert.equal(out.toolCalls[0].name, "end_call");
   } finally { m.restore(); }
+});
+
+test("planning out loud before end_call is not spoken, and the reference closing line still is (live call 9 Nov)", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_n1", input: { type: "enquiry", name: "Priya", contact: "priya@example.com", summary: "Month-end reporting" } };
+  const m = mockFetch([
+    anthropicSse([{ type: "text", text: "Thanks Priya, that's helpful. I'll take that down for Tarun so you're covered." }, tm], "tool_use"),
+    anthropicSse([{ type: "text", text: "Priya's message is already logged, and she's now signalling she's done. I'll close with the reference and next step." }, { type: "tool_use", name: "end_call", id: "toolu_n2", input: {} }], "tool_use"),
+  ]);
+  try {
+    const out = await readSse(await call(env, "consulting", [user("That's all, thanks.")], { tools: EL_TOOLS }));
+    assert.doesNotMatch(out.text, /signalling|already logged|I'll close/);
+    assert.match(out.text, /^Thanks Priya, that's helpful\. I'll take that down for Tarun so you're covered\. Thanks, Priya\. Your reference is A R C, .* Bye for now\.$/);
+    assert.equal(out.toolCalls[0].name, "end_call");
+    await settle();
+    assert.match((await db.prepare("SELECT flags FROM calls").first()).flags, /narration/);
+  } finally { m.restore(); }
+});
+
+test("isNarration: planning lines are caught, ordinary speech is not", () => {
+  const yes = ["Priya's message is already logged, and she's now signalling she's done.", "I'll close with the reference and next step.", "The caller wants a call back.", "I'll call take_message now.", "She's confirmed the email."];
+  const no = ["Thanks Priya, that's helpful.", "Let me bring in Oliver, he's the one for this.", "He's great with reporting.", "Tarun will get back to you within one working day.", "Right, so the next step is Tarun emails you.", "Tarun's the one you want."];
+  for (const s of yes) assert.equal(isNarration(s, ["Priya Shah"]), true, s);
+  for (const s of no) assert.equal(isNarration(s, ["Priya Shah", "Tarun"]), false, s);
 });
 
 test("end_call alone, nothing spoken and no message taken: generic goodbye first", async () => {
