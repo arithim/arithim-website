@@ -33,7 +33,7 @@ async function post(env, params, signal) {
 
 // Streams one assistant turn. onText(delta) is called for every text delta (thinking is never surfaced).
 // Returns {content: assembled blocks, stopReason, usage}.
-export async function anthropicStream({ env, params, signal, onText, onTextEnd }) {
+export async function anthropicStream({ env, params, signal, onText, onTextEnd, onToolStart }) {
   const res = await post(env, { ...params, stream: true }, signal);
   const blocks = [];
   const partial = {};
@@ -48,7 +48,7 @@ export async function anthropicStream({ env, params, signal, onText, onTextEnd }
         const b = { ...ev.content_block };
         if (b.type === "text") b.text = b.text || "";
         if (b.type === "thinking") { b.thinking = b.thinking || ""; b.signature = b.signature || ""; }
-        if (b.type === "tool_use") { b.input = {}; partial[ev.index] = ""; }
+        if (b.type === "tool_use") { b.input = {}; partial[ev.index] = ""; onToolStart?.(b.name); } // before its input streams: the caller can say a holding line now
         blocks[ev.index] = b;
         break;
       }

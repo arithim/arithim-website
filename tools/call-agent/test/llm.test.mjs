@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { makeDb, seedCall, anthropicSse, mockFetch, llmRequest, readSse, EL_TOOLS } from "./helpers.mjs";
 import { handle } from "../../../functions/api/call/llm/[role].js";
 import { LINES_FIGURES } from "../../../functions/_lib/filter.js";
-import { FALLBACK_LINE, spokenRef, toolTakeMessage, cacheControl, loggedNote, isNarration } from "../../../functions/_lib/brain.js";
+import { FALLBACK_LINE, spokenRef, toolTakeMessage, cacheControl, loggedNote, isNarration, NOTE_FILLER, callerNames } from "../../../functions/_lib/brain.js";
 import { anthropicStream } from "../../../functions/_lib/anthropic.js";
 
 const ID = "a".repeat(32);
@@ -101,7 +101,7 @@ test("take_message tool runs in-process, writes a row, result goes back to the m
     assert.equal(JSON.parse(row.fields).contact, "sam@example.com");
     assert.equal(JSON.parse(row.fields).urgency, "normal");
   } finally { m.restore(); }
-  // limit
+  // within 20 s of the last message, more take_message calls (a platform retry of the same turn) update that row rather than add rows
   const m2 = mockFetch([
     anthropicSse([tm(2), tm(3), tm(4)], "tool_use"),
     anthropicSse([{ type: "text", text: "ok" }]),
@@ -109,9 +109,10 @@ test("take_message tool runs in-process, writes a row, result goes back to the m
   try {
     await readSse(await call(env, "front-desk", [user("more")]));
     const n = await db.prepare("SELECT COUNT(*) AS n FROM messages").first();
-    assert.equal(n.n, 3);
+    assert.equal(n.n, 1);
+    assert.match(JSON.parse((await db.prepare("SELECT fields FROM messages").first()).fields).summary, /Needs help 4/);
     const results = m2.calls[1].body.messages.at(-1).content;
-    assert.match(results[2].content, /limit reached/i);
+    assert.match(results[2].content, /added to the message logged a moment ago/);
   } finally { m2.restore(); }
 });
 
@@ -191,7 +192,7 @@ test("end_call after take_message with a closing line already spoken is unchange
   ]);
   try {
     const out = await readSse(await call(env, "customer-desk", [user("bye")], { tools: EL_TOOLS }));
-    assert.equal(out.text, "Your reference is on its way by email. Goodbye.");
+    assert.equal(out.text, NOTE_FILLER + " Your reference is on its way by email. Goodbye.");
     assert.equal(out.toolCalls[0].name, "end_call");
   } finally { m.restore(); }
 });
@@ -502,6 +503,7 @@ test("a second message on the same call is an update: the model is told to add i
   const r1 = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help" });
   const ref1 = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r1)[1];
   assert.match(r1, /say exactly this, word for word/);
+  await db.prepare("UPDATE messages SET created_at = created_at - 60").run(); // outside the retry window
   const r2 = await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Needs help, and a number: 07700 900123" });
   const ref2 = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r2)[1];
   assert.notEqual(ref1, ref2);
@@ -509,4 +511,47 @@ test("a second message on the same call is an update: the model is told to add i
   assert.match(r2, /do not read this reference out/);
   assert.ok(r2.includes(`"${spokenRef(ref1)}"`), "the first reference is the one to re-read");
   assert.ok(!r2.includes(spokenRef(ref2)), "the update's own reference is never offered in spoken form");
+});
+
+test("a take_message within 20 s of the last (a platform retry) merges into that row and keeps the caller's reference", async () => {
+  const db = makeDb(); const c = await seedCall(db);
+  const r1 = await toolTakeMessage(db, c, { type: "enquiry", name: "Priya", contact: "priya@example.com", summary: "Month-end reporting" });
+  const ref1 = /Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r1)[1];
+  const r2 = await toolTakeMessage(db, c, { type: "meeting_request", name: "Priya Shah", summary: "Month-end reporting, wants a call" });
+  assert.equal(/Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r2)[1], ref1);
+  assert.match(r2, /added to the message logged a moment ago/);
+  assert.ok(r2.includes(`"${spokenRef(ref1)}"`));
+  const rows = (await db.prepare("SELECT type, fields FROM messages").all()).results;
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].type, "meeting_request");
+  const f = JSON.parse(rows[0].fields);
+  assert.equal(f.name, "Priya Shah"); assert.equal(f.contact, "priya@example.com"); // the earlier contact is kept
+});
+
+test("message cap of 3 still holds for messages spread across a call", async () => {
+  const db = makeDb(); const c = await seedCall(db);
+  for (let i = 0; i < 3; i++) {
+    assert.match(await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", summary: "Item " + i }), /Message recorded/);
+    await db.prepare("UPDATE messages SET created_at = created_at - 60").run();
+  }
+  assert.match(await toolTakeMessage(db, c, { type: "enquiry", name: "Sam", summary: "Item 4" }), /Message limit reached/);
+  assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM messages").first()).n, 3);
+});
+
+test("take_message as the first thing in a reply: a holding line is streamed before the tool runs, so the platform does not time out", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_h1", input: { type: "enquiry", name: "Priya", contact: "priya@example.com", summary: "Reporting" } };
+  const m = mockFetch([anthropicSse([tm], "tool_use"), anthropicSse([{ type: "text", text: "All noted." }])]);
+  try {
+    const out = await readSse(await call(env, "consulting", [user("That's all, thanks.")], { tools: EL_TOOLS }));
+    assert.equal(out.text, NOTE_FILLER + " All noted.");
+  } finally { m.restore(); }
+});
+
+test("callerNames picks up a name the caller gave, so narration about them is caught before anything is logged (staging call 9 Nov)", () => {
+  const names = callerNames("Hi, I'm Priya from Northwind Chemicals. Our month-end reporting takes three people.");
+  assert.deepEqual(names, ["Priya"]);
+  assert.equal(isNarration("Priya is leaving, so I'll log it now with what I have.", names), true);
+  assert.deepEqual(callerNames("I'm just ringing about an invoice. It's Sam Jones here."), ["Sam"]);
+  assert.deepEqual(callerNames("i'm calling about our reporting"), []);
 });

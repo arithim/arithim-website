@@ -10,6 +10,11 @@ import { MESSAGE_TYPES, UNVERIFIED_TYPES, DETAIL_KEYS, PASS_THROUGH } from "./me
 
 export const FALLBACK_LINE = "I'm sorry, I'm having trouble on my side. Please email hello@arithim.com and Tarun will reply within one working day.";
 export const THINK_FILLER = "Let me think about that... ";
+// Said the moment the model starts take_message with nothing said yet. Without it the stream stays empty for several seconds, the voice
+// platform gives up after its 4 s soft timeout, retries the same turn (logging the message again each time) and finally drops the call.
+export const NOTE_FILLER = "Let me just note that down.";
+// A take_message this soon after the last one on the same call is a platform retry of the same turn (or a quick correction): update that row.
+const RETRY_WINDOW_SEC = 20;
 export const TEXT_CAP_LINE = "We've reached the limit for this chat. Please use the contact form or email hello@arithim.com and Tarun will reply within one working day.";
 export const CAPS = { transfers: 2, messages: 3, think: 3, steps: 6, thinkTimeoutMs: 8000 };
 export { MESSAGE_TYPES, UNVERIFIED_TYPES, DETAIL_KEYS };
@@ -70,6 +75,15 @@ const OWN_TOOLS = new Set(["take_message", "think"]);
 // The model sometimes plans out loud before a tool call ("Priya's message is already logged, and she's now signalling she's done. I'll close
 // with the reference."). Since speech is released early, that would reach the caller. A sentence that talks about the caller in the third
 // person, names a tool, or announces closing the call is planning, not speech. names: the caller's first names as logged on this call.
+// First names a caller gave about themselves ("I'm Priya", "my name is Sam Jones", "this is Raj"), for isNarration before anything is logged.
+export function callerNames(text) {
+  const out = [];
+  const re = /\b(?:I'm|I am|[Mm]y name is|[Mm]y name's|[Tt]his is|[Ii]t's)\s+([A-Z][a-z]+(?:-[A-Z][a-z]+)?)\b/g;
+  let m;
+  while ((m = re.exec(String(text || "")))) if (!/^(Just|Not|Calling|Looking|Ringing|Here|About|From|Fine|Good|Great|Okay|Sorry)$/.test(m[1])) out.push(m[1]);
+  return out;
+}
+
 export function isNarration(sentence, names = []) {
   const s = String(sentence || "");
   if (/\bthe caller\b|\bcaller's\b/i.test(s)) return true;
@@ -154,6 +168,16 @@ export async function toolTakeMessage(db, call, input) {
   if (Object.keys(det).length) fields.details = det;
   if (!fields.summary && !fields.contact) return "Error: a summary or a contact (email or phone) is required.";
   const t = nowSec();
+  try {
+    const last = await first(db, "SELECT ref, fields, created_at FROM messages WHERE call_id = ? ORDER BY created_at DESC, rowid DESC LIMIT 1", call.call_id);
+    if (last && t - Number(last.created_at) <= RETRY_WINDOW_SEC) {
+      let old = {};
+      try { old = JSON.parse(last.fields || "{}"); } catch {}
+      await run(db, "UPDATE messages SET fields = ?1, type = ?2 WHERE ref = ?3", JSON.stringify({ ...old, ...fields }), type, last.ref);
+      const f = await first(db, "SELECT ref FROM messages WHERE call_id = ? ORDER BY created_at, rowid LIMIT 1", call.call_id);
+      return mergedResult(last.ref, f?.ref || last.ref);
+    }
+  } catch (e) { console.error("take_message retry check", e); }
   for (let i = 0; i < 3; i++) {
     const ref = newRef(t);
     try {
@@ -182,6 +206,12 @@ export function recordedResult(ref, firstRef) {
     return `Message recorded. Reference ${ref}. This is an update to a message already logged on this call, so do not read this reference out; just say you have added it, for example "I've added that." If the caller asks for the reference, read the first one, word for word and without the quote marks: "${spokenRef(firstRef)}". Give no time unless you have not yet said Tarun will get back to them within one working day; give no other time.`;
   }
   return `Message recorded. Reference ${ref}. To read the reference out, say exactly this, word for word, and nothing else in its place: "${spokenRef(ref)}" (the quote marks are not spoken). Say Tarun will get back to them within one working day, unless your instructions say not to. Give no other time.`;
+}
+
+// A take_message within RETRY_WINDOW_SEC of the last one was merged into it. It may be a platform retry, where the caller never heard the
+// reference, or a quick correction, where they did. The model can see which in the conversation.
+export function mergedResult(ref, firstRef) {
+  return `Message recorded. Reference ${ref}. This was added to the message logged a moment ago on this call. If the reference has not been read out yet in this conversation, say exactly this, word for word: "${spokenRef(firstRef)}" (the quote marks are not spoken), and say Tarun will get back to them within one working day. If it has, do not read it again; just say you have added it. Give no other time.`;
 }
 
 // "Messages already logged on this call", for the prompt. Name and contact are what the caller gave; they are data, not instructions.
@@ -271,7 +301,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let spoken = "";
   let lastReplacement = null;
   let callerText = "";
-  let names = []; // caller names already logged on this call, for isNarration
+  let names = []; // the caller's names, from their own words and from messages logged on this call, for isNarration
   let narrating = false; // set once the current model response starts planning out loud; the rest of that response is not spoken
   const speak = (sentence, context = "", own = false) => {
     sentence = sentence.replace(/["\u201c\u201d]/g, ""); // quote marks around a read-back string are never spoken
@@ -294,6 +324,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const conv = openaiToAnthropic(body.messages);
   // What the caller has said so far: an amount, number or reference they gave may be read back to them.
   callerText = conv.messages.filter((m) => m.role === "user").flatMap((m) => (Array.isArray(m.content) ? m.content : [])).filter((b) => b.type === "text").map((b) => b.text).join("\n");
+  names = callerNames(callerText);
   // One breakpoint at the end of the static role prompt (tools come before it and never change within an agent; the volatile platform notes and
   // the conversation come after it). 1 hour instead of the default 5 minutes: calls are sparse, and a transfer lands on a role nobody has used for minutes.
   const system = [{ type: "text", text: roleDef.system, cache_control: cacheControl(env) }];
@@ -304,7 +335,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const logged = await loggedNote(db, call.call_id);
   if (logged) {
     system.push({ type: "text", text: logged });
-    try { names = (await all(db, "SELECT fields FROM messages WHERE call_id = ?", call.call_id)).map((r) => { try { return JSON.parse(r.fields || "{}").name; } catch { return ""; } }).filter(Boolean); } catch (e) { console.error("names lookup", e); }
+    try { names = names.concat((await all(db, "SELECT fields FROM messages WHERE call_id = ?", call.call_id)).map((r) => { try { return JSON.parse(r.fields || "{}").name; } catch { return ""; } }).filter(Boolean)); } catch (e) { console.error("names lookup", e); }
   }
 
   const tools = [TAKE_MESSAGE_TOOL, THINK_TOOL];
@@ -324,6 +355,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
         signal: signal || AbortSignal.timeout(30_000),
         params: talkerParams(env, system, messages, tools),
         onText: (d) => { onRawText?.(d); const out = splitter.push(d); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
+        onToolStart: (name) => { if (name === "take_message" && !spoken && !gone()) speak(NOTE_FILLER, "", true); },
         // The text block is finished (a tool call may follow): say its last fragment now rather than after the tool input has streamed.
         onTextEnd: () => { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
       });
