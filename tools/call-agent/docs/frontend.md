@@ -92,3 +92,26 @@ Changes made: the permission probe is stopped as soon as it is granted so the SD
 Risk to watch: Safari might ask for microphone permission again when the SDK opens its capture, now that our probe no longer holds the permission open. The SDK's own probe runs after the token fetch, outside the click; Safari does not require a gesture for the prompt, so the worst case is a second prompt. If it shows up in the diag trail (`mic_denied` or a `mic` fallback right after `probe_stopped`), restore the probe and stop it only once `on_connect` fires.
 
 What to check next in a real Safari: the diag rows for `heard_any_audio` and `lvl.max` on a call where the caller spoke. `lvl.max` near 0 means the capture is dead on our side; a normal `lvl.max` with no agent reply means the audio was lost after the SDK.
+
+## iPhone: caller not heard (cycle 2)
+
+Evidence: every voice call where the caller was not heard came from an iPhone (Safari 18 and Chrome on iOS 26, which is WebKit too). The session connected, the greeting played, the caller's speech never reached ElevenLabs, and our probe AudioContext reported `suspended`. Desktop works. Read from the vendored SDK 1.29.0; not reproduced on a device.
+
+What the SDK does on iOS:
+
+- `dh()` runs when the module loads and adds capture-phase `touchstart`/`touchend`/`click` listeners that create an AudioContext, play a silent buffer and resume it inside the gesture. `lh()` later hands it to the output. We imported the module lazily inside Start call, after the tap, so those listeners never saw the tap that mattered. The output context was built after network awaits, outside any gesture.
+- `Hr.create` (input) builds its own `AudioContext({sampleRate:16000})` after awaits, loads the libsamplerate and `rawAudioProcessor` worklets, calls `getUserMedia` (echoCancellation, noiseSuppression, autoGainControl, `voiceIsolation`), then awaits `resume()` once. It never re-checks the state, never calls `resume()` again, and does not expose the context. `preferHeadphonesForIosDevices` only re-routes to AirPods and is left off.
+- `changeInputDevice({})` is public: it stops the capture track, calls `getUserMedia` again and reconnects a new source to the existing analyser and worklet on the same context. That is the only restart hook.
+
+Likely cause (confidence about 50 percent, no device to confirm): the input context is suspended or goes `interrupted` after `getUserMedia` changes the audio session or the output starts, and nothing resumes it; our own unlock context being closed at connect (which can reset the iOS audio session as capture starts) may add to it. Other causes remain possible.
+
+Changes (iOS only, detected with the SDK's own test plus the user agent; desktop behaviour is unchanged):
+
+1. `preloadSdk()` imports the SDK when the panel opens, so its gesture unlock is registered before Start call. If it is loaded, our own `unlockAudio()` is skipped; otherwise it runs as before.
+2. On iOS our unlock context is no longer closed at connect; it closes when the call ends.
+3. While a voice call is set up, `window.AudioContext` is wrapped so every context is recorded. Any that is not `running` is resumed on connect (and 1 s later), on every `statechange` to `suspended` or `interrupted` (capped at 8 automatic tries) and on any tap.
+4. One automatic recovery: if the caller has never been heard and the level stays flat for 4 s after the greeting, `recoverInput()` resumes all contexts and calls `changeInputDevice({})`. The "We can't hear you" prompt then waits a further 6 s.
+
+Diag trail additions: `env.ios`, `env.wkm`, `env.tp`; events `ios` (SDK preloaded or not), `sdk_preload_ok/fail`, `ac_new` (`label:state:sampleRate`), `ac_state`, `ac_resume`, `ac_resume_fail`, `recovery_try`, `recovery_input_reopened/failed`, `recovery_worked`, `recovery_failed`; top-level `acs` (final context states) and `recovery` (`{tried, worked, states}`).
+
+Check next on a real iPhone: `ac_new`/`ac_state` rows show whether the SDK's input context was ever `running`; `recovery_worked` means the reopen fixed it; `recovery_failed` with all contexts `running` points away from AudioContext state (look at the track `muted` state or ElevenLabs next).
