@@ -20,6 +20,7 @@ import { spawn } from "node:child_process";
 import { ROLES, FULL_PACK } from "../../../functions/_lib/call-knowledge.generated.js";
 import { SentenceSplitter, filterSentence, detect, parseDenylist, LINE_FIGURES, LINE_AVOID } from "../../../functions/_lib/filter.js";
 import { MESSAGE_TYPES } from "../../../functions/_lib/message-types.js";
+import { recordedResult } from "../../../functions/_lib/brain.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -224,7 +225,7 @@ function newRef() {
 }
 
 function filterText(raw, callerText = "") {
-  const sp = new SentenceSplitter();
+  const sp = new SentenceSplitter({ clauseFlush: true, denylist: DENY });
   const pieces = [], ctx = [];
   const take = (arr) => arr.forEach((s, i) => { pieces.push(s); ctx.push(sp.contexts[i]); });
   take(sp.push(raw + " ")); take(sp.flush());
@@ -291,7 +292,7 @@ async function runCase(c, run) {
         if (!MESSAGE_TYPES.includes(String(t.input?.type))) result = "Error: type must be one of " + MESSAGE_TYPES.join(", ") + ".";
         else if (!t.input?.summary && !t.input?.contact) result = "Error: a summary or a contact (email or phone) is required.";
         else if (msgN >= CAPS.messages) result = "Message limit reached for this call. Tell the caller you cannot take another message on this call and that they can email hello@arithim.com.";
-        else { msgN++; const ref = newRef(); rec.messages.push({ ref, role, ...t.input }); result = `Message recorded. Reference ${ref}. Read the reference back to the caller. Say Tarun will pick it up himself and get back to them within one working day, unless your instructions say not to. Give no other time.`; }
+        else { msgN++; const ref = newRef(); rec.messages.push({ ref, role, ...t.input }); result = recordedResult(ref, rec.messages[0]?.ref); }
       } else if (t.name === "think") {
         const q = String(t.input?.question || "").slice(0, 1500).trim();
         if (!q) result = "Error: question is required.";

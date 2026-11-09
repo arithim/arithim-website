@@ -244,13 +244,17 @@ GIST_COMMON_SECTIONS = ["Not answered yet"]
 # Which pack pages each role gets. Entries are exact allowlist paths, or a prefix ending
 # in '*'. The answer-gists file itself is handled separately (sections above).
 GISTS_SOURCE = "tools/call-agent/knowledge/answer-gists.md"
+# Latency: every page here is processed on every turn, so pages that only repeat the claims register or the answer gists are left out
+# (the home page, the privacy policy, and the five long Gartner-reading articles; INS-01 to INS-05 and the gists cover them).
+# `think` still gets everything through FULL_PACK.
 ROLE_PAGES = {
-    "front-desk": ["about.html", "index.html", "services.html", "contact.html",
-                   "privacy.html", "case-studies.html"],
+    "front-desk": ["about.html", "services.html", "contact.html", "case-studies.html"],
     "consulting": ["services*.html", "case-*.html", "research.html", "insights.html",
-                   "insight-*.html"],
+                   "insight-operational-intelligence-vs-automation.html",
+                   "insight-designing-websites-for-ai-discoverability.html",
+                   "insight-what-businesses-need-from-ai.html"],
     "tsg": [],  # no public pages cover the Technical Sales Guide
-    "customer-desk": ["privacy.html", "contact.html"],
+    "customer-desk": ["contact.html"],
 }
 
 

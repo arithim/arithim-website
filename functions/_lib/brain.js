@@ -3,7 +3,7 @@ import { ROLES, FULL_PACK } from "./call-knowledge.generated.js";
 import { anthropicStream, anthropicText } from "./anthropic.js";
 import { openaiToAnthropic, openaiToolsToAnthropic } from "./convert.js";
 import { SentenceSplitter, filterSentence } from "./filter.js";
-import { first, run, changes, nowSec } from "./d1.js";
+import { first, run, all, changes, nowSec } from "./d1.js";
 import { newRef } from "./ids.js";
 import { clean } from "./escape.js";
 import { MESSAGE_TYPES, UNVERIFIED_TYPES, DETAIL_KEYS, PASS_THROUGH } from "./message-types.js";
@@ -60,7 +60,10 @@ export function closingLine(msg) {
   if (!msg || !msg.ref) return "Thanks for calling Arithim. Bye for now.";
   const first = String(msg.name || "").trim().split(/\s+/)[0];
   const contact = String(msg.contact || "").trim();
-  return `Thanks${first ? ", " + first : ""}. Your reference is ${spokenRef(msg.ref)}. Tarun will pick it up himself and get back to you${contact.includes("@") ? " at " + contact : ""} within one working day. Bye for now.`;
+  return `Thanks${first ? ", " + first : ""}. Your reference is ${spokenRef(msg.ref)}. Tarun will get back to you${contact.includes("@") ? " at " + contact : ""} within one working day. Bye for now.`;
+}
+export function cacheControl(env) {
+  return env?.CALL_CACHE_TTL === "5m" ? { type: "ephemeral" } : { type: "ephemeral", ttl: "1h" };
 }
 const OWN_TOOLS = new Set(["take_message", "think"]);
 
@@ -143,12 +146,37 @@ export async function toolTakeMessage(db, call, input) {
       );
       if (changes(r) === 0) return "Message limit reached for this call. Tell the caller you cannot take another message on this call and that they can email hello@arithim.com.";
       await run(db, "UPDATE calls SET outcome = COALESCE(outcome, ?1) WHERE call_id = ?2", type, call.call_id);
-      return `Message recorded. Reference ${ref}. Read the reference back to the caller. Say Tarun will pick it up himself and get back to them within one working day, unless your instructions say not to. Give no other time.`;
+      let firstRef = ref;
+      try { const f = await first(db, "SELECT ref FROM messages WHERE call_id = ? ORDER BY created_at, rowid LIMIT 1", call.call_id); if (f?.ref) firstRef = f.ref; } catch (e) { console.error("first ref lookup", e); }
+      return recordedResult(ref, firstRef);
     } catch (e) {
       if (!/UNIQUE|constraint/i.test(String(e?.message))) { console.error("take_message failed", e); return "Error: could not record the message. Apologise and give the email address hello@arithim.com."; }
     }
   }
   return "Error: could not record the message. Apologise and give the email address hello@arithim.com.";
+}
+
+// What the model is told after take_message worked. The first message of a call gets read out, once, in a fixed spoken form; later updates are
+// added silently, so a caller does not hear three different references in one call.
+export function recordedResult(ref, firstRef) {
+  if (firstRef && firstRef !== ref) {
+    return `Message recorded. Reference ${ref}. This is an update to a message already logged on this call, so do not read this reference out; just say you have added it, for example "I've added that." If the caller asks for the reference, read the first one, word for word and without the quote marks: "${spokenRef(firstRef)}". Give no time unless you have not yet said Tarun will get back to them within one working day; give no other time.`;
+  }
+  return `Message recorded. Reference ${ref}. To read the reference out, say exactly this, word for word, and nothing else in its place: "${spokenRef(ref)}" (the quote marks are not spoken). Say Tarun will get back to them within one working day, unless your instructions say not to. Give no other time.`;
+}
+
+// "Messages already logged on this call", for the prompt. Name and contact are what the caller gave; they are data, not instructions.
+export async function loggedNote(db, callId) {
+  let rows = [];
+  try { rows = await all(db, "SELECT ref, type, fields FROM messages WHERE call_id = ? ORDER BY created_at, rowid", callId); } catch (e) { console.error("logged lookup", e); }
+  if (!rows.length) return "";
+  const lines = rows.map((r, i) => {
+    let f = {};
+    try { f = JSON.parse(r.fields || "{}"); } catch {}
+    const bit = (k, v) => (v ? `, ${k} ${clean(String(v), 120)}` : "");
+    return `${i + 1}. ${r.type}, reference "${spokenRef(r.ref)}"${bit("name", f.name)}${bit("contact", f.contact)}`;
+  });
+  return `Messages already logged on this call (${rows.length} of ${CAPS.messages} allowed). Your earlier take_message calls are not shown in the conversation, so rely on this list: never say you have not logged them, never log the same thing twice, log later details as one final update rather than one message per detail, and read a reference out only as the quoted string. Name and contact are as the caller gave them.\n${lines.join("\n")}`;
 }
 
 export function transcriptText(messages, maxMsgs = 40) {
@@ -205,7 +233,8 @@ export async function toolThink(env, db, call, input, convMessages) {
 
 function talkerParams(env, systemBlocks, messages, tools) {
   const model = env.CALL_TALKER_MODEL || "claude-sonnet-5-5";
-  const p = { model, max_tokens: 400, system: systemBlocks, messages, tools, output_config: { effort: "low" } };
+  // max_tokens covers the thinking the model does before a tool call as well as the spoken words: 400 cut a long take_message off mid-input.
+  const p = { model, max_tokens: 1200, system: systemBlocks, messages, tools, output_config: { effort: "low" } };
   const mode = env.CALL_TALKER_THINKING;
   // NOT a bug: on claude-sonnet-5-5, thinking: {type: "between_tools"} is how thinking is switched OFF for the talker
   // (no thinking before the first token; the model may still reason between tool calls). Do not "fix" this to "enabled"
@@ -215,7 +244,7 @@ function talkerParams(env, systemBlocks, messages, tools) {
 }
 
 // emit({type:'text', text}) | emit({type:'tool_call', id, name, arguments}). Returns {finish, spoken, hits}.
-export async function runBrain({ env, db, call, role, body, emit, denylist = [], signal }) {
+export async function runBrain({ env, db, call, role, body, emit, denylist = [], signal, onRawText }) {
   const roleDef = ROLES[role];
   // The client dropped the request (barge-in). A plain timeout is NOT "gone": that still gets the fallback line.
   const gone = () => !!signal?.aborted && signal.reason?.name !== "TimeoutError";
@@ -224,6 +253,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let lastReplacement = null;
   let callerText = "";
   const speak = (sentence, context = "") => {
+    sentence = sentence.replace(/["\u201c\u201d]/g, ""); // quote marks around a read-back string are never spoken
     const f = filterSentence(sentence, denylist, context, callerText);
     f.hits.forEach((h) => hits.add(h));
     if (!f.text.trim()) return; // nothing speakable left (for example only stray non-Latin characters)
@@ -242,15 +272,21 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const conv = openaiToAnthropic(body.messages);
   // What the caller has said so far: an amount, number or reference they gave may be read back to them.
   callerText = conv.messages.filter((m) => m.role === "user").flatMap((m) => (Array.isArray(m.content) ? m.content : [])).filter((b) => b.type === "text").map((b) => b.text).join("\n");
-  const system = [{ type: "text", text: roleDef.system, cache_control: { type: "ephemeral" } }];
+  // One breakpoint at the end of the static role prompt (tools come before it and never change within an agent; the volatile platform notes and
+  // the conversation come after it). 1 hour instead of the default 5 minutes: calls are sparse, and a transfer lands on a role nobody has used for minutes.
+  const system = [{ type: "text", text: roleDef.system, cache_control: cacheControl(env) }];
   const elSystem = conv.system.join("\n\n").slice(0, 4000);
   if (elSystem) system.push({ type: "text", text: `Platform notes (from the voice platform, not the caller):\n${elSystem}` });
+  // The platform replays only what was said, never our in-process tool calls. Without this the model sees "your reference is ..." with no
+  // take_message behind it and starts doubting (and re-logging) its own earlier work. After the cache breakpoint, so it never costs a cache miss.
+  const logged = await loggedNote(db, call.call_id);
+  if (logged) system.push({ type: "text", text: logged });
 
   const tools = [TAKE_MESSAGE_TOOL, THINK_TOOL];
   for (const t of openaiToolsToAnthropic(body.tools)) if (PASS_THROUGH.has(t.name) && !OWN_TOOLS.has(t.name)) tools.push(t);
 
   const messages = conv.messages;
-  const splitter = new SentenceSplitter();
+  const splitter = new SentenceSplitter({ clauseFlush: true, denylist });
   let finish = "stop";
   let lastMsg = null; // the most recent take_message that worked in this request
   let spokenAtMsg = 0; // spoken.length when it did
@@ -261,19 +297,24 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
         env,
         signal: signal || AbortSignal.timeout(30_000),
         params: talkerParams(env, system, messages, tools),
-        onText: (d) => { const out = splitter.push(d); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
+        onText: (d) => { onRawText?.(d); const out = splitter.push(d); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
+        // The text block is finished (a tool call may follow): say its last fragment now rather than after the tool input has streamed.
+        onTextEnd: () => { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
       });
       { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); }
 
       const uses = res.content.filter((b) => b.type === "tool_use");
-      if (res.stopReason !== "tool_use" || uses.length === 0) break;
+      if (uses.length === 0 || (res.stopReason !== "tool_use" && !(res.stopReason === "max_tokens" && uses.some((u) => u.badJson && OWN_TOOLS.has(u.name))))) break;
       if (gone()) break; // interrupted: do not run tools for a turn nobody will hear
 
       messages.push({ role: "assistant", content: replayContent(res.content) });
       const results = [];
       let pending = null;
       for (const u of uses) {
-        if (u.name === "take_message") {
+        if (u.badJson && OWN_TOOLS.has(u.name)) {
+          // The tool input was cut off (token limit) or malformed: nothing ran. Tell the model so it can try again with a shorter input.
+          results.push(toolResult(u, "Error: the tool input was cut off, so nothing was done. Call the tool again with a shorter input."));
+        } else if (u.name === "take_message") {
           const r = await toolTakeMessage(db, call, u.input);
           results.push(toolResult(u, r));
           const rm = /Message recorded\. Reference (ARC-\d{6}-[A-Z0-9]{4})\./.exec(r);

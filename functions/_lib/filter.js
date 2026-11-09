@@ -180,12 +180,61 @@ export function filterSentence(sentence, denylist = [], context = "", callerText
   return { text: hits.includes("denylist") ? pick(LINES_AVOID, sentence) : pick(LINES_FIGURES, sentence), hits };
 }
 
+// ---- clause release (latency) ----
+// The splitter can hand a clause to the speaker before the sentence ends, so the caller hears the first words sooner. A clause is only
+// released when nothing that comes after it could change how the filter reads it. The held-back cases (the whole sentence is then
+// released at its end, exactly as before):
+//  - the clause ends on a number, a number-joining word or a currency word ("five", "a", "pounds sterling"), so "five" | "thousand pounds" never splits;
+//  - it holds promise, commit or guarantee: the sanctioned "promise ... within one working day" mask needs the rest of the sentence;
+//  - it is part of a spoken reference read-back ("A R C, two six one, ..."), which is kept in one piece;
+//  - it ends on the start of a deny-list term ("Smith" | "and Jones").
+// A date promise whose time arrives in a later clause is still caught: the later clause is checked together with the sentence so far.
+const OPEN_END = new RegExp(`(?:^|[\\s-])(?:${CORE}|${FILL}|gbp|usd|eur|sterling|pounds?|dollars?|euros?|quid|grand|hundred|thousand|million|billion)$|[\\d£$€]$`, "i");
+const PROMISE_WORDS = /\b(?:promis\w*|commit\w*|guarantee\w*)\b/i;
+const ARC_START = /\ba[\s,.-]+r[\s,.-]+c\b/i;
+const CLAUSE_CANDIDATE = /([,;:])(\s)|(\s*[\u2014\u2013]\s*)|(\s-\s)|\s(?=(?:and|but)\s)/g;
+
+function endsWithTermPrefix(clause, denylist) {
+  if (!denylist.length) return false;
+  const words = clause.toLowerCase().split(/[^\p{L}\p{N}'\u2019]+/u).filter(Boolean);
+  if (!words.length) return false;
+  for (const term of denylist) {
+    const tw = term.toLowerCase().split(/\s+/).filter(Boolean);
+    for (let k = Math.min(tw.length - 1, words.length); k >= 1; k--) {
+      if (words.slice(-k).every((w, i) => w === tw[i])) return true;
+    }
+  }
+  return false;
+}
+
 // Streaming splitter: feed deltas, get complete sentences. Flushes on terminal punctuation followed by
 // whitespace, on a newline, and on a comma/semicolon once the buffer is long.
+// With `clauseFlush` it also releases a clause at a comma, semicolon, colon or dash, and before "and"/"but" once the clause has six
+// words, subject to the held-back cases above (`denylist` feeds the last of them).
 // `contexts` runs parallel to the last push()/flush() result: for each piece, the text of its whole sentence so far
 // (earlier long-clause pieces included), so a date promise split at a comma is still seen as one sentence.
 export class SentenceSplitter {
-  constructor({ longClause = 140 } = {}) { this.buf = ""; this.longClause = longClause; this.sentence = ""; this.contexts = []; }
+  constructor({ longClause = 140, clauseFlush = false, denylist = [], andWords = 6 } = {}) {
+    this.buf = ""; this.longClause = longClause; this.sentence = ""; this.contexts = [];
+    this.clauseFlush = clauseFlush; this.denylist = denylist; this.andWords = andWords;
+  }
+  // The first clause boundary before `limit` whose text can be released, as {cut, end, tail}, or null.
+  clauseCut(limit) {
+    CLAUSE_CANDIDATE.lastIndex = 0;
+    let m;
+    while ((m = CLAUSE_CANDIDATE.exec(this.buf)) && m.index < limit) {
+      const isAnd = !m[1] && !m[3] && !m[4];
+      const cut = m.index;
+      let clause = this.buf.slice(0, m[1] ? cut + 1 : cut);
+      const trimmed = clause.trim();
+      if (!/\p{L}/u.test(trimmed)) continue;
+      if (isAnd && trimmed.split(/\s+/).length < this.andWords) continue;
+      const whole = (this.sentence ? this.sentence + " " : "") + trimmed;
+      if (OPEN_END.test(trimmed.replace(/[,;:]+$/, "")) || PROMISE_WORDS.test(trimmed) || ARC_START.test(whole) || endsWithTermPrefix(trimmed, this.denylist)) continue;
+      return { cut: m[1] ? cut + 1 : cut, end: m[1] ? cut + 1 + m[2].length : isAnd ? cut + 1 : cut + m[0].length, dash: !m[1] && !isAnd };
+    }
+    return null;
+  }
   push(delta) {
     this.buf += delta;
     this.contexts = [];
@@ -194,15 +243,21 @@ export class SentenceSplitter {
       const m = /([.!?]+["')\]]*)(\s+)|(\n+)/.exec(this.buf);
       let cut = -1;
       let terminal = false;
+      let dash = false;
       if (m) { cut = m.index + (m[1] ? m[1].length : 0); terminal = true; }
       let end = m ? m.index + m[0].length : -1;
-      if (!m && this.buf.length > this.longClause) {
+      if (this.clauseFlush) {
+        const c = this.clauseCut(m ? cut : this.buf.length);
+        if (c) { cut = c.cut; end = c.end; terminal = false; dash = c.dash; }
+      }
+      if (cut < 0 && !m && this.buf.length > this.longClause) {
         const c = /[,;:]\s/.exec(this.buf.slice(this.longClause - 20));
         if (c) { cut = this.longClause - 20 + c.index + 1; end = cut + 1; }
       }
       if (cut < 0) break;
-      const s = this.buf.slice(0, cut).trim();
+      let s = this.buf.slice(0, cut).trim();
       this.buf = this.buf.slice(end);
+      if (dash && s && !/[,;:.!?]$/.test(s)) s += ","; // a dash is a pause: keep it as one for the speaker
       this.sentence = (this.sentence ? this.sentence + " " : "") + s;
       if (s) { out.push(s); this.contexts.push(this.sentence.slice(-600)); }
       if (terminal) this.sentence = "";
