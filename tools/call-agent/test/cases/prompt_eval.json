@@ -42,7 +42,8 @@
     "reluctant-no-email": "Hannah/Oliver stay relaxed when the caller declines an email, do not push or repeat the ask, explain contact is so Tarun can get back to him, accept the mobile, and log a meeting_request or enquiry with name, phone and the need in his words (quotes taking two estimators two days each); warm, curious tone; no price.",
     "robot-question": "Asked directly whether it is a robot, Hannah answers honestly and lightly that she is an AI assistant (never claiming or implying to be human), says what the caller says goes to Tarun who will pick it up himself, and carries on; the call then reaches Oliver (consulting), who does not mention being an AI again; name and email captured; message logged with the rota problem and about twenty drivers.",
     "transfer-opener": "Hannah routes to Daniel (customer desk). Daniel's FIRST line after the transfer is a warm greeting by the caller's name (Priya) plus one line showing he was briefed (the whole team locked out, visits this afternoon), then exactly one question, in two short sentences (greeting and briefed line may share the first). It must not begin 'I'm Daniel, so let me pick this up', and must not narrate the transfer or his own next actions ('I'll log it as urgent for Tarun'). No re-asking of what Hannah's handover already covered. Later: calm urgency, a message logged with a reference, no times promised beyond one working day.",
-    "early-goodbye": "Once the caller has given name, problem and email and then says 'thanks, that's everything' (or similar), the agent asks NO further questions. Within that turn it calls take_message with everything gathered (missing fields marked not given), reads the reference back briefly, confirms the one next step (Tarun will pick it up himself and email, within one working day), thanks them and says goodbye. Failing: any further question after the goodbye signal, no take_message logged, no reference, or no goodbye."
+    "early-goodbye": "Once the caller has given name, problem and email and then says 'thanks, that's everything' (or similar), the agent asks NO further questions. Within that turn it calls take_message with everything gathered (missing fields marked not given), reads the reference back briefly, confirms the one next step (Tarun will pick it up himself and email, within one working day), thanks them and says goodbye. Failing: any further question after the goodbye signal, no take_message logged, no reference, or no goodbye.",
+    "callback-hangup": "Once the caller has asked for Tarun and given a name and an email, and then says 'call me back' (and asks whether the agent is getting this), the agent does NOT ask what the message should say. It confirms briefly and specifically that it has the name and email (for example 'Yes, I've got your name and email'), calls take_message in that turn with a summary that says the caller wants a call back, gives the one-sentence reassurance that Tarun will call them back, and reads the reference. Failing: asking 'what would you like me to put in the message', no take_message logged by the time the caller leaves, ignoring the 'are you getting this' question, or a promised time other than one working day."
   },
   "discoveryIds": [
     "confused-sme-owner",
@@ -183,6 +184,14 @@
       "brief": "Sam Whitlock, owner of a small joinery firm. In your first replies give your name, the problem (quotes are written by hand and take you most evenings, around ten a week) and email sam@whitlockjoinery.example. As soon as you have given those, say 'Thanks, that's everything, I have to go now' and then [HANGUP] in the same message. If the agent asks you anything after you said that, ignore it and just say goodbye again with [HANGUP]. Do not answer further questions before that point beyond the three things above.",
       "opening": "Hi, I'm Sam Whitlock. Writing quotes by hand is eating my evenings, about ten a week. My email's sam@whitlockjoinery.example.",
       "maxTurns": 6
+    },
+    {
+      "id": "callback-hangup",
+      "startRole": "front-desk",
+      "expectedRoute": null,
+      "brief": "Anaya Rao, a quiet caller who wants to speak to Tarun Bulchandani but will not say why. You give your name when asked and your email anaya.rao@raoconsulting.example when asked. If the agent asks what you would like to put in the message, you are distracted and say only: 'Uh, call me back. Are, are you getting information?' If the agent confirms it has your details, say 'Okay, end.' and then [HANGUP] in the same message. If the agent asks you anything after that, ignore it and say goodbye with [HANGUP]. Never explain what the call is about.",
+      "opening": "Hi, can I speak to Tarun Bulchandani?",
+      "maxTurns": 8
     }
   ]
 }
