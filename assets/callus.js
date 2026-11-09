@@ -13,6 +13,7 @@
   var CONNECT_TIMEOUT_MS = 8000;
   var LEVEL_HEARD = 0.04;       // SDK input volume (0 to 1) that counts as the caller being heard
   var LEVEL_POLL_MS = 120;
+  var RECOVER_MS = 4000;        // iOS only: input still flat this long after the greeting, try one automatic recovery before prompting
   var NO_INPUT_MS = 6000;       // silence after the greeting before the "We can't hear you" prompt
   var NO_INPUT_AFTER_HEARD_MS = 10000; // longer once we have heard them at least once, so a caller who is thinking is not nagged
   var GREETING_FALLBACK_MS = 12000;
@@ -58,7 +59,7 @@
 
   /* ---------- diagnostics trail (no transcript text, no personal data beyond the user agent) ---------- */
   var DIAG_MAX_BYTES = 3800, DIAG_MAX_SENDS = 3, DIAG_QUICK_MS = 5000;
-  var T = { t0: 0, ev: [], dbg: {}, sends: 0, env: null, sdkAt: 0, agentMsgs: 0, dropped: false, lvl: null };
+  var T = { t0: 0, ev: [], dbg: {}, sends: 0, env: null, sdkAt: 0, agentMsgs: 0, dropped: false, lvl: null, rec: null };
   function tr(code, d) {
     if (T.ev.length >= 80) return;
     var e = [Date.now() - T.t0, code];
@@ -66,20 +67,82 @@
     T.ev.push(e);
   }
   function trReset() {
-    T.t0 = Date.now(); T.ev = []; T.dbg = {}; T.sends = 0; T.sdkAt = 0; T.agentMsgs = 0; T.dropped = false; T.lvl = null;
+    T.t0 = Date.now(); T.ev = []; T.dbg = {}; T.sends = 0; T.sdkAt = 0; T.agentMsgs = 0; T.dropped = false; T.lvl = null; T.rec = null; AC.evCount = 0; AC.resumeTries = 0;
     T.env = {
       ua: String(navigator.userAgent || '').slice(0, 220),
       rtc: !!window.RTCPeerConnection,
       worklet: typeof window.AudioWorkletNode !== 'undefined',
+      ios: PLAT.isIOS, wkm: PLAT.isWebKitMobile, tp: navigator.maxTouchPoints || 0,
       ac: typeof (window.AudioContext || window.webkitAudioContext) !== 'undefined' ? 'unprobed' : 'none'
     };
     tr('open', S.mode);
   }
+  /* ---------- iOS / WebKit mobile audio session handling ----------
+     Every iPhone browser is WebKit. WebKit starts an AudioContext suspended unless it is created or resumed inside a user
+     gesture, and may later move it to "interrupted" when capture starts or another context or media element changes the audio
+     session. The SDK builds its contexts after network round trips, awaits resume() once, and never looks again. So on iOS we
+     (1) record every AudioContext made during a voice call and its state changes, (2) resume any that are not running when the
+     session connects, on a state change, and on the next tap, and (3) try one input recovery if the level stays flat. */
+  /* ios-tracker:start */
+  function detectPlatform() {
+    var nav = window.navigator || {}, ua = String(nav.userAgent || '');
+    var plat = ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].indexOf(nav.platform) !== -1;
+    var touchMac = ua.indexOf('Mac') !== -1 && 'ontouchend' in document; // iPadOS in desktop mode, same test the SDK uses
+    var ios = plat || touchMac || /iP(hone|ad|od)/.test(ua);
+    return { isIOS: ios, isWebKitMobile: ios && /AppleWebKit/.test(ua) };
+  }
+  var PLAT = detectPlatform();
+  var AC = { list: [], Orig: null, Wrapped: null, evCount: 0, resumeTries: 0, tap: null };
+  function acEv(code, d) { if (AC.evCount < 28) { AC.evCount++; tr(code, d); } }
+  function acAdd(c, label) {
+    try {
+      var rec = { c: c, label: label };
+      AC.list.push(rec);
+      acEv('ac_new', label + ':' + c.state + ':' + Math.round(c.sampleRate || 0));
+      c.addEventListener('statechange', function () {
+        acEv('ac_state', label + ':' + c.state);
+        if (c.state === 'suspended' || c.state === 'interrupted') acResumeAll('statechange');
+      });
+    } catch (e) {}
+  }
+  function acInstall() {
+    if (!PLAT.isIOS || AC.Wrapped || !window.AudioContext) return;
+    var Orig = window.AudioContext;
+    var Wrapped = function (opts) { var c = arguments.length ? new Orig(opts) : new Orig(); acAdd(c, 'sdk'); return c; };
+    Wrapped.prototype = Orig.prototype;
+    AC.Orig = Orig; AC.Wrapped = Wrapped; AC.evCount = 0; AC.resumeTries = 0;
+    window.AudioContext = Wrapped;
+    // A tap during the call is a user gesture: the one moment WebKit will always let a suspended context resume.
+    if (!AC.tap) { AC.tap = function () { acResumeAll('tap'); }; ['touchend', 'click'].forEach(function (n) { document.addEventListener(n, AC.tap, true); }); }
+  }
+  function acUninstall() {
+    if (AC.Wrapped && window.AudioContext === AC.Wrapped) window.AudioContext = AC.Orig;
+    AC.Orig = null; AC.Wrapped = null; AC.list = [];
+    if (AC.tap) { ['touchend', 'click'].forEach(function (n) { document.removeEventListener(n, AC.tap, true); }); AC.tap = null; }
+  }
+  function acStates() { return AC.list.map(function (r) { return r.label + ':' + r.c.state; }); }
+  function acResumeAll(why) {
+    var any = false;
+    AC.list.forEach(function (r) {
+      try {
+        var st = r.c.state;
+        if (st === 'running' || st === 'closed') return;
+        if (why !== 'tap' && AC.resumeTries >= 8) return; // a runaway loop of suspend/resume must not flood
+        if (why !== 'tap') AC.resumeTries++;
+        any = true;
+        var p = r.c.resume();
+        if (p && p.then) p.then(function () { acEv('ac_resume', why + ':' + r.label + ':' + r.c.state); }, function (e) { acEv('ac_resume_fail', why + ':' + r.label + ':' + (e && e.name)); });
+      } catch (e) {}
+    });
+    return any;
+  }
+  /* ios-tracker:end */
+  function nativeAC() { return AC.Orig || window.AudioContext || window.webkitAudioContext; }
   function probeAudioContext() {
     try {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      var c = new AC();
+      var Ctor = nativeAC();
+      if (!Ctor) return;
+      var c = new Ctor();
       T.env.ac = c.state;
       var p = c.close && c.close(); if (p && p.catch) p.catch(function () {});
     } catch (e) { T.env.ac = 'error:' + (e && e.name); }
@@ -90,6 +153,7 @@
     var obj = { v: 1, reason: reason, env: T.env, ev: T.ev.slice(), dbg: T.dbg };
     // Microphone level summary (numbers only, no audio): lowest and highest input volume seen while unmuted, samples taken, and whether it ever crossed the "heard" threshold.
     if (T.lvl) { obj.heard_any_audio = !!T.lvl.heard; obj.lvl = { min: round3(T.lvl.min), max: round3(T.lvl.max), n: T.lvl.n, th: LEVEL_HEARD }; }
+    if (PLAT.isIOS) { obj.acs = acStates(); if (T.rec) obj.recovery = T.rec; }
     var str = JSON.stringify(obj);
     while (str.length > DIAG_MAX_BYTES && obj.ev.length > 8) { obj.ev.splice(4, 1); obj.trimmed = true; str = JSON.stringify(obj); }
     if (str.length > DIAG_MAX_BYTES) { obj.dbg = {}; obj.env.ua = obj.env.ua.slice(0, 80); str = JSON.stringify(obj); }
@@ -147,6 +211,15 @@
     if (e.shiftKey && (a === first || a === panel)) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && a === last) { e.preventDefault(); first.focus(); }
   }
+  // iOS: the SDK pre-unlocks an AudioContext on the first touch or click, but only registers those listeners when its module
+  // loads. Imported lazily inside Start call, that is too late for the very tap that matters. Load it as the panel opens.
+  function preloadSdk() {
+    if (!PLAT.isIOS || S.sdkPre || S.sdkPreTried) return;
+    S.sdkPreTried = true;
+    try {
+      import(new URL(SDK_FILE, scriptSrc).href).then(function () { S.sdkPre = true; tr('sdk_preload_ok'); }, function (e) { tr('sdk_preload_fail', errInfo(e)); });
+    } catch (e) { tr('sdk_preload_fail', errInfo(e)); }
+  }
   function openPanel(opener) {
     if (!panel) buildPanel();
     S.opener = opener || document.querySelector('.callus-link');
@@ -155,6 +228,7 @@
     panel.hidden = false;
     if (!T.t0) trReset();
     tr('panel_open');
+    preloadSdk();
     document.querySelectorAll('.callus-link').forEach(function (l) { l.setAttribute('aria-expanded', 'true'); });
     var fl = document.querySelector('.callus-link:not(.callus-cta)'); if (fl) fl.hidden = true;
     if (S.view === 'intro' || !S.hadCall) showIntro();
@@ -396,7 +470,9 @@
       // Unlock an AudioContext here, synchronously in the click (output only, it never captures). The permission probe is
       // stopped as soon as it is granted: the SDK opens its own capture and must be the only one holding the microphone
       // (a second live capture track is the likeliest cause of Safari muting the SDK's track after the first word).
-      unlockAudio();
+      if (PLAT.isIOS) { acInstall(); tr('ios', S.sdkPre ? 'sdk_preloaded' : 'sdk_not_preloaded'); }
+      // On iOS the SDK unlocks its own output context inside the gesture, but only once its module has loaded (see preloadSdk).
+      if (!(PLAT.isIOS && S.sdkPre)) unlockAudio();
       micStep = navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
         tr('mic_granted');
         S.micProbe = stream; stopMicProbe(); tr('probe_stopped');
@@ -477,7 +553,7 @@
         dynamicVariables: { call_id: S.callId },
         textOnly: S.mode === 'text',
         useWakeLock: false,
-        onConnect: function () { tr('on_connect'); if (!timedOut) { clearTimeout(S.connectTimer); } },
+        onConnect: function () { tr('on_connect'); if (!timedOut) { clearTimeout(S.connectTimer); } if (PLAT.isIOS && S.mode === 'voice') acResumeAll('on_connect'); },
         onStatusChange: function (st) { tr('status', st && (st.status || st)); },
         onDebug: function (d) { var k = d && typeof d.type === 'string' ? d.type.slice(0, 40) : 'other'; if (T.dbg[k] || Object.keys(T.dbg).length < 20) T.dbg[k] = (T.dbg[k] || 0) + 1; },
         onDisconnect: function (d) { noteDisconnect(d); if (gen !== S.gen) return; /* a session we replaced (switch to text) */ if (S.conv || conv || S.view === 'connecting') onSessionEnd(d); },
@@ -514,8 +590,9 @@
       if (S.view !== 'connecting') { try { if (c) c.endSession(); } catch (e) {} return; }
       if (T.dropped) { try { if (c) c.endSession(); } catch (e) {} return couldntConnect('dropped_while_connecting'); }
       S.conv = c; S.ended = false;
-      stopMicProbe(); closeUnlock();
+      stopMicProbe(); if (!PLAT.isIOS) closeUnlock();
       showCall();
+      if (PLAT.isIOS && S.mode === 'voice') { acResumeAll('connect'); setTimeout(function () { acResumeAll('connect+1s'); }, 1000); }
       if (S.mode === 'voice') { acquireWake(); setStatus('Listening', 'live'); }
       else setStatus('Connected. Say hello', 'live');
     }).catch(function (e) {
@@ -580,9 +657,11 @@
 
   function unlockAudio() {
     try {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      var c = S.unlockCtx && S.unlockCtx.state !== 'closed' ? S.unlockCtx : (S.unlockCtx = new AC());
+      var Ctor = nativeAC();
+      if (!Ctor) return;
+      var fresh = !(S.unlockCtx && S.unlockCtx.state !== 'closed');
+      var c = fresh ? (S.unlockCtx = new Ctor()) : S.unlockCtx;
+      if (fresh && PLAT.isIOS) acAdd(c, 'unlock');
       var p = c.resume && c.resume(); if (p && p.catch) p.catch(function () {});
       var src = c.createBufferSource(); src.buffer = c.createBuffer(1, 1, 22050); src.connect(c.destination); src.start(0);
     } catch (e) {}
@@ -594,7 +673,7 @@
   function closeUnlock() { try { if (S.unlockCtx && S.unlockCtx.close) S.unlockCtx.close().catch(function () {}); } catch (e) {} S.unlockCtx = null; }
 
   function cleanupCall() {
-    stopMicProbe(); closeUnlock(); stopLevelWatch();
+    stopMicProbe(); closeUnlock(); stopLevelWatch(); acUninstall();
     clearTimeout(S.connectTimer);
     clearInterval(S.tick);
     S.mockTimers.forEach(clearTimeout); S.mockTimers = [];
@@ -616,7 +695,7 @@
   /* ---------- microphone level and "we can't hear you" (voice calls) ----------
      The vendored SDK exposes getInputVolume() (0 to 1, from the analyser on its own capture). It reads 0 while muted.
      The indicator is decoration (aria-hidden); the polite live region only speaks transitions that matter. */
-  var L = { timer: null, sawSpeaking: false, speaking: false, greetingDone: false, quietSince: 0, heard: false, prompt: false, startedAt: 0, lastLabel: '' };
+  var L = { timer: null, sawSpeaking: false, speaking: false, greetingDone: false, quietSince: 0, heard: false, prompt: false, startedAt: 0, lastLabel: '', recovered: false, recoverAt: 0 };
   var meterBar, meterLabel, nudgeEl, micLiveEl;
   function buildMeter(b) {
     meterBar = h('span', { class: 'callus-meter-bar' });
@@ -631,7 +710,7 @@
   function micSay(msg) { if (micLiveEl) { micLiveEl.textContent = ''; setTimeout(function () { if (micLiveEl) micLiveEl.textContent = msg; }, 30); } }
   function startLevelWatch() {
     stopLevelWatch();
-    L.sawSpeaking = false; L.speaking = false; L.greetingDone = false; L.quietSince = 0; L.heard = false; L.prompt = false; L.startedAt = Date.now(); L.lastLabel = '';
+    L.sawSpeaking = false; L.speaking = false; L.greetingDone = false; L.quietSince = 0; L.heard = false; L.prompt = false; L.recovered = false; L.recoverAt = 0; L.startedAt = Date.now(); L.lastLabel = '';
     T.lvl = { min: 1, max: 0, n: 0, heard: false };
     if (!S.conv || typeof S.conv.getInputVolume !== 'function') { tr('no_input_volume_api'); if (meterBar && meterBar.parentNode) meterBar.parentNode.parentNode.hidden = true; return; }
     L.timer = setInterval(levelTick, LEVEL_POLL_MS);
@@ -652,7 +731,7 @@
     var label = S.muted ? 'Microphone muted' : (heardNow ? 'Hearing you' : 'Waiting for you');
     if (meterLabel && label !== L.lastLabel) { L.lastLabel = label; meterLabel.textContent = label; }
     if (heardNow) {
-      if (!L.heard) { L.heard = true; if (T.lvl) T.lvl.heard = true; tr('heard_first'); micSay('Microphone is working'); }
+      if (!L.heard) { L.heard = true; if (T.lvl) T.lvl.heard = true; tr('heard_first'); micSay('Microphone is working'); if (T.rec && T.rec.tried && T.rec.worked == null) { T.rec.worked = true; tr('recovery_worked', Date.now() - L.recoverAt); } }
       L.quietSince = now;
       if (L.prompt) { hideNudge(); micSay('Microphone is picking you up again'); }
       return;
@@ -660,14 +739,27 @@
     // The clock only runs once the greeting has finished, while the agent is not speaking and the microphone is not muted.
     if (!L.greetingDone || L.speaking || S.muted || S.waitingReply) { L.quietSince = 0; return; }
     if (!L.quietSince) { L.quietSince = now; return; }
+    if (PLAT.isIOS && !L.heard && !L.recovered && now - L.quietSince >= RECOVER_MS) return recoverInput();
     if (!L.prompt && now - L.quietSince >= (L.heard ? NO_INPUT_AFTER_HEARD_MS : NO_INPUT_MS)) showNudge();
   }
   function showNudge() {
     if (!nudgeEl) return;
+    if (T.rec && T.rec.tried && T.rec.worked == null) { T.rec.worked = false; tr('recovery_failed'); }
     L.prompt = true; nudgeEl.hidden = false;
     tr('no_input_prompt', L.heard ? 'after_heard' : 'never_heard');
     sendDiag('no_input');
     micSay('We can’t hear you. Check your microphone is on, or switch to text.');
+  }
+  // iOS only, once per call, only if the caller has never been heard: wake any suspended context, then reopen the SDK's
+  // microphone capture on the same context (changeInputDevice with no device id asks for the default input again).
+  function recoverInput() {
+    L.recovered = true; L.recoverAt = Date.now(); L.quietSince = L.recoverAt;
+    T.rec = { tried: true, worked: null, states: acStates() };
+    tr('recovery_try', acStates().join(','));
+    acResumeAll('recover');
+    var c = S.conv, p;
+    try { p = c && typeof c.changeInputDevice === 'function' ? c.changeInputDevice({}) : Promise.reject(new Error('no changeInputDevice')); } catch (e) { p = Promise.reject(e); }
+    Promise.resolve(p).then(function () { tr('recovery_input_reopened'); acResumeAll('recover+input'); }, function (e) { tr('recovery_input_failed', errInfo(e)); });
   }
   function hideNudge() { L.prompt = false; if (nudgeEl) nudgeEl.hidden = true; }
   // End the voice session and open a text chat. startFlow takes a fresh human-check token through obtainToken().
