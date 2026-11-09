@@ -212,7 +212,7 @@ def make_tree(root: Path, prompts: bool = True) -> Path:
     (tool / "knowledge").mkdir(parents=True)
     pages = ["about.html", "index.html", "services.html", "services-sap.html", "contact.html",
              "privacy.html", "case-studies.html", "case-find-me-a-job.html",
-             "insight-one.html", "insights.html", "research.html"]
+             "insight-one.html", "insight-what-businesses-need-from-ai.html", "insights.html", "research.html"]
     for p in pages:
         (root / p).write_text(f"<html><title>{p}</title><body><p>PAGE_{p}</p></body></html>")
     (tool / "knowledge" / "answer-gists.md").write_text(GISTS)
@@ -250,10 +250,13 @@ class GeneratedModuleTests(unittest.TestCase):
             self.assertIn("PAGE_about.html", fd)
             self.assertNotIn("PAGE_services-sap.html", fd)
             self.assertNotIn("PAGE_insight-one.html", fd)
+            self.assertNotIn("PAGE_index.html", fd)  # repeats the claims register
+            self.assertNotIn("PAGE_privacy.html", fd)  # CT-04 and the gists carry it
             co = roles["consulting"]["system"]
             for needed in ("CD gist text", "PAGE_services-sap.html", "PAGE_case-find-me-a-job.html",
-                           "PAGE_insight-one.html", "PAGE_insights.html"):
+                           "PAGE_insight-what-businesses-need-from-ai.html", "PAGE_insights.html"):
                 self.assertIn(needed, co)
+            self.assertNotIn("PAGE_insight-one.html", co)  # the long article bodies are left out of the live prompt
             self.assertNotIn("FD gist text", co)
             tsg = roles["tsg"]["system"]
             self.assertIn("TS gist text", tsg)
@@ -261,7 +264,7 @@ class GeneratedModuleTests(unittest.TestCase):
             self.assertNotIn("Public site pages", tsg)
             cd = roles["customer-desk"]["system"]
             self.assertIn("CS gist text", cd)
-            self.assertIn("PAGE_privacy.html", cd)
+            self.assertNotIn("PAGE_privacy.html", cd)
             self.assertIn("PAGE_contact.html", cd)
             self.assertNotIn("PAGE_about.html", cd)
 
