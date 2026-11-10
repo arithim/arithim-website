@@ -13,6 +13,8 @@ export const THINK_FILLER = "Let me think about that... ";
 // Said the moment the model starts take_message with nothing said yet. Without it the stream stays empty for several seconds, the voice
 // platform gives up after its 4 s soft timeout, retries the same turn (logging the message again each time) and finally drops the call.
 export const NOTE_FILLER = "Let me just note that down.";
+// Used instead when the agent's previous turn already had NOTE_FILLER (a platform retry replays it), so the caller never hears it twice running.
+export const NOTE_FILLER_2 = "One moment.";
 // A take_message this soon after the last one on the same call is a platform retry of the same turn (or a quick correction): update that row.
 const RETRY_WINDOW_SEC = 20;
 export const TEXT_CAP_LINE = "We've reached the limit for this chat. Please use the contact form or email hello@arithim.com and Tarun will reply within one working day.";
@@ -60,12 +62,14 @@ export function spokenRef(ref) {
   const tail = m[2].toUpperCase().split("").map((c) => (/\d/.test(c) ? DIGIT_WORDS[+c] : c)).join(" ");
   return `A R C, ${digits(m[1].slice(0, 3))}, ${digits(m[1].slice(3))}, then ${tail}`;
 }
+const squash = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 // The closing line spoken before end_call when the model ended the call without saying it.
-export function closingLine(msg) {
+export function closingLine(msg, heard = "") {
   if (!msg || !msg.ref) return "Thanks for calling Arithim. Bye for now.";
   const first = String(msg.name || "").trim().split(/\s+/)[0];
   const contact = String(msg.contact || "").trim();
-  return `Thanks${first ? ", " + first : ""}. Your reference is ${spokenRef(msg.ref)}. Tarun will get back to you${contact.includes("@") ? " at " + contact : ""} within one working day. Bye for now.`;
+  const refBit = squash(heard).includes(squash(spokenRef(msg.ref))) ? "" : ` Your reference is ${spokenRef(msg.ref)}.`; // already read out earlier in the call
+  return `Thanks${first ? ", " + first : ""}.${refBit} Tarun will get back to you${contact.includes("@") ? " at " + contact : ""} within one working day. Bye for now.`;
 }
 export function cacheControl(env) {
   return env?.CALL_CACHE_TTL === "5m" ? { type: "ephemeral" } : { type: "ephemeral", ttl: "1h" };
@@ -214,6 +218,13 @@ export function mergedResult(ref, firstRef) {
   return `Message recorded. Reference ${ref}. This was added to the message logged a moment ago on this call. If the reference has not been read out yet in this conversation, say exactly this, word for word: "${spokenRef(firstRef)}" (the quote marks are not spoken), and say Tarun will get back to them within one working day. If it has, do not read it again; just say you have added it. Give no other time.`;
 }
 
+// The reference read-back, said for the model when it logged a message and then said nothing about it (for example because its reply was
+// planning that the narration guard silenced). spoken: the spoken form the tool result told the model to read.
+export function readbackLine(spoken, contact = "") {
+  const c = String(contact || "").trim();
+  return `Your reference is ${spoken}. Tarun will get back to you${c.includes("@") ? " at " + c : ""} within one working day.`;
+}
+
 // Told to an agent on its first turn after a transfer.
 export function arrivalNote(role, from) {
   if (!from || from === role || !ROLES[from] || !ROLES[role]) return "";
@@ -309,10 +320,12 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let lastReplacement = null;
   let callerText = "";
   let names = []; // the caller's names, from their own words and from messages logged on this call, for isNarration
+  let lastMsg = null; // the most recent take_message that worked in this request
+  let narratedAfterMsg = false; // the narration guard silenced something after that message
   let narrating = false; // set once the current model response starts planning out loud; the rest of that response is not spoken
   const speak = (sentence, context = "", own = false) => {
     sentence = sentence.replace(/["\u201c\u201d]/g, ""); // quote marks around a read-back string are never spoken
-    if (!own && (narrating || isNarration(sentence, names))) { narrating = true; hits.add("narration"); return; }
+    if (!own && (narrating || isNarration(sentence, names))) { narrating = true; hits.add("narration"); if (lastMsg) narratedAfterMsg = true; return; }
     const f = filterSentence(sentence, denylist, context, callerText);
     f.hits.forEach((h) => hits.add(h));
     if (!f.text.trim()) return; // nothing speakable left (for example only stray non-Latin characters)
@@ -355,7 +368,11 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   const messages = conv.messages;
   const splitter = new SentenceSplitter({ clauseFlush: true, denylist });
   let finish = "stop";
-  let lastMsg = null; // the most recent take_message that worked in this request
+  // What this agent's earlier turns said, as the platform replays them: used so a retry neither repeats a filler nor re-reads a reference.
+  const priorAgent = conv.messages.filter((m) => m.role === "assistant").map((m) => (Array.isArray(m.content) ? m.content : []).filter((b) => b.type === "text").map((b) => b.text).join(" "));
+  const lastAgentTurn = priorAgent.at(-1) || "";
+  let toRead = null; // {spoken, contact}: a reference the model was told to read out in this request and the caller has not yet heard
+
   let spokenAtMsg = 0; // spoken.length when it did
   try {
     for (let step = 0; step < CAPS.steps; step++) {
@@ -366,7 +383,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
         signal: signal || AbortSignal.timeout(30_000),
         params: talkerParams(env, system, messages, tools),
         onText: (d) => { onRawText?.(d); const out = splitter.push(d); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
-        onToolStart: (name) => { if (name === "take_message" && !spoken && !gone()) speak(NOTE_FILLER, "", true); },
+        onToolStart: (name) => { if (name === "take_message" && !spoken && !gone()) speak(lastAgentTurn.includes(NOTE_FILLER) ? NOTE_FILLER_2 : NOTE_FILLER, "", true); },
         // The text block is finished (a tool call may follow): say its last fragment now rather than after the tool input has streamed.
         onTextEnd: () => { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); },
       });
@@ -391,6 +408,8 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
             lastMsg = { ref: rm[1], name: clean(typeof u.input?.name === "string" ? u.input.name : "", 200), contact: clean(typeof u.input?.contact === "string" ? u.input.contact : "", 200) };
             spokenAtMsg = spoken.length;
             if (lastMsg.name) names.push(lastMsg.name);
+            const sp = /say exactly this, word for word[^"]*"([^"]+)"/.exec(r);
+            toRead = sp && !squash(priorAgent.join(" ")).includes(squash(sp[1])) ? { spoken: sp[1], contact: lastMsg.contact } : null;
           }
         } else if (u.name === "think") {
           if (!spoken) speak(THINK_FILLER.trim() + " ");
@@ -431,13 +450,22 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
               if (row) { const f = JSON.parse(row.fields || "{}"); msg = { ref: row.ref, name: f.name, contact: f.contact }; }
             } catch (e) { console.error("closing lookup", e); }
           }
-          if (silent && !gone()) speak(closingLine(msg), "", true);
+          if (silent && !gone()) speak(closingLine(msg, priorAgent.join(" ")), "", true);
         }
         emit({ type: "tool_call", id: pending.id.startsWith("toolu_") ? "call_" + pending.id.slice(6) : pending.id, name: pending.name, arguments: JSON.stringify(pending.input || {}) });
         finish = "tool_calls";
         break;
       }
       messages.push({ role: "user", content: results });
+    }
+    // Logged a message the caller should hear the reference for, then said nothing about it (or only planning that was silenced).
+    if (toRead && finish !== "tool_calls" && !gone()) {
+      const after = spoken.slice(spokenAtMsg);
+      if (!after.trim() || (narratedAfterMsg && !squash(after).includes(squash(toRead.spoken)))) {
+        { const out = splitter.flush(); out.forEach((s, i) => speak(s, splitter.contexts[i])); }
+        speak(readbackLine(toRead.spoken, toRead.contact), "", true);
+        hits.add("readback-added");
+      }
     }
   } catch (e) {
     if (gone()) return { finish, spoken, hits: [...hits] }; // the caller went away: no fallback line, no error flag

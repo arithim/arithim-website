@@ -585,3 +585,49 @@ test("no arrival note when the role has not changed", async () => {
     assert.doesNotMatch(m.calls[0].body.system.map((b) => b.text).join("\n"), /You have just joined this call/);
   } finally { m.restore(); }
 });
+
+test("message logged, then only silenced planning and no end_call: the reference is read out for the model (production call 9 Nov)", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_r1", input: { type: "enquiry", name: "Priya", contact: "priya@example.com", summary: "Month-end reporting" } };
+  const m = mockFetch([
+    anthropicSse([tm], "tool_use"),
+    anthropicSse([{ type: "text", text: "Priya's message is logged, so I'll close with the reference." }]),
+  ]);
+  try {
+    const out = await readSse(await call(env, "consulting", [user("Hi, I'm Priya."), { role: "assistant", content: "Hi Priya, Oliver here." }, user("That's all, thanks.")], { tools: EL_TOOLS }));
+    assert.match(out.text, /^Let me just note that down\. Your reference is A R C, [a-z ]+, [a-z ]+, then [A-Za-z ]+\. Tarun will get back to you at priya@example\.com within one working day\.$/);
+    await settle();
+    assert.match((await db.prepare("SELECT flags FROM calls").first()).flags, /readback-added/);
+  } finally { m.restore(); }
+});
+
+test("no extra read-back when the model read the reference itself", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_r2", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Help" } };
+  const m = mockFetch([
+    anthropicSse([{ type: "text", text: "Right." }, tm], "tool_use"),
+    anthropicSse([{ type: "text", text: "All noted, Sam. Anything else on your mind?" }]),
+  ]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("Sam here, please pass a message on")], { tools: EL_TOOLS }));
+    assert.equal(out.text, "Right. All noted, Sam. Anything else on your mind?");
+  } finally { m.restore(); }
+});
+
+test("a retried turn whose last agent turn already had the holding line uses the other one", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_r3", input: { type: "enquiry", name: "Sam", contact: "sam@example.com", summary: "Help" } };
+  const m = mockFetch([anthropicSse([tm], "tool_use"), anthropicSse([{ type: "text", text: "Done." }])]);
+  try {
+    const out = await readSse(await call(env, "front-desk", [user("bye"), { role: "assistant", content: NOTE_FILLER }, user("bye")], { tools: EL_TOOLS }));
+    assert.match(out.text, /^One moment\. /);
+    assert.doesNotMatch(out.text, /note that down/);
+  } finally { m.restore(); }
+});
+
+test("the automatic goodbye leaves out the reference when the caller already heard it earlier in the call", async () => {
+  const { closingLine } = await import("../../../functions/_lib/brain.js");
+  const msg = { ref: "ARC-261110-R5EG", name: "Priya Shah", contact: "priya@example.com" };
+  assert.equal(closingLine(msg, `Earlier: A R C, two six one, one one zero, then R five E G. Tarun will pick it up.`), "Thanks, Priya. Tarun will get back to you at priya@example.com within one working day. Bye for now.");
+  assert.match(closingLine(msg, "nothing yet"), /Your reference is A R C/);
+});
