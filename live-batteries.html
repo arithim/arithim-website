@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How much are grid batteries charging and discharging right now? | Arithim</title>
+<meta name="description" content="Live charging and discharging of grid batteries in Great Britain and California: what batteries are doing now, their highest discharge and the energy through them in the last 24 hours.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="How much are grid batteries charging and discharging right now?">
+<meta property="og:description" content="Live charging and discharging of grid batteries in Great Britain and California: what batteries are doing now, their highest discharge and the energy through them in the last 24 hours.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/live-batteries.html">
+<meta property="og:url" content="https://arithim.com/live-batteries.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the Great Britain figure worked out?", "acceptedAnswer": {"@type": "Answer", "text": "No one publishes a live total for GB batteries. We add up the physical notifications of battery units in the Balancing Mechanism, the plan each unit sends to the system operator an hour ahead, from Elexon's data. It is an estimate: instructions after that hour change what actually happens, and smaller batteries outside the Balancing Mechanism are not counted."}}, {"@type": "Question", "name": "Why do batteries charge in the middle of the day?", "acceptedAnswer": {"@type": "Answer", "text": "Where there is a lot of solar, power is cheapest around midday. Batteries charge then and discharge into the evening peak, when solar fades and demand rises. California shows the pattern clearly."}}, {"@type": "Question", "name": "Why do batteries take in more than they give back?", "acceptedAnswer": {"@type": "Answer", "text": "Every charge and discharge loses some energy as heat, so over a day the energy charged runs a little above the energy discharged."}}]}</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=7">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+<script src="/assets/live/d3.v7.9.0.min.js"></script>
+<script src="/assets/live/live-dash.js?v=ce793faf"></script>
+</head>
+<body class="live-page">
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/live", "active": ""} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/live</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+            <a class="ah-menu-link" href="insight-more-than-one-application-security-testing-tool.html">Do You Need More Than One Application Security Testing Tool?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+            <a class="ah-menu-link" href="insight-more-than-one-application-security-testing-tool.html">Do You Need More Than One Application Security Testing Tool?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+</div>
+</x-dc>
+
+<!-- The dashboard sits outside <x-dc>: support.js re-renders everything inside it with React, which
+     would drop the listeners and styles the dashboard scripts set up while the page loads. -->
+<div class="ah-page">
+
+<main id="main">
+<div class="r-gut">
+<div class="live-wrap">
+<header class="live-hero">
+<p class="live-kicker">LIVE ENERGY DATA</p>
+<h1>How much are grid batteries charging and discharging right now?</h1>
+<p>What grid batteries are doing right now and over the last two days. Positive means discharging to the grid, negative means charging from it.</p>
+</header>
+<nav class="live-switch" aria-label="Live dashboards"><a href="/live">All dashboards</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries" aria-current="page">Batteries</a><a href="/live-renewables">All renewables</a></nav>
+<style>
+#dash-root { --dash-gutter: clamp(12px, 3vw, 32px); }
+.gsl { font-family: var(--font-anthropic-sans); max-width: 1320px; margin-inline: auto; font-variant-numeric: tabular-nums; }
+.gsl-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.gsl-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: 0 0 var(--cds-gap-md); max-width: 62rem; }
+.gsl .gsl-take b, .gsl .gsl-note b { color: var(--color-fg); font-weight: 600; }
+.gsl-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-lg); }
+.gsl-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); }
+.gsl-tile-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.gsl-tile-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: var(--cds-gap-xs) 0; line-height: 1.15; }
+.gsl-tile-v small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 4px; }
+.gsl-tile-s { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.gsl .gsl-tile-s b { font-weight: 600; color: var(--color-fg); }
+.gsl-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); margin-bottom: var(--cds-gap-lg); }
+.gsl-tab { font: inherit; font-size: var(--cds-font-size-body); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--color-fg-muted); padding: var(--cds-pad-sm) var(--cds-pad-md); cursor: pointer; margin-bottom: -1px; }
+.gsl-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); }
+.gsl-tab:hover { color: var(--color-fg); }
+.gsl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-md); }
+.gsl-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.gsl-card.wide { grid-column: 1 / -1; }
+.gsl-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.gsl-card .gsl-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 2px 0 var(--cds-gap-md); }
+.gsl-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-lg) 0 var(--cds-gap-sm); }
+.gsl-chart { position: relative; min-height: 260px; }
+.gsl-chart.short { min-height: 220px; }
+.gsl-chart.map { min-height: 300px; }
+.gsl-svg { display: block; overflow: visible; }
+.gsl-svg text { font-family: var(--font-anthropic-sans); }
+.gsl-tick { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gsl-grid-line { stroke: var(--cds-chart-grid); stroke-width: 1; }
+.gsl-axis { stroke: var(--cds-chart-axis); }
+.gsl-endlabel { font-size: var(--cds-font-size-caption); font-weight: 600; }
+.gsl-rule { stroke: var(--cds-chart-reference); stroke-width: 1; pointer-events: none; }
+.gsl-tip { position: absolute; z-index: 5; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); pointer-events: none; white-space: nowrap; }
+.gsl-tip-h { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.gsl-tip-r { display: flex; align-items: center; gap: 6px; }
+.gsl-tip-n { color: var(--color-fg-muted); }
+.gsl-sw { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.gsl-seg-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); align-items: center; margin-bottom: var(--cds-gap-sm); }
+.gsl-seg { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg-muted); border-radius: var(--cds-radius); padding: 4px 10px; cursor: pointer; }
+.gsl-seg[aria-pressed="true"] { color: var(--color-fg); border-color: var(--color-fg); }
+.gsl-legend-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-left: auto; }
+.gsl-tablebox { max-height: 30rem; overflow: auto; }
+.gsl-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); }
+.gsl-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); }
+.gsl-table td { padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.gsl-table .num { text-align: right; }
+.gsl-table td.wrap { white-space: normal; min-width: 14rem; }
+.gsl-sort { font: inherit; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; }
+.gsl-search { font: inherit; font-size: var(--cds-font-size-caption); padding: 6px 10px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); width: min(100%, 18rem); margin-bottom: var(--cds-gap-sm); }
+.gsl-pill { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); }
+.gsl-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-sm) 0 0; }
+.gsl-foot { margin-top: var(--cds-gap-xl); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gsl-foot summary { cursor: pointer; color: var(--color-fg); }
+.gsl-foot dt { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); margin-top: var(--cds-gap-sm); }
+.gsl-foot dd { margin: 2px 0 0; }
+.gsl-foot a { color: inherit; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.gsl-fail { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gsl-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+@media (prefers-reduced-motion: no-preference) {
+  .gsl-svg .gsl-draw-in { animation: gsl-fade var(--cds-dur-slow) var(--cds-ease-out); }
+  @keyframes gsl-fade { from { opacity: 0; } to { opacity: 1; } }
+}
+.gsl-counter-card { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.gsl-counter-card p { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.gsl-counter { font-family: var(--font-anthropic-serif); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.gsl-counter small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 6px; }
+.gsl-replay-bar { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--cds-gap-sm); flex-wrap: wrap; }
+.gsl-replay-bar button { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.gsl-replay-bar input[type=range] { flex: 1 1 160px; accent-color: #E8A13C; }
+.gsl-replay-bar output { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 11em; font-variant-numeric: tabular-nums; }
+
+.gsl-key { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
+.gsl-key span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--k); }
+</style>
+
+<div class="gsl">
+  <header class="gsl-head" id="top">
+    <h1>Grid Batteries Live</h1>
+    <p class="gsl-take">Across the live grids tracked here, batteries are discharging <b data-draw="b-dis" data-source="bat_total" data-field="discharging_gw" data-where="group=All">—</b> GW into the grid and charging <b data-draw="b-chg" data-source="bat_total" data-field="charging_gw" data-where="group=All">—</b> GW from it at their latest readings, across <b data-draw="b-n" data-source="bat_total" data-field="grids" data-where="group=All">—</b> grids. Positive means discharging, negative means charging, everywhere on this page.</p>
+  </header>
+
+  <div class="gsl-tiles" id="headline">
+    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">Great Britain, net now (estimate)</p><p class="gsl-tile-v"><span data-draw="t-gb" data-source="gb_bat_summary" data-field="net_now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-gb-units" data-source="gb_bat_summary" data-field="fleet_units" data-row="0">—</b> battery units, <b data-draw="t-gb-fleet" data-source="gb_bat_summary" data-field="fleet_gw" data-row="0">—</b> GW</p></div>
+    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">California, net now</p><p class="gsl-tile-v"><span data-draw="t-ca" data-source="bat_stats" data-field="now_gw" data-where="grid=California">—</span><small>GW</small></p><p class="gsl-tile-s">24 h peak discharge <b data-draw="t-ca-pk" data-source="bat_stats" data-field="peak_dis_gw" data-where="grid=California">—</b> GW</p></div>
+    <div class="gsl-tile"><p class="gsl-tile-l">Australia (NEM), net now</p><p class="gsl-tile-v"><span data-draw="t-au" data-source="bat_stats" data-field="now_gw" data-where="grid=Australia (NEM)">—</span><small>GW</small></p><p class="gsl-tile-s">Stored now: <b data-draw="t-au-st" data-source="aus_bat_store" data-field="stored_gwh" data-row="0">—</b> GWh</p></div>
+    <div class="gsl-tile"><p class="gsl-tile-l">Discharged, last 24 hours</p><p class="gsl-tile-v"><span data-draw="t-24" data-source="bat_total" data-field="dis24_gwh" data-where="group=All">—</span><small>GWh</small></p><p class="gsl-tile-s">Charged: <b data-draw="t-24c" data-source="bat_total" data-field="chg24_gwh" data-where="group=All">—</b> GWh</p></div>
+  </div>
+
+  <div class="gsl-grid">
+    <div class="gsl-card" id="bat-now">
+      <h3>Batteries right now, by grid</h3>
+      <p class="gsl-sub">Net GW at each feed's latest reading. Bars to the right are discharging, to the left charging.</p>
+      <div class="gsl-chart short" data-draw="b-now-bars" data-source="bat_stats"></div>
+    </div>
+    <div class="gsl-card wide" id="bat-clock-card">
+      <h3>A day in the life of grid batteries</h3>
+      <p class="gsl-sub">Each clock is one grid's average day over the last two days, in local time with midnight at the top. Green bars reaching outwards are batteries discharging into the grid that hour; amber bars reaching in are batteries charging. Where solar is strong, batteries fill up around midday and empty into the evening peak.</p>
+      <div class="gsl-chart" data-draw="bat-clock" data-source="bat_clock"></div>
+    </div>
+  </div>
+
+  <nav class="gsl-tabs" role="tablist" aria-label="Regions">
+    <button class="gsl-tab" role="tab" data-tab="gb" aria-selected="true">Great Britain</button>
+    <button class="gsl-tab" role="tab" data-tab="americas" aria-selected="false">Americas</button>
+    <button class="gsl-tab" role="tab" data-tab="asia" aria-selected="false">Asia-Pacific</button>
+    <button class="gsl-tab" role="tab" data-tab="europe" aria-selected="false">Europe</button>
+  </nav>
+
+  <!-- ============ GREAT BRITAIN ============ -->
+  <section class="gsl-page" id="gb" data-page="gb">
+    <div class="gsl-tiles">
+      <div class="gsl-tile"><p class="gsl-tile-l">Discharging now</p><p class="gsl-tile-v"><span data-draw="gb-dis" data-source="gb_bat_summary" data-field="discharge_now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s">Charging now: <b data-draw="gb-chg" data-source="gb_bat_summary" data-field="charge_now_gw" data-row="0">—</b> GW</p></div>
+      <div class="gsl-tile"><p class="gsl-tile-l">Highest discharge, last 24 hours</p><p class="gsl-tile-v"><span data-draw="gb-pk" data-source="gb_bat_summary" data-field="peak_dis_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s">At <b data-draw="gb-pk-t" data-source="gb_bat_summary" data-field="peak_dis_time" data-row="0">—</b></p></div>
+      <div class="gsl-tile"><p class="gsl-tile-l">Discharged, last 24 hours</p><p class="gsl-tile-v"><span data-draw="gb-24" data-source="gb_bat_summary" data-field="dis24_gwh" data-row="0">—</span><small>GWh</small></p><p class="gsl-tile-s">Charged: <b data-draw="gb-24c" data-source="gb_bat_summary" data-field="chg24_gwh" data-row="0">—</b> GWh</p></div>
+    </div>
+    <div class="gsl-grid">
+      <div class="gsl-card wide" id="gb-lines">
+        <h3>Great Britain, last two days</h3>
+        <p class="gsl-sub">GW each half hour, summed over battery units in the Balancing Mechanism. These are the physical notifications each unit submits an hour ahead, not metered output: the system operator's instructions after that change what actually happens. Units are picked from Elexon's unit list by name and by matching import and export capacity, so a few may be missed or wrongly included.</p>
+        <div class="gsl-key"><span style="--k: var(--color-ok)">Discharging</span><span style="--k: var(--color-warn)">Charging</span><span style="--k: var(--color-fg)">Net</span></div>
+        <div class="gsl-chart" data-draw="gb-lines" data-source="gb_battery"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AMERICAS ============ -->
+  <section class="gsl-page" id="americas" data-page="americas" hidden>
+    <div class="gsl-grid">
+      <div class="gsl-card wide" id="ca-lines">
+        <h3>California, last two days</h3>
+        <p class="gsl-sub">Net GW every 5 minutes from California ISO's fuel mix. The midday dip below zero is batteries soaking up solar; the evening peak is them selling it back.</p>
+        <div class="gsl-chart" data-draw="ca-lines" data-source="battery_live"></div>
+      </div>
+      <div class="gsl-card" id="ne-lines">
+        <h3>New England</h3>
+        <p class="gsl-sub">Net MW about every 10 minutes, ISO New England fuel mix.</p>
+        <div class="gsl-chart short" data-draw="ne-lines" data-source="battery_live"></div>
+      </div>
+      <div class="gsl-card" id="ab-lines">
+        <h3>Alberta</h3>
+        <p class="gsl-sub">Net MW from AESO's current supply page, one reading per hourly refresh, kept for 48 hours.</p>
+        <div class="gsl-chart short" data-draw="ab-lines" data-source="battery_live"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ASIA-PACIFIC ============ -->
+  <section class="gsl-page" id="asia" data-page="asia" hidden>
+    <div class="gsl-grid">
+      <div class="gsl-card wide" id="au-lines">
+        <h3>Australia (NEM) by region</h3>
+        <p class="gsl-sub">Net GW each half hour: battery generation minus battery load cleared in dispatch (AEMO).</p>
+        <div class="gsl-chart" data-draw="au-lines" data-source="battery_live"></div>
+      </div>
+      <div class="gsl-card" id="jp-lines">
+        <h3>Japan by area</h3>
+        <p class="gsl-sub">Net MW, half-hourly, from the battery column (蓄電池) of each area's supply-demand file.</p>
+        <div class="gsl-chart" data-draw="jp-lines" data-source="battery_live"></div>
+      </div>
+      <div class="gsl-card" id="kr-lines">
+        <h3>South Korea</h3>
+        <p class="gsl-sub">Net MW every 5 minutes, KPX energy storage (ESS), today.</p>
+        <div class="gsl-chart" data-draw="kr-lines" data-source="battery_live"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EUROPE ============ -->
+  <section class="gsl-page" id="europe" data-page="europe" hidden>
+    <div class="gsl-grid">
+      <div class="gsl-card wide" id="eu-lines">
+        <h3>European countries that report batteries</h3>
+        <p class="gsl-sub">Net GW, hourly averages, from Energy-Charts (battery output minus battery consumption). Most countries do not report batteries to ENTSO-E yet, so only a few appear.</p>
+        <div class="gsl-chart" data-draw="eu-lines" data-source="battery_live"></div>
+      </div>
+      <div class="gsl-card wide">
+        <h3>Grid detail</h3>
+        <p class="gsl-sub">Every grid with battery data: latest net reading, highest discharge and charge, and energy in and out over the last 24 hours.</p>
+        <div class="gsl-tablebox">
+          <table class="gsl-table" data-source="bat_stats" data-row-key="grid">
+            <thead><tr>
+              <th data-field="grid">Grid</th>
+              <th data-field="now_mw" class="num">Net now, MW</th>
+              <th data-field="peak_dis_mw" class="num">Peak discharge, MW</th>
+              <th data-field="peak_chg_mw" class="num">Peak charge, MW</th>
+              <th data-field="dis24_gwh" class="num">Out, 24 h GWh</th>
+              <th data-field="chg24_gwh" class="num">In, 24 h GWh</th>
+            </tr></thead>
+            <tbody data-draw="b-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</div>
+
+<script>
+/* Shared drawing helpers */
+window.GSL = (() => {
+  const fmt = {
+    gw: d3.format(',.2f'), one: d3.format(',.1f'), int: d3.format(',.0f'),
+    pct1: d3.format('.1f'),
+  };
+  const nice = (v) => (v == null || Number.isNaN(v) ? '–' : v);
+
+  function fail(el, d) {
+    el.replaceChildren();
+    el.dataset.empty = 'true';
+    if (d.status === 'error') {
+      const p = document.createElement('div');
+      p.className = 'gsl-fail';
+      p.textContent = 'Failed to load';
+      el.appendChild(p);
+    } else {
+      el.textContent = '—';
+    }
+  }
+
+  function tip(el) {
+    const t = document.createElement('div');
+    t.className = 'gsl-tip';
+    t.hidden = true;
+    el.appendChild(t);
+    return {
+      show(x, y, title, lines) {
+        t.replaceChildren();
+        const h = document.createElement('div');
+        h.className = 'gsl-tip-h';
+        h.textContent = title;
+        t.appendChild(h);
+        for (const l of lines) {
+          const row = document.createElement('div');
+          row.className = 'gsl-tip-r';
+          if (l.color) {
+            const s = document.createElement('span');
+            s.className = 'gsl-sw';
+            s.style.background = l.color;
+            row.appendChild(s);
+          }
+          if (l.name) {
+            const n = document.createElement('span');
+            n.className = 'gsl-tip-n';
+            n.textContent = l.name;
+            row.appendChild(n);
+          }
+          const v = document.createElement('b');
+          v.textContent = l.value;
+          row.appendChild(v);
+          t.appendChild(row);
+        }
+        t.hidden = false;
+        const W = el.clientWidth, tw = t.offsetWidth, th = t.offsetHeight;
+        let left = x + 14;
+        if (left + tw > W) left = x - tw - 14;
+        if (left < 0) left = Math.max(0, W - tw);
+        let top = y - th - 10;
+        if (top < 0) top = y + 16;
+        t.style.left = left + 'px';
+        t.style.top = top + 'px';
+      },
+      hide() { t.hidden = true; },
+    };
+  }
+
+  function measure(svg, strings, cls) {
+    const g = svg.append('g').attr('class', cls).style('visibility', 'hidden');
+    let w = 0;
+    for (const s of strings) w = Math.max(w, g.append('text').attr('class', cls).text(s).node().getComputedTextLength());
+    g.remove();
+    return w;
+  }
+
+  function svgFor(el, W, H) {
+    return d3.select(el).append('svg').attr('class', 'gsl-svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  }
+
+  function yAxis(svg, y, ticks, x1, x2, f) {
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('class', 'gsl-grid-line')
+      .attr('x1', x1).attr('x2', x2).attr('y1', (d) => y(d)).attr('y2', (d) => y(d));
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'gsl-tick')
+      .attr('x', x1 - 8).attr('y', (d) => y(d)).attr('dy', '0.32em').attr('text-anchor', 'end').text(f);
+  }
+
+  function xAxis(svg, x, H, mb, count, f, tickValues) {
+    const ax = d3.axisBottom(x).tickSizeOuter(0).tickFormat(f);
+    if (tickValues) ax.tickValues(tickValues); else ax.ticks(count);
+    svg.append('g').attr('transform', `translate(0,${H - mb})`).call(ax)
+      .attr('font-size', null).attr('font-family', null)
+      .call((g) => {
+        g.select('.domain').attr('class', 'gsl-axis');
+        g.selectAll('.tick line').attr('class', 'gsl-axis');
+        g.selectAll('.tick text').attr('class', 'gsl-tick');
+      });
+  }
+
+  /* series: [{name, color, width, dash, points:[{x:Date, y}], label:boolean}] */
+  function lineChart(el, o) {
+    el.replaceChildren();
+    el.dataset.empty = String(!o.series.some((s) => s.points.length));
+    const H = o.height || 260;
+    const W = Math.max(280, el.clientWidth || 600);
+    const svg = svgFor(el, W, H);
+    const all = o.series.flatMap((s) => s.points);
+    const yMin = Math.min(0, d3.min(all, (d) => d.y) ?? 0);
+    const yMax = Math.max(0, d3.max(all, (d) => d.y) ?? 0) || (yMin < 0 ? 0 : 1);
+    const yd = d3.scaleLinear([yMin * 1.05, yMax * 1.05], [0, 1]).nice();
+    const ticks = yd.ticks(5);
+    const ml = measure(svg, ticks.map(o.yFmt), 'gsl-tick') + 12;
+    const labelled = o.series.filter((s) => s.label && s.points.length);
+    const texts = labelled.map((s) => `${s.name} ${o.yFmt(s.points[s.points.length - 1].y)}`);
+    const mr = labelled.length ? measure(svg, texts, 'gsl-endlabel') + 14 : 14;
+    const mt = 10, mb = 26;
+    const x = d3.scaleUtc(o.xDomain || d3.extent(all, (d) => d.x), [ml, W - mr]);
+    const y = d3.scaleLinear(yd.domain(), [H - mb, mt]);
+    yAxis(svg, y, ticks, ml, W - mr, o.yFmt);
+    xAxis(svg, x, H, mb, Math.max(2, Math.floor((W - ml - mr) / 90)), o.xFmt);
+    if (yMin < 0) svg.append('line').attr('class', 'gsl-axis').attr('x1', ml).attr('x2', W - mr).attr('y1', y(0)).attr('y2', y(0));
+    const line = d3.line().defined((d) => d.y != null).x((d) => x(d.x)).y((d) => y(d.y));
+    const order = [...o.series].sort((a, b) => (a.z || 0) - (b.z || 0));
+    svg.append('g').attr('class', 'gsl-draw-in').selectAll('path').data(order).join('path')
+      .style('fill', 'none').style('stroke', (s) => s.color).attr('stroke-width', (s) => s.width || 2)
+      .attr('stroke-dasharray', (s) => s.dash || null)
+      .attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', (s) => line(s.points));
+    // end labels, pushed apart
+    const ls = labelled.map((s, i) => {
+      const p = s.points[s.points.length - 1];
+      return { s, p, text: texts[i], yy: y(p.y) };
+    }).sort((a, b) => a.yy - b.yy);
+    for (let i = 1; i < ls.length; i++) if (ls[i].yy - ls[i - 1].yy < 14) ls[i].yy = ls[i - 1].yy + 14;
+    const over = ls.length ? ls[ls.length - 1].yy - (H - mb - 4) : 0;
+    if (over > 0) ls.forEach((l) => { l.yy -= over; });
+    svg.append('g').selectAll('text').data(ls).join('text').attr('class', 'gsl-endlabel')
+      .attr('x', W - mr + 6).attr('y', (l) => l.yy).attr('dy', '0.32em')
+      .style('fill', (l) => l.s.color).text((l) => l.text);
+    // hover
+    const idx = o.series.map((s) => s.points.map((p) => +p.x));
+    const xsAll = Array.from(new Set(all.map((d) => +d.x))).sort((a, b) => a - b);
+    const tt = tip(el);
+    const rule = svg.append('line').attr('class', 'gsl-rule').attr('y1', mt).attr('y2', H - mb).style('opacity', 0);
+    const dots = svg.append('g');
+    svg.append('rect').attr('x', ml).attr('y', mt).attr('width', Math.max(0, W - ml - mr)).attr('height', H - mt - mb)
+      .style('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px] = d3.pointer(ev);
+        const xt = xsAll[d3.bisectCenter(xsAll, +x.invert(px))];
+        const hits = [];
+        o.series.forEach((s, si) => {
+          if (o.tipOnly && !o.tipOnly(s)) return;
+          const i = d3.bisectCenter(idx[si], xt);
+          const p = s.points[i];
+          if (p && p.y != null && Math.abs(+p.x - xt) <= (o.tolerance || 40 * 60e3)) hits.push({ s, p });
+        });
+        hits.sort((a, b) => b.p.y - a.p.y);
+        rule.attr('x1', x(xt)).attr('x2', x(xt)).style('opacity', 1);
+        dots.selectAll('circle').data(hits).join('circle').attr('r', 3.5)
+          .attr('cx', (h) => x(h.p.x)).attr('cy', (h) => y(h.p.y)).style('fill', (h) => h.s.color);
+        const [ex, ey] = d3.pointer(ev, el);
+        const multi = o.series.length > 1;
+        tt.show(ex, ey, o.tipTitle(new Date(xt)), hits.slice(0, 10).map((h) => ({
+          color: multi ? h.s.color : null, name: multi ? h.s.name : '', value: `${o.yFmt(h.p.y)} ${o.unit || ''}`.trim(),
+        })));
+      })
+      .on('pointerleave', () => { rule.style('opacity', 0); dots.selectAll('*').remove(); tt.hide(); });
+  }
+
+  /* vertical bars: rows [{x:Date, y, tip:[...] , line}] */
+  function barChart(el, o) {
+    el.replaceChildren();
+    el.dataset.empty = String(!o.rows.length);
+    const H = o.height || 260;
+    const W = Math.max(280, el.clientWidth || 600);
+    const svg = svgFor(el, W, H);
+    const yMax = d3.max(o.rows, (d) => Math.max(d.y, d.line || 0)) || 1;
+    const yd = d3.scaleLinear([0, yMax * 1.05], [0, 1]).nice();
+    const ticks = yd.ticks(5);
+    const ml = measure(svg, ticks.map(o.yFmt), 'gsl-tick') + 12;
+    const mt = o.topLabels ? 22 : 10, mb = 26, mr = 8;
+    const x = d3.scaleBand(o.rows.map((d) => d.key), [ml, W - mr]).paddingInner(0.2).paddingOuter(0.1);
+    const y = d3.scaleLinear(yd.domain(), [H - mb, mt]);
+    yAxis(svg, y, ticks, ml, W - mr, o.yFmt);
+    const every = Math.max(1, Math.ceil(o.rows.length / Math.max(2, Math.floor((W - ml) / 70))));
+    const tv = o.rows.map((d) => d.key).filter((_, i) => i % every === 0);
+    xAxis(svg, x, H, mb, null, o.xFmt, tv);
+    const bw = Math.min(32, x.bandwidth());
+    const off = (x.bandwidth() - bw) / 2;
+    svg.append('g').attr('class', 'gsl-draw-in').selectAll('rect').data(o.rows).join('rect')
+      .attr('x', (d) => x(d.key) + off).attr('width', bw)
+      .attr('y', (d) => y(d.y)).attr('height', (d) => Math.max(0, y(0) - y(d.y)))
+      .attr('rx', Math.min(3, bw / 2)).style('fill', o.color);
+    if (o.rows.some((d) => d.line != null)) {
+      const ln = d3.line().defined((d) => d.line != null).x((d) => x(d.key) + x.bandwidth() / 2).y((d) => y(d.line));
+      svg.append('path').style('fill', 'none').style('stroke', o.lineColor).attr('stroke-width', 2)
+        .attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', ln(o.rows));
+    }
+    if (o.topLabels) {
+      const lbl = o.rows.map((d) => o.topLabels(d));
+      const lw = measure(svg, lbl, 'gsl-tick');
+      if (lw < x.bandwidth() + 6) {
+        svg.append('g').selectAll('text').data(o.rows).join('text').attr('class', 'gsl-tick')
+          .attr('text-anchor', 'middle').attr('x', (d) => x(d.key) + x.bandwidth() / 2)
+          .attr('y', (d) => y(d.y) - 5).text((d) => o.topLabels(d));
+      }
+    }
+    const tt = tip(el);
+    svg.append('g').selectAll('rect').data(o.rows).join('rect')
+      .attr('x', (d) => x(d.key)).attr('width', x.step()).attr('y', mt).attr('height', H - mt - mb)
+      .style('fill', 'transparent')
+      .on('pointermove', (ev, d) => {
+        const [ex, ey] = d3.pointer(ev, el);
+        tt.show(ex, ey, o.tipTitle(d), o.tipLines(d));
+      })
+      .on('pointerleave', () => tt.hide());
+  }
+
+  /* horizontal bars: rows [{label, value, color?}] */
+  function hbar(el, o) {
+    el.replaceChildren();
+    el.dataset.empty = String(!o.rows.length);
+    const rowH = 22, mt = 4, mb = 4;
+    const H = mt + mb + o.rows.length * rowH;
+    const W = Math.max(280, el.clientWidth || 500);
+    const svg = svgFor(el, W, H);
+    const ml = measure(svg, o.rows.map((r) => r.label), 'gsl-tick') + 10;
+    const mr = measure(svg, o.rows.map((r) => o.fmt(r.value)), 'gsl-tick') + 10;
+    const x = d3.scaleLinear([0, d3.max(o.rows, (r) => r.value) || 1], [ml, W - mr]);
+    const g = svg.append('g').selectAll('g').data(o.rows).join('g')
+      .attr('transform', (_, i) => `translate(0,${mt + i * rowH})`);
+    g.append('text').attr('class', 'gsl-tick').attr('x', ml - 8).attr('y', rowH / 2).attr('dy', '0.32em')
+      .attr('text-anchor', 'end').text((r) => r.label);
+    g.append('rect').attr('class', 'gsl-draw-in').attr('x', ml).attr('y', 3).attr('height', rowH - 6)
+      .attr('width', (r) => Math.max(0, x(r.value) - ml)).attr('rx', 3).style('fill', (r) => r.color || o.color);
+    g.append('text').attr('class', 'gsl-tick').attr('x', (r) => x(r.value) + 6).attr('y', rowH / 2)
+      .attr('dy', '0.32em').text((r) => o.fmt(r.value));
+    if (o.tipTitle) {
+      const tt = tip(el);
+      g.append('rect').attr('x', 0).attr('width', W).attr('height', rowH).style('fill', 'transparent')
+        .on('pointermove', (ev, r) => { const [ex, ey] = d3.pointer(ev, el); tt.show(ex, ey, o.tipTitle(r), o.tipLines(r)); })
+        .on('pointerleave', () => tt.hide());
+    }
+    el.style.minHeight = H + 'px';
+  }
+
+  function cell(tr, text, cls) {
+    const td = document.createElement('td');
+    if (cls) td.className = cls;
+    td.textContent = text;
+    tr.appendChild(td);
+  }
+
+  function value(el, id, field, f) {
+    const d = dash.data(id);
+    if (d.status !== 'ok' || !d.data.length || d.data[0][field] == null) { el.textContent = '—'; return; }
+    el.textContent = f ? f(d.data[0][field]) : d.data[0][field];
+  }
+
+  /* stacked areas: keys [{key, name, color}], rows [{x:Date, <key>: value}] (missing = 0) */
+  function stackChart(el, o) {
+    el.replaceChildren();
+    el.dataset.empty = String(!o.rows.length);
+    const H = o.height || 260;
+    const W = Math.max(280, el.clientWidth || 600);
+    const svg = svgFor(el, W, H);
+    const rows = o.rows;
+    const st = d3.stack().keys(o.keys.map((k) => k.key)).value((r, k) => Math.max(0, r[k] || 0))(rows);
+    const yMax = d3.max(st, (l) => d3.max(l, (p) => p[1])) || 1;
+    const yd = d3.scaleLinear([0, yMax * 1.05], [0, 1]).nice();
+    const ticks = yd.ticks(5);
+    const ml = measure(svg, ticks.map(o.yFmt), 'gsl-tick') + 12;
+    const mt = 10, mb = 26, mr = 12;
+    const x = d3.scaleUtc(d3.extent(rows, (r) => r.x), [ml, W - mr]);
+    const y = d3.scaleLinear(yd.domain(), [H - mb, mt]);
+    yAxis(svg, y, ticks, ml, W - mr, o.yFmt);
+    xAxis(svg, x, H, mb, Math.max(2, Math.floor((W - ml - mr) / 90)), o.xFmt);
+    const area = d3.area().x((p) => x(p.data.x)).y0((p) => y(p[0])).y1((p) => y(p[1]));
+    svg.append('g').attr('class', 'gsl-draw-in').selectAll('path').data(st).join('path')
+      .attr('d', area).style('fill', (l) => o.keys[l.index].color).attr('fill-opacity', 0.85)
+      .style('stroke', 'var(--color-panel)').attr('stroke-width', 0.5);
+    const xs = rows.map((r) => +r.x);
+    const tt = tip(el);
+    const rule = svg.append('line').attr('class', 'gsl-rule').attr('y1', mt).attr('y2', H - mb).style('opacity', 0);
+    svg.append('rect').attr('x', ml).attr('y', mt).attr('width', Math.max(0, W - ml - mr)).attr('height', H - mt - mb)
+      .style('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px] = d3.pointer(ev);
+        const i = d3.bisectCenter(xs, +x.invert(px));
+        const r = rows[i];
+        if (!r) return;
+        rule.attr('x1', x(r.x)).attr('x2', x(r.x)).style('opacity', 1);
+        const total = o.keys.reduce((a, k) => a + Math.max(0, r[k.key] || 0), 0);
+        const [ex, ey] = d3.pointer(ev, el);
+        const lines = [...o.keys].reverse().filter((k) => (r[k.key] || 0) > 0)
+          .map((k) => ({ color: k.color, name: k.name, value: `${o.yFmt(r[k.key])} ${o.unit || ''}`.trim() }));
+        lines.push({ name: 'Total', value: `${o.yFmt(total)} ${o.unit || ''}`.trim() });
+        tt.show(ex, ey, o.tipTitle(r.x), lines);
+      })
+      .on('pointerleave', () => { rule.style('opacity', 0); tt.hide(); });
+  }
+
+  /* signed horizontal bars around zero: rows [{label, value, color?}] */
+  function divBar(el, o) {
+    el.replaceChildren();
+    el.dataset.empty = String(!o.rows.length);
+    const rowH = 22, mt = 4, mb = 4;
+    const H = mt + mb + o.rows.length * rowH;
+    const W = Math.max(280, el.clientWidth || 500);
+    const svg = svgFor(el, W, H);
+    const ml = measure(svg, o.rows.map((r) => r.label), 'gsl-tick') + 10;
+    const lw = measure(svg, o.rows.map((r) => o.fmt(r.value)), 'gsl-tick') + 10;
+    const lo = Math.min(0, d3.min(o.rows, (r) => r.value) || 0), hi = Math.max(0, d3.max(o.rows, (r) => r.value) || 0);
+    const x = d3.scaleLinear([lo, hi || 1], [ml + (lo < 0 ? lw : 0), W - lw]);
+    svg.append('line').attr('class', 'gsl-axis').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', H);
+    const g = svg.append('g').selectAll('g').data(o.rows).join('g').attr('transform', (_, i) => `translate(0,${mt + i * rowH})`);
+    g.append('text').attr('class', 'gsl-tick').attr('x', ml - 8).attr('y', rowH / 2).attr('dy', '0.32em').attr('text-anchor', 'end').text((r) => r.label);
+    g.append('rect').attr('class', 'gsl-draw-in').attr('x', (r) => Math.min(x(0), x(r.value))).attr('y', 3).attr('height', rowH - 6)
+      .attr('width', (r) => Math.abs(x(r.value) - x(0))).attr('rx', 3).style('fill', (r) => r.color || (r.value >= 0 ? o.pos : o.neg));
+    g.append('text').attr('class', 'gsl-tick').attr('x', (r) => (r.value >= 0 ? x(r.value) + 6 : x(r.value) - 6)).attr('y', rowH / 2)
+      .attr('dy', '0.32em').attr('text-anchor', (r) => (r.value >= 0 ? 'start' : 'end')).text((r) => o.fmt(r.value));
+    if (o.tipTitle) {
+      const tt = tip(el);
+      g.append('rect').attr('x', 0).attr('width', W).attr('height', rowH).style('fill', 'transparent')
+        .on('pointermove', (ev, r) => { const [ex, ey] = d3.pointer(ev, el); tt.show(ex, ey, o.tipTitle(r), o.tipLines(r)); })
+        .on('pointerleave', () => tt.hide());
+    }
+    el.style.minHeight = H + 'px';
+  }
+
+  /* a number that keeps counting: rows of id need today_mwh, rate_mw and latest_time; it adds energy at the
+     latest rate since that reading (for at most 90 minutes) so the figure moves between readings */
+  function counter(name, id) {
+    dash.draw(name, {
+      mount() { const made = {}; made.timer = setInterval(() => made.tick && made.tick(), 250); return made; },
+      update(el, made) {
+        const d = dash.data(id);
+        const r = d.status === 'ok' ? d.data[0] : null;
+        if (!r || r.today_mwh == null) { made.tick = null; el.textContent = '—'; return; }
+        made.tick = () => {
+          const since = Math.min(90 * 60e3, Math.max(0, Date.now() - Date.parse(r.latest_time)));
+          const mwh = r.today_mwh + (Math.max(0, r.rate_mw) * since) / 3600e3;
+          const big = mwh >= 100000;
+          el.textContent = d3.format(big ? ',.2f' : ',.1f')(big ? mwh / 1000 : mwh);
+          const small = document.createElement('small');
+          small.textContent = big ? 'GWh' : 'MWh';
+          el.append(small);
+        };
+        made.tick();
+      },
+      unmount(el, made) { if (made) clearInterval(made.timer); },
+    });
+  }
+
+  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar, counter };
+})();
+</script>
+<script>
+/* Tabs: they listen and set state only. */
+(() => {
+  const tabs = document.querySelectorAll('.gsl-tab');
+  const pages = document.querySelectorAll('.gsl-page');
+  const show = (id) => {
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
+    pages.forEach((p) => { p.hidden = p.dataset.page !== id; });
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => { show(t.dataset.tab); dash.setLink(t.dataset.tab); }));
+  const named = location.hash.slice(1);
+  if ([...pages].some((p) => p.dataset.page === named)) show(named);
+  document.querySelectorAll('.gsl-seg[data-param]').forEach((b) => {
+    b.addEventListener('click', () => dash.setParams({ [b.dataset.param]: b.dataset.value }));
+  });
+  dash.onData(() => {
+    const p = dash.params();
+    document.querySelectorAll('.gsl-seg[data-param]').forEach((b) => {
+      const cur = p[b.dataset.param] ?? b.closest('[data-default]')?.dataset.default;
+      b.setAttribute('aria-pressed', String(cur === b.dataset.value));
+    });
+  });
+})();
+</script>
+
+<script>
+/* Calculations */
+dash.calc('bat_stats', {
+  title: 'Batteries by grid',
+  description: 'Latest net reading (regions added at their own latest), highest discharge and charge, and energy out and in over the last 24 hours, per grid; a grid more than six hours behind the newest has no figure now.',
+  inputs: ['battery_live'],
+  fn: (battery_live) => {
+    const by = {};
+    battery_live.forEach((d) => {
+      const g = (by[d.grid] = by[d.grid] || { group: d.group, regions: {} });
+      (g.regions[d.region || ''] = g.regions[d.region || ''] || []).push({ t: Date.parse(d.time), mw: +d.mw });
+    });
+    const newest = Math.max(...battery_live.map((d) => Date.parse(d.time)));
+    return Object.entries(by).map(([grid, g]) => {
+      let now = 0, latest = 0, dis = 0, chg = 0;
+      const at = {};
+      Object.values(g.regions).forEach((rows) => {
+        rows.sort((a, b) => a.t - b.t);
+        const last = rows[rows.length - 1];
+        now += last.mw;
+        latest = Math.max(latest, last.t);
+        rows.forEach((d, i) => {
+          if (d.t <= last.t - 24 * 3600e3) return;
+          const gap = i > 0 ? Math.min(3600e3, d.t - rows[i - 1].t) : 3600e3;
+          if (d.mw > 0) dis += d.mw * gap / 3600e3; else chg -= d.mw * gap / 3600e3;
+          at[d.t] = (at[d.t] || 0) + d.mw;
+        });
+      });
+      const stale = latest < newest - 6 * 3600e3;
+      const vals = Object.values(at);
+      return {
+        grid, group: g.group, latest_time: new Date(latest).toISOString(), stale,
+        now_mw: stale ? null : Math.round(now), now_gw: stale ? null : Math.round(now / 10) / 100,
+        peak_dis_mw: Math.round(Math.max(0, ...vals)), peak_dis_gw: Math.round(Math.max(0, ...vals) / 10) / 100, peak_chg_mw: Math.round(Math.min(0, ...vals)),
+        dis24_gwh: Math.round(dis / 100) / 10, chg24_gwh: Math.round(chg / 100) / 10,
+      };
+    }).sort((a, b) => (b.dis24_gwh + b.chg24_gwh) - (a.dis24_gwh + a.chg24_gwh));
+  },
+});
+
+dash.calc('bat_total', {
+  title: 'Batteries now, by region of the world',
+  description: 'Discharging and charging at the latest readings, and 24-hour energy out and in, added up per group of grids and for all of them.',
+  inputs: ['bat_stats'],
+  fn: (bat_stats) => ['All', 'Europe', 'Americas', 'Asia-Pacific'].map((group) => {
+    const rows = bat_stats.filter((d) => (group === 'All' || d.group === group) && d.now_mw != null);
+    const r2 = (x) => Math.round(x / 10) / 100;
+    if (!rows.length) return { group, grids: null, discharging_gw: null, charging_gw: null, dis24_gwh: null, chg24_gwh: null };
+    return {
+      group, grids: rows.length,
+      discharging_gw: r2(rows.reduce((s, d) => s + Math.max(0, d.now_mw), 0)), charging_gw: r2(rows.reduce((s, d) => s + Math.min(0, d.now_mw), 0)),
+      dis24_gwh: Math.round(rows.reduce((s, d) => s + d.dis24_gwh, 0) * 10) / 10, chg24_gwh: Math.round(rows.reduce((s, d) => s + d.chg24_gwh, 0) * 10) / 10,
+    };
+  }),
+});
+
+dash.calc('bat_clock', {
+  title: 'Batteries by hour of day',
+  description: 'For each grid, average discharging and charging MW in each local hour of the day over the last two days.',
+  inputs: ['gb_battery', 'battery_live'],
+  fn: (gb_battery, battery_live) => {
+    const TZ = { 'Great Britain': 'Europe/London', California: 'America/Los_Angeles', 'Australia (NEM)': 'Australia/Brisbane' };
+    const hourOf = {};
+    Object.entries(TZ).forEach(([g, tz]) => { hourOf[g] = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hourCycle: 'h23' }); });
+    const acc = {};
+    const add = (grid, time, dis, chg, w) => {
+      const h = +hourOf[grid].format(new Date(time));
+      const a = ((acc[grid] = acc[grid] || {})[h] = acc[grid][h] || { dis: 0, chg: 0, n: 0 });
+      a.dis += dis * w; a.chg += chg * w; a.n += w;
+    };
+    gb_battery.forEach((r) => add('Great Britain', r.time, +r.discharge_mw, +r.charge_mw, 1));
+    // other grids: net readings, split into the discharging and charging parts; regions added at each time first
+    const net = {};
+    battery_live.filter((r) => TZ[r.grid] && r.grid !== 'Great Britain').forEach((r) => { const k = `${r.grid}|${r.time}`; net[k] = (net[k] || 0) + (+r.mw); });
+    Object.entries(net).forEach(([k, mw]) => { const [grid, time] = k.split('|'); add(grid, time, Math.max(0, mw), Math.min(0, mw), 1); });
+    const out = [];
+    Object.entries(acc).forEach(([grid, hours]) => {
+      if (Object.keys(hours).length < 20) return;
+      for (let h = 0; h < 24; h += 1) {
+        const a = hours[h];
+        out.push({ grid, hour: h, dis_mw: a ? Math.round(a.dis / a.n) : null, chg_mw: a ? Math.round(a.chg / a.n) : null });
+      }
+    });
+    return out;
+  },
+});
+
+dash.calc('gb_bat_summary', {
+  title: 'GB batteries headline',
+  description: 'Latest half hour of the GB battery estimate, the 24-hour peak discharge and energy, and the number and capacity of units counted.',
+  inputs: ['gb_battery'],
+  fn: (gb_battery) => {
+    const r = [...gb_battery].sort((a, b) => (a.time < b.time ? -1 : 1));
+    const last = r[r.length - 1];
+    const day = r.filter((d) => Date.parse(d.time) > Date.parse(last.time) - 24 * 3600e3);
+    const pk = day.reduce((m, d) => (d.discharge_mw > m.discharge_mw ? d : m), day[0]);
+    const g = (x) => Math.round(x / 10) / 100;
+    return [{
+      latest_time: last.time, net_now_gw: g(last.net_mw), discharge_now_gw: g(last.discharge_mw), charge_now_gw: g(last.charge_mw),
+      peak_dis_gw: g(pk.discharge_mw), peak_dis_time: pk.time,
+      dis24_gwh: Math.round(day.reduce((s, d) => s + d.discharge_mw * 0.5, 0) / 100) / 10, chg24_gwh: Math.round(day.reduce((s, d) => s - d.charge_mw * 0.5, 0) / 100) / 10,
+      fleet_units: last.fleet_units, fleet_gw: Math.round(last.fleet_mw / 100) / 10,
+    }];
+  },
+});
+
+dash.calc('aus_bat_store', {
+  title: 'NEM battery energy stored',
+  description: 'Energy held in NEM batteries at the latest dispatch half hour, added over regions.',
+  inputs: ['battery_live'],
+  fn: (battery_live) => {
+    const rows = battery_live.filter((d) => d.grid === 'Australia (NEM)' && d.energy_mwh != null);
+    const last = rows.map((d) => d.time).sort().slice(-1)[0];
+    return [{ latest_time: last || null, stored_gwh: last ? Math.round(rows.filter((d) => d.time === last).reduce((s, d) => s + d.energy_mwh, 0) / 100) / 10 : null }];
+  },
+});
+</script>
+
+<script>
+/* Drawings */
+(() => {
+  const G = window.GSL;
+  const gc = (g) => ({ Europe: dash.colors[0], Americas: dash.colors[1], 'Asia-Pacific': dash.colors[2] }[g] || dash.colors[3]);
+  const signed = (x) => `${x > 0 ? '+' : ''}${G.fmt.gw(x)}`;
+  const v = (name, id, field, f, where) => dash.draw(name, (el) => {
+    if (!where) return G.value(el, id, field, f);
+    const d = dash.data(id);
+    const r = d.status === 'ok' ? d.data.find((x) => x[where[0]] === where[1]) : null;
+    el.textContent = r && r[field] != null ? f(r[field]) : '—';
+  });
+  v('b-dis', 'bat_total', 'discharging_gw', G.fmt.gw, ['group', 'All']);
+  v('b-chg', 'bat_total', 'charging_gw', (x) => G.fmt.gw(Math.abs(x)), ['group', 'All']);
+  v('b-n', 'bat_total', 'grids', String, ['group', 'All']);
+  v('t-24', 'bat_total', 'dis24_gwh', G.fmt.one, ['group', 'All']);
+  v('t-24c', 'bat_total', 'chg24_gwh', G.fmt.one, ['group', 'All']);
+  v('t-gb', 'gb_bat_summary', 'net_now_gw', signed);
+  v('t-gb-units', 'gb_bat_summary', 'fleet_units', String);
+  v('t-gb-fleet', 'gb_bat_summary', 'fleet_gw', G.fmt.one);
+  v('t-ca', 'bat_stats', 'now_gw', signed, ['grid', 'California']);
+  v('t-ca-pk', 'bat_stats', 'peak_dis_gw', G.fmt.gw, ['grid', 'California']);
+  v('t-au', 'bat_stats', 'now_gw', signed, ['grid', 'Australia (NEM)']);
+  v('t-au-st', 'aus_bat_store', 'stored_gwh', G.fmt.one);
+  v('gb-dis', 'gb_bat_summary', 'discharge_now_gw', G.fmt.gw);
+  v('gb-chg', 'gb_bat_summary', 'charge_now_gw', (x) => G.fmt.gw(Math.abs(x)));
+  v('gb-pk', 'gb_bat_summary', 'peak_dis_gw', G.fmt.gw);
+  v('gb-pk-t', 'gb_bat_summary', 'peak_dis_time', (t) => d3.utcFormat('%a %H:%M UTC')(new Date(t)));
+  v('gb-24', 'gb_bat_summary', 'dis24_gwh', G.fmt.one);
+  v('gb-24c', 'gb_bat_summary', 'chg24_gwh', G.fmt.one);
+
+  dash.draw('b-now-bars', (el) => {
+    const d = dash.data('bat_stats');
+    if (d.status !== 'ok') return G.fail(el, d);
+    G.divBar(el, {
+      rows: d.data.filter((r) => r.now_mw != null).sort((a, b) => b.now_mw - a.now_mw).map((r) => ({ label: r.grid, value: r.now_mw / 1000, r })),
+      pos: 'var(--color-ok)', neg: 'var(--color-warn)', fmt: (x) => `${signed(x)} GW`,
+      tipTitle: (r) => r.label, tipLines: (r) => [{ name: r.r.now_mw >= 0 ? 'Discharging' : 'Charging', value: `${G.fmt.int(Math.abs(r.r.now_mw))} MW` }, { name: 'At', value: d3.utcFormat('%-d %b %H:%M UTC')(new Date(r.r.latest_time)) }],
+    });
+  });
+  dash.draw('bat-clock', (el) => {
+    const d = dash.data('bat_clock');
+    if (d.status !== 'ok' || !d.data.length) return G.fail(el, d);
+    el.replaceChildren();
+    const grids = [...new Set(d.data.map((r) => r.grid))];
+    const W = Math.max(300, el.clientWidth || 800);
+    const per = Math.min(340, Math.max(220, W / grids.length));
+    const cols = Math.max(1, Math.min(grids.length, Math.floor(W / per)));
+    const size = W / cols;
+    const rowsN = Math.ceil(grids.length / cols);
+    const H = rowsN * (size + 24);
+    const svg = d3.select(el).append('svg').attr('class', 'gsl-svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const tt = G.tip(el);
+    const fmt = (mw) => (Math.abs(mw) >= 1000 ? `${G.fmt.gw(mw / 1000)} GW` : `${G.fmt.int(mw)} MW`);
+    grids.forEach((grid, gi) => {
+      const rows = d.data.filter((r) => r.grid === grid);
+      const cx = (gi % cols) * size + size / 2;
+      const cy = Math.floor(gi / cols) * (size + 24) + size / 2 + 4;
+      const R = size / 2 - 22;
+      const r0 = R * 0.5;
+      const max = Math.max(1, d3.max(rows, (r) => Math.max(r.dis_mw || 0, -(r.chg_mw || 0))));
+      const out = d3.scaleLinear([0, max], [r0, R]);
+      const inn = d3.scaleLinear([0, max], [r0, r0 * 0.25]);
+      const g = svg.append('g').attr('transform', `translate(${cx},${cy})`);
+      const step = (2 * Math.PI) / 24;
+      g.append('circle').attr('r', r0).style('fill', 'none').style('stroke', 'var(--color-border-line)');
+      [0, 6, 12, 18].forEach((h) => {
+        const ang = h * step;
+        g.append('text').attr('class', 'gsl-tick').attr('x', Math.sin(ang) * (R + 12)).attr('y', -Math.cos(ang) * (R + 12)).attr('dy', '0.32em').attr('text-anchor', 'middle').text(`${String(h).padStart(2, '0')}:00`);
+      });
+      const arc = d3.arc().padAngle(0.02);
+      rows.forEach((r) => {
+        const a0 = r.hour * step, a1 = (r.hour + 1) * step;
+        if (r.dis_mw > 0) g.append('path').attr('class', 'gsl-draw-in').attr('d', arc({ innerRadius: r0, outerRadius: out(r.dis_mw), startAngle: a0, endAngle: a1 })).style('fill', 'var(--color-ok)');
+        if (r.chg_mw < 0) g.append('path').attr('class', 'gsl-draw-in').attr('d', arc({ innerRadius: inn(-r.chg_mw), outerRadius: r0, startAngle: a0, endAngle: a1 })).style('fill', 'var(--color-warn)');
+        g.append('path').attr('d', arc({ innerRadius: r0 * 0.2, outerRadius: R, startAngle: a0, endAngle: a1 })).style('fill', 'transparent')
+          .on('pointermove', (ev) => {
+            const [ex, ey] = d3.pointer(ev, el);
+            tt.show(ex, ey, `${grid}, ${String(r.hour).padStart(2, '0')}:00 to ${String((r.hour + 1) % 24).padStart(2, '0')}:00 local`, [
+              { color: 'var(--color-ok)', name: 'Discharging', value: r.dis_mw == null ? '–' : fmt(r.dis_mw) },
+              { color: 'var(--color-warn)', name: 'Charging', value: r.chg_mw == null ? '–' : fmt(-r.chg_mw) },
+            ]);
+          })
+          .on('pointerleave', () => tt.hide());
+      });
+      const peak = rows.reduce((m, r) => ((r.dis_mw || 0) > (m.dis_mw || 0) ? r : m), rows[0]);
+      g.append('text').attr('text-anchor', 'middle').attr('y', -4).style('fill', 'var(--color-fg)').style('font-weight', 600).text(grid);
+      g.append('text').attr('class', 'gsl-tick').attr('text-anchor', 'middle').attr('y', 12).text(`peak ${fmt(peak.dis_mw || 0)} at ${String(peak.hour).padStart(2, '0')}:00`);
+    });
+  });
+
+  const lines = (el, rows, keyOf, unitDiv, unit) => {
+    const by = d3.group(rows, keyOf);
+    const order = [...by].map(([k, rs]) => [k, d3.sum(rs, (r) => Math.abs(+r.mw))]).sort((a, b) => b[1] - a[1]).map((x) => x[0]);
+    const series = [...by].map(([name, rs]) => {
+      const i = order.indexOf(name);
+      return { name, z: 10 - i, label: i < 6, color: i < 6 ? dash.colors[i] : 'var(--cds-chart-muted)', width: i < 6 ? 2 : 1,
+        points: rs.map((r) => ({ x: new Date(r.time), y: r.mw / unitDiv })).sort((a, b) => a.x - b.x) };
+    });
+    G.lineChart(el, { series, unit, yFmt: d3.format(unitDiv > 1 ? ',.1f' : ',.0f'), xFmt: d3.utcFormat('%a %H:%M'), tolerance: 90 * 60e3, tipTitle: (x) => d3.utcFormat('%a %-d %b %H:%M UTC')(x) });
+  };
+  const grid = (name, g, byRegion, unitDiv, unit) => dash.draw(name, (el) => {
+    const d = dash.data('battery_live');
+    if (d.status !== 'ok') return G.fail(el, d);
+    lines(el, d.data.filter((r) => r.grid === g), (r) => (byRegion ? r.region || g : g), unitDiv, unit);
+  });
+  grid('ca-lines', 'California', false, 1000, 'GW');
+  grid('ne-lines', 'New England', false, 1, 'MW');
+  grid('ab-lines', 'Alberta', false, 1, 'MW');
+  grid('au-lines', 'Australia (NEM)', true, 1000, 'GW');
+  grid('jp-lines', 'Japan', true, 1, 'MW');
+  grid('kr-lines', 'South Korea', false, 1, 'MW');
+  dash.draw('eu-lines', (el) => {
+    const d = dash.data('battery_live');
+    if (d.status !== 'ok') return G.fail(el, d);
+    lines(el, d.data.filter((r) => r.group === 'Europe' && r.grid !== 'Great Britain'), (r) => r.grid, 1000, 'GW');
+  });
+
+  dash.draw('gb-lines', (el) => {
+    const d = dash.data('gb_battery');
+    if (d.status !== 'ok') return G.fail(el, d);
+    const pts = (k) => d.data.map((r) => ({ x: new Date(r.time), y: r[k] / 1000 })).sort((a, b) => a.x - b.x);
+    G.lineChart(el, {
+      series: [
+        { name: 'Discharging', color: 'var(--color-ok)', width: 1.5, points: pts('discharge_mw') },
+        { name: 'Charging', color: 'var(--color-warn)', width: 1.5, points: pts('charge_mw') },
+        { name: 'Net', color: 'var(--color-fg)', width: 2, z: 5, points: pts('net_mw') },
+      ],
+      unit: 'GW', yFmt: d3.format(',.1f'), xFmt: d3.utcFormat('%a %H:%M'), tolerance: 20 * 60e3, tipTitle: (x) => d3.utcFormat('%a %-d %b %H:%M UTC')(x),
+    });
+  });
+
+  dash.draw('b-tbody', (tb) => {
+    const d = dash.data('bat_stats');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    d.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.grid;
+      G.cell(tr, r.grid);
+      G.cell(tr, r.now_mw == null ? 'stale' : G.fmt.int(r.now_mw), 'num');
+      G.cell(tr, G.fmt.int(r.peak_dis_mw), 'num'); G.cell(tr, G.fmt.int(r.peak_chg_mw), 'num');
+      G.cell(tr, G.fmt.one(r.dis24_gwh), 'num'); G.cell(tr, G.fmt.one(r.chg24_gwh), 'num');
+      tb.appendChild(tr);
+    });
+  });
+})();
+</script>
+<section class="live-section" id="questions">
+<h2>Questions</h2>
+<h3>How is the Great Britain figure worked out?</h3><p>No one publishes a live total for GB batteries. We add up the physical notifications of battery units in the Balancing Mechanism, the plan each unit sends to the system operator an hour ahead, from Elexon&#x27;s data. It is an estimate: instructions after that hour change what actually happens, and smaller batteries outside the Balancing Mechanism are not counted.</p><h3>Why do batteries charge in the middle of the day?</h3><p>Where there is a lot of solar, power is cheapest around midday. Batteries charge then and discharge into the evening peak, when solar fades and demand rises. California shows the pattern clearly.</p><h3>Why do batteries take in more than they give back?</h3><p>Every charge and discharge loses some energy as heat, so over a day the energy charged runs a little above the energy discharged.</p>
+</section>
+<section class="live-section live-credits" id="sources">
+<h2>Sources and credits</h2>
+<div data-live-credits><p class="live-note">Loading the source list…</p></div>
+<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
+</section>
+</div>
+</div>
+</main>
+
+<!-- partial:footer {"back_href": "live.html", "back_text": "← ALL LIVE DASHBOARDS"} -->
+  <footer class="ah-footer"><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← ALL LIVE DASHBOARDS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+<!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
+<script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
+</body>
+</html>
