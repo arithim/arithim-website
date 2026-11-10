@@ -1075,7 +1075,7 @@ html:has(.sf) { scroll-behavior: smooth; }
 
 /* ---- 9. Header product menu, product cards and page hero (generated pages) ---- */
 .ah-nav-item { position: relative; display: inline-flex; }
-.ah-menu { position: absolute; top: 100%; left: 0; z-index: 60; display: none; min-width: 280px; max-width: 380px; padding: var(--ah-s-12); background: var(--ah-card); border: 1px solid var(--ah-cream-10); border-radius: var(--ah-r-16); box-shadow: var(--ah-shadow-05c7c7); }
+.ah-menu { position: absolute; top: 100%; left: 0; z-index: 60; display: none; max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); overflow-y: auto; overscroll-behavior: contain; min-width: 280px; max-width: 380px; padding: var(--ah-s-12); background: var(--ah-card); border: 1px solid var(--ah-cream-10); border-radius: var(--ah-r-16); box-shadow: var(--ah-shadow-05c7c7); }
 .ah-nav-item:hover > .ah-menu, .ah-nav-item:focus-within > .ah-menu { display: block; }
 .ah-menu-group + .ah-menu-group { margin-top: var(--ah-s-10); padding-top: var(--ah-s-10); border-top: 1px solid var(--ah-cream-08); }
 .ah-menu-title { padding: var(--ah-s-4) var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ah-text-4); }
@@ -1160,6 +1160,14 @@ html:not([data-mode="light"]) .ah-ico-moon { display: none; }
   .ah-globe-in { grid-template-columns: minmax(0, 1fr); padding: 0 var(--ah-s-20); gap: var(--ah-s-24); }
   .ah-globe h2.ah-globe-h { font-size: var(--ah-fs-29); }
 }
+
+/* home page link to the live dashboards */
+.ah-live-strip { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ah-s-8) var(--ah-s-16); max-width: var(--ah-w-max, 1200px); margin: 0 auto var(--ah-s-40); padding: var(--ah-s-16) var(--ah-s-20); border: 1px solid var(--ah-rule-faint); border-radius: var(--ah-r-16, 16px); background: var(--ah-card); color: var(--ah-text-2); }
+.ah-live-strip:hover { border-color: var(--ah-amber); }
+.ah-live-dot { width: 9px; height: 9px; border-radius: 50%; background: #6FA884; box-shadow: 0 0 0 4px rgba(111, 168, 132, 0.2); }
+.ah-live-tag { font-family: var(--ah-font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ah-amber); }
+.ah-live-text { flex: 1 1 260px; font-size: 15px; }
+.ah-live-go { font-family: var(--ah-font-mono); font-size: 13px; color: var(--ah-cream); }
 
 /* ---- live energy dashboards (live*.html, built by tools/build_live.py) ---- */
 /* Live energy dashboards on arithim.com.

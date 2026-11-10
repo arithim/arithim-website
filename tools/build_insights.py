@@ -59,6 +59,7 @@ NAV_LINKS = (
     ("case-studies.html", "Case Studies"),
     ("research.html", "Research"),
     ("insights.html", "Insights"),
+    ("live.html", "Live data"),
     ("about.html", "About"),
 )
 HEADER_CTAS = ("talk", "contact", "demo")
