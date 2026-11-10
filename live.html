@@ -26,11 +26,10 @@
 <link rel="stylesheet" href="/site.css?v=7">
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/live/live.css?v=f6a46bda">
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
 <script src="/assets/live/live-dash.js?v=ce793faf"></script>
 </head>
-<body>
+<body class="live-page">
 <x-dc>
 
 <div class="ah-page">
@@ -178,5 +177,7 @@
 <!-- /partial:footer -->
 
 </div>
+<!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
+<script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>
 </html>

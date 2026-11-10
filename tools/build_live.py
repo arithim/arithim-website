@@ -5,7 +5,8 @@ The dashboard pages are written in ~/code/global-solar-live/solar-dashboard/page
 solar one; wind.html, battery.html and renewables.html are built there by build_pages.py). This script:
   - drops every element marked data-private (the coverage tab, the private source notes);
   - wraps each dashboard in the site's layout with the head, header and footer partial markers;
-  - loads d3 and assets/live/live-dash.js, which stands in for the artifact's data layer and reads
+  - loads d3 and assets/live/live-dash.js (its styles are the live section of site.css, scoped to
+    .live-wrap and body.live-page, because site.css is the only stylesheet the site allows), which stands in for the artifact's data layer and reads
     /live/data/<id>.json (served from R2 by functions/live/data/[name].js);
   - adds a question-style title, a short Q&A and a credits block filled from /live/data/credits.json.
 Then run tools/build_insights.py to stamp the partials and refresh the sitemap.
@@ -120,11 +121,10 @@ def head(p: dict, ld: dict) -> str:
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <!-- partial:head -->
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/live/live.css?v={ver('assets/live/live.css')}">
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
 <script src="/assets/live/live-dash.js?v={ver('assets/live/live-dash.js')}"></script>
 </head>
-<body>
+<body class="live-page">
 <x-dc>
 
 <div class="ah-page">
@@ -162,6 +162,8 @@ def tail() -> str:
 <!-- /partial:footer -->
 
 </div>
+<!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
+<script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>
 </html>
 """
