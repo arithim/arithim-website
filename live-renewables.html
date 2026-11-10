@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/site.css?v=7">
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/live/live.css?v=652f6f6c">
+<link rel="stylesheet" href="/assets/live/live.css?v=f6a46bda">
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
 <script src="/assets/live/live-dash.js?v=ce793faf"></script>
 </head>
@@ -230,6 +230,14 @@
   .gsl-svg .gsl-draw-in { animation: gsl-fade var(--cds-dur-slow) var(--cds-ease-out); }
   @keyframes gsl-fade { from { opacity: 0; } to { opacity: 1; } }
 }
+.gsl-counter-card { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.gsl-counter-card p { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.gsl-counter { font-family: var(--font-anthropic-serif); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.gsl-counter small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 6px; }
+.gsl-replay-bar { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--cds-gap-sm); flex-wrap: wrap; }
+.gsl-replay-bar button { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.gsl-replay-bar input[type=range] { flex: 1 1 160px; accent-color: #E8A13C; }
+.gsl-replay-bar output { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 11em; font-variant-numeric: tabular-nums; }
 
 .gsl-key { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
 .gsl-key span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--k); }
@@ -249,6 +257,11 @@
   </div>
 
   <div class="gsl-grid">
+    <div class="gsl-card wide gsl-counter-card" id="gb-renew-counter-card">
+      <p>Great Britain has generated</p>
+      <span class="gsl-counter" data-draw="gb-renew-counter" data-source="gb_renew_today">—</span>
+      <p>of renewable electricity so far today, <b data-draw="gb-renew-share" data-source="gb_renew_today" data-field="share_pct" data-row="0">—</b>% of what it has generated, and is producing <b data-draw="gb-renew-rate" data-source="gb_renew_today" data-field="rate_gw" data-row="0">—</b> GW of it now.</p>
+    </div>
     <div class="gsl-card wide" id="grid-now">
       <h3>Renewables in the latest hour, by grid</h3>
       <p class="gsl-sub">GW by source. Grids with the whole mix published show renewables' share of generation beside the bar; elsewhere only solar and wind are live.</p>
@@ -714,7 +727,31 @@ window.GSL = (() => {
     el.style.minHeight = H + 'px';
   }
 
-  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar };
+  /* a number that keeps counting: rows of id need today_mwh, rate_mw and latest_time; it adds energy at the
+     latest rate since that reading (for at most 90 minutes) so the figure moves between readings */
+  function counter(name, id) {
+    dash.draw(name, {
+      mount() { const made = {}; made.timer = setInterval(() => made.tick && made.tick(), 250); return made; },
+      update(el, made) {
+        const d = dash.data(id);
+        const r = d.status === 'ok' ? d.data[0] : null;
+        if (!r || r.today_mwh == null) { made.tick = null; el.textContent = '—'; return; }
+        made.tick = () => {
+          const since = Math.min(90 * 60e3, Math.max(0, Date.now() - Date.parse(r.latest_time)));
+          const mwh = r.today_mwh + (Math.max(0, r.rate_mw) * since) / 3600e3;
+          const big = mwh >= 100000;
+          el.textContent = d3.format(big ? ',.2f' : ',.1f')(big ? mwh / 1000 : mwh);
+          const small = document.createElement('small');
+          small.textContent = big ? 'GWh' : 'MWh';
+          el.append(small);
+        };
+        made.tick();
+      },
+      unmount(el, made) { if (made) clearInterval(made.timer); },
+    });
+  }
+
+  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar, counter };
 })();
 </script>
 <script>
@@ -788,6 +825,26 @@ dash.calc('rn_now', {
         share_pct: total ? Math.round((r / total) * 1000) / 10 : null,
       };
     }).sort((a, b) => b.renew_mw - a.renew_mw);
+  },
+});
+
+dash.calc('gb_renew_today', {
+  title: 'GB renewables generated today',
+  description: 'Solar, wind, hydro, bioenergy and other renewable energy in Great Britain since midnight UK time, from the hourly rows with the whole mix, with their share of generation and the latest output.',
+  inputs: ['renew_live'],
+  fn: (renew_live) => {
+    const ren = ['solar', 'wind', 'hydro', 'bioenergy', 'other_renewables'];
+    const all = [...ren, 'fossil', 'nuclear', 'other'];
+    const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' });
+    const rows = renew_live.filter((r) => r.grid === 'Great Britain' && r.fossil != null).sort((a, b) => (a.time < b.time ? -1 : 1));
+    if (!rows.length) return [];
+    const last = rows[rows.length - 1];
+    const today = rows.filter((r) => day.format(new Date(r.time)) === day.format(new Date(last.time)));
+    const sum = (r, ks) => ks.reduce((s, k) => s + (r[k] || 0), 0);
+    const renMwh = today.reduce((s, r) => s + sum(r, ren), 0);
+    const allMwh = today.reduce((s, r) => s + sum(r, all), 0);
+    return [{ day: day.format(new Date(last.time)), today_mwh: Math.round(renMwh), share_pct: allMwh ? Math.round((renMwh / allMwh) * 1000) / 10 : null,
+      rate_mw: Math.round(sum(last, ren)), rate_gw: Math.round(sum(last, ren) / 10) / 100, latest_time: new Date(Date.parse(last.time) + 3600e3).toISOString() }];
   },
 });
 
@@ -903,6 +960,9 @@ dash.calc('world_renew_headline', {
     el.textContent = r && r[field] != null ? f(r[field]) : '—';
   });
   v('r-n', 'rn_total', 'grids', String);
+  v('gb-renew-share', 'gb_renew_today', 'share_pct', G.fmt.pct1);
+  v('gb-renew-rate', 'gb_renew_today', 'rate_gw', G.fmt.gw);
+  G.counter('gb-renew-counter', 'gb_renew_today');
   v('r-gw', 'rn_total', 'renew_gw', G.fmt.gw);
   v('r-share', 'rn_total', 'full_mix_share_pct', G.fmt.pct1);
   v('r-wshare', 'world_renew_headline', 'share_pct', G.fmt.pct1);

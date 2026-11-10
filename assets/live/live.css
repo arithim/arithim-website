@@ -33,6 +33,11 @@
   --cds-chart-reference: var(--ah-text-2);
   --cds-dur-slow: 400ms;
   --cds-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cds-surface-popover: var(--ah-card);
+  --cds-border: var(--ah-rule-faint);
+  --cds-shadow-popover: 0 8px 28px rgba(0, 0, 0, 0.28);
+  --cds-pad-xs: 4px;
+  --cds-text-secondary: var(--ah-text-3);
   color: var(--ah-cream);
   max-width: 1320px;
   margin: 0 auto;

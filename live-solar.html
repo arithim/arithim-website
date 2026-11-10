@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/site.css?v=7">
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/live/live.css?v=652f6f6c">
+<link rel="stylesheet" href="/assets/live/live.css?v=f6a46bda">
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
 <script src="/assets/live/live-dash.js?v=ce793faf"></script>
 </head>
@@ -230,6 +230,14 @@
   .gsl-svg .gsl-draw-in { animation: gsl-fade var(--cds-dur-slow) var(--cds-ease-out); }
   @keyframes gsl-fade { from { opacity: 0; } to { opacity: 1; } }
 }
+.gsl-counter-card { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.gsl-counter-card p { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.gsl-counter { font-family: var(--font-anthropic-serif); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.gsl-counter small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 6px; }
+.gsl-replay-bar { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--cds-gap-sm); flex-wrap: wrap; }
+.gsl-replay-bar button { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.gsl-replay-bar input[type=range] { flex: 1 1 160px; accent-color: #E8A13C; }
+.gsl-replay-bar output { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 11em; font-variant-numeric: tabular-nums; }
 </style>
 
 <div class="gsl">
@@ -267,15 +275,20 @@
   </div>
 
   <div class="gsl-grid">
+    <div class="gsl-card wide gsl-counter-card" id="gb-solar-counter-card">
+      <p>Great Britain's solar panels have generated</p>
+      <span class="gsl-counter" data-draw="gb-solar-counter" data-source="gb_solar_today">—</span>
+      <p>so far today, and are producing <b data-draw="gb-solar-rate" data-source="gb_solar_today" data-field="rate_gw" data-row="0">—</b> GW. The figure keeps counting at that rate between the half-hourly readings.</p>
+    </div>
+    <div class="gsl-card wide" id="live-map-card">
+      <h3>The sun's path over the last two days</h3>
+      <p class="gsl-sub">Each circle is a live grid's solar output that hour, sized by output, and the shaded half of the world is in darkness. Press play to watch two days go by; hover a circle for its figure.</p>
+      <div class="gsl-chart map" data-draw="live-map" data-source="world_geo live_points_hourly"></div>
+    </div>
     <div class="gsl-card wide" id="live-now">
       <h3>Solar output right now, by grid</h3>
       <p class="gsl-sub">GW at each feed's latest reading. Grids in daylight lead; the rest are near zero until their sun comes up.</p>
       <div class="gsl-chart short" data-draw="live-now" data-source="market_now"></div>
-    </div>
-    <div class="gsl-card wide" id="live-map-card">
-      <h3>Where solar is running now</h3>
-      <p class="gsl-sub">Each circle is a live feed's latest reading, sized by output; the shaded half of the world is in darkness right now. Hover a circle for its figure.</p>
-      <div class="gsl-chart map" data-draw="live-map" data-source="world_geo live_points"></div>
     </div>
   </div>
 
@@ -299,22 +312,22 @@
     </div>
 
     <div class="gsl-grid">
+      <div class="gsl-card wide" id="uk-heatmap-card">
+        <h3>Sixty days of sunshine</h3>
+        <p class="gsl-sub">Each row is a day, newest at the top, and each square half an hour (GMT), coloured by how hard Britain's panels were working: output as a share of installed capacity. Shortening days narrow the band, cloudy days show as darker rows, and the bars on the right give each day's total.</p>
+        <div class="gsl-chart" data-draw="uk-heatmap" data-source="uk_national"></div>
+      </div>
       <div class="gsl-card" id="uk-intraday">
         <h3>Today against recent days</h3>
         <p class="gsl-sub">Great Britain, half-hourly output in GW by time of day (GMT). PV_Live estimate from metered sample sites.</p>
         <div class="gsl-chart" data-draw="uk-intraday" data-source="uk_national"></div>
-      </div>
-      <div class="gsl-card" id="uk-daily">
-        <h3>Daily generation, last two months</h3>
-        <p class="gsl-sub">GWh per day, with the 7-day average as a line.</p>
-        <div class="gsl-chart" data-draw="uk-daily" data-source="uk_daily"></div>
       </div>
       <div class="gsl-card" id="uk-fc-lines">
         <h3>Last three days and the next four</h3>
         <p class="gsl-sub">GW, half-hourly. The solid line is PV_Live's estimate of what happened; the dashed line is NESO's forecast for embedded solar (panels on the distribution network, the great majority of GB solar).</p>
         <div class="gsl-chart" data-draw="uk-fc-lines" data-source="uk_national gb_forecast"></div>
       </div>
-      <div class="gsl-card" id="uk-fc-days">
+      <div class="gsl-card wide" id="uk-fc-days">
         <h3>Forecast by day, next two weeks</h3>
         <p class="gsl-sub">GWh per day from NESO's embedded solar forecast. The line is the average day of the last 30 days. Today's bar counts only the hours still ahead; forecasts more than a few days out lean on seasonal averages.</p>
         <div class="gsl-chart" data-draw="uk-fc-days" data-source="gb_fc_days uk_summary"></div>
@@ -909,7 +922,31 @@ window.GSL = (() => {
     el.style.minHeight = H + 'px';
   }
 
-  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar };
+  /* a number that keeps counting: rows of id need today_mwh, rate_mw and latest_time; it adds energy at the
+     latest rate since that reading (for at most 90 minutes) so the figure moves between readings */
+  function counter(name, id) {
+    dash.draw(name, {
+      mount() { const made = {}; made.timer = setInterval(() => made.tick && made.tick(), 250); return made; },
+      update(el, made) {
+        const d = dash.data(id);
+        const r = d.status === 'ok' ? d.data[0] : null;
+        if (!r || r.today_mwh == null) { made.tick = null; el.textContent = '—'; return; }
+        made.tick = () => {
+          const since = Math.min(90 * 60e3, Math.max(0, Date.now() - Date.parse(r.latest_time)));
+          const mwh = r.today_mwh + (Math.max(0, r.rate_mw) * since) / 3600e3;
+          const big = mwh >= 100000;
+          el.textContent = d3.format(big ? ',.2f' : ',.1f')(big ? mwh / 1000 : mwh);
+          const small = document.createElement('small');
+          small.textContent = big ? 'GWh' : 'MWh';
+          el.append(small);
+        };
+        made.tick();
+      },
+      unmount(el, made) { if (made) clearInterval(made.timer); },
+    });
+  }
+
+  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar, counter };
 })();
 </script>
 
@@ -1336,6 +1373,60 @@ dash.calc('live_points', {
   },
 });
 
+dash.calc('gb_solar_today', {
+  title: 'GB solar generated today',
+  description: 'Energy from PV_Live’s half-hourly estimates since midnight UK time, the latest output, and when that reading was taken.',
+  inputs: ['uk_national'],
+  fn: (uk_national) => {
+    const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' });
+    const rows = [...uk_national].sort((a, b) => (a.time < b.time ? -1 : 1));
+    const last = rows[rows.length - 1];
+    const today = day.format(new Date(last.time));
+    const mwh = rows.filter((r) => day.format(new Date(r.time)) === today).reduce((s, r) => s + r.mw * 0.5, 0);
+    return [{ day: today, today_mwh: Math.round(mwh), rate_mw: Math.round(last.mw), rate_gw: Math.round(last.mw / 10) / 100, latest_time: last.time }];
+  },
+});
+
+dash.calc('live_points_hourly', {
+  title: 'Live solar by place, hour by hour',
+  description: 'Hourly average output for every live grid over the last two days, placed at a fixed point near its solar: countries for Europe, areas for Japan, regions for Australia, provinces for Canada.',
+  inputs: ['uk_national', 'europe_live', 'caiso_live', 'us_isone', 'brazil_live', 'japan_live', 'korea_live', 'australia_live', 'canada_live'],
+  fn: (uk_national, europe_live, caiso_live, us_isone, brazil_live, japan_live, korea_live, australia_live, canada_live) => {
+    const EU = { DEU: [10.4, 51.1], FRA: [2.4, 46.6], ESP: [-3.7, 40.2], ITA: [12.6, 42.8], NLD: [5.3, 52.2], BEL: [4.5, 50.6], AUT: [14.1, 47.6], CHE: [8.2, 46.8], POL: [19.4, 52.1], PRT: [-8.0, 39.6], CZE: [15.3, 49.8], SWE: [14.5, 57.5], GRC: [22.6, 39.3], HUN: [19.4, 47.2], ROU: [25.0, 45.9], BGR: [25.3, 42.7], SVN: [14.8, 46.1], SVK: [19.5, 48.7], HRV: [16.0, 45.4], DNK: [9.6, 56.0], IRL: [-7.6, 53.4] };
+    const JP = { Tokyo: [139.7, 35.9], Kansai: [135.5, 34.8], Kyushu: [130.7, 32.6], Chugoku: [132.6, 34.6], Shikoku: [133.5, 33.7], Hokuriku: [136.9, 36.6], Hokkaido: [142.8, 43.3], Tohoku: [140.6, 39.3], Chubu: [137.3, 35.2] };
+    const AU = { NSW1: ['New South Wales', 147.0, -32.5], QLD1: ['Queensland', 148.5, -23.0], VIC1: ['Victoria', 144.5, -37.0], SA1: ['South Australia', 138.6, -33.5], TAS1: ['Tasmania', 146.8, -42.0] };
+    const CA = { Ontario: [-81.0, 43.2], Alberta: [-112.5, 50.5] };
+    // sums[place][part][hour] = [total, count]; parts (rooftop and utility, Korea's three columns) are averaged then added
+    const sums = {};
+    const meta = {};
+    const add = (place, group, ll, part, time, mw) => {
+      if (!ll || mw == null || !Number.isFinite(+mw)) return;
+      const h = time.slice(0, 13) + ':00:00Z';
+      meta[place] = meta[place] || { group, lon: ll[0], lat: ll[1] };
+      const a = (((sums[place] = sums[place] || {})[part] = sums[place][part] || {})[h] = sums[place][part][h] || [0, 0]);
+      a[0] += +mw; a[1] += 1;
+    };
+    uk_national.forEach((r) => add('Great Britain', 'Europe', [-1.5, 52.8], 'all', r.time, r.mw));
+    europe_live.forEach((r) => add(r.country, 'Europe', EU[r.iso3], 'all', r.time, r.mw));
+    caiso_live.forEach((r) => add('California', 'Americas', [-119.5, 36.5], 'all', r.time, r.mw));
+    us_isone.forEach((r) => add('New England', 'Americas', [-71.8, 42.6], 'all', r.time, r.mw));
+    brazil_live.forEach((r) => add('Brazil', 'Americas', [-45.0, -15.0], 'all', r.time, r.mw));
+    canada_live.forEach((r) => add(r.province, 'Americas', CA[r.province], 'all', r.time, r.mw));
+    japan_live.forEach((r) => add(`Japan: ${r.area}`, 'Asia-Pacific', JP[r.area.split(' ')[0]], 'all', r.time, r.mw));
+    korea_live.forEach((r) => add('South Korea', 'Asia-Pacific', [127.8, 36.4], 'all', r.time, (+r.rooftop_mw) + (+r.ppa_mw) + (+r.market_mw)));
+    australia_live.forEach((r) => { const a = AU[r.region]; if (a) add(`Australia: ${a[0]}`, 'Asia-Pacific', [a[1], a[2]], r.kind, r.time, r.mw); });
+    const out = [];
+    let newest = '';
+    Object.entries(sums).forEach(([place, parts]) => {
+      const hours = {};
+      Object.values(parts).forEach((byHour) => Object.entries(byHour).forEach(([h, [t, n]]) => { hours[h] = (hours[h] || 0) + t / n; }));
+      Object.entries(hours).forEach(([h, mw]) => { out.push({ name: place, ...meta[place], hour: h, mw: Math.max(0, Math.round(mw)) }); if (h > newest) newest = h; });
+    });
+    const from = new Date(Date.parse(newest) - 47 * 3600e3).toISOString().slice(0, 13) + ':00:00Z';
+    return out.filter((r) => r.hour >= from).sort((a, b) => (a.hour < b.hour ? -1 : a.hour > b.hour ? 1 : b.mw - a.mw));
+  },
+});
+
 dash.calc('world_latest', {
   title: 'Solar by country, latest year',
   description: "Each country's most recent year in Ember's data, with growth on the year before.",
@@ -1443,6 +1534,7 @@ dash.calc('coverage_summary', {
   v('world-share', 'world_headline', 'share_pct', G.fmt.pct1);
   v('world-year', 'world_headline', 'year', String);
   v('t-uk-now', 'uk_summary', 'now_gw', G.fmt.gw);
+  v('gb-solar-rate', 'gb_solar_today', 'rate_gw', G.fmt.gw);
   v('t-uk-cf', 'uk_summary', 'now_cf_pct', G.fmt.pct1);
   v('t-uk-cap', 'uk_summary', 'capacity_gw', G.fmt.gw);
   v('t-eu-now', 'eu_total', 'now_gw', G.fmt.gw);
@@ -1565,21 +1657,63 @@ dash.calc('coverage_summary', {
     });
   });
 
-  dash.draw('uk-daily', (el) => {
-    const d = dash.data('uk_daily');
-    if (d.status !== 'ok') return G.fail(el, d);
-    const fd = d3.utcFormat('%-d %b');
-    G.barChart(el, {
-      rows: d.data.map((r) => ({ key: r.day, y: r.gwh, line: r.avg7_gwh, r })),
-      color: dash.colors[0], lineColor: 'var(--cds-chart-reference)',
-      yFmt: d3.format(',.0f'), xFmt: (k) => fd(new Date(k)),
-      tipTitle: (d) => d3.utcFormat('%a %-d %b %Y')(new Date(d.key)),
-      tipLines: (d) => [
-        { name: 'Generation', value: `${G.fmt.one(d.r.gwh)} GWh` },
-        { name: 'Peak', value: `${G.fmt.gw(d.r.peak_gw)} GW` },
-        ...(d.r.avg7_gwh != null ? [{ name: '7-day average', value: `${G.fmt.one(d.r.avg7_gwh)} GWh` }] : []),
-      ],
+  dash.draw('uk-heatmap', (el) => {
+    const d = dash.data('uk_national');
+    if (d.status !== 'ok' || !d.data.length) return G.fail(el, d);
+    el.replaceChildren();
+    const cells = new Map();
+    const days = new Map();
+    d.data.forEach((r) => {
+      const t = new Date(r.time);
+      const day = r.time.slice(0, 10);
+      const slot = t.getUTCHours() * 2 + (t.getUTCMinutes() >= 30 ? 1 : 0);
+      const cf = r.capacity_mwp ? r.mw / r.capacity_mwp : 0;
+      cells.set(`${day}|${slot}`, { cf, mw: r.mw, t });
+      days.set(day, (days.get(day) || 0) + r.mw * 0.5);
     });
+    const dayList = [...days.keys()].sort().reverse().slice(0, 60);
+    const W = Math.max(300, el.clientWidth || 800);
+    const ml = 46, mr = Math.min(90, W * 0.16), mt = 18, mb = 4;
+    const cw = (W - ml - mr - 8) / 48;
+    const ch = Math.max(3, Math.min(9, cw * 0.8));
+    const H = mt + mb + dayList.length * ch;
+    const max = d3.quantile([...cells.values()].map((c) => c.cf).sort(d3.ascending), 0.995) || 0.5;
+    const color = d3.scaleSequentialSqrt([0, max], d3.interpolateYlOrBr).clamp(true);
+    const svg = d3.select(el).append('svg').attr('class', 'gsl-svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const g = svg.append('g').attr('class', 'gsl-draw-in');
+    dayList.forEach((day, i) => {
+      for (let s2 = 0; s2 < 48; s2 += 1) {
+        const c = cells.get(`${day}|${s2}`);
+        if (!c || c.cf <= 0.002) continue;
+        g.append('rect').attr('x', ml + s2 * cw).attr('y', mt + i * ch).attr('width', cw + 0.4).attr('height', ch + 0.4).style('fill', color(c.cf));
+      }
+    });
+    [0, 6, 12, 18, 24].forEach((h) => svg.append('text').attr('class', 'gsl-tick').attr('x', ml + h * 2 * cw).attr('y', 12).attr('text-anchor', h === 0 ? 'start' : h === 24 ? 'end' : 'middle').text(`${String(h).padStart(2, '0')}:00`));
+    const fd = d3.utcFormat('%-d %b');
+    dayList.forEach((day, i) => { if (i % 7 === 0) svg.append('text').attr('class', 'gsl-tick').attr('x', ml - 6).attr('y', mt + i * ch + ch / 2).attr('dy', '0.32em').attr('text-anchor', 'end').text(fd(new Date(day))); });
+    const maxDay = d3.max(dayList, (dd) => days.get(dd)) || 1;
+    const bx = d3.scaleLinear([0, maxDay], [0, mr - 6]);
+    svg.append('g').selectAll('rect').data(dayList).join('rect').attr('x', W - mr).attr('y', (dd, i) => mt + i * ch + 0.5).attr('height', Math.max(1, ch - 1))
+      .attr('width', (dd) => bx(days.get(dd))).attr('rx', 1).style('fill', dash.colors[0]).attr('fill-opacity', 0.7);
+    const tt = G.tip(el);
+    svg.append('rect').attr('x', ml).attr('y', mt).attr('width', W - ml - 4).attr('height', dayList.length * ch).style('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px, py] = d3.pointer(ev);
+        const i = Math.floor((py - mt) / ch);
+        const day = dayList[i];
+        if (!day) return tt.hide();
+        const [ex, ey] = d3.pointer(ev, el);
+        const total = { name: 'Whole day', value: `${G.fmt.one(days.get(day) / 1000)} GWh` };
+        if (px > W - mr) return tt.show(ex, ey, d3.utcFormat('%a %-d %b %Y')(new Date(day)), [total]);
+        const s2 = Math.min(47, Math.max(0, Math.floor((px - ml) / cw)));
+        const c = cells.get(`${day}|${s2}`);
+        tt.show(ex, ey, `${d3.utcFormat('%a %-d %b')(new Date(day))}, ${String(Math.floor(s2 / 2)).padStart(2, '0')}:${s2 % 2 ? '30' : '00'} GMT`, [
+          { name: 'Output', value: c ? `${G.fmt.gw(c.mw / 1000)} GW` : '–' },
+          { name: 'Of capacity', value: c ? `${G.fmt.pct1(c.cf * 100)}%` : '–' },
+          total,
+        ]);
+      })
+      .on('pointerleave', () => tt.hide());
   });
 
   const gbInfo = {
@@ -1929,16 +2063,54 @@ dash.calc('coverage_summary', {
   });
 
   dash.draw('live-map', {
-    mount() {
-      const timer = setInterval(() => dash.draw('live-map'), 5 * 60e3);
-      return { timer };
+    mount(el) {
+      const bar = document.createElement('div');
+      bar.className = 'gsl-replay-bar';
+      const play = document.createElement('button');
+      play.type = 'button';
+      play.textContent = 'Play two days';
+      const range = document.createElement('input');
+      range.type = 'range';
+      range.min = '0';
+      range.setAttribute('aria-label', 'Hour shown on the map');
+      const label = document.createElement('output');
+      bar.append(play, range, label);
+      const stage = document.createElement('div');
+      el.replaceChildren(bar, stage);
+      const made = { bar, play, range, label, stage, timer: null, frame: null, frames: [], render: null };
+      const stop = () => { clearInterval(made.timer); made.timer = null; play.textContent = 'Play two days'; };
+      made.stop = stop;
+      play.addEventListener('click', () => {
+        if (made.timer) return stop();
+        if (!made.frames.length) return;
+        if (made.frame >= made.frames.length - 1) made.frame = 0;
+        play.textContent = 'Pause';
+        made.timer = setInterval(() => {
+          made.frame += 1;
+          if (made.frame >= made.frames.length) { made.frame = made.frames.length - 1; stop(); }
+          made.render && made.render();
+        }, 380);
+      });
+      range.addEventListener('input', () => { stop(); made.frame = +range.value; made.render && made.render(); });
+      return made;
     },
-    update(el) {
+    update(el, made) {
       const geo = dash.data('world_geo');
-      const pts = dash.data('live_points');
-      if (geo.status !== 'ok') return G.fail(el, geo);
-      if (pts.status !== 'ok') return G.fail(el, pts);
-      el.replaceChildren();
+      const pts = dash.data('live_points_hourly');
+      if (geo.status !== 'ok' || pts.status !== 'ok' || !pts.data.length) {
+        made.stage.replaceChildren();
+        made.bar.hidden = true;
+        el.dataset.empty = 'true';
+        return;
+      }
+      made.bar.hidden = false;
+      const frames = [...new Set(pts.data.map((r) => r.hour))].sort();
+      const byHour = d3.group(pts.data, (r) => r.hour);
+      const atEnd = made.frame == null || made.frame >= made.frames.length - 1;
+      made.frames = frames;
+      if (atEnd) made.frame = frames.length - 1;
+      made.range.max = String(frames.length - 1);
+      made.stage.replaceChildren();
       const W = Math.max(300, el.clientWidth || 800);
       const H = Math.round(W * 0.5);
       const features = geo.data.features.map((f) => {
@@ -1950,43 +2122,46 @@ dash.calc('coverage_summary', {
       });
       const proj = d3.geoNaturalEarth1().fitSize([W, H - 10], { type: 'FeatureCollection', features });
       const path = d3.geoPath(proj);
-      const svg = d3.select(el).append('svg').attr('class', 'gsl-svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+      const svg = d3.select(made.stage).append('svg').attr('class', 'gsl-svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
       svg.append('path').datum({ type: 'Sphere' }).attr('d', path).style('fill', 'none').style('stroke', 'var(--color-border-line)');
       svg.append('g').selectAll('path').data(features).join('path').attr('d', path)
         .style('fill', 'var(--color-border-line)').style('stroke', 'var(--color-panel)').attr('stroke-width', 0.5);
-      const now = new Date();
-      const [slon, slat] = subsolar(now);
-      svg.append('path').datum(d3.geoCircle().center([slon + 180, -slat]).radius(90)()).attr('d', path)
-        .style('fill', 'var(--color-fg)').attr('fill-opacity', 0.16).attr('pointer-events', 'none');
-      const sp = proj([slon, slat]);
-      if (sp) svg.append('circle').attr('cx', sp[0]).attr('cy', sp[1]).attr('r', 6).style('fill', '#f5b301').style('stroke', 'var(--color-panel)').attr('stroke-width', 1.5).attr('pointer-events', 'none');
+      const night = svg.append('path').style('fill', 'var(--color-fg)').attr('fill-opacity', 0.16).attr('pointer-events', 'none');
+      const sun = svg.append('circle').attr('r', 7).style('fill', '#f5b301').style('stroke', 'var(--color-panel)').attr('stroke-width', 1.5).attr('pointer-events', 'none');
+      const dots = svg.append('g');
       const gc = (g) => ({ Europe: dash.colors[0], Americas: dash.colors[1], 'Asia-Pacific': dash.colors[2] }[g]);
-      const maxMw = Math.max(1000, d3.max(pts.data, (d) => d.now_mw) || 0);
-      const r = d3.scaleSqrt([0, maxMw], [0, Math.max(14, W / 32)]);
-      const tt = G.tip(el);
+      const maxMw = Math.max(1000, d3.max(pts.data, (d) => d.mw) || 0);
+      const r = d3.scaleSqrt([0, maxMw], [0, Math.max(16, W / 28)]);
+      const tt = G.tip(made.stage);
       const fmt = (mw) => (mw >= 1000 ? `${G.fmt.gw(mw / 1000)} GW` : `${G.fmt.int(mw)} MW`);
-      svg.append('g').selectAll('circle').data([...pts.data].sort((a, b) => b.now_mw - a.now_mw)).join('circle')
-        .attr('class', 'gsl-draw-in')
-        .attr('cx', (d) => (proj([d.lon, d.lat]) || [0, 0])[0])
-        .attr('cy', (d) => (proj([d.lon, d.lat]) || [0, 0])[1])
-        .attr('r', (d) => Math.max(2.5, r(d.now_mw)))
-        .style('fill', (d) => gc(d.group)).attr('fill-opacity', (d) => (d.now_mw > 0 ? 0.6 : 0.25))
-        .style('stroke', (d) => gc(d.group)).attr('stroke-width', 1)
-        .on('pointermove', (ev, d) => {
-          const [ex, ey] = d3.pointer(ev, el);
-          tt.show(ex, ey, d.name, [{ color: gc(d.group), name: 'Latest reading', value: fmt(d.now_mw) }]);
-        })
-        .on('pointerleave', () => tt.hide());
-      const lg = svg.append('g').attr('transform', `translate(10,${H - 14})`);
-      ['Europe', 'Americas', 'Asia-Pacific'].forEach((g, i) => {
-        const x = i * 110;
-        lg.append('circle').attr('cx', x + 5).attr('cy', -4).attr('r', 5).style('fill', gc(g)).attr('fill-opacity', 0.6);
-        lg.append('text').attr('class', 'gsl-tick').attr('x', x + 14).text(g);
-      });
-      lg.append('text').attr('class', 'gsl-tick').attr('x', 340).text(`Night shading at ${d3.utcFormat('%H:%M UTC')(now)}`);
+      const when = d3.utcFormat('%a %-d %b, %H:00 UTC');
+      const total = svg.append('text').attr('class', 'gsl-tick').attr('x', 10).attr('y', H - 10);
+      made.render = () => {
+        const h = frames[made.frame];
+        const t = new Date(h);
+        const [slon, slat] = subsolar(new Date(+t + 30 * 60e3));
+        night.datum(d3.geoCircle().center([slon + 180, -slat]).radius(90)()).attr('d', path);
+        const sp = proj([slon, slat]);
+        sun.attr('cx', sp ? sp[0] : -20).attr('cy', sp ? sp[1] : -20);
+        const rows = (byHour.get(h) || []).filter((d) => proj([d.lon, d.lat]));
+        dots.selectAll('circle').data(rows, (d) => d.name).join('circle')
+          .attr('cx', (d) => proj([d.lon, d.lat])[0]).attr('cy', (d) => proj([d.lon, d.lat])[1])
+          .attr('r', (d) => Math.max(2, r(d.mw)))
+          .style('fill', (d) => gc(d.group)).attr('fill-opacity', (d) => (d.mw > 0 ? 0.6 : 0.2)).style('stroke', (d) => gc(d.group)).attr('stroke-width', 1)
+          .on('pointermove', (ev, d) => { const [ex, ey] = d3.pointer(ev, made.stage); tt.show(ex, ey, d.name, [{ color: gc(d.group), name: when(t), value: fmt(d.mw) }]); })
+          .on('pointerleave', () => tt.hide());
+        const sum = d3.sum(rows, (d) => d.mw);
+        total.text(`All live grids together: ${fmt(sum)}`);
+        made.range.value = String(made.frame);
+        made.label.value = made.frame === frames.length - 1 ? `${when(t)} (latest)` : when(t);
+        made.label.textContent = made.label.value;
+      };
+      made.render();
     },
-    unmount(el, made) { if (made) clearInterval(made.timer); },
+    unmount(el, made) { if (made && made.stop) made.stop(); },
   });
+
+  G.counter('gb-solar-counter', 'gb_solar_today');
 
   dash.draw('world-top', (el) => {
     const d = dash.data('world_latest');

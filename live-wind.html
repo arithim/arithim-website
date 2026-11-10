@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/site.css?v=7">
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
-<link rel="stylesheet" href="/assets/live/live.css?v=652f6f6c">
+<link rel="stylesheet" href="/assets/live/live.css?v=f6a46bda">
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
 <script src="/assets/live/live-dash.js?v=ce793faf"></script>
 </head>
@@ -230,6 +230,14 @@
   .gsl-svg .gsl-draw-in { animation: gsl-fade var(--cds-dur-slow) var(--cds-ease-out); }
   @keyframes gsl-fade { from { opacity: 0; } to { opacity: 1; } }
 }
+.gsl-counter-card { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.gsl-counter-card p { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.gsl-counter { font-family: var(--font-anthropic-serif); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.gsl-counter small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 6px; }
+.gsl-replay-bar { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--cds-gap-sm); flex-wrap: wrap; }
+.gsl-replay-bar button { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.gsl-replay-bar input[type=range] { flex: 1 1 160px; accent-color: #E8A13C; }
+.gsl-replay-bar output { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 11em; font-variant-numeric: tabular-nums; }
 
 </style>
 
@@ -248,6 +256,11 @@
   </div>
 
   <div class="gsl-grid">
+    <div class="gsl-card wide gsl-counter-card" id="gb-wind-counter-card">
+      <p>Wind farms on Great Britain's transmission network have generated</p>
+      <span class="gsl-counter" data-draw="gb-wind-counter" data-source="gb_wind_today">—</span>
+      <p>so far today, and are producing <b data-draw="gb-wind-rate" data-source="gb_wind_today" data-field="rate_gw" data-row="0">—</b> GW. The figure keeps counting at that rate between the half-hourly readings.</p>
+    </div>
     <div class="gsl-card" id="wind-now">
       <h3>Wind output right now, by grid</h3>
       <p class="gsl-sub">GW at each feed's latest reading. Feeds more than six hours behind the newest are left out.</p>
@@ -740,7 +753,31 @@ window.GSL = (() => {
     el.style.minHeight = H + 'px';
   }
 
-  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar };
+  /* a number that keeps counting: rows of id need today_mwh, rate_mw and latest_time; it adds energy at the
+     latest rate since that reading (for at most 90 minutes) so the figure moves between readings */
+  function counter(name, id) {
+    dash.draw(name, {
+      mount() { const made = {}; made.timer = setInterval(() => made.tick && made.tick(), 250); return made; },
+      update(el, made) {
+        const d = dash.data(id);
+        const r = d.status === 'ok' ? d.data[0] : null;
+        if (!r || r.today_mwh == null) { made.tick = null; el.textContent = '—'; return; }
+        made.tick = () => {
+          const since = Math.min(90 * 60e3, Math.max(0, Date.now() - Date.parse(r.latest_time)));
+          const mwh = r.today_mwh + (Math.max(0, r.rate_mw) * since) / 3600e3;
+          const big = mwh >= 100000;
+          el.textContent = d3.format(big ? ',.2f' : ',.1f')(big ? mwh / 1000 : mwh);
+          const small = document.createElement('small');
+          small.textContent = big ? 'GWh' : 'MWh';
+          el.append(small);
+        };
+        made.tick();
+      },
+      unmount(el, made) { if (made) clearInterval(made.timer); },
+    });
+  }
+
+  return { fmt, nice, fail, tip, lineChart, barChart, hbar, cell, value, stackChart, divBar, counter };
 })();
 </script>
 <script>
@@ -849,6 +886,20 @@ dash.calc('gb_wind_summary', {
   },
 });
 
+dash.calc('gb_wind_today', {
+  title: 'GB wind generated today',
+  description: 'Transmission-metered wind energy since midnight UK time from Elexon’s half-hourly generation by fuel, the latest output, and when it was read.',
+  inputs: ['gb_mix'],
+  fn: (gb_mix) => {
+    const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' });
+    const rows = gb_mix.filter((r) => r.fuel === 'WIND').sort((a, b) => (a.time < b.time ? -1 : 1));
+    const last = rows[rows.length - 1];
+    const today = day.format(new Date(last.time));
+    const mwh = rows.filter((r) => day.format(new Date(r.time)) === today).reduce((s, r) => s + r.mw * 0.5, 0);
+    return [{ day: today, today_mwh: Math.round(mwh), rate_mw: Math.round(last.mw), rate_gw: Math.round(last.mw / 10) / 100, latest_time: last.time }];
+  },
+});
+
 dash.calc('gb_split_summary', {
   title: 'GB onshore and offshore, latest',
   description: 'Offshore share of the latest half hour in Elexon’s actual generation by type.',
@@ -949,6 +1000,8 @@ dash.calc('world_wind_headline', {
   v('t-w', 'world_wind_headline', 'twh', G.fmt.int);
   v('t-w-cap', 'world_wind_headline', 'capacity_gw', G.fmt.int);
   v('t-gb', 'gb_wind_summary', 'now_gw', G.fmt.gw);
+  v('gb-wind-rate', 'gb_wind_today', 'rate_gw', G.fmt.gw);
+  G.counter('gb-wind-counter', 'gb_wind_today');
   v('t-gb-share', 'gb_wind_summary', 'now_share_pct', G.fmt.pct1);
   v('gb-24', 'gb_wind_summary', 'last24_gwh', G.fmt.one);
   v('gb-24-share', 'gb_wind_summary', 'share24_pct', G.fmt.pct1);
