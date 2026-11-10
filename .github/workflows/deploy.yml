@@ -1,7 +1,7 @@
 name: Deploy
 
 # Pull requests: verify the generated files and publish a preview deployment.
-# Pushes to main: publish production. Needs repository secrets
+# Pushes to main: publish production, without re-running the checks the pull request passed. Needs repository secrets
 # CLOUDFLARE_API_TOKEN (Pages: Edit) and CLOUDFLARE_ACCOUNT_ID.
 
 on:
@@ -17,7 +17,9 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  # The checks run on pull requests. A merge to main has already passed them, so it only publishes.
   check:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
