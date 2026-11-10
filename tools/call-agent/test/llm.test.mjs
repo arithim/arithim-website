@@ -631,3 +631,26 @@ test("the automatic goodbye leaves out the reference when the caller already hea
   assert.equal(closingLine(msg, `Earlier: A R C, two six one, one one zero, then R five E G. Tarun will pick it up.`), "Thanks, Priya. Tarun will get back to you at priya@example.com within one working day. Bye for now.");
   assert.match(closingLine(msg, "nothing yet"), /Your reference is A R C/);
 });
+
+test("isNarration catches the planning lines from the 10 Nov staging suite", () => {
+  for (const s of [
+    "That's an existing customer with a product problem, which belongs to Daniel.",
+    "I have enough to log this now: product, problem, contact, and a team-wide outage.",
+    "The reference hasn't been read out yet on this call.",
+    "Tom has pressed only for prices,",
+  ]) assert.equal(isNarration(s, ["Tom"]), true, s);
+  for (const s of ["Let me log this for Tarun.", "Okay, let me log that now.", "That's a pain, Mark. When did it start?", "I can't take or change bank details on a call."]) assert.equal(isNarration(s, ["Mark"]), false, s);
+});
+
+test("planning that gets silenced before anything is said still puts a holding line on the stream at once (staging suite 10 Nov)", async () => {
+  const db = makeDb(); await seedCall(db); const env = baseEnv(db);
+  const tm = { type: "tool_use", name: "take_message", id: "toolu_s1", input: { type: "enquiry", name: "Priya", contact: "priya@example.com", summary: "Reporting" } };
+  const m = mockFetch([
+    anthropicSse([{ type: "text", text: "Priya is signing off, so I'm logging what I have now." }, tm], "tool_use"),
+    anthropicSse([{ type: "text", text: "She's signalled she's done." }]),
+  ]);
+  try {
+    const out = await readSse(await call(env, "consulting", [user("Hi, I'm Priya."), { role: "assistant", content: "Hi Priya, Oliver here." }, user("That's all, thanks.")], { tools: EL_TOOLS }));
+    assert.match(out.text, /^One moment\. Your reference is A R C, .* within one working day\.$/);
+  } finally { m.restore(); }
+});

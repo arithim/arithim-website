@@ -93,6 +93,10 @@ export function isNarration(sentence, names = []) {
   if (/\bthe caller\b|\bcaller's\b/i.test(s)) return true;
   if (/\b(?:take_message|end_call|transfer_to_agent|agent_number)\b/i.test(s)) return true;
   if (/\bsignall?ing\b/i.test(s)) return true;
+  if (/\b(?:I have|I've got|we have) enough (?:to|for)\b|\bI (?:should|need to) (?:log|record|take a message)\b/i.test(s)) return true;
+  if (/\b(?:has(?:n't| not)|have(?:n't| not)) (?:yet )?been read(?: out)?\b|\bread out yet\b|\bnot yet read\b/i.test(s)) return true;
+  if (/\bbelongs (?:to|with) (?:Daniel|Oliver|Charlotte|Hannah|me)\b|\b(?:that's|this is|it's) (?:an? )?(?:existing customer|new prospect|prospect|lead|sales call|support call)\b/i.test(s)) return true;
+  if (/\b(?:pressed|asked|called) only (?:for|about)\b|\bwith no (?:organisation|company|problem|reason) (?:given|or)\b/i.test(s)) return true;
   if (/\bI(?:'ll| will) (?:now |just )?(?:close (?:with|out|the call)|end the call|hang up)\b/i.test(s)) return true;
   if (/\b(?:she|he)(?:'s| is| has)? (?:now |just )?(?:indicating|confirmed|done\b|finished\b|wrapping up)/i.test(s)) return true;
   for (const n of names) {
@@ -322,10 +326,16 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   let names = []; // the caller's names, from their own words and from messages logged on this call, for isNarration
   let lastMsg = null; // the most recent take_message that worked in this request
   let narratedAfterMsg = false; // the narration guard silenced something after that message
+  let holdLine = ""; // the holding line for silenced planning, set once the conversation is known
   let narrating = false; // set once the current model response starts planning out loud; the rest of that response is not spoken
   const speak = (sentence, context = "", own = false) => {
     sentence = sentence.replace(/["\u201c\u201d]/g, ""); // quote marks around a read-back string are never spoken
-    if (!own && (narrating || isNarration(sentence, names))) { narrating = true; hits.add("narration"); if (lastMsg) narratedAfterMsg = true; return; }
+    if (!own && (narrating || isNarration(sentence, names))) {
+      if (env.CALL_ENV === "preview") console.log("SILENCED", role, sentence); // staging only: what the guard kept from the caller, for review
+      // Silenced text keeps nothing flowing to the platform, which retries the turn after its 4 s soft timeout. Say a holding line instead.
+      if (!narrating && !spoken && !gone()) speak(holdLine || NOTE_FILLER_2, "", true);
+      narrating = true; hits.add("narration"); if (lastMsg) narratedAfterMsg = true; return;
+    }
     const f = filterSentence(sentence, denylist, context, callerText);
     f.hits.forEach((h) => hits.add(h));
     if (!f.text.trim()) return; // nothing speakable left (for example only stray non-Latin characters)
@@ -371,6 +381,7 @@ export async function runBrain({ env, db, call, role, body, emit, denylist = [],
   // What this agent's earlier turns said, as the platform replays them: used so a retry neither repeats a filler nor re-reads a reference.
   const priorAgent = conv.messages.filter((m) => m.role === "assistant").map((m) => (Array.isArray(m.content) ? m.content : []).filter((b) => b.type === "text").map((b) => b.text).join(" "));
   const lastAgentTurn = priorAgent.at(-1) || "";
+  holdLine = lastAgentTurn.includes(NOTE_FILLER_2) ? "Right, just a second." : NOTE_FILLER_2;
   let toRead = null; // {spoken, contact}: a reference the model was told to read out in this request and the caller has not yet heard
 
   let spokenAtMsg = 0; // spoken.length when it did
