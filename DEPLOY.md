@@ -60,6 +60,14 @@ A page is its text. Structure, styling, the header and footer, menus, the sitema
 
 Colours, fonts and the pill radius are CSS variables (`--ah-*`) in the managed block at the top of `site.css`. Change a value there to restyle the site. Styles that repeat across pages are classes in the block at the end of `site.css`, named `ah-...`. A page that carries an inline `style=""` attribute fails CI, apart from runtime bindings such as `style="{{ ... }}"`, which the page script fills in. Fix it with `python3 tools/centralise_styles.py --write`, then `python3 tools/build_insights.py`. `node tools/style_diff.mjs --a <clean checkout> --b <your branch>` compares the computed style of every element at two widths.
 
+## Live energy data
+
+`/live/data/<name>.json` is served by `functions/live/data/[name].js` from the R2 bucket `arithim-live-data` (binding `LIVE_DATA` in `wrangler.toml`). Only files under the bucket's `public/` prefix whose names are lower-case letters, digits and underscores ending in `.json` are reachable; anything else is a 404. Responses are cached for five minutes in the browser, and the edge serves a stale copy for up to an hour while it refetches.
+
+The files are written outside this repository, by `publish_public.py` and `publish_r2.py` in `~/code/global-solar-live/solar-dashboard`, which run after each hourly refresh. `publish_public.py` keeps only sources whose licence allows display on this site (see `LICENCES.md` there). `publish_r2.py` reads a Cloudflare token from `~/.config/arithim/cloudflare-r2.env`.
+
+The bucket must exist before a deploy that includes the binding, or the deploy fails. Tests: `node --test tools/live/test/*.test.mjs`.
+
 ## First-time setup (already done for arithim)
 
 ```bash

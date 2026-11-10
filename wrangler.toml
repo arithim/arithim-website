@@ -16,6 +16,12 @@ database_name = "arithim-calls"
 database_id = "24516a88-0b76-404c-b4d5-fede7b4da240"
 migrations_dir = "migrations"
 
+# Live energy dashboards: public data files, uploaded hourly by publish_r2.py in ~/code/global-solar-live
+# and served read-only at /live/data/<name>.json by functions/live/data/[name].js.
+[[r2_buckets]]
+binding = "LIVE_DATA"
+bucket_name = "arithim-live-data"
+
 [env.preview.vars]
 CALL_ENV = "preview"
 CALL_TURNSTILE_HOSTNAMES = "call-us.arithim.pages.dev"
@@ -28,3 +34,7 @@ binding = "CALLS_DB"
 database_name = "arithim-calls-preview"
 database_id = "87a41853-bd99-4cad-b3b5-32e58dc3536c"
 migrations_dir = "migrations"
+
+[[env.preview.r2_buckets]]
+binding = "LIVE_DATA"
+bucket_name = "arithim-live-data"
