@@ -2249,3 +2249,14 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
   .nf-cap-bar { animation: nf-load 3.2s cubic-bezier(.2,.7,.2,1) infinite; }
 }
 @keyframes nf-load { 0% { transform: scaleX(0.02); } 55% { transform: scaleX(0.72); } 85% { transform: scaleX(0.74); opacity: 1; } 100% { transform: scaleX(0.74); opacity: 0; } }
+
+/* footer: the arithim.com capsule logo as a sign-off on every page (assets/arithim-capsule.svg) */
+.ah-foot-mark { max-width: var(--ah-w-max); margin: 0 auto; padding: var(--ah-s-40) var(--ah-s-40) 0; }
+.ah-foot-mark a { display: inline-block; border-radius: var(--ah-r-999); }
+.ah-foot-mark img { display: block; width: 146px; height: auto; }
+.ah-foot-mark + .ah-2b8fb5.ah-2b8fb5 { padding-top: var(--ah-s-16); }
+.ah-home-cap { display: block; width: 146px; height: auto; margin-top: var(--ah-s-16); }
+@media (max-width: 640px) {
+  .ah-foot-mark { padding: var(--ah-s-24) var(--ah-s-24) 0; }
+  .ah-foot-mark + .ah-2b8fb5.ah-2b8fb5 { padding-top: var(--ah-s-12) !important; }
+}
