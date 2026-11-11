@@ -2241,3 +2241,11 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
 .fa .fa-stage:not(.fa-live) .f-barfill { transform: none; }
 .fa .fa-stage:not(.fa-live) .fa-flow, .fa .fa-stage:not(.fa-live) .f-mark { display: none; }
 @media (prefers-reduced-motion: reduce) { .fa .fa-i, .fa .fa-draw, .fa .fa-fly, .fa .f-barfill, .fa .fa-stage { transition: none; animation: none; } .fa .fa-flow { display: none; } }
+
+/* 404: the arithim.com capsule from the logo, its amber bar loading and stalling like a page that will not arrive */
+.nf-cap { display: block; width: min(268px, 70vw); height: auto; margin: 0 0 var(--ah-s-22); }
+.nf-cap-bar { transform-box: view-box; transform-origin: 0 0; transform: scaleX(0.7); }
+@media (prefers-reduced-motion: no-preference) {
+  .nf-cap-bar { animation: nf-load 3.2s cubic-bezier(.2,.7,.2,1) infinite; }
+}
+@keyframes nf-load { 0% { transform: scaleX(0.02); } 55% { transform: scaleX(0.72); } 85% { transform: scaleX(0.74); opacity: 1; } 100% { transform: scaleX(0.74); opacity: 0; } }
