@@ -56,6 +56,7 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 - [Operational Intelligence vs Automation](https://arithim.com/insight-operational-intelligence-vs-automation.html): Automation moves a task to structured execution. Operational intelligence improves how information, judgement and action move through a business.
 - [What Most Businesses Actually Need From AI](https://arithim.com/insight-what-businesses-need-from-ai.html): Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction and support better decisions.
 - [What Is Agentic AI, and Where Is It Actually Working in 2026?](https://arithim.com/insight-what-is-agentic-ai-where-is-it-working.html): Agentic AI is software that plans and carries out multi-step work towards a goal, using tools and other systems. In 2026 it works best on bounded, repetitive tasks with a person approving the risky steps, and most clearly in software engineering. Based on Gartner's 2026 Hype Cycle for Agentic AI.
+- [Which Enterprise AI Assistant Should We Choose?](https://arithim.com/insight-which-enterprise-ai-assistant-should-we-choose.html): Choose an enterprise AI assistant by where your work and data already live, where your data has to be hosted, and how much governance you need, then pilot at least two. Gartner's first Magic Quadrant for Enterprise AI Assistants names Anthropic, Google, Microsoft and OpenAI as Leaders and expects most organisations to run more than one.
 
 ## Company
 
