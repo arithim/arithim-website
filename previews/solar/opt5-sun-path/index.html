@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar sun path example</title>
+<style>
+:root{--page:#eeeeea;--panel:#fbfbf9;--ink:#1c2430;--muted:#6b7480;--hair:rgba(28,36,48,.14);--warm:#c96a2b}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--page:#0e1013;--panel:#15181c;--ink:#e6eaf0;--muted:#8a939e;--hair:rgba(230,234,240,.14);--warm:#e0884a}
+}
+:root[data-theme="dark"]{--page:#0e1013;--panel:#15181c;--ink:#e6eaf0;--muted:#8a939e;--hair:rgba(230,234,240,.14);--warm:#e0884a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--page);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;font:14px/1.45 system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.panel{width:100%;min-width:0;max-width:960px;aspect-ratio:16/9;background:var(--panel);border:1px solid var(--hair);border-radius:6px;padding:28px;display:grid;grid-template-columns:minmax(0,476px) minmax(0,1fr);gap:32px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chartwrap{display:flex;align-items:center;justify-content:center;min-width:0}
+#chart{width:100%;height:auto;display:block}
+#bars{width:100%;height:auto;display:block}
+.lbl{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;letter-spacing:.06em;fill:var(--muted)}
+.col{display:flex;flex-direction:column;justify-content:space-between;min-width:0;gap:14px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--warm);color:var(--warm);padding:4px 10px;border-radius:2px;opacity:0;margin-bottom:12px}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--warm)}
+.headline{margin:0;font-size:21px;line-height:1.25;font-weight:500;letter-spacing:-.01em;text-wrap:balance}
+.reasons{margin:0;padding:0;list-style:none;font-size:13px;line-height:1.45;color:var(--muted)}
+.reasons li{padding:8px 0;border-top:1px solid var(--hair)}
+.total{display:flex;align-items:baseline;gap:10px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:34px;font-weight:500;color:var(--warm);font-variant-numeric:tabular-nums;line-height:1;margin:8px 0 14px}
+.unit{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.caption{margin:0;text-transform:none;letter-spacing:.02em;font-size:12px}
+.nocap{text-transform:none;letter-spacing:.02em}
+@media (max-width:720px){
+  .panel{aspect-ratio:auto;grid-template-columns:minmax(0,1fr);padding:18px;gap:20px}
+}
+</style>
+</head>
+<body>
+<div class="panel" id="panel" role="img" aria-label="Illustrative example. Sun path chart for a sample south-east facing roof. Trees to the south-west and a neighbouring building to the west shade the low winter sun and the early evening summer sun. Sample verdict: solar will work here, but shade is the main limit. Sample estimate: 2,840 kWh a year for a 4 kWp system, about 15 per cent below the 3,350 kWh it would give unshaded. Not real data.">
+  <div class="chartwrap">
+    <svg id="chart" viewBox="0 0 476 476" aria-hidden="true" focusable="false"></svg>
+  </div>
+  <div class="col" aria-hidden="true">
+    <div>
+      <div class="mono">Sample site A · south-east roof at 35°</div>
+      <span class="chip mono" id="chip"><i></i>Constrained</span>
+      <p class="headline">Solar will work here. Shade is the main limit.</p>
+    </div>
+    <ul class="reasons">
+      <li>Trees to the south-west block the low winter sun. A building to the west shades the early evening sun in summer.</li>
+      <li>A south-east roof at 35 degrees is a fair direction and pitch, though not the best.</li>
+      <li>Shade takes about 15 per cent off the yield. Unshaded, the same system would give about 3,350 kWh a year.</li>
+    </ul>
+    <div>
+      <div class="mono nocap">Sample estimate, 4 kWp system</div>
+      <div class="total"><span id="total">0</span> <span class="unit">kWh a year</span></div>
+      <svg id="bars" viewBox="0 0 396 130" focusable="false"></svg>
+    </div>
+    <p class="caption mono">Illustrative example. Not real data.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var LAT = 51.5 * Math.PI / 180, D2R = Math.PI / 180;
+  var C = 238, R = 200, LOOP = 16;
+  var MONTHS = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  var KWH = [50,100,200,320,400,430,420,360,270,150,80,60];
+  var SCALE_MAX = 450;
+  var SUN = [0.6, 4.6], WIN = [5.2, 8.2], BAR0 = 8.4, STEP = 0.2, DUR = 0.6;
+  var TOT = [8.4, 11.4], CHIP = [11.4, 11.9], FADE = [15.2, 16];
+  var TOTAL = KWH.reduce(function (a, b) { return a + b; }, 0);
+
+  var svg = document.getElementById('chart');
+  var bars = document.getElementById('bars');
+  var panel = document.getElementById('panel');
+  var chip = document.getElementById('chip');
+  var totalEl = document.getElementById('total');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function el(tag, attrs, parent, style) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (style) e.setAttribute('style', style);
+    parent.appendChild(e);
+    return e;
+  }
+  function pt(r, az) { var a = az * D2R; return [C + r * Math.sin(a), C - r * Math.cos(a)]; }
+  function clamp(x) { return Math.min(1, Math.max(0, x)); }
+  function seg(t, a, b) { return clamp((t - a) / (b - a)); }
+  function ease(x) { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function label(txt, x, y, anchor, cls) {
+    var t = el('text', { x: x, y: y, 'text-anchor': anchor || 'start', 'class': cls || 'lbl' }, svg);
+    t.textContent = txt;
+    return t;
+  }
+
+  // Sample horizon profile: tree line to the south-west, neighbouring building to the west (degrees above horizon).
+  function horizon(az) {
+    var h = 0;
+    if (az > 190 && az < 252) {
+      var e = Math.min(1, (az - 190) / 5, (252 - az) / 5);
+      h = e * (9 + 2.5 * Math.sin(az * 0.45) + Math.sin(az * 0.9));
+    }
+    if (az > 262 && az < 300) {
+      var f = Math.min(1, (az - 262) / 2, (300 - az) / 2);
+      h = Math.max(h, 28 * f);
+    }
+    return h;
+  }
+
+  // Solar altitude and azimuth (degrees, azimuth from north, clockwise) for declination dec and hour angle H (radians).
+  function sunAt(dec, H) {
+    var sinAlt = Math.sin(LAT) * Math.sin(dec) + Math.cos(LAT) * Math.cos(dec) * Math.cos(H);
+    var alt = Math.asin(sinAlt) / D2R;
+    var azS = Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(LAT) - Math.tan(dec) * Math.cos(LAT)) / D2R;
+    var az = ((azS + 180) % 360 + 360) % 360;
+    return { alt: alt, az: az };
+  }
+
+  function arc(dec) {
+    var Hs = Math.acos(-Math.tan(LAT) * Math.tan(dec));
+    var n = 90, pts = [];
+    for (var i = 0; i < n; i++) {
+      var H = -Hs + 2 * Hs * i / (n - 1);
+      var s = sunAt(dec, H);
+      var p = pt(R * (90 - Math.max(s.alt, 0)) / 90, s.az);
+      pts.push({ x: p[0], y: p[1], b: s.alt < horizon(s.az), i: i });
+    }
+    return pts;
+  }
+
+  // Chart: defs and grid
+  var defs = el('defs', {}, svg);
+  var pat = el('pattern', { id: 'hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
+  el('line', { x1: 0, y1: 0, x2: 0, y2: 6, 'stroke-width': 1.2 }, pat, 'stroke:var(--muted);opacity:.6');
+
+  [30, 60].forEach(function (alt) {
+    el('circle', { cx: C, cy: C, r: R * (90 - alt) / 90, fill: 'none' }, svg, 'stroke:var(--hair);stroke-width:1');
+  });
+  for (var a = 0; a < 360; a += 45) {
+    var q = pt(R, a);
+    el('line', { x1: C, y1: C, x2: q[0].toFixed(1), y2: q[1].toFixed(1) }, svg, 'stroke:var(--hair);stroke-width:1');
+  }
+  el('circle', { cx: C, cy: C, r: R, fill: 'none' }, svg, 'stroke:var(--ink);stroke-width:1.25;opacity:.7');
+
+  // Blocked sky: hatched wedge between the horizon and the obstacle profile
+  var prof = [], outer = [];
+  for (var az = 0; az <= 360; az++) prof.push(pt(R * (90 - horizon(az)) / 90, az));
+  for (var az2 = 360; az2 >= 0; az2--) outer.push(pt(R, az2));
+  var toD = function (list) { return list.map(function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }); };
+  el('path', { d: 'M' + toD(prof).join(' L') + ' L' + toD(outer).join(' L') + ' Z', stroke: 'none' }, svg, 'fill:url(#hatch)');
+  el('path', { d: 'M' + toD(prof).join(' L'), fill: 'none' }, svg, 'stroke:var(--ink);stroke-width:1.25');
+
+  // Equinox reference and the two solstice arcs, split into shaded and sunlit runs
+  var eq = arc(0), summer = arc(23.44 * D2R), winter = arc(-23.44 * D2R);
+  el('path', { d: 'M' + eq.map(function (p) { return p.x.toFixed(1) + ' ' + p.y.toFixed(1); }).join(' L'), fill: 'none' }, svg,
+     'stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4;opacity:.7');
+
+  function trace(pts) {
+    var runs = [], cur = [pts[0]];
+    for (var i = 1; i < pts.length; i++) {
+      cur.push(pts[i]);
+      if (pts[i].b !== pts[i - 1].b) { runs.push(cur); cur = [pts[i]]; }
+    }
+    runs.push(cur);
+    return runs.map(function (r) {
+      var d = 'M' + r.map(function (p) { return p.x.toFixed(1) + ' ' + p.y.toFixed(1); }).join(' L');
+      var blocked = r[0].b;
+      var e = el('path', { d: d, pathLength: 1, 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1, fill: 'none', 'stroke-linecap': 'round' }, svg,
+        blocked ? 'stroke:var(--muted);stroke-width:1.6;opacity:.8' : 'stroke:var(--warm);stroke-width:2');
+      return { e: e, o: r[0].i / (pts.length - 1), s: (r[r.length - 1].i - r[0].i) / (pts.length - 1) };
+    });
+  }
+  var sRuns = trace(summer), wRuns = trace(winter);
+
+  function setTrace(runs, p) {
+    runs.forEach(function (r) {
+      var v = r.s > 0 ? clamp((p - r.o) / r.s) : (p >= r.o ? 1 : 0);
+      r.e.setAttribute('stroke-dashoffset', (1 - v).toFixed(4));
+    });
+  }
+
+  // Labels
+  label('N', C, C - R - 12, 'middle');
+  label('E', C + R + 12, C + 4, 'start');
+  label('S', C, C + R + 20, 'middle');
+  label('W', C - R - 12, C + 4, 'end');
+  label('30°', C + 6, C - R * 60 / 90 - 5);
+  label('60°', C + 6, C - R * 30 / 90 - 5);
+  var sp = pt(R * 28 / 90, 180), wp = pt(R * 75 / 90, 180);
+  label('21 JUN', sp[0] + 8, sp[1] - 10);
+  label('21 DEC', wp[0] + 10, wp[1] + 22);
+  var tl = pt(R + 14, 225), bl = pt(R + 14, 305);
+  label('TREES', tl[0] - 2, tl[1] + 4, 'end', 'lbl');
+  label('BUILDING', bl[0] - 2, bl[1] + 4, 'end', 'lbl');
+
+  // Sun
+  var sun = el('g', {}, svg);
+  var halo = el('circle', { cx: 0, cy: 0, r: 11 }, sun, 'fill:var(--warm);opacity:.18');
+  var core = el('circle', { cx: 0, cy: 0, r: 4.5 }, sun, 'fill:var(--warm)');
+
+  // Monthly yield bars
+  var base = 108, maxH = 88;
+  el('line', { x1: 0, y1: base + 0.5, x2: 396, y2: base + 0.5 }, bars, 'stroke:var(--hair);stroke-width:1');
+  var rects = KWH.map(function (v, i) {
+    var x = i * 34;
+    var r = el('rect', { x: x, y: base, width: 22, height: 0, rx: 1 }, bars, 'fill:var(--ink);opacity:.85');
+    var t = el('text', { x: x + 11, y: 124, 'text-anchor': 'middle', 'class': 'lbl' }, bars);
+    t.textContent = MONTHS[i];
+    return r;
+  });
+
+  function render(t) {
+    var ps = ease(seg(t, SUN[0], SUN[1])), pw = ease(seg(t, WIN[0], WIN[1]));
+    setTrace(sRuns, ps);
+    setTrace(wRuns, pw);
+
+    var path = null, p = 0;
+    if (t >= SUN[0] && t <= SUN[1]) { path = summer; p = ps; }
+    else if (t >= WIN[0] && t <= WIN[1]) { path = winter; p = pw; }
+    if (path) {
+      var s = path[Math.round(p * (path.length - 1))];
+      sun.setAttribute('transform', 'translate(' + s.x.toFixed(1) + ' ' + s.y.toFixed(1) + ')');
+      sun.style.display = '';
+      sun.style.opacity = s.b ? 0.35 : 1;
+      var fill = s.b ? 'var(--muted)' : 'var(--warm)';
+      halo.style.fill = fill;
+      core.style.fill = fill;
+    } else {
+      sun.style.display = 'none';
+    }
+
+    rects.forEach(function (r, i) {
+      var k = ease(seg(t, BAR0 + i * STEP, BAR0 + i * STEP + DUR));
+      var h = maxH * KWH[i] / SCALE_MAX * k;
+      r.setAttribute('y', (base - h).toFixed(2));
+      r.setAttribute('height', h.toFixed(2));
+    });
+
+    totalEl.textContent = fmt(TOTAL * ease(seg(t, TOT[0], TOT[1])));
+    chip.style.opacity = seg(t, CHIP[0], CHIP[1]);
+    panel.style.opacity = t > FADE[0] ? 1 - seg(t, FADE[0], FADE[1]) : 1;
+  }
+
+  // Loop, paused when off screen, hidden, or when reduced motion is requested
+  var tNow = 0, last = 0, raf = 0, running = false, inView = true;
+  function tick(now) {
+    var dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
+    last = now;
+    tNow = (tNow + dt) % LOOP;
+    render(tNow);
+    raf = requestAnimationFrame(tick);
+  }
+  function start() {
+    if (running || reduce.matches || document.hidden || !inView) return;
+    running = true; last = 0;
+    raf = requestAnimationFrame(tick);
+  }
+  function stop() {
+    running = false;
+    cancelAnimationFrame(raf);
+  }
+  function sync() {
+    if (reduce.matches) { stop(); tNow = 12; render(12); return; }
+    if (document.hidden || !inView) { stop(); return; }
+    start();
+  }
+
+  render(0);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      inView = entries[0].isIntersecting;
+      sync();
+    }, { threshold: 0.1 }).observe(panel);
+  }
+  document.addEventListener('visibilitychange', sync);
+  if (reduce.addEventListener) reduce.addEventListener('change', sync);
+  else if (reduce.addListener) reduce.addListener(sync);
+  sync();
+})();
+</script>
+</body>
+</html>

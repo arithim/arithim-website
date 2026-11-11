@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en-GB" data-theme="light" data-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Section background options (internal preview)</title>
+<link rel="stylesheet" href="/site.css">
+<style>
+body{margin:0;background:var(--ah-ink);color:var(--ah-cream);font-family:var(--ah-font-body,system-ui,sans-serif)}
+.bar{position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;padding:12px 20px;background:var(--ah-ink);border-bottom:1px solid var(--ah-cream-12)}
+.bar button{font:inherit;border:1px solid var(--ah-cream-25);background:transparent;color:var(--ah-cream);border-radius:999px;padding:6px 14px;cursor:pointer}
+.band{position:relative;overflow:hidden;padding:84px 20px;border-bottom:1px solid var(--ah-cream-12);isolation:isolate}
+.band>div{position:relative;max-width:900px;margin:0 auto}
+.band h2{font-size:34px;letter-spacing:-0.02em;margin:0 0 8px}.band p{max-width:560px;color:var(--ah-text-2);margin:0}.band small{font-family:var(--ah-font-mono);color:var(--ah-amber);letter-spacing:.1em}
+.card{margin-top:24px;max-width:420px;padding:20px;border:1px solid var(--ah-cream-08);border-radius:16px;background:var(--ah-card)}
+/* A: slow dot grid. One layer, one gradient, drifting by a single tile every 90 seconds. */
+.a::before{content:"";position:absolute;inset:-40px;z-index:-1;background-image:radial-gradient(var(--ah-cream-25) 1px,transparent 1.4px);background-size:28px 28px;opacity:.55;-webkit-mask-image:radial-gradient(70% 90% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 90% at 70% 40%,#000,transparent);animation:dotdrift 90s linear infinite}
+@keyframes dotdrift{to{background-position:280px 280px}}
+/* B: drifting colour. Two very soft amber and blue glows that wander. */
+.b::before,.b::after{content:"";position:absolute;z-index:-1;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+.b::before{left:-15vmax;top:-30vmax;background:radial-gradient(circle,var(--ah-amber-16),transparent 65%);animation:wander1 38s ease-in-out infinite alternate}
+.b::after{right:-20vmax;bottom:-35vmax;background:radial-gradient(circle,var(--ah-blue-18),transparent 65%);animation:wander2 46s ease-in-out infinite alternate}
+@keyframes wander1{to{transform:translate(18vmax,10vmax)}}@keyframes wander2{to{transform:translate(-16vmax,-8vmax)}}
+/* C: contour rings. Faint concentric lines that breathe, like the solar map. */
+.c::before{content:"";position:absolute;z-index:-1;right:-12%;top:50%;width:90vmin;height:90vmin;margin-top:-45vmin;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 22px,var(--ah-cream-12) 22px 23px);-webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent);mask-image:radial-gradient(closest-side,#000 30%,transparent);animation:breathe 24s ease-in-out infinite alternate}
+@keyframes breathe{to{transform:scale(1.18) rotate(8deg)}}
+@media (prefers-reduced-motion:reduce){.a::before,.b::before,.b::after,.c::before{animation:none}}
+</style></head><body>
+<div class="bar"><strong>Section background options</strong><button id="t">Switch light and dark</button><a href="../" style="margin-left:auto;color:var(--ah-amber)">Back to previews</a></div>
+<section class="band"><div><small>CURRENT</small><h2>No background</h2><p>How section bands look today: flat colour.</p><div class="card">A card sits here to show how the effect reads behind content.</div></div></section>
+<section class="band a"><div><small>OPTION A · SLOW DOT GRID</small><h2>A quiet dot grid that drifts</h2><p>One faint dot lattice, fading out toward the edges, moving one tile every 90 seconds. Closest to the dotted globe and scenes.</p><div class="card">A card sits here to show how the effect reads behind content.</div></div></section>
+<section class="band b"><div><small>OPTION B · DRIFTING COLOUR</small><h2>Soft amber and blue glows that wander</h2><p>Two blurred colour pools drifting slowly behind the section. Calm and a little warm. Closest to the ribbon heroes.</p><div class="card">A card sits here to show how the effect reads behind content.</div></div></section>
+<section class="band c"><div><small>OPTION C · CONTOUR RINGS</small><h2>Faint rings that breathe</h2><p>Concentric hairlines that swell and turn very slowly, echoing the solar contour map.</p><div class="card">A card sits here to show how the effect reads behind content.</div></div></section>
+<script>
+var h=document.documentElement;document.getElementById('t').onclick=function(){var d=h.getAttribute('data-theme')==='light';h.setAttribute('data-theme',d?'arithim':'light');h.setAttribute('data-mode',d?'dark':'light')};
+</script></body></html>
