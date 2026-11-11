@@ -170,7 +170,7 @@ def render(p: dict, products: list[dict]) -> str:
         service["offers"] = {"@type": "Offer", "priceCurrency": "GBP", "price": price["amount"], "description": price["line"] + ". " + price["note"], "url": url}
     n = p.get("nature")
     nature_html = (f'</div><figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="{e(n["scene"])}" role="img" aria-label="{e(n["title"] + ". " + n["desc"], quote=True)}">{e(n["desc"])}</canvas>'
-                   f'<figcaption class="ah-nature-cap">{globe.CAPTION}</figcaption></figure>' if n else "")
+                   f'</figure>' if n else "")
     v = p.get("video")
     see_html = ""
     if v:
@@ -193,7 +193,7 @@ def render(p: dict, products: list[dict]) -> str:
     c = p.get("contours")
     contours_html = (f'<section class="ah-contours" aria-label="{e(c["title"], quote=True)}"><div class="tsg-wrap"><figure class="ah-contours-fig"><div class="ah-contours-frame">'
                      f'<canvas class="ah-contours-cv" data-solar-contours role="img" aria-label="{e(c["title"] + ". " + c["desc"], quote=True)}">{e(c["desc"])}</canvas></div>'
-                     f'<figcaption class="ah-contours-cap">{globe.CAPTION}</figcaption></figure></div></section>'
+                     f'</figure></div></section>'
                      f'<script src="/assets/solar-contours.js?v=2" defer></script>' if c else "")
     know = "".join(f"<li>{r(x)}</li>" for x in p["know"])
     related = " · ".join(f'<a class="tsg-link" href="product-{r["slug"]}.html">{e(r["name"])}</a>' for r in products if r["slug"] in p.get("related", []) and r["slug"] != p["slug"])

@@ -260,7 +260,7 @@ def build() -> str:
         <div class="ah-actions">{btn}<a href="#pricing" class="tsg-link">See prices and order</a><a href="#see" class="tsg-link">See it work</a></div>
         <div class="ah-hero-foot"><p class="ah-price"><strong>{hero_prices}</strong> <span>Prices ex VAT. Order by email and pay by invoice.</span></p></div>
       </div>
-      <figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="landscape" role="img" aria-label="{e(NATURE_ALT, quote=True)}">{e(NATURE_ALT)}</canvas><figcaption class="ah-nature-cap">Illustrative. Not your data.</figcaption></figure>
+      <figure class="ah-nature"><canvas class="ah-nature-cv" data-dotscene="landscape" role="img" aria-label="{e(NATURE_ALT, quote=True)}">{e(NATURE_ALT)}</canvas></figure>
     </div>
     <div class="tsg-wrap"><ol class="tsg-steps ah-hero-steps" aria-label="How a session runs"><li>Say what you want to build</li><li>See the best land first</li><li>Check why a site ranks</li><li>Test your own assumptions</li></ol></div>
   </section>
