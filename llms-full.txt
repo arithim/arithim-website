@@ -30,11 +30,9 @@ Arithim works with regulated, multi-site businesses, where the hard part is seei
 
 A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data.
 
-Illustrative. Not your data.
+Energy◆Renewables◆Solar and battery storage◆Industrial◆Coatings◆Construction chemicals◆Animal nutrition◆Telecoms◆Regulated◆SAP-heavy◆FMCG◆Multi-site operations◆
 
-Energy◆Industrial◆Telecoms◆Regulated◆SAP-heavy◆FMCG◆
-
-document_intelligence/knowledge_copilots/operational_reporting/compliance_workflows/
+ai_readiness/document_intelligence/document_automation/knowledge_copilots/ai_search_readiness/sap_erp_reporting/operational_reporting/compliance_workflows/approval_workflows/ai_model_inventory/ai_governance/ai_training/site_feasibility/grid_pre_screen/
 
 WHERE WE HELP
 
@@ -514,8 +512,6 @@ Request a demo →See what it does
 
 A dotted greenhouse. A small cloud with a question mark drifts in and rains a few drops. Three plants rise and flower in rank order, each with a tiny flag tag for a country. One tag carries an amber dot for a registration that is expiring. A sample, not real data.
 
-Illustrative. Not your data.
-
 Hundreds of products100+ suppliers8 industries10 interface languages, Arabic included
 
 Load your range
@@ -956,8 +952,6 @@ Platform from £30,000 a year Prices ex VAT. Order by email and pay by invoice.
 
 A dotted rolling landscape of map cells with a sun, a wind turbine and a battery shed. A breeze sweeps across the cells and three sites settle as ranked plots marked 1, 2 and 3, with dotted lines running to them. One cell is fenced off with an amber dot, ruled out. A sample, not a real map.
 
-Illustrative. Not your data.
-
 Say what you want to build
 
 See the best land first
@@ -1284,8 +1278,6 @@ In early access. Tell us which models or rules you need to answer for and we wil
 
 Five dotted trees sway gently, one for each model in a sample inventory. Three steady trees each have a bird perched on them to show they are approved. A bird circles the fourth because that model is still in review, and the fifth wilts and carries a single amber dot because it is flagged. All names and figures are samples.
 
-Illustrative. Not your data.
-
 WHERE YOUR MODELS RUN
 
 ## The models behind your business sit in more places than one team can see.
@@ -1293,8 +1285,6 @@ WHERE YOUR MODELS RUN
 Applications, suppliers and teams call models hosted in many regions. The inventory records which ones you rely on, so a board or a customer gets one dated answer.
 
 A dotted globe turning slowly, with arcs linking cities on several continents. A decorative illustration, not real data.
-
-Illustrative. Not your data.
 
 WHY TEAMS CHOOSE IT
 

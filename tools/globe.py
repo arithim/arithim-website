@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import html
 
-CAPTION = "Illustrative. Not your data."
 VERSION = "3"
 HOME = {
     "eyebrow": "ACROSS EVERY SITE",
@@ -25,6 +24,6 @@ def render(g: dict, sid: str) -> str:
         f'<div class="ah-globe-copy"><div class="ah-globe-eyebrow">{e(g["eyebrow"])}</div>'
         f'<h2 class="ah-globe-h" id="{sid}-h">{e(g["heading"])}</h2><p class="ah-globe-p">{e(g["text"])}</p></div>'
         f'<figure class="ah-globe-fig"><canvas class="ah-globe-cv" data-dotmap data-src="/assets/dotmap-data.json?v={VERSION}" role="img" aria-label="{e(g["alt"], quote=True)}">{e(g["alt"])}</canvas>'
-        f'<figcaption class="ah-globe-cap">{CAPTION}</figcaption></figure>'
+        f'</figure>'
         f'</div></section><script src="/assets/dotmap.js?v={VERSION}" defer></script>'
     )
