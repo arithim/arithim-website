@@ -2518,6 +2518,14 @@ Read case study →
 
 WRITING
 
+## Which Enterprise AI Assistant Should We Choose?
+
+How the ten vendors in Gartner's first Magic Quadrant for Enterprise AI Assistants differ on hosting, integration, governance and pricing, and how to narrow the choice.
+
+AGENTIC AI · RESEARCH
+
+12 NOV 2026
+
 ## What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 What agentic AI means, how far adoption has got, where agents are working in 2026, where they still fall short, and how to start.
@@ -2616,6 +2624,10 @@ AI discoverability starts with the same fundamentals that make a website better 
 
 MORE INSIGHTS
 
+### Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
 ### What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
@@ -2623,10 +2635,6 @@ AGENTIC AI · RESEARCH · 09 NOV 2026
 ### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
 
 APPSEC · RESEARCH · 24 OCT 2026
-
-### How Do We Choose an Enterprise Architecture Tool in 2026?
-
-EA · RESEARCH · 23 OCT 2026
 
 ## Want a site that reads clearly to humans and machines?
 
@@ -2764,6 +2772,10 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
+### Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
 ### What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
@@ -2771,10 +2783,6 @@ AGENTIC AI · RESEARCH · 09 NOV 2026
 ### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
 
 APPSEC · RESEARCH · 24 OCT 2026
-
-### How Do We Reduce Our Application Security Backlog?
-
-APPSEC · RESEARCH · 22 OCT 2026
 
 ## Is your architecture repository out of date the week after it's updated?
 
@@ -3340,6 +3348,10 @@ Strong systems usually contain both. The discipline is knowing which one a given
 
 MORE INSIGHTS
 
+### Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
 ### What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
@@ -3347,10 +3359,6 @@ AGENTIC AI · RESEARCH · 09 NOV 2026
 ### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
 
 APPSEC · RESEARCH · 24 OCT 2026
-
-### How Do We Choose an Enterprise Architecture Tool in 2026?
-
-EA · RESEARCH · 23 OCT 2026
 
 ## Want help telling them apart for your operation?
 
@@ -3382,6 +3390,10 @@ That is the whole game. Not the model, not the demo, but the system around it th
 
 MORE INSIGHTS
 
+### Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
 ### What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
@@ -3389,10 +3401,6 @@ AGENTIC AI · RESEARCH · 09 NOV 2026
 ### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
 
 APPSEC · RESEARCH · 24 OCT 2026
-
-### How Do We Choose an Enterprise Architecture Tool in 2026?
-
-EA · RESEARCH · 23 OCT 2026
 
 ## Ready to find the version that actually helps?
 
@@ -3508,6 +3516,10 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
+### Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
 ### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
 
 APPSEC · RESEARCH · 24 OCT 2026
@@ -3516,11 +3528,157 @@ APPSEC · RESEARCH · 24 OCT 2026
 
 EA · RESEARCH · 23 OCT 2026
 
-### How Do We Reduce Our Application Security Backlog?
-
-APPSEC · RESEARCH · 22 OCT 2026
-
 ## Want to know which of your processes an agent could take on first?
+
+Start a conversation →
+
+Call us
+
+---
+
+## Which Enterprise AI Assistant Should We Choose?
+
+URL: https://arithim.com/insight-which-enterprise-ai-assistant-should-we-choose.html
+
+Insights / Agentic AI
+
+# Which Enterprise AI Assistant Should We Choose?
+
+AGENTIC AI · RESEARCH·12 NOV 2026·8 MIN READ·BY TARUN BULCHANDANI
+
+Start from where your people already work, where your data must be hosted and how much agent governance you need, and expect to end up with more than one assistant. Gartner's first Magic Quadrant for Enterprise AI Assistants, published in September 2026, places Anthropic, Google, Microsoft and OpenAI as Leaders, and says most organisations already deploy two or more. It advises piloting at least two tools with different user groups rather than defaulting to an existing supplier.
+
+An enterprise AI assistant is the general-purpose tool employees open to write, research, analyse and hand work to agents, as opposed to an assistant built into one application such as an HR or contact centre system. Gartner's Magic Quadrant for Enterprise AI Assistants is the first it has published for this market. It assessed ten vendors and estimates the market at $17 billion in 2025, rising to $71 billion by 2030. This piece follows our earlier article on what agentic AI is and where it is working.
+
+## What Gartner expects an assistant to do
+
+To count as an enterprise AI assistant, a product needs an orchestrator that picks models, tools and data sources for each request, ready-made connectors to common business applications, and search over company data that respects existing permissions. It also needs an agent ecosystem with built-in, custom and third-party agents, and enterprise security covering identity integration, data loss prevention (DLP), monitoring of agent activity and standards such as GDPR and SOC 2. Central administration, an adoption dashboard and support for local languages, formats and data residency complete the list.
+
+Gartner says the market is moving from chat and retrieval towards long-running, multistep work carried out across systems, and that this is now the main way vendors set themselves apart. It also notes that most organisations already run two or more assistants.
+
+## The ten vendors
+
+Vendor and productQuadrantGartner's main strengthGartner's main caution
+
+Anthropic, Claude EnterpriseLeaderMultistep agentic capability, Claude Cowork and MCPU.S.-only hosting; consumption billing on all use
+
+Google, Gemini EnterpriseLeaderNo-code agent designer; agent governance at no extra costBest experience only inside Google Workspace
+
+Microsoft, Microsoft CopilotLeaderAround 30 million paid seats; widest global and sovereign reachComplex licensing; needs a well-governed Microsoft 365 estate
+
+OpenAI, ChatGPT EnterpriseLeaderReasoning, deep research and agentic featuresLimited DLP and agent governance; enterprise support still maturing
+
+Amazon Web Services, Amazon QuickChallengerBroad product, with Anthropic and OpenAI models through BedrockLow brand awareness; weaker co-authoring
+
+GleanChallengerKnowledge graph across company content; cloud, private cloud or on-premisesMany SAP, Workday and ServiceNow connectors are read-only
+
+ClickUp, ClickUp BrainNiche PlayerKnowledge graph over ClickUp work; keen pricingValue depends on an existing ClickUp footprint; no sovereign hosting
+
+ServiceNow, EmployeeWorksNiche PlayerBuilt into IT and HR workflowsLimited productivity features; roadmap uncertain after the Moveworks acquisition
+
+Superhuman, Superhuman GoNiche PlayerIn-browser assistant that cuts context switchingNo DLP; weak cost controls; North America hosting only
+
+Zoom, ZoomMateNiche PlayerContext from meetings and conversationsU.S. data centres and English only
+
+Summarised from the vendor profiles in the Magic Quadrant. Gartner placed no vendor in the Visionaries quadrant.
+
+Gartner also lists honourable mentions it did not evaluate, including Mistral, which offers European data sovereignty, Perplexity, Alibaba's QwenWork and Tencent's WorkBuddy.
+
+## Four questions that narrow the field
+
+### Where does your work already happen?
+
+Suite vendors bundle the assistant with their productivity platform, and Gartner says this shapes the experience. Microsoft Copilot draws on Microsoft 365 through Work IQ, but Gartner warns it needs a well-governed estate, including work on overshared SharePoint data, which can slow a rollout. Google's experience is strongest inside Workspace, and organisations on Microsoft 365 may find gaps such as missing native meeting summaries and office co-editing.
+
+The independents, Anthropic, OpenAI and Glean, avoid that lock-in, but their reach into business systems varies. Gartner says OpenAI focuses on productivity tools and supports SAP, Workday and ServiceNow less well, that many of Glean's connectors to those systems are read-only, and that Anthropic has made broader connectors a roadmap priority. If your heaviest users live in an ERP or service management system, test the connectors they would actually use.
+
+### Where does your data have to live?
+
+Regional, sovereign and government hosting options vary widely, and Gartner says a vendor without the right regional footprint simply cannot be implemented by a non-U.S. or heavily regulated buyer. Microsoft has the broadest global and sovereign reach, and Google also covers regulated industries widely. OpenAI hosts mainly in North America and Europe. Anthropic hosts Claude Enterprise in the U.S. only; outside the U.S. its models are available through Amazon Bedrock, Microsoft Foundry and Google Cloud, without all of the assistant's features. Zoom is limited to U.S. data centres, Superhuman to North America, and ClickUp offers no government or sovereign cloud.
+
+For a UK or EU organisation with residency obligations, that short list is worth settling before any feature comparison.
+
+### How much agent governance do you need?
+
+Gartner calls governance often decisive. Most assistants include some agent management, but managing agents from other providers usually costs extra. Google includes strong agent governance at no extra charge. Microsoft sells it through Agent 365, a separate per-user licence. Anthropic and OpenAI both rely on a compliance API connected to third-party security tools for long-term auditing and DLP, which Gartner flags as extra work for regulated buyers. Superhuman has no DLP or agent life cycle management.
+
+Gartner's advice is to set up a cross-functional governance framework before a broad deployment, and to agree across workplace, security, compliance and identity teams who may create agents and on which platforms.
+
+### Can you forecast the bill?
+
+Pricing ranges from per-user licences to billing for every interaction, with metered agent usage on top of seats at several vendors. Anthropic is one of the few that bills all interactions, chat included, on consumption alongside a seat licence, which Gartner says makes budgeting harder. Microsoft combines per-user Copilot licences with usage-based Copilot Cowork, parts of Copilot Studio and the Agent 365 licence. Its E7 bundle simplifies some of that, but a Gartner survey in May 2026 found only 4% of IT leaders highly likely to adopt E7 within 12 months. Google adds each user licence to an organisation-wide consumption quota, with chat and search in the base price.
+
+Gartner recommends plans that include AI usage in the seat price with some allowance for advanced agent actions, spending caps by department, and avoiding multiyear lock-in where possible.
+
+## How we would run the choice
+
+We would run the choice in this order, which follows Gartner's recommendations.
+
+Settle hosting and residency first, because that removes vendors outright.
+
+Map where your largest user groups spend their day, and which business systems they need the assistant to act in.
+
+Pick two candidates and pilot each with the group that should gain most, as Gartner advises, instead of defaulting to the vendor you already pay.
+
+Measure usage and outcomes through each product's adoption dashboard, and model the consumption bill from real pilot usage before signing.
+
+Write down who may build agents, where, and who approves them, before rollout goes wider.
+
+Gartner names low AI literacy, weak adoption, poor training and difficulty proving return as the most common problems when these programmes scale. Its answer is an adoption programme with an executive sponsor, AI champions and agreed success measures, with value shown early.
+
+If you end up with two assistants, which Gartner thinks likely, the overlap is a cost to manage. Each brings its own agents, connectors, admin console and consumption meter, and the governance work grows with them. We covered the wider question of what organisations actually need from AI in what businesses need from AI.
+
+## Where agents help
+
+The work that follows the purchase is mostly administrative and spans tools that do not talk to each other. We would build an oversight agent that reads the adoption dashboards, admin logs and billing data from whichever assistants a customer already runs, through their admin and compliance APIs with read-only access. Each week it would report usage by team, consumption spend against the caps finance has set, agents created and who created them, and seats that have gone unused.
+
+When it finds something to change, such as an unused licence, a department heading past its cap or an agent built outside the agreed platforms, it drafts the change and a named person in IT or finance approves it before anything happens. That keeps the multivendor approach Gartner expects affordable, and gives the governance framework a record of what the assistants are actually doing.
+
+## Common questions
+
+### What is an enterprise AI assistant?
+
+Gartner defines it as an AI-first application, built on one or more generative AI models, that employees use for writing, research, analysis and collaboration, and as their way in to AI agents. It searches company data with permissions applied, connects to applications such as Microsoft 365, Google Workspace, SAP, Workday, Salesforce and ServiceNow, and comes with central administration, security controls and an adoption dashboard.
+
+### Is Microsoft Copilot or ChatGPT Enterprise better for a large company?
+
+Gartner rates both as Leaders but for different reasons. Microsoft Copilot is the most widely deployed, with around 30 million paid seats, and fits best where Microsoft 365 is well governed, although its licensing is complex. ChatGPT Enterprise is strong on reasoning, deep research and agentic features, but Gartner says its enterprise support is still maturing and its DLP and agent governance are limited.
+
+### Can UK and EU organisations use Claude Enterprise?
+
+They can, with a caveat Gartner spells out. Anthropic hosts Claude Enterprise and its data in the U.S. only. Buyers outside the U.S. can reach Claude models through Amazon Bedrock, Microsoft Foundry or Google Cloud, but that gives access to the models without all of the assistant's features. Check this against your residency rules before a pilot.
+
+### Should we run more than one AI assistant?
+
+Gartner expects most organisations to, and says it is unlikely that one vendor will meet every requirement. It recommends piloting at least two with the user groups that stand to gain most. The cost is overlapping features and a larger governance job, so decide early who may build agents and on which platforms.
+
+### How do enterprise AI assistants charge?
+
+Pricing ranges from per-user licences to billing on every interaction, and several vendors add metered agent usage on top of seats. Anthropic bills all interactions on consumption alongside its seat licence, Microsoft combines per-user licences with usage-based charges and a separate Agent 365 licence, and Google adds each licence to an organisation-wide consumption quota. Gartner advises preferring plans that include AI usage in the seat price and avoiding multiyear lock-in.
+
+## Sources
+
+Gartner, Magic Quadrant for Enterprise AI Assistants, Max Goss, Jason Wong et al., 2 September 2026 (revised 3 September 2026), ID G00847909. Complimentary reprint; the link may expire.
+
+Vendor product pages as linked above. Accessed 11 November 2026.
+
+Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates. Arithim builds with Claude, made by Anthropic, which Gartner rates as a Leader in this Magic Quadrant.
+
+MORE INSIGHTS
+
+### What Is Agentic AI, and Where Is It Actually Working in 2026?
+
+AGENTIC AI · RESEARCH · 09 NOV 2026
+
+### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
+
+APPSEC · RESEARCH · 24 OCT 2026
+
+### How Do We Choose an Enterprise Architecture Tool in 2026?
+
+EA · RESEARCH · 23 OCT 2026
+
+## Running two AI assistants and unsure what either is costing you?
 
 Start a conversation →
 
@@ -3561,6 +3719,14 @@ Automation that carries its own audit trail, controls, and accountability by des
 Giving teams the visibility, context, and evidence they need to make good decisions across a changing environment.
 
 LATEST RESEARCH
+
+AGENTIC AI · RESEARCH · 12 NOV 2026
+
+### Which Enterprise AI Assistant Should We Choose?
+
+How the ten vendors in Gartner's first Magic Quadrant for Enterprise AI Assistants differ on hosting, integration, governance and pricing, and how to narrow the choice.
+
+Read the research →
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
 
