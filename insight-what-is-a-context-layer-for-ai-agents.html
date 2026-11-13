@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is a Context Layer for AI Agents? — Arithim</title>
+<meta name="description" content="A context layer finds, organises and delivers the information an AI agent needs for each task. Gartner&#x27;s March 2026 research describes three components, semantics, operational state and provenance, and says no vendor sells the whole layer as a product. What each component holds, what to ask vendors, and where to start.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="What Is a Context Layer for AI Agents? — Arithim">
+<meta property="og:description" content="A context layer finds, organises and delivers the information an AI agent needs for each task. Gartner&#x27;s March 2026 research describes three components, semantics, operational state and provenance, and says no vendor sells the whole layer as a product. What each component holds, what to ask vendors, and where to start.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-what-is-a-context-layer-for-ai-agents.html">
+<meta property="og:url" content="https://arithim.com/insight-what-is-a-context-layer-for-ai-agents.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-11-13">
+<meta property="article:section" content="Agentic AI">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-what-is-a-context-layer-for-ai-agents.html#article",
+      "headline": "What Is a Context Layer for AI Agents?",
+      "description": "A context layer finds, organises and delivers the information an AI agent needs for each task. Gartner's March 2026 research describes three components, semantics, operational state and provenance, and says no vendor sells the whole layer as a product. What each component holds, what to ask vendors, and where to start.",
+      "datePublished": "2026-11-13",
+      "dateModified": "2026-11-13",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-what-is-a-context-layer-for-ai-agents.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Agentic AI",
+      "keywords": [
+        "what is a context layer for AI agents",
+        "context layer vs context graph",
+        "context engineering",
+        "semantic layer for AI agents",
+        "AI agent provenance",
+        "context layer vs RAG",
+        "Gartner context layer",
+        "AI-ready data for agents"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Context layer"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Context engineering"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "SHACL",
+          "url": "https://www.w3.org/TR/shacl/"
+        },
+        {
+          "@type": "Organization",
+          "name": "SPARQL",
+          "url": "https://www.w3.org/TR/sparql11-overview/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "The 3 Core Components of the Context Layer for AI Agents",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-03-11",
+        "identifier": "G00848874",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2NCKLMK5&ct=260514&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a context layer for AI agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the part of an architecture that curates, integrates and delivers the information an agent needs for a task. Gartner's March 2026 research describes three components. Semantics holds the meaning of business data, operational state gives right-time access to what is happening in the business, and provenance records the agent's decisions, actions and outcomes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a context layer and a context graph?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner says the term context graph usually refers to the provenance component alone, which is the record of decisions, actions and outcomes. A context layer also needs semantics and operational state. Ask a vendor which of the three components its product covers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we buy a context layer from a vendor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner says no vendor currently offers a fully out-of-the-box context layer. It is assembled from services, capabilities and custom modelling, and your organisation has to curate its own glossary, metric definitions and business rules. Plan for commercial and custom-built components to work together from the start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a context layer the same as RAG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Retrieval-augmented generation is one technique inside one component. Gartner lists RAG and GraphRAG as the way agents reach unstructured content and organisational knowledge within operational state. The layer also covers structured data, right-time streams, the semantic model and the provenance record."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do off-the-shelf AI agents use a context layer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mostly they do not yet. Gartner says the layer is most useful for self-built or highly customisable agents, and that off-the-shelf vendor agents are not designed to use an external context layer unless they allow integration or behavioural customisation. Gartner expects this to change as vendors adopt context engineering."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What Is a Context Layer for AI Agents?",
+          "item": "https://arithim.com/insight-what-is-a-context-layer-for-ai-agents.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=7">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-what-is-a-context-layer-for-ai-agents.html">What Is a Context Layer for AI Agents?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-what-is-a-context-layer-for-ai-agents.html">What Is a Context Layer for AI Agents?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Agentic AI</span></div>
+      <h1 class="r-f3 ah-debd25">What Is a Context Layer for AI Agents?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">AGENTIC AI · RESEARCH</span><span class="ah-rule">·</span><span>13 NOV 2026</span><span class="ah-rule">·</span><span>9 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">A context layer is the part of your architecture that finds, organises and hands an AI agent the information it needs for the task in front of it. Gartner's March 2026 research describes it as three components that work together, namely semantics, operational state and provenance. Gartner says no vendor sells it as a finished product, so you assemble it from services you already own and custom modelling, starting with one or two high-value use cases.</p>
+    <p>Gartner published <a href="https://www.gartner.com/doc/reprints?id=1-2NCKLMK5&amp;ct=260514&amp;st=sb" rel="noopener">The 3 Core Components of the Context Layer for AI Agents</a> in March 2026 for data and analytics leaders. Its argument is that a dedicated context layer is a foundation for reliable custom-built agents, and that organisations should start building one now.</p>
+    <h2>Why agents need a context layer</h2>
+    <p>Organisations are committing to agents faster than they are seeing value from them. In Gartner's 2026 CIO and Technology Executive Survey, 42% of respondents said their enterprise would deploy AI agents by the end of 2026. A separate 2025 Gartner survey found that agents were expected to take 31% of annual AI spending in 2026, up from an average of 22% in 2025. In a third Gartner survey, only about one in five respondents said generative AI tools provide significant value, and one in eight said the tools are unlikely to live up to their promises.</p>
+    <p>The reasons respondents give most often are limited or sporadic impact and hallucinations. Gartner traces both to weak data and governance foundations, and it names the missing context layer as a major contributor to the value gap in agentic AI. Its explanation is that agents behave unreliably and cost more when a large language model has to work through noisy or poorly prioritised data with nothing filtering it first. We covered the wider picture in <a href="insight-what-is-agentic-ai-where-is-it-working.html">what agentic AI is and where it is working in 2026</a>.</p>
+    <h2>How context reaches the agent</h2>
+    <p>Gartner places the context layer inside a discipline it calls context engineering. It defines that as designing, managing and optimising the information given to generative AI models to improve accuracy, relevance, reliability and cost. The inputs include short-term memory, governing policies, instructions and tools, curated examples, relevant right-time data and long-term memory.</p>
+    <p>The paper describes a pipeline with three steps. The agent first retrieves only what is directly relevant to the current action or decision. It then organises what it retrieved into a coherent context. Finally it selects and prioritises the most pertinent information for the model's context window, and in a multistep process it writes new outputs back to the context layer so that later steps can use them. The three components below are what the pipeline draws on.</p>
+    <h2>Semantics</h2>
+    <p>Semantics is the explicit representation of meaning and relationships in business data. Gartner builds it from ontologies and knowledge graphs that link data, metrics, rules, security, ownership and policies. In practice it holds your business entities and how they relate, a business glossary tied into the ontology, one agreed set of metrics with explicit definitions, and your rules and compliance requirements in a form a machine can read.</p>
+    <p>Gartner's advice is to federate the modelling across domains and business units, because large monolithic semantic projects stall. It suggests expressing rules as machine-readable constraints, using <a href="https://www.w3.org/TR/shacl/" rel="noopener">SHACL</a> to define them and <a href="https://www.w3.org/TR/sparql11-overview/" rel="noopener">SPARQL</a> to detect and resolve violations.</p>
+    <p>Gartner attaches its largest numbers to this component. It says organisations that implement semantic modelling, meaning taxonomies and ontologies, are 2.2 times more likely to achieve high effectiveness in the data engineering practices that support AI, and that only 44% have done so. Its planning assumption is that by 2027, organisations that prioritise semantics in AI-ready data will increase agentic AI accuracy by up to 80% and reduce costs by up to 60%.</p>
+    <h2>Operational state</h2>
+    <p>Operational state gives the agent right-time information about business entities such as customers, products and suppliers, along with the current status of business processes and conditions in the environment around them. Gartner describes this as situational awareness.</p>
+    <p>The sources are mixed. Structured data comes from data products, data lakes and data APIs. Unstructured content and organisational knowledge are reached through retrieval-augmented generation (RAG) or GraphRAG, and right-time streams come from event-driven analytics platforms. Gartner recommends the <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> (MCP) for giving agents secure access to the data each task needs, and says it reduces friction and latency.</p>
+    <p>Two cautions come with this component. Gartner reports that only 30% of data and analytics solutions currently use real-time streaming and event-driven analytics, although real-time analytics can drive up to 35% higher business value. We read that as a sign that the live feed is the part many organisations will have to build. Unfiltered operational data also adds noise, and semantics is what keeps retrieval focused on the relevant records.</p>
+    <h2>Provenance</h2>
+    <p>Provenance tracks data lineage, decisions, actions, outcomes and feedback across the life of an agent's operations. The agent can refer back to earlier decisions and their results, and a person can audit them. Gartner asks for tools that capture, audit and analyse agent decisions and outcomes, to support traceability and regulatory compliance. It also asks for a formal, recurring process to collect feedback and use it to update the data, rules and knowledge the agents receive.</p>
+    <p>Governance tooling may already cover part of this. In a small Gartner survey, 74% of organisations said their data governance tools help them operationalise AI governance.</p>
+    <h2>Is a context graph the same thing?</h2>
+    <p>No. Gartner warns readers to be sceptical of market hype and ambiguous terms, and it singles out "context graph". In its reading the term usually refers to the provenance component alone. A product sold under that name may give you a record of agent decisions without the semantics or the live operational data, so ask a vendor which of the three components the product covers.</p>
+    <h2>Can we buy a context layer?</h2>
+    <p>Gartner says no vendor currently offers a fully out-of-the-box context layer. It is assembled from services, capabilities and custom modelling, and much of the effort goes into turning tacit organisational knowledge into explicit, machine-readable knowledge. Glossaries, metric definitions and business rules have to be curated and mapped by the organisation that owns them. Because commercial and custom-built parts will sit side by side, Gartner advises planning for interoperability from the outset.</p>
+    <p>It also matters which agents you run. Gartner says the layer is most useful for self-built or highly customisable agents. Off-the-shelf vendor agents are not designed to use an external context layer unless they allow integration or behavioural customisation, although Gartner expects that to change as vendors adopt context engineering. If most of your agents arrive inside packaged software, check what each one lets you connect before you invest in a shared layer.</p>
+    <p>You may own more of the semantics than you think. In our view an enterprise architecture repository already holds many of the entities, relationships and owners that component needs, which is one reason to keep it accurate. Our guide to <a href="insight-how-to-choose-an-enterprise-architecture-tool.html">choosing an enterprise architecture tool</a> covers the options.</p>
+    <h2>Where to start and what to measure</h2>
+    <p>Gartner advises against building a comprehensive layer in one go. Start with one or two high-value use cases, build all three components for them together, and extend the layer as outcomes are demonstrated. Data modelling and governance are prerequisites, since the layer depends on AI-ready data existing first.</p>
+    <p>A practical order of work follows from the paper.</p>
+    <ol><li>Choose one agent use case with a clear business outcome and an owner.</li><li>Model the entities, metrics and rules that use case touches, and agree their definitions with the business.</li><li>Connect the agent to the live sources it needs, through MCP where the systems support it.</li><li>Log every decision, action and outcome from the first day, and set a regular review of the feedback.</li><li>Measure the results, then widen the scope.</li></ol>
+    <p>For measurement Gartner proposes three kinds of figure. Return on the layer is the value captured divided by the total cost of creating and sustaining it, and savings on model costs from smaller contexts count towards the value. Agent reliability is the share of actions with positive business outcomes and the share that comply with rules and policies, checked through audit logs or automated validation. Retrieval quality is precision, the share of retrieved knowledge objects that are relevant, and recall, the share of all relevant objects that were retrieved.</p>
+    <h2>Where agents help</h2>
+    <p>Most of the work Gartner describes is curation, and much of it is done by hand. The agent Arithim would build for this problem keeps the context layer itself in order. It reads the data catalogue, business glossary, metric definitions and governance tools you already own, and looks for the gaps that make other agents unreliable. One example is a term defined two ways in different domains. Another is a policy that exists only as a document and has no machine-readable rule behind it. The agent drafts the proposed definition, mapping or constraint with the evidence behind it, and a data steward approves or rejects each one before anything changes. Every proposal and decision is logged, which adds to the provenance record.</p>
+    <p>The same pattern applies to the agents that sit on top of the layer. They work alongside the systems you already run, with their own identity and limited access, and a person approves changes. We describe what a business should expect from that arrangement in <a href="insight-what-businesses-need-from-ai.html">what most businesses need from AI</a>.</p>
+    <h2>Common questions</h2>
+    <h3>What is a context layer for AI agents?</h3>
+    <p>It is the part of an architecture that curates, integrates and delivers the information an agent needs for a task. Gartner's March 2026 research describes three components. Semantics holds the meaning of business data, operational state gives right-time access to what is happening in the business, and provenance records the agent's decisions, actions and outcomes.</p>
+    <h3>What is the difference between a context layer and a context graph?</h3>
+    <p>Gartner says the term context graph usually refers to the provenance component alone, which is the record of decisions, actions and outcomes. A context layer also needs semantics and operational state. Ask a vendor which of the three components its product covers.</p>
+    <h3>Can we buy a context layer from a vendor?</h3>
+    <p>Gartner says no vendor currently offers a fully out-of-the-box context layer. It is assembled from services, capabilities and custom modelling, and your organisation has to curate its own glossary, metric definitions and business rules. Plan for commercial and custom-built components to work together from the start.</p>
+    <h3>Is a context layer the same as RAG?</h3>
+    <p>No. Retrieval-augmented generation is one technique inside one component. Gartner lists RAG and GraphRAG as the way agents reach unstructured content and organisational knowledge within operational state. The layer also covers structured data, right-time streams, the semantic model and the provenance record.</p>
+    <h3>Do off-the-shelf AI agents use a context layer?</h3>
+    <p>Mostly they do not yet. Gartner says the layer is most useful for self-built or highly customisable agents, and that off-the-shelf vendor agents are not designed to use an external context layer unless they allow integration or behavioural customisation. Gartner expects this to change as vendors adopt context engineering.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NCKLMK5&amp;ct=260514&amp;st=sb" rel="noopener">The 3 Core Components of the Context Layer for AI Agents</a>, Andrés García-Rodeja, Michael Gonzales et al., 11 March 2026, ID G00848874. Complimentary reprint; the link may expire.</li>
+      <li>The <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> site and the W3C recommendations for <a href="https://www.w3.org/TR/shacl/" rel="noopener">SHACL</a> and <a href="https://www.w3.org/TR/sparql11-overview/" rel="noopener">SPARQL 1.1</a>, as linked. Accessed 13 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER is a registered trademark of Gartner, Inc. and/or its affiliates.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-what-is-agentic-ai-where-is-it-working.html"><h3 class="ah-772add">What Is Agentic AI, and Where Is It Actually Working in 2026?</h3><span class="ah-90030f">AGENTIC AI · RESEARCH · 09 NOV 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html"><h3 class="ah-772add">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span class="ah-90030f">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-choose-an-enterprise-architecture-tool.html"><h3 class="ah-772add">How Do We Choose an Enterprise Architecture Tool in 2026?</h3><span class="ah-90030f">EA · RESEARCH · 23 OCT 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Want to know what your agents would need from a context layer?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=4" defer></script>
+</body>
+</html>
