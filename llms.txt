@@ -63,6 +63,7 @@ Arithim Ltd is based in London. It builds enterprise software and SaaS products 
 ## Company
 
 - [About](https://arithim.com/about.html): Arithim is a London software company. We make enterprise software and SaaS products, and we help energy, industrial, telecoms and regulated businesses put AI into their operations.
+- [Tarun Bulchandani, AI Speaker and Fractional Chief AI Officer](https://arithim.com/speaking.html): Tarun Bulchandani is an AI speaker and fractional Chief AI Officer in London. Founder of Arithim, available for keynotes, workshops and coaching on agentic AI, AI governance and ISO 42001.
 - [Research](https://arithim.com/research.html): Not abstract AI capability in isolation, but the systems required to make intelligence useful inside real operational environments.
 - [Contact](https://arithim.com/contact.html): Share the operational problem. We will tell you honestly whether AI is the right tool, and what we would build.
 

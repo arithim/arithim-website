@@ -286,6 +286,8 @@ Applied AI & operational systems, London
 
 Tarun founded Arithim to close the gap between AI potential and operational reality. With a background spanning enterprise systems, SAP ERP environments, and regulated industry workflows, he builds AI that survives contact with real operations, where auditability, integration, and trust matter more than novelty.
 
+Talks and speaker profile →
+
 Applied AI consultancy
 
 SAP ERP environments
@@ -5023,6 +5025,90 @@ AGENTIC AI · RESEARCH · 09 NOV 2026
 ## Have a pilot that works but can't get past risk and compliance?
 
 Start a conversation →
+
+Call us
+
+---
+
+## Tarun Bulchandani
+
+URL: https://arithim.com/speaking.html
+
+AI speaker · Fractional Chief AI Officer · London
+
+# Tarun Bulchandani
+
+Tarun Bulchandani gets AI agents out of the pilot stage and into real work at companies where an auditor will ask questions. He runs Arithim, a London AI consultancy in Anthropic's Claude Partner Network, and works as a fractional Chief AI Officer. He's now taking bookings for keynotes, workshops and leadership coaching on agentic AI and AI governance.
+
+17mBritish Gas customer accounts moved onto one SAP billing system
+
+CHF 3bnNestlé's GLOBE SAP estate, which he helped simplify
+
+22%fewer UK IT applications at Aviva
+
+## SAP systems for household names
+
+Tarun started work as a programmer at 15, in the mid-1990s, writing and running the billing system for a digital telephone exchange in Gandhidham, Gujarat. From there he moved into SAP, first in India and then in Thailand, where he worked on projects for Siam Cement. In the early 2000s he moved to the UK, where SAP work took him into The Body Shop, the Post Office and Siemens.
+
+Billing came round again at British Gas. He worked on Project Jupiter, the £300m programme that put 17 million household accounts onto one SAP billing system. After that he ran the six-person team that kept British Gas Business's SAP systems up around the clock. His own consultancy, Noesys, later took him to City & Guilds, Sony, Camelot and Howdens, and back to British Gas to work on its smart metering programme and on moving Centrica's data centre into a private cloud.
+
+## Simplifying Nestlé, governing Aviva
+
+GLOBE was Nestlé's attempt to run the whole company on one set of SAP systems. When it began in the early 2000s it was the world's largest SAP rollout, with an estimated cost of CHF 3 billion. By 2013 it served more than 170,000 users, and Nestlé started a Landscape Simplification programme to cut its complexity.
+
+Tarun joined the programme at Nestlé's head office in Vevey in 2015, as a senior enterprise architect. He also worked with SAP on whether Nestlé could move to S/4HANA. At Aviva he led architecture governance and IT simplification for the global insurer. His programme cut UK IT applications by 11% in its first year and 22% by 2022 and retired legacy systems, helping Aviva deliver £327m of cost savings.
+
+## On the buyer's side at Sonnedix
+
+From 2023 to 2026 Tarun was Head of Architecture at Sonnedix, a global renewable energy producer. He built its first enterprise architecture function, started its Digital Lab for AI, led the architecture for its move to SAP S/4HANA Public Cloud and Salesforce, and ran Palantir Foundry and AIP with AI use cases in production.
+
+Running vendor strategy meant sitting through most of the enterprise AI pitches going. That's the view he now brings to clients, expert calls and investor due diligence.
+
+## Arithim and the machine workforce
+
+Tarun founded Arithim in 2026. He tells boards to treat every AI agent like a new hire. Give it a job description that says what it must never do, a named owner, and more freedom only as it earns it. And when the model underneath changes, review it again. "A model upgrade is a re-hire," he says.
+
+Arithim builds and sells agentic AI and conventional software, publishes its own AI research, and advises boards on AI strategy.
+
+## Talks
+
+Keynote or fireside · CAIO, CIO, HR
+
+### Hiring the Machine Workforce
+
+Run AI agents through the same lifecycle as staff, from requisition to retirement, and find out where HR and IT have to share the job.
+
+View the slides
+
+Workshop or short keynote · Engineering leaders
+
+### Don't Ship Slop
+
+How skipping one code review bloated a production database, and the checklist that would have caught it.
+
+View the slides
+
+Keynote or panel · CAIO, CIO, risk committees
+
+### From Pilot to Production in Regulated Industries
+
+Why AI pilots that work still don't go live in regulated firms, and what it takes to get them there.
+
+View the slides
+
+## Book Tarun
+
+Keynotes and fireside chats on agentic AI, AI governance and ISO 42001
+
+Workshops for leadership and engineering teams
+
+Panels, roundtables and podcasts
+
+Fractional or interim Chief AI Officer, and coaching for executive teams
+
+Expert calls and investor due diligence on enterprise AI
+
+Get in touch through arithim.com or on LinkedIn.
 
 Call us
 
