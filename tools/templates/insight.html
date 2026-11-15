@@ -160,7 +160,7 @@
     </div>
   </div>
 
-  <article class="ai-body r-gut ah-c06c58">
+@@deck@@  <article class="ai-body r-gut ah-c06c58">
     <p class="ah-0f7de7">@@lede@@</p>
 @@body@@
 @@faq@@@@sources@@  </article>
@@ -188,8 +188,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
-  componentWillUnmount() { if (this._stop) this._stop(); }
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e));@@deck_script@@ }
+  componentWillUnmount() { if (this._stop) this._stop(); if (this._stopDeck) this._stopDeck(); }
   renderVals() { return {}; }
 }
 </script>

@@ -30,7 +30,7 @@ def render(p: dict) -> str:
                "publisher": {"@id": f"{SITE}/#organization"}, "inLanguage": "en-GB"}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Arithim", "item": f"{SITE}/"}, {"@type": "ListItem", "position": 2, "name": p["h1"], "item": url}]}
-    secs = "".join(f'<div class="ah-doc-sec"><h2>{e(s["h"])}</h2>' + "".join(f"<p>{x}</p>" for x in s["p"]) + "</div>\n    " for s in p["sections"])
+    secs = "".join(f'<div class="ah-doc-sec"' + (f' id="{e(s["id"])}"' if s.get("id") else "") + f'><h2>{e(s["h"])}</h2>' + "".join(f"<p>{x}</p>" for x in s["p"]) + "</div>\n    " for s in p["sections"])
     note = f"\n    <!-- {p['note']} -->" if p.get("note") else ""
     return f"""<!DOCTYPE html>
 <html lang="en-GB">

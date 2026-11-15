@@ -3412,6 +3412,246 @@ Insights / Agentic AI
 
 AGENTIC AI · RESEARCH·09 NOV 2026·7 MIN READ·BY TARUN BULCHANDANI
 
+KEYNOTE·20 MIN TALK·14 SLIDES
+
+Keynote · Agentic AI
+
+## Agentic AI in 2026: where is it actually working?
+
+Tarun Bulchandani · Arithim
+
+The short answer
+
+## Bounded, repetitive work, with a person approving the risky steps.
+
+And most clearly in software engineering.
+
+What an agent is
+
+## An agent decides its own next step.
+
+### Chatbot
+
+Answers a prompt.
+
+### RPA
+
+Replays a fixed script across screens.
+
+### Agent
+
+Plans, calls tools, acts in other systems and adapts when something changes.
+
+Agentic automation
+
+## Very few processes will be handed to an agent alone.
+
+Gartner's wider term covers processes run by agents, conventional automation and people together.
+
+How far adoption has got
+
+## Adoption is early.
+
+17%
+
+of organisations have deployed AI agents
+
+42%
+
+expect to within 12 months
+
+22%
+
+expect to in the year after that
+
+Agents inside your software
+
+## They are arriving in the applications you already run.
+
+<5%
+
+of enterprise applications had task-specific agents in 2025
+
+40%
+
+expected by the end of 2026
+
+Where it works
+
+## Software engineering is the clearest success.
+
+90%
+
+of engineering leaders say AI has increased productivity
+
+<25%
+
+the gain most of them report
+
+Outside engineering
+
+## Five patterns that work today.
+
+Bounded, repetitive tasksClear steps and a clear right outcome
+
+Domain agents in regulated workClaims, legal files and clinical coding, held to the domain's procedures
+
+Agents that use screensIT support, web testing, data entry into systems with no API
+
+Tightly controlled multi-agent set-upsWith a checking step in the workflow
+
+Document extractionInvoices, receipts and passports
+
+Where it falls short
+
+## Predictability is the main limit.
+
+45%
+
+average success rate for screen-based agents on a 50-step process
+
+Three more limits
+
+## Cost, security and coordination.
+
+### Cost
+
+Varies run to run with context, tool calls, retries and reasoning time.
+
+### Security
+
+Prompt injection has no general fix. Borrowed logins break the audit trail.
+
+### Coordination
+
+One wrong output spreads down a chain of agents.
+
+If you agentify a garbage process, even automation will only amplify garbage.
+
+Gartner, Predicts 2026
+
+How to start
+
+## Five steps before your first agent.
+
+Check whether simpler automation would doRules-based workflow or RPA is often cheaper and more reliable for a fixed process
+
+Analyse the process first
+
+Keep a person approving high-risk actionsPayments, sensitive data, changes to production
+
+Give each agent its own identityShort-lived, least-privilege credentials and a named human owner
+
+Stay independent of any one vendorMCP for tools, OpenTelemetry as a minimum for observability
+
+Where we think agents help
+
+## Agents that work across the systems you already own.
+
+Each one has its own identity and limited access, logs every decision with its reasoning, and waits for a person to approve changes to production.
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-what-is-agentic-ai-where-is-it-working.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Want to know which of your processes an agent could take on first? hello@arithim.com
+
+←
+
+01 / 14
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### Agentic AI in 2026: where is it actually working?
+
+This talk draws on two Gartner reports: the Hype Cycle for Agentic AI, 2026, which profiles 33 technologies, and Predicts 2026: The New Era of Agentic Automation Begins.
+
+02
+
+### Bounded, repetitive work, with a person approving the risky steps.
+
+Gartner's Hype Cycle says fully autonomous agents are not yet ready for most enterprise work. The agents that work today have a narrow job and a person in the approval path.
+
+03
+
+### An agent decides its own next step.
+
+Gartner warns about agent-washing, where assistants, chatbots and RPA products are relabelled as agents. A useful test is whether the product decides its own next step and acts in another system, or simply answers a prompt or replays a script.
+
+04
+
+### Very few processes will be handed to an agent alone.
+
+Predicts 2026 uses agentic automation for business processes run by a mix of AI agents, RPA and workflow tools, and people. That is closer to how most organisations will actually use agents.
+
+05
+
+### Adoption is early.
+
+These figures come from Gartner's 2026 CIO and Technology Executive Survey. Most early use automates workflows that already exist; very few organisations have redesigned a process around agents yet.
+
+06
+
+### They are arriving in the applications you already run.
+
+Interest is running well ahead of deployment. Gartner reports that client inquiries about agentic technologies rose by more than 1,700% in 2025.
+
+07
+
+### Software engineering is the clearest success.
+
+Coding agents now take on feature work, tests, code review and modernisation, with a developer reviewing the output. The figures come from Gartner's 2026 software engineering survey. It is the one area where Gartner sees significant growth.
+
+08
+
+### Five patterns that work today.
+
+Enterprise AI assistants are the most widespread form, with more than half of the target market already using them. They mostly help people draft, analyse and report, and make fewer decisions on their own.
+
+09
+
+### Predictability is the main limit.
+
+Many agents can carry out specific tasks but lack the consistency to run unattended. Predicts 2026 puts screen-based agents well below RPA on the same kind of work, and they are slower and cost more per run.
+
+10
+
+### Cost, security and coordination.
+
+Gartner recommends logging tokens, tool calls and cost for every step, capping steps and spend, and sending simple tasks to smaller models. Organisations piloting agents from several vendors struggle to coordinate them, and many agent products only work inside one vendor's environment.
+
+11
+
+### “If you agentify a garbage process, even automation will only amplify garbage.”
+
+Analyse the process before you automate it.
+
+12
+
+### Five steps before your first agent.
+
+This is Gartner's advice across both reports. Never let an agent reuse an employee's login. Keep your prompts, workflows, policies and tests portable.
+
+13
+
+### Agents that work across the systems you already own.
+
+Gartner expects that by 2030, 60% of organisations will adopt agent orchestration platforms from vendors outside their existing application suite. We build agents for that position, for example taking a security finding from any scanner through to a merged, verified fix.
+
 Agentic AI is software that works towards a goal by planning steps, using tools and acting in other systems, with varying degrees of independence. In 2026 it works best on bounded, repetitive tasks where a person approves the risky steps, and most clearly in software engineering. Gartner's 2026 Hype Cycle for Agentic AI says fully autonomous agents are not yet ready for most enterprise work.
 
 This article starts our series on agentic AI. It draws on two Gartner reports: the Hype Cycle for Agentic AI, 2026, which profiles 33 technologies, and Predicts 2026: The New Era of Agentic Automation Begins.
@@ -3776,7 +4016,7 @@ LEGAL
 
 # Legal notice
 
-LAST UPDATED · 28 OCTOBER 2026
+LAST UPDATED · 15 NOVEMBER 2026
 
 ## Who we are
 
@@ -3804,7 +4044,15 @@ The Call us button connects you to AI assistants. They can make mistakes. Nothin
 
 ## Intellectual property
 
-The content of this site is copyright of Arithim Ltd, 2026, and all rights are reserved. You may link to our pages and quote short extracts with a clear credit and a link back. Please ask before you copy more.
+The content of this site is copyright of Arithim Ltd, 2026, and all rights are reserved, except for the slide decks described in the next section. You may link to our pages and quote short extracts with a clear credit and a link back. Please ask before you copy more.
+
+## Slides you can reuse
+
+The slide decks on our insight pages, with their speaker notes, are licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). You may show, copy, share and adapt them, as long as you credit Arithim, link to the page the deck came from, say if you changed it, and do not use them commercially.
+
+As a further permission on top of that licence, you may use the slides inside your own organisation, including in team meetings and internal training, even if your organisation is a business. Selling the slides, or charging for a talk, course or product built on them, needs our written permission. Ask at hello@arithim.com.
+
+The licence covers only material we own. It does not cover research, figures, quotes or images from third parties that appear in a deck, which stay under their owners' terms (for example, Gartner research cited in a deck remains subject to Gartner's terms). It does not cover the Arithim name, logo or other trade marks either.
 
 ## Other people's names and data
 

@@ -7,7 +7,7 @@
   python3 tools/build_all.py --check    what CI runs: every generator in check mode, the style lint and the tests
 
 What belongs to a page is its text: content/products.json, content/catalogue.json, content/legal.json,
-content/insights/*.md and content/navigation.json. Everything else is written from those and from site.css.
+content/insights/*.md, content/keynotes/*.md and content/navigation.json. Everything else is written from those and from site.css.
 """
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ def run(*args: str, ok=(0,)) -> int:
 def build():
     steps = [
         ("tools/centralise_styles.py", "--write"), ("tools/build_product_pages.py",), ("tools/build_legal_pages.py",), ("tools/build_site_finder.py",),
-        ("tools/build_products_hub.py",), ("tools/build_insights.py",), ("tools/build_themes.py",), ("tools/centralise_styles.py", "--write"),
+        ("tools/build_products_hub.py",), ("tools/build_keynotes.py",), ("tools/build_insights.py",), ("tools/build_themes.py",), ("tools/centralise_styles.py", "--write"),
         ("tools/build_product_pages.py",), ("tools/build_insights.py",), ("tools/build_discovery.py",), ("tools/call-agent/build_pack.py", "--allow-missing-denylist"),
     ]
     for s in steps:
@@ -40,9 +40,9 @@ def build():
 
 def check():
     checks = [
-        ("tools/build_insights.py", "--check"), ("tools/build_discovery.py", "--check"), ("tools/build_product_pages.py", "--check"),
+        ("tools/build_insights.py", "--check"), ("tools/build_keynotes.py", "--check"), ("tools/build_discovery.py", "--check"), ("tools/build_product_pages.py", "--check"),
         ("tools/build_products_hub.py", "--check"), ("tools/build_legal_pages.py", "--check"), ("tools/build_themes.py", "--check"),
-        ("tools/centralise_styles.py", "--lint"), ("-m", "unittest", "tools/test_build_insights.py"),
+        ("tools/centralise_styles.py", "--lint"), ("-m", "unittest", "tools/test_build_insights.py"), ("-m", "unittest", "tools/test_build_keynotes.py"),
     ]
     for c in checks:
         run(*c)

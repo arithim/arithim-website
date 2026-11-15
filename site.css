@@ -28,8 +28,8 @@
    (tools/build_themes.py). This is the only stylesheet on the site. */
 
 /* ah-tokens:start (managed by tools/centralise_styles.py; edit values here to restyle the site) */
-/* The animated product scenes keep the dark palette in every theme. */
-:root, .tsg-fig {
+/* The animated product scenes and keynote slides keep the dark palette in every theme. */
+:root, .tsg-fig, .kn-frame, .kn-deck.is-full {
   --ah-ink: #070C16;
   --ah-ink-deep: #060A12;
   --ah-band: #0A101C;
@@ -2259,4 +2259,208 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
 @media (max-width: 640px) {
   .ah-foot-mark { padding: var(--ah-s-24) var(--ah-s-24) 0; }
   .ah-foot-mark + .ah-2b8fb5.ah-2b8fb5 { padding-top: var(--ah-s-12) !important; }
+}
+
+/* Slide decks on insight pages, between the hero and the article.
+   Built by tools/build_keynotes.py through tools/build_insights.py; format and publishing notes in docs/keynote/README.md.
+
+   The page and the controls under the deck follow the site theme. The slides are always the dark
+   brand deck: .kn-frame (and the whole deck while presenting) sits beside .tsg-fig in the token
+   block, so the --ah-* tokens inside it keep the dark palette in every theme. The --kn-* aliases
+   are declared on both .kn-deck and .kn-frame so each level resolves its own palette.
+
+   Slides are designed on a 1280 x 720 canvas. --u is one design pixel, sized from the width
+   of .kn-frame with container query units, so the deck scales with no JavaScript. */
+
+.kn-deck, .kn-frame {
+  --kn-ink: var(--ah-ink); --kn-band: var(--ah-band); --kn-card: var(--ah-card); --kn-card-2: var(--ah-card-2);
+  --kn-cream: var(--ah-cream); --kn-text-2: var(--ah-text-2); --kn-text-3: var(--ah-text-3); --kn-text-4: var(--ah-text-4); --kn-text-6: var(--ah-text-6);
+  --kn-amber: var(--ah-amber); --kn-amber-light: var(--ah-amber-light); --kn-sage: var(--ah-sage); --kn-sage-light: var(--ah-sage-light); --kn-blue: var(--ah-blue);
+  --kn-line: var(--ah-cream-08); --kn-line-3: var(--ah-cream-18); --kn-amber-line: var(--ah-amber-35);
+  --kn-display: 'Schibsted Grotesk', system-ui, sans-serif; --kn-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --kn-mark: 'Space Grotesk', system-ui, sans-serif; --kn-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+.kn-deck {
+  position: relative; max-width: var(--ah-w-max); margin: 0 auto; outline: none;
+}
+.kn-deck:focus-visible .kn-frame { box-shadow: 0 0 0 2px var(--kn-amber); }
+
+.kn-frame {
+  container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--ah-r-16); overflow: hidden; background: var(--kn-ink);
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,0.55), 0 0 0 1px var(--kn-line);
+  touch-action: pan-y; cursor: pointer; user-select: none; -webkit-user-select: none;
+}
+.kn-stage { --u: calc(100cqw / 1280); position: absolute; inset: 0; color: var(--kn-cream); font-family: var(--kn-body); }
+
+/* One slide. The 64px grid at 3% cream is the brand deck ground. */
+.kn-slide {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+  padding: calc(var(--u) * 72) calc(var(--u) * 84) calc(var(--u) * 92);
+  background-color: var(--kn-ink);
+  background-image: linear-gradient(var(--ah-cream-03) 1px, transparent 1px), linear-gradient(90deg, var(--ah-cream-03) 1px, transparent 1px);
+  background-size: calc(var(--u) * 43) calc(var(--u) * 43);
+  opacity: 0; visibility: hidden; transform: translateX(calc(var(--u) * 24));
+  transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+.kn-slide.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .35s ease; }
+.kn-slide.is-past { transform: translateX(calc(var(--u) * -24)); }
+.kn-stage:not(.is-ready) .kn-slide:first-child { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .kn-slide, .kn-slide.is-on { transition: none; transform: none; } }
+.kn-instant .kn-slide { transition: none !important; }
+
+.kn-l-title { justify-content: flex-end; }
+.kn-l-title::before, .kn-l-close::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 60% at 85% 15%, var(--ah-amber-22), transparent 70%),
+              radial-gradient(ellipse 45% 55% at 10% 100%, rgba(126,155,135,0.18), transparent 70%);
+}
+.kn-slide > * { position: relative; }
+
+.kn-kicker {
+  margin: 0 0 calc(var(--u) * 26); font-family: var(--kn-mono); font-size: calc(var(--u) * 15);
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--kn-amber);
+  display: flex; align-items: center; gap: calc(var(--u) * 12);
+}
+.kn-kicker::before { content: ""; width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: 50%; background: var(--kn-amber); box-shadow: 0 0 calc(var(--u) * 12) var(--kn-amber); }
+
+.kn-h1, .kn-h2 { margin: 0; font-family: var(--kn-display); font-weight: 700; color: var(--kn-cream); text-wrap: balance; }
+.kn-h1 { font-size: calc(var(--u) * 84); line-height: 0.95; letter-spacing: -0.045em; max-width: calc(var(--u) * 1040); }
+.kn-h2 { font-size: calc(var(--u) * 54); line-height: 1.02; letter-spacing: -0.035em; max-width: calc(var(--u) * 1040); }
+.kn-h2-big { font-size: calc(var(--u) * 68); line-height: 0.98; }
+.kn-hl { background: linear-gradient(100deg, var(--kn-amber), var(--kn-amber-light)); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0; }
+.kn-byline { margin: calc(var(--u) * 34) 0 0; font-family: var(--kn-mono); font-size: calc(var(--u) * 17); letter-spacing: 0.1em; text-transform: uppercase; color: var(--kn-text-3); }
+.kn-lede { margin: calc(var(--u) * 28) 0 0; max-width: calc(var(--u) * 900); font-size: calc(var(--u) * 26); line-height: 1.45; color: var(--kn-text-2); }
+
+.kn-list { list-style: none; margin: calc(var(--u) * 34) 0 0; padding: 0; display: flex; flex-direction: column; gap: calc(var(--u) * 16); counter-reset: kn; }
+.kn-list li { display: grid; grid-template-columns: calc(var(--u) * 44) 1fr; column-gap: calc(var(--u) * 14); align-items: baseline; }
+.kn-list li::before { content: ""; width: calc(var(--u) * 12); height: calc(var(--u) * 12); background: var(--kn-amber); transform: rotate(45deg) translateY(calc(var(--u) * -4)); justify-self: start; box-shadow: 0 0 calc(var(--u) * 10) rgba(232,161,60,0.6); }
+ol.kn-list li { counter-increment: kn; }
+ol.kn-list li::before { content: counter(kn, decimal-leading-zero); width: auto; height: auto; background: none; transform: none; box-shadow: none; font-family: var(--kn-mono); font-size: calc(var(--u) * 18); color: var(--kn-amber); }
+.kn-li-head { font-family: var(--kn-display); font-weight: 600; font-size: calc(var(--u) * 28); line-height: 1.2; letter-spacing: -0.015em; }
+.kn-li-small { grid-column: 2; font-size: calc(var(--u) * 18); line-height: 1.4; color: var(--kn-text-4); margin-top: calc(var(--u) * 3); }
+
+.kn-cards, .kn-stats { display: grid; gap: calc(var(--u) * 20); margin-top: calc(var(--u) * 44); }
+.kn-cols-1 { grid-template-columns: 1fr; } .kn-cols-2 { grid-template-columns: 1fr 1fr; }
+.kn-cols-3 { grid-template-columns: repeat(3, 1fr); } .kn-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.kn-card { background: var(--kn-card); border: 1px solid var(--kn-line); border-radius: calc(var(--u) * 16); padding: calc(var(--u) * 26); }
+.kn-card:last-child { border-color: var(--kn-amber-line); }
+.kn-card h3 { margin: 0 0 calc(var(--u) * 10); font-family: var(--kn-display); font-weight: 700; font-size: calc(var(--u) * 28); letter-spacing: -0.02em; color: var(--kn-cream); }
+.kn-card p { margin: 0; font-size: calc(var(--u) * 19); line-height: 1.45; color: var(--kn-text-2); }
+
+.kn-stat { border-top: 1px solid var(--kn-line-3); padding-top: calc(var(--u) * 20); }
+.kn-num { font-family: var(--kn-display); font-weight: 700; font-size: calc(var(--u) * 116); line-height: 0.9; letter-spacing: -0.05em; color: var(--kn-cream); font-variant-numeric: tabular-nums; }
+.kn-cols-1 .kn-num { font-size: calc(var(--u) * 168); }
+.kn-cols-1 .kn-stat { max-width: calc(var(--u) * 760); }
+.kn-cap { margin-top: calc(var(--u) * 16); font-family: var(--kn-mono); font-size: calc(var(--u) * 16); line-height: 1.5; letter-spacing: 0.04em; color: var(--kn-amber); text-transform: uppercase; max-width: calc(var(--u) * 340); }
+.kn-cols-1 .kn-cap { max-width: calc(var(--u) * 640); }
+
+.kn-quote { margin: 0; border-left: calc(var(--u) * 4) solid var(--kn-amber); padding-left: calc(var(--u) * 40); }
+.kn-quote p { margin: 0; font-family: var(--kn-display); font-weight: 600; font-size: calc(var(--u) * 54); line-height: 1.08; letter-spacing: -0.03em; max-width: calc(var(--u) * 1000); text-wrap: balance; }
+.kn-quote p::before { content: "\201C"; color: var(--kn-amber); }
+.kn-quote p::after { content: "\201D"; color: var(--kn-amber); }
+.kn-cite { margin: calc(var(--u) * 26) 0 0 calc(var(--u) * 44); font-family: var(--kn-mono); font-size: calc(var(--u) * 16); letter-spacing: 0.12em; text-transform: uppercase; color: var(--kn-text-3); }
+
+.kn-slide.kn-l-close { flex-direction: row; align-items: center; gap: calc(var(--u) * 64); }
+.kn-close-text { flex: 1; }
+.kn-url { margin: calc(var(--u) * 26) 0 0; font-family: var(--kn-mono); font-size: calc(var(--u) * 20); color: var(--kn-amber); word-break: break-all; }
+.kn-l-close .kn-lede { font-size: calc(var(--u) * 21); }
+.kn-qr { flex: none; width: calc(var(--u) * 330); padding: calc(var(--u) * 14); background: var(--kn-cream); border-radius: calc(var(--u) * 20); box-shadow: 0 0 calc(var(--u) * 60) rgba(232,161,60,0.25); }
+.kn-qr img { display: block; width: 100%; height: auto; }
+
+.kn-foot { position: absolute; left: calc(var(--u) * 84); right: calc(var(--u) * 84); bottom: calc(var(--u) * 34); display: flex; justify-content: space-between; align-items: baseline; }
+.kn-mark { font-family: var(--kn-mark); font-weight: 700; font-size: calc(var(--u) * 20); letter-spacing: -0.01em; color: var(--kn-cream); }
+.kn-mark span { font-family: var(--kn-mono); font-weight: 400; font-size: calc(var(--u) * 12); color: var(--kn-text-3); margin-left: calc(var(--u) * 2); }
+.kn-pg { font-family: var(--kn-mono); font-size: calc(var(--u) * 13); letter-spacing: 0.12em; color: var(--kn-text-3); font-variant-numeric: tabular-nums; }
+
+/* Progress and controls, below the frame. These follow the site theme. */
+.kn-bar { height: 3px; margin-top: var(--ah-s-14); border-radius: var(--ah-r-3); background: var(--ah-cream-18); overflow: hidden; }
+.kn-bar i { display: block; height: 100%; width: 0; background: var(--kn-amber); transition: width .3s ease; }
+.kn-controls { display: flex; align-items: center; gap: var(--ah-s-8); margin-top: var(--ah-s-12); flex-wrap: wrap; }
+.kn-ctl { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); letter-spacing: 0.06em; color: var(--ah-cream); background: transparent;
+  border: 1px solid var(--ah-cream-25); border-radius: var(--ah-r-999); min-width: 44px; height: 40px; padding: 0 var(--ah-s-14); cursor: pointer; }
+.kn-ctl:hover, .kn-ctl:focus-visible { border-color: var(--kn-amber); color: var(--kn-amber); outline: none; }
+.kn-ctl-text { text-transform: uppercase; }
+.kn-ctl-gap { flex: 1; }
+.kn-count { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); letter-spacing: 0.1em; color: var(--ah-text-3); min-width: 76px; text-align: center; font-variant-numeric: tabular-nums; }
+.kn-hint { margin: var(--ah-s-10) 0 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.06em; color: var(--ah-text-4); text-align: center; }
+
+/* Present mode: the deck fills the screen (Fullscreen API where it exists, a fixed layer otherwise). */
+.kn-deck.is-full { position: fixed; inset: 0; z-index: 2000; max-width: none; margin: 0; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.kn-deck.is-full .kn-frame { width: min(100vw, calc(100dvh * 16 / 9)); border-radius: 0; box-shadow: none; }
+.kn-deck.is-full .kn-bar { position: absolute; left: 0; right: 0; top: 0; margin: 0; border-radius: 0; background: var(--ah-cream-08); }
+.kn-deck.is-full .kn-controls { position: absolute; right: 12px; bottom: 10px; margin: 0; opacity: 0; transition: opacity .2s; }
+.kn-deck.is-full:hover .kn-controls, .kn-deck.is-full .kn-controls:focus-within { opacity: 1; }
+.kn-deck.is-full .kn-ctl { color: var(--kn-cream); border-color: var(--ah-cream-25); background: rgba(7,12,22,0.7); }
+.kn-deck.is-full .kn-count { color: var(--kn-text-3); }
+.kn-deck.is-full .kn-ctl-gap, .kn-deck.is-full [data-kn-print], .kn-deck.is-full [data-kn-share] { display: none; }
+html.kn-locked, html.kn-locked body { overflow: hidden; }
+/* .r-gut isolates its children, so lift the whole band above the sticky header while presenting. */
+.kn-deck-band:has(.kn-deck.is-full) { position: relative; z-index: 3000; isolation: auto; }
+
+/* Around the deck on an insight page: a meta line above, licence, audio and speaker notes below.
+   These follow the site theme. */
+.kn-deck-band { max-width: 1080px; margin: 0 auto; padding: var(--ah-s-8) var(--ah-s-40) var(--ah-s-48); box-sizing: content-box; }
+.kn-deck-meta { display: flex; flex-wrap: wrap; gap: var(--ah-s-6) var(--ah-s-10); margin: 0 0 var(--ah-s-14); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.1em; color: var(--ah-text-3); }
+.kn-deck-meta > span:first-child { color: var(--ah-amber); }
+.kn-licence { max-width: 760px; margin: var(--ah-s-14) auto 0; font-size: var(--ah-fs-13); line-height: 1.55; color: var(--ah-text-4); text-align: center; }
+.kn-licence a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.kn-licence a:hover { color: var(--ah-amber); }
+
+.kn-audio { max-width: 760px; margin: var(--ah-s-24) auto 0; }
+.kn-audio-title { margin: 0 0 var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-3); }
+.kn-audio-mins { color: var(--ah-amber); margin-left: var(--ah-s-8); }
+.kn-audio audio { width: 100%; }
+
+.kn-notes-box { max-width: 760px; margin: var(--ah-s-24) auto 0; border-top: 1px solid var(--ah-cream-10); border-bottom: 1px solid var(--ah-cream-10); }
+.kn-notes-box summary { cursor: pointer; padding: var(--ah-s-14) 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-3); }
+.kn-notes-box summary:hover, .kn-notes-box summary:focus-visible { color: var(--ah-amber); outline: none; }
+.kn-notes { list-style: none; margin: 0; padding: 0 0 var(--ah-s-14); }
+.kn-note { display: grid; grid-template-columns: 56px 1fr; gap: 0 var(--ah-s-18); padding: var(--ah-s-14) 0; border-top: 1px solid var(--ah-cream-10); }
+.kn-note-num { align-self: start; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--ah-r-999);
+  border: 1px solid var(--ah-amber-35); font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-amber); text-decoration: none; }
+.kn-note-num:hover, .kn-note-num:focus-visible { background: var(--ah-amber); color: var(--ah-ink); outline: none; }
+.kn-note-body h3 { margin: var(--ah-s-8) 0 var(--ah-s-6); font-family: var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-17); color: var(--ah-cream); }
+.kn-notes .kn-hl { background: none; color: inherit; -webkit-text-fill-color: currentColor; }
+.kn-note-body p { margin: 0 0 var(--ah-s-8); font-size: var(--ah-fs-15); line-height: 1.6; color: var(--ah-text-2); }
+
+/* Phones: people arrive here from the QR code, so slides reflow onto a 9:16 portrait canvas 560 units wide
+   instead of shrinking a 16:9 slide until the text is unreadable. */
+@media (max-width: 640px) {
+  .kn-frame { aspect-ratio: 9 / 16; border-radius: var(--ah-r-12); }
+  .kn-stage { --u: calc(100cqw / 560); }
+  .kn-slide { padding: calc(var(--u) * 64) calc(var(--u) * 44) calc(var(--u) * 110); }
+  .kn-h1 { font-size: calc(var(--u) * 66); }
+  .kn-h2-big { font-size: calc(var(--u) * 58); }
+  .kn-quote p { font-size: calc(var(--u) * 46); }
+  .kn-cols-2, .kn-cols-3, .kn-cols-4 { grid-template-columns: 1fr; }
+  .kn-cards, .kn-stats { gap: calc(var(--u) * 16); margin-top: calc(var(--u) * 32); }
+  .kn-num { font-size: calc(var(--u) * 92); }
+  .kn-cols-1 .kn-num { font-size: calc(var(--u) * 150); }
+  .kn-cap { max-width: none; }
+  .kn-slide.kn-l-close { flex-direction: column; align-items: flex-start; justify-content: center; gap: calc(var(--u) * 44); }
+  .kn-close-text { flex: none; }
+  .kn-qr { width: calc(var(--u) * 300); }
+  .kn-foot { left: calc(var(--u) * 44); right: calc(var(--u) * 44); bottom: calc(var(--u) * 40); }
+  .kn-deck.is-full .kn-frame { width: min(100vw, calc(100dvh * 9 / 16)); }
+  .kn-deck-band { padding-left: var(--ah-s-20); padding-right: var(--ah-s-20); }
+  .kn-hint { display: none; }
+  .kn-controls [data-kn-print] { display: none; }
+  .kn-note { grid-template-columns: 1fr; }
+  .kn-note-num { margin-bottom: var(--ah-s-4); }
+}
+
+/* Print, and Save as PDF: one slide per landscape page, nothing else. */
+@media print {
+  @page { size: 1280px 720px; margin: 0; }
+  html, body { background: var(--ah-ink) !important; margin: 0 !important; padding: 0 !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .ah-page > :not(main), main:has(.kn-deck) > :not(.kn-deck-band), .kn-deck-band > :not(.kn-deck), .callus-link, .ah-theme-picker { display: none !important; }
+  .ah-page, main:has(.kn-deck), .kn-deck-band { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+  .kn-deck { width: 1280px; max-width: none; margin: 0; }
+  .kn-frame { width: 1280px; aspect-ratio: auto; height: auto; overflow: visible; border-radius: 0; box-shadow: none; }
+  .kn-stage { position: static; }
+  .kn-slide, .kn-slide.is-on, .kn-slide.is-past { position: relative; height: 720px; opacity: 1; visibility: visible; transform: none; transition: none; break-after: page; page-break-after: always; }
+  .kn-slide:last-child { break-after: auto; page-break-after: auto; }
+  .kn-bar, .kn-controls, .kn-hint { display: none !important; }
 }
