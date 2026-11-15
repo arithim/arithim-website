@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Where can I see live solar, wind and battery data for Great Britain? | Arithim</title>
-<meta name="description" content="Four live energy dashboards from Arithim: solar, wind, grid batteries and all renewables, refreshed every hour from open data.">
+<meta name="description" content="Live solar, wind, battery and renewable data from Arithim: Great Britain in full and other grids as their operators allow, refreshed every hour from open data.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arithim">
 <meta property="og:title" content="Where can I see live solar, wind and battery data for Great Britain?">
-<meta property="og:description" content="Four live energy dashboards from Arithim: solar, wind, grid batteries and all renewables, refreshed every hour from open data.">
+<meta property="og:description" content="Live solar, wind, battery and renewable data from Arithim: Great Britain in full and other grids as their operators allow, refreshed every hour from open data.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://arithim.com/live.html">
 <meta property="og:url" content="https://arithim.com/live.html">
@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Where can I see live solar, wind and battery data for Great Britain?", "url": "https://arithim.com/live.html", "description": "Four live energy dashboards from Arithim: solar, wind, grid batteries and all renewables, refreshed every hour from open data."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "Where can I see live solar, wind and battery data for Great Britain?", "url": "https://arithim.com/live.html", "description": "Live solar, wind, battery and renewable data from Arithim: Great Britain in full and other grids as their operators allow, refreshed every hour from open data."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How often is the live data refreshed?", "acceptedAnswer": {"@type": "Answer", "text": "Every hour. Each grid publishes on its own schedule, so the latest reading for one may be a few minutes old and for another an hour or two."}}, {"@type": "Question", "name": "Which grids are covered?", "acceptedAnswer": {"@type": "Answer", "text": "Great Britain in full, plus the other grids whose operators allow their data on a commercial site. Each dashboard has a page for Great Britain, Europe, the Americas, Asia-Pacific and the world, and each page lists its sources at the bottom."}}, {"@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": {"@type": "Answer", "text": "From grid operators and open data services such as Elexon, NESO, Sheffield Solar, the US EIA and Ember. A job fetches the latest figures every hour and keeps only the sources whose licences allow display on a commercial site."}}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=ce793faf"></script>
+<script src="/assets/live/live-dash.js?v=04824f4d"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,22 +162,60 @@
 <header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>Where can I see live solar, wind and battery data for Great Britain?</h1>
-<p>Four dashboards built on open data and refreshed every hour. Great Britain is covered in full; other grids appear as their operators allow their data on a commercial site.</p>
+<p>Built on open data and refreshed every hour. Great Britain is covered in full, and other grids appear as their operators allow their data on a commercial site. Start with the renewables total, or open one technology and drill down to a region.</p>
 </header>
-<div class="live-index"><a href="/live-solar"><h2>Solar</h2><p>Solar output now, by region, with a two-week forecast and a check of real output against modelled yield.</p></a><a href="/live-wind"><h2>Wind</h2><p>Wind output now, onshore and offshore, with NESO&#x27;s 14-day forecast.</p></a><a href="/live-batteries"><h2>Batteries</h2><p>What grid batteries are charging and discharging right now.</p></a><a href="/live-renewables"><h2>All renewables</h2><p>Renewables by source and their share of generation, hour by hour.</p></a></div>
+<nav class="live-switch" aria-label="Live dashboards"><a href="/live" aria-current="page">All dashboards</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a></nav>
+<div class="gsl">
+<section class="live-band" id="renewables" aria-labelledby="live-r">
+<div class="live-band-text">
+<h2 id="live-r">Renewables</h2>
+<p class="live-sub">Solar, wind, hydro and bioenergy on every live grid, added together.</p>
+<div class="live-stats">
+<div><p class="live-stat-l">Renewable output, latest hour</p><p class="live-stat-v"><span data-draw="r-gw" data-source="rn_total" data-field="renew_gw" data-row="0">—</span><small>GW</small></p></div>
+<div><p class="live-stat-l">Share of generation, where the full mix is published</p><p class="live-stat-v"><span data-draw="r-share" data-source="rn_total" data-field="full_mix_share_pct" data-row="0">—</span><small>%</small></p></div>
+<div><p class="live-stat-l">Live grids</p><p class="live-stat-v"><span data-draw="r-n" data-source="rn_total" data-field="grids" data-row="0">—</span></p></div>
+</div>
+<a class="live-go" href="/live-renewables">Open the renewables dashboard</a>
+</div>
+<div class="live-band-chart">
+<p class="live-chart-t">Great Britain's generation by source, last two days</p>
+<div class="gsl-key"><span style="--k: var(--src-solar)">Solar</span><span style="--k: var(--src-wind)">Wind</span><span style="--k: var(--src-hydro)">Hydro</span><span style="--k: var(--src-bio)">Bioenergy</span><span style="--k: var(--src-other)">Other renewables</span></div>
+<div class="gsl-chart" data-draw="gb-mix" data-source="renew_live"></div>
+</div>
+</section>
+<div class="live-cards">
+<section class="live-card" aria-labelledby="live-solar"><div class="live-card-body"><h2 id="live-solar">Solar</h2><p class="live-sub">Solar output by grid and region, with forecasts for Great Britain.</p><div class="live-stats"><div><p class="live-stat-l">Live grids, now</p><p class="live-stat-v"><span data-draw="live-total" data-source="live_total" data-field="now_gw" data-row="0">—</span><small>GW</small></p></div><div><p class="live-stat-l">Great Britain, now</p><p class="live-stat-v"><span data-draw="t-uk-now" data-source="uk_summary" data-field="now_gw" data-row="0">—</span><small>GW</small></p></div><div><p class="live-stat-l">World, share of electricity</p><p class="live-stat-v"><span data-draw="world-share" data-source="world_headline" data-field="share_pct" data-row="0">—</span><small>%</small></p></div></div><p class="live-chart-t">Great Britain today against recent days, GW</p><div class="gsl-chart" data-draw="uk-intraday" data-source="uk_national"></div></div><a class="live-go" href="/live-solar">Open the solar dashboard</a></section>
+<section class="live-card" aria-labelledby="live-wind"><div class="live-card-body"><h2 id="live-wind">Wind</h2><p class="live-sub">Wind output by grid and region, with Great Britain&#x27;s onshore and offshore split.</p><div class="live-stats"><div><p class="live-stat-l">Live grids, now</p><p class="live-stat-v"><span data-draw="w-total" data-source="wind_total" data-field="now_gw" data-where="group=All">—</span><small>GW</small></p></div><div><p class="live-stat-l">Great Britain, now</p><p class="live-stat-v"><span data-draw="gb-wind-rate" data-source="gb_wind_today" data-field="rate_gw" data-row="0">—</span><small>GW</small></p></div><div><p class="live-stat-l">World, share of electricity</p><p class="live-stat-v"><span data-draw="w-share" data-source="world_wind_headline" data-field="share_pct" data-row="0">—</span><small>%</small></p></div></div><p class="live-chart-t">Great Britain, onshore and offshore wind, last two days, GW</p><div class="gsl-chart" data-draw="gb-split" data-source="gb_wind_split"></div></div><a class="live-go" href="/live-wind">Open the wind dashboard</a></section>
+<section class="live-card" aria-labelledby="live-batteries"><div class="live-card-body"><h2 id="live-batteries">Batteries</h2><p class="live-sub">Grid batteries charging and discharging, grid by grid.</p><div class="live-stats"><div><p class="live-stat-l">Discharging now</p><p class="live-stat-v"><span data-draw="b-dis" data-source="bat_total" data-field="discharging_gw" data-where="group=All">—</span><small>GW</small></p></div><div><p class="live-stat-l">Charging now</p><p class="live-stat-v"><span data-draw="b-chg" data-source="bat_total" data-field="charging_gw" data-where="group=All">—</span><small>GW</small></p></div><div><p class="live-stat-l">Grids reporting</p><p class="live-stat-v"><span data-draw="b-n" data-source="bat_total" data-field="grids" data-where="group=All">—</span></p></div></div><p class="live-chart-t">Great Britain, last two days, GW (positive discharges)</p><div class="gsl-chart" data-draw="gb-lines" data-source="gb_battery"></div></div><a class="live-go" href="/live-batteries">Open the batteries dashboard</a></section>
+</div>
+</div>
 <section class="live-section">
 <h2>How these dashboards work</h2>
 <p>Every hour a job fetches the latest figures from each grid operator and open data service, keeps only the sources whose licences allow display on a commercial site, and publishes them here. Each dashboard lists its sources and credit lines at the bottom.</p>
+</section>
+<section class="live-section" id="questions">
+<h2>Questions</h2>
+<h3>How often is the live data refreshed?</h3><p>Every hour. Each grid publishes on its own schedule, so the latest reading for one may be a few minutes old and for another an hour or two.</p><h3>Which grids are covered?</h3><p>Great Britain in full, plus the other grids whose operators allow their data on a commercial site. Each dashboard has a page for Great Britain, Europe, the Americas, Asia-Pacific and the world, and each page lists its sources at the bottom.</p><h3>Where does the data come from?</h3><p>From grid operators and open data services such as Elexon, NESO, Sheffield Solar, the US EIA and Ember. A job fetches the latest figures every hour and keeps only the sources whose licences allow display on a commercial site.</p>
+</section>
+<section class="live-section live-credits" id="sources">
+<h2>Sources and credits</h2>
+<div data-live-credits><p class="live-note">Loading the source list…</p></div>
+<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
 </section>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live.html", "back_text": "← ALL LIVE DASHBOARDS"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← ALL LIVE DASHBOARDS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "index.html", "back_text": "\u2190 BACK TO HOME"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="index.html">← BACK TO HOME</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
+<script src="/assets/live/gsl.js?v=5d485418"></script>
+<script src="/assets/live/solar.js?v=9265b120"></script>
+<script src="/assets/live/renewables.js?v=7ba2bd7c"></script>
+<script src="/assets/live/wind.js?v=45af6a57"></script>
+<script src="/assets/live/battery.js?v=dd5bf5f7"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>
