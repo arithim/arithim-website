@@ -4,7 +4,7 @@
 # Usage: tools/stage_site.sh <target-dir>
 #
 # Excluded: sources and tooling (content/, tools/, .github/), build and VCS state
-# (.git, .wrangler/, .claude/), markdown docs (DEPLOY.md, *.md), migrations/ (the D1 schema is not for publishing), and functions/.
+# (.git, .wrangler/, .claude/), markdown docs (DEPLOY.md, *.md), migrations/ (the D1 schema is not for publishing), docs/ (internal notes and source decks), and functions/.
 # functions/ is excluded on purpose: `wrangler pages deploy` compiles ./functions from
 # the current working directory and publishes the result as a Worker. If it were also
 # copied into the asset directory, the source would be downloadable as /functions/...
@@ -27,6 +27,7 @@ rsync -a --delete \
   --exclude '/.claude/' \
   --exclude '/functions/' \
   --exclude '/migrations/' \
+  --exclude '/docs/' \
   --exclude '.git' \
   --exclude '.gitignore' \
   --exclude '.DS_Store' \
