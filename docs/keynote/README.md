@@ -2,7 +2,14 @@
 
 When Tarun gives an insight as a talk, workshop or panel, the slides go on that insight's page, between the title and the article. There is one URL per topic. The article underneath is what ranks in search and gets quoted in AI answers; the deck is what people pass round after the event. The last slide carries a QR code to the page, so Tarun can end a talk on it and the room can open the same slides on their phones.
 
-The first one is on [What Is Agentic AI, and Where Is It Actually Working in 2026?](https://arithim.com/insight-what-is-agentic-ai-where-is-it-working.html#slides), from `content/keynotes/what-is-agentic-ai-where-is-it-working.md`.
+Six insights have decks so far. Each deck lives in `content/keynotes/<slug>.md`, under the same slug as its insight:
+
+- what-is-agentic-ai-where-is-it-working
+- how-to-review-ai-written-code (the Don't Ship Slop talk)
+- how-to-onboard-ai-agents (the Hiring the Machine Workforce talk)
+- why-ai-pilots-stall-before-production (the From Pilot to Production talk)
+- what-businesses-need-from-ai
+- operational-intelligence-vs-automation
 
 ## What the deck does
 
@@ -95,4 +102,4 @@ Whichever route is used, publish a transcript with the audio.
 
 ## Source decks
 
-`source-decks/` holds the three talk decks built for Tarun's speaker page (Hiring the Machine Workforce, Don't Ship Slop, From Pilot to Production in Regulated Industries) and the script that generated them. They are kept for reference and are excluded from the deploy (`tools/stage_site.sh` skips `docs/`). Each needs an insight to sit on before it can be published in this format.
+`source-decks/` holds the three talk decks built for Tarun's speaker page (Hiring the Machine Workforce, Don't Ship Slop, From Pilot to Production in Regulated Industries) and the script that generated them. They are kept for reference and are excluded from the deploy (`tools/stage_site.sh` skips `docs/`). All three are now published as decks on their own insights, listed above.
