@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where does the live energy data on Arithim come from? | Arithim</title>
+<meta name="description" content="The grid operators and open data services behind Arithim&#x27;s live solar, wind, battery and renewables pages, with the credit line each one asks for.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Where does the live energy data on Arithim come from?">
+<meta property="og:description" content="The grid operators and open data services behind Arithim&#x27;s live solar, wind, battery and renewables pages, with the credit line each one asks for.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/live-credits.html">
+<meta property="og:url" content="https://arithim.com/live-credits.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Credits", "item": "https://arithim.com/live-credits.html"}]}]}</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=7">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+<script src="/assets/live/d3.v7.9.0.min.js"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
+</head>
+<body class="live-page">
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/live", "active": ""} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/live</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+            <a class="ah-menu-link" href="insight-more-than-one-application-security-testing-tool.html">Do You Need More Than One Application Security Testing Tool?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-why-ai-pilots-stall-before-production.html">Why Do AI Pilots Stall Before Production in Regulated Industries?</a>
+            <a class="ah-menu-link" href="insight-how-to-onboard-ai-agents.html">How Do You Onboard AI Agents the Way You Onboard Staff?</a>
+            <a class="ah-menu-link" href="insight-how-to-review-ai-written-code.html">How Should You Review AI-Written Code Before You Merge It?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+</div>
+</x-dc>
+
+<!-- The dashboard sits outside <x-dc>: support.js re-renders everything inside it with React, which
+     would drop the listeners and styles the dashboard scripts set up while the page loads. -->
+<div class="ah-page">
+
+<main id="main">
+<div class="r-gut">
+<div class="live-wrap">
+<nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-credits">Credits</a></li></ol></nav><header class="live-hero">
+<p class="live-kicker">LIVE ENERGY DATA</p>
+<h1>Where does the live energy data on Arithim come from?</h1>
+<p>Every figure comes from a public source. Totals, averages and shares are ours.</p>
+</header>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits" aria-current="page">Credits</a></nav>
+<section class="live-section live-credits" id="sources">
+<h2>Data sources</h2>
+<div data-live-credits data-all><p class="live-note">Loading the source list…</p></div>
+</section>
+<section class="live-section" id="licences">
+<h2>Licences</h2>
+<p>Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
+</section>
+<section class="live-section live-notes" id="notes">
+<h2>How to read the figures</h2>
+<dl><dt>How often is the live data refreshed?</dt><dd>Every hour. Each grid publishes on its own schedule, so the latest reading for one may be a few minutes old and for another an hour or two.</dd><dt>Which grids are covered?</dt><dd>Great Britain in full, plus the other grids whose operators allow their data on a commercial site. Each dashboard has a page for Great Britain, Europe, the Americas, Asia-Pacific and the world, and each page lists its sources at the bottom.</dd><dt>Where does the data come from?</dt><dd>From grid operators and open data services such as Elexon, NESO, Sheffield Solar, the US EIA and Ember. A job fetches the latest figures every hour and keeps only the sources whose licences allow display on a commercial site.</dd><dt>How up to date is this page?</dt><dd>The data is fetched every hour. Each grid publishes on its own schedule, so the latest reading for one may be a few minutes old and for another an hour or two.</dd><dt>Which grids are included?</dt><dd>Great Britain in full, and the other grids whose operators allow their data on a commercial site. The region pages show what is available for each part of the world.</dd><dt>What does the total add up?</dt><dd>Each live grid&#x27;s latest reading, added together. It is a count of what these grids report, not a measure of all the solar in the world.</dd><dt>Where do the numbers come from?</dt><dd>Elexon publishes half-hourly generation by fuel and actual generation by type for Great Britain, and NESO publishes the wind forecasts. Other grids come from their own system operators, and the yearly figures from Ember.</dd><dt>How often is it updated?</dt><dd>Every hour. Elexon&#x27;s onshore and offshore split runs about three hours behind; the other Great Britain figures are within the last half hour.</dd><dt>How is the live total worked out?</dt><dd>It adds each grid&#x27;s latest reading. Feeds more than six hours behind the newest are left out.</dd><dt>Why do batteries charge in the middle of the day?</dt><dd>Where there is a lot of solar, power is cheapest around midday. Batteries charge then and discharge into the evening peak, when solar fades and demand rises. California shows the pattern clearly.</dd><dt>Why do batteries take in more than they give back?</dt><dd>Every charge and discharge loses some energy as heat, so over a day the energy charged runs a little above the energy discharged.</dd><dt>What do positive and negative mean?</dt><dd>Positive means a battery is discharging to the grid. Negative means it is charging from it. This holds everywhere on these pages.</dd><dt>What counts as renewable here?</dt><dd>Solar, wind, hydro (not pumped storage), bioenergy and other renewables such as geothermal. Nuclear is not counted as renewable, and neither are imports.</dd><dt>Why do some grids show no renewable share?</dt><dd>A share needs the whole generation mix. Great Britain publishes it; for several other grids only solar and wind are available live, so the page shows their output without a share.</dd><dt>Where do the Great Britain figures come from?</dt><dd>Sheffield Solar&#x27;s PV_Live service estimates all of Great Britain&#x27;s solar output every half hour, scaling up readings from a sample of metered systems. The forecast is NESO&#x27;s embedded solar forecast. Both are published under open licences.</dd><dt>Why can the live Great Britain figure look low?</dt><dd>The live figure counts wind farms metered on the transmission network. Several gigawatts of smaller farms are connected to the local distribution networks, and they appear only in NESO&#x27;s embedded wind forecast, which the chart shows separately.</dd><dt>How is the Great Britain figure worked out?</dt><dd>No one publishes a live total for GB batteries. We add up the physical notifications of battery units in the Balancing Mechanism, the plan each unit sends to the system operator an hour ahead, from Elexon&#x27;s data. It is an estimate: instructions after that hour change what actually happens, and smaller batteries outside the Balancing Mechanism are not counted.</dd><dt>Where do the Great Britain numbers come from?</dt><dd>Solar is Sheffield Solar&#x27;s PV_Live estimate; every other source is Elexon&#x27;s half-hourly generation by fuel, which covers the transmission network.</dd><dt>Why is output so far below installed capacity?</dt><dd>Panels reach their rated output only in bright, cool sunshine with the sun high and square on. Cloud, season, time of day and the angle each array faces all pull it down, which is why the regional map shows capacity factor: the share of what the panels could make running flat out.</dd></dl>
+</section>
+</div>
+</div>
+</main>
+
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+<!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
+<script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
+</body>
+</html>

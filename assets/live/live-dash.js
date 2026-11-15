@@ -6,10 +6,13 @@
  * files at /live/data/<id>.json (see functions/live/data/[name].js). Only the parts the pages use are
  * here: data, calc, draw, onData, params, setParams, setLink and colors.
  *
- * Two things are added for the public site, where some sources are not yet licensed for display:
- * a dataset missing from /live/data/credits.json reads as "missing", and any card, tile, section or
- * tab left with nothing to show is hidden. The credit lines for every source a page uses are written
- * into [data-live-credits].
+ * Three things are added for the public site, where some sources are not yet licensed for display:
+ * a dataset missing from /live/data/credits.json reads as "missing", any card, tile or section left with
+ * nothing to show is hidden, and a link to a region page (data-live-needs lists the datasets that page
+ * draws from) is hidden when none of them is published. The credit lines for every source a page uses
+ * are written into [data-live-credits].
+ *
+ * Tables show their first ten rows with a button for the rest, so no page needs a scrolling box.
  */
 (() => {
   'use strict';
@@ -102,7 +105,18 @@
     });
     listeners.forEach((fn) => { try { fn(); } catch (e) { /* a page's own listener */ } });
     tidy();
+    hideUnpublished();
     writeCredits();
+  }
+
+  // A link to a region page is hidden when none of the datasets the page draws from is published.
+  function hideUnpublished() {
+    if (creditsStatus !== 'ok') return;
+    document.querySelectorAll('[data-live-needs]').forEach((el) => {
+      const ids = (el.dataset.liveNeeds || '').split(' ').filter(Boolean);
+      const some = ids.some((id) => roots(id).some((r) => credits.datasets && credits.datasets[r]));
+      if (el.hidden !== !some) el.hidden = !some;
+    });
   }
 
   function settled() {
@@ -145,6 +159,9 @@
       const boxes = [...page.querySelectorAll('.gsl-tile, .gsl-card')];
       setHidden(t, boxes.length > 0 && boxes.every((b) => b.hidden));
     });
+    // a region page whose feeds are not all published here says so instead of standing blank
+    const none = root.querySelector('[data-live-none]');
+    if (none) setHidden(none, [...root.querySelectorAll('.gsl-tile, .gsl-card')].some((b) => !b.hidden));
     if (relaid) { relaid = false; changed(); }
     const current = tabs.find((t) => t.getAttribute('aria-selected') === 'true');
     if (current && current.hidden) {
@@ -155,15 +172,18 @@
 
   function writeCredits() {
     const box = document.querySelector('[data-live-credits]');
-    if (!box || !credits || !settled()) return;
+    if (!box || !credits) return;
+    const all = box.hasAttribute('data-all');   // the credits page lists every source, not only the ones a page drew from
+    if (!all && !settled()) return;
     const used = new Set();
     let newest = '';
-    store.forEach((v, id) => {
-      const info = credits.datasets[id];
-      if (v.status !== 'ok' || !info) return;
+    const take = (id, info) => {
+      if (!info) return;
       (info.sources || []).forEach((s) => used.add(s));
       if (info.fetched && info.fetched > newest) newest = info.fetched;
-    });
+    };
+    if (all) Object.keys(credits.datasets || {}).filter((id) => id !== 'coverage').forEach((id) => take(id, credits.datasets[id]));
+    else store.forEach((v, id) => { if (v.status === 'ok') take(id, credits.datasets[id]); });
     const list = credits.sources.filter((s) => used.has(s.id) && s.credit);
     const key = list.map((s) => s.id).join(',') + newest;
     if (box.dataset.key === key) return;
@@ -194,6 +214,37 @@
     box.appendChild(ul);
   }
 
+  // Long tables show ten rows and a button. The pages redraw a table body on every refresh, sort or search, so the limit is
+  // applied again after each change.
+  const ROW_LIMIT = 10;
+  function limitTables() {
+    document.querySelectorAll('table.gsl-table').forEach((table) => {
+      const tb = table.tBodies[0];
+      if (!tb || table.dataset.limited) return;
+      table.dataset.limited = 'true';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gsl-seg gsl-showall';
+      btn.hidden = true;
+      (table.closest('.gsl-tablebox') || table).after(btn);
+      let open = false;
+      let busy = false;
+      const apply = () => {
+        if (busy) return;
+        busy = true;
+        const rows = [...tb.rows];
+        rows.forEach((r, i) => { r.hidden = !open && i >= ROW_LIMIT; });
+        btn.hidden = rows.length <= ROW_LIMIT;
+        btn.textContent = open ? 'Show the first ' + ROW_LIMIT : 'Show all ' + rows.length;
+        btn.setAttribute('aria-expanded', String(open));
+        busy = false;
+      };
+      btn.addEventListener('click', () => { open = !open; apply(); });
+      new MutationObserver(apply).observe(tb, { childList: true });
+      apply();
+    });
+  }
+
   window.dash = {
     data,
     calc(id, o) { calcs.set(id, { inputs: o.inputs || [], fn: o.fn }); },
@@ -219,6 +270,7 @@
 
   // Redraw at the right width when the page resizes or a tab is shown.
   window.addEventListener('DOMContentLoaded', () => {
+    limitTables();
     const root = document.querySelector('.gsl');
     if (!root) return;
     let w = root.clientWidth;
