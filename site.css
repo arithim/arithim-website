@@ -1351,6 +1351,9 @@ body.live-page main > .r-gut { padding-left: var(--ah-s-40); padding-right: var(
 .live-stat-v small { font-family: var(--ah-font-body, inherit); font-weight: 400; font-size: 14px; color: var(--ah-text-3); margin-left: 4px; }
 .live-chart-t { margin: 0 0 6px; color: var(--ah-text-3); font-size: 13px; }
 .live-band .gsl-chart, .live-card .gsl-chart { min-height: 220px; }
+/* maps keep their own 2:1 shape: a fixed minimum height left a blank band under them on phones and in the cards */
+.live-wrap .gsl-chart.map, .live-band .gsl-chart.map, .live-card .gsl-chart.map { min-height: 0; }
+.live-wrap .gsl-chart.map .gsl-svg { width: 100%; height: auto; }
 /* a whole landing card is one link: the heading's link stretches over it, and the captions sit above so they stay selectable */
 .live-linked { position: relative; }
 .live-stretch { color: inherit; }
