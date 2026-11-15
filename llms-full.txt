@@ -2518,6 +2518,30 @@ Read case study →
 
 WRITING
 
+## Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+Why working AI pilots fail to reach production in regulated firms, the four questions an auditor asks before go-live, and what to put in place first.
+
+AI GOVERNANCE
+
+15 NOV 2026
+
+## How Do You Onboard AI Agents the Way You Onboard Staff?
+
+An HR-style lifecycle for AI agents, from requisition to retirement, with a one-page checklist per agent and four things to do on Monday.
+
+AI GOVERNANCE
+
+14 NOV 2026
+
+## How Should You Review AI-Written Code Before You Merge It?
+
+Three questions to ask of every AI-written pull request, from a product where code that passed its tests copied a whole job advert into every user's row.
+
+AI ENGINEERING
+
+13 NOV 2026
+
 ## What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 What agentic AI means, how far adoption has got, where agents are working in 2026, where they still fall short, and how to start.
@@ -2616,17 +2640,17 @@ AI discoverability starts with the same fundamentals that make a website better 
 
 MORE INSIGHTS
 
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
-AGENTIC AI · RESEARCH · 09 NOV 2026
+AI GOVERNANCE · 15 NOV 2026
 
-### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
+### How Do You Onboard AI Agents the Way You Onboard Staff?
 
-APPSEC · RESEARCH · 24 OCT 2026
+AI GOVERNANCE · 14 NOV 2026
 
-### How Do We Choose an Enterprise Architecture Tool in 2026?
+### How Should You Review AI-Written Code Before You Merge It?
 
-EA · RESEARCH · 23 OCT 2026
+AI ENGINEERING · 13 NOV 2026
 
 ## Want a site that reads clearly to humans and machines?
 
@@ -2764,19 +2788,371 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+AI GOVERNANCE · 15 NOV 2026
+
+### How Do You Onboard AI Agents the Way You Onboard Staff?
+
+AI GOVERNANCE · 14 NOV 2026
+
+### How Should You Review AI-Written Code Before You Merge It?
+
+AI ENGINEERING · 13 NOV 2026
+
+## Is your architecture repository out of date the week after it's updated?
+
+Start a conversation →
+
+Call us
+
+---
+
+## How Do You Onboard AI Agents the Way You Onboard Staff?
+
+URL: https://arithim.com/insight-how-to-onboard-ai-agents.html
+
+Insights / AI governance
+
+# How Do You Onboard AI Agents the Way You Onboard Staff?
+
+AI GOVERNANCE·14 NOV 2026·7 MIN READ·BY TARUN BULCHANDANI
+
+KEYNOTE·25 MIN TALK·14 SLIDES
+
+Keynote · AI governance
+
+## Hiring the machine workforce
+
+Tarun Bulchandani · Arithim
+
+The hook
+
+## Would you give a new hire production access on day one?
+
+No job description
+
+No manager
+
+No probation period
+
+The gap
+
+## We do it with AI agents all the time.
+
+Agents go live with none of the three. Then someone asks who is responsible for them.
+
+The idea
+
+## Onboard agents the way you onboard people.
+
+RequisitionSomeone asks for it and says why
+
+Job descriptionWhat it does, and what it must never do
+
+Named ownerOne person who answers for it
+
+Supervised startA person checks its work at first
+
+Earned autonomyMore freedom as it builds a record
+
+RetirementA planned way to switch it off
+
+Step 1
+
+## Write a job description.
+
+### What it does
+
+The work it takes on and the systems it needs.
+
+### What it must never do
+
+The never list: actions too risky to hand over at any level of trust.
+
+Step 2
+
+## Name an owner. A person, not a team.
+
+Who owns the agent when the person who built it leaves?
+
+A question to ask in the room
+
+Step 3
+
+## Autonomy is earned.
+
+### Day one
+
+Supervised. A person reviews its output or approves its actions.
+
+### Over time
+
+More freedom as it shows a record of doing the job well.
+
+Step 4
+
+## A model upgrade is a re-hire.
+
+Same name, different employee. Re-check it.
+
+Step 5
+
+## Give it a retirement step.
+
+Old agents should not keep running quietly.
+
+Why it matters
+
+## This is the shape an auditor wants to see.
+
+If you cannot say who owns an agent and what it may do, you cannot evidence control. And you cannot govern agents you cannot list.
+
+The checklist
+
+## One page per agent.
+
+Job description, with a never list
+
+Named human owner
+
+Current autonomy level
+
+Model upgrade triggers a re-check
+
+Retirement step
+
+On Monday
+
+## Start small.
+
+List every agent you run
+
+Name an owner for each
+
+Write each one a never list
+
+Treat the next model upgrade as a re-hire
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-how-to-onboard-ai-agents.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Not sure who owns the agents already running in your business? hello@arithim.com
+
+←
+
+01 / 14
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### Hiring the machine workforce
+
+This talk sets out a lifecycle for AI agents borrowed from the way organisations already hire and manage staff, from requisition to retirement.
+
+02
+
+### Would you give a new hire production access on day one?
+
+Most people in the room would say no. Any one of those gaps would worry an HR team or an auditor.
+
+03
+
+### We do it with AI agents all the time.
+
+An agent often gets built quickly, connected to a few systems and switched on. The question of who answers for it usually comes later, after something has gone wrong.
+
+04
+
+### Onboard agents the way you onboard people.
+
+These are the six stages from requisition to retirement. One rule runs across all of them: a model upgrade counts as a re-hire.
+
+05
+
+### Write a job description.
+
+The never list is usually the more useful half. An invoice agent might draft payment runs, while its never list says it must not approve a payment or change bank details.
+
+06
+
+### Name an owner. A person, not a team.
+
+A team cannot be called into a meeting, and teams get reorganised. The owner answers for what the agent does, decides when it gets more freedom and decides when it stops.
+
+07
+
+### “Who owns the agent when the person who built it leaves?”
+
+Often the builder became the owner by default and nobody planned for their departure. Ownership should pass to a new name before they go.
+
+08
+
+### Autonomy is earned.
+
+This works like probation for a new hire. Record each agent's current level of autonomy and who granted it, so anyone can see it.
+
+09
+
+### A model upgrade is a re-hire.
+
+When the model behind an agent changes, the agent keeps its name and its access, but the reasoning comes from something new. Check it against its job description and never list again, and consider putting it back under supervision until it has a new record.
+
+10
+
+### Give it a retirement step.
+
+When a process changes, the old agent should be switched off, its access removed and its record closed. Otherwise it keeps holding credentials nobody remembers granting.
+
+11
+
+### This is the shape an auditor wants to see.
+
+The lifecycle produces the evidence as it goes. The requisition is the inventory entry, the job description and never list define what the agent may do, and the owner is the accountable person.
+
+12
+
+### One page per agent.
+
+Keep the page wherever your other system records live. If a page is hard to fill in, the agent is probably not under control yet.
+
+13
+
+### Start small.
+
+None of this needs new software. HR already knows how to write a role and run a probation period, and technology knows what access an agent holds, so agree who runs each stage and write it down.
+
+Run each agent through the same lifecycle you use for a new hire: a requisition, a job description that includes what it must never do, a named owner, a supervised start, more autonomy once it has a record, and a retirement step. A model upgrade counts as a re-hire, so the agent gets checked again. Most organisations would never give a new starter production access on day one with no job description, no manager and no probation period, yet agents often go live with none of the three.
+
+You would not give a new hire production access on their first day without a job description, a manager or a probation period. With AI agents, organisations do exactly that all the time. An agent gets built in a sprint, connected to a few systems and switched on. Months later someone asks who is responsible for it, and nobody has an answer ready.
+
+At Arithim, our view is that you should onboard agents the way you onboard people. Companies already have a working process for bringing a new member of staff into the business, giving them a defined role and widening their responsibilities as they prove themselves. Most of it carries over to agents with very little change.
+
+For more on what agents are and where they are working, see what agentic AI is and where it is working in 2026. That piece recommends giving each agent its own identity and a named human owner. This one sets out the rest of the lifecycle around that owner.
+
+## The lifecycle, from requisition to retirement
+
+There are six stages: requisition, job description, named owner, supervised start, earned autonomy and retirement. One rule runs across all of them: a model upgrade is a re-hire.
+
+### Requisition
+
+A new role starts with someone asking for it and saying why. Agents should start the same way. Before anyone builds one, a person should write down what work it will take on, which systems it needs and who agreed to it. That record is also the first line of your agent inventory, which matters later.
+
+### A job description with a never list
+
+A job description says what the agent does. It should also say what the agent must never do. We call that the never list, and it is usually the more useful half. An agent that handles supplier invoices might be allowed to read invoices and draft payment runs, while its never list says it must not approve a payment, change bank details or email a supplier directly.
+
+Writing the never list forces a conversation that rarely happens otherwise, about which actions are too risky to hand over at any level of trust. It also gives you something concrete to test against.
+
+### A named owner
+
+The owner is a person. A team cannot be called into a meeting, and teams get reorganised. The owner answers for what the agent does, decides when it gets more freedom and decides when it should stop.
+
+Ask this in your own organisation: who owns the agent when the person who built it leaves? In many cases the builder was the owner by default, and nobody planned for their departure. Ownership should pass to a new name before they go, the way it would for any system they looked after.
+
+### Supervised start and earned autonomy
+
+On day one the agent works under supervision. A person reviews its output or approves its actions before they take effect. As the agent builds a record of doing the job well, the owner can give it more room, perhaps letting it act alone on low-value cases while people still approve the rest.
+
+Autonomy is earned this way, as it is for a new hire on probation. It should also be recorded, so anyone can see what level of freedom each agent has today and who granted it.
+
+### A model upgrade is a re-hire
+
+This is the step organisations miss most often. When the model behind an agent changes, the agent keeps its name, its access and its place in the workflow. The thing doing the reasoning is new, though. It is the same name with a different employee behind it.
+
+So re-check it. Run it against its job description and its never list, and consider dropping it back to supervised work until it has shown the new model behaves as the old one did. The owner should know an upgrade is coming before it happens, and should not find out from a change in behaviour.
+
+### Retirement
+
+Every agent needs a way out. When a process changes or a better tool arrives, the old agent should be switched off, its access removed and its record closed. Without a retirement step, old agents keep running quietly, holding credentials nobody remembers granting and doing work nobody checks.
+
+## Why this is the shape an auditor wants to see
+
+Auditors and regulators ask the same questions of any system that acts on a company's behalf: who is responsible for it, what is it allowed to do, and how do you know it stays within that? If you cannot say who owns an agent and what it may do, you cannot evidence control. And you cannot govern agents you cannot list.
+
+The lifecycle produces that evidence as a by-product. The requisition is your inventory entry. The job description and never list define what the agent may do. The owner is your accountable person, and the autonomy record shows how decisions about trust were made. Standards such as ISO/IEC 42001, the international standard for an AI management system, are a natural home for this kind of record if you are working towards one.
+
+## One page per agent
+
+You do not need a heavy system to start. One page per agent, kept where your other system records live, should hold:
+
+the job description, including the never list
+
+the named human owner
+
+the agent's current level of autonomy
+
+a note that any model upgrade triggers a re-check
+
+the retirement step, and what switching it off involves
+
+If a page is hard to fill in, the agent is probably not under control yet.
+
+## What to do on Monday
+
+Start small. List every agent you run, including the ones built by individual teams. Name an owner for each one. Write each agent a never list. Then agree that the next model upgrade, whenever it comes, will be treated as a re-hire.
+
+None of this needs new software, and it answers the first question an auditor is likely to ask.
+
+## HR and technology have to share this
+
+HR already knows how to write a role, assign a manager, run a probation period and manage a leaver. Technology knows what access an agent holds, how to monitor it and how to switch it off. Agent onboarding needs both, and it tends to fail when one side assumes the other has it covered. Agree who runs each stage, and write it down.
+
+## How Arithim helps
+
+We help organisations work out which agents they already run and put an owner, a job description and a never list against each one. This fits into an AI readiness assessment. If you are not sure where to start, the list of agents is the place.
+
+## Common questions
+
+### What does it mean to onboard an AI agent?
+
+It means putting an agent through the steps you would use for a new member of staff before it touches real work. Someone requests it, it gets a job description with a list of things it must never do, a named person owns it, it starts under supervision and earns more freedom over time, and there is a planned way to retire it.
+
+### Who should own an AI agent?
+
+One named person. A team is too easy to hide behind, and teams change. The owner answers for what the agent does, decides when it gets more autonomy and decides when it retires. When that person leaves, ownership should pass to someone by name before they go, as it would for any system they looked after.
+
+### Does a model upgrade really need a new review?
+
+Yes. The agent keeps its name, but the model behind it is what does the reasoning, so its behaviour can change in ways nobody asked for. Treat the upgrade as a re-hire: check it against its job description and never list again before it goes back to its old level of autonomy.
+
+### Is agent onboarding an HR job or a technology job?
+
+Both. HR already knows how to write a role, assign a manager and run a probation period. Technology knows what access the agent holds and how to switch it off. Neither can run the lifecycle alone, so the ownership should be shared and written down.
+
+### What is the first step if we already have agents running?
+
+List them. You cannot govern agents you cannot list. Once you have the list, name an owner for each one, write each a never list, and agree that the next model upgrade will be treated as a re-hire.
+
+MORE INSIGHTS
+
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+AI GOVERNANCE · 15 NOV 2026
+
+### How Should You Review AI-Written Code Before You Merge It?
+
+AI ENGINEERING · 13 NOV 2026
+
 ### What Is Agentic AI, and Where Is It Actually Working in 2026?
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
 
-### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
-
-APPSEC · RESEARCH · 24 OCT 2026
-
-### How Do We Reduce Our Application Security Backlog?
-
-APPSEC · RESEARCH · 22 OCT 2026
-
-## Is your architecture repository out of date the week after it's updated?
+## Not sure who owns the agents already running in your business?
 
 Start a conversation →
 
@@ -2887,6 +3263,316 @@ APPSEC · RESEARCH · 21 OCT 2026
 APPSEC · RESEARCH · 20 OCT 2026
 
 ## Want to see how much of your backlog is noise?
+
+Start a conversation →
+
+Call us
+
+---
+
+## How Should You Review AI-Written Code Before You Merge It?
+
+URL: https://arithim.com/insight-how-to-review-ai-written-code.html
+
+Insights / AI engineering
+
+# How Should You Review AI-Written Code Before You Merge It?
+
+AI ENGINEERING·13 NOV 2026·6 MIN READ·BY TARUN BULCHANDANI
+
+KEYNOTE·20 MIN TALK·13 SLIDES
+
+Keynote · AI engineering
+
+## Don't ship slop
+
+Tarun Bulchandani · Arithim
+
+The hook
+
+## I reviewed the design and skipped the code review.
+
+The product
+
+## Find Me A Job.
+
+A product I built myself. An AI assistant wrote part of the code.
+
+What it did
+
+## It copied the whole job advert into every user's row.
+
+One job advert
+
+## Stored once per user.
+
+### User A
+
+The whole job advert
+
+### User B
+
+The whole job advert
+
+### User C
+
+The whole job advert
+
+### User D
+
+The whole job advert
+
+The problem with slop
+
+## Nothing broke.
+
+The page loaded
+
+The tests passed
+
+The fix
+
+## I read the code, then I fixed it.
+
+76%
+
+smaller table
+
+38%
+
+smaller database
+
+Two reviews
+
+## A design review and a code review answer different questions.
+
+### Design review
+
+I did it. It looked fine.
+
+### Code review
+
+I skipped it. That is where the cost came from.
+
+Where the cost lands
+
+## AI makes writing code cheap.
+
+Reviewing it is still work, and that is where the cost shows up.
+
+The review standard
+
+## Before you merge AI-written code.
+
+Read the diff, not just the summaryThe summary comes from the same tool that wrote the code
+
+Check what it stores, not only what it showsTables, columns, caches, files and logs
+
+Ask what happens when this is multiplied by every userRecord size, times records per user, times users
+
+Over to you
+
+## What is your review rule for AI-written code?
+
+On Monday
+
+## Adopt the standard.
+
+Put the three questions in your pull request template
+
+Make someone read the diff before mergePreferably not the person who prompted the assistant
+
+Look at what the code storesStart with your largest tables
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-how-to-review-ai-written-code.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Want a review standard your team can use for AI-written code? hello@arithim.com
+
+←
+
+01 / 13
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### Don't ship slop
+
+A talk about reviewing code that AI assistants write, built on one mistake in a product I built myself. It ends with three questions to ask before you merge, and what to change in your team on Monday.
+
+02
+
+### I reviewed the design and skipped the code review.
+
+The design looked fine, so I didn't read the code that implemented it. Everything in this talk follows from that one skipped step.
+
+03
+
+### Find Me A Job.
+
+Find Me A Job matches job adverts to the people using it. Part of its code was written by an AI assistant, and that part is the subject of this talk.
+
+04
+
+### It copied the whole job advert into every user's row.
+
+Instead of keeping one copy of each advert and pointing users to it, the code stored a full copy of the advert for every user who saw it.
+
+05
+
+### Stored once per user.
+
+And so on, for every user. One advert shown to many people took up the space of many adverts.
+
+06
+
+### Nothing broke.
+
+Each user's page read from that user's own row and showed the right jobs, so neither the tests nor the page could show the duplicated data. Slop is code that works well enough that nobody looks at it.
+
+07
+
+### I read the code, then I fixed it.
+
+Once I read the code the problem was easy to see. I changed it to store each advert once, and that table shrank by 76% and the whole database by 38%.
+
+08
+
+### A design review and a code review answer different questions.
+
+A design review asks whether the plan is sound. A code review asks whether the code does what the plan says, and whether it does anything the plan didn't mention.
+
+09
+
+### AI makes writing code cheap.
+
+When an assistant can write a large pull request in minutes, it is tempting to read its summary, run the tests and merge. Skipping the review moves the cost to later, as storage, slow queries or bugs in code nobody on the team has read.
+
+10
+
+### Before you merge AI-written code.
+
+These are the three questions I now ask of every change an assistant writes for me. They are short so that people actually answer them.
+
+11
+
+### What is your review rule for AI-written code?
+
+A question for the room. If your team has a rule for reviewing code written by people, does it also cover code written by an assistant?
+
+12
+
+### Adopt the standard.
+
+None of this needs a new tool. If a large table's size doesn't make sense for the number of users you have, read the code that writes to it.
+
+Have a person read the diff before you merge it, the way you would read a pull request from a junior developer, and ask three questions of it: what did it actually change, what does it store as well as what it shows, and what happens when it runs for every user. AI assistants are good at writing code that works. Tests and a working page only tell you that much, and I learnt what they miss on my own product.
+
+## What happened in Find Me A Job
+
+Find Me A Job is a product I built myself, and an AI assistant wrote part of its code. Part of that code handled the job adverts each user sees. Instead of keeping one copy of an advert and pointing each user to it, the code copied the whole advert into every user's row. One advert, shown to many people, was stored once per person.
+
+Nothing broke. The page loaded and the tests passed, so from the outside the feature did what it was meant to do.
+
+I had reviewed the design and it looked fine. I skipped the code review.
+
+When I did read the code, the problem was easy to see. I changed it to store each advert once. That table shrank by 76%, and the whole database by 38%.
+
+## Why passing tests and a working page did not catch it
+
+Tests check the cases someone thought to write down, and a working page shows you what the code displays. Neither tells you what the code keeps.
+
+I don't think the assistant was careless. Copying everything in case it is needed later is a cautious choice, and people make it too. The cost only appears when the copy is multiplied across every user, and by then it is sitting in your database and in everything that reads or backs it up.
+
+## A design review and a code review answer different questions
+
+A design review asks whether the plan is sound. A code review asks whether the code does what the plan says, and whether it does anything the plan didn't mention. I did the first and assumed it covered the second.
+
+With code written by people, the two reviews often blur together because the author explains their choices as they go. With an assistant, you get a tidy summary of what it set out to do. The summary describes the intent. The diff shows what was written, and that is where my problem was.
+
+## Where the cost of AI-written code lands
+
+AI makes writing code cheap. Reviewing it is still work, and that is where the cost shows up. When an assistant can produce a large pull request in a few minutes, the temptation is to read its summary, run the tests and merge. Each of those steps feels like a review and none of them is one.
+
+If the review is skipped, the cost doesn't disappear. It turns up later as storage, slower queries, or a bug someone has to trace through code nobody on the team has read.
+
+## Three questions to ask before you merge AI-written code
+
+These are the questions I now ask of every change an assistant writes for me. They are short on purpose, so people actually answer them.
+
+### Read the diff, not just the summary
+
+Open the changed files and read them. The assistant's summary is a description of the code, written by the same tool that wrote the code, so it will not point out its own odd choices. Look at every file the change touches, including the ones the summary doesn't mention. If a pull request is too large to read in one sitting, ask for it to be split.
+
+### Check what it stores, not only what it shows
+
+Find every place the code writes something: new tables or columns, inserts and updates, caches, files, logs. For each one, ask whether that data needs to be there and whether it already exists somewhere else. A screen that looks right only tells you about what the code reads. Mine looked right for every user while each of their rows carried a full copy of the advert.
+
+### Ask what happens when this is multiplied by every user
+
+A copy of one job advert costs nothing. The same copy for every user is a different matter. Do the rough arithmetic before you merge: how big is each record, how many does each user get, and how many users will there be? The same question catches a database call inside a loop, a log line on every request and a file saved per user per day. An assistant writes one function at a time and has no view of how many users will run it, so someone on the team has to ask.
+
+## What to change in your team on Monday
+
+None of this needs a new tool. Put the three questions in your pull request template, so every AI-written change has to answer them before it merges. Make someone read the diff before merge, preferably not the person who prompted the assistant. And look at what your code already stores: list your largest tables and ask whether their size makes sense for the number of users you have. If it doesn't, read the code that writes to them.
+
+This all assumes the code reaches a pull request in the first place. When people outside engineering build apps with AI tools, a lot of that code never goes near one, which needs a process of its own. We cover that in How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?
+
+## How Arithim helps
+
+We build software with AI assistants ourselves, including Find Me A Job, so we have made this mistake and fixed it. We can help your team agree a review standard for AI-written code, add it to your pull request process, and look through code you have already shipped for the same kind of storage problem. If that would be useful, get in touch.
+
+## Common questions
+
+### Is it safe to merge AI-generated code without reviewing it?
+
+No. AI-written code usually runs and often passes its tests, but that tells you nothing about what it stores, how it grows or whether it matches the design. Give it the same review you would give a pull request from a junior developer, with a person reading the diff before it merges.
+
+### Why didn't the tests catch the problem?
+
+Because nothing the tests checked was wrong. Each user's page read from that user's own row and showed the right jobs. The waste was in how much data each row held, and a test that checks what the page shows will pass whether the advert is stored once or once per user.
+
+### What should go in a pull request template for AI-written code?
+
+We suggest three questions, each needing an answer before the pull request merges. Has someone read the diff, beyond the summary? What does this code store, as well as what it shows? What happens when this is multiplied by every user? Short questions are more likely to be answered than a long checklist.
+
+### Who should review code that an AI assistant wrote?
+
+Ideally someone other than the person who prompted the assistant, because the person who asked for the change already believes it does what they asked. The reviewer needs to read the diff itself and be able to say what the code writes to the database.
+
+### How much difference did fixing the Find Me A Job code make?
+
+Once I read the code and changed it to store each advert once, that table shrank by 76% and the whole database by 38%.
+
+MORE INSIGHTS
+
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+AI GOVERNANCE · 15 NOV 2026
+
+### How Do You Onboard AI Agents the Way You Onboard Staff?
+
+AI GOVERNANCE · 14 NOV 2026
+
+### What Is Agentic AI, and Where Is It Actually Working in 2026?
+
+AGENTIC AI · RESEARCH · 09 NOV 2026
+
+## Want a review standard your team can use for AI-written code?
 
 Start a conversation →
 
@@ -3328,6 +4014,108 @@ Insights / Operational intelligence
 
 OPERATIONAL INTELLIGENCE·18 JAN 2026·2 MIN READ·BY TARUN BULCHANDANI
 
+KEYNOTE·10 MIN TALK·7 SLIDES
+
+Keynote · Operational intelligence
+
+## Operational intelligence vs automation
+
+Tarun Bulchandani · Arithim
+
+Two different jobs
+
+## Each one solves a different problem.
+
+### Automation
+
+Moves a task from manual execution to structured execution.
+
+### Operational intelligence
+
+Improves how information, judgement and action move through a business.
+
+Automation
+
+## Same input, same rule, same result.
+
+Use it when a repeatable step can be handled the same way every time.
+
+Operational intelligence
+
+## When the right action depends on what else is true.
+
+Use it when teams need visibility, context, evidence or decision support in a changing environment.
+
+Automation for dependable execution. Intelligence for coordination and control.
+
+Arithim
+
+The discipline
+
+## Strong systems usually contain both.
+
+The skill is knowing which one a problem needs, and not paying for the wrong one.
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-operational-intelligence-vs-automation.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Want help telling them apart for your operation? hello@arithim.com
+
+←
+
+01 / 07
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### Operational intelligence vs automation
+
+Both matter, and they solve different problems. Confusing the two is how AI projects end up impressive in a demo and useless in production.
+
+02
+
+### Each one solves a different problem.
+
+Automation changes how one task gets done. Operational intelligence changes how well people see, decide and act across many tasks.
+
+03
+
+### Same input, same rule, same result.
+
+Automation is dependable because the step does not change. When the right answer depends on context, a fixed rule will eventually get it wrong.
+
+04
+
+### When the right action depends on what else is true.
+
+Here the value comes from bringing the right information to the person deciding, at the moment they decide.
+
+05
+
+### “Automation for dependable execution. Intelligence for coordination and control.”
+
+Most operations need both. The question is which one a given problem needs.
+
+06
+
+### Strong systems usually contain both.
+
+Before buying either, describe the problem. If the step is fixed, automate it. If the right action depends on changing context, start with intelligence.
+
 Automation moves a task from manual execution to structured execution. Operational intelligence improves how information, judgement, and action move through a business.
 
 Both matter. But they solve different problems, and confusing the two is how AI projects end up impressive in a demo and useless in production.
@@ -3340,17 +4128,17 @@ Strong systems usually contain both. The discipline is knowing which one a given
 
 MORE INSIGHTS
 
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
-AGENTIC AI · RESEARCH · 09 NOV 2026
+AI GOVERNANCE · 15 NOV 2026
 
-### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
+### How Do You Onboard AI Agents the Way You Onboard Staff?
 
-APPSEC · RESEARCH · 24 OCT 2026
+AI GOVERNANCE · 14 NOV 2026
 
-### How Do We Choose an Enterprise Architecture Tool in 2026?
+### How Should You Review AI-Written Code Before You Merge It?
 
-EA · RESEARCH · 23 OCT 2026
+AI ENGINEERING · 13 NOV 2026
 
 ## Want help telling them apart for your operation?
 
@@ -3370,6 +4158,112 @@ Insights / AI implementation
 
 AI IMPLEMENTATION·08 JAN 2026·2 MIN READ·BY TARUN BULCHANDANI
 
+KEYNOTE·10 MIN TALK·7 SLIDES
+
+Keynote · AI implementation
+
+## What most businesses actually need from AI
+
+Tarun Bulchandani · Arithim
+
+Where to start
+
+## Start with ordinary questions about the work.
+
+Four questions
+
+## Where does the work get stuck?
+
+Where does information stall?
+
+Where do teams repeat low-value work?
+
+Where does reporting arrive too late?
+
+Where does knowledge live outside the systems people use every day?
+
+The path
+
+## Smaller and more disciplined than the hype.
+
+Map the workflow
+
+Find the decision points
+
+Improve the data surface
+
+Add automation or intelligenceOnly where it changes the work
+
+AI becomes valuable when it is part of a system people can trust, operate, and improve.
+
+Arithim
+
+The test
+
+## Will it survive a normal Tuesday?
+
+The system around the model matters more than the demo.
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-what-businesses-need-from-ai.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Ready to find the version that actually helps? hello@arithim.com
+
+←
+
+01 / 07
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### What most businesses actually need from AI
+
+Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction and support better decisions.
+
+02
+
+### Start with ordinary questions about the work.
+
+Useful AI work rarely starts with a model. It starts with the places where the business already loses time.
+
+03
+
+### Where does the work get stuck?
+
+Each answer points at a place where AI might reduce friction. Ask them of one team before you ask them of the whole organisation.
+
+04
+
+### Smaller and more disciplined than the hype.
+
+The implementation path is often smaller than the hype suggests. Automation or intelligence comes last, once the workflow and the data are clear.
+
+05
+
+### “AI becomes valuable when it is part of a system people can trust, operate, and improve.”
+
+The model is one part. The people who run it, the data it reads and the way it gets fixed decide whether it lasts.
+
+06
+
+### Will it survive a normal Tuesday?
+
+A demo shows what a model can do once. A system people can run, trust and improve is what keeps working on an ordinary day.
+
 Most organisations do not need a louder AI strategy. They need a clearer operating model for where AI can reduce friction, improve coordination, and support better decisions.
 
 Useful AI work usually starts with ordinary questions: where does information stall, where do teams repeat low-value work, where does reporting arrive too late, and where does knowledge live outside the systems people use every day.
@@ -3382,17 +4276,17 @@ That is the whole game. Not the model, not the demo, but the system around it th
 
 MORE INSIGHTS
 
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
-AGENTIC AI · RESEARCH · 09 NOV 2026
+AI GOVERNANCE · 15 NOV 2026
 
-### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
+### How Do You Onboard AI Agents the Way You Onboard Staff?
 
-APPSEC · RESEARCH · 24 OCT 2026
+AI GOVERNANCE · 14 NOV 2026
 
-### How Do We Choose an Enterprise Architecture Tool in 2026?
+### How Should You Review AI-Written Code Before You Merge It?
 
-EA · RESEARCH · 23 OCT 2026
+AI ENGINEERING · 13 NOV 2026
 
 ## Ready to find the version that actually helps?
 
@@ -3748,19 +4642,385 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
-### How Do I Secure Our CI/CD Pipelines and GitHub Actions?
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
-APPSEC · RESEARCH · 24 OCT 2026
+AI GOVERNANCE · 15 NOV 2026
 
-### How Do We Choose an Enterprise Architecture Tool in 2026?
+### How Do You Onboard AI Agents the Way You Onboard Staff?
 
-EA · RESEARCH · 23 OCT 2026
+AI GOVERNANCE · 14 NOV 2026
 
-### How Do We Reduce Our Application Security Backlog?
+### How Should You Review AI-Written Code Before You Merge It?
 
-APPSEC · RESEARCH · 22 OCT 2026
+AI ENGINEERING · 13 NOV 2026
 
 ## Want to know which of your processes an agent could take on first?
+
+Start a conversation →
+
+Call us
+
+---
+
+## Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+URL: https://arithim.com/insight-why-ai-pilots-stall-before-production.html
+
+Insights / AI governance
+
+# Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+AI GOVERNANCE·15 NOV 2026·7 MIN READ·BY TARUN BULCHANDANI
+
+KEYNOTE·25 MIN TALK·14 SLIDES
+
+Keynote · AI governance
+
+## From pilot to production in regulated industries
+
+Tarun Bulchandani · Arithim
+
+The hook
+
+## Most enterprise AI pilots work.
+
+Few reach production in regulated firms.
+
+Why they stall
+
+## The blockers have little to do with the model.
+
+### Ownership
+
+Nobody is named.
+
+### Evidence
+
+Nothing an auditor can read.
+
+### Control
+
+No clear way to limit it or stop it.
+
+Production readiness
+
+## Four questions an auditor asks before go-live.
+
+Who owns it?
+
+What may it do?
+
+How is it logged?
+
+Who can switch it off?
+
+Question 1
+
+## Who owns the agent?
+
+A named person, not a team. Not whoever built it.
+
+Questions 2 and 3
+
+## What may it do, and how is it logged?
+
+### What it may do
+
+Written down, including what it must never do.
+
+### How it is logged
+
+Actions recorded as evidence an auditor can ask for.
+
+Interrupt the system through a 'stop' button or a similar procedure that allows the system to come to a halt in a safe state.
+
+EU AI Act, Article 14(4)(e)
+
+Question 4
+
+## Who can switch it off?
+
+Autonomy is earned. A model upgrade means a re-check. Old agents get retired.
+
+Governance you may already have
+
+## Owner. Decision record. Review.
+
+100+
+
+applications under one architecture governance board
+
+ISO/IEC 42001, as artefacts
+
+## What a team actually produces.
+
+AI inventoryEvery AI system in use, and its owner
+
+Risk classification
+
+Named owners
+
+Approval gatesBefore go-live and before any change in scope
+
+Evidence capture and review cadence
+
+The business case
+
+## Four things I would trust.
+
+A measured baseline
+
+A named owner for the number
+
+A cost line that includes review and governance
+
+A stop rule
+
+On Monday
+
+## Take one pilot through the gate.
+
+Pick your most advanced pilot
+
+Answer the four auditor questions in writing
+
+Write its stop rule
+
+One question to take away
+
+## What is the stop rule on your largest AI project?
+
+Take the slides with you
+
+## Slides, the full article and sources.
+
+arithim.com/insight-why-ai-pilots-stall-before-production.html
+
+Free to reuse inside your organisation (CC BY-NC 4.0). Have a pilot that works but can't get past risk and compliance? hello@arithim.com
+
+←
+
+01 / 14
+
+→
+
+Present
+
+Save as PDF
+
+Copy link
+
+Slides by Arithim, licensed under CC BY-NC 4.0. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. Details.
+
+Speaker notes
+
+01
+
+### From pilot to production in regulated industries
+
+This talk is about why working AI pilots get stuck before go-live in banks, insurers, energy companies and other regulated firms, and what to put in place so they don't.
+
+02
+
+### Most enterprise AI pilots work.
+
+Pilots run on clean data with their builders watching, and nobody is asked to sign anything. Production means someone in risk, compliance or audit has to be satisfied the system is controlled.
+
+03
+
+### The blockers have little to do with the model.
+
+A better model would stall in exactly the same place. Each of these gaps is an organisational one, and each can be closed before the go-live review.
+
+04
+
+### Four questions an auditor asks before go-live.
+
+The wording varies from firm to firm, but the questions come down to these four. Answer them in writing before the review and the meeting can spend its time checking your answers.
+
+05
+
+### Who owns the agent?
+
+The builder moves on to the next project. The owner answers for what the agent does in production, approves changes to its scope, and decides when it is re-checked or retired.
+
+06
+
+### What may it do, and how is it logged?
+
+The "must never do" line is often the one the risk team cares about most. Logs should show what came in, what the agent decided, what it did and who approved it. For high-risk systems, Article 12 of the EU AI Act requires automatic recording of events over the system's lifetime.
+
+07
+
+### “Interrupt the system through a 'stop' button or a similar procedure that allows the system to come to a halt in a safe state.”
+
+This is from the Act's human oversight article for high-risk AI systems. Even where the Act doesn't apply, it is a fair test for any AI system you put live: who can stop it, and how.
+
+08
+
+### Who can switch it off?
+
+An agent starts with a narrow scope and gets more only when the evidence supports it. After a model upgrade the system you approved is no longer the system you're running, so it goes back through review. Retirement is a decision the owner makes on purpose.
+
+09
+
+### Owner. Decision record. Review.
+
+At Sonnedix, a global renewable energy producer, I built the architecture function from scratch between 2023 and 2026, with a governance board and decision records. An AI management system such as ISO/IEC 42001 asks for the same structure.
+
+10
+
+### What a team actually produces.
+
+ISO/IEC 42001 specifies requirements for an AI management system. It describes outcomes, so teams that read it often stall. These are the documents most teams end up producing to meet it, and an existing architecture or change board already covers much of the ground.
+
+11
+
+### Four things I would trust.
+
+Someone has to read the logs, re-check the system after model upgrades and sit on the board, so that cost belongs in the case. The stop rule, agreed up front, says when you will roll it back, and it is the item most often missing.
+
+12
+
+### Take one pilot through the gate.
+
+If you can do this in an afternoon, the pilot is closer to production than you thought. If you can't, you now know what the risk team will ask for.
+
+13
+
+### What is the stop rule on your largest AI project?
+
+A stop rule is a condition, agreed before the project starts, under which you stop or roll it back. If nobody can tell you what it is for your largest project, start there.
+
+AI pilots in regulated firms usually stall because of ownership, evidence and control, and rarely because of the model. Nobody is named as the owner, nothing the pilot does is recorded in a form an auditor can read, and there is no clear way to limit it or switch it off. Answer four questions in writing before go-live (who owns it, what may it do, how is it logged, who can switch it off) and most of the blockers go with them.
+
+When an AI pilot in a regulated firm stalls, the conversation is almost never about the model. The demo worked. The accuracy was fine. What stopped it was a set of questions nobody had answered in writing.
+
+This article is the written version of my talk From Pilot to Production in Regulated Industries. The slides are above.
+
+## Most pilots work
+
+Pilots are built to succeed. They run on a clean slice of data, with the people who built them watching every output, and nobody is asked to sign anything. So most of them work.
+
+Production is different. In a bank, an insurer or an energy company, putting a system live means someone in risk, compliance or internal audit has to be satisfied that it is controlled. A pilot that was never designed with that person in mind arrives at their desk with nothing for them to read, and it waits there until someone writes the missing answers.
+
+## Why they stall
+
+Pilots that stall tend to share the same three gaps.
+
+The first is ownership. Nobody is named. The data science team built it, the business sponsored it, IT hosts it, and when an auditor asks who is accountable for what it does on a bad day, each group points at another.
+
+The second is evidence. The pilot may log plenty for its developers, but nothing an auditor can read. There is no record of what it was allowed to do, what it actually did, or who approved the decisions it made.
+
+The third is control. There is no clear way to limit what it can touch, and no agreed way to stop it. Everyone assumes that someone could switch it off, but nobody has written down who, or how.
+
+None of these is a modelling problem. You could swap in a better model tomorrow and the pilot would stall in the same place.
+
+## Four questions an auditor asks before go-live
+
+The questions vary in wording, but they come down to four. If you answer them in writing before the review, the meeting can spend its time checking your answers.
+
+### 1. Who owns it?
+
+A named person, and not a team. And not whoever built it, because the builder will move on to the next project. The owner answers for what the system does in production, approves changes to what it may do, and decides when it is re-checked or retired.
+
+### 2. What may it do?
+
+Write it down, including what it must never do. "Drafts replies to customer complaints for a handler to review" is a scope. So is "never sends anything to a customer directly, and never changes an account". The second sentence is often the one the risk team cares about most.
+
+### 3. How is it logged?
+
+Record its actions as evidence an auditor can ask for: what came in, what it decided, what it did, and who approved it where approval was needed. Debug logs written for developers rarely answer those questions. For high-risk systems the EU AI Act goes further, and Article 12 requires them to allow automatic recording of events over the lifetime of the system.
+
+### 4. Who can switch it off?
+
+Name the person and describe the procedure. Article 14 of the EU AI Act, on human oversight of high-risk systems, expects the people overseeing them to be able to intervene or interrupt the system through a "stop" button or a similar procedure that brings it to a safe halt. Even where the Act doesn't apply, it's a fair test.
+
+Switching off also covers the slower cases. Autonomy is earned, so an agent starts with a narrow scope and gets more only when the evidence supports it. A model upgrade means a re-check, because the system you approved is no longer the system you're running. Old agents get retired, on purpose, by their owner.
+
+## Governance you may already have
+
+Most regulated firms don't need a new governance machine for AI. They need to point the one they have at it.
+
+At Sonnedix, a global renewable energy producer, I built the architecture function from scratch between 2023 and 2026. It had a governance board and a decision-record framework, and it covered more than 100 applications. Every significant change had an owner, a written decision record and a review. That is the same structure an AI system needs to get through a go-live review, and it is the structure an AI management system asks for.
+
+ISO/IEC 42001, published in December 2023, specifies requirements for establishing, implementing, maintaining and continually improving an AI management system. Many organisations read it and stall, because a management standard describes outcomes and leaves the paperwork to you. In practice, a team ends up producing a small set of artefacts:
+
+an AI inventory, listing every AI system in use and who owns it
+
+a risk classification for each one
+
+named owners
+
+approval gates before go-live and before any change in scope
+
+evidence capture, plus a review cadence
+
+If your architecture or change board already keeps decision records, you have the start of most of these. Add AI systems to the inventory, give each one an owner and route them through the board you already run.
+
+## A business case I would trust
+
+A pilot that can't show its value also stalls, more quietly. When I review an AI business case I look for four things.
+
+A measured baseline, so the improvement is compared with how the work is done today. A named owner for the number, who will report it after go-live. A cost line that includes review and governance, because someone has to read the logs, re-check the system after model upgrades and sit on the board. And a stop rule, agreed up front, that says when you will roll it back.
+
+The stop rule is the one most often missing. It is also the one that makes the others honest, because a business case with no exit condition tends to stay open long after the numbers have stopped supporting it.
+
+## What to do on Monday
+
+Pick your most advanced pilot. Answer the four auditor questions about it in writing: who owns it, what it may do, how it is logged and who can switch it off. Then write its stop rule.
+
+If you can do all of that in an afternoon, the pilot is closer to production than you thought. If you can't, you now know what the risk team will ask for. For a wider view of where agents are working today, see what agentic AI is and where it is working in 2026.
+
+What is the stop rule on your largest AI project?
+
+## How Arithim helps
+
+We help regulated organisations take Claude-based agents and workflows from pilot to production, with the ownership, logging and approval steps built in from the start. Where the gap is evidence for review and approval, our compliance workflows capture it as the work moves through. If you're not sure which AI systems you run in the first place, the AI model inventory is a place to start.
+
+## Common questions
+
+### Why do AI pilots stall before production?
+
+In regulated firms the model is rarely what stops them. The pilot has no named owner, its actions aren't recorded in a form an auditor can use, and nobody has set out how to limit it or stop it. Risk and compliance teams can't sign off on that, so the pilot waits.
+
+### What does an auditor ask before an AI system goes live?
+
+Four things, in some form. Who owns it, what it may do (and what it must never do), how its actions are logged, and who can switch it off. If the answers are written down before the review, the meeting can check them instead of finding out they're missing.
+
+### Who should own an AI agent?
+
+A named person, not a team and not whoever built it. The owner answers for what the agent does in production, approves changes to what it may do, and decides when it is re-checked or retired.
+
+### Do we need ISO/IEC 42001 certification to put AI into production?
+
+No. ISO/IEC 42001 is a voluntary standard for an AI management system. Its structure is still a useful checklist, because it covers the same ground an auditor will: an inventory of AI systems, risk assessment, named responsibilities, controls and regular review. Certification can come later if customers or regulators ask for it.
+
+### What is a stop rule for an AI project?
+
+A condition, agreed before the project starts, under which you stop or roll it back. For example, the measured saving falls below the cost of running and reviewing it for two quarters, or the error rate goes above an agreed level. Writing it down early makes the decision easier to take when the time comes.
+
+## Sources
+
+ISO, ISO/IEC 42001:2023 Information technology, Artificial intelligence, Management system, published December 2023. Accessed 15 November 2026.
+
+Regulation (EU) 2024/1689 (the EU AI Act), Article 12: Record-keeping and Article 14: Human oversight, via the EU AI Act Explorer. Accessed 15 November 2026.
+
+MORE INSIGHTS
+
+### How Do You Onboard AI Agents the Way You Onboard Staff?
+
+AI GOVERNANCE · 14 NOV 2026
+
+### How Should You Review AI-Written Code Before You Merge It?
+
+AI ENGINEERING · 13 NOV 2026
+
+### What Is Agentic AI, and Where Is It Actually Working in 2026?
+
+AGENTIC AI · RESEARCH · 09 NOV 2026
+
+## Have a pilot that works but can't get past risk and compliance?
 
 Start a conversation →
 
