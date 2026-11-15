@@ -438,6 +438,10 @@ def build_jsonld(a: dict) -> dict:
         "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/icon-512.png"},
     }
     graph = [article]
+    deck = _deck(a)
+    if deck:
+        import build_keynotes as bk
+        graph.append(bk.jsonld_node(deck, a))
     if a.get("faq"):
         graph.append({
             "@type": "FAQPage",
@@ -502,8 +506,24 @@ def _render_article_raw(a: dict, articles: list[dict], template: str | None = No
         "sources": render_sources(a),
         "more_insights": render_more_insights(more_insights(a, articles)),
         "cta": esc(a["cta"]),
+        "deck": "",
+        "deck_script": "",
     }
+    deck = _deck(a)
+    if deck:
+        import build_keynotes as bk
+        values["deck"] = bk.render_block(deck, a)
+        values["deck_script"] = bk.DECK_SCRIPT
     return fill(template, values)
+
+
+def _deck(a: dict) -> dict | None:
+    """The slide deck in content/keynotes/<slug>.md that sits on this article, if there is one."""
+    if not (ROOT / "content" / "keynotes" / f"{a['slug']}.md").exists():
+        return None
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_keynotes as bk
+    return bk.deck_for(a["slug"])
 
 
 def render_insights_list(articles: list[dict]) -> str:

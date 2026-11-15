@@ -1,25 +1,24 @@
 #!/usr/bin/env python3
-"""Build keynote pages: talks, workshops, panels and case studies published as slide decks.
+"""Slide decks on insight pages: a talk, workshop or panel shown as slides at the top of its article.
 
 Usage:
-    python3 tools/build_keynotes.py            # regenerate every keynote page
-    python3 tools/build_keynotes.py --check    # exit 1 if a generated page is stale
+    python3 tools/build_keynotes.py            # write missing or out-of-date QR codes
+    python3 tools/build_keynotes.py --check    # exit 1 if a deck is invalid or a QR code is missing or stale
 
-Source:  content/keynotes/<slug>.md   (TOML front matter, then slides; format in docs/keynote/README.md)
-Output:  keynote-<slug>.html          (template: tools/templates/keynote.html)
-         assets/keynotes/<slug>-qr.svg  QR code for the closing slide, pointing at the page
+Source:  content/keynotes/<slug>.md   TOML front matter, then slides (format in docs/keynote/README.md).
+         <slug> is the slug of the insight in content/insights/ that the deck sits on.
+Output:  the deck block in insight-<slug>.html, rendered by tools/build_insights.py through render_block()
+         assets/keynotes/<slug>-qr.svg   QR code on the closing slide, pointing at the insight page
 
-The QR code needs the `segno` package (pure Python). It is only needed when a QR file is missing or the
-page URL changes; otherwise the committed SVG is reused, so the build stays standard library only.
-Run tools/build_insights.py afterwards (build_all.py does) to stamp the shared header and footer and
-add the page to the sitemap.
+The QR code needs the `segno` package (pure Python) when it is first made or the page URL changes.
+Otherwise the committed SVG is reused, so CI and the rest of the build stay standard library only.
 """
 
 from __future__ import annotations
 
 import argparse
 import datetime as dt
-
+import functools
 import re
 import sys
 import tomllib
@@ -30,21 +29,12 @@ import build_insights as bi  # noqa: E402
 
 ROOT = bi.ROOT
 CONTENT_DIR = ROOT / "content" / "keynotes"
-TEMPLATE = ROOT / "tools" / "templates" / "keynote.html"
-QR_DIR = ROOT / "assets" / "keynotes"
 SITE = bi.SITE
+LICENCE_URL = "https://creativecommons.org/licenses/by-nc/4.0/"
+LICENCE_NAME = "CC BY-NC 4.0"
 
-KINDS = {
-    "keynote": ("Keynote", "Slides from the talk"),
-    "workshop": ("Workshop", "Workshop slides"),
-    "panel": ("Panel", "Panel write-up"),
-    "case-study": ("Case study", "Case study slides"),
-}
-REQUIRED = ("title", "slug", "kind", "date", "description", "lede", "cta")
-OPTIONAL = (
-    "minutes", "speaker", "topic", "event", "event_date", "event_place", "source_insight",
-    "audio", "audio_title", "audio_minutes", "keywords", "about", "faq", "sources", "footnote", "updated",
-)
+KINDS = {"keynote": "Keynote", "workshop": "Workshop", "panel": "Panel", "case-study": "Case study"}
+OPTIONAL = ("kind", "minutes", "speaker", "event", "event_date", "event_place", "audio", "audio_title", "audio_minutes")
 LAYOUTS = ("title", "statement", "list", "cards", "stats", "quote")
 
 
@@ -121,34 +111,37 @@ def parse_slides(body: str, name: str = "deck") -> list[dict]:
 
 def load_deck(path: Path) -> dict:
     meta, body = bi.parse_front_matter(path.read_text(encoding="utf-8"))
-    missing = [k for k in REQUIRED if not meta.get(k)]
-    if missing:
-        raise ValueError(f"{path.name}: missing front matter field(s): {', '.join(missing)}")
-    unknown = sorted(set(meta) - set(REQUIRED) - set(OPTIONAL))
+    unknown = sorted(set(meta) - set(OPTIONAL))
     if unknown:
         raise ValueError(f"{path.name}: unknown front matter field(s): {', '.join(unknown)}")
-    if meta["slug"] != path.stem:
-        raise ValueError(f"{path.name}: slug {meta['slug']!r} must match the file name")
-    if meta["kind"] not in KINDS:
+    if meta.get("kind", "keynote") not in KINDS:
         raise ValueError(f"{path.name}: kind must be one of {', '.join(KINDS)}")
-    for key in ("date", "updated", "event_date"):
-        if key in meta and not isinstance(meta[key], dt.date):
-            raise ValueError(f"{path.name}: {key} must be a TOML date, e.g. 2026-11-15 (unquoted)")
+    if "event_date" in meta and not isinstance(meta["event_date"], dt.date):
+        raise ValueError(f"{path.name}: event_date must be a TOML date, e.g. 2026-11-15 (unquoted)")
+    slug = path.stem
+    if not (ROOT / "content" / "insights" / f"{slug}.md").exists():
+        raise ValueError(f"{path.name}: no insight content/insights/{slug}.md for this deck to sit on")
     d = dict(meta)
+    d["slug"] = slug
+    d["kind"] = d.get("kind", "keynote")
     d["slides"] = parse_slides(body, path.name)
     d["speaker"] = d.get("speaker") or bi.DEFAULT_AUTHOR
-    d["modified"] = d.get("updated") or d["date"]
-    d["file"] = f"keynote-{d['slug']}.html"
-    d["url"] = f"{SITE}/{d['file']}"
-    d["qr_file"] = f"assets/keynotes/{d['slug']}-qr.svg"
-    if d.get("source_insight") and not (ROOT / "content" / "insights" / f"{d['source_insight']}.md").exists():
-        raise ValueError(f"{path.name}: source_insight {d['source_insight']!r} has no file in content/insights/")
+    d["url"] = f"{SITE}/insight-{slug}.html"
+    d["qr_file"] = f"assets/keynotes/{slug}-qr.svg"
     return d
 
 
 def load_decks(content_dir: Path = CONTENT_DIR) -> list[dict]:
-    decks = [load_deck(p) for p in sorted(content_dir.glob("*.md"))]
-    return sorted(decks, key=lambda d: (d["date"], d["slug"]), reverse=True)
+    return [load_deck(p) for p in sorted(content_dir.glob("*.md"))]
+
+
+@functools.lru_cache(maxsize=None)
+def _decks_by_slug() -> dict:
+    return {d["slug"]: d for d in load_decks()}
+
+
+def deck_for(slug: str) -> dict | None:
+    return _decks_by_slug().get(slug)
 
 
 # ---------------------------------------------------------------------------
@@ -171,15 +164,19 @@ def plain(text: str) -> str:
     return bi.plain_text(_MARK_RE.sub(r"\1", text))
 
 
+
+
+def _foot(d: dict, n: int, total: int) -> str:
+    return (f'<footer class="kn-foot"><span class="kn-mark">arithim<span>/{bi.esc(KINDS[d["kind"]].lower())}</span></span>'
+            f'<span class="kn-pg">{n:02d} / {total:02d}</span></footer>')
+
+
 def render_slide(s: dict, n: int, total: int, d: dict) -> str:
-    kicker = f'<p class="kn-kicker">{bi.esc(s["kicker"])}</p>' if s["kicker"] else ""
     lay = s["layout"]
-    inner = [kicker]
+    inner = [f'<p class="kn-kicker">{bi.esc(s["kicker"])}</p>' if s["kicker"] else ""]
     if lay == "title":
         inner.append(f'<h2 class="kn-h1">{rich(s["heading"])}</h2>')
-        bits = [d["speaker"], "Arithim"]
-        if d.get("event"):
-            bits.append(d["event"])
+        bits = [d["speaker"], "Arithim"] + ([d["event"]] if d.get("event") else [])
         inner.append(f'<p class="kn-byline">{bi.esc(" · ".join(bits))}</p>')
     elif lay == "quote":
         inner.append(f'<blockquote class="kn-quote"><p>{rich(s["quote"])}</p></blockquote>')
@@ -203,42 +200,30 @@ def render_slide(s: dict, n: int, total: int, d: dict) -> str:
         inner.append(f'<div class="kn-stats kn-cols-{len(s["items"])}">{stats}</div>')
     label = plain(s["heading"] or s["quote"])
     return (f'<section class="kn-slide kn-l-{lay}" id="slide-{n}" data-kn-slide aria-roledescription="slide" '
-            f'aria-label="{n} of {total}: {bi.attr(label)}">{"".join(inner)}'
-            f'<div class="kn-foot"><span class="kn-mark">arithim<span>/{bi.esc(KINDS[d["kind"]][0].lower())}</span></span>'
-            f'<span class="kn-pg">{n:02d} / {total:02d}</span></div></section>')
+            f'aria-label="{n} of {total}: {bi.attr(label)}">{"".join(inner)}{_foot(d, n, total)}</section>')
 
 
-def render_close(d: dict, n: int, total: int, qr_svg_name: str) -> str:
+def render_close(d: dict, cta: str, n: int, total: int) -> str:
     short = d["url"].replace("https://", "")
     return (f'<section class="kn-slide kn-l-close" id="slide-{n}" data-kn-slide aria-roledescription="slide" aria-label="{n} of {total}: slides, notes and sources">'
             '<div class="kn-close-text"><p class="kn-kicker">Take the slides with you</p>'
-            '<h2 class="kn-h2">Slides, speaker notes and sources.</h2>'
+            '<h2 class="kn-h2">Slides, the full article and sources.</h2>'
             f'<p class="kn-url">{bi.esc(short)}</p>'
-            f'<p class="kn-lede">{bi.esc(d["cta"])} hello@arithim.com</p></div>'
-            f'<div class="kn-qr"><img src="{bi.attr(qr_svg_name)}" alt="QR code linking to {bi.attr(short)}" width="300" height="300"></div>'
-            f'<div class="kn-foot"><span class="kn-mark">arithim<span>/{bi.esc(KINDS[d["kind"]][0].lower())}</span></span>'
-            f'<span class="kn-pg">{n:02d} / {total:02d}</span></div></section>')
+            f'<p class="kn-lede">Free to reuse inside your organisation ({LICENCE_NAME}). {bi.esc(cta)} hello@arithim.com</p></div>'
+            f'<div class="kn-qr"><img src="{bi.attr(d["qr_file"])}" alt="QR code linking to {bi.attr(short)}" width="300" height="300"></div>'
+            f'{_foot(d, n, total)}</section>')
 
 
 def render_notes(d: dict) -> str:
     out = []
     for i, s in enumerate(d["slides"], 1):
+        if not s["notes"]:
+            continue
         head = rich(s["heading"]) if s["heading"] else f'&ldquo;{rich(s["quote"])}&rdquo;'
-        body = []
-        for t in s["text"]:
-            body.append(f"<p>{rich(t)}</p>")
-        if s["items"]:
-            tag = "ol" if "numbered" in s["flags"] else "ul"
-            lis = "".join(f"<li><strong>{rich(h)}</strong>" + (f" {rich(sm)}" if sm else "") + "</li>" for h, sm in s["items"])
-            body.append(f"<{tag}>{lis}</{tag}>")
-        if s["cite"]:
-            body.append(f"<p>{bi.esc(s['cite'])}</p>")
-        if s["notes"]:
-            body.append('<div class="kn-note-said"><span class="kn-note-label">Speaker notes</span>'
-                        + "".join(f"<p>{rich(p)}</p>" for p in s["notes"]) + "</div>")
-        out.append(f'      <li class="kn-note" id="note-{i}"><a class="kn-note-num" href="#slide-{i}" data-kn-goto="{i}" '
-                   f'aria-label="Show slide {i}">{i:02d}</a><div class="kn-note-body"><h3>{head}</h3>{"".join(body)}</div></li>')
-    return "\n".join(out)
+        notes = "".join(f"<p>{rich(p)}</p>" for p in s["notes"])
+        out.append(f'<li class="kn-note"><a class="kn-note-num" href="#slide-{i}" data-kn-goto="{i}" aria-label="Show slide {i}">{i:02d}</a>'
+                   f'<div class="kn-note-body"><h3>{head}</h3>{notes}</div></li>')
+    return "".join(out)
 
 
 def render_audio(d: dict) -> str:
@@ -247,94 +232,71 @@ def render_audio(d: dict) -> str:
     title = bi.esc(d.get("audio_title") or "Listen to the audio version")
     mins = f' <span class="kn-audio-mins">{int(d["audio_minutes"])} MIN</span>' if d.get("audio_minutes") else ""
     # No `controls` attribute: the page runtime drops boolean attributes, so keynote.js turns controls on.
-    return (f'  <div class="r-gut kn-audio"><p class="kn-audio-title">{title}{mins}</p>'
-            f'<audio data-kn-audio preload="none" src="{bi.attr(d["audio"])}"></audio></div>\n')
+    return (f'<div class="kn-audio"><p class="kn-audio-title">{title}{mins}</p>'
+            f'<audio data-kn-audio preload="none" src="{bi.attr(d["audio"])}"></audio></div>')
 
 
-def build_jsonld(d: dict) -> dict:
-    author = {"@type": "Person", "name": d["speaker"]}
-    if d["speaker"] == bi.DEFAULT_AUTHOR:
-        author.update({"url": bi.AUTHOR_URL, "jobTitle": bi.AUTHOR_JOB_TITLE})
-    doc: dict = {
-        "@type": ["Article", "PresentationDigitalDocument"],
-        "@id": f"{d['url']}#deck",
-        "headline": d["title"],
-        "name": d["title"],
-        "description": d["description"],
-        "datePublished": d["date"].isoformat(),
-        "dateModified": d["modified"].isoformat(),
-        "inLanguage": "en",
-        "mainEntityOfPage": d["url"],
-        "image": f"{SITE}/assets/og-image.png",
-        "genre": KINDS[d["kind"]][0],
-        "author": author,
-        "publisher": {"@type": "Organization", "name": "Arithim Ltd", "url": f"{SITE}/",
-                      "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/icon-512.png"}},
-    }
-    if d.get("keywords"):
-        doc["keywords"] = list(d["keywords"])
-    if d.get("about"):
-        doc["about"] = [{"@type": "Thing", "name": n} for n in d["about"]]
-    if d.get("source_insight"):
-        doc["isBasedOn"] = f"{SITE}/insight-{d['source_insight']}.html"
-    if d.get("audio"):
-        doc["audio"] = {"@type": "AudioObject", "contentUrl": f"{SITE}/{d['audio'].lstrip('/')}", "name": d.get("audio_title") or d["title"]}
-    graph: list = [doc]
-    if d.get("faq"):
-        graph.append({"@type": "FAQPage", "mainEntity": [
-            {"@type": "Question", "name": bi.plain_text(q["q"]), "acceptedAnswer": {"@type": "Answer", "text": bi.plain_text(q["a"])}}
-            for q in d["faq"]]})
-    graph.append({"@type": "BreadcrumbList", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
-        {"@type": "ListItem", "position": 2, "name": "Insights", "item": f"{SITE}/insights.html"},
-        {"@type": "ListItem", "position": 3, "name": d["title"], "item": d["url"]},
-    ]})
-    return {"@context": "https://schema.org", "@graph": graph}
-
-
-def meta_line(d: dict) -> str:
-    bits = [f'<span class="kn-meta-kind">{bi.esc(KINDS[d["kind"]][0].upper())}</span>']
-    if d.get("event"):
-        when = f" · {bi.fmt_date(d['event_date'])}" if d.get("event_date") else ""
-        where = f", {d['event_place']}" if d.get("event_place") else ""
-        bits.append(bi.esc(f"{d['event']}{where}".upper()) + when)
-    else:
-        bits.append(bi.fmt_date(d["date"]))
-    if d.get("minutes"):
-        bits.append(f"{int(d['minutes'])} MIN TALK")
-    bits.append(f"{len(d['slides']) + 1} SLIDES")
-    bits.append(f"BY {bi.esc(d['speaker'].upper())}")
-    return '<span class="ah-rule">·</span>'.join(f"<span>{b}</span>" if not b.startswith("<span") else b for b in bits)
-
-
-def render_page(d: dict, template: str) -> str:
+def render_block(d: dict, article: dict) -> str:
+    """The deck band that sits between the insight's hero and its article body."""
     total = len(d["slides"]) + 1
     slides = [render_slide(s, i, total, d) for i, s in enumerate(d["slides"], 1)]
-    slides.append(render_close(d, total, total, d["qr_file"]))
-    read_more = ""
-    if d.get("source_insight"):
-        read_more = (f'<a class="kn-btn" href="insight-{bi.attr(d["source_insight"])}.html">Read the full article</a>')
-    values = {
-        "title": bi.esc(d["title"]),
-        "title_attr": bi.attr(d["title"]),
-        "description_attr": bi.attr(d["description"]),
-        "url": bi.attr(d["url"]),
-        "published": d["date"].isoformat(),
-        "jsonld": bi.jsonld_script(build_jsonld(d)),
-        "kind_label": bi.esc(KINDS[d["kind"]][0]),
-        "deck_label": bi.attr(f"{KINDS[d['kind']][1]}: {d['title']}"),
-        "meta_line": meta_line(d),
-        "lede": rich(d["lede"]),
-        "slides": "\n".join("      " + s for s in slides),
-        "total": f"{total:02d}",
-        "read_more": read_more,
-        "audio": render_audio(d),
-        "notes": render_notes(d),
-        "faq": bi.render_faq(d),
-        "sources": bi.render_sources(d),
-        "cta": bi.esc(d["cta"]),
+    slides.append(render_close(d, article["cta"], total, total))
+    meta = [KINDS[d["kind"]].upper()]
+    if d.get("event"):
+        where = f", {d['event_place']}" if d.get("event_place") else ""
+        when = f" · {bi.fmt_date(d['event_date'])}" if d.get("event_date") else ""
+        meta.append(bi.esc(f"{d['event']}{where}".upper()) + when)
+    if d.get("minutes"):
+        meta.append(f"{int(d['minutes'])} MIN TALK")
+    meta.append(f"{total} SLIDES")
+    meta_html = '<span class="ah-rule">·</span>'.join(f"<span>{m}</span>" for m in meta)
+    notes = render_notes(d)
+    notes_html = (f'<details class="kn-notes-box"><summary>Speaker notes</summary><ol class="kn-notes">{notes}</ol></details>' if notes else "")
+    label = bi.attr(f"{KINDS[d['kind']]} slides: {article['title']}")
+    return f"""  <div class="r-gut kn-deck-band" id="slides">
+    <div class="kn-deck-meta">{meta_html}</div>
+    <div class="kn-deck" data-kn-deck role="region" aria-roledescription="slide deck" aria-label="{label}">
+      <div class="kn-frame" data-kn-frame>
+        <div class="kn-stage" data-kn-stage>
+{chr(10).join("          " + s for s in slides)}
+        </div>
+      </div>
+      <div class="kn-bar"><i data-kn-progress></i></div>
+      <div class="kn-controls">
+        <button type="button" class="kn-ctl" data-kn-prev aria-label="Previous slide">←</button>
+        <span class="kn-count" data-kn-count aria-live="polite">01 / {total:02d}</span>
+        <button type="button" class="kn-ctl" data-kn-next aria-label="Next slide">→</button>
+        <span class="kn-ctl-gap"></span>
+        <button type="button" class="kn-ctl kn-ctl-text" data-kn-present>Present</button>
+        <button type="button" class="kn-ctl kn-ctl-text" data-kn-print>Save as PDF</button>
+        <button type="button" class="kn-ctl kn-ctl-text" data-kn-share>Copy link</button>
+      </div>
+    </div>
+    <p class="kn-licence">Slides by Arithim, licensed under <a href="{LICENCE_URL}" rel="noopener license">{LICENCE_NAME}</a>. Use them inside your organisation with a credit and a link to this page; selling them needs our permission. Third-party figures and quotes, and the Arithim name and logo, are not covered. <a href="legal.html#slides">Details</a>.</p>
+    {render_audio(d)}{notes_html}
+  </div>
+"""
+
+
+def jsonld_node(d: dict, article: dict) -> dict:
+    node: dict = {
+        "@type": "PresentationDigitalDocument",
+        "@id": f"{d['url']}#slides",
+        "name": f"{article['title']} ({KINDS[d['kind']].lower()} slides)",
+        "url": f"{d['url']}#slides",
+        "isPartOf": {"@id": f"{d['url']}#article"},
+        "author": {"@type": "Person", "name": d["speaker"]},
+        "inLanguage": "en",
+        "license": LICENCE_URL,
+        "copyrightHolder": {"@type": "Organization", "name": "Arithim Ltd"},
     }
-    return bi.fill(template, values)
+    if d.get("audio"):
+        node["audio"] = {"@type": "AudioObject", "contentUrl": f"{SITE}/{d['audio'].lstrip('/')}", "name": d.get("audio_title") or article["title"]}
+    return node
+
+
+DECK_SCRIPT = ("\n    import('./keynote.js?v=1').then((m) => { this._stopDeck = m.initKeynote(document); })"
+               ".catch((e) => console.error('deck load failed', e));")
 
 
 # ---------------------------------------------------------------------------
@@ -355,7 +317,9 @@ def qr_svg(url: str) -> str | None:
     return buf.getvalue().decode("utf-8") + "\n"
 
 
-def ensure_qr(d: dict, check: bool) -> tuple[Path, str | None]:
+
+def qr_output(d: dict) -> tuple[Path, str | None]:
+    """(path, fresh svg) when segno is installed; (path, None) when the committed SVG is current."""
     path = ROOT / d["qr_file"]
     fresh = qr_svg(d["url"])
     if fresh is not None:
@@ -365,46 +329,25 @@ def ensure_qr(d: dict, check: bool) -> tuple[Path, str | None]:
     raise ValueError(f"{d['qr_file']} is missing or out of date and segno is not installed (pip install segno)")
 
 
-# ---------------------------------------------------------------------------
-# Orchestration
-# ---------------------------------------------------------------------------
-
-def generate(root: Path = ROOT) -> tuple[list[dict], dict[Path, str]]:
-    decks = load_decks(root / "content" / "keynotes")
-    template = (root / "tools" / "templates" / "keynote.html").read_text(encoding="utf-8")
-    partials = root / "tools" / "partials"
-    outputs = {}
-    for d in decks:
-        page = bi.stamp_partials(bi._classify(render_page(d, template)), partials)
-        outputs[root / d["file"]] = page
-    return decks, outputs
-
-
 def run(check: bool) -> int:
-    decks, outputs = generate()
+    decks = load_decks()
     stale = []
     for d in decks:
-        path, svg = ensure_qr(d, check)
-        if svg is not None:
-            outputs[path] = svg
-    for path, content in outputs.items():
+        path, svg = qr_output(d)
+        if svg is None:
+            continue
         current = path.read_text(encoding="utf-8") if path.exists() else None
-        if current != content:
+        if current != svg:
             stale.append(str(path.relative_to(ROOT)))
             if not check:
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text(content, encoding="utf-8")
-    known = {d["file"] for d in decks}
-    for p in sorted(ROOT.glob("keynote-*.html")):
-        if p.name not in known:
-            print(f"warning: {p.name} has no source in content/keynotes/", file=sys.stderr)
+                path.write_text(svg, encoding="utf-8")
     if check:
         if stale:
-            print("Keynote pages are stale; run `python3 tools/build_keynotes.py` and commit:", file=sys.stderr)
-            for s in stale:
-                print(f"  {s}", file=sys.stderr)
+            print("QR codes are stale; run `python3 tools/build_keynotes.py` and commit:", file=sys.stderr)
+            print("  " + "\n  ".join(stale), file=sys.stderr)
             return 1
-        print(f"ok: {len(decks)} keynote pages are up to date")
+        print(f"ok: {len(decks)} decks valid, QR codes up to date")
         return 0
     print("updated:\n  " + "\n  ".join(stale) if stale else "no changes")
     return 0
@@ -412,7 +355,7 @@ def run(check: bool) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--check", action="store_true", help="exit non-zero if a generated page is stale")
+    ap.add_argument("--check", action="store_true", help="exit non-zero if a deck is invalid or a QR code is stale")
     args = ap.parse_args(argv)
     try:
         return run(args.check)

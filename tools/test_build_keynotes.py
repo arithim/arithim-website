@@ -65,14 +65,26 @@ class ParseSlides(unittest.TestCase):
 
 
 class RealDecks(unittest.TestCase):
-    def test_every_deck_loads_and_renders(self):
-        template = bk.TEMPLATE.read_text(encoding="utf-8")
+    def test_every_deck_renders_on_its_insight(self):
+        articles = bk.bi.load_articles()
+        by_slug = {a["slug"]: a for a in articles}
         for d in bk.load_decks():
-            page = bk.render_page(d, template)
-            self.assertNotIn("@@", page)
+            page = bk.bi.render_article(by_slug[d["slug"]], articles)
             self.assertEqual(page.count("data-kn-slide"), len(d["slides"]) + 1)
             self.assertIn(d["qr_file"], page)
+            self.assertIn("keynote.js", page)
+            self.assertIn('"license": "https://creativecommons.org/licenses/by-nc/4.0/"', page)
+            self.assertIn('href="legal.html#slides"', page)
+            self.assertNotIn("@@", page)
             self.assertNotIn("{{", page)
+
+    def test_insight_without_deck_is_unchanged(self):
+        articles = bk.bi.load_articles()
+        decks = {d["slug"] for d in bk.load_decks()}
+        plain = next(a for a in articles if a["slug"] not in decks)
+        page = bk.bi.render_article(plain, articles)
+        self.assertNotIn("data-kn-deck", page)
+        self.assertNotIn("keynote.js", page)
 
 
 if __name__ == "__main__":

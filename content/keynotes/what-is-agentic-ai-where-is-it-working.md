@@ -1,46 +1,7 @@
 +++
-title = "Agentic AI in 2026: where is it actually working?"
-slug = "agentic-ai-where-is-it-working"
 kind = "keynote"
-date = 2026-11-15
 minutes = 20
 speaker = "Tarun Bulchandani"
-topic = "Agentic AI"
-description = "Slides and speaker notes from Tarun Bulchandani's keynote on agentic AI in 2026: what an agent is, how far adoption has got, the five patterns that work today, where agents fall short and five steps before your first agent. Based on Gartner's 2026 Hype Cycle for Agentic AI."
-lede = "In 2026, agentic AI works best on bounded, repetitive work where a person approves the risky steps, and most clearly in software engineering. These are the slides from the talk, with the speaker notes and sources underneath."
-source_insight = "what-is-agentic-ai-where-is-it-working"
-cta = "Want to know which of your processes an agent could take on first?"
-keywords = [
-  "agentic AI keynote",
-  "agentic AI 2026 slides",
-  "where is agentic AI working",
-  "AI agents in the enterprise",
-  "agentic AI adoption",
-  "Gartner Hype Cycle for Agentic AI 2026",
-]
-about = ["Agentic AI", "AI agents", "Automation"]
-footnote = "Gartner does not endorse any vendor, product or service depicted in its research publications. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and HYPE CYCLE are registered trademarks of Gartner, Inc. and/or its affiliates."
-
-[[faq]]
-q = "What is agentic AI?"
-a = "Software that works towards a goal by planning steps, using tools and acting in other systems. A chatbot answers a prompt and RPA replays a fixed script; an agent decides its own next step."
-
-[[faq]]
-q = "Where are AI agents working in 2026?"
-a = "Most clearly in software engineering. Elsewhere, on bounded and repetitive tasks, domain-specific work held to the domain's procedures, screen-based tasks on systems with no API, tightly controlled multi-agent workflows with a checking step, and data extraction from common documents."
-
-[[faq]]
-q = "Can I use these slides?"
-a = "Yes. Link to this page when you share or quote them, so people can find the notes and sources. To have this talk at your event, [get in touch](contact.html)."
-
-[[sources]]
-text = "Gartner, [Hype Cycle for Agentic AI, 2026](https://www.gartner.com/doc/reprints?id=1-2NOY9EK5&ct=260709&st=sb), Rajesh Kandaswamy, Leinar Ramos et al., 2 April 2026 (updated 20 July 2026), ID G00842058. Complimentary reprint; the link may expire."
-
-[[sources]]
-text = "Gartner, [Predicts 2026: The New Era of Agentic Automation Begins](https://www.gartner.com/doc/reprints?id=1-2NBSQ18V&ct=260508&st=sb), Arthur Villa, Saikat Ray et al., 1 December 2025, ID G00840857. Complimentary reprint; the link may expire."
-
-[[sources]]
-text = "[Model Context Protocol](https://modelcontextprotocol.io/); [OpenTelemetry](https://opentelemetry.io/). Accessed 9 November 2026."
 +++
 
 --- title

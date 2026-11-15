@@ -2261,8 +2261,8 @@ button.ah-btn-ring { border: 0; background: none; font: inherit; color: inherit;
   .ah-foot-mark + .ah-2b8fb5.ah-2b8fb5 { padding-top: var(--ah-s-12) !important; }
 }
 
-/* Keynote pages (keynote-*.html): a slide deck at the top, notes and sources below.
-   Built by tools/build_keynotes.py; format and publishing notes in docs/keynote/README.md.
+/* Slide decks on insight pages, between the hero and the article.
+   Built by tools/build_keynotes.py through tools/build_insights.py; format and publishing notes in docs/keynote/README.md.
 
    The page and the controls under the deck follow the site theme. The slides are always the dark
    brand deck: .kn-frame (and the whole deck while presenting) sits beside .tsg-fig in the token
@@ -2374,11 +2374,11 @@ ol.kn-list li::before { content: counter(kn, decimal-leading-zero); width: auto;
 .kn-pg { font-family: var(--kn-mono); font-size: calc(var(--u) * 13); letter-spacing: 0.12em; color: var(--kn-text-3); font-variant-numeric: tabular-nums; }
 
 /* Progress and controls, below the frame. These follow the site theme. */
-.kn-bar { height: 3px; margin-top: var(--ah-s-14); border-radius: var(--ah-r-3); background: var(--ah-line-3, rgba(127,127,127,0.25)); overflow: hidden; }
+.kn-bar { height: 3px; margin-top: var(--ah-s-14); border-radius: var(--ah-r-3); background: var(--ah-cream-18); overflow: hidden; }
 .kn-bar i { display: block; height: 100%; width: 0; background: var(--kn-amber); transition: width .3s ease; }
 .kn-controls { display: flex; align-items: center; gap: var(--ah-s-8); margin-top: var(--ah-s-12); flex-wrap: wrap; }
 .kn-ctl { font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); letter-spacing: 0.06em; color: var(--ah-cream); background: transparent;
-  border: 1px solid var(--ah-line-3, rgba(127,127,127,0.35)); border-radius: var(--ah-r-999); min-width: 44px; height: 40px; padding: 0 var(--ah-s-14); cursor: pointer; }
+  border: 1px solid var(--ah-cream-25); border-radius: var(--ah-r-999); min-width: 44px; height: 40px; padding: 0 var(--ah-s-14); cursor: pointer; }
 .kn-ctl:hover, .kn-ctl:focus-visible { border-color: var(--kn-amber); color: var(--kn-amber); outline: none; }
 .kn-ctl-text { text-transform: uppercase; }
 .kn-ctl-gap { flex: 1; }
@@ -2398,38 +2398,31 @@ html.kn-locked, html.kn-locked body { overflow: hidden; }
 /* .r-gut isolates its children, so lift the whole band above the sticky header while presenting. */
 .kn-deck-band:has(.kn-deck.is-full) { position: relative; z-index: 3000; isolation: auto; }
 
-/* Page around the deck */
-.kn-page { padding-top: var(--ah-s-24); }
-.kn-top, .kn-deck-band, .kn-audio { padding-left: var(--ah-s-40); padding-right: var(--ah-s-40); }
-.kn-top { max-width: var(--ah-w-max); margin: 0 auto; padding-top: var(--ah-s-48); padding-bottom: var(--ah-s-28); box-sizing: content-box; }
-.kn-crumb { font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-3); }
-.kn-crumb a { color: inherit; text-decoration: none; }
-.kn-crumb a:hover { color: var(--ah-amber); }
-.kn-crumb span { color: var(--ah-amber); }
-.kn-heading { margin: var(--ah-s-18) 0 0; font-family: var(--ah-font-display); font-weight: 700; font-size: clamp(34px, 5vw, 64px); line-height: 0.98; letter-spacing: -0.04em; color: var(--ah-cream); max-width: 980px; text-wrap: balance; }
-.kn-meta { margin-top: var(--ah-s-18); display: flex; flex-wrap: wrap; gap: var(--ah-s-6) var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.1em; color: var(--ah-text-3); }
-.kn-meta-kind { color: var(--ah-amber); }
-.kn-deck-band { max-width: var(--ah-w-max); margin: 0 auto; padding-bottom: var(--ah-s-48); box-sizing: content-box; }
+/* Around the deck on an insight page: a meta line above, licence, audio and speaker notes below.
+   These follow the site theme. */
+.kn-deck-band { max-width: 1080px; margin: 0 auto; padding: var(--ah-s-8) var(--ah-s-40) var(--ah-s-48); box-sizing: content-box; }
+.kn-deck-meta { display: flex; flex-wrap: wrap; gap: var(--ah-s-6) var(--ah-s-10); margin: 0 0 var(--ah-s-14); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.1em; color: var(--ah-text-3); }
+.kn-deck-meta > span:first-child { color: var(--ah-amber); }
+.kn-licence { max-width: 760px; margin: var(--ah-s-14) auto 0; font-size: var(--ah-fs-13); line-height: 1.55; color: var(--ah-text-4); text-align: center; }
+.kn-licence a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.kn-licence a:hover { color: var(--ah-amber); }
 
-.kn-audio { box-sizing: content-box; max-width: 760px; margin: 0 auto var(--ah-s-32); }
+.kn-audio { max-width: 760px; margin: var(--ah-s-24) auto 0; }
 .kn-audio-title { margin: 0 0 var(--ah-s-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-3); }
 .kn-audio-mins { color: var(--ah-amber); margin-left: var(--ah-s-8); }
 .kn-audio audio { width: 100%; }
 
-.kn-actions { display: flex; flex-wrap: wrap; gap: var(--ah-s-10); margin: var(--ah-s-8) 0 var(--ah-s-8); }
-.kn-btn { display: inline-flex; align-items: center; height: 44px; padding: 0 var(--ah-s-20); border-radius: var(--ah-r-999); border: 1px solid var(--ah-line-3, rgba(127,127,127,0.35));
-  font-family: var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-15); color: var(--ah-cream); text-decoration: none; }
-.kn-btn:hover { border-color: var(--ah-amber); color: var(--ah-amber); }
-
-.kn-notes { list-style: none; margin: var(--ah-s-8) 0 0; padding: 0; }
-.kn-note { display: grid; grid-template-columns: 56px 1fr; gap: 0 var(--ah-s-18); padding: var(--ah-s-22) 0; border-top: 1px solid var(--ah-line-2, rgba(127,127,127,0.18)); }
+.kn-notes-box { max-width: 760px; margin: var(--ah-s-24) auto 0; border-top: 1px solid var(--ah-cream-10); border-bottom: 1px solid var(--ah-cream-10); }
+.kn-notes-box summary { cursor: pointer; padding: var(--ah-s-14) 0; font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-3); }
+.kn-notes-box summary:hover, .kn-notes-box summary:focus-visible { color: var(--ah-amber); outline: none; }
+.kn-notes { list-style: none; margin: 0; padding: 0 0 var(--ah-s-14); }
+.kn-note { display: grid; grid-template-columns: 56px 1fr; gap: 0 var(--ah-s-18); padding: var(--ah-s-14) 0; border-top: 1px solid var(--ah-cream-10); }
 .kn-note-num { align-self: start; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--ah-r-999);
-  border: 1px solid var(--ah-amber-line, var(--ah-amber-35)); font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-amber); text-decoration: none; }
+  border: 1px solid var(--ah-amber-35); font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); color: var(--ah-amber); text-decoration: none; }
 .kn-note-num:hover, .kn-note-num:focus-visible { background: var(--ah-amber); color: var(--ah-ink); outline: none; }
-.kn-note-body h3 { margin: var(--ah-s-6) 0 var(--ah-s-8); }
-.kn-note-body > :last-child { margin-bottom: 0; }
-.kn-note-said { margin-top: var(--ah-s-12); padding-left: var(--ah-s-14); border-left: 2px solid var(--ah-amber-line, var(--ah-amber-35)); }
-.kn-note-label { display: block; font-family: var(--ah-font-mono); font-size: var(--ah-fs-11); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-4); margin-bottom: var(--ah-s-4); }
+.kn-note-body h3 { margin: var(--ah-s-8) 0 var(--ah-s-6); font-family: var(--ah-font-display); font-weight: 600; font-size: var(--ah-fs-17); color: var(--ah-cream); }
+.kn-notes .kn-hl { background: none; color: inherit; -webkit-text-fill-color: currentColor; }
+.kn-note-body p { margin: 0 0 var(--ah-s-8); font-size: var(--ah-fs-15); line-height: 1.6; color: var(--ah-text-2); }
 
 /* Phones: people arrive here from the QR code, so slides reflow onto a 9:16 portrait canvas 560 units wide
    instead of shrinking a 16:9 slide until the text is unreadable. */
@@ -2450,8 +2443,7 @@ html.kn-locked, html.kn-locked body { overflow: hidden; }
   .kn-qr { width: calc(var(--u) * 300); }
   .kn-foot { left: calc(var(--u) * 44); right: calc(var(--u) * 44); bottom: calc(var(--u) * 40); }
   .kn-deck.is-full .kn-frame { width: min(100vw, calc(100dvh * 9 / 16)); }
-  .kn-top, .kn-deck-band, .kn-audio { padding-left: var(--ah-s-20); padding-right: var(--ah-s-20); }
-  .kn-top { padding-top: var(--ah-s-28); }
+  .kn-deck-band { padding-left: var(--ah-s-20); padding-right: var(--ah-s-20); }
   .kn-hint { display: none; }
   .kn-controls [data-kn-print] { display: none; }
   .kn-note { grid-template-columns: 1fr; }
@@ -2463,8 +2455,8 @@ html.kn-locked, html.kn-locked body { overflow: hidden; }
   @page { size: 1280px 720px; margin: 0; }
   html, body { background: var(--ah-ink) !important; margin: 0 !important; padding: 0 !important; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  .ah-page > :not(main), .kn-page > :not(.kn-deck-band), .kn-deck-band > :not(.kn-deck), .callus-link, .ah-theme-picker { display: none !important; }
-  .ah-page, .kn-page, .kn-deck-band { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+  .ah-page > :not(main), main:has(.kn-deck) > :not(.kn-deck-band), .kn-deck-band > :not(.kn-deck), .callus-link, .ah-theme-picker { display: none !important; }
+  .ah-page, main:has(.kn-deck), .kn-deck-band { margin: 0 !important; padding: 0 !important; max-width: none !important; }
   .kn-deck { width: 1280px; max-width: none; margin: 0; }
   .kn-frame { width: 1280px; aspect-ratio: auto; height: auto; overflow: visible; border-radius: 0; box-shadow: none; }
   .kn-stage { position: static; }
