@@ -2599,3 +2599,64 @@ html.kn-locked, html.kn-locked body { overflow: hidden; }
   .kn-slide:last-child { break-after: auto; page-break-after: auto; }
   .kn-bar, .kn-controls, .kn-hint { display: none !important; }
 }
+
+/* ---------- Speaker page (speaking.html) ---------- */
+.sp-wrap { max-width: 1200px; margin: 0 auto; padding: var(--ah-s-72) var(--ah-s-40) 96px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: var(--ah-s-64); align-items: start; }
+/* clip, not hidden, so the sticky rail still sticks to the viewport */
+main > .r-gut.sp-wrap { overflow: clip; }
+.sp-rail { position: sticky; top: 104px; display: flex; flex-direction: column; gap: var(--ah-s-28); }
+.sp-portrait { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; border-radius: var(--ah-r-20); border: 1px solid var(--ah-cream-08); }
+.sp-toc { font-family: var(--ah-font-mono); font-size: var(--ah-fs-12-5); }
+.sp-label { display: block; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-text-5); margin-bottom: var(--ah-s-12); }
+.sp-toc ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--ah-s-8); border-left: 1px solid var(--ah-cream-10); }
+.sp-toc a { display: block; padding: 2px 0 2px var(--ah-s-14); margin-left: -1px; border-left: 1px solid transparent; color: var(--ah-text-3); text-decoration: none; letter-spacing: 0.02em; }
+.sp-toc a:hover, .sp-toc a:focus-visible { color: var(--ah-amber); border-left-color: var(--ah-amber); }
+.sp-main { min-width: 0; }
+.sp-main section { scroll-margin-top: 104px; margin-top: var(--ah-s-56); }
+.sp-eyebrow { font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ah-amber); margin: 0 0 var(--ah-s-14); }
+.sp-main h1 { font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-60); line-height: 0.98; letter-spacing: -0.04em; margin: 0; }
+.sp-lead { font-size: var(--ah-fs-21); line-height: 1.6; color: var(--ah-text-2); margin: var(--ah-s-28) 0 0; }
+.sp-lead strong { color: var(--ah-text-1); font-weight: 600; }
+.sp-mark { background: var(--ah-amber-14); color: inherit; padding: 0 var(--ah-s-4); border-radius: var(--ah-r-4); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.sp-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ah-s-16); margin-top: var(--ah-s-40); }
+.sp-fact { background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); padding: var(--ah-s-24); display: flex; flex-direction: column; gap: var(--ah-s-10); }
+.sp-fact b { font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-40); line-height: 1; letter-spacing: -0.03em; color: var(--ah-amber); }
+.sp-fact span { font-size: var(--ah-fs-14-5); line-height: 1.5; color: var(--ah-text-3); }
+.sp-main h2 { font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-32); line-height: 1.15; letter-spacing: -0.025em; margin: 0 0 var(--ah-s-18); }
+.sp-main section p { font-size: var(--ah-fs-17-5); line-height: 1.7; color: var(--ah-text-2); margin: 0 0 var(--ah-s-18); }
+.sp-talks { display: flex; flex-direction: column; gap: var(--ah-s-14); }
+a.sp-talk { display: flex; flex-direction: column; gap: var(--ah-s-8); padding: var(--ah-s-24) 26px; background: var(--ah-card); border: 1px solid var(--ah-cream-08); border-radius: var(--ah-r-16); color: inherit; text-decoration: none; transition: border-color 0.2s ease; }
+.sp-meta { font-family: var(--ah-font-mono); font-size: var(--ah-fs-11-5); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ah-text-5); }
+a.sp-talk h3 { font-family: var(--ah-font-display); font-weight: 700; font-size: var(--ah-fs-22); letter-spacing: -0.02em; margin: 0; transition: color 0.2s ease; }
+.sp-main a.sp-talk p { margin: 0; font-size: var(--ah-fs-16); }
+.sp-go { font-family: var(--ah-font-mono); font-size: var(--ah-fs-12); letter-spacing: 0.06em; color: var(--ah-amber); margin-top: var(--ah-s-4); }
+.sp-go::after { content: " \2192"; display: inline-block; transition: transform 0.2s ease; }
+a.sp-talk:hover { border-color: var(--ah-amber-40); }
+a.sp-talk:hover h3 { color: var(--ah-amber); }
+a.sp-talk:hover .sp-go::after { transform: translateX(4px); }
+a.sp-talk:focus-visible { outline: 2px solid var(--ah-amber); outline-offset: 4px; }
+.sp-offer { margin: 0 0 var(--ah-s-18); padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--ah-s-10); font-size: var(--ah-fs-17-5); line-height: 1.6; color: var(--ah-text-2); }
+.sp-offer li { padding-left: var(--ah-s-22); position: relative; }
+.sp-offer li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 10px; height: 2px; background: var(--ah-amber); }
+.sp-main .sp-contact { font-size: var(--ah-fs-19); color: var(--ah-text-1); }
+.sp-main section a:not(.sp-talk) { color: var(--ah-amber); }
+.sp-links { display: flex; flex-wrap: wrap; gap: var(--ah-s-10) var(--ah-s-24); margin-top: var(--ah-s-56); padding-top: var(--ah-s-24); border-top: 1px solid var(--ah-cream-10); font-family: var(--ah-font-mono); font-size: var(--ah-fs-13); }
+.sp-links a { color: var(--ah-text-3); text-decoration: none; }
+.sp-links a:hover, .sp-links a:focus-visible { color: var(--ah-amber); }
+@media (max-width: 900px) {
+  .sp-wrap { grid-template-columns: minmax(0, 1fr); gap: var(--ah-s-36); padding-top: var(--ah-s-40); padding-bottom: var(--ah-s-72); }
+  .sp-rail { position: static; flex-direction: row; align-items: flex-start; gap: var(--ah-s-24); }
+  .sp-portrait { width: 200px; flex: none; }
+}
+@media (max-width: 640px) {
+  .sp-rail { flex-direction: column; }
+  .sp-portrait { width: 100%; max-width: 240px; }
+  .sp-main h1 { font-size: var(--ah-fs-44); }
+  .sp-lead { font-size: var(--ah-fs-18); }
+  .sp-facts { grid-template-columns: minmax(0, 1fr); }
+  .sp-fact { padding: var(--ah-s-20); }
+  .sp-fact b { font-size: var(--ah-fs-34); }
+  .sp-main h2 { font-size: var(--ah-fs-26); }
+  .sp-main section p, .sp-offer { font-size: var(--ah-fs-16-5); }
+}
+@media (prefers-reduced-motion: reduce) { .sp-go::after, a.sp-talk, a.sp-talk h3 { transition: none; } }
