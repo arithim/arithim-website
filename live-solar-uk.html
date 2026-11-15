@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where do the Great Britain figures come from?", "acceptedAnswer": {"@type": "Answer", "text": "Sheffield Solar's PV_Live service estimates all of Great Britain's solar output every half hour, scaling up readings from a sample of metered systems. The forecast is NESO's embedded solar forecast. Both are published under open licences."}}, {"@type": "Question", "name": "Why is output so far below installed capacity?", "acceptedAnswer": {"@type": "Answer", "text": "Panels reach their rated output only in bright, cool sunshine with the sun high and square on. Cloud, season, time of day and the angle each array faces all pull it down, which is why the regional map shows capacity factor: the share of what the panels could make running flat out."}}, {"@type": "Question", "name": "What does the regional map show?", "acceptedAnswer": {"@type": "Answer", "text": "Capacity factor for each of the 14 network licence areas: the energy generated as a share of what the installed capacity could make running flat out."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Solar", "item": "https://arithim.com/live-solar.html"}, {"@type": "ListItem", "position": 3, "name": "Great Britain", "item": "https://arithim.com/live-solar-uk.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Solar", "item": "https://arithim.com/live-solar.html"}, {"@type": "ListItem", "position": 3, "name": "Great Britain", "item": "https://arithim.com/live-solar-uk.html"}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=04824f4d"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,8 +162,9 @@
 <nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-solar">Solar</a></li><li><a href="/live-solar-uk">Great Britain</a></li></ol></nav><header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>How much solar power is Great Britain generating right now?</h1>
-<p>Half-hourly solar output for Great Britain and its 14 network regions, NESO&#x27;s forecast for the next two weeks, and how real output compares with modelled yield.</p>
+<p>Great Britain by region, with a two-week forecast and a check of real output against modelled yield.</p>
 </header>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar" aria-current="page">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits">Credits</a></nav>
 <nav class="live-regionnav" aria-label="Solar regions"><a href="/live-solar">Overview</a><a href="/live-solar-uk" aria-current="page" data-live-needs="gb_fc_days gb_fc_summary gb_forecast gb_regions_geo gb_yield_check uk_national uk_pipeline uk_pipeline_region uk_region_stats uk_summary">Great Britain</a><a href="/live-solar-europe" data-live-needs="eu_cf eu_stats europe_live">Europe</a><a href="/live-solar-americas" data-live-needs="brazil_live brazil_summary caiso_live caiso_summary canada_live canada_summary eia_stats eia_total isone_summary us_eia930 us_isone world_latest">Americas</a><a href="/live-solar-asia" data-live-needs="aus_series aus_stats aus_total japan_live japan_total korea_live korea_summary">Asia-Pacific</a><a href="/live-solar-world" data-live-needs="coverage world_geo world_latest world_total">World</a></nav>
 <div class="gsl">
 <section class="gsl-page" id="uk" data-page="uk">
@@ -178,22 +179,18 @@
     <div class="gsl-grid">
       <div class="gsl-card wide" id="uk-heatmap-card">
         <h3>Sixty days of sunshine</h3>
-        <p class="gsl-sub">Each row is a day, newest at the top, and each square half an hour (GMT), coloured by how hard Britain's panels were working: output as a share of installed capacity. Shortening days narrow the band, cloudy days show as darker rows, and the bars on the right give each day's total.</p>
         <div class="gsl-chart" data-draw="uk-heatmap" data-source="uk_national"></div>
       </div>
       <div class="gsl-card" id="uk-intraday">
         <h3>Today against recent days</h3>
-        <p class="gsl-sub">Great Britain, half-hourly output in GW by time of day (GMT). PV_Live estimate from metered sample sites.</p>
         <div class="gsl-chart" data-draw="uk-intraday" data-source="uk_national"></div>
       </div>
       <div class="gsl-card" id="uk-fc-lines">
         <h3>Last three days and the next four</h3>
-        <p class="gsl-sub">GW, half-hourly. The solid line is PV_Live's estimate of what happened; the dashed line is NESO's forecast for embedded solar (panels on the distribution network, the great majority of GB solar).</p>
         <div class="gsl-chart" data-draw="uk-fc-lines" data-source="uk_national gb_forecast"></div>
       </div>
       <div class="gsl-card wide" id="uk-fc-days">
         <h3>Forecast by day, next two weeks</h3>
-        <p class="gsl-sub">GWh per day from NESO's embedded solar forecast. The line is the average day of the last 30 days. Today's bar counts only the hours still ahead; forecasts more than a few days out lean on seasonal averages.</p>
         <div class="gsl-chart" data-draw="uk-fc-days" data-source="gb_fc_days uk_summary"></div>
       </div>
     </div>
@@ -202,7 +199,6 @@
     <div class="gsl-grid">
       <div class="gsl-card" id="uk-region-map-card">
         <h3>Regional map</h3>
-        <p class="gsl-sub">Capacity factor is energy generated as a share of what installed capacity could make running flat out.</p>
         <div class="gsl-seg-row">
           <button class="gsl-seg" data-gbmetric="cf24_pct" aria-pressed="true">Capacity factor, 24 h</button>
           <button class="gsl-seg" data-gbmetric="now_mw" aria-pressed="false">Output now</button>
@@ -212,7 +208,6 @@
       </div>
       <div class="gsl-card">
         <h3>Region detail</h3>
-        <p class="gsl-sub">14 DNO licence areas. Output now, installed capacity and the last 24 hours.</p>
         <div class="gsl-tablebox">
           <table class="gsl-table" data-source="uk_region_stats" data-row-key="region">
             <thead><tr>
@@ -232,12 +227,10 @@
     <div class="gsl-grid">
       <div class="gsl-card" id="uk-yield-chart">
         <h3>Measured and modelled yield, last 12 months</h3>
-        <p class="gsl-sub">kWh per kWp. Filled dot: what panels already in each region produced (PV_Live, energy over installed capacity). Open dot: the yield Site Finder models for new land in the region (Global Solar Atlas, best tilt, 14% losses), with its 10th to 90th percentile as a bar.</p>
         <div class="gsl-chart" data-draw="uk-yield-dots" data-source="gb_yield_check"></div>
       </div>
       <div class="gsl-card">
         <h3>Fleet against model</h3>
-        <p class="gsl-sub">The fleet includes rooftops at every angle, older panels and curtailed output, so it sits below a new ground-mounted farm. The gap between regions is the signal: a region well above the GB figure produces more than its sunshine alone suggests.</p>
         <div class="gsl-tablebox">
           <table class="gsl-table" data-source="gb_yield_check" data-row-key="region">
             <thead><tr>
@@ -257,38 +250,29 @@
     <div class="gsl-grid">
       <div class="gsl-card">
         <h3>Solar projects by planning stage</h3>
-        <p class="gsl-sub">Installed or planned capacity in MW, from the government's Renewable Energy Planning Database (projects of 150 kW and over).</p>
         <div class="gsl-chart short" data-draw="uk-pipe-stage" data-source="uk_pipeline"></div>
       </div>
       <div class="gsl-card">
         <h3>Pipeline by nation and region</h3>
-        <p class="gsl-sub">MW operational against MW consented or under construction.</p>
         <div class="gsl-chart short" data-draw="uk-pipe-region" data-source="uk_pipeline_region"></div>
       </div>
     </div>
   </section>
 <p class="live-note live-none" data-live-none hidden>No live data for this region is published here yet. Some grids are held back until their operators allow display on a commercial website.</p>
 </div>
-<section class="live-section" id="questions">
-<h2>Questions</h2>
-<h3>Where do the Great Britain figures come from?</h3><p>Sheffield Solar&#x27;s PV_Live service estimates all of Great Britain&#x27;s solar output every half hour, scaling up readings from a sample of metered systems. The forecast is NESO&#x27;s embedded solar forecast. Both are published under open licences.</p><h3>Why is output so far below installed capacity?</h3><p>Panels reach their rated output only in bright, cool sunshine with the sun high and square on. Cloud, season, time of day and the angle each array faces all pull it down, which is why the regional map shows capacity factor: the share of what the panels could make running flat out.</p><h3>What does the regional map show?</h3><p>Capacity factor for each of the 14 network licence areas: the energy generated as a share of what the installed capacity could make running flat out.</p>
-</section>
-<section class="live-section live-credits" id="sources">
-<h2>Sources and credits</h2>
-<div data-live-credits><p class="live-note">Loading the source list…</p></div>
-<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
-</section>
+<p class="live-foot"><a href="/live-credits">Sources and credits</a></p>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live-solar.html", "back_text": "\u2190 SOLAR DASHBOARD"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live-solar.html">← SOLAR DASHBOARD</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
 <script src="/assets/live/gsl.js?v=5d485418"></script>
 <script src="/assets/live/solar.js?v=9265b120"></script>
+<script src="/assets/live/live-charts.js?v=4a9c68eb"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>

@@ -172,15 +172,18 @@
 
   function writeCredits() {
     const box = document.querySelector('[data-live-credits]');
-    if (!box || !credits || !settled()) return;
+    if (!box || !credits) return;
+    const all = box.hasAttribute('data-all');   // the credits page lists every source, not only the ones a page drew from
+    if (!all && !settled()) return;
     const used = new Set();
     let newest = '';
-    store.forEach((v, id) => {
-      const info = credits.datasets[id];
-      if (v.status !== 'ok' || !info) return;
+    const take = (id, info) => {
+      if (!info) return;
       (info.sources || []).forEach((s) => used.add(s));
       if (info.fetched && info.fetched > newest) newest = info.fetched;
-    });
+    };
+    if (all) Object.keys(credits.datasets || {}).filter((id) => id !== 'coverage').forEach((id) => take(id, credits.datasets[id]));
+    else store.forEach((v, id) => { if (v.status === 'ok') take(id, credits.datasets[id]); });
     const list = credits.sources.filter((s) => used.has(s.id) && s.credit);
     const key = list.map((s) => s.id).join(',') + newest;
     if (box.dataset.key === key) return;

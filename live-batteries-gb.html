@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the Great Britain figure worked out?", "acceptedAnswer": {"@type": "Answer", "text": "No one publishes a live total for GB batteries. We add up the physical notifications of battery units in the Balancing Mechanism, the plan each unit sends to the system operator an hour ahead, from Elexon's data. It is an estimate: instructions after that hour change what actually happens, and smaller batteries outside the Balancing Mechanism are not counted."}}, {"@type": "Question", "name": "Are small batteries included?", "acceptedAnswer": {"@type": "Answer", "text": "No. Batteries outside the Balancing Mechanism are not counted, so the figure is below the true total."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Batteries", "item": "https://arithim.com/live-batteries.html"}, {"@type": "ListItem", "position": 3, "name": "Great Britain", "item": "https://arithim.com/live-batteries-gb.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Batteries", "item": "https://arithim.com/live-batteries.html"}, {"@type": "ListItem", "position": 3, "name": "Great Britain", "item": "https://arithim.com/live-batteries-gb.html"}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=04824f4d"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,18 +162,12 @@
 <nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-batteries">Batteries</a></li><li><a href="/live-batteries-gb">Great Britain</a></li></ol></nav><header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>How much are grid batteries charging and discharging in Great Britain right now?</h1>
-<p>What Great Britain&#x27;s grid batteries are doing now and over the last two days, and what an average day looks like for them.</p>
+<p>Great Britain over the last two days, and an average day on a clock.</p>
 </header>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries" aria-current="page">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits">Credits</a></nav>
 <nav class="live-regionnav" aria-label="Batteries regions"><a href="/live-batteries">Overview</a><a href="/live-batteries-gb" aria-current="page" data-live-needs="gb_bat_summary gb_battery">Great Britain</a><a href="/live-batteries-europe" data-live-needs="bat_stats battery_live">Europe</a><a href="/live-batteries-americas" data-live-needs="battery_live">Americas</a><a href="/live-batteries-asia" data-live-needs="battery_live">Asia-Pacific</a></nav>
 <div class="gsl">
 <section class="gsl-page" id="gb" data-page="gb">
-    <div class="gsl-grid">
-<div class="gsl-card wide" id="bat-clock-card">
-      <h3>A day in the life of grid batteries</h3>
-      <p class="gsl-sub">Each clock is one grid's average day over the last two days, in local time with midnight at the top. Green bars reaching outwards are batteries discharging into the grid that hour; amber bars reaching in are batteries charging. Where solar is strong, batteries fill up around midday and empty into the evening peak.</p>
-      <div class="gsl-chart" data-draw="bat-clock" data-source="bat_clock"></div>
-    </div>
-    </div>
     <div class="gsl-tiles">
       <div class="gsl-tile"><p class="gsl-tile-l">Discharging now</p><p class="gsl-tile-v"><span data-draw="gb-dis" data-source="gb_bat_summary" data-field="discharge_now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s">Charging now: <b data-draw="gb-chg" data-source="gb_bat_summary" data-field="charge_now_gw" data-row="0">—</b> GW</p></div>
       <div class="gsl-tile"><p class="gsl-tile-l">Highest discharge, last 24 hours</p><p class="gsl-tile-v"><span data-draw="gb-pk" data-source="gb_bat_summary" data-field="peak_dis_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s">At <b data-draw="gb-pk-t" data-source="gb_bat_summary" data-field="peak_dis_time" data-row="0">—</b></p></div>
@@ -182,7 +176,6 @@
     <div class="gsl-grid">
       <div class="gsl-card wide" id="gb-lines">
         <h3>Great Britain, last two days</h3>
-        <p class="gsl-sub">GW each half hour, summed over battery units in the Balancing Mechanism. These are the physical notifications each unit submits an hour ahead, not metered output: the system operator's instructions after that change what actually happens. Units are picked from Elexon's unit list by name and by matching import and export capacity, so a few may be missed or wrongly included.</p>
         <div class="gsl-key"><span style="--k: var(--color-ok)">Discharging</span><span style="--k: var(--color-warn)">Charging</span><span style="--k: var(--color-fg)">Net</span></div>
         <div class="gsl-chart" data-draw="gb-lines" data-source="gb_battery"></div>
       </div>
@@ -190,26 +183,19 @@
   </section>
 <p class="live-note live-none" data-live-none hidden>No live data for this region is published here yet. Some grids are held back until their operators allow display on a commercial website.</p>
 </div>
-<section class="live-section" id="questions">
-<h2>Questions</h2>
-<h3>How is the Great Britain figure worked out?</h3><p>No one publishes a live total for GB batteries. We add up the physical notifications of battery units in the Balancing Mechanism, the plan each unit sends to the system operator an hour ahead, from Elexon&#x27;s data. It is an estimate: instructions after that hour change what actually happens, and smaller batteries outside the Balancing Mechanism are not counted.</p><h3>Are small batteries included?</h3><p>No. Batteries outside the Balancing Mechanism are not counted, so the figure is below the true total.</p>
-</section>
-<section class="live-section live-credits" id="sources">
-<h2>Sources and credits</h2>
-<div data-live-credits><p class="live-note">Loading the source list…</p></div>
-<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
-</section>
+<p class="live-foot"><a href="/live-credits">Sources and credits</a></p>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live-batteries.html", "back_text": "\u2190 BATTERIES DASHBOARD"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live-batteries.html">← BATTERIES DASHBOARD</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
 <script src="/assets/live/gsl.js?v=5d485418"></script>
 <script src="/assets/live/battery.js?v=dd5bf5f7"></script>
+<script src="/assets/live/live-charts.js?v=4a9c68eb"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>

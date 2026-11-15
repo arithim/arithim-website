@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which wind is counted in Australia?", "acceptedAnswer": {"@type": "Answer", "text": "Semi-scheduled wind cleared in dispatch each half hour, from AEMO."}}, {"@type": "Question", "name": "How often do these feeds update?", "acceptedAnswer": {"@type": "Answer", "text": "Australia and Japan publish every half hour, and South Korea's KPX publishes every 5 minutes."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Wind", "item": "https://arithim.com/live-wind.html"}, {"@type": "ListItem", "position": 3, "name": "Asia-Pacific", "item": "https://arithim.com/live-wind-asia.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Wind", "item": "https://arithim.com/live-wind.html"}, {"@type": "ListItem", "position": 3, "name": "Asia-Pacific", "item": "https://arithim.com/live-wind-asia.html"}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=04824f4d"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,51 +162,42 @@
 <nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-wind">Wind</a></li><li><a href="/live-wind-asia">Asia-Pacific</a></li></ol></nav><header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>How much wind power are Australia, Japan and South Korea generating right now?</h1>
-<p>Wind output for Australia&#x27;s main grid by region, for Japan&#x27;s nine transmission areas and for South Korea.</p>
+<p>Australia, Japan and South Korea.</p>
 </header>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar">Solar</a><a href="/live-wind" aria-current="page">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits">Credits</a></nav>
 <nav class="live-regionnav" aria-label="Wind regions"><a href="/live-wind">Overview</a><a href="/live-wind-gb" data-live-needs="gb_mix gb_split_summary gb_wind_fc_days gb_wind_forecast gb_wind_split gb_wind_summary">Great Britain</a><a href="/live-wind-europe" data-live-needs="wind_live wind_stats">Europe</a><a href="/live-wind-americas" data-live-needs="eia_wind_stats us_eia930_wind wind_live">Americas</a><a href="/live-wind-asia" aria-current="page" data-live-needs="wind_live">Asia-Pacific</a><a href="/live-wind-world" data-live-needs="world_wind_latest world_wind_trend">World</a></nav>
 <div class="gsl">
 <section class="gsl-page" id="asia" data-page="asia">
     <div class="gsl-grid">
       <div class="gsl-card" id="au-lines">
         <h3>Australia (NEM) by region</h3>
-        <p class="gsl-sub">GW, semi-scheduled wind cleared in dispatch each half hour (AEMO).</p>
         <div class="gsl-chart" data-draw="au-lines" data-source="wind_live"></div>
       </div>
       <div class="gsl-card" id="jp-lines">
         <h3>Japan by area</h3>
-        <p class="gsl-sub">GW, half-hourly actuals from nine transmission areas.</p>
         <div class="gsl-chart" data-draw="jp-lines" data-source="wind_live"></div>
       </div>
       <div class="gsl-card" id="kr-lines">
         <h3>South Korea</h3>
-        <p class="gsl-sub">GW every 5 minutes, KPX real-time generation by source, today.</p>
         <div class="gsl-chart short" data-draw="kr-lines" data-source="wind_live"></div>
       </div>
     </div>
   </section>
 <p class="live-note live-none" data-live-none hidden>No live data for this region is published here yet. Some grids are held back until their operators allow display on a commercial website.</p>
 </div>
-<section class="live-section" id="questions">
-<h2>Questions</h2>
-<h3>Which wind is counted in Australia?</h3><p>Semi-scheduled wind cleared in dispatch each half hour, from AEMO.</p><h3>How often do these feeds update?</h3><p>Australia and Japan publish every half hour, and South Korea&#x27;s KPX publishes every 5 minutes.</p>
-</section>
-<section class="live-section live-credits" id="sources">
-<h2>Sources and credits</h2>
-<div data-live-credits><p class="live-note">Loading the source list…</p></div>
-<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
-</section>
+<p class="live-foot"><a href="/live-credits">Sources and credits</a></p>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live-wind.html", "back_text": "\u2190 WIND DASHBOARD"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live-wind.html">← WIND DASHBOARD</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
 <script src="/assets/live/gsl.js?v=5d485418"></script>
 <script src="/assets/live/wind.js?v=45af6a57"></script>
+<script src="/assets/live/live-charts.js?v=4a9c68eb"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>

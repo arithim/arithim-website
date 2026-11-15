@@ -1296,8 +1296,8 @@ html:not([data-mode="light"]) .ah-ico-moon { display: none; }
 .live-kicker { font-family: var(--ah-font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ah-amber); margin: 0 0 12px; }
 .live-hero h1 { font-family: var(--ah-font-display); font-weight: 600; font-size: clamp(28px, 4vw, 44px); line-height: 1.12; margin: 0 0 14px; color: var(--ah-cream); max-width: 22ch; }
 .live-hero p { color: var(--ah-text-2); font-size: 17px; line-height: 1.55; max-width: 62ch; margin: 0; }
-.live-switch { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 28px; }
-.live-switch a { font-family: var(--ah-font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ah-rule-faint); color: var(--ah-text-2); }
+.live-switch { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 22px; }
+.live-switch a { font-family: var(--ah-font-mono); font-size: 11px; letter-spacing: 0.06em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--ah-rule-faint); color: var(--ah-text-2); }
 .live-switch a[aria-current="page"] { border-color: var(--ah-amber); color: var(--ah-cream); }
 .live-switch a:hover { color: var(--ah-cream); }
 
@@ -1350,9 +1350,28 @@ body.live-page main > .r-gut { padding-left: var(--ah-s-40); padding-right: var(
 .live-stat-v { margin: 4px 0 0; font-family: var(--ah-font-display); font-weight: 600; font-size: 28px; line-height: 1.1; color: var(--ah-cream); }
 .live-stat-v small { font-family: var(--ah-font-body, inherit); font-weight: 400; font-size: 14px; color: var(--ah-text-3); margin-left: 4px; }
 .live-chart-t { margin: 0 0 6px; color: var(--ah-text-3); font-size: 13px; }
-.live-go { display: inline-block; margin-top: 18px; font-family: var(--ah-font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ah-amber); }
-.live-go:hover { color: var(--ah-amber-light); }
 .live-band .gsl-chart, .live-card .gsl-chart { min-height: 220px; }
+/* a whole landing card is one link: the heading's link stretches over it, and the captions sit above so they stay selectable */
+.live-linked { position: relative; }
+.live-stretch { color: inherit; }
+.live-stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 1; }
+.live-stretch:focus-visible { outline: none; }
+.live-stretch:focus-visible::after { outline: 2px solid var(--ah-amber); outline-offset: 2px; }
+.live-linked:hover { border-color: var(--ah-amber); }
+.live-linked .live-sub, .live-linked .live-chart-t, .live-linked .live-stat-l { position: relative; z-index: 2; width: fit-content; max-width: 100%; }
+.live-linked .gsl-chart, .live-linked .gsl-key { pointer-events: none; }
+.live-card .gsl-replay-bar { display: none; }
+.gsl-card:has([data-draw="eu-bars"], [data-draw="r-now-bars"]) { grid-column: 1 / -1; }
+.live-hlink { color: inherit; }
+.live-hlink::after { content: " \2192"; color: var(--ah-amber); }
+.live-hlink:hover { color: var(--ah-amber); }
+.live-wrap a.live-tile { display: block; color: inherit; }
+.live-wrap a.live-tile:hover { border-color: var(--ah-amber); }
+.live-foot { margin: 40px 0 0; font-family: var(--ah-font-mono); font-size: 12px; letter-spacing: 0.06em; }
+.live-foot a { color: var(--ah-text-3); }
+.live-foot a:hover { color: var(--ah-amber); }
+.live-notes dt { font-weight: 600; color: var(--ah-cream); margin-top: 18px; font-size: 15px; }
+.live-notes dd { margin: 4px 0 0; color: var(--ah-text-2); font-size: 14px; line-height: 1.6; }
 @media (max-width: 960px) { .live-band { grid-template-columns: minmax(0, 1fr); } .live-cards { grid-template-columns: minmax(0, 1fr); } }
 
 /* the page never scrolls inside itself: tables run to full height, long ones show ten rows and a button */

@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "How much wind power is the world generating right now?", "url": "https://arithim.com/live-wind.html", "description": "Live wind output for every grid that publishes it, with a page for Great Britain, Europe, the Americas, Asia-Pacific and yearly figures for every country."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where do the numbers come from?", "acceptedAnswer": {"@type": "Answer", "text": "Elexon publishes half-hourly generation by fuel and actual generation by type for Great Britain, and NESO publishes the wind forecasts. Other grids come from their own system operators, and the yearly figures from Ember."}}, {"@type": "Question", "name": "How often is it updated?", "acceptedAnswer": {"@type": "Answer", "text": "Every hour. Elexon's onshore and offshore split runs about three hours behind; the other Great Britain figures are within the last half hour."}}, {"@type": "Question", "name": "How is the live total worked out?", "acceptedAnswer": {"@type": "Answer", "text": "It adds each grid's latest reading. Feeds more than six hours behind the newest are left out."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Wind", "item": "https://arithim.com/live-wind.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "How much wind power is the world generating right now?", "url": "https://arithim.com/live-wind.html", "description": "Live wind output for every grid that publishes it, with a page for Great Britain, Europe, the Americas, Asia-Pacific and yearly figures for every country."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Wind", "item": "https://arithim.com/live-wind.html"}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=04824f4d"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,19 +162,18 @@
 <nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-wind">Wind</a></li></ol></nav><header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>How much wind power is the world generating right now?</h1>
-<p>The headline figures for wind output right now, and one page for each part of the world.</p>
 </header>
-<nav class="live-switch" aria-label="Live dashboards"><a href="/live">All dashboards</a><a href="/live-solar">Solar</a><a href="/live-wind" aria-current="page">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a></nav>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar">Solar</a><a href="/live-wind" aria-current="page">Wind</a><a href="/live-batteries">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits">Credits</a></nav>
 <div class="gsl">
 <header class="gsl-head">
 <p class="gsl-take">The live feeds tracked here show <b data-draw="w-total" data-source="wind_total" data-field="now_gw" data-where="group=All">—</b> GW of wind output across <b data-draw="w-n" data-source="wind_total" data-field="grids" data-where="group=All">—</b> grids at their latest reading. Worldwide, wind made <b data-draw="w-share" data-source="world_wind_headline" data-field="share_pct" data-row="0">—</b>% of electricity in <span data-draw="w-year" data-source="world_wind_headline" data-field="year" data-row="0">—</span>.</p>
 </header>
 <div class="gsl-tiles" id="headline">
-    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">Great Britain, latest half hour</p><p class="gsl-tile-v"><span data-draw="t-gb" data-source="gb_wind_summary" data-field="now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-gb-share" data-source="gb_wind_summary" data-field="now_share_pct" data-row="0">—</b>% of metered generation</p></div>
-    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">Europe, latest hour</p><p class="gsl-tile-v"><span data-draw="t-eu" data-source="wind_total" data-field="now_gw" data-where="group=Europe">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-eu-n" data-source="wind_total" data-field="grids" data-where="group=Europe">—</b> grids, Great Britain included</p></div>
-    <div class="gsl-tile"><p class="gsl-tile-l">Americas, now</p><p class="gsl-tile-v"><span data-draw="t-am" data-source="wind_total" data-field="now_gw" data-where="group=Americas">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-am-n" data-source="wind_total" data-field="grids" data-where="group=Americas">—</b> live grids</p></div>
-    <div class="gsl-tile"><p class="gsl-tile-l">Asia-Pacific, now</p><p class="gsl-tile-v"><span data-draw="t-ap" data-source="wind_total" data-field="now_gw" data-where="group=Asia-Pacific">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-ap-n" data-source="wind_total" data-field="grids" data-where="group=Asia-Pacific">—</b> live grids</p></div>
-    <div class="gsl-tile"><p class="gsl-tile-l">World, latest full year</p><p class="gsl-tile-v"><span data-draw="t-w" data-source="world_wind_headline" data-field="twh" data-row="0">—</span><small>TWh</small></p><p class="gsl-tile-s"><b data-draw="t-w-cap" data-source="world_wind_headline" data-field="capacity_gw" data-row="0">—</b> GW of capacity at year end</p></div>
+    <a class="gsl-tile live-tile" href="/live-wind-gb" data-fetchpriority="high"><p class="gsl-tile-l">Great Britain, latest half hour</p><p class="gsl-tile-v"><span data-draw="t-gb" data-source="gb_wind_summary" data-field="now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-gb-share" data-source="gb_wind_summary" data-field="now_share_pct" data-row="0">—</b>% of metered generation</p></a>
+    <a class="gsl-tile live-tile" href="/live-wind-europe" data-fetchpriority="high"><p class="gsl-tile-l">Europe, latest hour</p><p class="gsl-tile-v"><span data-draw="t-eu" data-source="wind_total" data-field="now_gw" data-where="group=Europe">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-eu-n" data-source="wind_total" data-field="grids" data-where="group=Europe">—</b> grids, Great Britain included</p></a>
+    <a class="gsl-tile live-tile" href="/live-wind-americas"><p class="gsl-tile-l">Americas, now</p><p class="gsl-tile-v"><span data-draw="t-am" data-source="wind_total" data-field="now_gw" data-where="group=Americas">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-am-n" data-source="wind_total" data-field="grids" data-where="group=Americas">—</b> live grids</p></a>
+    <a class="gsl-tile live-tile" href="/live-wind-asia"><p class="gsl-tile-l">Asia-Pacific, now</p><p class="gsl-tile-v"><span data-draw="t-ap" data-source="wind_total" data-field="now_gw" data-where="group=Asia-Pacific">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-ap-n" data-source="wind_total" data-field="grids" data-where="group=Asia-Pacific">—</b> live grids</p></a>
+    <a class="gsl-tile live-tile" href="/live-wind-world"><p class="gsl-tile-l">World, latest full year</p><p class="gsl-tile-v"><span data-draw="t-w" data-source="world_wind_headline" data-field="twh" data-row="0">—</span><small>TWh</small></p><p class="gsl-tile-s"><b data-draw="t-w-cap" data-source="world_wind_headline" data-field="capacity_gw" data-row="0">—</b> GW of capacity at year end</p></a>
   </div>
 <div class="gsl-grid">
 <div class="gsl-card wide gsl-counter-card" id="gb-wind-counter-card">
@@ -182,35 +181,27 @@
       <span class="gsl-counter" data-draw="gb-wind-counter" data-source="gb_wind_today">—</span>
       <p>so far today, and are producing <b data-draw="gb-wind-rate" data-source="gb_wind_today" data-field="rate_gw" data-row="0">—</b> GW. The figure keeps counting at that rate between the half-hourly readings.</p>
     </div>
-<div class="gsl-card" id="wind-now">
-      <h3>Wind output right now, by grid</h3>
-      <p class="gsl-sub">GW at each feed's latest reading. Feeds more than six hours behind the newest are left out.</p>
-      <div class="gsl-chart short" data-draw="w-now-bars" data-source="wind_stats"></div>
+<div class="gsl-card" id="wind-map-card">
+      <h3><a class="live-hlink" href="/live-wind-world">Where the wind is blowing now</a></h3>
+      <div class="gsl-chart map" data-draw="w-map" data-source="world_geo wind_points"></div>
     </div>
 </div>
 <h2 class="gsl-h2" id="regions">Explore by region</h2>
 <div class="live-rgrid"><a class="live-rcard" href="/live-wind-gb" data-live-needs="gb_mix gb_split_summary gb_wind_fc_days gb_wind_forecast gb_wind_split gb_wind_summary"><h3>Great Britain</h3><p>Onshore and offshore, with NESO&#x27;s 14-day forecast.</p><span class="live-rgo">See Great Britain &rarr;</span></a><a class="live-rcard" href="/live-wind-europe" data-live-needs="wind_live wind_stats"><h3>Europe</h3><p>Output by country, with offshore shares.</p><span class="live-rgo">See Europe &rarr;</span></a><a class="live-rcard" href="/live-wind-americas" data-live-needs="eia_wind_stats us_eia930_wind wind_live"><h3>Americas</h3><p>US, Canadian and Brazilian grids, and US operators.</p><span class="live-rgo">See Americas &rarr;</span></a><a class="live-rcard" href="/live-wind-asia" data-live-needs="wind_live"><h3>Asia-Pacific</h3><p>Australia, Japan and South Korea.</p><span class="live-rgo">See Asia-Pacific &rarr;</span></a><a class="live-rcard" href="/live-wind-world" data-live-needs="world_wind_latest world_wind_trend"><h3>World</h3><p>Yearly figures for every country, and where the wind is blowing now.</p><span class="live-rgo">See World &rarr;</span></a></div>
 </div>
-<section class="live-section" id="questions">
-<h2>Questions</h2>
-<h3>Where do the numbers come from?</h3><p>Elexon publishes half-hourly generation by fuel and actual generation by type for Great Britain, and NESO publishes the wind forecasts. Other grids come from their own system operators, and the yearly figures from Ember.</p><h3>How often is it updated?</h3><p>Every hour. Elexon&#x27;s onshore and offshore split runs about three hours behind; the other Great Britain figures are within the last half hour.</p><h3>How is the live total worked out?</h3><p>It adds each grid&#x27;s latest reading. Feeds more than six hours behind the newest are left out.</p>
-</section>
-<section class="live-section live-credits" id="sources">
-<h2>Sources and credits</h2>
-<div data-live-credits><p class="live-note">Loading the source list…</p></div>
-<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
-</section>
+<p class="live-foot"><a href="/live-credits">Sources and credits</a></p>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 ALL LIVE DASHBOARDS"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← ALL LIVE DASHBOARDS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
 <script src="/assets/live/gsl.js?v=5d485418"></script>
 <script src="/assets/live/wind.js?v=45af6a57"></script>
+<script src="/assets/live/live-charts.js?v=4a9c68eb"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>

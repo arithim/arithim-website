@@ -9,10 +9,17 @@ Keys per technology:
   src        the dashboard page file in the source folder
   bundle     name of the script bundle written to assets/live/ (every script after the shared helper)
   nav        short name used in the breadcrumb and the switcher
-  hero       id of the one intro card kept on the overview
-  relocate   (card id, region id): an intro card that moves to a region page so no chart is lost
+  hero       id of the one intro card kept on the overview, and hero_to the region page its heading links to
+  tiles      (start of a tile label, region id) pairs: each headline tile links to that region's page
   regions    in display order: id (the source tab id), slug, title, description, lede, blurb, faq
 """
+
+CREDITS = {
+    "file": "live-credits.html",
+    "title": "Where does the live energy data on Arithim come from?",
+    "description": "The grid operators and open data services behind Arithim's live solar, wind, battery and renewables pages, with the credit line each one asks for.",
+    "sub": "Every figure comes from a public source. Totals, averages and shares are ours.",
+}
 
 LIVE_NOTE = "Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website."
 
@@ -20,7 +27,7 @@ LANDING = {
     "file": "live.html",
     "title": "Where can I see live solar, wind and battery data for Great Britain?",
     "description": "Live solar, wind, battery and renewable data from Arithim: Great Britain in full and other grids as their operators allow, refreshed every hour from open data.",
-    "lede": "Built on open data and refreshed every hour. Great Britain is covered in full, and other grids appear as their operators allow their data on a commercial site. Start with the renewables total, or open one technology and drill down to a region.",
+    "lede": "Open data, refreshed every hour. Pick a card to drill down.",
     "faq": [
         ("How often is the live data refreshed?", "Every hour. Each grid publishes on its own schedule, so the latest reading for one may be a few minutes old and for another an hour or two."),
         ("Which grids are covered?", "Great Britain in full, plus the other grids whose operators allow their data on a commercial site. Each dashboard has a page for Great Britain, Europe, the Americas, Asia-Pacific and the world, and each page lists its sources at the bottom."),
@@ -31,7 +38,8 @@ LANDING = {
 TECHS = [
     {
         "slug": "solar", "src": "index.html", "bundle": "solar", "nav": "Solar",
-        "hero": "live-now", "relocate": ("live-map-card", "world"),
+        "hero": "live-map-card", "hero_to": "world",
+        "tiles": [("Great Britain", "uk"), ("Europe", "europe"), ("Japan", "asia"), ("Australia", "asia"), ("World", "world")],
         "card": "Solar output by grid and region, with forecasts for Great Britain.",
         "overview": {
             "title": "How much solar power is the world generating right now?",
@@ -94,7 +102,8 @@ TECHS = [
     },
     {
         "slug": "wind", "src": "wind.html", "bundle": "wind", "nav": "Wind",
-        "hero": "wind-now", "relocate": ("wind-map-card", "world"),
+        "hero": "wind-map-card", "hero_to": "world",
+        "tiles": [("Great Britain", "gb"), ("Europe", "europe"), ("Americas", "americas"), ("Asia", "asia"), ("World", "world")],
         "card": "Wind output by grid and region, with Great Britain's onshore and offshore split.",
         "overview": {
             "title": "How much wind power is the world generating right now?",
@@ -156,7 +165,8 @@ TECHS = [
     },
     {
         "slug": "batteries", "src": "battery.html", "bundle": "battery", "nav": "Batteries",
-        "hero": "bat-now", "relocate": ("bat-clock-card", "gb"),
+        "hero": "bat-clock-card", "hero_to": "gb",
+        "tiles": [("Great Britain", "gb"), ("California", "americas"), ("Australia", "asia"), ("Discharged", "gb")],
         "card": "Grid batteries charging and discharging, grid by grid.",
         "overview": {
             "title": "How much are grid batteries charging and discharging right now?",
@@ -209,7 +219,8 @@ TECHS = [
     },
     {
         "slug": "renewables", "src": "renewables.html", "bundle": "renewables", "nav": "All renewables",
-        "hero": "grid-now", "relocate": None,
+        "hero": "grid-now", "hero_to": "gb",
+        "tiles": [("Great Britain", "gb"), ("Europe", "europe"), ("Solar and wind", "rest"), ("World", "world")],
         "card": "Renewables by source and their share of generation, hour by hour.",
         "overview": {
             "title": "How much renewable electricity is the world generating right now?",

@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "How much are grid batteries charging and discharging right now?", "url": "https://arithim.com/live-batteries.html", "description": "Live charging and discharging of grid batteries, grid by grid, with a page for Great Britain, Europe, the Americas and Asia-Pacific."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why do batteries charge in the middle of the day?", "acceptedAnswer": {"@type": "Answer", "text": "Where there is a lot of solar, power is cheapest around midday. Batteries charge then and discharge into the evening peak, when solar fades and demand rises. California shows the pattern clearly."}}, {"@type": "Question", "name": "Why do batteries take in more than they give back?", "acceptedAnswer": {"@type": "Answer", "text": "Every charge and discharge loses some energy as heat, so over a day the energy charged runs a little above the energy discharged."}}, {"@type": "Question", "name": "What do positive and negative mean?", "acceptedAnswer": {"@type": "Answer", "text": "Positive means a battery is discharging to the grid. Negative means it is charging from it. This holds everywhere on these pages."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Batteries", "item": "https://arithim.com/live-batteries.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "How much are grid batteries charging and discharging right now?", "url": "https://arithim.com/live-batteries.html", "description": "Live charging and discharging of grid batteries, grid by grid, with a page for Great Britain, Europe, the Americas and Asia-Pacific."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Live", "item": "https://arithim.com/live.html"}, {"@type": "ListItem", "position": 2, "name": "Batteries", "item": "https://arithim.com/live-batteries.html"}]}]}</script>
 <!-- partial:head -->
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
@@ -27,7 +27,7 @@
 <script src="/theme.js?v=46eb8bb1"></script>
 <!-- /partial:head -->
 <script src="/assets/live/d3.v7.9.0.min.js"></script>
-<script src="/assets/live/live-dash.js?v=04824f4d"></script>
+<script src="/assets/live/live-dash.js?v=efecab39"></script>
 </head>
 <body class="live-page">
 <x-dc>
@@ -162,49 +162,40 @@
 <nav class="live-crumbs" aria-label="Breadcrumb"><ol><li><a href="/live">Live</a></li><li><a href="/live-batteries">Batteries</a></li></ol></nav><header class="live-hero">
 <p class="live-kicker">LIVE ENERGY DATA</p>
 <h1>How much are grid batteries charging and discharging right now?</h1>
-<p>What grid batteries are doing right now. Positive means discharging to the grid, negative means charging from it.</p>
 </header>
-<nav class="live-switch" aria-label="Live dashboards"><a href="/live">All dashboards</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries" aria-current="page">Batteries</a><a href="/live-renewables">All renewables</a></nav>
+<nav class="live-switch" aria-label="Live pages"><a href="/live">Live</a><a href="/live-solar">Solar</a><a href="/live-wind">Wind</a><a href="/live-batteries" aria-current="page">Batteries</a><a href="/live-renewables">All renewables</a><a href="/live-credits">Credits</a></nav>
 <div class="gsl">
 <header class="gsl-head">
 <p class="gsl-take">Across the live grids tracked here, batteries are discharging <b data-draw="b-dis" data-source="bat_total" data-field="discharging_gw" data-where="group=All">—</b> GW into the grid and charging <b data-draw="b-chg" data-source="bat_total" data-field="charging_gw" data-where="group=All">—</b> GW from it at their latest readings, across <b data-draw="b-n" data-source="bat_total" data-field="grids" data-where="group=All">—</b> grids. Positive means discharging, negative means charging, everywhere on this page.</p>
 </header>
 <div class="gsl-tiles" id="headline">
-    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">Great Britain, net now (estimate)</p><p class="gsl-tile-v"><span data-draw="t-gb" data-source="gb_bat_summary" data-field="net_now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-gb-units" data-source="gb_bat_summary" data-field="fleet_units" data-row="0">—</b> battery units, <b data-draw="t-gb-fleet" data-source="gb_bat_summary" data-field="fleet_gw" data-row="0">—</b> GW</p></div>
-    <div class="gsl-tile" data-fetchpriority="high"><p class="gsl-tile-l">California, net now</p><p class="gsl-tile-v"><span data-draw="t-ca" data-source="bat_stats" data-field="now_gw" data-where="grid=California">—</span><small>GW</small></p><p class="gsl-tile-s">24 h peak discharge <b data-draw="t-ca-pk" data-source="bat_stats" data-field="peak_dis_gw" data-where="grid=California">—</b> GW</p></div>
-    <div class="gsl-tile"><p class="gsl-tile-l">Australia (NEM), net now</p><p class="gsl-tile-v"><span data-draw="t-au" data-source="bat_stats" data-field="now_gw" data-where="grid=Australia (NEM)">—</span><small>GW</small></p><p class="gsl-tile-s">Stored now: <b data-draw="t-au-st" data-source="aus_bat_store" data-field="stored_gwh" data-row="0">—</b> GWh</p></div>
-    <div class="gsl-tile"><p class="gsl-tile-l">Discharged, last 24 hours</p><p class="gsl-tile-v"><span data-draw="t-24" data-source="bat_total" data-field="dis24_gwh" data-where="group=All">—</span><small>GWh</small></p><p class="gsl-tile-s">Charged: <b data-draw="t-24c" data-source="bat_total" data-field="chg24_gwh" data-where="group=All">—</b> GWh</p></div>
+    <a class="gsl-tile live-tile" href="/live-batteries-gb" data-fetchpriority="high"><p class="gsl-tile-l">Great Britain, net now (estimate)</p><p class="gsl-tile-v"><span data-draw="t-gb" data-source="gb_bat_summary" data-field="net_now_gw" data-row="0">—</span><small>GW</small></p><p class="gsl-tile-s"><b data-draw="t-gb-units" data-source="gb_bat_summary" data-field="fleet_units" data-row="0">—</b> battery units, <b data-draw="t-gb-fleet" data-source="gb_bat_summary" data-field="fleet_gw" data-row="0">—</b> GW</p></a>
+    <a class="gsl-tile live-tile" href="/live-batteries-americas" data-fetchpriority="high"><p class="gsl-tile-l">California, net now</p><p class="gsl-tile-v"><span data-draw="t-ca" data-source="bat_stats" data-field="now_gw" data-where="grid=California">—</span><small>GW</small></p><p class="gsl-tile-s">24 h peak discharge <b data-draw="t-ca-pk" data-source="bat_stats" data-field="peak_dis_gw" data-where="grid=California">—</b> GW</p></a>
+    <a class="gsl-tile live-tile" href="/live-batteries-asia"><p class="gsl-tile-l">Australia (NEM), net now</p><p class="gsl-tile-v"><span data-draw="t-au" data-source="bat_stats" data-field="now_gw" data-where="grid=Australia (NEM)">—</span><small>GW</small></p><p class="gsl-tile-s">Stored now: <b data-draw="t-au-st" data-source="aus_bat_store" data-field="stored_gwh" data-row="0">—</b> GWh</p></a>
+    <a class="gsl-tile live-tile" href="/live-batteries-gb"><p class="gsl-tile-l">Discharged, last 24 hours</p><p class="gsl-tile-v"><span data-draw="t-24" data-source="bat_total" data-field="dis24_gwh" data-where="group=All">—</span><small>GWh</small></p><p class="gsl-tile-s">Charged: <b data-draw="t-24c" data-source="bat_total" data-field="chg24_gwh" data-where="group=All">—</b> GWh</p></a>
   </div>
 <div class="gsl-grid">
-<div class="gsl-card" id="bat-now">
-      <h3>Batteries right now, by grid</h3>
-      <p class="gsl-sub">Net GW at each feed's latest reading. Bars to the right are discharging, to the left charging.</p>
-      <div class="gsl-chart short" data-draw="b-now-bars" data-source="bat_stats"></div>
+<div class="gsl-card wide" id="bat-clock-card">
+      <h3><a class="live-hlink" href="/live-batteries-gb">A day in the life of grid batteries</a></h3>
+      <div class="gsl-chart" data-draw="bat-clock" data-source="bat_clock"></div>
     </div>
 </div>
 <h2 class="gsl-h2" id="regions">Explore by region</h2>
 <div class="live-rgrid"><a class="live-rcard" href="/live-batteries-gb" data-live-needs="gb_bat_summary gb_battery"><h3>Great Britain</h3><p>Great Britain over the last two days, and an average day on a clock.</p><span class="live-rgo">See Great Britain &rarr;</span></a><a class="live-rcard" href="/live-batteries-europe" data-live-needs="bat_stats battery_live"><h3>Europe</h3><p>The few European countries that report batteries.</p><span class="live-rgo">See Europe &rarr;</span></a><a class="live-rcard" href="/live-batteries-americas" data-live-needs="battery_live"><h3>Americas</h3><p>California, New England and Alberta.</p><span class="live-rgo">See Americas &rarr;</span></a><a class="live-rcard" href="/live-batteries-asia" data-live-needs="battery_live"><h3>Asia-Pacific</h3><p>Australia, Japan and South Korea.</p><span class="live-rgo">See Asia-Pacific &rarr;</span></a></div>
 </div>
-<section class="live-section" id="questions">
-<h2>Questions</h2>
-<h3>Why do batteries charge in the middle of the day?</h3><p>Where there is a lot of solar, power is cheapest around midday. Batteries charge then and discharge into the evening peak, when solar fades and demand rises. California shows the pattern clearly.</p><h3>Why do batteries take in more than they give back?</h3><p>Every charge and discharge loses some energy as heat, so over a day the energy charged runs a little above the energy discharged.</p><h3>What do positive and negative mean?</h3><p>Positive means a battery is discharging to the grid. Negative means it is charging from it. This holds everywhere on these pages.</p>
-</section>
-<section class="live-section live-credits" id="sources">
-<h2>Sources and credits</h2>
-<div data-live-credits><p class="live-note">Loading the source list…</p></div>
-<p class="live-note">Some grids that appear on our private dashboards are held back here until their operators allow display on a commercial website.</p>
-</section>
+<p class="live-foot"><a href="/live-credits">Sources and credits</a></p>
 </div>
 </div>
 </main>
 
-<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 ALL LIVE DASHBOARDS"} -->
-  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← ALL LIVE DASHBOARDS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- partial:footer {"back_href": "live.html", "back_text": "\u2190 BACK TO LIVE"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="live.html">← BACK TO LIVE</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
 <!-- /partial:footer -->
 
 </div>
 <script src="/assets/live/gsl.js?v=5d485418"></script>
 <script src="/assets/live/battery.js?v=dd5bf5f7"></script>
+<script src="/assets/live/live-charts.js?v=4a9c68eb"></script>
 <!-- the shared card lift and pointer glow; other pages start it from their <x-dc> component script -->
 <script type="module">import('/arithim-fx.js?v=5').then((m) => m.initFx(document)).catch((e) => console.error('fx load failed', e));</script>
 </body>
