@@ -312,7 +312,9 @@ class RepoBuildTests(unittest.TestCase):
     def test_insights_list_is_newest_first(self):
         articles, outputs = self._write_all()
         page = outputs[self.tmp / "insights.html"]
-        order = [page.index(f'href="{a["file"]}"') for a in articles]
+        # Only the listing itself; the header menus also link articles.
+        listing = re.search(r"<!-- insights:start -->(.*?)<!-- insights:end -->", page, re.S).group(1)
+        order = [listing.index(f'href="{a["file"]}"') for a in articles]
         self.assertEqual(order, sorted(order))
 
     def test_hand_edited_partial_is_restamped(self):
