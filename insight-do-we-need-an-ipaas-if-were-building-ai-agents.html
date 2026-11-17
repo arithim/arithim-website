@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do We Need an iPaaS If We're Building AI Agents? — Arithim</title>
+<meta name="description" content="Most organisations building AI agents still need an integration platform. Agents act through the same connections, credentials and audit trails an iPaaS already manages, and much integration work is a poor fit for an agent. Based on Gartner&#x27;s 2026 Magic Quadrant for Integration Platform as a Service.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Do We Need an iPaaS If We&#x27;re Building AI Agents? — Arithim">
+<meta property="og:description" content="Most organisations building AI agents still need an integration platform. Agents act through the same connections, credentials and audit trails an iPaaS already manages, and much integration work is a poor fit for an agent. Based on Gartner&#x27;s 2026 Magic Quadrant for Integration Platform as a Service.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html">
+<meta property="og:url" content="https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-11-16">
+<meta property="article:section" content="Integration">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html#article",
+      "headline": "Do We Need an iPaaS If We're Building AI Agents?",
+      "description": "Most organisations building AI agents still need an integration platform. Agents act through the same connections, credentials and audit trails an iPaaS already manages, and much integration work is a poor fit for an agent. Based on Gartner's 2026 Magic Quadrant for Integration Platform as a Service.",
+      "datePublished": "2026-11-16",
+      "dateModified": "2026-11-16",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Integration",
+      "keywords": [
+        "do we need an iPaaS for AI agents",
+        "iPaaS and AI agents",
+        "integration platform as a service 2026",
+        "Gartner Magic Quadrant iPaaS 2026",
+        "MCP integration platform",
+        "AI agent orchestration platform",
+        "iPaaS vendor comparison",
+        "agentic integration"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Integration platform as a service"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Integration"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Boomi",
+          "url": "https://boomi.com/platform/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Microsoft Azure Integration Services",
+          "url": "https://azure.microsoft.com/en-us/solutions/integration-services/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Informatica Intelligent Data Management Cloud",
+          "url": "https://www.informatica.com/platform.html"
+        },
+        {
+          "@type": "Organization",
+          "name": "MuleSoft Anypoint Platform",
+          "url": "https://www.mulesoft.com/platform/enterprise-integration"
+        },
+        {
+          "@type": "Organization",
+          "name": "SAP Integration Suite",
+          "url": "https://www.sap.com/products/technology-platform/integration-suite.html"
+        },
+        {
+          "@type": "Organization",
+          "name": "Workato",
+          "url": "https://www.workato.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Oracle Integration",
+          "url": "https://www.oracle.com/integration/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Tray.ai",
+          "url": "https://tray.ai/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Zapier",
+          "url": "https://zapier.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Agent2Agent Protocol",
+          "url": "https://a2a-protocol.org/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Magic Quadrant for Integration Platform as a Service",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-03-16",
+        "identifier": "G00836353",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2N0PNGJC&ct=260317&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do AI agents replace an integration platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rarely. Agents still need governed connections to the systems they act on, and much integration work, such as keeping records in step between systems, high-volume B2B exchange and EDI, needs predictable behaviour that an agent does not offer. Most organisations will run agents on top of an integration platform, calling it through APIs or the Model Context Protocol."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an iPaaS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Integration platform as a service is a vendor-managed cloud service for building integrations between applications, services and data sources, inside or outside the organisation. Gartner's definition requires a cloud control plane, a vendor-managed runtime, low-code design tools, software lifecycle tooling, role-based access control and operational monitoring."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which iPaaS vendors are Leaders in Gartner's 2026 Magic Quadrant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's March 2026 Magic Quadrant for Integration Platform as a Service names six Leaders out of 18 vendors evaluated: Boomi, Microsoft, Salesforce (Informatica), Salesforce (MuleSoft), SAP and Workato. Gartner assessed Informatica and MuleSoft separately because Salesforce's acquisition of Informatica closed after the research cutoff."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should AI agent orchestration run in our ERP or CRM suite or in a separate platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's Predicts 2026 report expects that by 2030, 60% of organisations will adopt AI agent orchestration platforms from vendors outside their existing enterprise application suite, because agents will come from several vendors. Set governance rules early on which work stays inside one platform and which is orchestrated across vendors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should we ask an iPaaS vendor about AI agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ask whether it supports MCP and Agent2Agent today or only on its roadmap, how it enforces policy, confidence thresholds and human approval on AI-driven actions, what it records for audit, where its control plane and runtimes are hosted, and how agent usage is priced."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Do We Need an iPaaS If We're Building AI Agents?",
+          "item": "https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=10">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-do-we-need-an-ipaas-if-were-building-ai-agents.html">Do We Need an iPaaS If We're Building AI Agents?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-reduce-application-security-backlog.html">How Do We Reduce Our Application Security Backlog?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-vibe-coded-apps.html">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-do-we-need-an-ipaas-if-were-building-ai-agents.html">Do We Need an iPaaS If We're Building AI Agents?</a>
+            <a class="ah-menu-link" href="insight-why-ai-pilots-stall-before-production.html">Why Do AI Pilots Stall Before Production in Regulated Industries?</a>
+            <a class="ah-menu-link" href="insight-how-to-onboard-ai-agents.html">How Do You Onboard AI Agents the Way You Onboard Staff?</a>
+            <a class="ah-menu-link" href="insight-how-to-review-ai-written-code.html">How Should You Review AI-Written Code Before You Merge It?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Integration</span></div>
+      <h1 class="r-f3 ah-debd25">Do We Need an iPaaS If We're Building AI Agents?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">INTEGRATION · RESEARCH</span><span class="ah-rule">·</span><span>16 NOV 2026</span><span class="ah-rule">·</span><span>9 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">Yes, in most cases. AI agents act on the same applications and data that your integrations already connect, and an iPaaS supplies the connectors, access control, monitoring and audit trail that agents would otherwise need rebuilt. Gartner's 2026 Magic Quadrant for iPaaS treats AI features as standard in the market but finds agent capabilities uneven, so choose the platform for integration and judge its agent features as a separate question.</p>
+    <p>Teams that start building AI agents soon ask whether they still need an integration platform, or whether agents can call applications directly and make the iPaaS redundant. This article answers that from two Gartner reports: the <a href="https://www.gartner.com/doc/reprints?id=1-2N0PNGJC&amp;ct=260317&amp;st=sb" rel="noopener">Magic Quadrant for Integration Platform as a Service</a>, published in March 2026, which evaluates 18 vendors, and <a href="https://www.gartner.com/doc/reprints?id=1-2NBSQ18V&amp;ct=260508&amp;st=sb" rel="noopener">Predicts 2026: The New Era of Agentic Automation Begins</a>.</p>
+    <h2>What an iPaaS does</h2>
+    <p>Gartner defines an iPaaS as a vendor-managed cloud service for building integrations between applications, services and data sources, whether they sit inside the organisation or outside it. A qualifying platform supports at least one of three patterns. It keeps data consistent by passing changes between systems, it runs multistep processes across applications, agents and services, and it exposes combined services as APIs or events.</p>
+    <p>The mandatory features are worth reading closely, because they are the same things an agent needs. Gartner requires a cloud control plane, a runtime that the vendor manages (in its cloud or on the customer's infrastructure), low-code design tools, tooling for the software lifecycle, role-based access control, and monitoring, alerting and auditing.</p>
+    <p>The market is large and still growing quickly. Gartner's figures put iPaaS revenue at $8.5 billion in 2024, up 23.4% from $6.9 billion in 2023, and it forecasts more than $18 billion by 2029.</p>
+    <h2>Why agents still need integration</h2>
+    <p>An agent is only useful when it can read from and act on real systems, such as the ERP, the CRM, the service desk or a supplier portal. Each of those connections needs credentials, error handling, retries, logging and someone who notices when it breaks. An iPaaS already does that work for the integrations you run today. If agents bypass it, each agent team ends up rebuilding connectors and access rules on its own, and the audit trail splits across several places.</p>
+    <p>A good share of integration work also suits an agent badly. Keeping customer records in step between two systems, moving high volumes of B2B orders or running EDI with trading partners all need the same result every time. A deterministic flow is cheaper and easier to check for that kind of work.</p>
+    <p>The Predicts report gives a sense of the gap. Agents that work through an application's screens, which Gartner calls computer use agents, had an average success rate of 45% on a 50-step process, well below RPA on comparable tasks. They were also slower and had high variable costs. An API integration that runs the same steps correctly every time is a better foundation, with the agent handling the judgement calls on top.</p>
+    <p>Gartner's iPaaS report makes a related point from the other side. It says buyers now need an "AI control layer" in their integration platform, which enforces policy, confidence thresholds, human decision points and audit trails for actions that AI drives.</p>
+    <h2>What Gartner says about AI in the iPaaS market</h2>
+    <p>AI-ready integration is now a main reason people buy, according to the Magic Quadrant. Gartner treats AI features for generating flows, mapping fields, testing, documentation and spotting runtime anomalies as mandatory, so they no longer separate one vendor from another. It tells buyers to judge how deep those features go, how they are governed and whether they are ready for enterprise use.</p>
+    <p>Agent capabilities are less mature. Gartner found that most vendors still describe agent builders, agent orchestration, retrieval pipelines and AI governance as roadmap items, experiments or near-term differentiators. It expects agent capabilities among iPaaS vendors to mature over the 12 to 24 months from March 2026, with more emphasis on AI governance.</p>
+    <p>Gartner says buyers need support for the <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> (MCP), which connects AI models to tools and data, and for <a href="https://a2a-protocol.org/" rel="noopener">Agent2Agent</a> (A2A), which lets agents talk to each other. Many of the vendor profiles in the report mention MCP servers or gateways.</p>
+    <h2>How the Leaders compare on agents</h2>
+    <p>Gartner placed six vendors in the Leaders quadrant. Their profiles show how differently each one approaches agents.</p>
+    <p>Gartner credits <a href="https://boomi.com/platform/" rel="noopener">Boomi</a> with strong AI-native features, including MCP servers and its Agentstudio product for building and managing agents. Gartner cautions that its portfolio is fragmented, that its control plane was hosted only in the US at the time of research, and that its Peer Insights satisfaction scores are lower.</p>
+    <p><a href="https://azure.microsoft.com/en-us/solutions/integration-services/" rel="noopener">Microsoft Azure Integration Services</a> has more than 1,400 connectors and data centres in 70 regions, and it serves both professional developers and low-code users. Gartner notes that it is a set of separate services, and that buyers working across several clouds will need a third-party layer for unified governance.</p>
+    <p>Salesforce owns two Leaders. <a href="https://www.informatica.com/platform.html" rel="noopener">Informatica's Intelligent Data Management Cloud</a> is data-centric, with its CLAIRE AI for workflows, but entry costs are high. <a href="https://www.mulesoft.com/platform/enterprise-integration" rel="noopener">MuleSoft's Anypoint Platform</a> is API-first, with agent integration and MCP and A2A support, though Gartner flags complex pricing with overage charges. For both, Gartner raises roadmap uncertainty now that one company owns two iPaaS products.</p>
+    <p><a href="https://www.sap.com/products/technology-platform/integration-suite.html" rel="noopener">SAP Integration Suite</a> has more than 4,000 prebuilt flows and 250 third-party adapters. Gartner says some advanced users see its agent features as lagging, because its recent roadmap has focused on moving customers off older SAP integration tools.</p>
+    <p><a href="https://www.workato.com/" rel="noopener">Workato</a> offers Enterprise MCP and an AI layer called AIRO, and scores highly on Peer Insights satisfaction. It runs only on AWS, in six data centre regions.</p>
+    <p>Outside the Leaders, two profiles matter for agent builders. <a href="https://www.oracle.com/integration/" rel="noopener">Oracle Integration</a> supports AI agents, MCP and human approval steps, which matches the control layer Gartner describes. <a href="https://tray.ai/" rel="noopener">Tray.ai</a> puts process automation, integration, API management, an MCP gateway and agent development in one platform, but lacks EDI, message brokering and event management.</p>
+    <p>At the low-cost end, <a href="https://zapier.com/" rel="noopener">Zapier</a> offers a free tier, public pricing, MCP and Zapier Agents, but has no API management, event streaming or EDI and no announced plans to add them.</p>
+    <h2>Should agent orchestration live in your suite or somewhere independent?</h2>
+    <p>The Predicts report expects that by 2030, 60% of organisations will adopt AI agent orchestration platforms from vendors outside their existing enterprise application suite. Gartner's reasoning is that agents will come from several vendors, and organisations piloting agents built on different platforms already struggle to coordinate them. Buyers have preferred independent tools for integration over the past 30 years, and Gartner expects the same pattern for agents.</p>
+    <p>That makes the integration platform a natural place for orchestration, provided it supports open protocols. Gartner advises setting governance principles early, covering which work runs inside a single platform and which is coordinated across vendors, along with roles, risk management and integration standards. It also recommends granular role-based access, data masking, credentials kept in secure vaults, agent interactions that follow API, MCP or A2A standards, and full traceability of every agent action.</p>
+    <p>Gartner also warns against assuming one iPaaS will cover everything. It recommends a strategic iPaaS plus targeted specialist platforms where they are justified, for example for lightweight SaaS automation, high-volume B2B or advanced event processing.</p>
+    <h2>How to decide</h2>
+    <p>If you already run an iPaaS, keep it and connect your agents through it. The useful questions are about its agent features and governance:</p>
+    <ol><li>Does it support MCP and A2A in production today, or only on its roadmap?</li><li>Can it enforce policy, confidence thresholds and human approval on actions an agent takes, and record each one for audit?</li><li>Where do its control plane and runtimes run? Gartner says data sovereignty is now driving purchases, and some vendors host their control planes in only one or two regions.</li><li>How is agent usage priced? Gartner flags cost predictability and overage risk as a concern across vendors.</li></ol>
+    <p>If you don't run one yet, Gartner's advice is to set out your integration priorities and architecture before you choose. Look at the connectivity you need, the skills of the people who will build integrations, reliability targets, security and compliance, hosting locations and total cost of ownership. Then judge agent features on top of that, knowing they will change quickly over the next two years.</p>
+    <p>For a wider view of where agents are working today, see <a href="insight-what-is-agentic-ai-where-is-it-working.html">what agentic AI is and where it is working in 2026</a>. If a pilot already works but cannot get through risk review, <a href="insight-why-ai-pilots-stall-before-production.html">why AI pilots stall before production</a> covers the evidence an auditor will ask for.</p>
+    <h2>Where agents help</h2>
+    <p>We build agents that work through the integration platform a customer already runs. Take an agent that handles exceptions in order-to-cash. It reads failed or held transactions from the iPaaS monitoring, looks up the order, customer and contract through the platform's existing connectors, works out the likely cause and drafts the fix, such as a corrected mapping, a re-submission or a note to the account owner. A person approves the change before the agent applies it, and the integration platform records the action alongside every other flow.</p>
+    <p>The agent has its own identity and only the access that job needs. It calls the platform through MCP or its APIs, so the customer keeps one place to see what touched each system. When a customer moves to a different iPaaS or adds a specialist one, the agent's prompts, tests and approval rules move with it.</p>
+    <h2>Common questions</h2>
+    <h3>Do AI agents replace an integration platform?</h3>
+    <p>Rarely. Agents still need governed connections to the systems they act on, and much integration work, such as keeping records in step between systems, high-volume B2B exchange and EDI, needs predictable behaviour that an agent does not offer. Most organisations will run agents on top of an integration platform, calling it through APIs or the Model Context Protocol.</p>
+    <h3>What is an iPaaS?</h3>
+    <p>Integration platform as a service is a vendor-managed cloud service for building integrations between applications, services and data sources, inside or outside the organisation. Gartner's definition requires a cloud control plane, a vendor-managed runtime, low-code design tools, software lifecycle tooling, role-based access control and operational monitoring.</p>
+    <h3>Which iPaaS vendors are Leaders in Gartner's 2026 Magic Quadrant?</h3>
+    <p>Gartner's March 2026 Magic Quadrant for Integration Platform as a Service names six Leaders out of 18 vendors evaluated: Boomi, Microsoft, Salesforce (Informatica), Salesforce (MuleSoft), SAP and Workato. Gartner assessed Informatica and MuleSoft separately because Salesforce's acquisition of Informatica closed after the research cutoff.</p>
+    <h3>Should AI agent orchestration run in our ERP or CRM suite or in a separate platform?</h3>
+    <p>Gartner's Predicts 2026 report expects that by 2030, 60% of organisations will adopt AI agent orchestration platforms from vendors outside their existing enterprise application suite, because agents will come from several vendors. Set governance rules early on which work stays inside one platform and which is orchestrated across vendors.</p>
+    <h3>What should we ask an iPaaS vendor about AI agents?</h3>
+    <p>Ask whether it supports MCP and Agent2Agent today or only on its roadmap, how it enforces policy, confidence thresholds and human approval on AI-driven actions, what it records for audit, where its control plane and runtimes are hosted, and how agent usage is priced.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2N0PNGJC&amp;ct=260317&amp;st=sb" rel="noopener">Magic Quadrant for Integration Platform as a Service</a>, Andrew Humphreys, Keith Guttridge et al., 16 March 2026, ID G00836353. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NBSQ18V&amp;ct=260508&amp;st=sb" rel="noopener">Predicts 2026: The New Era of Agentic Automation Begins</a>, Arthur Villa, Saikat Ray et al., 1 December 2025, ID G00840857. Complimentary reprint; the link may expire.</li>
+      <li>Vendor product pages for Boomi, Microsoft Azure Integration Services, Informatica, MuleSoft, SAP Integration Suite, Workato, Oracle Integration, Tray.ai and Zapier; <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a>; <a href="https://a2a-protocol.org/" rel="noopener">Agent2Agent Protocol</a>. Accessed 17 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-why-ai-pilots-stall-before-production.html"><h3 class="ah-772add">Why Do AI Pilots Stall Before Production in Regulated Industries?</h3><span class="ah-90030f">AI GOVERNANCE · 15 NOV 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-onboard-ai-agents.html"><h3 class="ah-772add">How Do You Onboard AI Agents the Way You Onboard Staff?</h3><span class="ah-90030f">AI GOVERNANCE · 14 NOV 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-review-ai-written-code.html"><h3 class="ah-772add">How Should You Review AI-Written Code Before You Merge It?</h3><span class="ah-90030f">AI ENGINEERING · 13 NOV 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Want to know where agents fit alongside the integration platform you already run?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); if (this._stopDeck) this._stopDeck(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=4" defer></script>
+</body>
+</html>

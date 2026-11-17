@@ -2520,6 +2520,14 @@ Read case study →
 
 WRITING
 
+## Do We Need an iPaaS If We're Building AI Agents?
+
+Why AI agents rarely replace an integration platform, what Gartner's 2026 iPaaS Magic Quadrant says about agent features, how the Leaders compare, and how to decide.
+
+INTEGRATION · RESEARCH
+
+16 NOV 2026
+
 ## Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 Why working AI pilots fail to reach production in regulated firms, the four questions an auditor asks before go-live, and what to put in place first.
@@ -2642,6 +2650,148 @@ AI discoverability starts with the same fundamentals that make a website better 
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
+### Why Do AI Pilots Stall Before Production in Regulated Industries?
+
+AI GOVERNANCE · 15 NOV 2026
+
+### How Do You Onboard AI Agents the Way You Onboard Staff?
+
+AI GOVERNANCE · 14 NOV 2026
+
+## Want a site that reads clearly to humans and machines?
+
+Start a conversation →
+
+Call us
+
+---
+
+## Do We Need an iPaaS If We're Building AI Agents?
+
+URL: https://arithim.com/insight-do-we-need-an-ipaas-if-were-building-ai-agents.html
+
+Insights / Integration
+
+# Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH·16 NOV 2026·9 MIN READ·BY TARUN BULCHANDANI
+
+Yes, in most cases. AI agents act on the same applications and data that your integrations already connect, and an iPaaS supplies the connectors, access control, monitoring and audit trail that agents would otherwise need rebuilt. Gartner's 2026 Magic Quadrant for iPaaS treats AI features as standard in the market but finds agent capabilities uneven, so choose the platform for integration and judge its agent features as a separate question.
+
+Teams that start building AI agents soon ask whether they still need an integration platform, or whether agents can call applications directly and make the iPaaS redundant. This article answers that from two Gartner reports: the Magic Quadrant for Integration Platform as a Service, published in March 2026, which evaluates 18 vendors, and Predicts 2026: The New Era of Agentic Automation Begins.
+
+## What an iPaaS does
+
+Gartner defines an iPaaS as a vendor-managed cloud service for building integrations between applications, services and data sources, whether they sit inside the organisation or outside it. A qualifying platform supports at least one of three patterns. It keeps data consistent by passing changes between systems, it runs multistep processes across applications, agents and services, and it exposes combined services as APIs or events.
+
+The mandatory features are worth reading closely, because they are the same things an agent needs. Gartner requires a cloud control plane, a runtime that the vendor manages (in its cloud or on the customer's infrastructure), low-code design tools, tooling for the software lifecycle, role-based access control, and monitoring, alerting and auditing.
+
+The market is large and still growing quickly. Gartner's figures put iPaaS revenue at $8.5 billion in 2024, up 23.4% from $6.9 billion in 2023, and it forecasts more than $18 billion by 2029.
+
+## Why agents still need integration
+
+An agent is only useful when it can read from and act on real systems, such as the ERP, the CRM, the service desk or a supplier portal. Each of those connections needs credentials, error handling, retries, logging and someone who notices when it breaks. An iPaaS already does that work for the integrations you run today. If agents bypass it, each agent team ends up rebuilding connectors and access rules on its own, and the audit trail splits across several places.
+
+A good share of integration work also suits an agent badly. Keeping customer records in step between two systems, moving high volumes of B2B orders or running EDI with trading partners all need the same result every time. A deterministic flow is cheaper and easier to check for that kind of work.
+
+The Predicts report gives a sense of the gap. Agents that work through an application's screens, which Gartner calls computer use agents, had an average success rate of 45% on a 50-step process, well below RPA on comparable tasks. They were also slower and had high variable costs. An API integration that runs the same steps correctly every time is a better foundation, with the agent handling the judgement calls on top.
+
+Gartner's iPaaS report makes a related point from the other side. It says buyers now need an "AI control layer" in their integration platform, which enforces policy, confidence thresholds, human decision points and audit trails for actions that AI drives.
+
+## What Gartner says about AI in the iPaaS market
+
+AI-ready integration is now a main reason people buy, according to the Magic Quadrant. Gartner treats AI features for generating flows, mapping fields, testing, documentation and spotting runtime anomalies as mandatory, so they no longer separate one vendor from another. It tells buyers to judge how deep those features go, how they are governed and whether they are ready for enterprise use.
+
+Agent capabilities are less mature. Gartner found that most vendors still describe agent builders, agent orchestration, retrieval pipelines and AI governance as roadmap items, experiments or near-term differentiators. It expects agent capabilities among iPaaS vendors to mature over the 12 to 24 months from March 2026, with more emphasis on AI governance.
+
+Gartner says buyers need support for the Model Context Protocol (MCP), which connects AI models to tools and data, and for Agent2Agent (A2A), which lets agents talk to each other. Many of the vendor profiles in the report mention MCP servers or gateways.
+
+## How the Leaders compare on agents
+
+Gartner placed six vendors in the Leaders quadrant. Their profiles show how differently each one approaches agents.
+
+Gartner credits Boomi with strong AI-native features, including MCP servers and its Agentstudio product for building and managing agents. Gartner cautions that its portfolio is fragmented, that its control plane was hosted only in the US at the time of research, and that its Peer Insights satisfaction scores are lower.
+
+Microsoft Azure Integration Services has more than 1,400 connectors and data centres in 70 regions, and it serves both professional developers and low-code users. Gartner notes that it is a set of separate services, and that buyers working across several clouds will need a third-party layer for unified governance.
+
+Salesforce owns two Leaders. Informatica's Intelligent Data Management Cloud is data-centric, with its CLAIRE AI for workflows, but entry costs are high. MuleSoft's Anypoint Platform is API-first, with agent integration and MCP and A2A support, though Gartner flags complex pricing with overage charges. For both, Gartner raises roadmap uncertainty now that one company owns two iPaaS products.
+
+SAP Integration Suite has more than 4,000 prebuilt flows and 250 third-party adapters. Gartner says some advanced users see its agent features as lagging, because its recent roadmap has focused on moving customers off older SAP integration tools.
+
+Workato offers Enterprise MCP and an AI layer called AIRO, and scores highly on Peer Insights satisfaction. It runs only on AWS, in six data centre regions.
+
+Outside the Leaders, two profiles matter for agent builders. Oracle Integration supports AI agents, MCP and human approval steps, which matches the control layer Gartner describes. Tray.ai puts process automation, integration, API management, an MCP gateway and agent development in one platform, but lacks EDI, message brokering and event management.
+
+At the low-cost end, Zapier offers a free tier, public pricing, MCP and Zapier Agents, but has no API management, event streaming or EDI and no announced plans to add them.
+
+## Should agent orchestration live in your suite or somewhere independent?
+
+The Predicts report expects that by 2030, 60% of organisations will adopt AI agent orchestration platforms from vendors outside their existing enterprise application suite. Gartner's reasoning is that agents will come from several vendors, and organisations piloting agents built on different platforms already struggle to coordinate them. Buyers have preferred independent tools for integration over the past 30 years, and Gartner expects the same pattern for agents.
+
+That makes the integration platform a natural place for orchestration, provided it supports open protocols. Gartner advises setting governance principles early, covering which work runs inside a single platform and which is coordinated across vendors, along with roles, risk management and integration standards. It also recommends granular role-based access, data masking, credentials kept in secure vaults, agent interactions that follow API, MCP or A2A standards, and full traceability of every agent action.
+
+Gartner also warns against assuming one iPaaS will cover everything. It recommends a strategic iPaaS plus targeted specialist platforms where they are justified, for example for lightweight SaaS automation, high-volume B2B or advanced event processing.
+
+## How to decide
+
+If you already run an iPaaS, keep it and connect your agents through it. The useful questions are about its agent features and governance:
+
+Does it support MCP and A2A in production today, or only on its roadmap?
+
+Can it enforce policy, confidence thresholds and human approval on actions an agent takes, and record each one for audit?
+
+Where do its control plane and runtimes run? Gartner says data sovereignty is now driving purchases, and some vendors host their control planes in only one or two regions.
+
+How is agent usage priced? Gartner flags cost predictability and overage risk as a concern across vendors.
+
+If you don't run one yet, Gartner's advice is to set out your integration priorities and architecture before you choose. Look at the connectivity you need, the skills of the people who will build integrations, reliability targets, security and compliance, hosting locations and total cost of ownership. Then judge agent features on top of that, knowing they will change quickly over the next two years.
+
+For a wider view of where agents are working today, see what agentic AI is and where it is working in 2026. If a pilot already works but cannot get through risk review, why AI pilots stall before production covers the evidence an auditor will ask for.
+
+## Where agents help
+
+We build agents that work through the integration platform a customer already runs. Take an agent that handles exceptions in order-to-cash. It reads failed or held transactions from the iPaaS monitoring, looks up the order, customer and contract through the platform's existing connectors, works out the likely cause and drafts the fix, such as a corrected mapping, a re-submission or a note to the account owner. A person approves the change before the agent applies it, and the integration platform records the action alongside every other flow.
+
+The agent has its own identity and only the access that job needs. It calls the platform through MCP or its APIs, so the customer keeps one place to see what touched each system. When a customer moves to a different iPaaS or adds a specialist one, the agent's prompts, tests and approval rules move with it.
+
+## Common questions
+
+### Do AI agents replace an integration platform?
+
+Rarely. Agents still need governed connections to the systems they act on, and much integration work, such as keeping records in step between systems, high-volume B2B exchange and EDI, needs predictable behaviour that an agent does not offer. Most organisations will run agents on top of an integration platform, calling it through APIs or the Model Context Protocol.
+
+### What is an iPaaS?
+
+Integration platform as a service is a vendor-managed cloud service for building integrations between applications, services and data sources, inside or outside the organisation. Gartner's definition requires a cloud control plane, a vendor-managed runtime, low-code design tools, software lifecycle tooling, role-based access control and operational monitoring.
+
+### Which iPaaS vendors are Leaders in Gartner's 2026 Magic Quadrant?
+
+Gartner's March 2026 Magic Quadrant for Integration Platform as a Service names six Leaders out of 18 vendors evaluated: Boomi, Microsoft, Salesforce (Informatica), Salesforce (MuleSoft), SAP and Workato. Gartner assessed Informatica and MuleSoft separately because Salesforce's acquisition of Informatica closed after the research cutoff.
+
+### Should AI agent orchestration run in our ERP or CRM suite or in a separate platform?
+
+Gartner's Predicts 2026 report expects that by 2030, 60% of organisations will adopt AI agent orchestration platforms from vendors outside their existing enterprise application suite, because agents will come from several vendors. Set governance rules early on which work stays inside one platform and which is orchestrated across vendors.
+
+### What should we ask an iPaaS vendor about AI agents?
+
+Ask whether it supports MCP and Agent2Agent today or only on its roadmap, how it enforces policy, confidence thresholds and human approval on AI-driven actions, what it records for audit, where its control plane and runtimes are hosted, and how agent usage is priced.
+
+## Sources
+
+Gartner, Magic Quadrant for Integration Platform as a Service, Andrew Humphreys, Keith Guttridge et al., 16 March 2026, ID G00836353. Complimentary reprint; the link may expire.
+
+Gartner, Predicts 2026: The New Era of Agentic Automation Begins, Arthur Villa, Saikat Ray et al., 1 December 2025, ID G00840857. Complimentary reprint; the link may expire.
+
+Vendor product pages for Boomi, Microsoft Azure Integration Services, Informatica, MuleSoft, SAP Integration Suite, Workato, Oracle Integration, Tray.ai and Zapier; Model Context Protocol; Agent2Agent Protocol. Accessed 17 November 2026.
+
+Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.
+
+MORE INSIGHTS
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -2654,7 +2804,7 @@ AI GOVERNANCE · 14 NOV 2026
 
 AI ENGINEERING · 13 NOV 2026
 
-## Want a site that reads clearly to humans and machines?
+## Want to know where agents fit alongside the integration platform you already run?
 
 Start a conversation →
 
@@ -2790,6 +2940,10 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -2797,10 +2951,6 @@ AI GOVERNANCE · 15 NOV 2026
 ### How Do You Onboard AI Agents the Way You Onboard Staff?
 
 AI GOVERNANCE · 14 NOV 2026
-
-### How Should You Review AI-Written Code Before You Merge It?
-
-AI ENGINEERING · 13 NOV 2026
 
 ## Is your architecture repository out of date the week after it's updated?
 
@@ -3146,13 +3296,13 @@ MORE INSIGHTS
 
 AI GOVERNANCE · 15 NOV 2026
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### How Should You Review AI-Written Code Before You Merge It?
 
 AI ENGINEERING · 13 NOV 2026
-
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
-
-AGENTIC AI · RESEARCH · 09 NOV 2026
 
 ## Not sure who owns the agents already running in your business?
 
@@ -3562,6 +3712,10 @@ Once I read the code and changed it to store each advert once, that table shrank
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -3569,10 +3723,6 @@ AI GOVERNANCE · 15 NOV 2026
 ### How Do You Onboard AI Agents the Way You Onboard Staff?
 
 AI GOVERNANCE · 14 NOV 2026
-
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
-
-AGENTIC AI · RESEARCH · 09 NOV 2026
 
 ## Want a review standard your team can use for AI-written code?
 
@@ -4130,6 +4280,10 @@ Strong systems usually contain both. The discipline is knowing which one a given
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -4137,10 +4291,6 @@ AI GOVERNANCE · 15 NOV 2026
 ### How Do You Onboard AI Agents the Way You Onboard Staff?
 
 AI GOVERNANCE · 14 NOV 2026
-
-### How Should You Review AI-Written Code Before You Merge It?
-
-AI ENGINEERING · 13 NOV 2026
 
 ## Want help telling them apart for your operation?
 
@@ -4278,6 +4428,10 @@ That is the whole game. Not the model, not the demo, but the system around it th
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -4285,10 +4439,6 @@ AI GOVERNANCE · 15 NOV 2026
 ### How Do You Onboard AI Agents the Way You Onboard Staff?
 
 AI GOVERNANCE · 14 NOV 2026
-
-### How Should You Review AI-Written Code Before You Merge It?
-
-AI ENGINEERING · 13 NOV 2026
 
 ## Ready to find the version that actually helps?
 
@@ -4644,6 +4794,10 @@ Gartner does not endorse any vendor, product or service depicted in its research
 
 MORE INSIGHTS
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### Why Do AI Pilots Stall Before Production in Regulated Industries?
 
 AI GOVERNANCE · 15 NOV 2026
@@ -4651,10 +4805,6 @@ AI GOVERNANCE · 15 NOV 2026
 ### How Do You Onboard AI Agents the Way You Onboard Staff?
 
 AI GOVERNANCE · 14 NOV 2026
-
-### How Should You Review AI-Written Code Before You Merge It?
-
-AI ENGINEERING · 13 NOV 2026
 
 ## Want to know which of your processes an agent could take on first?
 
@@ -5014,13 +5164,13 @@ MORE INSIGHTS
 
 AI GOVERNANCE · 14 NOV 2026
 
+### Do We Need an iPaaS If We're Building AI Agents?
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
 ### How Should You Review AI-Written Code Before You Merge It?
 
 AI ENGINEERING · 13 NOV 2026
-
-### What Is Agentic AI, and Where Is It Actually Working in 2026?
-
-AGENTIC AI · RESEARCH · 09 NOV 2026
 
 ## Have a pilot that works but can't get past risk and compliance?
 
@@ -5147,6 +5297,14 @@ Automation that carries its own audit trail, controls, and accountability by des
 Giving teams the visibility, context, and evidence they need to make good decisions across a changing environment.
 
 LATEST RESEARCH
+
+INTEGRATION · RESEARCH · 16 NOV 2026
+
+### Do We Need an iPaaS If We're Building AI Agents?
+
+Why AI agents rarely replace an integration platform, what Gartner's 2026 iPaaS Magic Quadrant says about agent features, how the Leaders compare, and how to decide.
+
+Read the research →
 
 AGENTIC AI · RESEARCH · 09 NOV 2026
 
