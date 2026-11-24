@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Should We Report Application Security Risk to the Board? — Arithim</title>
+<meta name="description" content="How to report application security risk to the board. Gartner says more teams now report overall application risk, risk reduction per development cycle and supply chain risk as primary KPIs instead of finding counts alone. What to measure, what has to be in place first and which tools produce the numbers.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="How Should We Report Application Security Risk to the Board? — Arithim">
+<meta property="og:description" content="How to report application security risk to the board. Gartner says more teams now report overall application risk, risk reduction per development cycle and supply chain risk as primary KPIs instead of finding counts alone. What to measure, what has to be in place first and which tools produce the numbers.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-how-should-we-report-application-security-risk-to-the-board.html">
+<meta property="og:url" content="https://arithim.com/insight-how-should-we-report-application-security-risk-to-the-board.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-11-21">
+<meta property="article:section" content="Application security">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-how-should-we-report-application-security-risk-to-the-board.html#article",
+      "headline": "How Should We Report Application Security Risk to the Board?",
+      "description": "How to report application security risk to the board. Gartner says more teams now report overall application risk, risk reduction per development cycle and supply chain risk as primary KPIs instead of finding counts alone. What to measure, what has to be in place first and which tools produce the numbers.",
+      "datePublished": "2026-11-21",
+      "dateModified": "2026-11-21",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-how-should-we-report-application-security-risk-to-the-board.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Application security",
+      "keywords": [
+        "how to report application security risk to the board",
+        "application security metrics for the board",
+        "AppSec KPIs",
+        "application security risk reporting",
+        "security metrics for non-security stakeholders",
+        "ASPM reporting",
+        "Gartner Critical Capabilities application security testing",
+        "software supply chain security KPIs"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Application security"
+        },
+        {
+          "@type": "Thing",
+          "name": "Security metrics"
+        },
+        {
+          "@type": "Thing",
+          "name": "Board reporting"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Black Duck Software Risk Manager",
+          "url": "https://www.blackduck.com/software-risk-manager.html"
+        },
+        {
+          "@type": "Organization",
+          "name": "Checkmarx ASPM",
+          "url": "https://checkmarx.com/product/aspm/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Veracode Risk Manager",
+          "url": "https://www.veracode.com/risk-manager/"
+        },
+        {
+          "@type": "Organization",
+          "name": "HCLSoftware AppScan",
+          "url": "https://www.hcl-software.com/appscan"
+        },
+        {
+          "@type": "Organization",
+          "name": "Cycode",
+          "url": "https://cycode.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Apiiro",
+          "url": "https://apiiro.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Snyk",
+          "url": "https://snyk.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "GitLab",
+          "url": "https://about.gitlab.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Contrast Security",
+          "url": "https://www.contrastsecurity.com/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Critical Capabilities for Application Security Testing",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2025-10-13",
+        "identifier": "G00795985",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2M5Q4EI5&ct=251024&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What application security metrics should we report to the board?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's 2025 Critical Capabilities for Application Security Testing gives three examples that teams now treat as primary KPIs: overall application risk, risk reduction per development cycle and software supply chain risk. Report those by application or business service, with the trend since the last meeting. Keep counts of findings by severity as supporting detail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are vulnerability counts a poor board metric?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Several testing tools often report the same flaw, and Gartner's 2026 Hype Cycle for Secure Software Engineering says duplicate or overlapping findings inflate perceived risk and that inconsistent reporting erodes trust with senior leadership. Counts also rise when the amount of code rises, so a growing number can hide a falling risk, or the reverse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need ASPM to report application security risk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You need the work ASPM does, which is pulling findings from every tool, removing duplicates and adding business context. Gartner recommends deploying ASPM to establish control and visibility over application security testing tools. A small estate with one vendor's suite may get enough from that suite's own reporting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should application security risk go to the board?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner does not set a frequency. One of its example KPIs is risk reduction per development cycle, which suggests tracking it per release or sprint and summarising the trend for each board meeting. Agree the cadence with the audit or risk committee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which tools produce portfolio-level application security reports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's 2025 Magic Quadrant for Application Security Testing describes posture reporting in Black Duck Software Risk Manager, Checkmarx ASPM, Veracode Risk Manager, HCLSoftware AppScan, Cycode and Apiiro, among others. It also notes limits, such as Snyk's reporting customisation and Contrast Security's posture features, which do not take in other vendors' findings."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Should We Report Application Security Risk to the Board?",
+          "item": "https://arithim.com/insight-how-should-we-report-application-security-risk-to-the-board.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=10">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-how-should-we-report-application-security-risk-to-the-board.html">How Should We Report Application Security Risk to the Board?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-how-should-we-report-application-security-risk-to-the-board.html">How Should We Report Application Security Risk to the Board?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-why-ai-pilots-stall-before-production.html">Why Do AI Pilots Stall Before Production in Regulated Industries?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-how-to-onboard-ai-agents.html">How Do You Onboard AI Agents the Way You Onboard Staff?</a>
+            <a class="ah-menu-link" href="insight-how-to-review-ai-written-code.html">How Should You Review AI-Written Code Before You Merge It?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Application security</span></div>
+      <h1 class="r-f3 ah-debd25">How Should We Report Application Security Risk to the Board?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">APPSEC · RESEARCH</span><span class="ah-rule">·</span><span>21 NOV 2026</span><span class="ah-rule">·</span><span>8 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">Give the board a few risk measures by application and business service, show whether each one is falling, and keep counts of findings by severity in the appendix. Gartner's 2025 Critical Capabilities for Application Security Testing reports that more security and development teams now use overall application risk, risk reduction per development cycle and software supply chain risk as primary KPIs, because those figures make sense to people outside security. The numbers only hold up under questioning once findings from different tools are correlated and every application has an owner.</p>
+    <p>Board reports on application security often show charts of open vulnerabilities by severity. This article sets out what Gartner's research says should replace those charts and what has to be true before the new numbers can be trusted. It draws on Gartner's <a href="https://www.gartner.com/doc/reprints?id=1-2M5Q4EI5&amp;ct=251024&amp;st=sb" rel="noopener">Critical Capabilities for Application Security Testing</a> and <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, both from October 2025, and on the <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering, 2026</a>.</p>
+    <h2>What Gartner says has changed</h2>
+    <p>The Critical Capabilities report has a section on risk becoming the primary KPI. Gartner says that with application security posture management (ASPM) added to testing suites, correlating results from several testing tools has started to work. It sees more security and development teams reporting risk metrics instead of only the traditional security indicators. Its examples are overall application risk, risk reductions per development cycle and software supply chain security risk, reported as primary KPIs alongside the usual severity and criticality measures.</p>
+    <p>Gartner gives two reasons this matters. Risk measures are easier for people outside security to understand, and they fit alongside the metrics the rest of the business already uses. They also let security leaders trade off security against performance, features and business risk in a way others can follow. A board can set a risk figure beside revenue, delivery dates and its other operational risks.</p>
+    <p>The same report recommends that decisions about application security capabilities and vendors be made jointly by security, development and engineering, and operations. That matters for reporting too, because the people who own the code are the ones who will be asked why a number moved.</p>
+    <h2>Why counts of findings mislead</h2>
+    <p>The Magic Quadrant describes what it calls a signal-to-noise problem. Running security tests inside source control and pipelines is now standard, and the result is a large volume of alerts. When several tools report overlapping findings, security teams struggle to measure and prioritise risk, and developers lose time on findings that cannot be exploited or are already fixed.</p>
+    <p>The Hype Cycle's ASPM profile adds that duplicate or overlapping findings from separate tools inflate perceived risk and undermine the credibility of the security programme. Inconsistent and inaccurate reporting, Gartner says, erodes trust with senior leadership and makes it harder to keep support for security work. Individual testing tools also lack the business context and threat intelligence needed to judge how likely and how damaging a flaw is.</p>
+    <p>The Hype Cycle also notes that AI coding assistants increase the amount of new and changed code, which increases the number of findings the tools produce. A team that ships more code will usually see more findings, even if each release is safer than the last. A severity chart cannot show that, and a board reading it may draw the wrong conclusion.</p>
+    <h2>What to put in front of the board</h2>
+    <p>The structure below is our suggestion, built on the three KPIs Gartner names. It fits on one page and leaves the detail to an appendix.</p>
+    <ol><li>Overall application risk by business service. Group applications under the services the board recognises, such as online payments or the customer portal, and show the current risk level for each with the change since the last report. A risk score that combines severity, exploitability, internet exposure and business criticality works better here than a raw count.</li><li>Risk reduction per development cycle. Show how much risk each release or sprint removed against how much new code it added. This is the measure that answers the volume question, because it shows whether the teams are getting ahead.</li><li>Software supply chain risk. The Critical Capabilities report recommends making software supply chain security a first-tier control and describes it as "a key data source" for security KPIs. Report the risk carried in open-source and third-party components, separately from flaws in your own code, because the fixes and owners differ.</li><li>Exceptions and accepted risk. List each risk the business has accepted, who accepted it and when it expires. Gartner's definition of policy evaluation includes criteria for how long a risk may remain, so this is a standard posture management capability in its terms.</li></ol>
+    <p>Keep severity counts, mean time to remediate and scanner coverage in the appendix, where the audit committee or a non-executive with a technical background can check them.</p>
+    <h2>The groundwork the numbers need</h2>
+    <p>Each figure on that page has to survive a follow-up question from a non-executive director.</p>
+    <p>Start with correlation. Gartner's definition of posture and performance reporting includes unified visibility, meaning findings from third-party tools are ingested, deduplicated and correlated, plus measurement at the application and portfolio level. The Critical Capabilities report recommends deploying ASPM to establish control and visibility over testing tools. If your findings live in three consoles, the risk figure will be built by hand each quarter and will not reconcile from one report to the next. Our comparison of <a href="insight-more-than-one-application-security-testing-tool.html">whether you need more than one application security testing tool</a> explains why most estates end up with several.</p>
+    <p>A risk figure per business service also needs every application mapped to a service and a named team. The Hype Cycle lists the lack of a clear operating model and shared accountability as one of the main reasons ASPM projects struggle, and the same gap breaks board reporting. Our guide to <a href="insight-how-to-reduce-application-security-backlog.html">reducing an application security backlog</a> covers the ownership work.</p>
+    <p>Gartner also advises defining goals and success metrics for risk reduction, process improvement and reporting before choosing an ASPM tool, so its value can be measured and executive support holds. Agree with the risk committee what "acceptable" means for each service before the first report, so the board is judging progress against a target it set.</p>
+    <p>Applications built outside the normal development process need a place in the report too. Code written by non-developers with AI tools often never reaches the scanners. Our article on <a href="insight-how-to-secure-vibe-coded-apps.html">securing vibe-coded apps</a> covers how to bring it in.</p>
+    <h2>Which tools produce the numbers</h2>
+    <p>Gartner's Magic Quadrant describes posture and reporting features in most of the larger testing suites. <a href="https://www.blackduck.com/software-risk-manager.html" rel="noopener">Black Duck Software Risk Manager</a> takes in results from Black Duck and third-party tools. <a href="https://checkmarx.com/product/aspm/" rel="noopener">Checkmarx ASPM</a> deduplicates findings from its own and third-party tools. <a href="https://www.veracode.com/risk-manager/" rel="noopener">Veracode Risk Manager</a> came from Veracode's 2024 acquisition of Longbow Security. The Critical Capabilities report says <a href="https://www.hcl-software.com/appscan" rel="noopener">HCLSoftware AppScan</a> has improved its posture dashboards, correlation, compliance policies and reporting. <a href="https://cycode.com/" rel="noopener">Cycode</a> offers compliance dashboards, and <a href="https://apiiro.com/" rel="noopener">Apiiro</a> ranks risk with what it calls a Risk Graph. <a href="https://about.gitlab.com/" rel="noopener">GitLab</a> offers custom compliance frameworks inside its DevSecOps platform.</p>
+    <p>The Magic Quadrant also records limits that affect board reporting. It says <a href="https://snyk.io/" rel="noopener">Snyk</a> offers limited customisation of reports, with tenant-level analytics in early access from July 2025. It says <a href="https://www.contrastsecurity.com/" rel="noopener">Contrast Security</a> does not take in findings from other vendors, which leaves risk visibility fragmented. If your estate mixes vendors, ask each one to load your own scanners' output during a trial and produce a portfolio report from it.</p>
+    <h2>Regulation the board will ask about</h2>
+    <p>The Hype Cycle names the regulation and guidance shaping secure software work, including the EU Cyber Resilience Act, the NIS2 Directive and the CISA, NSA and FBI Secure by Design initiative, whose deadline for memory-safety roadmaps was January 2026. Gartner's 2026 Software Engineering Survey, cited in the same report, found that 68% of software engineering leaders call application security highly important. In our view, a board in a regulated sector will want to see which applications fall under which rules. A posture tool that tags applications by regulation, or a service catalogue that does, makes that a filter on the same data.</p>
+    <h2>Where agents help</h2>
+    <p>The data for a board report usually exists already in the scanners and the posture tool. The time goes on pulling it from several consoles, matching findings to services and owners, chasing the teams whose numbers moved and writing an explanation a non-specialist can follow, and that is the work we would give an agent.</p>
+    <p>The agent we would build sits alongside the scanners, the posture platform and the service catalogue the customer already runs. Each month it gathers findings, maps them to business services and owners, and calculates the trend for each of the measures above. Where a number has moved sharply, it asks the owning team for the reason and drafts a short explanation from their answer. It then produces the one-page board summary and the appendix, with every figure linked back to the findings behind it. The head of application security reviews and edits the draft and signs it off before anything reaches the board, and nothing the agent writes changes a risk acceptance or a finding's status.</p>
+    <h2>Common questions</h2>
+    <h3>What application security metrics should we report to the board?</h3>
+    <p>Gartner's 2025 Critical Capabilities for Application Security Testing gives three examples that teams now treat as primary KPIs: overall application risk, risk reduction per development cycle and software supply chain risk. Report those by application or business service, with the trend since the last meeting. Keep counts of findings by severity as supporting detail.</p>
+    <h3>Why are vulnerability counts a poor board metric?</h3>
+    <p>Several testing tools often report the same flaw, and Gartner's 2026 Hype Cycle for Secure Software Engineering says duplicate or overlapping findings inflate perceived risk and that inconsistent reporting erodes trust with senior leadership. Counts also rise when the amount of code rises, so a growing number can hide a falling risk, or the reverse.</p>
+    <h3>Do we need ASPM to report application security risk?</h3>
+    <p>You need the work ASPM does, which is pulling findings from every tool, removing duplicates and adding business context. Gartner recommends deploying ASPM to establish control and visibility over application security testing tools. A small estate with one vendor's suite may get enough from that suite's own reporting.</p>
+    <h3>How often should application security risk go to the board?</h3>
+    <p>Gartner does not set a frequency. One of its example KPIs is risk reduction per development cycle, which suggests tracking it per release or sprint and summarising the trend for each board meeting. Agree the cadence with the audit or risk committee.</p>
+    <h3>Which tools produce portfolio-level application security reports?</h3>
+    <p>Gartner's 2025 Magic Quadrant for Application Security Testing describes posture reporting in Black Duck Software Risk Manager, Checkmarx ASPM, Veracode Risk Manager, HCLSoftware AppScan, Cycode and Apiiro, among others. It also notes limits, such as Snyk's reporting customisation and Contrast Security's posture features, which do not take in other vendors' findings.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2M5Q4EI5&amp;ct=251024&amp;st=sb" rel="noopener">Critical Capabilities for Application Security Testing</a>, Mark Horvath, Jason Gross et al., 13 October 2025, ID G00795985. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, Jason Gross, Mark Horvath et al., 6 October 2025, ID G00795930. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering, 2026</a>, Aaron Harrison, 2 June 2026, ID G00847347. Complimentary reprint; the link may expire.</li>
+      <li>Vendor product pages for the tools named in this article. Accessed 24 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER, HYPE CYCLE and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html"><h3 class="ah-772add">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span class="ah-90030f">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-reduce-application-security-backlog.html"><h3 class="ah-772add">How Do We Reduce Our Application Security Backlog?</h3><span class="ah-90030f">APPSEC · RESEARCH · 22 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-secure-vibe-coded-apps.html"><h3 class="ah-772add">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span class="ah-90030f">APPSEC · RESEARCH · 21 OCT 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Building the board pack from several AppSec consoles every quarter?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); if (this._stopDeck) this._stopDeck(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=4" defer></script>
+</body>
+</html>
