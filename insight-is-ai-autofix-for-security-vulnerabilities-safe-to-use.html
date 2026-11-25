@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is AI Autofix for Security Vulnerabilities Safe to Use? — Arithim</title>
+<meta name="description" content="Is AI autofix for security vulnerabilities safe? Gartner rates AI code security assistants as transformational, but lists hallucinated fixes, code privacy, IP ownership and quality side effects as obstacles, and tells buyers to keep SAST, SCA and code review in place.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="Is AI Autofix for Security Vulnerabilities Safe to Use? — Arithim">
+<meta property="og:description" content="Is AI autofix for security vulnerabilities safe? Gartner rates AI code security assistants as transformational, but lists hallucinated fixes, code privacy, IP ownership and quality side effects as obstacles, and tells buyers to keep SAST, SCA and code review in place.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html">
+<meta property="og:url" content="https://arithim.com/insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-11-22">
+<meta property="article:section" content="Application security">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html#article",
+      "headline": "Is AI Autofix for Security Vulnerabilities Safe to Use?",
+      "description": "Is AI autofix for security vulnerabilities safe? Gartner rates AI code security assistants as transformational, but lists hallucinated fixes, code privacy, IP ownership and quality side effects as obstacles, and tells buyers to keep SAST, SCA and code review in place.",
+      "datePublished": "2026-11-22",
+      "dateModified": "2026-11-22",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Application security",
+      "keywords": [
+        "is AI autofix safe",
+        "AI code security assistant",
+        "Copilot Autofix security",
+        "AI vulnerability remediation",
+        "automated vulnerability fixes risks",
+        "Gartner Hype Cycle secure software engineering 2026",
+        "Veracode Fix vs Copilot Autofix",
+        "agentic autofix code scanning"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Application security"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI code security assistants"
+        },
+        {
+          "@type": "Thing",
+          "name": "Vulnerability remediation"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "GitHub Advanced Security",
+          "url": "https://github.com/security/advanced-security"
+        },
+        {
+          "@type": "Organization",
+          "name": "Veracode Fix",
+          "url": "https://www.veracode.com/products/fix/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Snyk",
+          "url": "https://snyk.io/platform/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Checkmarx",
+          "url": "https://checkmarx.com/product/triage-and-remediation/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Black Duck",
+          "url": "https://www.blackduck.com/signal-ai-appsec.html"
+        },
+        {
+          "@type": "Organization",
+          "name": "OpenText Fortify Remediation Aviator",
+          "url": "https://www.opentext.com/products/application-security-aviator"
+        },
+        {
+          "@type": "Organization",
+          "name": "GitLab",
+          "url": "https://docs.gitlab.com/releases/18/gitlab-18-11-released/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Hype Cycle for Secure Software Engineering 2026",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-06-02",
+        "identifier": "G00847347",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&ct=260610&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is AI autofix safe to use for security vulnerabilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is safe enough to adopt when each fix is reviewed by a developer and re-checked by your existing SAST or SCA scanner before it merges. Gartner rates AI code security assistants as transformational, but lists hallucinated or insecure suggestions, code privacy, IP ownership and side effects on performance and reliability as obstacles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI-generated security fixes introduce new vulnerabilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Gartner says generative AI occasionally gives explanations or fixes that sound plausible but are insecure, and that this is hard for junior developers to spot. Its Magic Quadrant for Application Security Testing also cites a Georgetown University study that found 48% of AI-generated code contained vulnerabilities. Re-scanning every fix catches the most obvious cases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Copilot Autofix send our code to the cloud?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner says AI code security assistants generally use cloud services to analyse code and make recommendations, and GitHub offers its agentic autofix to customers on GitHub Enterprise Cloud. Gartner advises avoiding any vendor whose handling of code privacy and confidentiality does not match your policies and regulatory requirements, so check each vendor's data terms before turning it on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which application security vendors offer AI autofix?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's Magic Quadrant for Application Security Testing names Black Duck Assist and Code Sight, Checkmarx, GitHub Copilot Autofix, Snyk's fix automation and Veracode Fix among the AI remediation offerings. Its Hype Cycle also lists GitLab, HCLTech, OpenText (Fortify), Qwiet AI and Symbiotic Security as sample vendors of AI code security assistants."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should AI autofix replace our SAST and SCA tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Gartner recommends keeping traditional SAST and SCA tools in place to measure security and code quality when you add an AI code security assistant, and keeping security coaches and code reviews as a check that the advice developers receive is correct."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Is AI Autofix for Security Vulnerabilities Safe to Use?",
+          "item": "https://arithim.com/insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=10">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html">Is AI Autofix for Security Vulnerabilities Safe to Use?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-is-ai-autofix-for-security-vulnerabilities-safe-to-use.html">Is AI Autofix for Security Vulnerabilities Safe to Use?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-why-ai-pilots-stall-before-production.html">Why Do AI Pilots Stall Before Production in Regulated Industries?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-how-to-onboard-ai-agents.html">How Do You Onboard AI Agents the Way You Onboard Staff?</a>
+            <a class="ah-menu-link" href="insight-how-to-review-ai-written-code.html">How Should You Review AI-Written Code Before You Merge It?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Application security</span></div>
+      <h1 class="r-f3 ah-debd25">Is AI Autofix for Security Vulnerabilities Safe to Use?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">APPSEC · RESEARCH</span><span class="ah-rule">·</span><span>22 NOV 2026</span><span class="ah-rule">·</span><span>9 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">Yes, if you treat every AI-generated fix as a draft that a developer reviews and your existing scanners re-check before it merges. Gartner's 2026 Hype Cycle for Secure Software Engineering rates AI code security assistants as transformational and already used by 20% to 50% of their target audience. It also warns that these tools sometimes hallucinate, can leak code or bring in someone else's IP, and can fix a vulnerability while making the code worse in other ways.</p>
+    <p>Most application security scanners can now write the fix as well as find the flaw, and the question engineering leaders ask next is whether those fixes can be trusted. This article answers it from two Gartner reports: the <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering 2026</a>, published in June 2026, and the <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, published in October 2025.</p>
+    <h2>What Gartner means by AI autofix</h2>
+    <p>Gartner calls these tools AI code security assistants, or ACSAs. They help developers find and remediate vulnerabilities, either by suggesting a fix automatically or through direct code help and chat, using generative AI. Gartner notes that they are mostly sold as features of application security testing products, and that they use cloud services to analyse code and produce recommendations.</p>
+    <p>The Hype Cycle places them among the technologies on the rise with a transformational benefit rating, the highest Gartner gives. It estimates market penetration at 20% to 50% of the target audience and rates maturity as early mainstream. Only three other technologies in the report share the transformational rating: platform engineering, AI-native software engineering and software supply chain security.</p>
+    <p>Gartner's case for them is practical. Developers tend not to find and fix security issues in their own code, and the routes for getting expert security advice to them are limited and depend on a few people. Application security vendors have offered code security guidance for more than a decade and hold years of data from their own scans, so training models on that data was the obvious next step. An ACSA answers the specific problem a scanner just found, at the moment the developer is looking at it, which a general coding assistant does not do.</p>
+    <h2>Who sells it</h2>
+    <p>In the Magic Quadrant, Gartner names Black Duck Assist and Code Sight, Checkmarx's assistant, GitHub Copilot Autofix, Snyk's fix automation and Veracode Fix among the AI remediation offerings, and says the leading products build remediation into developer workflows. The Hype Cycle's sample vendor list for ACSAs adds GitLab, HCLTech, OpenText (Fortify), Qwiet AI and Symbiotic Security.</p>
+    <p>The products differ in how much they do on their own. <a href="https://www.veracode.com/products/fix/" rel="noopener">Veracode Fix</a> produces suggestions that a developer reviews and chooses whether to apply, and Veracode's product page states that nothing merges without approval and that its architecture does not retain customer code. Gartner credits Veracode Fix with being trained on proprietary reference patches. <a href="https://snyk.io/platform/" rel="noopener">Snyk</a> offers AI remediation with rollback, according to Gartner.</p>
+    <p>GitHub has gone further. Its agentic autofix for code scanning alerts, part of <a href="https://github.com/security/advanced-security" rel="noopener">GitHub Advanced Security</a>, became generally available on 15 October 2026. When a developer assigns an alert to Copilot, it explores the relevant files, proposes a fix, reruns CodeQL to confirm the alert is closed and then opens a draft pull request for review. Up to 25 alerts can go into one pull request. An enterprise administrator has to switch it on through a policy, and it consumes AI Credits and GitHub Actions minutes. <a href="https://checkmarx.com/product/triage-and-remediation/" rel="noopener">Checkmarx</a>, <a href="https://www.blackduck.com/signal-ai-appsec.html" rel="noopener">Black Duck</a>, <a href="https://www.opentext.com/products/application-security-aviator" rel="noopener">OpenText</a> and <a href="https://docs.gitlab.com/releases/18/gitlab-18-11-released/" rel="noopener">GitLab</a> all now market AI triage and remediation features of their own.</p>
+    <h2>The risks Gartner lists</h2>
+    <p>Gartner sets out five obstacles in the ACSA profile.</p>
+    <p>Privacy and intellectual property come first. Most organisations worry about private data or IP leaving through AI assistants. Gartner says there are ways to protect against this but that trust is low.</p>
+    <p>Hallucination is the second. Generative AI occasionally flags problems that do not exist, or gives explanations that sound plausible but are insecure or unwise to follow. Gartner points out that this is hard to detect, particularly for junior developers, who are the people most likely to accept a suggested fix without questioning it.</p>
+    <p>Ownership is the third. Where an assistant has written a large share of the code, there are questions about who owns it. Because the assistants draw on code they were trained on, Gartner warns that an organisation could take on another organisation's IP by accident.</p>
+    <p>The fourth concerns code quality. Gartner describes ACSAs as optimisers, and says optimisers have failed before by overcompensating for security while neglecting performance, reliability and code quality. A fix can close the alert and still slow the service down or make the code harder to maintain.</p>
+    <p>Cost is the fifth. Gartner notes that AI token use is heavily discounted today, and that a move to full-cost pricing could hit development budgets hard. GitHub's metering of agentic autofix in AI Credits is one example of usage-based charging already in place.</p>
+    <p>The Magic Quadrant adds limits that buyers should test for. Gartner says Cycode's AI fixes cannot detect breaking changes when they update open-source components, and that OpenText's automated SAST fixes are mainly delivered through IDE plug-ins and depend on the language. Data Theorem has no automated remediation at all, so its users apply recommended fixes by hand.</p>
+    <h2>Why developers trust it anyway</h2>
+    <p>Developers are more confident in these tools than the risks might suggest. Gartner's 2025 Software Engineering Survey, with 300 respondents, found that 69% of developers had high or medium confidence in AI code security assistants, a figure Gartner itself calls surprising.</p>
+    <p>The wider evidence on AI and code security is less encouraging. The Magic Quadrant cites Gartner's 2025 AI in Software Engineering Survey, in which 66% of organisations using AI tools in the software lifecycle reported little or no improvement in code security. It also cites a Georgetown University Center for Security and Emerging Technology study that found 48% of AI-generated code contained vulnerabilities. That study covers AI-written code in general, not security fixes specifically. It is still a reason to scan an AI-written fix as carefully as any other new code.</p>
+    <h2>How to make AI autofix safe</h2>
+    <p>Gartner's recommendations for ACSAs are short. Keep traditional SAST or SCA tools to measure security and code quality when you add an assistant, and watch the other code-quality indicators, because security metrics often improve straight away while something else gets worse. Avoid vendors whose handling of your code does not match your own policies and regulatory requirements. Keep and adapt the methods you already use to improve code security. Keep security coaches and code reviews running as a check that the advice developers receive is correct.</p>
+    <p>The Hype Cycle's profile of agentic coding security applies to agentic autofix too. It recommends a human in the loop for high-risk development work, with teams acting as orchestrators and reviewers, and the principle of "least agency", so that coding agents get only the permissions a specific task needs.</p>
+    <p>In practice, that translates into a handful of controls you can check before you switch autofix on.</p>
+    <ol><li>Every AI-generated fix arrives as a pull request, and branch protection requires the same human review as any other change. The guide on <a href="insight-how-to-review-ai-written-code.html">how to review AI-written code</a> covers what that review should look for.</li><li>The scanner that raised the finding runs again on the fix, and the ticket closes only when the rescan is clean. GitHub's agentic autofix does this for CodeQL alerts, and you can apply the same rule to any tool.</li><li>Your normal test suite, performance checks and code-quality gates run on the fix, which covers the optimiser problem Gartner describes.</li><li>Legal or procurement has read each vendor's terms on code retention, model training and data location.</li><li>Fixes in high-risk code, such as authentication, payments or cryptography, go to a named senior reviewer.</li><li>You track how often AI fixes are rejected or reverted, by vulnerability type, so you can see where the tool earns trust and where it does not.</li></ol>
+    <p>Applied this way, autofix is a fast route through the code-level part of a security backlog. The article on <a href="insight-how-to-reduce-application-security-backlog.html">reducing an application security backlog</a> shows where it fits alongside triage, ownership and bulk dependency upgrades.</p>
+    <h2>Where agents help</h2>
+    <p>Vendor autofix works inside each vendor's own product, and most organisations run more than one scanner. The checks above still have to happen for every fix from every tool, and someone on the security team usually ends up chasing them.</p>
+    <p>The agent we would build sits alongside the scanners and the source control system a customer already owns. When an autofix pull request opens, from any vendor, it checks that the originating scanner has rerun and the finding is closed, that tests and quality gates passed, and whether the change touches code the team has marked high risk. It then writes a short note for the reviewer saying what the fix changes, what else it touches and which checks it passed. A named developer approves or rejects the merge. The agent logs each decision and builds up the rejection and revert figures by vulnerability type, so the security lead can decide with evidence which kinds of fixes deserve a lighter review. We describe the wider set of agents for application security in our <a href="insight-more-than-one-application-security-testing-tool.html">application security testing research</a>.</p>
+    <h2>Common questions</h2>
+    <h3>Is AI autofix safe to use for security vulnerabilities?</h3>
+    <p>It is safe enough to adopt when each fix is reviewed by a developer and re-checked by your existing SAST or SCA scanner before it merges. Gartner rates AI code security assistants as transformational, but lists hallucinated or insecure suggestions, code privacy, IP ownership and side effects on performance and reliability as obstacles.</p>
+    <h3>Can AI-generated security fixes introduce new vulnerabilities?</h3>
+    <p>Yes. Gartner says generative AI occasionally gives explanations or fixes that sound plausible but are insecure, and that this is hard for junior developers to spot. Its Magic Quadrant for Application Security Testing also cites a Georgetown University study that found 48% of AI-generated code contained vulnerabilities. Re-scanning every fix catches the most obvious cases.</p>
+    <h3>Does Copilot Autofix send our code to the cloud?</h3>
+    <p>Gartner says AI code security assistants generally use cloud services to analyse code and make recommendations, and GitHub offers its agentic autofix to customers on GitHub Enterprise Cloud. Gartner advises avoiding any vendor whose handling of code privacy and confidentiality does not match your policies and regulatory requirements, so check each vendor's data terms before turning it on.</p>
+    <h3>Which application security vendors offer AI autofix?</h3>
+    <p>Gartner's Magic Quadrant for Application Security Testing names Black Duck Assist and Code Sight, Checkmarx, GitHub Copilot Autofix, Snyk's fix automation and Veracode Fix among the AI remediation offerings. Its Hype Cycle also lists GitLab, HCLTech, OpenText (Fortify), Qwiet AI and Symbiotic Security as sample vendors of AI code security assistants.</p>
+    <h3>Should AI autofix replace our SAST and SCA tools?</h3>
+    <p>No. Gartner recommends keeping traditional SAST and SCA tools in place to measure security and code quality when you add an AI code security assistant, and keeping security coaches and code reviews as a check that the advice developers receive is correct.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering 2026</a>, Aaron Harrison, 2 June 2026, ID G00847347. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2M3L9X6H&amp;ct=251014&amp;st=sb" rel="noopener">Magic Quadrant for Application Security Testing</a>, Jason Gross, Mark Horvath et al., 6 October 2025, ID G00795930. Complimentary reprint; the link may expire.</li>
+      <li>Vendor pages for GitHub (<a href="https://github.blog/changelog/2026-10-15-agentic-autofix-for-code-scanning-alerts-general-availability/" rel="noopener">agentic autofix changelog, 15 October 2026</a>), Veracode Fix, Snyk, Checkmarx, Black Duck, OpenText and GitLab. Accessed 25 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER, HYPE CYCLE and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates. Arithim builds with Claude, made by Anthropic, which Gartner names among popular AI assistants in the AI code security assistants profile cited here.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html"><h3 class="ah-772add">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span class="ah-90030f">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-reduce-application-security-backlog.html"><h3 class="ah-772add">How Do We Reduce Our Application Security Backlog?</h3><span class="ah-90030f">APPSEC · RESEARCH · 22 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-secure-vibe-coded-apps.html"><h3 class="ah-772add">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span class="ah-90030f">APPSEC · RESEARCH · 21 OCT 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Want to know how AI fixes would fit the review and scanning controls you already run?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); if (this._stopDeck) this._stopDeck(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=4" defer></script>
+</body>
+</html>
