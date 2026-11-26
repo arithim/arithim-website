@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Do We Secure MCP Servers? — Arithim</title>
+<meta name="description" content="How do we secure MCP servers? Gartner says to treat every Model Context Protocol deployment as a privileged asset, find the shadow MCP servers first, put an AI or MCP gateway in front of them, scope tokens with OAuth and demand evidence from vendors before connecting their hosted servers.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arithim">
+<meta property="og:title" content="How Do We Secure MCP Servers? — Arithim">
+<meta property="og:description" content="How do we secure MCP servers? Gartner says to treat every Model Context Protocol deployment as a privileged asset, find the shadow MCP servers first, put an AI or MCP gateway in front of them, scope tokens with OAuth and demand evidence from vendors before connecting their hosted servers.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://arithim.com/insight-how-do-we-secure-mcp-servers.html">
+<meta property="og:url" content="https://arithim.com/insight-how-do-we-secure-mcp-servers.html">
+<meta property="og:image" content="https://arithim.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arithim.com/assets/og-image.png">
+<meta property="article:published_time" content="2026-11-23">
+<meta property="article:section" content="Application security">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://arithim.com/insight-how-do-we-secure-mcp-servers.html#article",
+      "headline": "How Do We Secure MCP Servers?",
+      "description": "How do we secure MCP servers? Gartner says to treat every Model Context Protocol deployment as a privileged asset, find the shadow MCP servers first, put an AI or MCP gateway in front of them, scope tokens with OAuth and demand evidence from vendors before connecting their hosted servers.",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://arithim.com/insight-how-do-we-secure-mcp-servers.html",
+      "image": "https://arithim.com/assets/og-image.png",
+      "articleSection": "Application security",
+      "keywords": [
+        "how to secure MCP servers",
+        "MCP server security",
+        "Model Context Protocol security risks",
+        "MCP gateway",
+        "shadow MCP servers",
+        "OWASP MCP Top 10",
+        "Gartner Hype Cycle secure software engineering 2026",
+        "MCP cybersecurity Gartner"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Application security"
+        },
+        {
+          "@type": "Thing",
+          "name": "Model Context Protocol"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI agent security"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Gartner",
+          "url": "https://www.gartner.com/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "OWASP MCP Top 10",
+          "url": "https://owasp.org/www-project-mcp-top-10/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Cycode Maestro",
+          "url": "https://cycode.com/maestro/"
+        },
+        {
+          "@type": "Organization",
+          "name": "JFrog Software Supply Chain Platform",
+          "url": "https://jfrog.com/platform/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Lineaje UnifAI",
+          "url": "https://www.lineaje.com/unifai"
+        },
+        {
+          "@type": "Organization",
+          "name": "Zenity",
+          "url": "https://zenity.io/platform"
+        },
+        {
+          "@type": "Organization",
+          "name": "Noma Security",
+          "url": "https://noma.security/platform/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Lumia Security",
+          "url": "https://www.lumia.security/"
+        }
+      ],
+      "citation": {
+        "@type": "Report",
+        "name": "Hype Cycle for Secure Software Engineering 2026",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Gartner, Inc."
+        },
+        "datePublished": "2026-06-02",
+        "identifier": "G00847347",
+        "url": "https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&ct=260610&st=sb"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Tarun Bulchandani",
+        "url": "https://arithim.com/about.html",
+        "jobTitle": "Founder, Arithim"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Arithim Ltd",
+        "url": "https://arithim.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://arithim.com/assets/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the main security risks of MCP servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner's Hype Cycle for Secure Software Engineering 2026 names shadow MCP adoption that security teams cannot see, MCP servers with unapproved or uncontrolled access, and vendor-hosted servers with weak controls. The OWASP MCP Top 10 lists ten risks, including token mismanagement and secret exposure, privilege escalation through scope creep, tool poisoning, command injection, prompt injection, shadow MCP servers and a lack of audit and telemetry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an MCP gateway?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An MCP gateway, or AI gateway, is a proxy that sits between AI agents and the MCP servers they call, so security teams can apply policy and see traffic at runtime. Gartner recommends AI and MCP gateways and proxies as the main runtime control for MCP, alongside OAuth-scoped tokens and TLS 1.3, and has published a separate Innovation Insight on MCP gateways."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we find shadow MCP servers in our organisation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner says discovery needs several sources together: controls on endpoints and servers, network detection, and monitoring of your SaaS estate. Its agentic coding security guidance adds an inventory of coding agents and the MCP servers they use, and its guardian agent guidance recommends inventorying every agent, sanctioned or not."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to use vendor-hosted MCP servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gartner warns that many vendor-hosted MCP servers have weak controls. It advises buyers to ask for evidence of input validation, sandboxing and data loss prevention before connecting agents to them, and to treat each deployment as a privileged asset."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which security vendors govern MCP servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In its first Magic Quadrant for Software Supply Chain Security, Gartner credits Cycode with governance of AI coding tools and MCP servers, notes that JFrog offers an MCP server while its AI agent skill controls are early, and names Lineaje's UnifAI policy layer. The Hype Cycle lists no sample vendors for MCP cybersecurity itself, but names Lumia Security, Noma Security, Zenity and others for guardian agents that supervise agent actions."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arithim.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://arithim.com/insights.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Do We Secure MCP Servers?",
+          "item": "https://arithim.com/insight-how-do-we-secure-mcp-servers.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- partial:head -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#070C16">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/site.css?v=10">
+<script src="/theme.js?v=46eb8bb1"></script>
+<!-- /partial:head -->
+</head>
+<body>
+<x-dc>
+
+<div class="ah-page">
+
+<a class="tsg-skip" href="#main">Skip to content</a>
+
+<!-- partial:header {"label": "/insights", "active": "insights.html"} -->
+  <header class="ah-e3a543">
+    <div class="r-gut ah-header-in">
+      <a href="index.html" aria-label="Arithim home" class="ah-mark"><span class="ah-wordmark">arithim</span><span class="ah-wordmark-sub">/insights</span></a>
+      <nav data-nav aria-label="Main" class="ah-nav">
+        <span data-nav-pill class="ah-2ca498"></span>
+        <span class="ah-nav-item">
+        <a href="products.html" class="ah-nav-link">Products</a>
+        <div class="ah-menu" role="group" aria-label="Products">
+          <div class="ah-menu-group"><div class="ah-menu-title">Enterprise software</div>
+            <a class="ah-menu-link" href="technical-sales-guide.html">Technical Sales Guide</a>
+            <a class="ah-menu-link" href="product-site-finder.html">Site Finder</a>
+            <a class="ah-menu-link" href="product-ai-model-inventory.html">AI model inventory</a>
+            <a class="ah-menu-link" href="product-estate.html">Arithim Estate</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">Data products</div>
+            <a class="ah-menu-link" href="product-landowner-check.html">Landowner check</a>
+            <a class="ah-menu-link" href="product-site-feasibility-report.html">Site feasibility report</a>
+            <a class="ah-menu-link" href="product-portfolio-screen.html">Portfolio screen</a>
+            <a class="ah-menu-link" href="product-battery-siting-report.html">Battery storage siting report</a>
+            <a class="ah-menu-link" href="product-grid-pre-screen.html">Grid pre-screen</a>
+            <a class="ah-menu-link" href="product-planning-risk-screen.html">Planning risk screen</a>
+            <a class="ah-menu-link" href="product-solar-suitability-api.html">Solar suitability check</a>
+            <a class="ah-menu-link" href="product-market-watch.html">Market Watch</a>
+            <a class="ah-menu-link" href="product-data-api.html">Data API and MCP</a>
+            <a class="ah-menu-link" href="product-uk-company-check.html">UK company check</a>
+          </div>
+          <div class="ah-menu-group"><div class="ah-menu-title">SaaS</div>
+            <a class="ah-menu-link" href="https://findmeajob.uk/">Find Me A Job</a>
+            <a class="ah-menu-link" href="https://www.unrejectable.uk/">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="services.html" class="ah-nav-link">Services</a>
+        <div class="ah-menu" role="group" aria-label="Services">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="services.html">All services</a>
+            <a class="ah-menu-link" href="services-ai-readiness.html">AI readiness and strategy</a>
+            <a class="ah-menu-link" href="services-automation.html">AI systems and automation</a>
+            <a class="ah-menu-link" href="services-sap.html">SAP ERP intelligence layer</a>
+            <a class="ah-menu-link" href="services-websites.html">AI-optimised websites</a>
+            <a class="ah-menu-link" href="services-training.html">Training and enablement</a>
+            <a class="ah-menu-link" href="services-regulatory.html">Regulatory and technical systems</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="case-studies.html" class="ah-nav-link">Case Studies</a>
+        <div class="ah-menu" role="group" aria-label="Case Studies">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="case-studies.html">All case studies</a>
+            <a class="ah-menu-link" href="case-compliance-vendor-approval.html">Compliance and vendor approval</a>
+            <a class="ah-menu-link" href="case-find-me-a-job.html">Find Me A Job</a>
+            <a class="ah-menu-link" href="case-operational-intelligence-platform.html">Operational intelligence platform</a>
+            <a class="ah-menu-link" href="case-telecommunications-billing.html">Telecommunications billing</a>
+            <a class="ah-menu-link" href="case-unrejectable.html">Unrejectable</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="research.html" class="ah-nav-link">Research</a>
+        <div class="ah-menu" role="group" aria-label="Research">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="research.html">All research</a>
+            <a class="ah-menu-link" href="insight-how-do-we-secure-mcp-servers.html">How Do We Secure MCP Servers?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-what-is-agentic-ai-where-is-it-working.html">What Is Agentic AI, and Where Is It Actually Working in 2026?</a>
+            <a class="ah-menu-link" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</a>
+            <a class="ah-menu-link" href="insight-how-to-choose-an-enterprise-architecture-tool.html">How Do We Choose an Enterprise Architecture Tool in 2026?</a>
+          </div>
+        </div>
+        </span>
+        <span class="ah-nav-item">
+        <a href="insights.html" class="ah-nav-link-on" aria-current="page">Insights</a>
+        <div class="ah-menu" role="group" aria-label="Insights">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="insights.html">All insights</a>
+            <a class="ah-menu-link" href="insight-how-do-we-secure-mcp-servers.html">How Do We Secure MCP Servers?</a>
+            <a class="ah-menu-link" href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">Which AI Coding Agent Should Our Engineering Team Use?</a>
+            <a class="ah-menu-link" href="insight-why-ai-pilots-stall-before-production.html">Why Do AI Pilots Stall Before Production in Regulated Industries?</a>
+            <a class="ah-menu-link" href="insight-what-is-process-intelligence-vs-process-mining.html">What Is Process Intelligence, and How Is It Different From Process Mining?</a>
+            <a class="ah-menu-link" href="insight-how-to-onboard-ai-agents.html">How Do You Onboard AI Agents the Way You Onboard Staff?</a>
+            <a class="ah-menu-link" href="insight-how-to-review-ai-written-code.html">How Should You Review AI-Written Code Before You Merge It?</a>
+          </div>
+        </div>
+        </span>
+        <a href="live.html" class="ah-nav-link">Live data</a>
+        <span class="ah-nav-item">
+        <a href="about.html" class="ah-nav-link">About</a>
+        <div class="ah-menu" role="group" aria-label="About">
+          <div class="ah-menu-group">
+            <a class="ah-menu-link" href="about.html">About Arithim</a>
+            <a class="ah-menu-link" href="contact.html">Contact</a>
+            <a class="ah-menu-link" href="privacy.html">Privacy policy</a>
+            <a class="ah-menu-link" href="legal.html">Legal notice</a>
+            <a class="ah-menu-link" href="terms.html">Terms of sale</a>
+          </div>
+        </div>
+        </span>
+      </nav>
+      <div class="ah-header-end">
+        <button type="button" class="ah-theme-toggle" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="ah-ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ah-ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face ah-btn-face-sm">Let's talk →</span></a>
+      </div>
+    </div>
+  </header>
+<!-- /partial:header -->
+
+<main id="main">
+
+  <div data-hero class="ah-clip">
+    <div class="ah-c3044e"></div>
+    <div class="r-gut ah-03baa5">
+      <div class="ah-4f7402"><a class="ah-h-d4e703" href="insights.html">Insights</a> / <span class="ah-amber">Application security</span></div>
+      <h1 class="r-f3 ah-debd25">How Do We Secure MCP Servers?</h1>
+      <div class="ah-0f985c"><span class="ah-86e29e">APPSEC · RESEARCH</span><span class="ah-rule">·</span><span>23 NOV 2026</span><span class="ah-rule">·</span><span>9 MIN READ</span><span class="ah-rule">·</span><span>BY TARUN BULCHANDANI</span></div>
+    </div>
+  </div>
+
+  <article class="ai-body r-gut ah-c06c58">
+    <p class="ah-0f7de7">Treat every MCP server as a privileged asset. Find the ones already running, route agent traffic through an AI or MCP gateway, give each server narrowly scoped OAuth tokens, and ask vendors for evidence of input validation, sandboxing and data loss prevention before you connect to their hosted servers. That is the short version of Gartner's advice in its 2026 Hype Cycle for Secure Software Engineering, which places MCP cybersecurity at the peak of inflated expectations and warns that shadow MCP adoption is outpacing security teams.</p>
+    <p>MCP servers give AI agents their reach into the rest of the business, and Gartner says their adoption is outpacing the security teams meant to control them. This article sets out how to secure them, drawing on two Gartner reports: the <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering 2026</a>, published in June 2026, and the first <a href="https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&amp;ct=260617&amp;st=sb" rel="noopener">Magic Quadrant for Software Supply Chain Security</a>, published the same month.</p>
+    <h2>Why MCP servers need their own security</h2>
+    <p>The <a href="https://modelcontextprotocol.io/" rel="noopener">Model Context Protocol</a> is a standard way for an AI agent to call tools and read data outside itself. An MCP server wraps a system, such as a code repository, a ticket queue or a database, and exposes actions an agent can take on it. An agent connected to the server inherits all of those actions.</p>
+    <p>Gartner tracks two related entries in the Hype Cycle. AI agent communication protocols, which cover MCP and UTCP for links between agents and their environment and A2A for links between agents, sit on the rise with a high benefit rating and 1% to 5% market penetration. Gartner recommends MCP as the short-term choice for connecting agents to tools and data, and says A2A should be used with caution. Its sample vendors for the category include Anthropic, Google, Microsoft, OpenAI and The Linux Foundation.</p>
+    <p>MCP cybersecurity is the second entry. Gartner defines it as applying architecture controls to secure how AI agents connect to tools, data and MCP servers. It sits at the peak of inflated expectations, with a high benefit rating and 5% to 20% penetration, and Gartner lists no sample vendors for it. Its headline recommendation is to treat every MCP deployment as a privileged asset.</p>
+    <p>The reason is that MCP widens the attack surface quickly. In its profile of AI-native software engineering, Gartner lists MCP servers alongside agent skills, plug-ins and IDE extensions as the ways AI tools expand what an attacker can reach. Its profile of agentic coding security adds that coding agents can pull in vulnerable or malicious open-source packages and that MCP servers may have access nobody approved.</p>
+    <h2>The risks to plan for</h2>
+    <p>Gartner's first concern is visibility. It says shadow MCP adoption is outpacing security teams, so many organisations cannot list the servers their agents already call.</p>
+    <p>Its second concern is vendor-hosted servers. According to Gartner, many of them have weak controls, and buyers should ask for evidence of input validation, sandboxing and data loss prevention before connecting.</p>
+    <p>Credentials are the third. The Hype Cycle's agentic AI governance profile notes that agents often hold their own credentials and API keys, and that tracking which agent decided what is usually manual or missing, a gap Gartner calls "decision amnesia".</p>
+    <p>The <a href="https://owasp.org/www-project-mcp-top-10/" rel="noopener">OWASP MCP Top 10</a>, which Gartner names among the relevant standards, gives a fuller checklist. Its ten entries include token mismanagement and secret exposure, privilege escalation through scope creep, tool poisoning, software supply chain attacks and dependency tampering, command injection, prompt injection through contextual payloads, insufficient authentication and authorisation, a lack of audit and telemetry, and shadow MCP servers.</p>
+    <h2>The controls Gartner recommends</h2>
+    <p>Gartner splits the work into discovery and protection.</p>
+    <p>For discovery, it says no single source is enough. You need controls on endpoints and servers to see local MCP servers that developers run on their machines, network detection to spot traffic to remote ones, and monitoring of your SaaS estate for servers that vendors host. The agentic coding security profile adds an inventory of coding agents and the MCP servers they use, and the guardian agent profile recommends discovering and inventorying every agent, sanctioned or not.</p>
+    <p>For protection, Gartner recommends AI and MCP gateways and proxies for runtime control, OAuth-scoped tokens and TLS 1.3. A gateway gives the security team one place to apply policy and watch what agents do. Scoped tokens limit what each server can do on behalf of an agent. The <a href="https://modelcontextprotocol.io/specification/latest/basic/authorization" rel="noopener">MCP authorisation specification</a> is built on OAuth 2.1, with the MCP server acting as a resource server that accepts access tokens and the client requesting them on a user's behalf, so the standard already supports this.</p>
+    <p>Gartner's guidance for coding agents fits MCP closely. It recommends "least agency" permissions, so an agent gets only what a given task needs, a human in the loop for high-risk work, and continuous monitoring of agent activity and tool access. For observability, it says agent systems should use OpenTelemetry at a minimum.</p>
+    <p>Some of the work stays manual for now. Gartner notes that incident playbooks for MCP-specific failures have to be written by hand. It also says the protocols themselves lack management features such as registration, discovery and access policies, and that buyers will need AI gateways and registries for agents, APIs, MCP servers and models to fill that gap until the vendor community does.</p>
+    <p>Put together, a starting checklist looks like this.</p>
+    <ol><li>Build an inventory of MCP servers from endpoint, network and SaaS data, and record an owner and a purpose for each.</li><li>Route agent traffic to MCP servers through a gateway or proxy, and block servers that are not on the inventory.</li><li>Issue each server short-lived, narrowly scoped OAuth tokens, and remove long-lived API keys held by agents.</li><li>Before connecting a vendor-hosted server, ask the vendor for evidence of input validation, sandboxing and data loss prevention.</li><li>Log every tool call with the agent, the user it acted for and the result, and send it to the same monitoring as your other production systems.</li><li>Write incident playbooks for the MCP failures you are most worried about, such as a poisoned tool or a leaked token.</li></ol>
+    <p>Onboarding agents raises many of the same questions about access and ownership, which we cover in <a href="insight-how-to-onboard-ai-agents.html">how to onboard AI agents</a>.</p>
+    <h2>Who sells MCP governance</h2>
+    <p>No product covers all of it yet. The Hype Cycle lists no sample vendors for MCP cybersecurity, and much of the market is arriving through adjacent categories.</p>
+    <p>Software supply chain security is one. In its first Magic Quadrant for the market, Gartner lists MCP servers among the third-party risks these tools should reduce, and counts protection of AI components, including LLMs and MCP servers, as an optional feature. Gartner says vendors are adding AI supply chain security, AI bills of materials, MCP server and AI coding tool governance, and agentic remediation. It credits <a href="https://cycode.com/maestro/" rel="noopener">Cycode</a>, a Leader, with governance of AI coding tools and MCP servers and a native AI bill of materials. <a href="https://jfrog.com/platform/" rel="noopener">JFrog</a>, also a Leader, offers an MCP server, though Gartner says its governance of IDE plug-ins covers only VS Code-based tools and its AI agent skill controls only recently left proof of concept. <a href="https://www.lineaje.com/unifai" rel="noopener">Lineaje</a>, a Visionary, has its UnifAI policy control layer for AI. Gartner estimates this market exceeded $2.8 billion in 2025 and forecasts it will pass $5 billion by 2030.</p>
+    <p>Guardian agents are the other. These are agents that supervise other agents, monitor and block risky actions, and enforce policy across platforms. Gartner rates them high benefit with less than 1% penetration, and names Amazon, Google, <a href="https://www.lumia.security/" rel="noopener">Lumia Security</a>, Microsoft, <a href="https://noma.security/platform/" rel="noopener">Noma Security</a>, Virtue AI, Wayfound and <a href="https://zenity.io/platform" rel="noopener">Zenity</a> as sample vendors. It advises trialling them now and choosing products that are independent of any single AI agent platform. It also notes that SaaS guardian agents cannot yet block actions in line and in real time, so they do not replace a gateway.</p>
+    <p>Expect to combine products. Gartner's broader message in the Hype Cycle is that buying more tools alone will not fix secure development, and that security has to be built into the workflows developers and agents already use. The same applies to the pipelines those agents commit to, which we cover in <a href="insight-how-to-secure-ci-cd-pipelines-github-actions.html">how to secure CI/CD pipelines and GitHub Actions</a>.</p>
+    <h2>Where agents help</h2>
+    <p>Most of the controls above depend on an inventory that stays current. Gartner's point about shadow adoption is that new servers appear faster than a security team can record them by hand, and its discovery advice spans endpoint, network and SaaS data that usually sit with different teams.</p>
+    <p>The agent we would build works alongside the endpoint management, network monitoring, identity provider and gateway a customer already owns. It reads their data each day to find MCP servers and the agents calling them, matches each to an owner, and flags any that are missing from the inventory, hold long-lived credentials or reach systems marked sensitive. For each new vendor-hosted server it drafts the evidence request Gartner recommends and tracks the reply. It proposes gateway rules and token scopes for a named security engineer to approve, and it never changes access on its own. Every finding and decision goes into a log the team can audit, so the next incident review starts with a list of what was connected and who allowed it. Teams choosing which coding agents to allow can pair this with our comparison of <a href="insight-which-ai-coding-agent-should-our-engineering-team-use.html">AI coding agents for engineering teams</a>.</p>
+    <h2>Common questions</h2>
+    <h3>What are the main security risks of MCP servers?</h3>
+    <p>Gartner's Hype Cycle for Secure Software Engineering 2026 names shadow MCP adoption that security teams cannot see, MCP servers with unapproved or uncontrolled access, and vendor-hosted servers with weak controls. The OWASP MCP Top 10 lists ten risks, including token mismanagement and secret exposure, privilege escalation through scope creep, tool poisoning, command injection, prompt injection, shadow MCP servers and a lack of audit and telemetry.</p>
+    <h3>What is an MCP gateway?</h3>
+    <p>An MCP gateway, or AI gateway, is a proxy that sits between AI agents and the MCP servers they call, so security teams can apply policy and see traffic at runtime. Gartner recommends AI and MCP gateways and proxies as the main runtime control for MCP, alongside OAuth-scoped tokens and TLS 1.3, and has published a separate Innovation Insight on MCP gateways.</p>
+    <h3>How do we find shadow MCP servers in our organisation?</h3>
+    <p>Gartner says discovery needs several sources together: controls on endpoints and servers, network detection, and monitoring of your SaaS estate. Its agentic coding security guidance adds an inventory of coding agents and the MCP servers they use, and its guardian agent guidance recommends inventorying every agent, sanctioned or not.</p>
+    <h3>Is it safe to use vendor-hosted MCP servers?</h3>
+    <p>Gartner warns that many vendor-hosted MCP servers have weak controls. It advises buyers to ask for evidence of input validation, sandboxing and data loss prevention before connecting agents to them, and to treat each deployment as a privileged asset.</p>
+    <h3>Which security vendors govern MCP servers?</h3>
+    <p>In its first Magic Quadrant for Software Supply Chain Security, Gartner credits Cycode with governance of AI coding tools and MCP servers, notes that JFrog offers an MCP server while its AI agent skill controls are early, and names Lineaje's UnifAI policy layer. The Hype Cycle lists no sample vendors for MCP cybersecurity itself, but names Lumia Security, Noma Security, Zenity and others for guardian agents that supervise agent actions.</p>
+    <h2>Sources</h2>
+    <ul class="ai-note ah-9e6595">
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NII8O1Z&amp;ct=260610&amp;st=sb" rel="noopener">Hype Cycle for Secure Software Engineering 2026</a>, Aaron Harrison, 2 June 2026, ID G00847347. Complimentary reprint; the link may expire.</li>
+      <li>Gartner, <a href="https://www.gartner.com/doc/reprints?id=1-2NK0VAB8&amp;ct=260617&amp;st=sb" rel="noopener">Magic Quadrant for Software Supply Chain Security</a>, Aaron Lord, Johnny Walters et al., 17 June 2026, ID G00843814. Complimentary reprint; the link may expire.</li>
+      <li><a href="https://modelcontextprotocol.io/specification/latest/basic/authorization" rel="noopener">Model Context Protocol authorization specification</a> and <a href="https://owasp.org/www-project-mcp-top-10/" rel="noopener">OWASP MCP Top 10</a>, plus vendor pages for Cycode, JFrog, Lineaje, Zenity, Noma Security and Lumia Security. Accessed 26 November 2026.</li>
+    </ul>
+    <p class="ai-note">Gartner does not endorse any vendor, product or service depicted in its research publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner research publications consist of the opinions of Gartner's research organisation and should not be construed as statements of fact. GARTNER, HYPE CYCLE and MAGIC QUADRANT are registered trademarks of Gartner, Inc. and/or its affiliates. Arithim builds with Claude, made by Anthropic, which Gartner lists as a sample vendor in the AI agent communication protocols profile cited here.</p>
+  </article>
+
+  <div class="r-gut ah-dbad61">
+    <div class="ah-7129c9">MORE INSIGHTS</div>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-secure-ci-cd-pipelines-github-actions.html"><h3 class="ah-772add">How Do I Secure Our CI/CD Pipelines and GitHub Actions?</h3><span class="ah-90030f">APPSEC · RESEARCH · 24 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-088696" href="insight-how-to-reduce-application-security-backlog.html"><h3 class="ah-772add">How Do We Reduce Our Application Security Backlog?</h3><span class="ah-90030f">APPSEC · RESEARCH · 22 OCT 2026</span></a>
+    <a class="ah-h-b55389 ah-9c2859" href="insight-how-to-secure-vibe-coded-apps.html"><h3 class="ah-772add">How Do I Secure Vibe-Coded Apps Built by People Who Aren't Developers?</h3><span class="ah-90030f">APPSEC · RESEARCH · 21 OCT 2026</span></a>
+  </div>
+
+  <div data-hero class="r-gut ah-146921">
+    <div class="ah-848209"></div>
+    <div class="ah-844aa6">
+      <h2 class="r-f4 ah-946f94">Want to know which MCP servers your agents already reach, and what they can do there?</h2>
+      <a href="contact.html" class="ah-btn-ring"><span class="ah-ring-spin"></span><span class="ah-btn-face">Start a conversation →</span></a>
+    </div>
+  </div>
+
+</main>
+
+<!-- partial:footer {"back_href": "insights.html", "back_text": "← ALL INSIGHTS"} -->
+  <footer class="ah-footer"><div class="ah-foot-mark"><a href="index.html" aria-label="arithim.com home"><img src="/assets/arithim-capsule.svg" alt="arithim.com" width="146" height="44" loading="lazy" decoding="async"></a></div><div class="r-pad r-foot ah-2b8fb5"><span>© 2026 ARITHIM LTD · <a class="ah-h-d4e703" href="privacy.html">PRIVACY</a> · <a class="ah-h-d4e703" href="legal.html">LEGAL</a> · <a class="ah-h-d4e703" href="terms.html">TERMS</a></span><a class="ah-h-d4e703" href="insights.html">← ALL INSIGHTS</a><span>UNITED KINGDOM · HELLO@ARITHIM.COM</span></div></footer>
+<!-- /partial:footer -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { import('./arithim-fx.js?v=5').then((m) => { this._stop = m.initFx(document); }).catch((e) => console.error('fx load failed', e)); }
+  componentWillUnmount() { if (this._stop) this._stop(); if (this._stopDeck) this._stopDeck(); }
+  renderVals() { return {}; }
+}
+</script>
+<a class="callus-link" href="/contact.html"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>Call us</a>
+<script src="/assets/callus.js?v=4" defer></script>
+</body>
+</html>
